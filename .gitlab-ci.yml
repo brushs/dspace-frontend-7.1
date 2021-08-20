@@ -1,0 +1,10 @@
+
+# Compile based on yml with GitLab node.js
+build-job:
+  stage: build
+  script:
+    - echo "Hello, $GITLAB_USER_LOGIN!"
+
+# Bring in Web-Experience-Toolkit 
+
+# DEPLOY
