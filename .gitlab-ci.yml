@@ -1,4 +1,3 @@
-
 # Compile based on yml with GitLab node.js
 # To contribute improvements to CI/CD templates, please follow the Development guide at:
 # https://docs.gitlab.com/ee/development/cicd/templates.html
@@ -7,7 +6,10 @@
 
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
-# image: node:latest
+# Figure out how to find the yml, node:latest or yarn:latest
+image: yarn:latest
+
+#image: node:latest
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -19,14 +21,14 @@
 
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
-# cache:
-#  paths:
-#    - node_modules/
+ cache:
+  paths:
+    - node_modules/
 
-# test_async:
-#  script:
-#    - npm install
-#    - node ./specs/start.js ./specs/async.spec.js
+ test_async:
+  script:
+    - npm install
+    - node ./specs/start.js ./specs/async.spec.js
 
 # test_db:
 #  script:
