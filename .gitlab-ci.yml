@@ -7,9 +7,8 @@
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
 # Figure out how to find the yml, node:latest or yarn:latest
-image: yarn:latest
-
-#image: node:latest
+#image: yarn:latest
+image: node:latest
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -24,11 +23,29 @@ image: yarn:latest
  cache:
   paths:
     - node_modules/
+    - .yarn
 
- test_async:
-  script:
-    - npm install
-    - node ./specs/start.js ./specs/async.spec.js
+before_script:
+# Getting environment to pre-install yarn
+    - apt-git/ update -qq && apt -get -install
+
+stages:
+  - build
+  #- test
+  #- staging
+  #- production
+
+
+
+Build:
+  stage:  build
+  tags: 
+    - node
+  before_script: 
+    - yarn config set cache-folder .yarn
+    - yarn install 
+  # script:
+  #  - npm run build
 
 # test_db:
 #  script:
