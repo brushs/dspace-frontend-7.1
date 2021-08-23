@@ -47,9 +47,9 @@ install_dependencies:
   script:
     - yarn install 
     #- npm run build
-      artifacts:
-        paths:
-          - yarn_modules/
+  artifacts:
+    paths:
+    - yarn_modules/
 
 testing_testing:
   stage: test
