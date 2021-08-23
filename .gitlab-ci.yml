@@ -31,19 +31,26 @@ before_script:
 
 stages:
   - build
-  #- test
+  - test
   #- staging
   #- production
 
-
-
-Build:
+# How to set-up a CI/CD environment on Gitlab using NodeJs
+# https://dev.to/6thcode/how-to-set-up-a-cicd-environment-on-gitlab-using-nodejs-jh3
+install_dependencies:
   stage: build
-  tags: 
-    - node
-  before_script: 
-    - yarn config set cache-folder .yarn
+  # tags: 
+  #  - node
+  # before_script: 
+  #  - yarn config set cache-folder .yarn
   #  - yarn install 
   script:
     - yarn install 
     #- npm run build
+      artifacts:
+        paths:
+          - yarn_modules/
+
+testing_testing:
+  stage: test
+  script: yarn test
