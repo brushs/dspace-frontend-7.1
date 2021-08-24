@@ -39,7 +39,6 @@ install_dependencies:
   stage: build
   image: node:15.2.1-alpine3.11
   cache:
-  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
     - .yarn/
