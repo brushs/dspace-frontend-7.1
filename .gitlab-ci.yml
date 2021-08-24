@@ -8,7 +8,7 @@
 # https://hub.docker.com/r/library/node/tags/
 # Figure out how to find the yml, node:latest or yarn:latest
 #image: yarn:latest
-image: node:latest
+#image: node:latest
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -21,9 +21,11 @@ image: node:latest
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
 cache:
+  image: node:15.2.1-alpine3.11
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
-    - .yarn
+    - .yarn/
 
 # Getting environment to pre-install yarn
 before_script:
@@ -45,7 +47,11 @@ install_dependencies:
   #  - yarn config set cache-folder .yarn
   #  - yarn install 
   script:
-    - yarn install 
+    - yarn set version berry
+    - yarn set version 2.4.2
+    - yarn install
+    - yarn build
+    - yarn test
     #- npm run build
   artifacts:
     paths:
