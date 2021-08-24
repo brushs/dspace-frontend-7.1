@@ -8,7 +8,7 @@
 # https://hub.docker.com/r/library/node/tags/
 # Figure out how to find the yml, node:latest or yarn:latest
 #image: yarn:latest
-#image: node:latest
+image: node:latest
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -20,8 +20,10 @@
 
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
-
-
+cache:
+  paths:
+    - node_modules/
+    - .yarn/
 
 # Getting environment to pre-install yarn
 before_script:
@@ -37,11 +39,6 @@ stages:
 # https://dev.to/6thcode/how-to-set-up-a-cicd-environment-on-gitlab-using-nodejs-jh3
 install_dependencies:
   stage: build
-  image: node:15.2.1-alpine3.11
-  cache:
-  paths:
-    - node_modules/
-    - .yarn/
   # tags: 
   #  - node
   # before_script: 
