@@ -27,7 +27,7 @@ cache:
 
 # Getting environment to pre-install yarn
 before_script:
-  - apt-git/ update -qq && apt -get -install
+  - apt-get update -qq && apt-get -install
 
 stages:
   - build
