@@ -28,6 +28,8 @@ cache:
 # Getting environment to pre-install yarn
 before_script:
   - apt-git/ update -qq && apt -get -install
+  - yarn config set cache-folder .yarn
+  - yarn install 
 
 stages:
   - build
@@ -45,11 +47,7 @@ install_dependencies:
   #  - yarn config set cache-folder .yarn
   #  - yarn install 
   script:
-    - yarn set version berry
-    - yarn set version 2.4.2
     - yarn install
-    - yarn build
-    - yarn test
     #- npm run build
   artifacts:
     paths:
