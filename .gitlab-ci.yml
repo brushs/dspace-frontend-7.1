@@ -39,7 +39,7 @@ stages:
 # https://dev.to/6thcode/how-to-set-up-a-cicd-environment-on-gitlab-using-nodejs-jh3
 install_dependencies:
   stage: build
-   tags: 
+  tags: 
     - node
   # before_script: 
   #  - yarn config set cache-folder .yarn
