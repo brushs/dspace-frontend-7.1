@@ -8,7 +8,7 @@
 # https://hub.docker.com/r/library/node/tags/
 # Figure out how to find the yml, node:latest or yarn:latest
 #image: yarn:latest
-image: node:latest
+image: node:6.10.0
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -28,8 +28,6 @@ cache:
 # Getting environment to pre-install yarn
 before_script:
   - apt-git/ update -qq && apt -get -install
-  - yarn config set cache-folder .yarn
-  - yarn install 
 
 stages:
   - build
@@ -47,8 +45,10 @@ install_dependencies:
   #  - yarn config set cache-folder .yarn
   #  - yarn install 
   script:
-    - yarn install
-    #- npm run build
+   - yarn config set cache-folder .yarn
+   - yarn install 
+   - npm run build
+   - npm run test
   artifacts:
     paths:
     - yarn_modules/
