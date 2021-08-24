@@ -20,12 +20,8 @@
 
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
-cache:
-  image: node:15.2.1-alpine3.11
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
-    - .yarn/
+
+
 
 # Getting environment to pre-install yarn
 before_script:
@@ -41,6 +37,12 @@ stages:
 # https://dev.to/6thcode/how-to-set-up-a-cicd-environment-on-gitlab-using-nodejs-jh3
 install_dependencies:
   stage: build
+  image: node:15.2.1-alpine3.11
+  cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .yarn/
   # tags: 
   #  - node
   # before_script: 
