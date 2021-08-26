@@ -273,9 +273,14 @@ export const environment: GlobalConfig = {
     //   name: BASE_THEME_NAME
     // },
 
+    //{
+    //  // The default dspace theme
+    //  name: 'dspace'
+    //},
+    
     {
-      // The default dspace theme
-      name: 'dspace'
+      // The default wetoverlay theme
+      name: 'wetoverlay'
     },
   ],
   // Whether to enable media viewer for image and/or video Bitstreams (i.e. Bitstreams whose MIME type starts with "image" or "video").
