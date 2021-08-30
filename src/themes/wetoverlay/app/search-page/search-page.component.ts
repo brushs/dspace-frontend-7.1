@@ -3,9 +3,9 @@ import { SearchPageComponent as BaseComponent } from '../../../../app/search-pag
 
 @Component({
   selector: 'ds-search-page',
-  // styleUrls: ['./search-page.component.scss'],
-  // templateUrl: './search-page.component.html'
-  templateUrl: '../../../../app/search-page/search-page.component.html'
+  styleUrls: ['./search-page.component.scss'],
+  templateUrl: './search-page.component.html'
+  //templateUrl: '../../../../app/search-page/search-page.component.html'
 })
 
 /**
