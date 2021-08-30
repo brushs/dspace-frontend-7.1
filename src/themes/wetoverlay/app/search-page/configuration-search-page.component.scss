@@ -1,0 +1,57 @@
+@include media-breakpoint-down(md) {
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+::ng-deep .search-controls {
+    margin-bottom: var(--bs-spacer);
+}
+
+#wb-srch {
+	@extend %theme-wet-boew-print-display-none-important !optional; 
+	padding-right: 10px;
+	padding-top: .9em;
+	text-align: right;
+	margin-bottom: 20px;
+
+	.form-group {
+		width: 70%;
+		display: inline-block;
+	}
+	.srch-pnl {
+	   .form-control {
+		width: 100%;
+	    }
+	}
+}
+
+/*
+  WET-BOEW
+  @title: Search all screen views
+ */
+
+#wb-srch-sub {
+	float: right;
+	margin-left: 5px;
+}
+
+[lang=fr] {
+	#wb-srch {
+		.form-group {
+			width: 60%;
+		}
+	}
+}
+
+[dir=rtl] {
+	#wb-srch {
+		text-align: left;
+	}
+  	#wb-srch-sub {
+		float: left;
+		margin-left: 0;
+		margin-right: 5px;
+	}
+}
