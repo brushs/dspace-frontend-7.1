@@ -5,7 +5,9 @@
     z-index: var(--ds-footer-z-index);
     border-top: var(--ds-footer-border);
     padding: var(--ds-footer-padding);
-
+a{
+  color: #000 !important;
+}
     p {
       margin: 0;
     }
