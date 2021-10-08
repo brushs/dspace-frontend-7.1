@@ -31,3 +31,14 @@ header {
     height: 100%;
   }
 }
+
+.lead {
+  margin-bottom: 23px;
+  text-decoration: underline;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4; }
+
+  @media (min-width: 768px) {
+    .lead {
+      font-size: 24px; } }
