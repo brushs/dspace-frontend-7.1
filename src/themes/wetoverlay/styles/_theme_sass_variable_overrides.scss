@@ -62,8 +62,3 @@ $theme-colors: (
 ) !default;
 
 $link-color: map-get($theme-colors, info) !default;
-:root {
---ds-breadcrumb-bg: #{$blue-100};
-  --ds-breadcrumb-link-color: #{$cyan};
-  --ds-breadcrumb-link-active-color: #{darken($cyan, 30%)};
-}
