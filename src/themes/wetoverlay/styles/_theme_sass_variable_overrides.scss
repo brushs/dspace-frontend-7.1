@@ -7,10 +7,10 @@
 
 //$font-family-sans-serif: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-$navbar-dark-color: #FFFFFF;
 
 /* Reassign color vars to semantic color scheme */
 $blue: #43515f !default;
+$blue-100: #E3F2FD !default;
 $green: #92C642 !default;
 $cyan: #207698 !default;
 $yellow: #ec9433 !default;
@@ -27,7 +27,6 @@ $table-accent-bg: $gray-100 !default;   // Bootstrap $gray-100
 $table-hover-bg: $gray-400 !default;   // Bootstrap $gray-400
 
 $yiq-contrasted-threshold:  170 !default;
-
 
 /*
  Default Mixins and namespace variables
@@ -48,4 +47,23 @@ $yiq-contrasted-threshold:  170 !default;
 	overflow: hidden;
 	position: absolute;
 	width: 1px;
+}
+
+
+$theme-colors: (
+  primary: $blue-100,
+  secondary: $gray-100,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $dark
+) !default;
+
+$link-color: map-get($theme-colors, info) !default;
+:root {
+--ds-breadcrumb-bg: #{$blue-100};
+  --ds-breadcrumb-link-color: #{$cyan};
+  --ds-breadcrumb-link-active-color: #{darken($cyan, 30%)};
 }
