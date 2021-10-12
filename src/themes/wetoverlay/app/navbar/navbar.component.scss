@@ -4,7 +4,7 @@ nav.navbar {
     background-color: #E3F2FD;
     margin-right: auto;
     margin-left: auto;
-    max-width: 940px;
+    max-width: 1110px;
     @media screen and (max-width: map-get($grid-breakpoints, sm)) {
       max-height: var(--ds-header-logo-height-xs);
     }
