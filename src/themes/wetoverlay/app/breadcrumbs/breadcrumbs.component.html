@@ -1,7 +1,4 @@
 <div class="container">
-    <div class="row">
-    <div class="col-1"></div>
-    <div class="col-9"></div>
 <ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
     <nav *ngIf="(showBreadcrumbs$ | async)" aria-label="breadcrumb" class="nav-breadcrumb">
         <ol class="container breadcrumb">
@@ -21,6 +18,4 @@
         <li class="breadcrumb-item active" aria-current="page">{{text | translate}}</li>
     </ng-template>
 </ng-container>
-<div class="col-9"></div>
-</div>
 </div>
