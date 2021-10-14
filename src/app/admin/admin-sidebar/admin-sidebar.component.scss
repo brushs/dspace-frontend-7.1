@@ -21,7 +21,9 @@
         &.inactive ::ng-deep .sidebar-collapsible {
             margin-left: calc(-1 * var(--ds-sidebar-items-width));
         }
-
+        .navbar-link {
+         color:rgb(0, 0, 0);
+         }
         .navbar-nav {
             .admin-menu-header {
                 background-color: var(--ds-admin-sidebar-header-bg);
@@ -32,6 +34,7 @@
                 }
                 .section-header-text {
                     line-height: 1.5;
+                    color: var(--ds-navbar-link-color);
                 }
 
             }
