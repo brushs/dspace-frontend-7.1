@@ -5,9 +5,23 @@
 
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(0, 0, 0, 1);
+
 }
+
+a.nav-link:hover{
+    color: #2B4380 !important;
+  }
+
+a.nav-link:focus{
+    color: #2B4380 !important;
+  }
+  a.nav-link:active{
+    color: #2B4380 !important;
+  }
+
 
 .align-right{
     margin-right: auto;
     margin-left: auto;
 }
+
