@@ -2133,7 +2133,7 @@
 
   "menu.section.browse_community_by_title": "By Title",
 
-  "menu.section.browse_global": "All of DSpace",
+  "menu.section.browse_global": "Browse by",
 
   "menu.section.browse_global_by_author": "By Author",
 
@@ -2363,7 +2363,7 @@
 
 
 
-  "nav.browse.header": "All of DSpace",
+  "nav.browse.header": "Browse by",
 
   "nav.community-browse.header": "By Community",
 
