@@ -42,13 +42,11 @@
     pointer-events: none; }
   
   .btn-default {
-    color: #335075;
-    background-color: #eaebed;
-    border-color: #dcdee1; }
+    color: #335075; }
     .btn-default:focus, .btn-default.focus {
       color: #335075;
-      background-color: #cfd1d5;
-      border-color: #989da6; }
+      background-color: #E3F2FD;
+      border-color: #E3F2FD; }
     .btn-default:hover {
       color: #335075;
       background-color: #cfd1d5;
@@ -301,3 +299,8 @@
   input[type="reset"].btn-block,
   input[type="button"].btn-block {
     width: 100%; }
+
+
+    .btn-outline-primary {
+      color:#0535D2;
+    }
