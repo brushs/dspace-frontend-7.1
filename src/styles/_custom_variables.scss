@@ -27,10 +27,10 @@
   --ds-header-navbar-border-top-color: #{$white};
   --ds-header-navbar-border-bottom-color: #{$gray-400};
   --ds-navbar-link-color: #{$cyan};
-  --ds-navbar-link-color-hover: #{darken($cyan, 15%)};
+  --ds-navbar-link-color-hover: #{darken($cyan, 50%)};
 
   $admin-sidebar-bg: $white;
-  $admin-sidebar-active-bg: darken($admin-sidebar-bg, 3%);
+  $admin-sidebar-active-bg: darken($admin-sidebar-bg, 2%);
   --ds-admin-sidebar-bg: #{$admin-sidebar-bg};
   --ds-admin-sidebar-active-bg: #{$admin-sidebar-active-bg};
  
