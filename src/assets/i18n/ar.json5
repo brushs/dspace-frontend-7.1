@@ -228,9 +228,9 @@
   // TODO New key - Add a translation
   "admin.registries.bitstream-formats.table.supportLevel.head": "Support Level",
   
-  // "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitstream Format Registry",
+  // "admin.registries.bitstream-formats.title": "OSPR :: Bitstream Format Registry",
   // TODO New key - Add a translation
-  "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitstream Format Registry",
+  "admin.registries.bitstream-formats.title": "OSPR :: Bitstream Format Registry",
   
   
   
@@ -282,9 +282,9 @@
   // TODO New key - Add a translation
   "admin.registries.metadata.schemas.table.namespace": "Namespace",
   
-  // "admin.registries.metadata.title": "DSpace Angular :: Metadata Registry",
+  // "admin.registries.metadata.title": "OSPR :: Metadata Registry",
   // TODO New key - Add a translation
-  "admin.registries.metadata.title": "DSpace Angular :: Metadata Registry",
+  "admin.registries.metadata.title": "OSPR :: Metadata Registry",
   
   
   
@@ -384,9 +384,9 @@
   // TODO New key - Add a translation
   "admin.registries.schema.return": "Return",
   
-  // "admin.registries.schema.title": "DSpace Angular :: Metadata Schema Registry",
+  // "admin.registries.schema.title": "OSPR :: Metadata Schema Registry",
   // TODO New key - Add a translation
-  "admin.registries.schema.title": "DSpace Angular :: Metadata Schema Registry",
+  "admin.registries.schema.title": "OSPR :: Metadata Schema Registry",
   
   
   
@@ -406,9 +406,9 @@
   // TODO New key - Add a translation
   "admin.access-control.epeople.actions.stop-impersonating": "Stop impersonating EPerson",
   
-  // "admin.access-control.epeople.title": "DSpace Angular :: EPeople",
+  // "admin.access-control.epeople.title": "OSPR :: EPeople",
   // TODO New key - Add a translation
-  "admin.access-control.epeople.title": "DSpace Angular :: EPeople",
+  "admin.access-control.epeople.title": "OSPR :: EPeople",
   
   // "admin.access-control.epeople.head": "EPeople",
   // TODO New key - Add a translation
@@ -560,17 +560,17 @@
   
   
   
-  // "admin.access-control.groups.title": "DSpace Angular :: Groups",
+  // "admin.access-control.groups.title": "OSPR :: Groups",
   // TODO New key - Add a translation
-  "admin.access-control.groups.title": "DSpace Angular :: Groups",
+  "admin.access-control.groups.title": "OSPR :: Groups",
   
-  // "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Edit Group",
+  // "admin.access-control.groups.title.singleGroup": "OSPR :: Edit Group",
   // TODO New key - Add a translation
-  "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Edit Group",
+  "admin.access-control.groups.title.singleGroup": "OSPR :: Edit Group",
   
-  // "admin.access-control.groups.title.addGroup": "DSpace Angular :: New Group",
+  // "admin.access-control.groups.title.addGroup": "OSPR :: New Group",
   // TODO New key - Add a translation
-  "admin.access-control.groups.title.addGroup": "DSpace Angular :: New Group",
+  "admin.access-control.groups.title.addGroup": "OSPR :: New Group",
   
   // "admin.access-control.groups.head": "Groups",
   // TODO New key - Add a translation
@@ -2523,9 +2523,9 @@
   // TODO New key - Add a translation
   "home.breadcrumbs": "Home",
   
-  // "home.title": "DSpace Angular :: Home",
+  // "home.title": "OSPR :: Home",
   // TODO New key - Add a translation
-  "home.title": "DSpace Angular :: Home",
+  "home.title": "OSPR :: Home",
   
   // "home.top-level-communities.head": "Communities in DSpace",
   // TODO New key - Add a translation
@@ -3394,9 +3394,9 @@
   // TODO New key - Add a translation
   "item.search.results.head": "Item Search Results",
   
-  // "item.search.title": "DSpace Angular :: Item Search",
+  // "item.search.title": "OSPR :: Item Search",
   // TODO New key - Add a translation
-  "item.search.title": "DSpace Angular :: Item Search",
+  "item.search.title": "OSPR :: Item Search",
   
   
   
@@ -3654,9 +3654,9 @@
   // TODO New key - Add a translation
   "journal.search.results.head": "Journal Search Results",
   
-  // "journal.search.title": "DSpace Angular :: Journal Search",
+  // "journal.search.title": "OSPR :: Journal Search",
   // TODO New key - Add a translation
-  "journal.search.title": "DSpace Angular :: Journal Search",
+  "journal.search.title": "OSPR :: Journal Search",
   
   
   
@@ -4476,9 +4476,9 @@
   // TODO New key - Add a translation
   "person.search.results.head": "Person Search Results",
   
-  // "person.search.title": "DSpace Angular :: Person Search",
+  // "person.search.title": "OSPR :: Person Search",
   // TODO New key - Add a translation
-  "person.search.title": "DSpace Angular :: Person Search",
+  "person.search.title": "OSPR :: Person Search",
   
   
   
@@ -4855,9 +4855,9 @@
   // TODO New key - Add a translation
   "publication.search.results.head": "Publication Search Results",
   
-  // "publication.search.title": "DSpace Angular :: Publication Search",
+  // "publication.search.title": "OSPR :: Publication Search",
   // TODO New key - Add a translation
-  "publication.search.title": "DSpace Angular :: Publication Search",
+  "publication.search.title": "OSPR :: Publication Search",
   
   
   // "register-email.title": "New user registration",
@@ -5279,9 +5279,9 @@
   // TODO New key - Add a translation
   "search.switch-configuration.title": "Show",
   
-  // "search.title": "DSpace Angular :: Search",
+  // "search.title": "OSPR :: Search",
   // TODO New key - Add a translation
-  "search.title": "DSpace Angular :: Search",
+  "search.title": "OSPR :: Search",
   
   // "search.breadcrumbs": "Search",
   // TODO New key - Add a translation
