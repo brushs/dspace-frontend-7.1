@@ -184,8 +184,8 @@
   // "admin.registries.bitstream-formats.table.supportLevel.head": "Support Level",
   "admin.registries.bitstream-formats.table.supportLevel.head": "Atbalsta Līmenis",
   
-  // "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitstream Format Registry",
-  "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitu straumes Formatu Reģistrs",
+  // "admin.registries.bitstream-formats.title": "OSPR :: Bitstream Format Registry",
+  "admin.registries.bitstream-formats.title": "OSPR :: Bitu straumes Formatu Reģistrs",
   
   
   
@@ -226,8 +226,8 @@
   // "admin.registries.metadata.schemas.table.namespace": "Namespace",
   "admin.registries.metadata.schemas.table.namespace": "Nosaukumvieta",
   
-  // "admin.registries.metadata.title": "DSpace Angular :: Metadata Registry",
-  "admin.registries.metadata.title": "DSpace Angular :: Metadatu Registry",
+  // "admin.registries.metadata.title": "OSPR :: Metadata Registry",
+  "admin.registries.metadata.title": "OSPR :: Metadatu Registry",
   
   
   
@@ -304,8 +304,8 @@
   // "admin.registries.schema.return": "Return",
   "admin.registries.schema.return": "Atgriezties",
   
-  // "admin.registries.schema.title": "DSpace Angular :: Metadata Schema Registry",
-  "admin.registries.schema.title": "DSpace Angular :: Metadatu shēmas reģistrs",
+  // "admin.registries.schema.title": "OSPR :: Metadata Schema Registry",
+  "admin.registries.schema.title": "OSPR :: Metadatu shēmas reģistrs",
   
   
   
@@ -325,8 +325,8 @@
   // TODO New key - Add a translation
   "admin.access-control.epeople.actions.stop-impersonating": "Stop impersonating EPerson",
   
-  // "admin.access-control.epeople.title": "DSpace Angular :: EPeople",
-  "admin.access-control.epeople.title": "DSpace Angular :: EPersonas",
+  // "admin.access-control.epeople.title": "OSPR :: EPeople",
+  "admin.access-control.epeople.title": "OSPR :: EPersonas",
   
   // "admin.access-control.epeople.head": "EPeople",
   "admin.access-control.epeople.head": "EPersonas",
@@ -443,16 +443,16 @@
   
   
   
-  // "admin.access-control.groups.title": "DSpace Angular :: Groups",
-  "admin.access-control.groups.title": "DSpace Angular :: Grupas",
+  // "admin.access-control.groups.title": "OSPR :: Groups",
+  "admin.access-control.groups.title": "OSPR :: Grupas",
   
-  // "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Edit Group",
+  // "admin.access-control.groups.title.singleGroup": "OSPR :: Edit Group",
   // TODO New key - Add a translation
-  "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Edit Group",
+  "admin.access-control.groups.title.singleGroup": "OSPR :: Edit Group",
   
-  // "admin.access-control.groups.title.addGroup": "DSpace Angular :: New Group",
+  // "admin.access-control.groups.title.addGroup": "OSPR :: New Group",
   // TODO New key - Add a translation
-  "admin.access-control.groups.title.addGroup": "DSpace Angular :: New Group",
+  "admin.access-control.groups.title.addGroup": "OSPR :: New Group",
   
   // "admin.access-control.groups.head": "Groups",
   "admin.access-control.groups.head": "Grupas",
@@ -2096,8 +2096,8 @@
   // TODO New key - Add a translation
   "home.breadcrumbs": "Home",
   
-  // "home.title": "DSpace Angular :: Home",
-  "home.title": "DSpace Angular :: Sākums",
+  // "home.title": "OSPR :: Home",
+  "home.title": "OSPR :: Sākums",
   
   // "home.top-level-communities.head": "Communities in DSpace",
   "home.top-level-communities.head": "DSpace Kategorijas",
@@ -2792,9 +2792,9 @@
   // TODO New key - Add a translation
   "item.search.results.head": "Item Search Results",
   
-  // "item.search.title": "DSpace Angular :: Item Search",
+  // "item.search.title": "OSPR :: Item Search",
   // TODO New key - Add a translation
-  "item.search.title": "DSpace Angular :: Item Search",
+  "item.search.title": "OSPR :: Item Search",
   
   
   
@@ -3007,8 +3007,8 @@
   // "journal.search.results.head": "Journal Search Results",
   "journal.search.results.head": "Žurnālu meklēšanas rezultāti",
   
-  // "journal.search.title": "DSpace Angular :: Journal Search",
-  "journal.search.title": "DSpace Angular :: Žurnālu Meklēšana",
+  // "journal.search.title": "OSPR :: Journal Search",
+  "journal.search.title": "OSPR :: Žurnālu Meklēšana",
   
   
   
@@ -3650,8 +3650,8 @@
   // "person.search.results.head": "Person Search Results",
   "person.search.results.head": "Personas meklēšanas rezultāti",
   
-  // "person.search.title": "DSpace Angular :: Person Search",
-  "person.search.title": "DSpace Angular :: Personas Meklēšana",
+  // "person.search.title": "OSPR :: Person Search",
+  "person.search.title": "OSPR :: Personas Meklēšana",
   
   
   
@@ -3982,8 +3982,8 @@
   // "publication.search.results.head": "Publication Search Results",
   "publication.search.results.head": "Publikāciju meklēšanas rezultāti",
   
-  // "publication.search.title": "DSpace Angular :: Publication Search",
-  "publication.search.title": "DSpace Angular :: Publikācijas meklēšana",
+  // "publication.search.title": "OSPR :: Publication Search",
+  "publication.search.title": "OSPR :: Publikācijas meklēšana",
   
   
   // "register-email.title": "New user registration",
@@ -4390,8 +4390,8 @@
   // "search.switch-configuration.title": "Show",
   "search.switch-configuration.title": "Rādīt",
   
-  // "search.title": "DSpace Angular :: Search",
-  "search.title": "DSpace Angular :: Meklēt",
+  // "search.title": "OSPR :: Search",
+  "search.title": "OSPR :: Meklēt",
   
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Meklēt",

@@ -172,8 +172,8 @@
   // "admin.registries.bitstream-formats.table.supportLevel.head": "Support Level",
   "admin.registries.bitstream-formats.table.supportLevel.head": "Tukitaso",
 
-  // "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitstream Format Registry",
-  "admin.registries.bitstream-formats.title": "DSpace Angular :: Tiedostoformaattirekisteri",
+  // "admin.registries.bitstream-formats.title": "OSPR :: Bitstream Format Registry",
+  "admin.registries.bitstream-formats.title": "OSPR :: Tiedostoformaattirekisteri",
 
 
 
@@ -213,8 +213,8 @@
   // "admin.registries.metadata.schemas.table.namespace": "Namespace",
   "admin.registries.metadata.schemas.table.namespace": "Nimiavaruus",
 
-  // "admin.registries.metadata.title": "DSpace Angular :: Metadata Registry",
-  "admin.registries.metadata.title": "DSpace Angular :: Metadatarekisteri",
+  // "admin.registries.metadata.title": "OSPR :: Metadata Registry",
+  "admin.registries.metadata.title": "OSPR :: Metadatarekisteri",
 
 
 
@@ -290,8 +290,8 @@
   // "admin.registries.schema.return": "Return",
   "admin.registries.schema.return": "Palaa",
 
-  // "admin.registries.schema.title": "DSpace Angular :: Metadata Schema Registry",
-  "admin.registries.schema.title": "DSpace Angular :: Metadataskeemarekisteri",
+  // "admin.registries.schema.title": "OSPR :: Metadata Schema Registry",
+  "admin.registries.schema.title": "OSPR :: Metadataskeemarekisteri",
 
 
 
@@ -307,8 +307,8 @@
   // "admin.access-control.epeople.actions.stop-impersonating": "Stop impersonating EPerson",
   "admin.access-control.epeople.actions.stop-impersonating": "Lopeta käyttäjänä esiintyminen",
 
-  // "admin.access-control.epeople.title": "DSpace Angular :: EPeople",
-  "admin.access-control.epeople.title": "DSpace Angular :: Käyttäjät",
+  // "admin.access-control.epeople.title": "OSPR :: EPeople",
+  "admin.access-control.epeople.title": "OSPR :: Käyttäjät",
 
   // "admin.access-control.epeople.head": "EPeople",
   "admin.access-control.epeople.head": "Käyttäjät",
@@ -423,14 +423,14 @@
 
 
 
-  // "admin.access-control.groups.title": "DSpace Angular :: Groups",
-  "admin.access-control.groups.title": "DSpace Angular :: Ryhmät",
+  // "admin.access-control.groups.title": "OSPR :: Groups",
+  "admin.access-control.groups.title": "OSPR :: Ryhmät",
 
-  // "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Edit Group",
-  "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Ryhmän muokkaus",
+  // "admin.access-control.groups.title.singleGroup": "OSPR :: Edit Group",
+  "admin.access-control.groups.title.singleGroup": "OSPR :: Ryhmän muokkaus",
 
-  // "admin.access-control.groups.title.addGroup": "DSpace Angular :: New Group",
-  "admin.access-control.groups.title.addGroup": "DSpace Angular :: Uusi ryhmä",
+  // "admin.access-control.groups.title.addGroup": "OSPR :: New Group",
+  "admin.access-control.groups.title.addGroup": "OSPR :: Uusi ryhmä",
 
   // "admin.access-control.groups.head": "Groups",
   "admin.access-control.groups.head": "Ryhmät",
@@ -1919,8 +1919,8 @@
   // "home.breadcrumbs": "Home",
   "home.breadcrumbs": "Etusivu",
 
-  // "home.title": "DSpace Angular :: Home",
-  "home.title": "DSpace Angular :: Etusivu",
+  // "home.title": "OSPR :: Home",
+  "home.title": "OSPR :: Etusivu",
 
   // "home.top-level-communities.head": "Communities in DSpace",
   "home.top-level-communities.head": "Julkaisuarkiston yhteisöt",
@@ -2581,8 +2581,8 @@
   // "item.search.results.head": "Item Search Results",
   "item.search.results.head": "Tietuehaun tulokset",
 
-  // "item.search.title": "DSpace Angular :: Item Search",
-  "item.search.title": "DSpace Angular :: Tietuehaku",
+  // "item.search.title": "OSPR :: Item Search",
+  "item.search.title": "OSPR :: Tietuehaku",
 
 
 
@@ -2778,8 +2778,8 @@
   // "journal.search.results.head": "Journal Search Results",
   "journal.search.results.head": "Kausijulkaisuhaun tulokset",
 
-  // "journal.search.title": "DSpace Angular :: Journal Search",
-  "journal.search.title": "DSpace Angular :: Kausijulkaisuhaku",
+  // "journal.search.title": "OSPR :: Journal Search",
+  "journal.search.title": "OSPR :: Kausijulkaisuhaku",
 
 
 
@@ -3407,8 +3407,8 @@
   // "person.search.results.head": "Person Search Results",
   "person.search.results.head": "Käyttäjähaun tulokset",
 
-  // "person.search.title": "DSpace Angular :: Person Search",
-  "person.search.title": "DSpace Angular :: Käyttäjähaku",
+  // "person.search.title": "OSPR :: Person Search",
+  "person.search.title": "OSPR :: Käyttäjähaku",
 
 
 
@@ -3694,8 +3694,8 @@
   // "publication.search.results.head": "Publication Search Results",
   "publication.search.results.head": "Aineistohaun tulokset",
 
-  // "publication.search.title": "DSpace Angular :: Publication Search",
-  "publication.search.title": "DSpace Angular :: Aineistohaku",
+  // "publication.search.title": "OSPR :: Publication Search",
+  "publication.search.title": "OSPR :: Aineistohaku",
 
 
   // "register-email.title": "New user registration",
@@ -4014,8 +4014,8 @@
   // "search.switch-configuration.title": "Show",
   "search.switch-configuration.title": "Näytä",
 
-  // "search.title": "DSpace Angular :: Search",
-  "search.title": "DSpace Angular :: Hae",
+  // "search.title": "OSPR :: Search",
+  "search.title": "OSPR :: Hae",
 
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Hae",

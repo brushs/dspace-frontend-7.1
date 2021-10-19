@@ -172,8 +172,8 @@
   // "admin.registries.bitstream-formats.table.supportLevel.head": "Support Level",
   "admin.registries.bitstream-formats.table.supportLevel.head": "Niveau de support",
 
-  // "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitstream Format Registry",
-  "admin.registries.bitstream-formats.title": "DSpace Angular :: Registre des formats Bitstream",
+  // "admin.registries.bitstream-formats.title": "OSPR :: Bitstream Format Registry",
+  "admin.registries.bitstream-formats.title": "OSPR :: Registre des formats Bitstream",
 
 
 
@@ -213,8 +213,8 @@
   // "admin.registries.metadata.schemas.table.namespace": "Namespace",
   "admin.registries.metadata.schemas.table.namespace": "Espace de nommage",
 
-  // "admin.registries.metadata.title": "DSpace Angular :: Metadata Registry",
-  "admin.registries.metadata.title": "DSpace Angular :: Registre de métadonnées",
+  // "admin.registries.metadata.title": "OSPR :: Metadata Registry",
+  "admin.registries.metadata.title": "OSPR :: Registre de métadonnées",
 
 
 
@@ -290,8 +290,8 @@
   // "admin.registries.schema.return": "Return",
   "admin.registries.schema.return": "Retour",
 
-  // "admin.registries.schema.title": "DSpace Angular :: Metadata Schema Registry",
-  "admin.registries.schema.title": "DSpace Angular :: Registre des schémas de métadonnées",
+  // "admin.registries.schema.title": "OSPR :: Metadata Schema Registry",
+  "admin.registries.schema.title": "OSPR :: Registre des schémas de métadonnées",
 
 
 
@@ -307,8 +307,8 @@
   // "admin.access-control.epeople.actions.stop-impersonating": "Stop impersonating EPerson",
   "admin.access-control.epeople.actions.stop-impersonating": "Retour à votre propre EPerson ",
 
-  // "admin.access-control.epeople.title": "DSpace Angular :: EPeople",
-  "admin.access-control.epeople.title": "DSpace Angular :: EPeople",
+  // "admin.access-control.epeople.title": "OSPR :: EPeople",
+  "admin.access-control.epeople.title": "OSPR :: EPeople",
 
   // "admin.access-control.epeople.head": "EPeople",
   "admin.access-control.epeople.head": "EPeople",
@@ -423,14 +423,14 @@
 
 
 
-  // "admin.access-control.groups.title": "DSpace Angular :: Groups",
-  "admin.access-control.groups.title": "DSpace Angular :: Groupes",
+  // "admin.access-control.groups.title": "OSPR :: Groups",
+  "admin.access-control.groups.title": "OSPR :: Groupes",
 
-  // "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Edit Group",
-  "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Éditer Groupe",
+  // "admin.access-control.groups.title.singleGroup": "OSPR :: Edit Group",
+  "admin.access-control.groups.title.singleGroup": "OSPR :: Éditer Groupe",
 
-  // "admin.access-control.groups.title.addGroup": "DSpace Angular :: New Group",
-  "admin.access-control.groups.title.addGroup": "DSpace Angular :: Nouveau Groupe",
+  // "admin.access-control.groups.title.addGroup": "OSPR :: New Group",
+  "admin.access-control.groups.title.addGroup": "OSPR :: Nouveau Groupe",
 
   // "admin.access-control.groups.head": "Groups",
   "admin.access-control.groups.head": "Groupes",
@@ -1890,8 +1890,8 @@
   // "home.breadcrumbs": "Home",
   "home.breadcrumbs": "Accueil",
 
-  // "home.title": "DSpace Angular :: Home",
-  "home.title": "DSpace Angular :: Home",
+  // "home.title": "OSPR :: Home",
+  "home.title": "OSPR :: Home",
 
   // "home.top-level-communities.head": "Communities in DSpace",
   "home.top-level-communities.head": "Communautés DSpace",
@@ -2548,8 +2548,8 @@
   // "item.search.results.head": "Item Search Results",
   "item.search.results.head": "Résultats de la recherche",
 
-  // "item.search.title": "DSpace Angular :: Item Search",
-  "item.search.title": "DSpace Angular :: Item Search",
+  // "item.search.title": "OSPR :: Item Search",
+  "item.search.title": "OSPR :: Item Search",
 
 
 
@@ -2745,8 +2745,8 @@
   // "journal.search.results.head": "Journal Search Results",
   "journal.search.results.head": "Résultats de recherche Revue",
 
-  // "journal.search.title": "DSpace Angular :: Journal Search",
-  "journal.search.title": "DSpace Angular :: Recherche Revue",
+  // "journal.search.title": "OSPR :: Journal Search",
+  "journal.search.title": "OSPR :: Recherche Revue",
 
 
 
@@ -3374,8 +3374,8 @@
   // "person.search.results.head": "Person Search Results",
   "person.search.results.head": "Résultats de recherche Personne",
 
-  // "person.search.title": "DSpace Angular :: Person Search",
-  "person.search.title": "DSpace Angular :: Recherche Personne",
+  // "person.search.title": "OSPR :: Person Search",
+  "person.search.title": "OSPR :: Recherche Personne",
 
 
 
@@ -3661,8 +3661,8 @@
   // "publication.search.results.head": "Publication Search Results",
   "publication.search.results.head": "Résultats de recherche Publication",
 
-  // "publication.search.title": "DSpace Angular :: Publication Search",
-  "publication.search.title": "DSpace Angular :: Recherche Publication",
+  // "publication.search.title": "OSPR :: Publication Search",
+  "publication.search.title": "OSPR :: Recherche Publication",
 
 
   // "register-email.title": "New user registration",
@@ -3981,8 +3981,8 @@
   // "search.switch-configuration.title": "Show",
   "search.switch-configuration.title": "Afficher",
 
-  // "search.title": "DSpace Angular :: Search",
-  "search.title": "DSpace Angular :: Recherche",
+  // "search.title": "OSPR :: Search",
+  "search.title": "OSPR :: Recherche",
 
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Recherche",

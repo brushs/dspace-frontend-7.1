@@ -6,7 +6,7 @@
 
 ## docker directory
 - docker-compose.yml
-  - Starts DSpace Angular with Docker Compose from the current branch.  This file assumes that a DSpace 7 REST instance will also be started in Docker.
+  - Starts OSPR with Docker Compose from the current branch.  This file assumes that a DSpace 7 REST instance will also be started in Docker.
 - docker-compose-rest.yml
   - Runs a published instance of the DSpace 7 REST API - persists data in Docker volumes
 - docker-compose-ci.yml
@@ -16,7 +16,7 @@
 - cli.assetstore.yml
   - Docker compose file that will download and install data into a DSpace REST assetstore.  This script points to a default dataset that will be utilized for CI testing.
 - environment.dev.ts
-  - Environment file for running DSpace Angular in Docker
+  - Environment file for running OSPR in Docker
 - local.cfg
   - Environment file for running the DSpace 7 REST API in Docker.
 
@@ -37,7 +37,7 @@ docker-compose -f docker/docker-compose.yml build
 docker-compose -p d7 -f docker/docker-compose.yml -f docker/docker-compose-rest.yml up -d
 ```
 
-## Run DSpace REST and DSpace Angular from local branches.
+## Run DSpace REST and OSPR from local branches.
 _The system will be started in 2 steps. Each step shares the same docker network._
 
 From DSpace/DSpace (build as needed)
