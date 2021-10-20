@@ -1,13 +1,10 @@
 .list-group-item.hover {
     color: #762c29;
     font-weight: bold;
-    background-color: #ffffff; }
+    background-color: #E3F2FD; }
 
-
-
-
-.dropdown-item:active {
-    color: rgb(255, 223, 223);
+.dropdown-item.active {
+    color: rgb(0, 0, 0);
 }
 
 a.nav-link:hover{
