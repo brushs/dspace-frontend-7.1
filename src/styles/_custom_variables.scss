@@ -26,8 +26,8 @@
   --ds-header-icon-color-hover: #{darken($white, 15%)};
   --ds-header-navbar-border-top-color: #{$white};
   --ds-header-navbar-border-bottom-color: #{$gray-400};
-  --ds-navbar-link-color: #{$cyan};
-  --ds-navbar-link-color-hover: #{darken($cyan, 50%)};
+  --ds-navbar-link-color: #{$blue};
+  --ds-navbar-link-color-hover: #{darken($blue, 50%)};
 
   $admin-sidebar-bg: $white;
   $admin-sidebar-active-bg: darken($admin-sidebar-bg, 2%);
@@ -72,14 +72,14 @@
   --ds-footer-padding-bottom: 0;
   --ds-footer-logo-height: 50px;
 
-  $home-news-link-color: $cyan;
+  $home-news-link-color: $blue;
   --ds-home-news-link-color: #{$home-news-link-color};
   --ds-home-news-link-hover-color: #{darken($home-news-link-color, 15%)};
   --ds-home-news-background-color: #{$gray-200};
 
   --ds-breadcrumb-bg: #{$gray-200} !important;
-  --ds-breadcrumb-link-color: #{$cyan};
-  --ds-breadcrumb-link-active-color: #{darken($cyan, 30%)};
+  --ds-breadcrumb-link-color: #{$blue};
+  --ds-breadcrumb-link-active-color: #{darken($blue, 30%)};
 
   --ds-slider-color: #{$blue};
   --ds-slider-handle-width: 18px;

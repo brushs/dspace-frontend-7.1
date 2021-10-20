@@ -37,7 +37,10 @@ nav.navbar {
         padding: 0;
     }
 }
-
+nav.navbar a.nav-link {
+    color: #17A2B8;
+    text-decoration: underline;
+  }
 .navbar-nav {
   ::ng-deep a.nav-link {
     color: var(--ds-navbar-link-color);
