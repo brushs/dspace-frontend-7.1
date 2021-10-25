@@ -1389,7 +1389,11 @@
 
   "home.top-level-communities.head": "Communities in DSpace",
 
+  "home.top-home.head": "Open Science Publication Repository",
+
   "home.top-level-communities.help": "Select a community to browse its collections.",
+
+  "home.top-home.browser": "Browse the repository",
 
 
 
