@@ -3,8 +3,8 @@ import { ProfilePageComponent as BaseComponent } from '../../../../app/profile-p
 
 @Component({
   selector: 'ds-profile-page',
-  styleUrls: ['../../../../app/profile-page/profile-page.component.scss'],
-  templateUrl: '../../../../app/profile-page/profile-page.component.html'
+  styleUrls: ['./profile-page.component.scss'],
+  templateUrl: './profile-page.component.html'
 })
 /**
  * Component for a user to edit their profile information
