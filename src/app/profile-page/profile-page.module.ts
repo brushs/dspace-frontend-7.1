@@ -14,6 +14,7 @@ import { ThemedProfilePageComponent } from './themed-profile-page.component';
     SharedModule
   ],
   exports: [
+    ProfilePageMetadataFormComponent,
     ProfilePageSecurityFormComponent
   ],
   declarations: [
