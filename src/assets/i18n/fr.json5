@@ -1730,8 +1730,8 @@
   // "forgot-email.form.header": "Forgot Password",
   "forgot-email.form.header": "Mot de passe oublié",
 
-  // "forgot-email.form.info": "Enter Register an account to subscribe to collections for email updates, and submit new items to OSPR.",
-  "forgot-email.form.info": "Créer un compte pour vous abonner à des collections afin de recevoir des mises à jour via mail ainsi que pour déposer de nouveaux Items dans OSPR.",
+  // "forgot-email.form.info": "Begin the process to reset your forgotten password. Please enter the following information to verify your identity in OSPR.",
+  "forgot-email.form.info": "Commencez le processus de réinitialisation de votre mot de passe oublié. Veuillez saisir les informations suivantes pour vérifier votre identité dans OSPR",
 
   // "forgot-email.form.email": "Email Address *",
   "forgot-email.form.email": "Adresse e-mail *",
