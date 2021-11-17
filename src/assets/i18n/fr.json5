@@ -2558,10 +2558,11 @@
   // "item.search.results.head": "Item Search Results",
   "item.search.results.head": "Résultats de la recherche",
 
+   // "default.search.results.head": "Search Results",
+   "default.search.results.head": "Résultats de recherche",
+
   // "item.search.title": "OSPR :: Item Search",
   "item.search.title": "OSPR :: Item Search",
-
-
 
   // "item.page.abstract": "Abstract",
   "item.page.abstract": "Résumé",
