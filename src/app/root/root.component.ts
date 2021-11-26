@@ -19,6 +19,7 @@ import { ThemeConfig } from '../../config/theme.model';
 import { Angulartics2DSpace } from '../statistics/angulartics/dspace-provider';
 import { environment } from '../../environments/environment';
 import { slideSidebarPadding } from '../shared/animations/slide';
+import { WelcomePageComponent } from '../welcome-page/welcome-page.component';
 
 @Component({
   selector: 'ds-root',
@@ -44,6 +45,12 @@ export class RootComponent implements OnInit {
    * Whether or not to show a loader across the router outlet
    */
   @Input() shouldShowRouteLoader: boolean;
+
+  /**
+   *  Whether or not to show Welcome page.
+   */
+   @Input() shouldShowWelcome: boolean;
+
 
   constructor(
     @Inject(NativeWindowService) private _window: NativeWindowRef,
