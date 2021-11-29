@@ -1,3 +1,7 @@
+<ng-container *ngIf="shouldShowWelcome">
+  <ds-welcome-page></ds-welcome-page>
+</ng-container>
+<ng-container *ngIf="!shouldShowWelcome" #showHome>
 <div class="outer-wrapper" *ngIf="!shouldShowFullscreenLoader; else fullScreenLoader">
   <ds-admin-sidebar></ds-admin-sidebar>
   <div class="inner-wrapper"  [@slideSidebarPadding]="{
@@ -28,3 +32,4 @@
     <ds-loading [showMessage]="false"></ds-loading>
   </div>
 </ng-template>
+</ng-container>

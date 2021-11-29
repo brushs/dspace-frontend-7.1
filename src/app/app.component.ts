@@ -30,7 +30,7 @@ import { Angulartics2DSpace } from './statistics/angulartics/dspace-provider';
 import { environment } from '../environments/environment';
 import { models } from './core/core.module';
 import { LocaleService } from './core/locale/locale.service';
-import { hasValue, isNotEmpty } from './shared/empty.util';
+import { hasValue, isEmpty, isNotEmpty } from './shared/empty.util';
 import { KlaroService } from './shared/cookies/klaro.service';
 import { GoogleAnalyticsService } from './statistics/google-analytics.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
@@ -76,6 +76,11 @@ export class AppComponent implements OnInit, AfterViewInit {
    * Whether or not the idle modal is is currently open
    */
   idleModalOpen: boolean;
+
+  /**
+   * Whether or not load Welcome page
+   */
+   loadWelcome$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
     @Inject(NativeWindowService) private _window: NativeWindowRef,
@@ -128,7 +133,17 @@ export class AppComponent implements OnInit, AfterViewInit {
     // translate.setDefaultLang(environment.defaultLanguage);
 
     // set the current language code
-    this.localeService.setCurrentLanguageCode();
+    //this.localeService.setCurrentLanguageCode();
+
+    // set loadWelcome$ for template, and pass to root.component template to decide loading welcome page.
+    let cookieLang = this.localeService.getLanguageCodeFromCookie();
+    if (isEmpty(cookieLang)) {
+        this.loadWelcome$.next(true);
+    } else {
+      this.loadWelcome$.next(false);
+      this.localeService.setCurrentLanguageCode();
+    }
+
 
     // analytics
     if (hasValue(googleAnalyticsService)) {

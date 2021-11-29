@@ -18,7 +18,12 @@ export class ThemedRootComponent extends ThemedComponent<RootComponent> {
    */
   @Input() shouldShowRouteLoader: boolean;
 
-  protected inAndOutputNames: (keyof RootComponent & keyof this)[] = ['shouldShowRouteLoader', 'shouldShowFullscreenLoader'];
+  /**
+   *  Whether or not to show Welcome page.
+   */
+   @Input() shouldShowWelcome: boolean;
+
+  protected inAndOutputNames: (keyof RootComponent & keyof this)[] = ['shouldShowRouteLoader', 'shouldShowFullscreenLoader', 'shouldShowWelcome'];
 
   protected getComponentName(): string {
     return 'RootComponent';
