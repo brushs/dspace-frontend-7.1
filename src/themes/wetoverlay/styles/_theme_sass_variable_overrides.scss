@@ -18,6 +18,7 @@ $red: #CF4444 !default;
 $dark: #43515f !default;
 
 $gray-800: #343a40 !default;
+$gray-600: #6c757d !default;
 $gray-400: #ced4da !default;
 $gray-100: #f8f9fa !default;
 
@@ -52,7 +53,7 @@ $yiq-contrasted-threshold:  170 !default;
 
 $theme-colors: (
   primary: $blue-100,
-  secondary: $gray-100,
+  secondary: $gray-600,
   success: $green,
   info: $cyan,
   warning: $yellow,
