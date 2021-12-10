@@ -3414,6 +3414,15 @@
   // "process.new.parameter.file.required": "Please select a file",
   "process.new.parameter.file.required": "Veuillez sélectionner un fichier",
 
+  // "process.new.parameter.add.parameter": "Add a parameter...",
+  "process.new.parameter.add.parameter": "Ajouter un paramètre...",
+
+  // "process.new.parameter.parameter.value": "Parameter value",
+  "process.new.parameter.input.value": "Valeur du paramètre",
+
+  // "process.new.parameter.remove.parameter": "Remove parameter",
+  "process.new.parameter.remove.parameter": "Supprimer le paramètre",
+
   // "process.new.parameter.string.required": "Parameter value is required",
   "process.new.parameter.string.required": "Veuillez spécifier un paramètre",
 

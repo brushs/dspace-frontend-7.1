@@ -2471,6 +2471,12 @@
 
   "process.new.parameter.file.required": "Please select a file",
 
+  "process.new.parameter.add.parameter": "Add a parameter...",
+
+  "process.new.parameter.input.value": "Parameter value",
+
+  "process.new.parameter.remove.parameter": "Remove parameter",
+
   "process.new.parameter.string.required": "Parameter value is required",
 
   "process.new.parameter.type.value": "value",
