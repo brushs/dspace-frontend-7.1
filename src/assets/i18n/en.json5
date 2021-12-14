@@ -1531,6 +1531,8 @@
 
   "item.edit.delete.description": "Are you sure this item should be completely deleted? Caution: At present, no tombstone would be left.",
 
+  "item.edit.delete.virtual-metadata.open": "Open virtual metadata",
+
   "item.edit.delete.error": "An error occurred while deleting the item",
 
   "item.edit.delete.header": "Delete item: {{ id }}",
@@ -3507,6 +3509,10 @@
 
   "submission.sections.ccLicense.confirmation": "I grant the license above",
 
+  "submission.sections.ccLicense.info.title": "Help information",
+
+  "submission.sections.ccLicense.info.close": "Close",
+
   "submission.sections.general.add-more": "Add more",
 
   "submission.sections.general.collection": "Collection",
@@ -3564,6 +3570,8 @@
   "submission.sections.toggle.open": "Open section",
 
   "submission.sections.toggle.close": "Close section",
+
+  "submission.sections.section.remove.title": "Remove section",
 
   "submission.sections.upload.delete.confirm.cancel": "Cancel",
 

@@ -1819,6 +1819,9 @@
   // "form.clear": "Clear",
   "form.clear": "Effacer",
 
+  // "form.drag": "Drag",
+  "form.drag": "Glisser-Déposer",
+
   // "form.clear-help": "Click here to remove the selected value",
   "form.clear-help": "Cliquer ici pour supprimer la valeur sélectionnée",
 
@@ -2101,6 +2104,9 @@
 
   // "item.edit.delete.description": "Are you sure this item should be completely deleted? Caution: At present, no tombstone would be left.",
   "item.edit.delete.description": "Êtes-vous certain de vouloir complètement supprimer cet Item ? Attention, il n'y aura pas de retour en arrière possible.",
+
+  // "item.edit.delete.mvirtual-metadataetadata.open": "Open virtual metadata",
+  "item.edit.delete.virtual-metadata.open": "Ouvrir les métadonnées virtuelles",
 
   // "item.edit.delete.error": "An error occurred while deleting the item",
   "item.edit.delete.error": "Une erreur s'est produite lors de la suppression de l'Item",
@@ -4770,6 +4776,12 @@
   // "submission.sections.ccLicense.confirmation": "I grant the license above",
   "submission.sections.ccLicense.confirmation": "Je confirme la licence ci-dessus",
 
+  //"submission.sections.ccLicense.info.title": "Help information",
+  "submission.sections.ccLicense.info.title": "Informations d'aide",
+
+  //"submission.sections.ccLicense.info.close": "Close",
+  "submission.sections.ccLicense.info.close": "Fermer",
+
   // "submission.sections.general.add-more": "Add more",
   "submission.sections.general.add-more": "Ajouter section(s)",
 
@@ -4839,6 +4851,8 @@
   "submission.sections.submit.progressbar.upload": "Uploader",
 
 
+
+  "submission.sections.section.remove.title": "Supprimer la section",
 
   // "submission.sections.upload.delete.confirm.cancel": "Cancel",
   "submission.sections.upload.delete.confirm.cancel": "Annuler",
