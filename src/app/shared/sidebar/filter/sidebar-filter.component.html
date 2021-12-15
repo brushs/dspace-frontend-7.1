@@ -5,6 +5,7 @@
     </h5>
     <span class="filter-toggle fas float-right"
           [ngClass]="(collapsed$ | async) ? 'fa-plus' : 'fa-minus'">
+          [title]="((collapsed$ | async) ? 'search.filters.filter.expand' : 'search.filters.filter.collapse') | translate">
     </span>
   </div>
   <div [@slide]="(collapsed$ | async) ? 'collapsed' : 'expanded'"
