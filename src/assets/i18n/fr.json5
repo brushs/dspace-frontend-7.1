@@ -1595,6 +1595,9 @@
   // "dso-selector.create.community.top-level": "Create a new top-level community",
   "dso-selector.create.community.top-level": "Créer une nouvelle Communauté de 1er niveau",
 
+  // "dso-selector.create.community.or": "or",
+  "dso-selector.create.community.or": "ou",
+
   // "dso-selector.create.item.head": "New item",
   "dso-selector.create.item.head": "Nouvel Item",
 
