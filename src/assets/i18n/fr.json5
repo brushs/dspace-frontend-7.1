@@ -1003,6 +1003,9 @@
   // "collection.edit.item-mapper.remove": "Remove selected item mappings",
   "collection.edit.item-mapper.remove": "Supprimer les associations sélectionnées",
 
+  // "collection.edit.item-mapper.search-form.placeholder": "Search items...",
+  "collection.edit.item-mapper.search-form.placeholder": "Rechercher des éléments...",
+
   // "collection.edit.item-mapper.tabs.browse": "Browse mapped items",
   "collection.edit.item-mapper.tabs.browse": "Parcourir les Items associés",
 
