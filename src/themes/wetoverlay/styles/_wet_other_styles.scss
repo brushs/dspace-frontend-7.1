@@ -3,6 +3,14 @@
     font-weight: bold;
     background-color: #E3F2FD; }
 
+
+.list-group-item.active {
+      z-index: 2;
+      color: #207698;
+      background-color: #f8f9fa;
+      border-color: #E3F2FD;
+}
+
 .dropdown-item.active {
     color: rgb(0, 0, 0);
 }
@@ -27,9 +35,37 @@ a.nav-link:focus{
   color: #207698 !important;
 }
 
+.text-light {
+  color: #207698 !important;
+}
+
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
   background-color: #212529;
   border-color: #E3F2FD;
+}
+
+.btn-outline-primary{
+  color: #207698;
+}
+
+.btn-outline-primary:disabled {
+  color: #207698;
+  background-color: transparent;
+}
+
+.badge-primary {
+  color: #207698;
+  background-color: #fff;
+}
+
+.badge-success {
+  color:#497405;
+  background-color: #fff;
+}
+
+.badge-info {
+  color: #207698;
+  background-color: #fff;
 }
