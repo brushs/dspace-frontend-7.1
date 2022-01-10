@@ -2022,8 +2022,23 @@
   // "item.edit.bitstreams.bundle.load.more": "Load more",
   "item.edit.bitstreams.bundle.load.more": "Charger plus",
 
-  // "item.edit.bitstreams.bundle.name": "BUNDLE: {{ name }}",
-  "item.edit.bitstreams.bundle.name": "BUNDLE: {{ name }}",
+  // "item.edit.bitstreams.bundle.name": "BUNDLE: ",
+  "item.edit.bitstreams.bundle.name": "EMPAQUETER : ",
+
+  // "item.edit.bitstreams.bundle.name.ORIGINAL": "ORIGINAL",
+  "item.edit.bitstreams.bundle.name.ORIGINAL": "ORIGINAL",
+
+  // "item.edit.bitstreams.bundle.name.THUMBNAILS": "THUMBNAILS",
+  "item.edit.bitstreams.bundle.name.THUMBNAILS": "VIGNETTES",
+
+  // "item.edit.bitstreams.bundle.name.TEXT": "TEXT",
+  "item.edit.bitstreams.bundle.name.TEXT": "TEXTE",
+
+  // "item.edit.bitstreams.bundle.name.LICENSE": "LICENSE",
+  "item.edit.bitstreams.bundle.name.LICENSE": "LICENSE",
+
+  // "item.edit.bitstreams.bundle.name.CC-LICENSE": "CC-LICENSE",
+  "item.edit.bitstreams.bundle.name.CC-LICENSE": "CC-LICENSE",
 
   // "item.edit.bitstreams.discard-button": "Discard",
   "item.edit.bitstreams.discard-button": "Annuler",
