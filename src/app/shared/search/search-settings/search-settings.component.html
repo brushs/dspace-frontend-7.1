@@ -1,5 +1,6 @@
 <ng-container *ngVar="searchOptions as config">
-    <h3>{{ 'search.sidebar.settings.title' | translate}}</h3>
+    <!--<h3>{{ 'search.sidebar.settings.title' | translate}}</h3>-->
+    <div class="row">
     <div class="result-order-settings">
     <ds-sidebar-dropdown
             *ngIf="config?.sort"
@@ -15,4 +16,5 @@
     </ds-sidebar-dropdown>
     </div>
     <ds-page-size-selector></ds-page-size-selector>
+    </div>
 </ng-container>
