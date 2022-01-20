@@ -1,5 +1,5 @@
 ---
-name: Task
+type: Task
 about: A task is a job that is simple enough to be a part of a a bigger story, such as an Epic.
 ---
 

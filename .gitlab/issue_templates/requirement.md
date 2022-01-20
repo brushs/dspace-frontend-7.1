@@ -1,5 +1,5 @@
 ---
-name: Requirement
+type: Requirement
 about:  A requirement is an artifact in GitLab which describes the specific behavior of your product. Requirements are long-lived and don’t disappear unless manually cleared.
 
 

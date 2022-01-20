@@ -1,5 +1,5 @@
 ---
-name: Epic
+type: Epic
 about: An epic is large task that can be divided into smaller tasks. 
 ---
 
