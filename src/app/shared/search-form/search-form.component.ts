@@ -6,6 +6,7 @@ import { SearchService } from '../../core/shared/search/search.service';
 import { currentPath } from '../utils/route.utils';
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { SearchConfigurationService } from '../../core/shared/search/search-configuration.service';
+import { isEmpty } from 'lodash';
 
 /**
  * This component renders a simple item page.
@@ -70,6 +71,15 @@ export class SearchFormComponent {
               private paginationService: PaginationService,
               private searchConfig: SearchConfigurationService
               ) {
+  }
+
+  /*
+   * Send info to parent component that input value is empty.
+   */
+  onChangeEvent(data: any) {
+    if(isEmpty(data['query'])) {
+      this.submitSearch.emit(data);
+    }
   }
 
   /**

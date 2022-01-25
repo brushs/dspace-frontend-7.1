@@ -101,8 +101,6 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
    */
   isSidebarCollapsed$: Observable<boolean>;
 
-  myParams : Observable<any[]>;
-
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
@@ -113,8 +111,6 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
 
-  pageUrls: Observable<UrlSegment[]>;
-
   /**
    * Listening to changes in the paginated search options
    * If something changes, update the search results
@@ -122,7 +118,7 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
    * Listen to changes in the scope
    * If something changes, update the list of scopes for the dropdown
    */
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.isSidebarCollapsed$ = this.isSidebarCollapsed();
     this.searchLink = this.getSearchLink();
     this.searchOptions$ = this.getSearchOptions();
@@ -134,38 +130,6 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
     ).subscribe((results) => {
         this.resultsRD$.next(results);
       });
-
-    console.log("search link=" + this.router.url);
-    //ERROR TypeError: Cannot read properties of undefined (reading 'path')
-    //console.log("page URL1=" + this.activatedRoute['_routerState'].snapshot.url[0].path);
-    //ERROR TypeError: Cannot read properties of undefined (reading 'path')
-    //console.log("page URL2=" + this.activatedRoute.snapshot.url[0].path);
-    //ERROR TypeError: Cannot read properties of undefined (reading 'path')
-    //console.log("page URL3=" + this.activatedRoute.url[0].path);
-    this.pageUrls = this.activatedRoute.url;
-    let pageUrlSeg = this.activatedRoute['_routerState'].snapshot.url;
-    console.log("snapshot URL=" + pageUrlSeg);
-    //below line, pageUrlSeg get undefined
-    pageUrlSeg = this.activatedRoute.snapshot.url[0];
-    //below line, pageUrlSeg get undefined
-    pageUrlSeg = this.activatedRoute.url[0];
-
-    //this.activatedRoute.snapshot.url[0].path;
-    this.activatedRoute.url.subscribe((urls) => {
-      //the console.log is not executed. Not subscribed???
-      urls.map(url => console.log("page URL=" + url.path));
-      //urls.map(this.checkURL);
-    });
-
-      //this.activatedRoute.paramMap.pipe(
-    //  switchMap((params) => params.get('query'))
-    //).subscribe((query) => {
-    //  console.log("params=" + query);
-    //});
-    //this.activatedRoute.paramMap.subscribe((parameter) => {
-    //  console.log(parameter.get('query'));
-    //});
-    //console.log("route=" + this.activatedRoute.paramMap.toString());
 
     this.scopeListRD$ = this.searchConfigService.getCurrentScope('').pipe(
       switchMap((scopeId) => this.service.getScopes(scopeId))
@@ -181,13 +145,6 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
     this.searchSubmit = null;
   }
 
-  checkURL(url : UrlSegment) {
-    console.log("page URL=" + url.path);
-    if (url.path === 'community-list') {
-      this.searchSubmit = null;
-    }
-  }
-
   /**
    * Unsubscribe from the subscription
    */
@@ -198,8 +155,16 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  /*
+   * Change display between communities list and search results based on 
+   * the query field of the search form.
+   */
   onSeachSubmit(newSearchEvent : any) {
-    this.searchSubmit = newSearchEvent;
+    if (isEmpty(newSearchEvent['query'])) {
+      this.searchSubmit = null;
+    } else {
+      this.searchSubmit = newSearchEvent;
+    }
   }
 
   /**
