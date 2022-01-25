@@ -2891,7 +2891,8 @@
   // "loading.top-level-communities": "Loading top-level communities...",
   "loading.top-level-communities": "Communautés de 1er niveau en cours de chargement...",
 
-
+   // "Lang.title": "Language",
+  "Lang.title": "Langue",
 
   // "login.form.email": "Email address",
   "login.form.email": "Adresse e-mail",
