@@ -39,6 +39,10 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
    */
   resultsRD$: BehaviorSubject<RemoteData<PaginatedList<SearchResult<DSpaceObject>>>> = new BehaviorSubject(null);
 
+  /*
+   * Flag used to switch display contents between search results to communities list.
+   * It is an output from search-form component.
+   */
   searchSubmit: any;
 
   /**
@@ -131,6 +135,21 @@ export class CommunityListPageComponent implements OnInit, OnDestroy {
         this.resultsRD$.next(results);
       });
 
+    /*
+     * Observe query parameters' change. When user clicked Communities & Collections link,
+     * the url is /community-list without query parameter. Use this to switch display contents 
+     * from search results to communities list.
+     */
+    this.activatedRoute.queryParams.subscribe(qparams => {
+      if(typeof qparams === 'undefined' || qparams === null || 
+         typeof qparams['spc.sf'] === 'undefined' || qparams['spc.sf'] === null)
+          this.setParams()
+    });
+
+    this.setParams();
+  }
+
+  setParams() {
     this.scopeListRD$ = this.searchConfigService.getCurrentScope('').pipe(
       switchMap((scopeId) => this.service.getScopes(scopeId))
     );
