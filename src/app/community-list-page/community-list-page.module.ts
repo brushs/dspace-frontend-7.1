@@ -5,6 +5,8 @@ import { CommunityListPageComponent } from './community-list-page.component';
 import { CommunityListPageRoutingModule } from './community-list-page.routing.module';
 import { CommunityListComponent } from './community-list/community-list.component';
 import { ThemedCommunityListPageComponent } from './themed-community-list-page.component';
+import { SearchConfigurationService } from '../core/shared/search/search-configuration.service';
+import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
 
 
 const DECLARATIONS = [
@@ -23,6 +25,12 @@ const DECLARATIONS = [
   ],
   declarations: [
     ...DECLARATIONS
+  ],
+  providers: [
+    {
+      provide: SEARCH_CONFIG_SERVICE,
+      useClass: SearchConfigurationService
+    }
   ],
   exports: [
     ...DECLARATIONS,
