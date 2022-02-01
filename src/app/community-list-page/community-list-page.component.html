@@ -6,8 +6,27 @@
       </div>
   </div>
 </div>
-<ds-page-with-sidebar [id]="'search-page'" [sidebarContent]="sidebarContent">
-  <div class="row">
+
+<ng-container *ngIf="!searchSubmit else searchResultsPage">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
+          <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+          <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
+      </div>
+      <div id="search-content" class="col-12">
+          <div>
+              <h2>{{ 'communityList.title' | translate }}</h2>
+              <ds-community-list></ds-community-list>
+          </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #searchResultsPage>
+  <ds-page-with-sidebar [id]="'search-page'" [sidebarContent]="sidebarContent">
+    <div class="row">
       <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
           <ng-template *ngTemplateOutlet="searchForm"></ng-template>
           <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
@@ -21,22 +40,14 @@
                       | translate}}
               </button>
           </div>
-          <ng-container *ngIf="searchSubmit else communityList">
-            <ds-search-results [searchResults]="resultsRD$ | async"
-                               [searchConfig]="searchOptions$ | async"
-                               [configuration]="configuration$ | async"
-                               [disableHeader]="!searchEnabled"
-                               [context]="context"></ds-search-results>
-          </ng-container>
+          <ds-search-results [searchResults]="resultsRD$ | async"
+                             [searchConfig]="searchOptions$ | async"
+                             [configuration]="configuration$ | async"
+                             [disableHeader]="!searchEnabled"
+                             [context]="context"></ds-search-results>
       </div>
-  </div>
-</ds-page-with-sidebar>
-
-<ng-template #communityList>
-  <div class="container">
-    <h2>{{ 'communityList.title' | translate }}</h2>
-    <ds-community-list></ds-community-list>
-  </div>
+    </div>
+  </ds-page-with-sidebar>
 </ng-template>
 
 <ng-template #sidebarContent>
