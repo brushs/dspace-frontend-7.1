@@ -1,8 +1,9 @@
 import { mergeMap, filter, map } from 'rxjs/operators';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 import { CommunityDataService } from '../core/data/community-data.service';
 import { RemoteData } from '../core/data/remote-data';
 import { Bitstream } from '../core/shared/bitstream.model';
@@ -12,12 +13,28 @@ import { Community } from '../core/shared/community.model';
 import { MetadataService } from '../core/metadata/metadata.service';
 
 import { fadeInOut } from '../shared/animations/fade';
-import { hasValue } from '../shared/empty.util';
+import { hasValue, isEmpty } from '../shared/empty.util';
 import { getAllSucceededRemoteDataPayload, redirectOn4xx } from '../core/shared/operators';
 import { AuthService } from '../core/auth/auth.service';
 import { AuthorizationDataService } from '../core/data/feature-authorization/authorization-data.service';
 import { FeatureID } from '../core/data/feature-authorization/feature-id';
 import { getCommunityPageRoute } from './community-page-routing-paths';
+import { DSpaceObject } from '../core/shared/dspace-object.model';
+import { SearchResult } from '../shared/search/search-result.model';
+import { PaginatedSearchOptions } from '../shared/search/paginated-search-options.model';
+import { Context } from '../core/shared/context.model';
+import { SidebarService } from '../shared/sidebar/sidebar.service';
+import { SearchService } from '../core/shared/search/search.service';
+import { HostWindowService } from '../shared/host-window.service';
+import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
+import { SearchConfigurationService } from '../core/shared/search/search-configuration.service';
+import { RouteService } from '../core/services/route.service';
+import { currentPath } from '../shared/utils/route.utils';
+import { followLink } from '../shared/utils/follow-link-config.model';
+import { Item } from '../core/shared/item.model';
+import { getFirstSucceededRemoteData } from '../core/shared/operators';
+import { PaginatedList } from '../core/data/paginated-list.model';
+import { SortOptions } from '../core/cache/models/sort-options.model';
 
 @Component({
   selector: 'ds-community-page',
@@ -50,16 +67,99 @@ export class CommunityPageComponent implements OnInit {
    */
   communityPageRoute$: Observable<string>;
 
-  constructor(
+  /**
+   * The current search results
+   */
+   resultsRD$: BehaviorSubject<RemoteData<PaginatedList<SearchResult<DSpaceObject>>>> = new BehaviorSubject(null);
+
+   /**
+    * The current paginated search options
+    */
+   searchOptions$: Observable<PaginatedSearchOptions>;
+ 
+   /**
+    * The current available sort options
+    */
+   sortOptions$: Observable<SortOptions[]>;
+ 
+   /**
+    * The current relevant scopes
+    */
+   scopeListRD$: Observable<DSpaceObject[]>;
+ 
+   /**
+    * Emits true if were on a small screen
+    */
+   isXsOrSm$: Observable<boolean>;
+ 
+   /**
+    * Subscription to unsubscribe from
+    */
+   sub: Subscription;
+ 
+   /**
+    * True when the search component should show results on the current page
+    */
+   @Input() inPlaceSearch = true;
+ 
+   /**
+    * Whether or not the search bar should be visible
+    */
+   @Input()
+   searchEnabled = true;
+ 
+   /**
+    * The width of the sidebar (bootstrap columns)
+    */
+   @Input()
+   sideBarWidth = 3;
+ 
+   /**
+    * The currently applied configuration (determines title of search)
+    */
+   @Input()
+   configuration$: Observable<string>;
+ 
+   /**
+    * The current context
+    */
+   @Input()
+   context: Context;
+ 
+   /**
+    * Link to the search page
+    */
+   searchLink: string;
+ 
+   /**
+    * Observable for whether or not the sidebar is currently collapsed
+    */
+   isSidebarCollapsed$: Observable<boolean>;
+   
+  /*
+   * Flag used to switch display contents between search results to communities list.
+   * It is an output from search-form component.
+   */
+  searchSubmit: any;
+
+
+   constructor(
     private communityDataService: CommunityDataService,
     private metadata: MetadataService,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private authorizationDataService: AuthorizationDataService
+    private authorizationDataService: AuthorizationDataService,
+    protected service: SearchService,
+    protected sidebarService: SidebarService,
+    protected windowService: HostWindowService,
+    @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
+    protected routeService: RouteService
   ) {
 
   }
+
+  comm: Community;
 
   ngOnInit(): void {
     this.communityRD$ = this.route.data.pipe(
@@ -75,5 +175,109 @@ export class CommunityPageComponent implements OnInit {
       map((community) => getCommunityPageRoute(community.id))
     );
     this.isCommunityAdmin$ = this.authorizationDataService.isAuthorized(FeatureID.IsCommunityAdmin);
+
+    this.isSidebarCollapsed$ = this.isSidebarCollapsed();
+    this.searchLink = this.getSearchLink();
+    this.searchOptions$ = this.getSearchOptions();
+    this.sub = this.searchOptions$.pipe(
+      switchMap((options) => this.service.search(
+          options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
+        ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
+      )
+    ).subscribe((results) => {
+        this.resultsRD$.next(results);
+      });
+
+    /*
+     * Observe query parameters' change. When user clicked Communities & Collections link,
+     * the url is /community-list without query parameter. Use this to switch display contents 
+     * from search results to communities list.
+     */
+    this.route.queryParams.subscribe(qparams => {
+      if(typeof qparams === 'undefined' || qparams === null || 
+         typeof qparams['spc.sf'] === 'undefined' || qparams['spc.sf'] === null)
+          this.initParams()
+    });
+
+    this.initParams();
   }
+
+  initParams() {
+    this.scopeListRD$ = this.searchConfigService.getCurrentScope('').pipe(
+      switchMap((scopeId) => this.service.getScopes(scopeId))
+    );
+    if (isEmpty(this.configuration$)) {
+      this.configuration$ = this.searchConfigService.getCurrentConfiguration('default');
+    }
+
+    const searchConfig$ = this.searchConfigService.getConfigurationSearchConfigObservable(this.configuration$, this.service);
+
+    this.sortOptions$ = this.searchConfigService.getConfigurationSortOptionsObservable(searchConfig$);
+    this.searchConfigService.initializeSortOptionsFromConfiguration(searchConfig$);
+    this.searchSubmit = null;
+  }
+
+  /**
+   * Get the current paginated search options
+   * @returns {Observable<PaginatedSearchOptions>}
+   */
+  protected getSearchOptions(): Observable<PaginatedSearchOptions> {
+    return this.searchConfigService.paginatedSearchOptions;
+  }
+
+  /**
+   * Set the sidebar to a collapsed state
+   */
+  public closeSidebar(): void {
+    this.sidebarService.collapse();
+  }
+
+  /**
+   * Set the sidebar to an expanded state
+   */
+  public openSidebar(): void {
+    this.sidebarService.expand();
+  }
+
+  /**
+   * Check if the sidebar is collapsed
+   * @returns {Observable<boolean>} emits true if the sidebar is currently collapsed, false if it is expanded
+   */
+  private isSidebarCollapsed(): Observable<boolean> {
+    return this.sidebarService.isCollapsed;
+  }
+
+  /**
+   * @returns {string} The base path to the search page, or the current page when inPlaceSearch is true
+   */
+  private getSearchLink(): string {
+    if (this.inPlaceSearch) {
+      return currentPath(this.router);
+    }
+    return this.service.getSearchLink();
+  }
+
+  /*
+   * Change display between communities list and search results based on 
+   * the query field of the search form.
+   */
+  onSeachSubmit(newSearchEvent : any) {
+    if (isEmpty(newSearchEvent['query'])) {
+      this.searchSubmit = null;
+    } else {
+      this.searchSubmit = newSearchEvent;
+    }
+  }
+
+  /**
+   * Unsubscribe from the subscription
+   */
+  ngOnDestroy(): void {
+    if (hasValue(this.sub)) {
+      this.sub.unsubscribe();
+    }
+    this.searchSubmit = null;
+
+  }
+
 }
