@@ -156,6 +156,7 @@ export class CommunityPageComponent implements OnInit {
     @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
     protected routeService: RouteService
   ) {
+    this.isXsOrSm$ = this.windowService.isXsOrSm();
 
   }
 
@@ -186,7 +187,7 @@ export class CommunityPageComponent implements OnInit {
       )
     ).subscribe((results) => {
         this.resultsRD$.next(results);
-      });
+    });
 
     /*
      * Observe query parameters' change. When user clicked Communities & Collections link,

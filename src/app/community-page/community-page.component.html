@@ -29,6 +29,14 @@
         <ds-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">
         </ds-comcol-page-browse-by>
 
+        <div class="container" *ngIf="(isXsOrSm$ | async)">
+          <div class="row">
+              <div class="col-12">
+                  <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+                  <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
+              </div>
+          </div>
+        </div>
         <div *ngIf="!searchSubmit else searchResultsPage">
           <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
