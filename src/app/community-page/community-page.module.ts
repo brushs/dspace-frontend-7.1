@@ -12,6 +12,8 @@ import { DeleteCommunityPageComponent } from './delete-community-page/delete-com
 import { StatisticsModule } from '../statistics/statistics.module';
 import { CommunityFormModule } from './community-form/community-form.module';
 import { ThemedCommunityPageComponent } from './themed-community-page.component';
+import { SearchConfigurationService } from '../core/shared/search/search-configuration.service';
+import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
 
 const DECLARATIONS = [CommunityPageComponent,
   ThemedCommunityPageComponent,
@@ -30,6 +32,12 @@ const DECLARATIONS = [CommunityPageComponent,
   ],
   declarations: [
     ...DECLARATIONS
+  ],
+  providers: [
+    {
+      provide: SEARCH_CONFIG_SERVICE,
+      useClass: SearchConfigurationService
+    }
   ],
   exports: [
     ...DECLARATIONS

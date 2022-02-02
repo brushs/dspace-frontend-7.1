@@ -14,6 +14,8 @@ import { SearchService } from '../core/shared/search/search.service';
 import { StatisticsModule } from '../statistics/statistics.module';
 import { CollectionFormModule } from './collection-form/collection-form.module';
 import { ThemedCollectionPageComponent } from './themed-collection-page.component';
+import { SearchConfigurationService } from '../core/shared/search/search-configuration.service';
+import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
 
 @NgModule({
   imports: [
@@ -34,6 +36,10 @@ import { ThemedCollectionPageComponent } from './themed-collection-page.componen
   ],
   providers: [
     SearchService,
+    {
+      provide: SEARCH_CONFIG_SERVICE,
+      useClass: SearchConfigurationService
+    },
   ]
 })
 export class CollectionPageModule {
