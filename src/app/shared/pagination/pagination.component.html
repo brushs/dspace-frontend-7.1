@@ -21,7 +21,7 @@
   <ng-content></ng-content>
 
   <div *ngIf="shouldShowBottomPager |async" class="pagination justify-content-center clearfix bottom">
-    <ngb-pagination [boundaryLinks]=true
+    <ngb-pagination [boundaryLinks]="paginationOptions.boundaryLinks"
                     [collectionSize]="collectionSize"
                     [disabled]="paginationOptions.disabled"
                     [ellipses]="paginationOptions.ellipses"
@@ -31,8 +31,6 @@
                     [pageSize]="(pageSize$ |async)"
                     [rotate]="paginationOptions.rotate"
                     [size]="(isXs)?'sm':paginationOptions.size">
-        <ng-template ngbPaginationFirst>{{'pagination.button.first' | translate}}</ng-template>
-        <ng-template ngbPaginationLast>{{'pagination.button.last' | translate}}</ng-template>
         <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}}</ng-template>
         <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
     </ngb-pagination>
