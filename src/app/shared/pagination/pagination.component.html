@@ -31,8 +31,10 @@
                     [pageSize]="(pageSize$ |async)"
                     [rotate]="paginationOptions.rotate"
                     [size]="(isXs)?'sm':paginationOptions.size">
-                    <ng-template ngbPaginationFirst>|<</ng-template>
-                    <ng-template ngbPaginationLast>>|</ng-template>
+        <ng-template ngbPaginationFirst>{{'pagination.button.first' | translate}}</ng-template>
+        <ng-template ngbPaginationLast>{{'pagination.button.last' | translate}}</ng-template>
+        <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}}</ng-template>
+        <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
     </ngb-pagination>
   </div>
 </div>
