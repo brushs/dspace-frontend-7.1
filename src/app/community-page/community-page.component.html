@@ -33,14 +33,13 @@
           <div class="row">
               <div class="col-12">
                   <ng-template *ngTemplateOutlet="searchForm"></ng-template>
-                  <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
+                  <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
               </div>
           </div>
         </div>
         <div *ngIf="!searchSubmit else searchResultsPage">
           <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
-            <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
           </div>
           <ds-community-page-sub-community-list [community]="communityPayload"></ds-community-page-sub-community-list>
           <ds-community-page-sub-collection-list [community]="communityPayload"></ds-community-page-sub-collection-list>
