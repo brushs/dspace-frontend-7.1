@@ -3359,6 +3359,17 @@
   "orgunit.page.titleprefix": "Structure Organisationnelle : ",
 
 
+  // "pagination.button.first": "First",
+  "pagination.button.first": "Premier",
+
+  // "pagination.button.last": "Last",
+  "pagination.button.last": "Dernier",
+
+  // "pagination.button.prev": "Previous",
+  "pagination.button.prev": "Précédent",
+
+  // "pagination.button.next": "Next",
+  "pagination.button.next": "Suivant",
 
   // "pagination.results-per-page": "Results Per Page",
   "pagination.results-per-page": "Résultats par page",
