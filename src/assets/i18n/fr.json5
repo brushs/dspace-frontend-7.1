@@ -2594,14 +2594,14 @@
   // "item.page.abstract": "Abstract",
   "item.page.abstract": "Résumé",
 
-  // "item.page.author": "Authors",
-  "item.page.author": "Auteurs",
+  // "item.page.author": "Author(s)",
+  "item.page.author": "Auteur(s)",
 
-  // "item.page.citation": "Citation",
-  "item.page.citation": "Citation",
+  // "item.page.citation": "Citation(s)",
+  "item.page.citation": "Citation(s)",
 
-  // "item.page.collections": "Collections",
-  "item.page.collections": "Collections",
+  // "item.page.collections": "Collection(s)",
+  "item.page.collections": "Collection(s)",
 
   // "item.page.date": "Date",
   "item.page.date": "Date",
@@ -2609,8 +2609,8 @@
   // "item.page.edit": "Edit this item",
   "item.page.edit": "Éditer cet item",
 
-  // "item.page.files": "Files",
-  "item.page.files": "Fichiers",
+  // "item.page.files": "Download(s)",
+  "item.page.files": "Téléchargement(s)",
 
   // "item.page.filesection.description": "Description:",
   "item.page.filesection.description": "Description :",
@@ -3829,8 +3829,8 @@
   // "relationships.add.error.title": "Unable to add relationship",
   "relationships.add.error.title": "Impossible d'ajouter la relation",
 
-  // "relationships.isAuthorOf": "Authors",
-  "relationships.isAuthorOf": "Auteurs",
+  // "relationships.isAuthorOf": "Author(s)",
+  "relationships.isAuthorOf": "Auteur(s)",
 
   // "relationships.isAuthorOf.Person": "Authors (persons)",
   "relationships.isAuthorOf.Person": "Auteurs (personnes)",
@@ -3850,8 +3850,8 @@
   // "relationships.isOrgUnitOf": "Organizational Units",
   "relationships.isOrgUnitOf": "Structure organisationnelle",
 
-  // "relationships.isPersonOf": "Authors",
-  "relationships.isPersonOf": "Auteurs",
+  // "relationships.isPersonOf": "Author(s)",
+  "relationships.isPersonOf": "Auteur(s)",
 
   // "relationships.isProjectOf": "Research Projects",
   "relationships.isProjectOf": "Projets de recherche",

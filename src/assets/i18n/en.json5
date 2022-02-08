@@ -1874,17 +1874,17 @@
 
   "item.page.abstract": "Abstract",
 
-  "item.page.author": "Authors",
+  "item.page.author": "Author(s)",
 
-  "item.page.citation": "Citation",
+  "item.page.citation": "Citation(s)",
 
-  "item.page.collections": "Collections",
+  "item.page.collections": "Collection(s)",
 
   "item.page.date": "Date",
 
   "item.page.edit": "Edit this item",
 
-  "item.page.files": "Files",
+  "item.page.files": "Download(s)",
 
   "item.page.filesection.description": "Description:",
 
@@ -2758,7 +2758,7 @@
 
   "relationships.add.error.title": "Unable to add relationship",
 
-  "relationships.isAuthorOf": "Authors",
+  "relationships.isAuthorOf": "Author(s)",
 
   "relationships.isAuthorOf.Person": "Authors (persons)",
 
@@ -2772,7 +2772,7 @@
 
   "relationships.isOrgUnitOf": "Organizational Units",
 
-  "relationships.isPersonOf": "Authors",
+  "relationships.isPersonOf": "Author(s)",
 
   "relationships.isProjectOf": "Research Projects",
 
