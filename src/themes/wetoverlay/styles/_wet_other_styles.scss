@@ -1,14 +1,10 @@
-.description {
-  padding-bottom: 10.5px;
-  margin: 46px 0 23px;
-  width: 100px;
- }
 
-  .page-header-with-line {
-    padding-bottom: 10.5px;
-    margin: 46px 0 23px;
-    border-bottom: 1px solid #333333; 
+  .underline {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #333333;
   }
+  
 
 .list-group-item.hover {
     color: #762c29;
