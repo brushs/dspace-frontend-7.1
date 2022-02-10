@@ -30,6 +30,9 @@
                     (pageChange)="doPageChange($event)"
                     [pageSize]="(pageSize$ |async)"
                     [rotate]="paginationOptions.rotate"
-                    [size]="(isXs)?'sm':paginationOptions.size"></ngb-pagination>
+                    [size]="(isXs)?'sm':paginationOptions.size">
+        <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}}</ng-template>
+        <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
+    </ngb-pagination>
   </div>
 </div>
