@@ -1715,7 +1715,7 @@
 
 
   // "footer.copyright": "copyright © 2002-{{ year }}",
-  "footer.copyright": "copyright © 2002-{{ year }}",
+  "footer.copyright": "Gouvernement du Canada © 2021",
 
   // "footer.link.dspace": "OSPR software",
   "footer.link.dspace": "OSPR software",

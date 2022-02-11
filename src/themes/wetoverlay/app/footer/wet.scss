@@ -35,7 +35,7 @@
     }
       
     .col-xs-6 { 
-        float: left; 
+        float: none; 
         min-height: 1px;
         padding-right: 15px;
         padding-left: 15px;
@@ -49,7 +49,7 @@
   
     #wb-info .ftr-urlt-lnk li {
       display: inline-block;
-      float: left;
+      float: none;
       margin-right: 0.7em; }
       #wb-info .ftr-urlt-lnk li:first-child:before {
         content: "\2022"; }
@@ -88,7 +88,9 @@
       content: "\2022";
       margin-right: 0.7em; }
     #wb-info .landscape {
-      background: #26374a url(../../../../assets/images/landscape.png) no-repeat right bottom; }
+      background: #26374a url(../../../../assets/images/landscape.png) no-repeat right bottom;
+      background-position: bottom -15px right 7px;
+      }
       #wb-info .landscape a {
         color: #fff; }
         #wb-info .landscape a:hover {
