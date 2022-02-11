@@ -1,12 +1,11 @@
-<footer class="text-lg-start">
-  <div *ngIf="showTopFooter" class="top-footer">
+
     <!-- Grid container -->
-    <div class=" container p-4">
+    <!-- <div class=" container p-4"> -->
       <!--Grid row-->
-      <div class="row">
+      <!-- <div class="row"> -->
 
         <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+        <!-- <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
           <h5 class="text-uppercase">Footer Content</h5>
 
           <ul class="list-unstyled mb-0">
@@ -24,7 +23,7 @@
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+        <!-- <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
           <h5 class="text-uppercase">Footer Content</h5>
 
           <ul class="list-unstyled mb-0">
@@ -32,11 +31,11 @@
               <a routerLink="./" class="">Suspendisse potenti</a>
             </li>
           </ul>
-        </div>
+        </div> -->
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+        <!-- <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
           <h5 class="text-uppercase">Footer Content</h5>
 
           <p>
@@ -44,18 +43,77 @@
             molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
             voluptatem veniam, est atque cumque eum delectus sint!
           </p>
-        </div>
+        </div> -->
         <!--Grid column-->
-      </div>
+      <!-- </div> -->
       <!--Grid row-->
-    </div>
-  </div>
+    <!-- </div>
+  </div> -->
   <!-- Grid container -->
 
+  <footer id="wb-info" class="text-lg-start">
+    <div id="transactFooter" class="landscape">
+    <nav class="container wb-navcurr" aria-labelledby="aboutGov">
+    <h2 class="wb-inv" id="aboutGov">About government</h2>
+    <ul class="list-unstyled colcount-md-3">
+    <li><a class="text-white">{{ 'footer.link.contact-us' | translate}}</a></li>
+    <li>
+      <a class="text-white"
+      routerLink="/community-list">{{ 'footer.link.community-list' | translate}}</a>
+    </li>
+
+    <li>
+      <a class="text-white"
+         routerLink="/browse/author">{{ 'footer.link.browse-by-author' | translate}}</a>
+    </li>
+    <li>
+      <a class="text-white"
+         routerLink="/browse/dateissued">{{ 'footer.link.browse-by-issue-date' | translate}}</a>
+    </li>
+    <li>
+      <a class="text-white"
+         routerLink="/browse/subject">{{ 'footer.link.browse-by-subject' | translate}}</a>
+    </li>
+    <li>
+      <a class="text-white"
+         routerLink="/browse/title">{{ 'footer.link.browse-by-title' | translate}}</a>
+    </li>
+    </ul>
+    </nav>
+    </div>
+    <!-- <div class="brand">
+    <div class="container">
+    <div class="row">
+    <nav class="col-md-9 col-lg-10 ftr-urlt-lnk" aria-labelledby="aboutSite">
+    <h2 class="wb-inv" id="aboutSite">About this site</h2>
+    <ul>
+    <li><a href="https://www.canada.ca/en/social.html">Social media</a></li>
+    <li><a href="https://www.canada.ca/en/mobile.html">Mobile applications</a></li>
+    <li><a href="https://www.canada.ca/en/government/about.html">About Canada.ca</a></li>
+    <li><a href="https://www.canada.ca/en/transparency/terms.html">Terms and conditions</a></li>
+    <li><a href="https://www.canada.ca/en/transparency/privacy.html">Privacy</a></li>
+    </ul>
+    </nav>
+    <div class="col-xs-6 visible-sm visible-xs tofpg">
+    <a href="#wb-cont">Top of Page <span class="glyphicon glyphicon-chevron-up"></span></a>
+    </div>
+    <div id="StdIssueWasHere2" class="col-xs-6 col-md-2 text-right">
+    <img src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_44/wet-boew/assets/wmms-blk.svg" alt="Symbol of the Government of Canada">
+    </div>
+    </div>
+    </div>
+    </div> -->
+
+
+    <div class="brand">
+      <div class="container">
+      <div class="row">
   <!-- Copyright -->
-  <div class="bottom-footer p-1 d-flex justify-content-center align-items-center text-dark">
+  <div class="col-md-9 col-lg-10 ftr-urlt-lnk bottom-footer p-1">
+  <div class="d-flex justify-content-center align-items-center text-dark">
     <div class="content-container">
-      <ul class="footer-info list-unstyled small d-flex justify-content-center mb-0">
+          <ul class="footer-info list-unstyled small justify-content-center mb-0">
+
         <li>
           <a class="text-dark" href="#"
              (click)="showCookieSettings()">{{ 'footer.link.cookies' | translate}}</a>
@@ -71,5 +129,17 @@
       </ul>
     </div>
   </div>
+</div>
+  <div class="col-xs-6 visible-sm visible-xs tofpg">
+    <a href="#wb-cont">Top of Page <span class="glyphicon glyphicon-chevron-up"></span></a>
+    </div>
+    <div class="col-xs-6 col-md-2 text-right">
+    <img style="canada_ca" src="../../../../assets/images/wmms-blk.svg" alt="Symbol of the Government of Canada">
+    </div>
+  </div>
+</div>
+</div>
+
+
   <!-- Copyright -->
 </footer>
