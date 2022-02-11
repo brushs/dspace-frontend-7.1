@@ -1254,7 +1254,7 @@
 
   
 
-  "footer.copyright": "copyright © 2002-{{ year }}",
+  "footer.copyright": "Government of Canada © 2021",
 
   "footer.link.dspace": "OSPR software",
 
@@ -1266,6 +1266,17 @@
 
   "footer.link.end-user-agreement":"End User Agreement",
 
+  "footer.link.contact-us": "Contact us",
+
+  "footer.link.community-list": "Communities & Collections",
+
+  "footer.link.browse-by-author": "Browse by Author",
+
+  "footer.link.browse-by-issue-date": "Browse by Issue Date",
+
+  "footer.link.browse-by-subject": "Browse by Subject",
+
+  "footer.link.browse-by-title": "Browse by Title",
 
 
   "forgot-email.form.header": "Forgot Password",
