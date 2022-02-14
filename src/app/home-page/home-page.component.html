@@ -2,12 +2,12 @@
 <ng-container *ngIf="(site$ | async) as site">
   <ds-view-tracker [object]="site"></ds-view-tracker>
 </ng-container>
-<div class="col-8">
-<h1 class="underline">{{'home.top-home.head' | translate}}</h1>
-<p>{{'home.page.description' | translate}}</p>
-</div>
+<p class="h3 col-8 px-0 underline">{{'home.top-home.head' | translate}}</p> 
+<p class="col-6 px-0">{{'home.page.description' | translate}}</p>
+<div class="search-box mx-0 col-12" style="background-color:#F5F5F5">
+  <h5 class="px-0 mt-0 col-12">{{'home.page.search-tips-title' | translate}}</h5>
+<p>{{'home.page.search-tips' | translate}}</p>
 <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"></ds-search-form>
-<div class="align-right">
-  <a class="btn btn-info" role="button" href="/community-list">{{'home.top-home.browser' | translate}}</a> 
+  <a class="btn btn-light mt-0 home-button underline btn-primary:hover align-top" role="button" href="/community-list">{{'home.top-home.browser' | translate}}</a> 
 </div>
 </div>

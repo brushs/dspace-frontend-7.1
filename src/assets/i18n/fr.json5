@@ -1922,14 +1922,18 @@
   "home.top-level-communities.head": "Communautés OSPR",
 
   //"home.top-home.head": "Open Science Publication Repository",
-  "home.top-home.head": "Platforme de publication de la science ouverte",
+  "home.top-home.head": "Platforme de publication de la science ouverte(PPSO)",
 
   //"home.learn.more": "Learn More",
   "home.learn.more": "Apprendre encore plus",
 
   //"home.page.description":"The Open Science Publication Repository provides free and open access to science publication and research funded by the Canadian Government."
   "home.page.description":"La Platforme de publication de la science ouverte offre un accès gratuit et ouvert aux publications et recherches scientifiques financées par le gouvernement canadien.",
-  
+
+//"home.page.search-tips-title": "Start your search:",
+"home.page.search-tips-title": "Commencez votre recherche:",
+//"home.page.search-tips": "Search examples: Title, Author, Title AND Author",
+  "home.page.search-tips": "Exemples de recherche: Titre, Auteur, Titre ET Auteur",
   //"home.top-home.browser": "Browse the repository",
   "home.top-home.browser": "Parcourir le repertoire",
 
