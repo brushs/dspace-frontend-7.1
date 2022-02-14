@@ -1,9 +1,15 @@
-:host {
+:host {;
     .search-box {
         padding-top:30px;
         padding-bottom: 30px;
     }
+    .home-button:hover {
+            color: #fff;
+            background-color: #1c578a;
+            border-color: #091c2d;
+            text-decoration: underline; 
+    }
     .home-button {
-        position: relative;
+        color: #284162;
     }
 }
