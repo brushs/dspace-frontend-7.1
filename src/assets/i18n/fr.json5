@@ -1907,7 +1907,9 @@
   // "form.submit": "Submit",
   "form.submit": "Déposer",
 
-
+"home.button.help": "Aide",
+"home.button.advanced-search": "Recherche Avancée",
+"home.button.tips-for-searching": "Conseils de recherche",
 
   // "home.description": "",
   "home.description": "",
