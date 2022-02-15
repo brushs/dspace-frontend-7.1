@@ -3,22 +3,21 @@
     <ds-view-tracker [object]="site"></ds-view-tracker>
   </ng-container>
   <p class="h3 col-8 px-0 underline">{{'home.top-home.head' | translate}}</p> 
-  <p class="col-6 px-0">{{'home.page.description' | translate}}</p>
-  <a href="learn-more">{{'home.learn.more' | translate}}</a>
+  <p class="col-6 px-0">{{'home.page.description' | translate}} <a href="learn-more">{{'home.learn.more' | translate}}</a></p>
   <div class="search-box mx-0 col-12" style="background-color:#F5F5F5">
     <h5 class="px-0 mt-0 col-12">{{'home.page.search-tips-title' | translate}}</h5>
   <p>{{'home.page.search-tips' | translate}}</p>
   <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"></ds-search-form>
   <div class="row">
   <div class="col justify-content-start">
-    <a href="advanced-search"> {{'home.button.advanced-search' | translate}}</a>
+    <a class="underline" href="advanced-search"> {{'home.button.advanced-search' | translate}}</a>
   </div>
   <div class="col align-self-center">
-    <a class="btn btn-light mt-0 home-button underline =" role="button" href="/community-list">{{'home.top-home.browser' | translate}}</a> 
-    <a class="btn btn-light mt-0 home-button underline" role="button" href="/help">{{'home.button.help' | translate}}</a> 
+    <a class="btn btn-light mt-0 home-button" role="button" href="/community-list">{{'home.top-home.browser' | translate}}</a> 
+    <a class="btn btn-light mt-0 home-button" role="button" href="/help">{{'home.button.help' | translate}}</a> 
   </div>
   <div class="col justify-content-end float-right text-right">
-    <a href="\tips-for-searching">{{'home.button.tips-for-searching' | translate}}</a>
+    <a class="underline" href="\tips-for-searching">{{'home.button.tips-for-searching' | translate}}</a>
     </div>
   </div>
   </div>

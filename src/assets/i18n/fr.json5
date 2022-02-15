@@ -1907,7 +1907,9 @@
   // "form.submit": "Submit",
   "form.submit": "Déposer",
 
-
+"home.button.help": "Aide",
+"home.button.advanced-search": "Recherche Avancée",
+"home.button.tips-for-searching": "Conseils de recherche",
 
   // "home.description": "",
   "home.description": "",
@@ -1924,10 +1926,6 @@
   //"home.top-home.head": "Open Science Publication Repository",
   "home.top-home.head": "Platforme de publication de la science ouverte(PPSO)",
 
-
-"home.button.help": "Aide",
-"home.button.advanced-search": "Recherche Avancée",
-"home.button.tips-for-searching": "Conseils de recherche",
   //"home.learn.more": "Learn More",
   "home.learn.more": "Apprendre encore plus",
 
@@ -3007,7 +3005,7 @@
   "menu.section.browse_community_by_title": "Titre",
 
   // "menu.section.browse_global": "All of OSPR",
-  "menu.section.browse_global": "Tout OSPR",
+  "menu.section.browse_global": "Tout PPSO",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Auteur",
