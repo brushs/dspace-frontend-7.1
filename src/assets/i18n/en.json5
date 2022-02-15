@@ -1403,8 +1403,15 @@
   "home.top-level-communities.head": "Communities in OSPR",
 
   "home.top-home.head": "Open Science Publication Repository(OSPR)",
+  
+  
+  
+"home.button.help": "Help",
+"home.button.advanced-search": "Advanced search",
+"home.button.tips-for-searching": "Tips for searching",
+"home.learn.more": "Learn More",
 
-  "home.learn.more": "Learn More",
+
   "home.page.description": "The Open Science Publication Repository provides free and open access to science publication and research funded by the Canadian Government.",
   
   "home.page.search-tips-title": "Start your search:",
