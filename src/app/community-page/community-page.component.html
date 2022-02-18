@@ -100,7 +100,7 @@
 <ng-template #searchForm>
   <ds-search-form *ngIf="searchEnabled" id="search-form"
                   [query]="(searchOptions$ | async)?.query"
-                  [scope]="(searchOptions$ | async)?.scope"
+                  [(scope)]="currentScope"
                   [currentUrl]="searchLink"
                   [scopes]="(scopeListRD$ | async)"
                   [inPlaceSearch]="inPlaceSearch"

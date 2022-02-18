@@ -43,7 +43,7 @@ import { HostWindowService } from '../shared/host-window.service';
 import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
 import { SearchConfigurationService } from '../core/shared/search/search-configuration.service';
 import { RouteService } from '../core/services/route.service';
-import { currentPath } from '../shared/utils/route.utils';
+import { currentPath, getScope } from '../shared/utils/route.utils';
 import { followLink } from '../shared/utils/follow-link-config.model';
 
 @Component({
@@ -152,6 +152,11 @@ export class CollectionPageComponent implements OnInit {
    */
   searchSubmit: any;
 
+  /*
+   * current scope of this collection page. 
+   */
+  currentScope: string;
+
 
   constructor(
     private collectionDataService: CollectionDataService,
@@ -232,9 +237,8 @@ export class CollectionPageComponent implements OnInit {
     });
 
     /*
-     * Observe query parameters' change. When user clicked Communities & Collections link,
-     * the url is /community-list without query parameter. Use this to switch display contents 
-     * from search results to communities list.
+     * Observe query parameter's change. When the url has no query parameter, 
+     * switch display contents from search results to collection page.
      */
     this.route.queryParams.subscribe(qparams => {
       if(typeof qparams === 'undefined' || qparams === null || 
@@ -242,11 +246,23 @@ export class CollectionPageComponent implements OnInit {
           this.initParams()
     });
 
+    /*
+     * Observe the collection page route change, i.e. user clicked a collection 
+     * in the community page.
+     */
+    this.collectionPageRoute$.subscribe(collectionRoute => {
+      const newScope = getScope(collectionRoute);
+      if(newScope != this.currentScope){
+        this.currentScope = newScope;
+        this.initParams();
+      }
+    });
+
     this.initParams();
   }
 
   initParams() {
-    this.scopeListRD$ = this.searchConfigService.getCurrentScope('').pipe(
+    this.scopeListRD$ = this.searchConfigService.getCurrentScope(this.currentScope).pipe(
       switchMap((scopeId) => this.service.getScopes(scopeId))
     );
     if (isEmpty(this.configuration$)) {

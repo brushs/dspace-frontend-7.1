@@ -18,3 +18,12 @@ export function currentPathFromSnapshot(route: ActivatedRouteSnapshot): string {
   }
   return route.routeConfig ? route.routeConfig.path : '';
 }
+
+export function getScope(path: string): string {
+  let currScope = '';
+  const parts: string[] = path.split('/');
+  if (parts.length > 0) {
+    currScope = parts.pop();
+  }
+  return currScope;
+}
