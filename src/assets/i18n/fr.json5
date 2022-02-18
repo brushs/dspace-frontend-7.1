@@ -1715,7 +1715,7 @@
 
 
   // "footer.copyright": "copyright © 2002-{{ year }}",
-  "footer.copyright": "copyright © 2002-{{ year }}",
+  "footer.copyright": "Gouvernement du Canada © 2021",
 
   // "footer.link.dspace": "OSPR software",
   "footer.link.dspace": "OSPR software",
@@ -1732,6 +1732,22 @@
   // "footer.link.end-user-agreement":"End User Agreement",
   "footer.link.end-user-agreement":"Licence de l'Utilisateur Final",
 
+  // "footer.link.contact-us": "Contact us",
+    "footer.link.contact-us": "Nous contacter",
+
+  // "footer.link.community-list": "Communities & Collections",
+  "footer.link.community-list": "Communautés & Collections",
+  // "footer.link.browse-by-author": "Browse by Author",
+  "footer.link.browse-by-author": "Parcourir par Auteur",
+
+  // "footer.link.browse-by-issue-date": "Browse by Issue Date",
+  "footer.link.browse-by-issue-date": "Parcourir par Date de publication",
+
+  // "footer.link.browse-by-subject": "Browse by Subject",
+  "footer.link.browse-by-subject": "Parcourir par Sujet",
+
+  // "footer.link.browse-by-title": "Browse by Title",
+"footer.link.browse-by-title": "Parcourir par Titre",
 
   // "forgot-email.form.header": "Forgot Password",
   "forgot-email.form.header": "Mot de passe oublié",
@@ -1891,7 +1907,9 @@
   // "form.submit": "Submit",
   "form.submit": "Déposer",
 
-
+"home.button.help": "Aide",
+"home.button.advanced-search": "Recherche Avancée",
+"home.button.tips-for-searching": "Conseils de recherche",
 
   // "home.description": "",
   "home.description": "",
@@ -1906,14 +1924,18 @@
   "home.top-level-communities.head": "Communautés OSPR",
 
   //"home.top-home.head": "Open Science Publication Repository",
-  "home.top-home.head": "Platforme de publication de la science ouverte",
+  "home.top-home.head": "Platforme de publication de la science ouverte(PPSO)",
 
   //"home.learn.more": "Learn More",
   "home.learn.more": "Apprendre encore plus",
 
   //"home.page.description":"The Open Science Publication Repository provides free and open access to science publication and research funded by the Canadian Government."
   "home.page.description":"La Platforme de publication de la science ouverte offre un accès gratuit et ouvert aux publications et recherches scientifiques financées par le gouvernement canadien.",
-  
+
+//"home.page.search-tips-title": "Start your search:",
+"home.page.search-tips-title": "Commencez votre recherche:",
+//"home.page.search-tips": "Search examples: Title, Author, Title AND Author",
+  "home.page.search-tips": "Exemples de recherche: Titre, Auteur, Titre ET Auteur",
   //"home.top-home.browser": "Browse the repository",
   "home.top-home.browser": "Parcourir le repertoire",
 
@@ -2983,7 +3005,7 @@
   "menu.section.browse_community_by_title": "Titre",
 
   // "menu.section.browse_global": "All of OSPR",
-  "menu.section.browse_global": "Tout OSPR",
+  "menu.section.browse_global": "Tout PPSO",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Auteur",
