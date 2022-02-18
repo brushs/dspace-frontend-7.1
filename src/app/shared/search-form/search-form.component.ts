@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { DSpaceObject } from '../../core/shared/dspace-object.model';
 import { Router } from '@angular/router';
 import { isNotEmpty } from '../empty.util';
@@ -22,7 +22,7 @@ import { SearchConfigurationService } from '../../core/shared/search/search-conf
 /**
  * Component that represents the search form
  */
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   /**
    * The search query
    */
@@ -38,6 +38,11 @@ export class SearchFormComponent {
    */
   @Input()
   scope = '';
+
+  /**
+   * Output the scope on scope change
+   */
+   @Output() scopeChange = new EventEmitter<any>();
 
   @Input() currentUrl: string;
 
@@ -72,6 +77,12 @@ export class SearchFormComponent {
               ) {
   }
 
+  ngOnInit(): void {
+    if(isNotEmpty(this.scope)) {
+      this.onScopeChange(this.scope);
+    }
+  }
+
   /**
    * Updates the search when the form is submitted
    * @param data Values submitted using the form
@@ -87,6 +98,8 @@ export class SearchFormComponent {
    */
   onScopeChange(scope: string) {
     this.updateSearch({ scope });
+    this.scope = scope;
+    this.scopeChange.emit(scope);
   }
 
   /**
