@@ -50,6 +50,7 @@ import { ThemedBreadcrumbsComponent } from './breadcrumbs/themed-breadcrumbs.com
 import { ThemedHeaderNavbarWrapperComponent } from './header-nav-wrapper/themed-header-navbar-wrapper.component';
 import { IdleModalComponent } from './shared/idle-modal/idle-modal.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-page/search-tips-page.component';
 
 import { UUIDService } from './core/shared/uuid.service';
 import { CookieService } from './core/services/cookie.service';
@@ -172,6 +173,7 @@ const DECLARATIONS = [
   ForbiddenComponent,
   ThemedForbiddenComponent,
   IdleModalComponent,
+  SearchTipsPageComponent,
   WelcomePageComponent
 ];
 
