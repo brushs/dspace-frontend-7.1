@@ -31,6 +31,33 @@
   // "404.page-not-found": "page not found",
   "404.page-not-found": "Page introuvable",
 
+  //"tips-for-search.head": "Tips for Searching",
+  "tips-for-search.head": "Conseils pour la recherche",
+
+  //"tips-for-search.ospr.title": "Searching the Open Science Platform Repository",
+  "tips-for-search.ospr.title": "Recherche dans le publication de la science ouverte",
+
+  //"tips-for-search.ospr.text": "The OSPR’s online platform  contains the full text of every article every published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments in Government of Canada.",
+  "tips-for-search.ospr.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
+  //"tips-for-search.faceted.title": "Faceted Search",
+  "tips-for-search.faceted.title": "Recherche à facettes",
+
+  //"tips-for-search.faceted.text": "The OSPR’s online platform  contains the full text of every article every published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments in Government of Canada.",
+  "tips-for-search.faceted.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
+  //"tips-for-search.advanced.title": "Advanced Search",
+  "tips-for-search.advanced.title": "Recherche avancée",
+
+  //"tips-for-search.advanced.text": "The OSPR’s online platform  contains the full text of every article every published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments in Government of Canada.",
+  "tips-for-search.advanced.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
+  //"tips-for-search.other.title": "Other Search",
+  "tips-for-search.other.title": "Autre recherche",
+  
+  //"tips-for-search.other.title": "The OSPR’s online platform  contains the full text of every article every published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments in Government of Canada.",
+  "tips-for-search.other.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
   // "admin.curation-tasks.breadcrumbs": "System curation tasks",
   "admin.curation-tasks.breadcrumbs": "Tâches de conservation système",
 
@@ -1907,7 +1934,9 @@
   // "form.submit": "Submit",
   "form.submit": "Déposer",
 
-
+"home.button.help": "Aide",
+"home.button.advanced-search": "Recherche Avancée",
+"home.button.tips-for-searching": "Conseils de recherche",
 
   // "home.description": "",
   "home.description": "",
@@ -1922,14 +1951,18 @@
   "home.top-level-communities.head": "Communautés OSPR",
 
   //"home.top-home.head": "Open Science Publication Repository",
-  "home.top-home.head": "Platforme de publication de la science ouverte",
+  "home.top-home.head": "Platforme de publication de la science ouverte(PPSO)",
 
   //"home.learn.more": "Learn More",
   "home.learn.more": "Apprendre encore plus",
 
   //"home.page.description":"The Open Science Publication Repository provides free and open access to science publication and research funded by the Canadian Government."
   "home.page.description":"La Platforme de publication de la science ouverte offre un accès gratuit et ouvert aux publications et recherches scientifiques financées par le gouvernement canadien.",
-  
+
+//"home.page.search-tips-title": "Start your search:",
+"home.page.search-tips-title": "Commencez votre recherche:",
+//"home.page.search-tips": "Search examples: Title, Author, Title AND Author",
+  "home.page.search-tips": "Exemples de recherche: Titre, Auteur, Titre ET Auteur",
   //"home.top-home.browser": "Browse the repository",
   "home.top-home.browser": "Parcourir le repertoire",
 
@@ -2999,7 +3032,7 @@
   "menu.section.browse_community_by_title": "Titre",
 
   // "menu.section.browse_global": "All of OSPR",
-  "menu.section.browse_global": "Tout OSPR",
+  "menu.section.browse_global": "Tout PPSO",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Auteur",

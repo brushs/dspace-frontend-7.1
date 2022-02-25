@@ -29,7 +29,7 @@ import { HostWindowService } from '../shared/host-window.service';
 import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
 import { SearchConfigurationService } from '../core/shared/search/search-configuration.service';
 import { RouteService } from '../core/services/route.service';
-import { currentPath } from '../shared/utils/route.utils';
+import { currentPath, getScope } from '../shared/utils/route.utils';
 import { followLink } from '../shared/utils/follow-link-config.model';
 import { Item } from '../core/shared/item.model';
 import { getFirstSucceededRemoteData } from '../core/shared/operators';
@@ -142,6 +142,11 @@ export class CommunityPageComponent implements OnInit {
    */
   searchSubmit: any;
 
+  /*
+   * current scope of this community page. It is passed to the search form and
+   * it can be changed by user selecting a scope in the search form.
+   */
+  currentScope: string;
 
    constructor(
     private communityDataService: CommunityDataService,
@@ -159,8 +164,6 @@ export class CommunityPageComponent implements OnInit {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
 
   }
-
-  comm: Community;
 
   ngOnInit(): void {
     this.communityRD$ = this.route.data.pipe(
@@ -190,9 +193,8 @@ export class CommunityPageComponent implements OnInit {
     });
 
     /*
-     * Observe query parameters' change. When user clicked Communities & Collections link,
-     * the url is /community-list without query parameter. Use this to switch display contents 
-     * from search results to communities list.
+     * Observe query parameter's change. When the url has no query parameter, 
+     * switch display contents from search results to community page.
      */
     this.route.queryParams.subscribe(qparams => {
       if(typeof qparams === 'undefined' || qparams === null || 
@@ -200,11 +202,23 @@ export class CommunityPageComponent implements OnInit {
           this.initParams()
     });
 
+    /*
+     * Observe the community page route change, i.e. user clicked a sub-community 
+     * in the community page.
+     */
+    this.communityPageRoute$.subscribe(communityRoute => {
+      const newScope = getScope(communityRoute);
+      if(newScope != this.currentScope){
+        this.currentScope = newScope;
+        this.initParams();
+      }
+    });
+
     this.initParams();
   }
 
   initParams() {
-    this.scopeListRD$ = this.searchConfigService.getCurrentScope('').pipe(
+    this.scopeListRD$ = this.searchConfigService.getCurrentScope(this.currentScope).pipe(
       switchMap((scopeId) => this.service.getScopes(scopeId))
     );
     if (isEmpty(this.configuration$)) {

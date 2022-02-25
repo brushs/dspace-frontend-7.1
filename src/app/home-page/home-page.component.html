@@ -1,13 +1,23 @@
 <div class="container">
-<ng-container *ngIf="(site$ | async) as site">
-  <ds-view-tracker [object]="site"></ds-view-tracker>
-</ng-container>
-<div class="col-8">
-<h1 class="underline">{{'home.top-home.head' | translate}}</h1>
-<p>{{'home.page.description' | translate}}</p>
-</div>
-<ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"></ds-search-form>
-<div class="align-right">
-  <a class="btn btn-info" role="button" href="/community-list">{{'home.top-home.browser' | translate}}</a> 
-</div>
-</div>
+  <ng-container *ngIf="(site$ | async) as site">
+    <ds-view-tracker [object]="site"></ds-view-tracker>
+  </ng-container>
+  <p class="h3 col-8 px-0 underline">{{'home.top-home.head' | translate}}</p> 
+  <p class="col-6 px-0">{{'home.page.description' | translate}} <a href="learn-more">{{'home.learn.more' | translate}}</a></p>
+  <div class="search-box mx-0 col-12" style="background-color:#F5F5F5">
+    <h5 class="px-0 mt-0 col-12">{{'home.page.search-tips-title' | translate}}</h5>
+  <p>{{'home.page.search-tips' | translate}}</p>
+  <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"></ds-search-form>
+  <div class="row">
+  <div class="col justify-content-start">
+    <a href="advanced-search"> {{'home.button.advanced-search' | translate}}</a>
+  </div>
+  <div class="col align-self-center">
+    <button class="btn btn-primary mt-0" type="button" role="button" onclick="window.location.href='/community-list';" value="w3docs">{{'home.top-home.browser' | translate}}</button> 
+    <button class="btn btn-primary" type="button" role="button" onclick="window.location.href='/help';" value="w3docs">{{'home.button.help' | translate}}</button> 
+  </div>
+  <div class="col justify-content-end float-right text-right"><a href="\tips-for-searching">{{'home.button.tips-for-searching' | translate}}</a>
+    </div>
+  </div>
+  </div>
+  </div>
