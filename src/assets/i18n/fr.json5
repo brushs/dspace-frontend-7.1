@@ -1252,6 +1252,9 @@
   "collection.source.update.notifications.error.title": "Erreur serveur",
 
 
+  //"communityList.breadcrumbs": "Community List",
+  "communityList.breadcrumbs": "Liste des Communautés",
+
   // "communityList.tabTitle": "OSPR - Community List",
   "communityList.tabTitle": "OSPR - Liste des Communautés",
 
