@@ -923,11 +923,11 @@
   // "browse.startsWith.submit": "Go",
   "browse.startsWith.submit": "Valider",
 
-  // "browse.startsWith.type_date": "Or type in a date (year-month):",
-  "browse.startsWith.type_date": "Ou saisir une date (année-mois) :",
+  // "browse.startsWith.type_date": "Or type in a date (year-month) and click 'Browse'",
+  "browse.startsWith.type_date": "Ou tapez une date (année-mois) et cliquez sur 'Parcourir'",
 
-  // "browse.startsWith.type_text": "Or enter first few letters:",
-  "browse.startsWith.type_text": "Ou saisir les premières lettres :",
+  // "browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
+  "browse.startsWith.type_text": "Tapez les premières lettres et cliquez sur le bouton Parcourir",
 
   // "browse.title": "Browsing {{ collection }} by {{ field }} {{ value }}",
   "browse.title": "Parcourir {{ collection }} par {{ field }} {{ value }}",
@@ -3429,6 +3429,9 @@
   // "pagination.button.next": "Next",
   "pagination.button.next": "Suivant",
 
+  //"pagination.options.description": "Pagination options",
+  "pagination.options.description": "Options de pagination",
+
   // "pagination.results-per-page": "Results Per Page",
   "pagination.results-per-page": "Résultats par page",
 
@@ -4217,6 +4220,9 @@
   // "search.filters.filter.entityType.placeholder": "Item Type",
   "search.filters.filter.entityType.placeholder": "Type d'Item",
 
+  //"search.filters.filter.expand": "Expand filter",
+  "search.filters.filter.expand": "Développer le filtre",
+
   // "search.filters.filter.has_content_in_original_bundle.head": "Has files",
   "search.filters.filter.has_content_in_original_bundle.head": "Fichier(s) présent(s)",
 
@@ -4404,6 +4410,26 @@
   // "sorting.score.DESC": "Relevance",
   "sorting.score.DESC": "Pertinence",
 
+  //"sorting.score.ASC": "Least Relevant",
+  "sorting.score.ASC": "Le moins pertinent",
+
+  //"sorting.dc.date.issued.ASC": "Date Issued Ascending",
+  "sorting.dc.date.issued.ASC": "Date d'émission croissant",
+
+  //"sorting.dc.date.issued.DESC": "Date Issued Descending",
+  "sorting.dc.date.issued.DESC": "Date d'émission décroissant",
+
+  //"sorting.dc.date.accessioned.ASC": "Accessioned Date Ascending",
+  "sorting.dc.date.accessioned.ASC": "Date d'accession croissante",
+
+  //"sorting.dc.date.accessioned.DESC": "Accessioned Date Descending",
+  "sorting.dc.date.accessioned.DESC": "Date d'adhésion décroissante",
+
+  //"sorting.lastModified.ASC": "Last modified Ascending",
+  "sorting.lastModified.ASC": "Dernière modification ascendante",
+
+  //"sorting.lastModified.DESC": "Last modified Descending",
+  "sorting.lastModified.DESC": "Dernière modification décroissante",
 
 
   // "statistics.title": "Statistics",
