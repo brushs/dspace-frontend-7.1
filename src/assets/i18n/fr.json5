@@ -1252,6 +1252,9 @@
   "collection.source.update.notifications.error.title": "Erreur serveur",
 
 
+  //"communityList.breadcrumbs": "Community List",
+  "communityList.breadcrumbs": "Liste des Communautés",
+
   // "communityList.tabTitle": "OSPR - Community List",
   "communityList.tabTitle": "OSPR - Liste des Communautés",
 
@@ -2250,6 +2253,9 @@
 
   // "item.edit.item-mapper.notifications.remove.success.head": "Removal of mapping completed",
   "item.edit.item-mapper.notifications.remove.success.head": "Suppression d'association terminée",
+
+  //"item.edit.item-mapper.search-form.placeholder": "Search collections...",
+  "item.edit.item-mapper.search-form.placeholder": "Rechercher des collections...",
 
   // "item.edit.item-mapper.tabs.browse": "Browse mapped collections",
   "item.edit.item-mapper.tabs.browse": "Parcourir Collections associées",
@@ -3313,6 +3319,9 @@
   // "mydspace.results.no-uri": "No Uri",
   "mydspace.results.no-uri": "Aucune URL",
 
+  //"mydspace.search-form.placeholder": "Search in myOSPR...",
+  "mydspace.search-form.placeholder": "Rechercher dans MyOSPR ...",
+
   // "mydspace.show.workflow": "All tasks",
   "mydspace.show.workflow": "Tâches de validation",
 
@@ -4095,6 +4104,8 @@
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Recherche",
 
+  //"search.search-form.placeholder": "Search the repository ...",
+  "search.search-form.placeholder": "Rechercher dans le référentiel ...",
 
   // "search.filters.applied.f.author": "Author",
   "search.filters.applied.f.author": "Auteur",
@@ -4632,6 +4643,9 @@
   // "submission.sections.describe.relationship-lookup.search-tab.search": "Go",
   "submission.sections.describe.relationship-lookup.search-tab.search": "Rechercher",
 
+  //"submission.sections.describe.relationship-lookup.search-tab.search-form.placeholder": "Search...",
+  "submission.sections.describe.relationship-lookup.search-tab.search-form.placeholder": "Rechercher ...",
+
   // "submission.sections.describe.relationship-lookup.search-tab.select-all": "Select all",
   "submission.sections.describe.relationship-lookup.search-tab.select-all": "Sélectionner tout",
 
@@ -4703,6 +4717,9 @@
 
   // "submission.sections.describe.relationship-lookup.search-tab.tab-title.isChildOrgUnitOf": "Search for Organizational Units",
   "submission.sections.describe.relationship-lookup.search-tab.tab-title.isChildOrgUnitOf": "Recherche Structures",
+
+  "submission.sections.describe.relationship-lookup.selection-tab.search-form.placeholder": "Search...",
+  "submission.sections.describe.relationship-lookup.selection-tab.search-form.placeholder": "Rechercher ...",
 
   // "submission.sections.describe.relationship-lookup.selection-tab.tab-title": "Current Selection ({{ count }})",
   "submission.sections.describe.relationship-lookup.selection-tab.tab-title": "Sélection actuelle ({{ count }})",
