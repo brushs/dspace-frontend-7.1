@@ -30,7 +30,7 @@ import { Operation } from 'fast-json-patch';
 
 @Component({
   selector: 'ds-item-bitstreams',
-  styleUrls: ['./OSPR-item-bitstreams.component.scss'],
+  styleUrls: ['./item-bitstreams.component.scss'],
   templateUrl: './item-bitstreams.component.html',
 })
 /**
