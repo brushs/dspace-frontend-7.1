@@ -1964,8 +1964,10 @@
 
 //"home.page.search-tips-title": "Start your search:",
 "home.page.search-tips-title": "Commencez votre recherche:",
-//"home.page.search-tips": "Search examples: Title, Author, Title AND Author",
-  "home.page.search-tips": "Exemples de recherche: Titre, Auteur, Titre ET Auteur",
+
+//"home.page.search-tips": "Search examples: Title, Author, Title AND Author OR DOI number",
+"home.page.search-tips": "Exemples de recherche: Titre, Auteur, Titre AND Auteur OR numéro DOI",
+
   //"home.top-home.browser": "Browse the repository",
   "home.top-home.browser": "Parcourir le repertoire",
 
@@ -4420,10 +4422,10 @@
   "sorting.dc.date.issued.DESC": "Date d'émission décroissant",
 
   //"sorting.dc.date.accessioned.ASC": "Accessioned Date Ascending",
-  "sorting.dc.date.accessioned.ASC": "Date d'accession croissante",
+  "sorting.dc.date.accessioned.ASC": "Date d'accession croissant",
 
   //"sorting.dc.date.accessioned.DESC": "Accessioned Date Descending",
-  "sorting.dc.date.accessioned.DESC": "Date d'adhésion décroissante",
+  "sorting.dc.date.accessioned.DESC": "Date d'accession décroissant",
 
   //"sorting.lastModified.ASC": "Last modified Ascending",
   "sorting.lastModified.ASC": "Dernière modification ascendante",
