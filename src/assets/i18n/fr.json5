@@ -4165,11 +4165,20 @@
   // "search.filters.filter.author.placeholder": "Author name",
   "search.filters.filter.author.placeholder": "Nom de l'auteur",
 
+  //"search.filters.filter.author.label": "Search author name",
+  "search.filters.filter.author.label": "Rechercher le nom de l'auteur",
+
   // "search.filters.filter.birthDate.head": "Birth Date",
   "search.filters.filter.birthDate.head": "Date de naissance",
 
   // "search.filters.filter.birthDate.placeholder": "Birth Date",
   "search.filters.filter.birthDate.placeholder": "Date de naissance",
+
+  //"search.filters.filter.birthDate.label": "Search birth date",
+  "search.filters.filter.birthDate.label": "Rechercher la date de naissance",
+
+  //"search.filters.filter.collapse": "Collapse filter",
+  "search.filters.filter.collapse": "Réduire le filtre",
 
   // "search.filters.filter.creativeDatePublished.head": "Date Published",
   "search.filters.filter.creativeDatePublished.head": "Date de publication",
@@ -4177,11 +4186,17 @@
   // "search.filters.filter.creativeDatePublished.placeholder": "Date Published",
   "search.filters.filter.creativeDatePublished.placeholder": "Date de publication",
 
+  //"search.filters.filter.creativeDatePublished.label": "Search date published",
+  "search.filters.filter.creativeDatePublished.label": "Rechercher la date de publication",
+
   // "search.filters.filter.creativeWorkEditor.head": "Editor",
   "search.filters.filter.creativeWorkEditor.head": "Rédacteur en chef",
 
   // "search.filters.filter.creativeWorkEditor.placeholder": "Editor",
   "search.filters.filter.creativeWorkEditor.placeholder": "Rédacteur en chef",
+
+  //"search.filters.filter.creativeWorkEditor.label": "Search editor",
+  "search.filters.filter.creativeWorkEditor.label": "Rechercher éditeur",
 
   // "search.filters.filter.creativeWorkKeywords.head": "Subject",
   "search.filters.filter.creativeWorkKeywords.head": "Sujet",
@@ -4189,11 +4204,17 @@
   // "search.filters.filter.creativeWorkKeywords.placeholder": "Subject",
   "search.filters.filter.creativeWorkKeywords.placeholder": "Sujet",
 
+  //"search.filters.filter.creativeWorkKeywords.label": "Search subject",
+  "search.filters.filter.creativeWorkKeywords.label": "Rechercher sujet",
+
   // "search.filters.filter.creativeWorkPublisher.head": "Publisher",
   "search.filters.filter.creativeWorkPublisher.head": "Éditeur",
 
   // "search.filters.filter.creativeWorkPublisher.placeholder": "Publisher",
   "search.filters.filter.creativeWorkPublisher.placeholder": "Éditeur",
+
+  //"search.filters.filter.creativeWorkPublisher.label": "Search publisher",
+  "search.filters.filter.creativeWorkPublisher.label": "Rechercher un éditeur",
 
   // "search.filters.filter.dateIssued.head": "Date",
   "search.filters.filter.dateIssued.head": "Date",
@@ -4201,14 +4222,23 @@
   // "search.filters.filter.dateIssued.max.placeholder": "Minimum Date",
   "search.filters.filter.dateIssued.max.placeholder": "Depuis",
 
+  //"search.filters.filter.dateIssued.min.label": "Start",
+  "search.filters.filter.dateIssued.min.label": "Démarrer",
+
   // "search.filters.filter.dateIssued.min.placeholder": "Maximum Date",
   "search.filters.filter.dateIssued.min.placeholder": "Jusque",
+
+  //"search.filters.filter.dateIssued.max.label": "End",
+  "search.filters.filter.dateIssued.max.label": "Finir",
 
   // "search.filters.filter.dateSubmitted.head": "Date submitted",
   "search.filters.filter.dateSubmitted.head": "Date de dépôt",
 
   // "search.filters.filter.dateSubmitted.placeholder": "Date submitted",
   "search.filters.filter.dateSubmitted.placeholder": "Date de dépôt",
+
+  //"search.filters.filter.dateSubmitted.label": "Search date submitted",
+  "search.filters.filter.dateSubmitted.label": "Rechercher date dépôt",
 
   // "search.filters.filter.discoverable.head": "Private",
   "search.filters.filter.discoverable.head": "Privé",
@@ -4222,6 +4252,9 @@
   // "search.filters.filter.entityType.placeholder": "Item Type",
   "search.filters.filter.entityType.placeholder": "Type d'Item",
 
+  //"search.filters.filter.entityType.label": "Search item type",
+  "search.filters.filter.entityType.label": "Rechercher type d'Item",
+
   //"search.filters.filter.expand": "Expand filter",
   "search.filters.filter.expand": "Développer le filtre",
 
@@ -4234,11 +4267,17 @@
   // "search.filters.filter.itemtype.placeholder": "Type",
   "search.filters.filter.itemtype.placeholder": "Type",
 
+  //"search.filters.filter.itemtype.label": "Search type",
+  "search.filters.filter.itemtype.label": "Rechercher type",
+
   // "search.filters.filter.jobTitle.head": "Job Title",
   "search.filters.filter.jobTitle.head": "Fonction",
 
   // "search.filters.filter.jobTitle.placeholder": "Job Title",
   "search.filters.filter.jobTitle.placeholder": "Fonction",
+
+  //"search.filters.filter.jobTitle.label": "Search job title",
+  "search.filters.filter.jobTitle.label": "Rechercher fonction",
 
   // "search.filters.filter.knowsLanguage.head": "Known language",
   "search.filters.filter.knowsLanguage.head": "Langue(s)",
@@ -4246,11 +4285,17 @@
   // "search.filters.filter.knowsLanguage.placeholder": "Known language",
   "search.filters.filter.knowsLanguage.placeholder": "Langue(s)",
 
+  //"search.filters.filter.knowsLanguage.label": "Search known language",
+  "search.filters.filter.knowsLanguage.label": "Rechercher langue(s)",
+
   // "search.filters.filter.namedresourcetype.head": "Status",
   "search.filters.filter.namedresourcetype.head": "Statut",
 
   // "search.filters.filter.namedresourcetype.placeholder": "Status",
   "search.filters.filter.namedresourcetype.placeholder": "Statut",
+
+  //"search.filters.filter.namedresourcetype.label": "Search status",
+  "search.filters.filter.namedresourcetype.label": "Rechercher statut",
 
   // "search.filters.filter.objectpeople.head": "People",
   "search.filters.filter.objectpeople.head": "Personne",
@@ -4258,11 +4303,17 @@
   // "search.filters.filter.objectpeople.placeholder": "People",
   "search.filters.filter.objectpeople.placeholder": "Personne",
 
+  //"search.filters.filter.objectpeople.label": "Search people",
+  "search.filters.filter.objectpeople.label": "Rechercher personne",
+
   // "search.filters.filter.organizationAddressCountry.head": "Country",
   "search.filters.filter.organizationAddressCountry.head": "Pays",
 
   // "search.filters.filter.organizationAddressCountry.placeholder": "Country",
   "search.filters.filter.organizationAddressCountry.placeholder": "Pays",
+
+  //"search.filters.filter.organizationAddressCountry.label": "Search country",
+  "search.filters.filter.organizationAddressCountry.label": "Rechercher pays",
 
   // "search.filters.filter.organizationAddressLocality.head": "City",
   "search.filters.filter.organizationAddressLocality.head": "Ville",
@@ -4270,17 +4321,26 @@
   // "search.filters.filter.organizationAddressLocality.placeholder": "City",
   "search.filters.filter.organizationAddressLocality.placeholder": "Ville",
 
+  //"search.filters.filter.organizationAddressLocality.label": "Search city",
+  "search.filters.filter.organizationAddressLocality.label": "Rechercher ville",
+
   // "search.filters.filter.organizationFoundingDate.head": "Date Founded",
   "search.filters.filter.organizationFoundingDate.head": "Date de fondation",
 
   // "search.filters.filter.organizationFoundingDate.placeholder": "Date Founded",
   "search.filters.filter.organizationFoundingDate.placeholder": "Date de fondation",
 
+  //"search.filters.filter.organizationFoundingDate.label": "Search date founded",
+  "search.filters.filter.organizationFoundingDate.label": "rechercher date de fondation",
+
   // "search.filters.filter.scope.head": "Scope",
   "search.filters.filter.scope.head": "Scope",
 
   // "search.filters.filter.scope.placeholder": "Scope filter",
   "search.filters.filter.scope.placeholder": "Scope",
+
+  //"search.filters.filter.scope.label": "Search scope filter",
+  "search.filters.filter.scope.label": "rechercher filtre de portée",
 
   // "search.filters.filter.show-less": "Collapse",
   "search.filters.filter.show-less": "Moins",
@@ -4294,12 +4354,17 @@
   // "search.filters.filter.subject.placeholder": "Subject",
   "search.filters.filter.subject.placeholder": "Sujet",
 
+  //"search.filters.filter.subject.label": "Search subject",
+  "search.filters.filter.subject.label": "Rechercher sujet",
+
   // "search.filters.filter.submitter.head": "Submitter",
   "search.filters.filter.submitter.head": "Déposant",
 
   // "search.filters.filter.submitter.placeholder": "Submitter",
   "search.filters.filter.submitter.placeholder": "Déposant",
 
+  //"search.filters.filter.submitter.label": "Search submitter",
+  "search.filters.filter.submitter.label": "Rechercher déposant",
 
 
   // "search.filters.entityType.JournalIssue": "Journal Issue",
