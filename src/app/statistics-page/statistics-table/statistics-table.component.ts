@@ -5,6 +5,7 @@ import { DSONameService } from '../../core/breadcrumbs/dso-name.service';
 import { map } from 'rxjs/operators';
 import { getRemoteDataPayload, getFirstSucceededRemoteData } from '../../core/shared/operators';
 import { DSpaceObjectDataService } from '../../core/data/dspace-object-data.service';
+import * as moment from 'moment';
 
 /**
  * Component representing a statistics table for a given usage report.
@@ -58,6 +59,9 @@ export class StatisticsTableComponent implements OnInit {
           getRemoteDataPayload(),
           map((item) => this.nameService.getName(item)),
         );
+      case 'TotalVisitsPerMonth':
+        // Display numerical date to avoid translation of Month name
+        return of(moment(new Date(point.label), 'YYYY-MM').format('YYYY-MM'));
       case 'TopCities':
       case 'topCountries':
       default:
