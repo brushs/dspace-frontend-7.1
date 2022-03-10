@@ -60,7 +60,7 @@ export class StatisticsTableComponent implements OnInit {
           map((item) => this.nameService.getName(item)),
         );
       case 'TotalVisitsPerMonth':
-        // Display numerical date to avoid translation of Month name
+        // OSPR issue 244: to display numerical date to avoid translation of month names
         return of(moment(new Date(point.label), 'YYYY-MM').format('YYYY-MM'));
       case 'TopCities':
       case 'topCountries':
