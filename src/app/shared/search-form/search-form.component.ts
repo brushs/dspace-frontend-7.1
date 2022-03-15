@@ -78,6 +78,10 @@ export class SearchFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Fix OSPR issue 264: keep the page in search result when changing language.
+    if(typeof this.query !== 'undefined' && isNotEmpty(this.query)){
+      this.submitSearch.emit({query: this.query});
+    }
     if(isNotEmpty(this.scope)) {
       this.onScopeChange(this.scope);
     }
