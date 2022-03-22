@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Group } from '../../../../core/eperson/models/group.model';
 import { Community } from '../../../../core/shared/community.model';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -65,6 +66,7 @@ export class ComcolRoleComponent implements OnInit {
   hasCustomGroup$: Observable<boolean>;
 
   constructor(
+    protected modalService: NgbModal,
     protected requestService: RequestService,
     protected groupService: GroupDataService,
   ) {
@@ -108,17 +110,23 @@ export class ComcolRoleComponent implements OnInit {
 
   /**
    * Delete the group for this community or collection role.
+   * OSPR UI-13 issue 291: Let user to confirm the delete operation.
    */
-  delete() {
-    this.groupService.deleteComcolGroup(this.groupLink).pipe(
-      getFirstCompletedRemoteData()
-    ).subscribe((rd: RemoteData<NoContent>) => {
-      if (rd.hasSucceeded) {
-        this.groupService.clearGroupsRequests();
-        this.requestService.setStaleByHrefSubstring(this.comcolRole.href);
-      } else {
-        // TODO show error notification
-      }
+   public confirmDelete(content) {
+    this.modalService.open(content, {backdrop:'static'}).result.then(
+      (result) => {
+        if (result === 'ok') {
+          this.groupService.deleteComcolGroup(this.groupLink).pipe(
+            getFirstCompletedRemoteData()
+          ).subscribe((rd: RemoteData<NoContent>) => {
+            if (rd.hasSucceeded) {
+              this.groupService.clearGroupsRequests();
+              this.requestService.setStaleByHrefSubstring(this.comcolRole.href);
+            } else {
+              // TODO show error notification
+            }
+          });
+        }
     });
   }
 
