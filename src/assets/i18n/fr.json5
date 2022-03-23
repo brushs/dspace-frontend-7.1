@@ -1392,6 +1392,18 @@
   // "comcol-role.edit.delete": "Delete",
   "comcol-role.edit.delete": "Supprimer",
 
+  //OSPR UI-13 issue 291
+  //"comcol-role.delete.confirm.title": "Delete role",
+  "comcol-role.delete.confirm.title": "Supprimer le rôle",
+
+  //"comcol-role.delete.confirm.info": "Are you sure you want to delete the role?",
+  "comcol-role.delete.confirm.info": "Êtes-vous sûr de vouloir supprimer le rôle ?",
+
+  //"comcol-role.delete.confirm.cancel": "Cancel",
+  "comcol-role.delete.confirm.cancel": "Annuler",
+
+  //"comcol-role.delete.confirm.submit": "Delete",
+  "comcol-role.delete.confirm.submit": "Supprimer",
 
   // "comcol-role.edit.community-admin.name": "Administrators",
   "comcol-role.edit.community-admin.name": "Administrateurs",

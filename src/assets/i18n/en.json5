@@ -1005,6 +1005,14 @@
 
   "comcol-role.edit.delete": "Delete",
 
+  //OSPR UI-13 issue 291
+  "comcol-role.delete.confirm.title": "Delete role",
+
+  "comcol-role.delete.confirm.info": "Are you sure you want to delete the role?",
+
+  "comcol-role.delete.confirm.cancel": "Cancel",
+
+  "comcol-role.delete.confirm.submit": "Delete",
 
   "comcol-role.edit.community-admin.name": "Administrators",
 
