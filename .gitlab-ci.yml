@@ -1,58 +1,8 @@
-# Compile based on yml with GitLab node.js
-# To contribute improvements to CI/CD templates, please follow the Development guide at:
-# https://docs.gitlab.com/ee/development/cicd/templates.html
-# This specific template is located at:
-# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Nodejs.gitlab-ci.yml
-
-# Official framework image. Look for the different tagged releases at:
-# https://hub.docker.com/r/library/node/tags/
-# Figure out how to find the yml, node:latest or yarn:latest
-#image: yarn:latest
-image: node:6.10.0
-
-# Pick zero or more services to be used on all builds.
-# Only needed when using a docker container to run your tests in.
-# Check out: http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
-# services:
-#  - mysql:latest
-#  - redis:latest
-#  - postgres:latest
-
-# This folder is cached between builds
-# https://docs.gitlab.com/ee/ci/yaml/index.html#cache
-cache:
-  paths:
-    - node_modules/
-    - .yarn/
-
-# Getting environment to pre-install yarn
-before_script:
-  - apt-get update -qq && apt-get -install
-
 stages:
-  - build
-  - test
-  #- staging
-  #- production
-
-# How to set-up a CI/CD environment on Gitlab using NodeJs
-# https://dev.to/6thcode/how-to-set-up-a-cicd-environment-on-gitlab-using-nodejs-jh3
-install_dependencies:
-  stage: build
-  tags: 
-    - node
-  # before_script: 
-  #  - yarn config set cache-folder .yarn
-  #  - yarn install 
-  script:
-   - yarn config set cache-folder .yarn
-   - yarn install 
-   - npm run build
-   - npm run test
-  artifacts:
-    paths:
-    - yarn_modules/
-
-testing_testing:
-  stage: test
-  script: yarn test
+  - accessibility
+   
+variables:
+  a11y_urls: "https://dev.ospr.link https://www.ospr.link https://www.ospr.link/home https://dev.ospr.link/home https://www.ospr.link/search?spc.page=1 https://dev.ospr.link/search?spc.page=1"
+   
+include:
+  - template: "Verify/Accessibility.gitlab-ci.yml"

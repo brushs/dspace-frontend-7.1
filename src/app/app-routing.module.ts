@@ -26,6 +26,7 @@ import { SiteRegisterGuard } from './core/data/feature-authorization/feature-aut
 import { ThemedPageNotFoundComponent } from './pagenotfound/themed-pagenotfound.component';
 import { ThemedForbiddenComponent } from './forbidden/themed-forbidden.component';
 import { GroupAdministratorGuard } from './core/data/feature-authorization/feature-authorization-guard/group-administrator.guard';
+import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-page/search-tips-page.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { GroupAdministratorGuard } from './core/data/feature-authorization/featu
             data: { showBreadcrumbs: false },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
+          { path: 'tips-for-searching', pathMatch: 'full', component: SearchTipsPageComponent },
           {
             path: 'community-list',
             loadChildren: () => import('./community-list-page/community-list-page.module')

@@ -31,6 +31,33 @@
   // "404.page-not-found": "page not found",
   "404.page-not-found": "Page introuvable",
 
+  //"tips-for-search.head": "Tips for Searching",
+  "tips-for-search.head": "Conseils pour la recherche",
+
+  //"tips-for-search.ospr.title": "Searching the Open Science Platform Repository",
+  "tips-for-search.ospr.title": "Recherche dans le publication de la science ouverte",
+
+  //"tips-for-search.ospr.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  "tips-for-search.ospr.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
+  //"tips-for-search.faceted.title": "Faceted Search",
+  "tips-for-search.faceted.title": "Recherche à facettes",
+
+  //"tips-for-search.faceted.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  "tips-for-search.faceted.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
+  //"tips-for-search.advanced.title": "Advanced Search",
+  "tips-for-search.advanced.title": "Recherche avancée",
+
+  //"tips-for-search.advanced.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  "tips-for-search.advanced.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
+  //"tips-for-search.other.title": "Other Search",
+  "tips-for-search.other.title": "Autre recherche",
+  
+  //"tips-for-search.other.title": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  "tips-for-search.other.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
+
   // "admin.curation-tasks.breadcrumbs": "System curation tasks",
   "admin.curation-tasks.breadcrumbs": "Tâches de conservation système",
 
@@ -845,6 +872,12 @@
   // "browse.metadata.title.breadcrumbs": "Browse by Title",
   "browse.metadata.title.breadcrumbs": "Parcourir par Titre",
 
+  //"browse.next.button": "Next",
+  "browse.next.button": "Suivant",
+
+  //"browse.previous.button": "Previous",
+  "browse.previous.button": "Précédent",
+
   // "browse.startsWith.choose_start": "(Choose start)",
   "browse.startsWith.choose_start": "(Choisir point de départ)",
 
@@ -896,11 +929,11 @@
   // "browse.startsWith.submit": "Go",
   "browse.startsWith.submit": "Valider",
 
-  // "browse.startsWith.type_date": "Or type in a date (year-month):",
-  "browse.startsWith.type_date": "Ou saisir une date (année-mois) :",
+  // "browse.startsWith.type_date": "Or type in a date (year-month) and click 'Browse'",
+  "browse.startsWith.type_date": "Ou tapez une date (année-mois) et cliquez sur 'Parcourir'",
 
-  // "browse.startsWith.type_text": "Or enter first few letters:",
-  "browse.startsWith.type_text": "Ou saisir les premières lettres :",
+  // "browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
+  "browse.startsWith.type_text": "Tapez les premières lettres et cliquez sur le bouton Parcourir",
 
   // "browse.title": "Browsing {{ collection }} by {{ field }} {{ value }}",
   "browse.title": "Parcourir {{ collection }} par {{ field }} {{ value }}",
@@ -1225,6 +1258,9 @@
   "collection.source.update.notifications.error.title": "Erreur serveur",
 
 
+  //"communityList.breadcrumbs": "Community List",
+  "communityList.breadcrumbs": "Liste des Communautés",
+
   // "communityList.tabTitle": "OSPR - Community List",
   "communityList.tabTitle": "OSPR - Liste des Communautés",
 
@@ -1356,6 +1392,18 @@
   // "comcol-role.edit.delete": "Delete",
   "comcol-role.edit.delete": "Supprimer",
 
+  //OSPR UI-13 issue 291
+  //"comcol-role.delete.confirm.title": "Delete role",
+  "comcol-role.delete.confirm.title": "Supprimer le rôle",
+
+  //"comcol-role.delete.confirm.info": "Are you sure you want to delete the role?",
+  "comcol-role.delete.confirm.info": "Êtes-vous sûr de vouloir supprimer le rôle ?",
+
+  //"comcol-role.delete.confirm.cancel": "Cancel",
+  "comcol-role.delete.confirm.cancel": "Annuler",
+
+  //"comcol-role.delete.confirm.submit": "Delete",
+  "comcol-role.delete.confirm.submit": "Supprimer",
 
   // "comcol-role.edit.community-admin.name": "Administrators",
   "comcol-role.edit.community-admin.name": "Administrateurs",
@@ -1934,8 +1982,10 @@
 
 //"home.page.search-tips-title": "Start your search:",
 "home.page.search-tips-title": "Commencez votre recherche:",
-//"home.page.search-tips": "Search examples: Title, Author, Title AND Author",
-  "home.page.search-tips": "Exemples de recherche: Titre, Auteur, Titre ET Auteur",
+
+//"home.page.search-tips": "Search examples: Title, Author, Title AND Author OR DOI number",
+"home.page.search-tips": "Exemples de recherche: Titre, Auteur, Titre AND Auteur OR numéro DOI",
+
   //"home.top-home.browser": "Browse the repository",
   "home.top-home.browser": "Parcourir le repertoire",
 
@@ -2223,6 +2273,9 @@
 
   // "item.edit.item-mapper.notifications.remove.success.head": "Removal of mapping completed",
   "item.edit.item-mapper.notifications.remove.success.head": "Suppression d'association terminée",
+
+  //"item.edit.item-mapper.search-form.placeholder": "Search collections...",
+  "item.edit.item-mapper.search-form.placeholder": "Rechercher des collections...",
 
   // "item.edit.item-mapper.tabs.browse": "Browse mapped collections",
   "item.edit.item-mapper.tabs.browse": "Parcourir Collections associées",
@@ -3286,6 +3339,9 @@
   // "mydspace.results.no-uri": "No Uri",
   "mydspace.results.no-uri": "Aucune URL",
 
+  //"mydspace.search-form.placeholder": "Search in myOSPR...",
+  "mydspace.search-form.placeholder": "Rechercher dans MyOSPR ...",
+
   // "mydspace.show.workflow": "All tasks",
   "mydspace.show.workflow": "Tâches de validation",
 
@@ -3392,6 +3448,9 @@
 
   // "pagination.button.next": "Next",
   "pagination.button.next": "Suivant",
+
+  //"pagination.options.description": "Pagination options",
+  "pagination.options.description": "Options de pagination",
 
   // "pagination.results-per-page": "Results Per Page",
   "pagination.results-per-page": "Résultats par page",
@@ -4068,6 +4127,8 @@
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Recherche",
 
+  //"search.search-form.placeholder": "Search the repository ...",
+  "search.search-form.placeholder": "Rechercher dans le référentiel ...",
 
   // "search.filters.applied.f.author": "Author",
   "search.filters.applied.f.author": "Auteur",
@@ -4122,11 +4183,20 @@
   // "search.filters.filter.author.placeholder": "Author name",
   "search.filters.filter.author.placeholder": "Nom de l'auteur",
 
+  //"search.filters.filter.author.label": "Search author name",
+  "search.filters.filter.author.label": "Rechercher le nom de l'auteur",
+
   // "search.filters.filter.birthDate.head": "Birth Date",
   "search.filters.filter.birthDate.head": "Date de naissance",
 
   // "search.filters.filter.birthDate.placeholder": "Birth Date",
   "search.filters.filter.birthDate.placeholder": "Date de naissance",
+
+  //"search.filters.filter.birthDate.label": "Search birth date",
+  "search.filters.filter.birthDate.label": "Rechercher la date de naissance",
+
+  //"search.filters.filter.collapse": "Collapse filter",
+  "search.filters.filter.collapse": "Réduire le filtre",
 
   // "search.filters.filter.creativeDatePublished.head": "Date Published",
   "search.filters.filter.creativeDatePublished.head": "Date de publication",
@@ -4134,11 +4204,17 @@
   // "search.filters.filter.creativeDatePublished.placeholder": "Date Published",
   "search.filters.filter.creativeDatePublished.placeholder": "Date de publication",
 
+  //"search.filters.filter.creativeDatePublished.label": "Search date published",
+  "search.filters.filter.creativeDatePublished.label": "Rechercher la date de publication",
+
   // "search.filters.filter.creativeWorkEditor.head": "Editor",
   "search.filters.filter.creativeWorkEditor.head": "Rédacteur en chef",
 
   // "search.filters.filter.creativeWorkEditor.placeholder": "Editor",
   "search.filters.filter.creativeWorkEditor.placeholder": "Rédacteur en chef",
+
+  //"search.filters.filter.creativeWorkEditor.label": "Search editor",
+  "search.filters.filter.creativeWorkEditor.label": "Rechercher éditeur",
 
   // "search.filters.filter.creativeWorkKeywords.head": "Subject",
   "search.filters.filter.creativeWorkKeywords.head": "Sujet",
@@ -4146,11 +4222,17 @@
   // "search.filters.filter.creativeWorkKeywords.placeholder": "Subject",
   "search.filters.filter.creativeWorkKeywords.placeholder": "Sujet",
 
+  //"search.filters.filter.creativeWorkKeywords.label": "Search subject",
+  "search.filters.filter.creativeWorkKeywords.label": "Rechercher sujet",
+
   // "search.filters.filter.creativeWorkPublisher.head": "Publisher",
   "search.filters.filter.creativeWorkPublisher.head": "Éditeur",
 
   // "search.filters.filter.creativeWorkPublisher.placeholder": "Publisher",
   "search.filters.filter.creativeWorkPublisher.placeholder": "Éditeur",
+
+  //"search.filters.filter.creativeWorkPublisher.label": "Search publisher",
+  "search.filters.filter.creativeWorkPublisher.label": "Rechercher un éditeur",
 
   // "search.filters.filter.dateIssued.head": "Date",
   "search.filters.filter.dateIssued.head": "Date",
@@ -4158,14 +4240,23 @@
   // "search.filters.filter.dateIssued.max.placeholder": "Minimum Date",
   "search.filters.filter.dateIssued.max.placeholder": "Depuis",
 
+  //"search.filters.filter.dateIssued.min.label": "Start",
+  "search.filters.filter.dateIssued.min.label": "Démarrer",
+
   // "search.filters.filter.dateIssued.min.placeholder": "Maximum Date",
   "search.filters.filter.dateIssued.min.placeholder": "Jusque",
+
+  //"search.filters.filter.dateIssued.max.label": "End",
+  "search.filters.filter.dateIssued.max.label": "Finir",
 
   // "search.filters.filter.dateSubmitted.head": "Date submitted",
   "search.filters.filter.dateSubmitted.head": "Date de dépôt",
 
   // "search.filters.filter.dateSubmitted.placeholder": "Date submitted",
   "search.filters.filter.dateSubmitted.placeholder": "Date de dépôt",
+
+  //"search.filters.filter.dateSubmitted.label": "Search date submitted",
+  "search.filters.filter.dateSubmitted.label": "Rechercher date dépôt",
 
   // "search.filters.filter.discoverable.head": "Private",
   "search.filters.filter.discoverable.head": "Privé",
@@ -4179,6 +4270,12 @@
   // "search.filters.filter.entityType.placeholder": "Item Type",
   "search.filters.filter.entityType.placeholder": "Type d'Item",
 
+  //"search.filters.filter.entityType.label": "Search item type",
+  "search.filters.filter.entityType.label": "Rechercher type d'Item",
+
+  //"search.filters.filter.expand": "Expand filter",
+  "search.filters.filter.expand": "Développer le filtre",
+
   // "search.filters.filter.has_content_in_original_bundle.head": "Has files",
   "search.filters.filter.has_content_in_original_bundle.head": "Fichier(s) présent(s)",
 
@@ -4188,11 +4285,17 @@
   // "search.filters.filter.itemtype.placeholder": "Type",
   "search.filters.filter.itemtype.placeholder": "Type",
 
+  //"search.filters.filter.itemtype.label": "Search type",
+  "search.filters.filter.itemtype.label": "Rechercher type",
+
   // "search.filters.filter.jobTitle.head": "Job Title",
   "search.filters.filter.jobTitle.head": "Fonction",
 
   // "search.filters.filter.jobTitle.placeholder": "Job Title",
   "search.filters.filter.jobTitle.placeholder": "Fonction",
+
+  //"search.filters.filter.jobTitle.label": "Search job title",
+  "search.filters.filter.jobTitle.label": "Rechercher fonction",
 
   // "search.filters.filter.knowsLanguage.head": "Known language",
   "search.filters.filter.knowsLanguage.head": "Langue(s)",
@@ -4200,11 +4303,17 @@
   // "search.filters.filter.knowsLanguage.placeholder": "Known language",
   "search.filters.filter.knowsLanguage.placeholder": "Langue(s)",
 
+  //"search.filters.filter.knowsLanguage.label": "Search known language",
+  "search.filters.filter.knowsLanguage.label": "Rechercher langue(s)",
+
   // "search.filters.filter.namedresourcetype.head": "Status",
   "search.filters.filter.namedresourcetype.head": "Statut",
 
   // "search.filters.filter.namedresourcetype.placeholder": "Status",
   "search.filters.filter.namedresourcetype.placeholder": "Statut",
+
+  //"search.filters.filter.namedresourcetype.label": "Search status",
+  "search.filters.filter.namedresourcetype.label": "Rechercher statut",
 
   // "search.filters.filter.objectpeople.head": "People",
   "search.filters.filter.objectpeople.head": "Personne",
@@ -4212,11 +4321,17 @@
   // "search.filters.filter.objectpeople.placeholder": "People",
   "search.filters.filter.objectpeople.placeholder": "Personne",
 
+  //"search.filters.filter.objectpeople.label": "Search people",
+  "search.filters.filter.objectpeople.label": "Rechercher personne",
+
   // "search.filters.filter.organizationAddressCountry.head": "Country",
   "search.filters.filter.organizationAddressCountry.head": "Pays",
 
   // "search.filters.filter.organizationAddressCountry.placeholder": "Country",
   "search.filters.filter.organizationAddressCountry.placeholder": "Pays",
+
+  //"search.filters.filter.organizationAddressCountry.label": "Search country",
+  "search.filters.filter.organizationAddressCountry.label": "Rechercher pays",
 
   // "search.filters.filter.organizationAddressLocality.head": "City",
   "search.filters.filter.organizationAddressLocality.head": "Ville",
@@ -4224,17 +4339,26 @@
   // "search.filters.filter.organizationAddressLocality.placeholder": "City",
   "search.filters.filter.organizationAddressLocality.placeholder": "Ville",
 
+  //"search.filters.filter.organizationAddressLocality.label": "Search city",
+  "search.filters.filter.organizationAddressLocality.label": "Rechercher ville",
+
   // "search.filters.filter.organizationFoundingDate.head": "Date Founded",
   "search.filters.filter.organizationFoundingDate.head": "Date de fondation",
 
   // "search.filters.filter.organizationFoundingDate.placeholder": "Date Founded",
   "search.filters.filter.organizationFoundingDate.placeholder": "Date de fondation",
 
+  //"search.filters.filter.organizationFoundingDate.label": "Search date founded",
+  "search.filters.filter.organizationFoundingDate.label": "rechercher date de fondation",
+
   // "search.filters.filter.scope.head": "Scope",
   "search.filters.filter.scope.head": "Scope",
 
   // "search.filters.filter.scope.placeholder": "Scope filter",
   "search.filters.filter.scope.placeholder": "Scope",
+
+  //"search.filters.filter.scope.label": "Search scope filter",
+  "search.filters.filter.scope.label": "rechercher filtre de portée",
 
   // "search.filters.filter.show-less": "Collapse",
   "search.filters.filter.show-less": "Moins",
@@ -4248,12 +4372,17 @@
   // "search.filters.filter.subject.placeholder": "Subject",
   "search.filters.filter.subject.placeholder": "Sujet",
 
+  //"search.filters.filter.subject.label": "Search subject",
+  "search.filters.filter.subject.label": "Rechercher sujet",
+
   // "search.filters.filter.submitter.head": "Submitter",
   "search.filters.filter.submitter.head": "Déposant",
 
   // "search.filters.filter.submitter.placeholder": "Submitter",
   "search.filters.filter.submitter.placeholder": "Déposant",
 
+  //"search.filters.filter.submitter.label": "Search submitter",
+  "search.filters.filter.submitter.label": "Rechercher déposant",
 
 
   // "search.filters.entityType.JournalIssue": "Journal Issue",
@@ -4366,6 +4495,26 @@
   // "sorting.score.DESC": "Relevance",
   "sorting.score.DESC": "Pertinence",
 
+  //"sorting.score.ASC": "Least Relevant",
+  "sorting.score.ASC": "Le moins pertinent",
+
+  //"sorting.dc.date.issued.ASC": "Date Issued Ascending",
+  "sorting.dc.date.issued.ASC": "Date d'émission croissant",
+
+  //"sorting.dc.date.issued.DESC": "Date Issued Descending",
+  "sorting.dc.date.issued.DESC": "Date d'émission décroissant",
+
+  //"sorting.dc.date.accessioned.ASC": "Accessioned Date Ascending",
+  "sorting.dc.date.accessioned.ASC": "Date d'accession croissant",
+
+  //"sorting.dc.date.accessioned.DESC": "Accessioned Date Descending",
+  "sorting.dc.date.accessioned.DESC": "Date d'accession décroissant",
+
+  //"sorting.lastModified.ASC": "Last modified Ascending",
+  "sorting.lastModified.ASC": "Dernière modification ascendante",
+
+  //"sorting.lastModified.DESC": "Last modified Descending",
+  "sorting.lastModified.DESC": "Dernière modification décroissante",
 
 
   // "statistics.title": "Statistics",
@@ -4605,6 +4754,9 @@
   // "submission.sections.describe.relationship-lookup.search-tab.search": "Go",
   "submission.sections.describe.relationship-lookup.search-tab.search": "Rechercher",
 
+  //"submission.sections.describe.relationship-lookup.search-tab.search-form.placeholder": "Search...",
+  "submission.sections.describe.relationship-lookup.search-tab.search-form.placeholder": "Rechercher ...",
+
   // "submission.sections.describe.relationship-lookup.search-tab.select-all": "Select all",
   "submission.sections.describe.relationship-lookup.search-tab.select-all": "Sélectionner tout",
 
@@ -4676,6 +4828,9 @@
 
   // "submission.sections.describe.relationship-lookup.search-tab.tab-title.isChildOrgUnitOf": "Search for Organizational Units",
   "submission.sections.describe.relationship-lookup.search-tab.tab-title.isChildOrgUnitOf": "Recherche Structures",
+
+  "submission.sections.describe.relationship-lookup.selection-tab.search-form.placeholder": "Search...",
+  "submission.sections.describe.relationship-lookup.selection-tab.search-form.placeholder": "Rechercher ...",
 
   // "submission.sections.describe.relationship-lookup.selection-tab.tab-title": "Current Selection ({{ count }})",
   "submission.sections.describe.relationship-lookup.selection-tab.tab-title": "Sélection actuelle ({{ count }})",

@@ -22,6 +22,24 @@
 
   "404.page-not-found": "page not found",
 
+  "tips-for-search.head": "Tips for Searching",
+
+  "tips-for-search.ospr.title": "Searching the Open Science Platform Repository",
+
+  "tips-for-search.ospr.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+
+  "tips-for-search.faceted.title": "Faceted Search",
+
+  "tips-for-search.faceted.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+
+  "tips-for-search.advanced.title": "Advanced Search",
+
+  "tips-for-search.advanced.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+
+  "tips-for-search.other.title": "Other Search",
+  
+  "tips-for-search.other.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+
   "admin.curation-tasks.breadcrumbs": "System curation tasks",
 
   "admin.curation-tasks.title": "System curation tasks",
@@ -987,6 +1005,14 @@
 
   "comcol-role.edit.delete": "Delete",
 
+  //OSPR UI-13 issue 291
+  "comcol-role.delete.confirm.title": "Delete role",
+
+  "comcol-role.delete.confirm.info": "Are you sure you want to delete the role?",
+
+  "comcol-role.delete.confirm.cancel": "Cancel",
+
+  "comcol-role.delete.confirm.submit": "Delete",
 
   "comcol-role.edit.community-admin.name": "Administrators",
 
@@ -1189,7 +1215,7 @@
 
   "dso-selector.no-results": "No {{ type }} found",
 
-  "dso-selector.placeholder": "Search for a {{ type }}",
+  "dso-selector.placeholder": "Search for a(n) {{ type }}",
 
 
 
