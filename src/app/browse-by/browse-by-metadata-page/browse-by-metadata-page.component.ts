@@ -52,7 +52,7 @@ export class BrowseByMetadataPageComponent implements OnInit {
   paginationConfig: PaginationComponentOptions = Object.assign(new PaginationComponentOptions(), {
     id: 'bbm',
     currentPage: 1,
-    pageSize: 20
+    pageSize: 10
   });
 
   /**

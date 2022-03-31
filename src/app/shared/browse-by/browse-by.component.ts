@@ -77,6 +77,28 @@ export class BrowseByComponent implements OnInit {
    */
   @Output() next = new EventEmitter<boolean>();
 
+  /** DSPR Sprint5 issue 248/249/250/251 **/
+  /**
+   * An event fired when the page is changed.
+   * Event's payload equals to the newly selected page.
+   */
+   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+
+  /**
+   * An event fired when the sort field is changed.
+   * Event's payload equals to the newly selected sort field.
+   */
+   @Output() sortFieldChange: EventEmitter<string> = new EventEmitter<string>();
+
+  /**
+   * An event fired when on of the pagination parameters changes
+   */
+   @Output() paginationChange: EventEmitter<any> = new EventEmitter<any>();
+
+   hidePagerWhenSinglePage = true;
+
+   hidePaginationDetail = false;
+   
   /**
    * If enableArrows is set to true, emit when the page size is changed
    */
@@ -104,36 +126,6 @@ export class BrowseByComponent implements OnInit {
   }
 
   /**
-   * Go to the previous page
-   */
-  goPrev() {
-    this.prev.emit(true);
-  }
-
-  /**
-   * Go to the next page
-   */
-  goNext() {
-    this.next.emit(true);
-  }
-
-  /**
-   * Change the page size
-   * @param size
-   */
-  doPageSizeChange(size) {
-    this.paginationService.updateRoute(this.paginationConfig.id,{pageSize: size});
-  }
-
-  /**
-   * Change the sort direction
-   * @param direction
-   */
-  doSortDirectionChange(direction) {
-    this.paginationService.updateRoute(this.paginationConfig.id,{sortDirection: direction});
-  }
-
-  /**
    * Get the switchable StartsWith component dependant on the type
    */
   getStartsWithComponent() {
@@ -150,4 +142,65 @@ export class BrowseByComponent implements OnInit {
     });
   }
 
+  /** DSPR Sprint5 issue 248/249/250/251 **/
+  /**
+   * Emits the current page when it changes
+   * @param event The new page
+   */
+   onPageChange(event) {
+    this.pageChange.emit(event);
+  }
+
+  /**
+   * Emits the current page size when it changes
+   * @param event The new page size
+   */
+  onPageSizeChange(event) {
+    this.pageSizeChange.emit(event);
+  }
+  /**
+   * Emits the current sort direction when it changes
+   * @param event The new sort direction
+   */
+  onSortDirectionChange(event) {
+    this.sortDirectionChange.emit(event);
+  }
+
+  /**
+   * Emits the current sort field when it changes
+   * @param event The new sort field
+   */
+  onSortFieldChange(event) {
+    this.sortFieldChange.emit(event);
+  }
+
+  /**
+   * Emits the current pagination when it changes
+   * @param event The new pagination
+   */
+  onPaginationChange(event) {
+    this.paginationChange.emit(event);
+  }
+
+  /**
+   * Method to change the current sort field and direction
+   * @param {Event} event Change event containing the sort direction and sort field
+   */
+   reloadOrder(event: Event) {
+    const values = (event.target as HTMLInputElement).value.split(',');
+    this.paginationService.updateRoute(this.paginationConfig.id, {
+      sortField: values[0],
+      sortDirection: values[1] as SortDirection,
+      page: 1
+    });
+  }
+
+  /**
+   * Method to change the current page size (results per page)
+   * @param {Event} event Change event containing the new page size value
+   */
+   reloadRPP(event: Event) {
+    const size = (event.target as HTMLInputElement).value;
+    this.paginationService.updateRoute(this.paginationConfig.id,{page: 1, pageSize: +size});
+  }
 }
