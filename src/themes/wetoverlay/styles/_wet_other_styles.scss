@@ -55,11 +55,28 @@ a.nav-link:focus{
 
 .btn-outline-primary{
   color: #207698;
+  border-color: #212529;
 }
 
 .btn-outline-primary:disabled {
   color: #207698;
   background-color: transparent;
+  border-color: #212529;
+}
+
+.btn-outline-secondary{
+  color: #207698;
+  border-color: #212529;
+}
+
+.btn-primary.disabled .btn-primary:disabled {
+  color: #207698;
+  border-color: #212529;
+}
+
+.btn-outline-secondary{
+  color: #207698;
+  border-color: #212529;
 }
 
 .badge-primary {
@@ -78,22 +95,24 @@ a.nav-link:focus{
 }
 
 .klaro .cookie-modal p, .klaro .cookie-modal strong, .klaro .cookie-modal h1, .klaro .cookie-modal h2, .klaro .cookie-modal ul, .klaro .cookie-modal li, .klaro .context-notice p, .klaro .context-notice strong, .klaro .context-notice h1, .klaro .context-notice h2, .klaro .context-notice ul, .klaro .context-notice li, .klaro .cookie-notice p, .klaro .cookie-notice strong, .klaro .cookie-notice h1, .klaro .cookie-notice h2, .klaro .cookie-notice ul, .klaro .cookie-notice li {
-  color: #eee;
   color: #212529;
 }
 
+p {
+  color: grayscale($color: #0000002a);
+  text-decoration: none;
+}
 
 .klaro .cookie-modal .cm-modal.cm-klaro {
-  z-index: 1001;
-  box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%), 5px 5px 10px 0 rgb(0 0 0 / 19%);
-  width: 100%;
-  max-height: 98%;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  position: fixed;
-  overflow: auto;
   background: #f8f9fa;
   color: #212529;
 }
 
+.klaro .cookie-modal .cm-modal .hide svg {
+  stroke: black;
+}
+
+.klaro .cookie-modal a, .klaro .context-notice a, .klaro .cookie-notice a {
+  color: blue;
+  text-decoration: none;
+}
