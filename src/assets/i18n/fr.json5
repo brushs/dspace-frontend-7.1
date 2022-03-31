@@ -2672,6 +2672,9 @@
   // "item.search.title": "OSPR :: Item Search",
   "item.search.title": "OSPR :: Item Search",
 
+  //"item.page.titleprefix": "Title: ",
+  "item.page.titleprefix": "Titre : ",
+
   // "item.page.abstract": "Abstract",
   "item.page.abstract": "Résumé",
 
