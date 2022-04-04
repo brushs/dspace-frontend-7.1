@@ -12,18 +12,18 @@
   margin-top: calc(-1 * var(--ds-content-spacing));
   padding-bottom: var(--ds-content-spacing / 3);
   padding-top: var(--ds-content-spacing / 3);
-  background-color: #E3F2FD;
+  background-color: #ffffff;
 }
 //  color: var(--ds-breadcrumb-link-color) !important;
 li.breadcrumb-item > a {
-  color: #17A2B8;
+  color: #284162;
   text-decoration: underline;
 }
 li.breadcrumb-item.active {
   color: var(--ds-breadcrumb-link-active-color) !important;
-  font-style: oblique;
+  font-style: normal;
 }
 
 .breadcrumb-item+ .breadcrumb-item::before {
-  content: quote("/") !important;
+  content: quote(">") !important;
 }
