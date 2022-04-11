@@ -106,14 +106,14 @@
     <div class="brand">
       <div class="container">
       <div class="row">
-        <div class="col-md-12 col-lg-10 ftr-urlt-lnk p-1 text-lg-center">
+        <div class="center col-md-12 col-lg-10 p-1 text-lg-center">
         <p align="center">{{'footer.copyright' | translate}} </p>
-      <nav class="col-md-12 ftr-urlt-lnk align-self-center pt-0">
+      
+      <nav class="py-0 col-md-12 justify-content-center ftr-urlt-lnk" aria-labelledby="aboutGC">
         <h2 class="wb-inv">About Government of Canada</h2>
-              <ul>
+              <ul class="">
             <li>
-              <a href="#"
-                (click)="showCookieSettings()">{{ 'footer.link.cookies' | translate}}</a>
+              <a href="#" (click)="showCookieSettings()">{{ 'footer.link.cookies' | translate}}</a>
             </li>
             <li>
               <a 
@@ -125,7 +125,7 @@
             </li>
           </ul>
       </nav>
-        </div>
+    </div>
     <div class="col-xs-6 visible-sm visible-xs tofpg">
     <a href="#wb-cont">Top of Page <span class="glyphicon glyphicon-chevron-up"></span></a>
     </div>
