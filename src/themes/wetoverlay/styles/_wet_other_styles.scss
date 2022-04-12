@@ -149,3 +149,19 @@ a.nav-link:focus{
   font-size: 1em;
   cursor: pointer;
 }
+
+.navbar-light .navbar-nav .nav-link {
+  color: #212529;
+}
+
+button:focus-visible {
+  /* custom focus styles */
+  box-shadow: 0 0 2px 2px #01090f;
+  border-color: blue;
+}
+
+.page-link:focus-visible {
+  /* custom focus styles */
+  box-shadow: 0 0 2px 2px #01090f;
+  border-color: blue;
+}
