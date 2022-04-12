@@ -2,7 +2,12 @@
   <ng-container *ngIf="(site$ | async) as site">
     <ds-view-tracker [object]="site"></ds-view-tracker>
   </ng-container>
-  <p class="h3 col-8 px-0 underline">{{'home.top-home.head' | translate}}</p> 
+
+  <!-- OSPR Changes-->
+  <h1 class="h3 col-8 px-0 underline">{{'home.top-home.head' | translate}}</h1> 
+  <!-- p to h1 -->
+  
+
   <p class="col-6 px-0">{{'home.page.description' | translate}} <a href="learn-more">{{'home.learn.more' | translate}}</a></p>
   <div class="search-box mx-0 col-12" style="background-color:#F5F5F5">
     <h5 class="px-0 mt-0 col-12">{{'home.page.search-tips-title' | translate}}</h5>

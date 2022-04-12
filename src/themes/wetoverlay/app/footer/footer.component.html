@@ -50,11 +50,11 @@
     <!-- </div>
   </div> -->
   <!-- Grid container -->
-
+  <div class="global-footer">
   <footer id="wb-info" class="text-lg-start">
-    <div id="transactFooter" class="landscape">
-    <nav class="container wb-navcurr" aria-labelledby="aboutGov">
-    <h2 class="wb-inv" id="aboutGov">About OSPR</h2>
+    <div  id="transactFooter" class="landscape"> 
+    <nav class="container wb-navcurr" aria-labelledby="aboutOSPR">
+    <h2 class="wb-inv" id="aboutOSPR">About OSPR</h2>
     <ul class="list-unstyled colcount-md-3">
       <li>
         <a class="text-white"
@@ -106,39 +106,37 @@
     <div class="brand">
       <div class="container">
       <div class="row">
-  <!-- Copyright -->
-  <div class="col-md-9 col-lg-10 ftr-urlt-lnk bottom-footer p-1">
-    <p align="center">{{'footer.copyright' | translate}} </p>
-  <div class="d-flex justify-content-center align-items-center text-dark">
-    
-    <div class="content-container">
-          <ul class="footer-info list-unstyled small justify-content-center mb-0">
-        <li>
-          <a class="text-dark" href="#"
-             (click)="showCookieSettings()">{{ 'footer.link.cookies' | translate}}</a>
-        </li>
-        <li>
-          <a class="text-dark"
-             routerLink="info/privacy">{{ 'footer.link.privacy-policy' | translate}}</a>
-        </li>
-        <li>
-          <a class="text-dark"
-             routerLink="info/end-user-agreement">{{ 'footer.link.end-user-agreement' | translate}}</a>
-        </li>
-      </ul>
+        <div class="center col-md-12 col-lg-10 p-1 text-lg-center">
+        <p align="center">{{'footer.copyright' | translate}} </p>
+      
+      <nav class="py-0 col-md-12 justify-content-center ftr-urlt-lnk" aria-labelledby="aboutGC">
+        <h2 class="wb-inv">About Government of Canada</h2>
+              <ul class="">
+            <li>
+              <a href="#" (click)="showCookieSettings()">{{ 'footer.link.cookies' | translate}}</a>
+            </li>
+            <li>
+              <a 
+                routerLink="info/privacy">{{ 'footer.link.privacy-policy' | translate}}</a>
+            </li>
+            <li>
+              <a
+                routerLink="info/end-user-agreement">{{ 'footer.link.end-user-agreement' | translate}}</a>
+            </li>
+          </ul>
+      </nav>
     </div>
-  </div>
-</div>
-  <div class="col-xs-6 visible-sm visible-xs tofpg">
+    <div class="col-xs-6 visible-sm visible-xs tofpg">
     <a href="#wb-cont">Top of Page <span class="glyphicon glyphicon-chevron-up"></span></a>
     </div>
+      <!-- Copyright -->
     <div class="col-xs-6 col-md-2 text-right">
-    <img src="../../../../assets/images/wmms-blk.svg" alt="Symbol of the Government of Canada">
+    <img src="../../../../assets/images/wmms-blk.svg" alt="{{'footer.copyright' | translate}}">
     </div>
+
+    </div>
+   </div>
   </div>
-</div>
-</div>
 
-
-  <!-- Copyright -->
 </footer>
+</div>

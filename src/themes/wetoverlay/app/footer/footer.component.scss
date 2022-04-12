@@ -78,9 +78,11 @@ div > img {
     li {
       display: inline-flex;
   margin-bottom: .75em;
+  list-style: none;
 
       a {
         padding: 0 calc(var(--bs-spacer) / 2);
+        padding-left: 15px;
         color: inherit
       }
   h3 {
