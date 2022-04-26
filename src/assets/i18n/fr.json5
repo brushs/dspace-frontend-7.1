@@ -1761,6 +1761,8 @@
   // "file-section.error.header": "Error obtaining files for this item",
   "file-section.error.header": "Erreur lors de la récupération des fichiers liés à cet Item",
 
+  //"footer.symbol": "Symbol of the Government of Canada",
+  "footer.symbol": "Symbole du gouvernement du Canada", 
 
   // "footer.copyright": "copyright © 2002-{{ year }}",
   "footer.copyright": "Gouvernement du Canada © 2021",
