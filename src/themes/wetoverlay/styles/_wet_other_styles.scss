@@ -165,3 +165,8 @@ button:focus-visible {
   box-shadow: 0 0 2px 2px #01090f;
   border-color: blue;
 }
+
+button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+  cursor: pointer;
+  border-color: black;
+}
