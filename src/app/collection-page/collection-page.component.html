@@ -59,7 +59,9 @@
                     <ng-template *ngTemplateOutlet="searchForm"></ng-template>
                   </div>
                   <div class="mt-4" *ngIf="itemRD?.hasSucceeded" @fadeIn>
-                      <h3 class="sr-only">{{'collection.page.browse.recent.head' | translate}}</h3>
+                      <!-- OSPR Changes- modifying h3 to h1-->
+                      <h1> id="wb-cont" class="sr-only">{{'collection.page.browse.recent.head' | translate}}</h1>
+                      <!-- modified h3 to h1-->
                       <ds-viewable-collection
                               [config]="paginationConfig"
                               [sortConfig]="sortConfig"

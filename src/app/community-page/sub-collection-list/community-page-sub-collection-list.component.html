@@ -1,6 +1,8 @@
 <ng-container *ngVar="(subCollectionsRDObs | async) as subCollectionsRD">
   <div *ngIf="subCollectionsRD?.hasSucceeded && subCollectionsRD?.payload.totalElements > 0" @fadeIn>
-    <h2>{{'community.sub-collection-list.head' | translate}}</h2>
+    <!-- OSPR Changes- modifying h2 to h1-->
+    <h1  id="wb-cont">{{'community.sub-collection-list.head' | translate}}</h1>
+    <!-- modified h2 to h1-->
     <ds-viewable-collection
       [config]="config"
       [sortConfig]="sortConfig"

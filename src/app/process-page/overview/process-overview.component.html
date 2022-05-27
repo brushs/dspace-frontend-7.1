@@ -1,6 +1,8 @@
 <div class="container">
     <div class="d-flex">
-        <h2 class="flex-grow-1">{{'process.overview.title' | translate}}</h2>
+        <!-- OSPR Changes- modifying h2 to h1-->
+        <h1 id="wb-cont" class="flex-grow-1">{{'process.overview.title' | translate}}</h1>
+        <!-- modified h2 to h1-->
         <button class="btn btn-lg btn-success " routerLink="/processes/new"><i class="fas fa-plus pr-2"></i>{{'process.overview.new' | translate}}</button>
     </div>
     <ds-pagination *ngIf="(processesRD$ | async)?.payload?.totalElements > 0"
