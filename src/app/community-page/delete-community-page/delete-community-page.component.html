@@ -2,7 +2,9 @@
     <div class="row">
         <ng-container *ngVar="(dsoRD$ | async)?.payload as dso">
             <div class="col-12 pb-4">
-                <h2 id="header" class="border-bottom pb-2">{{ 'community.delete.head' | translate}}</h2>
+                <!-- OSPR Changes- modifying h2 to h1-->
+                <h1 id="header" class="border-bottom pb-2">{{ 'community.delete.head' | translate}}</h1>
+                <!-- modified h2 to h1-->
                 <p class="pb-2">{{ 'community.delete.text' | translate:{ dso: dso.name } }}</p>
                 <div class="form-group row">
                     <div class="col text-right">
