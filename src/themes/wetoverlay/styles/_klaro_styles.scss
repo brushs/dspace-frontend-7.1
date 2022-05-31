@@ -31,12 +31,12 @@
   .klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-service span.cm-opt-out, .klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-service span.cm-required, .klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-purpose span.cm-opt-out, .klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-purpose span.cm-required, .klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-service span.cm-opt-out, .klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-service span.cm-required, .klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-purpose span.cm-opt-out, .klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-purpose span.cm-required {
     padding-left: 0.2em;
     font-size: 0.8em;
-    color: #495057;
+    color: var(--bs-gray-800);
   }
   
   .klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-service p.purposes, .klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-purpose p.purposes, .klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-service p.purposes, .klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-purpose p.purposes {
     font-size: 0.8em;
-    color: #424242;
+    color: var(--bs-gray-900);
   }
   
   .klaro .cookie-modal .cm-btn, .klaro .context-notice .cm-btn, .klaro .cookie-notice .cm-btn {
