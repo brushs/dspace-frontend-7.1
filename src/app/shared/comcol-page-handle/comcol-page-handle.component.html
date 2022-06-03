@@ -1,4 +1,6 @@
 <div *ngIf="content" class="content-with-optional-title mb-2">
-    <h2 class="d-inline-block h6" *ngIf="title">{{ title | translate }}</h2>
+    <!-- OSPR Changes- modifying h2 to h1-->
+    <h1 id="wb-cont" class="d-inline-block h6" *ngIf="title">{{ title | translate }}</h1>
+     <!-- modified h2 to h1-->
     <div  class="d-inline-block "><a href="{{getHandle()}}">{{getHandle()}}</a></div>
 </div>
