@@ -200,6 +200,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
       ]}
     ],{
       onSameUrlNavigation: 'reload',
+      anchorScrolling: 'enabled'
     })
   ],
   exports: [RouterModule],
