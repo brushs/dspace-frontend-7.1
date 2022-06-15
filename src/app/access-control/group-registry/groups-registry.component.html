@@ -2,7 +2,9 @@
   <div class="groups-registry row">
     <div class="col-12">
       <div class="d-flex justify-content-between border-bottom mb-3">
-        <h2 id="header" class="pb-2">{{messagePrefix + 'head' | translate}}</h2>
+        <!-- OSPR Changes- modifying h2 to h1-->
+        <h1 id="header" class="pb-2">{{messagePrefix + 'head' | translate}}</h1>
+        <!-- modified h2 to h1-->
         <div>
           <button class="mr-auto btn btn-success"
                   [routerLink]="['newGroup']">
