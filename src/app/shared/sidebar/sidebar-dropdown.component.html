@@ -1,5 +1,7 @@
 <div class="setting-option mb-3 p-3">
-  <h5><label for="{{id}}">{{label | translate}}</label></h5>
+  <!-- OSPR Changes- modifying h5 to h2-->
+  <h2><label for="{{id}}">{{label | translate}}</label></h2>
+  <!-- modified h5 to h2-->
   <select id="{{id}}" class="form-control" (change)="change.emit($event)">
     <ng-content></ng-content>
   </select>

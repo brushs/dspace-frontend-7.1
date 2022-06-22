@@ -1,6 +1,4 @@
-<!-- OSPR Changes- modifying h3 to h1-->
-<h1>{{"search.filters.head" | translate}}</h1>
-<!-- modified h3 to h1-->
+<h3>{{"search.filters.head" | translate}}</h3>
 <div *ngIf="(filters | async)?.hasSucceeded">
     <div *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate">
         <ds-search-filter [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
