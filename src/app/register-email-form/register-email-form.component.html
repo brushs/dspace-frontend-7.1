@@ -30,7 +30,10 @@
         </div>
     </form>
 
-    <!-- Note: the line [disabled]="form.invalid" was removed to enable the button -->
+    <!-- Start of OSPR change -->
+    <!-- Note: the line [disabled]="form.invalid" was changed to enable the Register button -->
     <button class="btn btn-primary"
+            [disabled]="false"
             (click)="register()">{{MESSAGE_PREFIX + '.submit'| translate}}</button>
+    <!-- End of OSPR change -->
 </div>
