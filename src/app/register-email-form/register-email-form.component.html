@@ -29,8 +29,8 @@
 
         </div>
     </form>
-    
+
+    <!-- Note: the line [disabled]="form.invalid" was removed to enable the button -->
     <button class="btn btn-primary"
-            [disabled]="form.invalid"
             (click)="register()">{{MESSAGE_PREFIX + '.submit'| translate}}</button>
 </div>
