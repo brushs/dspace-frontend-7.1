@@ -13,8 +13,9 @@
           </button>
         </div>
       </div>
-
-      <h3 id="search" class="border-bottom pb-2">{{messagePrefix + 'search.head' | translate}}</h3>
+      <!-- OSPR Changes-->
+      <h2 id="search" class="border-bottom pb-2">{{messagePrefix + 'search.head' | translate}}</h2>
+      <!-- h3 to h2 -->
       <form [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)" class="d-flex justify-content-between">
         <div class="flex-grow-1 mr-3">
           <div class="form-group input-group">
