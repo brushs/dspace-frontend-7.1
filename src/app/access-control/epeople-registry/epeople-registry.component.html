@@ -18,9 +18,10 @@
                        (cancelForm)="isEPersonFormShown = false"></ds-eperson-form>
 
       <div *ngIf="!isEPersonFormShown">
-        <h3 id="search" class="border-bottom pb-2">{{labelPrefix + 'search.head' | translate}}
-
-        </h3>
+        <!-- OSPR Changes-->
+        <h2 id="search" class="border-bottom pb-2">{{labelPrefix + 'search.head' | translate}}
+        <!-- h3 to h2 -->
+        </h2>
         <form [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)" class="d-flex justify-content-between">
           <div>
             <select name="scope" id="scope" formControlName="scope" class="form-control" aria-label="Search scope">
