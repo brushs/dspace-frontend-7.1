@@ -19,13 +19,29 @@ export class HeaderComponent {
   public isAuthenticated: Observable<boolean>;
   public showAuth = false;
   menuID = MenuID.PUBLIC;
+  // OSPR code start
+  public locationPath: string;
+  // OSPR code end
 
   constructor(
     private menuService: MenuService
   ) {
+      // OSPR code start
+      this.getPath();
+      // OSPR code end
   }
 
   public toggleNavbar(): void {
     this.menuService.toggleMenu(this.menuID);
   }
+
+  // OSPR code start
+  public getPath(): string {
+    this.locationPath = document.location.href;
+    if(this.locationPath.indexOf("#") > 0) {
+      this.locationPath.substring(this.locationPath.indexOf("#") + 1);
+    }
+    return this.locationPath;
+  }
+  // OSPR code end
 }
