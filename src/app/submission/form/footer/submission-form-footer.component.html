@@ -22,13 +22,20 @@
       </div>
     </div>
     <div class="ml-2">
+      <!-- OSPR change starts here -->
+      <!-- Notes:
+             1. The following line has been removed below
+              [disabled]="(processingSaveStatus | async) || !(hasUnsavedModification | async)"
+             2. Hence the button has been enabled, but further work may be needed to ensrue that the proper error messages
+                are diaplayed -->
       <button type="button"
               class="btn btn-secondary"
               id="save"
-              [disabled]="(processingSaveStatus | async) || !(hasUnsavedModification | async)"
+			  [disabled]="false"
               (click)="save($event)">
         <span><i class="fas fa-save"></i> {{'submission.general.save' | translate}}</span>
       </button>
+      <!-- OSPR change ends here -->
       <button type="button"
               [class.btn-primary]="!(showDepositAndDiscard | async)"
               [class.btn-secondary]="(showDepositAndDiscard | async)"
@@ -38,13 +45,20 @@
               (click)="saveLater($event)">
         <span><i class="fas fa-save"></i> {{'submission.general.save-later' | translate}}</span>
       </button>
+      <!-- OSPR change starts here -->
+      <!-- Notes:
+             1. The following line has been removed below
+                [disabled]="(submissionIsInvalid | async) || (processingSaveStatus | async) || (processingDepositStatus | async)"
+             2. Hence the button has been enabled, but further work may be needed to ensrue that the proper error messages
+                are diaplayed -->
       <button *ngIf="(showDepositAndDiscard | async)"
               type="button"
               class="btn btn-success"
-              [disabled]="(submissionIsInvalid | async) || (processingSaveStatus | async) || (processingDepositStatus | async)"
+              [disabled]="false"
               (click)="deposit($event)">
         <span><i class="fas fa-plus"></i> {{'submission.general.deposit' | translate}}</span>
       </button>
+      <!-- OSPR change ends here -->
     </div>
   </div>
 </div>
