@@ -41,7 +41,7 @@ export class RegisterEmailFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       email: new FormControl('', {
         validators: [Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
         ],
       })
     });
@@ -54,17 +54,28 @@ export class RegisterEmailFormComponent implements OnInit {
   register() {
     if (!this.form.invalid) {
       this.epersonRegistrationService.registerEmail(this.email.value).subscribe((response: RemoteData<Registration>) => {
-          if (response.hasSucceeded) {
-            this.notificationService.success(this.translateService.get(`${this.MESSAGE_PREFIX}.success.head`),
-              this.translateService.get(`${this.MESSAGE_PREFIX}.success.content`, {email: this.email.value}));
-            this.router.navigate(['/home']);
-          } else {
-            this.notificationService.error(this.translateService.get(`${this.MESSAGE_PREFIX}.error.head`),
-              this.translateService.get(`${this.MESSAGE_PREFIX}.error.content`, {email: this.email.value}));
-          }
+        if (response.hasSucceeded) {
+          this.notificationService.success(this.translateService.get(`${this.MESSAGE_PREFIX}.success.head`),
+            this.translateService.get(`${this.MESSAGE_PREFIX}.success.content`, { email: this.email.value }));
+          this.router.navigate(['/home']);
+        } else {
+          this.notificationService.error(this.translateService.get(`${this.MESSAGE_PREFIX}.error.head`),
+            this.translateService.get(`${this.MESSAGE_PREFIX}.error.content`, { email: this.email.value }));
         }
+      }
       );
     }
+    // OSPR change starts here
+    // Notes:
+    // 1. Enabling the Register button is no longer contngent on "form.invalid" being true in register-email.component.html
+    // 2. The if clause above ensurew that a success/failrue message is displyed when the input is not blank
+    // 3. Hence the else clause below has been added, in order to ensure that a failure message is displayed when
+    //    the input is blank
+    else {
+      this.notificationService.error(this.translateService.get(`${this.MESSAGE_PREFIX}.error.head`),
+        this.translateService.get(`${this.MESSAGE_PREFIX}.error.content`, { email: this.email.value }));
+    }
+    // OSPR change ends here
   }
 
   get email() {
