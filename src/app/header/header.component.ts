@@ -39,7 +39,7 @@ export class HeaderComponent {
   public getPath(): string {
     this.locationPath = document.location.href;
     if(this.locationPath.indexOf("#") > 0) {
-      this.locationPath.substring(this.locationPath.indexOf("#") + 1);
+      return this.locationPath.substring(0, this.locationPath.indexOf("#"));
     }
     return this.locationPath;
   }
