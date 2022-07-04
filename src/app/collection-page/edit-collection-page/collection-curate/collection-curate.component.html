@@ -1,5 +1,7 @@
 <div class="container">
-    <h3>{{'collection.curate.header' |translate:{collection: (collectionName$ |async)} }}</h3>
+    <!-- OSPR changes to h3 to h2 -->
+    <h2>{{'collection.curate.header' |translate:{collection: (collectionName$ |async)} }}</h2>
+    <!-- changing h3 to h2 to align header organization -->
     <ds-curation-form
             [dsoHandle]="(dsoRD$|async)?.payload.handle"
     ></ds-curation-form>
