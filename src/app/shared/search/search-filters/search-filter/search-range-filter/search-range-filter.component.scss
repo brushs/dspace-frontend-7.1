@@ -20,8 +20,11 @@
             left: calc(((var(--ds-slider-handle-width) - 2px) / 2) + 2px);
         }
         &:focus {
-            outline: none;
-            box-shadow: var(--bs-input-btn-focus-box-shadow);
+            // OSPR change start
+            //outline: none;
+            //box-shadow: var(--bs-input-btn-focus-box-shadow);
+            border: 1px solid black;
+            // OSPR change end
         }
     }
 
