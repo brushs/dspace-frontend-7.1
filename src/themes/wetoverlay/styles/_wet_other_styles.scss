@@ -80,11 +80,6 @@ a.nav-link:focus{
   border-color: #212529;
 }
 
-.btn-outline-secondary{
-  color: #207698;
-  border-color: #212529;
-}
-
 .badge-primary {
   color: #207698;
   background-color: #fff;
@@ -156,9 +151,7 @@ a.nav-link:focus{
 }
 
 .klaro .cookie-notice:not(.cookie-modal-notice)
-
 {
-
   background: var(--gray-100);
     z-index: 999;
     position: fixed;
@@ -185,5 +178,11 @@ button:focus-visible {
 
 button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
   cursor: pointer;
+  border-color: black;
+}
+
+mouse:hover{
+  color: green;
+  background-color: grey;
   border-color: black;
 }
