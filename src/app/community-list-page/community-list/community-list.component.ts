@@ -83,6 +83,10 @@ export class CommunityListComponent implements OnInit, OnDestroy {
       }
     }
     this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
+
+    // OSPR change start
+    setTimeout(() => {document.getElementById("parent-node-" + node.id).focus();}, 1000);
+    // OSPR change end
   }
 
   /**
