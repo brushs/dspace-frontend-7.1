@@ -24,11 +24,14 @@
   <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding
                  class="example-tree-node expandable-node">
     <div class="btn-group">
+      <!-- OSPR change start -->
       <button type="button" class="btn btn-default" cdkTreeNodeToggle
+              [id]="'parent-node-' + node.id"
               [title]="'toggle ' + node.name"
               [attr.aria-label]="'toggle ' + node.name"
               (click)="toggleExpanded(node)"
               [ngClass]="(hasChild(null, node)| async) ? 'visible' : 'invisible'">
+      <!-- OSPR change end -->
         <span class="{{node.isExpanded ? 'fa fa-chevron-down' : 'fa fa-chevron-right'}}"
               aria-hidden="true"></span>
       </button>
