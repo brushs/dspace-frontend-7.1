@@ -11,10 +11,10 @@
   <p class="col-6 px-0">{{'home.page.description' | translate}} <a href="learn-more">{{'home.learn.more' | translate}}</a></p>
   <div class="search-box mx-0 col-12" style="background-color:#F5F5F5">
     <!-- OSPR Changes-->
-    <h2 class="px-0 mt-0 col-12">{{'home.page.search-tips-title' | translate}}</h2>
-    <!-- h5 to h2 -->
-  <p>{{'home.page.search-tips' | translate}}</p>
+    <label class="h2" for="query">{{'home.page.search-tips-title' | translate}}</label>
+    <!-- h5 changed to label-->
   <ds-search-form [inPlaceSearch]="false" [searchPlaceholder]="'home.search-form.placeholder' | translate"></ds-search-form>
+  <p>{{'home.page.search-tips' | translate}}</p>
   <div class="row">
   <div class="col justify-content-start">
     <a href="advanced-search"> {{'home.button.advanced-search' | translate}}</a>
