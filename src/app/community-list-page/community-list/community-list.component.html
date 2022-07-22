@@ -35,11 +35,13 @@
         <span class="{{node.isExpanded ? 'fa fa-chevron-down' : 'fa fa-chevron-right'}}"
               aria-hidden="true"></span>
       </button>
-      <h5 class="align-middle pt-2">
+      <!-- OSPR change start -->
+      <h2 class="align-middle pt-2">
         <a [routerLink]="node.route" class="lead">
           {{node.name}}
         </a>
-      </h5>
+      </h2>
+      <!-- OSPR change end h5 to h2 -->
     </div>
     <ds-truncatable [id]="node.id">
       <div class="text-muted" cdkTreeNodePadding>
