@@ -107,80 +107,80 @@ let scheduler: TestScheduler;
 let item;
 describe('ItemMetadataComponent', () => {
   beforeEach(waitForAsync(() => {
-    item = Object.assign(new Item(), {
-      metadata: {
-        [metadatum1.key]: [metadatum1],
-        [metadatum2.key]: [metadatum2],
-        [metadatum3.key]: [metadatum3]
-      },
-      _links: {
-        self: {
-          href: 'https://rest.api/core/items/a36d8bd2-8e8c-4969-9b1f-a574c2064983'
+      item = Object.assign(new Item(), {
+          metadata: {
+            [metadatum1.key]: [metadatum1],
+            [metadatum2.key]: [metadatum2],
+            [metadatum3.key]: [metadatum3]
+          },
+          _links: {
+            self: {
+              href: 'https://rest.api/core/items/a36d8bd2-8e8c-4969-9b1f-a574c2064983'
+            }
+          }
+        },
+        {
+          lastModified: date
         }
-      }
-    },
-      {
-        lastModified: date
-      }
-    )
+      )
       ;
-    itemService = jasmine.createSpyObj('itemService', {
-      update: createSuccessfulRemoteDataObject$(item),
-      commitUpdates: {},
-      patch: observableOf(new DSOSuccessResponse(['item-selflink'], 200, 'OK')),
-      findByHref: createSuccessfulRemoteDataObject$(item)
-    });
-    routeStub = {
-      data: observableOf({}),
-      parent: {
-        data: observableOf({ dso: createSuccessfulRemoteDataObject(item) })
-      }
-    };
-    paginatedMetadataFields = createPaginatedList([mdField1, mdField2, mdField3]);
+      itemService = jasmine.createSpyObj('itemService', {
+        update: createSuccessfulRemoteDataObject$(item),
+        commitUpdates: {},
+        patch: observableOf(new DSOSuccessResponse(['item-selflink'], 200, 'OK')),
+        findByHref: createSuccessfulRemoteDataObject$(item)
+      });
+      routeStub = {
+        data: observableOf({}),
+        parent: {
+          data: observableOf({ dso: createSuccessfulRemoteDataObject(item) })
+        }
+      };
+      paginatedMetadataFields = createPaginatedList([mdField1, mdField2, mdField3]);
 
-    metadataFieldService = jasmine.createSpyObj({
-      getAllMetadataFields: createSuccessfulRemoteDataObject$(paginatedMetadataFields)
-    });
-    scheduler = getTestScheduler();
-    objectUpdatesService = jasmine.createSpyObj('objectUpdatesService',
-      {
-        getFieldUpdates: observableOf({
-          [metadatum1.uuid]: fieldUpdate1,
-          [metadatum2.uuid]: fieldUpdate2,
-          [metadatum3.uuid]: fieldUpdate3
-        }),
-        saveAddFieldUpdate: {},
-        discardFieldUpdates: {},
-        reinstateFieldUpdates: observableOf(true),
-        initialize: {},
-        getUpdatedFields: observableOf([metadatum1, metadatum2, metadatum3]),
-        getLastModified: observableOf(date),
-        hasUpdates: observableOf(true),
-        isReinstatable: observableOf(false), // should always return something --> its in ngOnInit
-        isValidPage: observableOf(true),
-        createPatch: observableOf([
-          operation1
-        ])
-      }
-    );
-    objectCacheService = jasmine.createSpyObj('objectCacheService', ['addPatch']);
+      metadataFieldService = jasmine.createSpyObj({
+        getAllMetadataFields: createSuccessfulRemoteDataObject$(paginatedMetadataFields)
+      });
+      scheduler = getTestScheduler();
+      objectUpdatesService = jasmine.createSpyObj('objectUpdatesService',
+        {
+          getFieldUpdates: observableOf({
+            [metadatum1.uuid]: fieldUpdate1,
+            [metadatum2.uuid]: fieldUpdate2,
+            [metadatum3.uuid]: fieldUpdate3
+          }),
+          saveAddFieldUpdate: {},
+          discardFieldUpdates: {},
+          reinstateFieldUpdates: observableOf(true),
+          initialize: {},
+          getUpdatedFields: observableOf([metadatum1, metadatum2, metadatum3]),
+          getLastModified: observableOf(date),
+          hasUpdates: observableOf(true),
+          isReinstatable: observableOf(false), // should always return something --> its in ngOnInit
+          isValidPage: observableOf(true),
+          createPatch: observableOf([
+            operation1
+          ])
+        }
+      );
+      objectCacheService = jasmine.createSpyObj('objectCacheService', ['addPatch']);
 
-    // OSPR fix begins here
-    TestBed.configureTestingModule({
-      imports: [SharedModule, TranslateModule.forRoot()],
-      declarations: [ItemMetadataComponent],
-      providers: [
-        { provide: ItemDataService, useValue: itemService },
-        { provide: ObjectUpdatesService, useValue: objectUpdatesService },
-        { provide: Router, useValue: router },
-        { provide: ActivatedRoute, useValue: routeStub },
-        { provide: NotificationsService, useValue: notificationsService },
-        { provide: RegistryService, useValue: metadataFieldService },
-        { provide: ObjectCacheService, useValue: objectCacheService },
-      ], schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+      // OSPR fix begins here
+      TestBed.configureTestingModule({
+        imports: [SharedModule, TranslateModule.forRoot()],
+        declarations: [ItemMetadataComponent],
+        providers: [
+          { provide: ItemDataService, useValue: itemService },
+          { provide: ObjectUpdatesService, useValue: objectUpdatesService },
+          { provide: Router, useValue: router },
+          { provide: ActivatedRoute, useValue: routeStub },
+          { provide: NotificationsService, useValue: notificationsService },
+          { provide: RegistryService, useValue: metadataFieldService },
+          { provide: ObjectCacheService, useValue: objectCacheService },
+        ], schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();
-    // OSPR fix ends here
-  })
+      // OSPR fix ends here
+    })
   );
 
   beforeEach(() => {
