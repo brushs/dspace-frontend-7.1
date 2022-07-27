@@ -1,4 +1,3 @@
-// the OSPR changes shown here have been implemented at both the theme and app level
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -23,7 +22,7 @@ import { RequestService } from '../../../core/data/request.service';
 import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } from '../../../shared/remote-data.utils';
 // OSPR fix begins here
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
-// OSPR fix ends here
+//OSPR fix ends here
 
 const infoNotification: INotification = new Notification('id', NotificationType.Info, 'info');
 const warningNotification: INotification = new Notification('id', NotificationType.Warning, 'warning');
@@ -135,7 +134,7 @@ describe('CollectionSourceComponent', () => {
         { provide: CollectionDataService, useValue: collectionService },
         { provide: RequestService, useValue: requestService }
       ],
-      schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],[CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
     // OSPR fix ends here
   }));
