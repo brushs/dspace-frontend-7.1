@@ -6,7 +6,7 @@ h2,
   h3 {
     page-break-after: avoid; }
 
-    
+
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
@@ -81,7 +81,7 @@ h5, .h5 {
 h6, .h6 {
   font-size: 0.95em; }
 
-  
+
  //	Heading top margins
 h1,
 .h1, h2,
@@ -95,7 +95,7 @@ h1,
 h1,
 .h1, h2,
 .h2 {
-  margin-top: 38px; }
+  margin-top: 4px; }
 
 h3, .h3 {
   margin-top: 32px; }
@@ -129,7 +129,7 @@ h6, .h6 {
         -webkit-font-variant-ligatures: no-common-ligatures;
                 font-variant-ligatures: no-common-ligatures;
         font-weight: 600; }
-      
+
       .h3,
       .h4,
       .h5,
