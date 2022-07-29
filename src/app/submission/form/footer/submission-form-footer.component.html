@@ -1,3 +1,4 @@
+<!--the OSPR changes shown here have been implemented at both the theme and the app level-->
 <div class="row" *ngIf="!!submissionId">
   <div class="col">
     <button *ngIf="(showDepositAndDiscard | async)"
@@ -26,12 +27,12 @@
       <!-- Notes:
              1. The following line has been removed below
               [disabled]="(processingSaveStatus | async) || !(hasUnsavedModification | async)"
-             2. Hence the button has been enabled, but further work may be needed to ensrue that the proper error messages
+             2. Hence the button has been enabled, but further work may be needed to ensure that the proper error messages
                 are diaplayed -->
       <button type="button"
               class="btn btn-secondary"
               id="save"
-			  [disabled]="false"
+              [disabled]="false"
               (click)="save($event)">
         <span><i class="fas fa-save"></i> {{'submission.general.save' | translate}}</span>
       </button>
@@ -49,7 +50,7 @@
       <!-- Notes:
              1. The following line has been removed below
                 [disabled]="(submissionIsInvalid | async) || (processingSaveStatus | async) || (processingDepositStatus | async)"
-             2. Hence the button has been enabled, but further work may be needed to ensrue that the proper error messages
+             2. Hence the button has been enabled, but further work may be needed to ensure that the proper error messages
                 are diaplayed -->
       <button *ngIf="(showDepositAndDiscard | async)"
               type="button"

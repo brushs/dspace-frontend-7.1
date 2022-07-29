@@ -1,16 +1,15 @@
+// the OSPR changes shown here have been implemented at both the theme and the app level
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-
 import { Observable, of as observableOf } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { SubmissionRestService } from '../../../core/submission/submission-rest.service';
 import { SubmissionService } from '../../submission.service';
 import { SubmissionScopeType } from '../../../core/submission/submission-scope-type';
 import { isNotEmpty } from '../../../shared/empty.util';
 
 /**
- * This component represents submission form footer bar.
+ * This component represents a submission from the footer bar.
  */
 @Component({
   selector: 'ds-submission-form-footer',
@@ -20,42 +19,42 @@ import { isNotEmpty } from '../../../shared/empty.util';
 export class SubmissionFormFooterComponent implements OnChanges {
 
   /**
-   * The submission id
+   * Define the submission id
    * @type {string}
    */
   @Input() submissionId: string;
 
   /**
-   * A boolean representing if a submission deposit operation is pending
+   * Define a boolean that represents whether a submission deposit operation is pending
    * @type {Observable<boolean>}
    */
   public processingDepositStatus: Observable<boolean>;
 
   /**
-   * A boolean representing if a submission save operation is pending
+   * Define a boolean that represents whether a submission save operation is pending
    * @type {Observable<boolean>}
    */
   public processingSaveStatus: Observable<boolean>;
 
   /**
-   * A boolean representing if showing deposit and discard buttons
+   * Define a boolean that determines  whether we should be showing the deposit and discard buttons
    * @type {Observable<boolean>}
    */
   public showDepositAndDiscard: Observable<boolean>;
 
   /**
-   * A boolean representing if submission form is valid or not
+   * Define a boolean theat that represents whether the submission form is valid or not
    * @type {Observable<boolean>}
    */
   public submissionIsInvalid: Observable<boolean> = observableOf(true);
 
   /**
-   * A boolean representing if submission form has unsaved modifications
+   * Define a boolean that represents whether the submission form has unsaved modifications
    */
   public hasUnsavedModification: Observable<boolean>;
 
   /**
-   * Initialize instance variables
+   * Define the instance variables
    *
    * @param {NgbModal} modalService
    * @param {SubmissionRestService} restService
@@ -67,7 +66,7 @@ export class SubmissionFormFooterComponent implements OnChanges {
   }
 
   /**
-   * Initialize all instance variables
+   * Initialize all instance variables, which is conditional on the submission not being empty
    */
   ngOnChanges(changes: SimpleChanges) {
     if (isNotEmpty(this.submissionId)) {
@@ -83,28 +82,37 @@ export class SubmissionFormFooterComponent implements OnChanges {
   }
 
   /**
-   * Dispatch a submission save action
+   * Dispatch an (unconditional) submission save action
    */
   save(event) {
     this.submissionService.dispatchSave(this.submissionId, true);
   }
 
   /**
-   * Dispatch a submission save for later action
+   * Dispatch an (unconditional) submission save for later action
    */
   saveLater(event) {
     this.submissionService.dispatchSaveForLater(this.submissionId);
   }
 
+  // OSPR change begins here 
   /**
-   * Dispatch a submission deposit action
+   * Dispatch a submission deposit action, which is conditional on the submission not being empty
    */
   public deposit(event) {
-    this.submissionService.dispatchDeposit(this.submissionId);
+    if (!isNotEmpty(this.submissionId)) {
+      this.submissionIsInvalid = this.submissionService.getSubmissionStatus(this.submissionId).pipe(
+        map((isValid: boolean) => isValid === false)
+      );
+    }
+    else {
+        this.submissionService.dispatchDeposit(this.submissionId);
+    }
   }
+  // OSPR change ends here 
 
   /**
-   * Dispatch a submission discard action
+   * Dispatch an (unconditional) submission discard action
    */
   public confirmDiscard(content) {
     this.modalService.open(content).result.then(
