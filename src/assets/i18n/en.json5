@@ -8,6 +8,7 @@
 
 
 
+
   "403.help": "You don't have permission to access this page. You can use the button below to get back to the home page.",
 
   "403.link.home-page": "Take me to the home page",
@@ -37,7 +38,7 @@
   "tips-for-search.advanced.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
 
   "tips-for-search.other.title": "Other Search",
-  
+
   "tips-for-search.other.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
 
   "admin.curation-tasks.breadcrumbs": "System curation tasks",
@@ -548,7 +549,7 @@
 
 
 
-  "bitstream.download.page": "Now downloading {{bitstream}}..." ,
+  "bitstream.download.page": "Now downloading {{bitstream}}...",
 
 
 
@@ -914,7 +915,93 @@
 
   "communityList.showMore": "Show More",
 
+  // OSPR changes start - add new labels for create Community page
+  "community.form.description-nom": "Nom*",
+  "community.form.description-other-names": "Other names",
+  "community.form.description-identifications": "IDs",
+  "community.form.description-topic-subject": "Topic/Subject *",
+  "community.form.description-home-page": "Department/Agency Home Page Link *",
+  "community.form.description-home-page-french": "Lien vers la page d'accueil du ministère/organisme *",
+  "community.form.description-email-address": "Contact Email address *",
+  "community.form.description-short-description": "Short Description*",
+  "community.form.description-short-description-french": "Description succincts *",
+  "community.form.description-description-html": "Short Description (HTML) *",
+  "community.form.description-description-html-french": "Description succincte(HTML) *",
+  "community.form.description-contact-address": "Contact address *",
+  "community.form.description-news-iframe": "News(HTML) *",
+  "community.form.description-news-iframe-french": "Nouvelles (HTML) *",
+  "community.form.description-copyright": "Copyright (HTML) *",
+  "community.form.description-copyright-french": "Droits d'auteur (HTML) *",
+  "community.form.description-license": "License *",
+  "community.form.description-license-french": "License",
+  "community.form.description-provenance": "Provenance",
+  "community.form.description-provenance-french": "Provenance",
+  "community.form.description-blank": "",
+  // OSPR changes end - add new labels for create Community page
 
+  // OSPR changes start - add new hints for create Community page
+  "create.community.name.hint": "Enter the name of the community*",
+  "create.community.nom.hint": "Saissisez le nom de la communauté*",
+  "create.community.other-name.hint": "Enter other name and ROR to find in autocomplete",
+  "create.community.topic-subject.hint": "Choose topic* and subject",
+  "create.community.home-page.hint": "Enter a link to the department home page",
+  "create.community.email-address.hint": "Enter an email address for the community",
+  "create.community.short-description.hint": "Enter a short description for the community",
+  "create.community.short-description-french.hint": "Saissisez une description succincte pour la communauté",
+  "create.community.inroductory-text.hint": "Enter an introductory text for the community",
+  "create.community.introductory-text-french.hint": "Saissisez la texte d'introduction pour la communauté",
+  "create.community.contact-address.hint": "Enter a contact address for the community",
+  "create.community.news-iframe.hint": "Enter news iframe for the community",
+  "create.community.news-iframe-french.hint": "Saissisez des nouvells pour cette communauté",
+  "create.community.copyright.hint": "Enter copyright text or any other related information for this community",
+  "create.community.copyright-french.hint": "Saissisez le texte de droits d'auteur ou toure autre inormation connexe pour cette communauté",
+  // OSPR changes start - add new hints for create Community page
+
+  // OSPR changes start - add new labels for create collection page
+  "collection.form.description-nom": "Nom*",
+  "collection.form.description-other-names": "Other names",
+  "collection.form.description-identifications": "IDs",
+  "collection.form.description-topic-subject": "Topic/Subject *",
+  "collection.form.description-home-page": "Department/Agency Home Page Link *",
+  "collection.form.description-home-page-french": "Lien vers la page d'accueil du ministère/organisme *",
+  "collection.form.description-email-address": "Contact Email address *",
+  "collection.form.description-short-description": "Short Description*",
+  "collection.form.description-short-description-french": "Description succincts *",
+  "collection.form.description-description-html": "Description (HTML) *",
+  "collection.form.description-description-html-french": "Description (HTML) *",
+  "collection.form.description-contact-address": "Contact address *",
+  "collection.form.description-news-iframe": "News(HTML) *",
+  "collection.form.description-news-iframe-french": "Nouvelles (HTML) *",
+  "collection.form.description-copyright": "Copyright (HTML) *",
+  "collection.form.description-copyright-french": "Droits d'auteur (HTML) *",
+  "collection.form.description-license": "License",
+  "collection.form.description-license-french": "License",
+  "collection.form.description-provenance": "Provenance",
+  "collection.form.description-provenance-french": "Provenance",
+  "collection.form.description-blank": "",
+  // OSPR changes end - add new labels for create collection page
+
+  // OSPR changes start - add new hints for create Collection page
+  "create.collection.name.hint": "Enter the name of the collection*",
+  "create.collection.nom.hint": "Saissisez le nom de la collection*",
+  "create.collection.other-name.hint": "Enter other name and ROR to find in autocomplete",
+  "create.collection.topic-subject.hint": "Choose topic* and subject",
+  "create.collection.home-page.hint": "Enter a link to the department home page",
+  "create.collection.email-address.hint": "Enter an email address for the collection",
+  "create.collection.short-description.hint": "Enter a short description for the collection",
+  "create.collection.short-description-french.hint": "Saissisez une description succincte pour la collection",
+  "create.collection.inroductory-text.hint": "Enter an introductory text for the collection",
+  "create.collection.introductory-text-french.hint": "Saissisez la texte d'introduction pour la collection",
+  "create.collection.contact-address.hint": "Enter a contact address for the collection",
+  "create.collection.news-iframe.hint": "Enter news iframe for the collection",
+  "create.collection.news-iframe-french.hint": "Saissisez des nouvells pour cette collection",
+  "create.collection.copyright.hint": "Enter copyright text or any other related information for this collection",
+  "create.collection.copyright-french.hint": "Saissisez le texte de droits d'auteur ou toure autre inormation connexe pour cette collection",
+  "create.collection.license.hint": "Enter license for the collection",
+  "create.collection.license-french.hint": "Saissisez la license pour cette collection",
+  "create.collection.provenance.hint": "Enter provenance for the collection",
+  "create.collection.provenance-french.hint": "Saissisez la provenance pour cette collection",
+  // OSPR changes start - add new hints for create Collection page
 
   "community.create.head": "Create a Community",
 
@@ -1149,7 +1236,7 @@
   "cookies.consent.purpose.statistical": "Statistical",
 
 
-  "curation-task.task.checklinks.label":  "Check Links in Metadata",
+  "curation-task.task.checklinks.label": "Check Links in Metadata",
 
   "curation-task.task.noop.label": "NOOP",
 
@@ -1290,7 +1377,7 @@
 
   "footer.link.privacy-policy": "Privacy policy",
 
-  "footer.link.end-user-agreement":"End User Agreement",
+  "footer.link.end-user-agreement": "End User Agreement",
 
   "footer.link.contact-us": "Contact us",
 
@@ -1429,19 +1516,19 @@
   "home.top-level-communities.head": "Communities in OSPR",
 
   "home.top-home.head": "Open Science Publication Repository(OSPR)",
-  
-  
-  
-"home.button.help": "Help",
-"home.button.advanced-search": "Advanced search",
-"home.button.tips-for-searching": "Tips for searching",
-"home.learn.more": "Learn More",
+
+
+
+  "home.button.help": "Help",
+  "home.button.advanced-search": "Advanced search",
+  "home.button.tips-for-searching": "Tips for searching",
+  "home.learn.more": "Learn More",
 
 
   "home.page.description": "The Open Science Publication Repository provides free and open access to science publication and research funded by the Canadian Government.",
-  
+
   "home.page.search-tips-title": "Start your search:",
- "home.page.search-tips": "Search examples: Title, Author, Title AND Author OR DOI number",
+  "home.page.search-tips": "Search examples: Title, Author, Title AND Author OR DOI number",
 
 
   "home.top-level-communities.help": "Select a community to browse its collections.",
@@ -1498,7 +1585,7 @@
 
   "item.bitstreams.upload.bundle.new": "Create bundle",
 
-  "item.bitstreams.upload.bundles.empty": "This item doesn\'t contain any bundles to upload a bitstream to.",
+  "item.bitstreams.upload.bundles.empty": "This item doesn\\'t contain any bundles to upload a bitstream to.",
 
   "item.bitstreams.upload.cancel": "Cancel",
 
@@ -1977,9 +2064,9 @@
 
   "item.page.bitstreams.collapse": "Collapse",
 
-  "item.page.filesection.original.bundle" : "Original bundle",
+  "item.page.filesection.original.bundle": "Original bundle",
 
-  "item.page.filesection.license.bundle" : "License bundle",
+  "item.page.filesection.license.bundle": "License bundle",
 
   "item.page.return": "Back",
 
@@ -2460,9 +2547,9 @@
 
   "nav.stop-impersonating": "Stop impersonating EPerson",
 
-  "nav.toggle" : "Toggle navigation",
+  "nav.toggle": "Toggle navigation",
 
-  "nav.user.description" : "User profile bar",
+  "nav.user.description": "User profile bar",
 
 
 
@@ -2575,13 +2662,13 @@
 
 
 
-  "process.detail.arguments" : "Arguments",
+  "process.detail.arguments": "Arguments",
 
-  "process.detail.arguments.empty" : "This process doesn't contain any arguments",
+  "process.detail.arguments.empty": "This process doesn't contain any arguments",
 
-  "process.detail.back" : "Back",
+  "process.detail.back": "Back",
 
-  "process.detail.output" : "Process Output",
+  "process.detail.output": "Process Output",
 
   "process.detail.logs.button": "Retrieve process output",
 
@@ -2589,35 +2676,35 @@
 
   "process.detail.logs.none": "This process has no output",
 
-  "process.detail.output-files" : "Output Files",
+  "process.detail.output-files": "Output Files",
 
-  "process.detail.output-files.empty" : "This process doesn't contain any output files",
+  "process.detail.output-files.empty": "This process doesn't contain any output files",
 
-  "process.detail.script" : "Script",
+  "process.detail.script": "Script",
 
-  "process.detail.title" : "Process: {{ id }} - {{ name }}",
+  "process.detail.title": "Process: {{ id }} - {{ name }}",
 
-  "process.detail.start-time" : "Start time",
+  "process.detail.start-time": "Start time",
 
-  "process.detail.end-time" : "Finish time",
+  "process.detail.end-time": "Finish time",
 
-  "process.detail.status" : "Status",
+  "process.detail.status": "Status",
 
-  "process.detail.create" : "Create similar process",
+  "process.detail.create": "Create similar process",
 
 
 
-  "process.overview.table.finish" : "Finish time",
+  "process.overview.table.finish": "Finish time",
 
-  "process.overview.table.id" : "Process ID",
+  "process.overview.table.id": "Process ID",
 
-  "process.overview.table.name" : "Name",
+  "process.overview.table.name": "Name",
 
-  "process.overview.table.start" : "Start time",
+  "process.overview.table.start": "Start time",
 
-  "process.overview.table.status" : "Status",
+  "process.overview.table.status": "Status",
 
-  "process.overview.table.user" : "User",
+  "process.overview.table.user": "User",
 
   "process.overview.title": "Processes Overview",
 
@@ -3561,7 +3648,7 @@
 
   "submission.sections.describe.relationship-lookup.selection-tab.title.arxiv": "Search Results",
 
-  "submission.sections.describe.relationship-lookup.name-variant.notification.content": "Would you like to save \"{{ value }}\" as a name variant for this person so you and others can reuse it for future submissions? If you don\'t you can still use it for this submission.",
+  "submission.sections.describe.relationship-lookup.name-variant.notification.content": "Would you like to save \\\"{{ value }}\\\" as a name variant for this person so you and others can reuse it for future submissions? If you don\\'t you can still use it for this submission.",
 
   "submission.sections.describe.relationship-lookup.name-variant.notification.confirm": "Save a new name variant",
 
