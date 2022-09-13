@@ -3613,6 +3613,17 @@
 
   "submission.sections.general.sections_not_valid": "There are incomplete sections.",
 
+  //OSPR Changes start here #897
+  "submission.sections.submit.progressbar.describe.BibliographicMetadata"       : "Bibliographic Metadata",
+  "submission.sections.submit.progressbar.describe.DescriptiveMetadata"         : "Descriptive Metadata",
+  "submission.sections.submit.progressbar.describe.DescribeArticle"             : "Describe Article",
+  "submission.sections.submit.progressbar.describe.DescribeBook"                : "Describe Book",
+  "submission.sections.submit.progressbar.describe.DescribeBookChapter"         : "Describe Book Chapter",
+  "submission.sections.submit.progressbar.describe.DescribeReport"              : "Describe Report",
+  "submission.sections.submit.progressbar.describe.DescribeConferenceMaterial"  : "Describe Conference Material",
+  "submission.sections.submit.progressbar.describe.DescribeAccepetedManuscript" : "Describe Accepeted Manuscript",
+  "submission.sections.submit.progressbar.describe.DescribeSubmittedManuscript" : "Describe Submitted Manuscript",
+  //OSPR Changes end here #897
 
 
   "submission.sections.submit.progressbar.CClicense": "Creative commons license",
