@@ -37,25 +37,25 @@
   //"tips-for-search.ospr.title": "Searching the Open Science Platform Repository",
   "tips-for-search.ospr.title": "Recherche dans le publication de la science ouverte",
 
-  //"tips-for-search.ospr.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  //"tips-for-search.ospr.text": "The FOSRC’s online platform  contains the full text of every article ever published by FOSRC. The FOSRC  is fully integrated with the FOSRC Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
   "tips-for-search.ospr.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
 
   //"tips-for-search.faceted.title": "Faceted Search",
   "tips-for-search.faceted.title": "Recherche à facettes",
 
-  //"tips-for-search.faceted.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  //"tips-for-search.faceted.text": "The FOSRC’s online platform  contains the full text of every article ever published by FOSRC. The FOSRC  is fully integrated with the FOSRC Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
   "tips-for-search.faceted.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
 
   //"tips-for-search.advanced.title": "Advanced Search",
   "tips-for-search.advanced.title": "Recherche avancée",
 
-  //"tips-for-search.advanced.text": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  //"tips-for-search.advanced.text": "The FOSRC’s online platform  contains the full text of every article ever published by FOSRC. The FOSRC  is fully integrated with the FOSRC Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
   "tips-for-search.advanced.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
 
   //"tips-for-search.other.title": "Other Search",
   "tips-for-search.other.title": "Autre recherche",
   
-  //"tips-for-search.other.title": "The OSPR’s online platform  contains the full text of every article ever published by OSPR. The OSPR  is fully integrated with the OSPR Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
+  //"tips-for-search.other.title": "The FOSRC’s online platform  contains the full text of every article ever published by FOSRC. The FOSRC  is fully integrated with the FOSRC Guide to Government of Canada Publications, an extensive collection of bibliographic citations from departments of Government of Canada.",
   "tips-for-search.other.text": "La plate-forme en ligne de l’PPSO contient le texte intégral de chaque article jamais publié par l’PPSO. L’PPSO est entièrement intégré au Guide PPSO des publications du gouvernement du Canada, une vaste collection de citations bibliographiques des ministères du gouvernement du Canada.",
 
   // "admin.curation-tasks.breadcrumbs": "System curation tasks",
@@ -199,16 +199,16 @@
   // "admin.registries.bitstream-formats.table.supportLevel.head": "Support Level",
   "admin.registries.bitstream-formats.table.supportLevel.head": "Niveau de support",
 
-  // "admin.registries.bitstream-formats.title": "OSPR :: Bitstream Format Registry",
-  "admin.registries.bitstream-formats.title": "OSPR :: Registre des formats Bitstream",
+  // "admin.registries.bitstream-formats.title": "FOSRC :: Bitstream Format Registry",
+  "admin.registries.bitstream-formats.title": "DFSOC :: Registre des formats Bitstream",
 
 
 
   // "admin.registries.metadata.breadcrumbs": "Metadata registry",
   "admin.registries.metadata.breadcrumbs": "Registre de métadonnées",
 
-  // "admin.registries.metadata.description": "The metadata registry maintains a list of all metadata fields available in the repository. These fields may be divided amongst multiple schemas. However, OSPR requires the qualified Dublin Core schema.",
-  "admin.registries.metadata.description": "Le registre de métadonnées présente une liste à jour de tous les champs de métadonnées disponibles dans le dépôt. Ces champs peuvent être répartis entre plusieurs schémas. Le schéma Dublin Core qualifié est toutefois requis dans OSPR.",
+  // "admin.registries.metadata.description": "The metadata registry maintains a list of all metadata fields available in the repository. These fields may be divided amongst multiple schemas. However, FOSRC requires the qualified Dublin Core schema.",
+  "admin.registries.metadata.description": "Le registre de métadonnées présente une liste à jour de tous les champs de métadonnées disponibles dans le dépôt. Ces champs peuvent être répartis entre plusieurs schémas. Le schéma Dublin Core qualifié est toutefois requis dans DFSOC.",
 
   // "admin.registries.metadata.form.create": "Create metadata schema",
   "admin.registries.metadata.form.create": "Ajouter un schéma de métadonnées",
@@ -240,8 +240,8 @@
   // "admin.registries.metadata.schemas.table.namespace": "Namespace",
   "admin.registries.metadata.schemas.table.namespace": "Espace de nommage",
 
-  // "admin.registries.metadata.title": "OSPR :: Metadata Registry",
-  "admin.registries.metadata.title": "OSPR :: Registre de métadonnées",
+  // "admin.registries.metadata.title": "FOSRC :: Metadata Registry",
+  "admin.registries.metadata.title": "DFSOC :: Registre de métadonnées",
 
 
 
@@ -317,8 +317,8 @@
   // "admin.registries.schema.return": "Return",
   "admin.registries.schema.return": "Retour",
 
-  // "admin.registries.schema.title": "OSPR :: Metadata Schema Registry",
-  "admin.registries.schema.title": "OSPR :: Registre des schémas de métadonnées",
+  // "admin.registries.schema.title": "FOSRC :: Metadata Schema Registry",
+  "admin.registries.schema.title": "DFSOC :: Registre des schémas de métadonnées",
 
 
 
@@ -334,8 +334,8 @@
   // "admin.access-control.epeople.actions.stop-impersonating": "Stop impersonating EPerson",
   "admin.access-control.epeople.actions.stop-impersonating": "Retour à votre propre EPerson ",
 
-  // "admin.access-control.epeople.title": "OSPR :: EPeople",
-  "admin.access-control.epeople.title": "OSPR :: EPeople",
+  // "admin.access-control.epeople.title": "FOSRC :: EPeople",
+  "admin.access-control.epeople.title": "DFSOC :: EPeople",
 
   // "admin.access-control.epeople.head": "EPeople",
   "admin.access-control.epeople.head": "EPeople",
@@ -450,14 +450,14 @@
 
 
 
-  // "admin.access-control.groups.title": "OSPR :: Groups",
-  "admin.access-control.groups.title": "OSPR :: Groupes",
+  // "admin.access-control.groups.title": "FOSRC :: Groups",
+  "admin.access-control.groups.title": "DFSOC :: Groupes",
 
-  // "admin.access-control.groups.title.singleGroup": "OSPR :: Edit Group",
-  "admin.access-control.groups.title.singleGroup": "OSPR :: Éditer Groupe",
+  // "admin.access-control.groups.title.singleGroup": "FOSRC :: Edit Group",
+  "admin.access-control.groups.title.singleGroup": "DFSOC :: Éditer Groupe",
 
-  // "admin.access-control.groups.title.addGroup": "OSPR :: New Group",
-  "admin.access-control.groups.title.addGroup": "OSPR :: Nouveau Groupe",
+  // "admin.access-control.groups.title.addGroup": "FOSRC :: New Group",
+  "admin.access-control.groups.title.addGroup": "DFSOC :: Nouveau Groupe",
 
   // "admin.access-control.groups.head": "Groups",
   "admin.access-control.groups.head": "Groupes",
@@ -1261,8 +1261,8 @@
   //"communityList.breadcrumbs": "Community List",
   "communityList.breadcrumbs": "Liste des Communautés",
 
-  // "communityList.tabTitle": "OSPR - Community List",
-  "communityList.tabTitle": "OSPR - Liste des Communautés",
+  // "communityList.tabTitle": "FOSRC - Community List",
+  "communityList.tabTitle": "DFSOC - Liste des Communautés",
 
   // "communityList.title": "List of Communities",
   "communityList.title": "Liste des Communautés",
@@ -1392,7 +1392,7 @@
   // "comcol-role.edit.delete": "Delete",
   "comcol-role.edit.delete": "Supprimer",
 
-  //OSPR UI-13 issue 291
+  //FOSRC UI-13 issue 291
   //"comcol-role.delete.confirm.title": "Delete role",
   "comcol-role.delete.confirm.title": "Supprimer le rôle",
 
@@ -1767,8 +1767,8 @@
   // "footer.copyright": "copyright © 2002-{{ year }}",
   "footer.copyright": "Gouvernement du Canada © 2021",
 
-  // "footer.link.dspace": "OSPR software",
-  "footer.link.dspace": "OSPR software",
+  // "footer.link.dspace": "FOSRC software",
+  "footer.link.dspace": "DFSOC software",
 
   // "footer.link.lyrasis": "LYRASIS",
   "footer.link.lyrasis": "LYRASIS",
@@ -1802,8 +1802,8 @@
   // "forgot-email.form.header": "Forgot Password",
   "forgot-email.form.header": "Mot de passe oublié",
 
-  // "forgot-email.form.info": "Begin the process to reset your forgotten password. Please enter the following information to verify your identity in OSPR.",
-  "forgot-email.form.info": "Commencez le processus de réinitialisation de votre mot de passe oublié. Veuillez saisir les informations suivantes pour vérifier votre identité dans OSPR",
+  // "forgot-email.form.info": "Begin the process to reset your forgotten password. Please enter the following information to verify your identity in FOSRC.",
+  "forgot-email.form.info": "Commencez le processus de réinitialisation de votre mot de passe oublié. Veuillez saisir les informations suivantes pour vérifier votre identité dans DFSOC",
 
   // "forgot-email.form.email": "Email Address *",
   "forgot-email.form.email": "Adresse e-mail *",
@@ -1967,20 +1967,20 @@
   // "home.breadcrumbs": "Home",
   "home.breadcrumbs": "Accueil",
 
-  // "home.title": "OSPR :: Home",
-  "home.title": "OSPR :: Home",
+  // "home.title": "Home",
+  "home.title": "Home",
 
-  // "home.top-level-communities.head": "Communities in OSPR",
-  "home.top-level-communities.head": "Communautés OSPR",
+  // "home.top-level-communities.head": "Communities in FOSRC",
+  "home.top-level-communities.head": "Communautés DFSOC",
 
-  //"home.top-home.head": "Open Science Publication Repository",
-  "home.top-home.head": "Platforme de publication de la science ouverte(PPSO)",
+  //"home.top-home.head": "Federal Open Science Repository of Canada(FOSRC)",
+  "home.top-home.head": "Dépôt fédéral de science ouverte du Canada",
 
   //"home.learn.more": "Learn More",
   "home.learn.more": "Apprendre encore plus",
 
-  //"home.page.description":"The Open Science Publication Repository provides free and open access to science publication and research funded by the Canadian Government."
-  "home.page.description":"La Platforme de publication de la science ouverte offre un accès gratuit et ouvert aux publications et recherches scientifiques financées par le gouvernement canadien.",
+  //"home.page.description":"The Federal Open Science Repository of Canada provides free and open access to science publication and research funded by the Canadian Government."
+  "home.page.description":"Le Dépôt fédéral de science ouverte du Canada offre un accès libre et gratuit aux publications et recherches scientifiques financées par le gouvernement canadien.",
 
 //"home.page.search-tips-title": "Start your search:",
 "home.page.search-tips-title": "Commencez votre recherche:",
@@ -2671,8 +2671,8 @@
    // "default.search.results.head": "Search Results",
    "default.search.results.head": "Résultats de recherche",
 
-  // "item.search.title": "OSPR :: Item Search",
-  "item.search.title": "OSPR :: Item Search",
+  // "item.search.title": "FOSRC :: Item Search",
+  "item.search.title": "DFSOC :: Item Search",
 
   //"item.page.titleprefix": "Title: ",
   "item.page.titleprefix": "Titre : ",
@@ -2869,8 +2869,8 @@
   // "journal.search.results.head": "Journal Search Results",
   "journal.search.results.head": "Résultats de recherche Revue",
 
-  // "journal.search.title": "OSPR :: Journal Search",
-  "journal.search.title": "OSPR :: Recherche Revue",
+  // "journal.search.title": "FOSRC :: Journal Search",
+  "journal.search.title": "DFSOC :: Recherche Revue",
 
 
 
@@ -2986,8 +2986,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "Mot de passe oublié ?",
 
-  // "login.form.header": "Please log in to OSPR",
-  "login.form.header": "Se connecter sur OSPR",
+  // "login.form.header": "Please log in to FOSRC",
+  "login.form.header": "Se connecter sur DFSOC",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "Pas encore de compte ? Cliquez ici pour vous enregistrer.",
@@ -3012,8 +3012,8 @@
 
 
 
-  // "logout.form.header": "Log out from OSPR",
-  "logout.form.header": "Se déconnecter de OSPR",
+  // "logout.form.header": "Log out from FOSRC",
+  "logout.form.header": "Se déconnecter de DFSOC",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Se déconnecter",
@@ -3062,8 +3062,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Titre",
 
-  // "menu.section.browse_global": "All of OSPR",
-  "menu.section.browse_global": "Tout PPSO",
+  // "menu.section.browse_global": "All of FOSRC",
+  "menu.section.browse_global": "Tout DFSOC",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Auteur",
@@ -3262,6 +3262,8 @@
   // "menu.section.workflow": "Administer Workflow",
   "menu.section.workflow": "Workflow Administrateur",
 
+ //"mydspace.breadcrumbs": "MyFOSRC",
+  "mydspace.breadcrumbs": "MonDFSOC",
 
   // "mydspace.description": "",
   "mydspace.description": "",
@@ -3344,8 +3346,8 @@
   // "mydspace.results.no-uri": "No Uri",
   "mydspace.results.no-uri": "Aucune URL",
 
-  //"mydspace.search-form.placeholder": "Search in myOSPR...",
-  "mydspace.search-form.placeholder": "Rechercher dans MyOSPR ...",
+  //"mydspace.search-form.placeholder": "Search in MyFOSRC...",
+  "mydspace.search-form.placeholder": "Rechercher dans MonDFSOC ...",
 
   // "mydspace.show.workflow": "All tasks",
   "mydspace.show.workflow": "Tâches de validation",
@@ -3368,8 +3370,8 @@
   // "mydspace.status.workspace": "Workspace",
   "mydspace.status.workspace": "Workspace",
 
-  // "mydspace.title": "MyOSPR",
-  "mydspace.title": "MyOSPR",
+  // "mydspace.title": "MyFOSRC",
+  "mydspace.title": "MonDFSOC",
 
   // "mydspace.upload.upload-failed": "Error creating new workspace. Please verify the content uploaded before retry.",
   "mydspace.upload.upload-failed": "Erreur à la création du Workspace. Veuillez vérifier le contenu téléchargé avant de réessayer.",
@@ -3391,8 +3393,8 @@
 
 
 
-  // "nav.browse.header": "All of OSPR",
-  "nav.browse.header": "Tout OSPR",
+  // "nav.browse.header": "All of FOSRC",
+  "nav.browse.header": "Tout DFSOC",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Par Communauté",
@@ -3406,8 +3408,8 @@
   // "nav.logout": "Log Out",
   "nav.logout": "Se déconnecter",
 
-  // "nav.mydspace": "MyOSPR",
-  "nav.mydspace": "MyOSPR",
+  // "nav.mydspace": "MyFOSRC",
+  "nav.mydspace": "MonDFSOC",
 
   // "nav.profile": "Profile",
   "nav.profile": "Profil",
@@ -3510,8 +3512,8 @@
   // "person.search.results.head": "Person Search Results",
   "person.search.results.head": "Résultats de recherche Personne",
 
-  // "person.search.title": "OSPR :: Person Search",
-  "person.search.title": "OSPR :: Recherche Personne",
+  // "person.search.title": "FOSRC :: Person Search",
+  "person.search.title": "DFSOC :: Recherche Personne",
 
 
 
@@ -3806,8 +3808,8 @@
   // "publication.search.results.head": "Publication Search Results",
   "publication.search.results.head": "Résultats de recherche Publication",
 
-  // "publication.search.title": "OSPR :: Publication Search",
-  "publication.search.title": "OSPR :: Recherche Publication",
+  // "publication.search.title": "FOSRC :: Publication Search",
+  "publication.search.title": "DFSOC :: Recherche Publication",
 
 
   // "register-email.title": "New user registration",
@@ -3880,8 +3882,8 @@
   // "register-page.registration.header": "New user registration",
   "register-page.registration.header": "Inscription nouvel utilisateur",
 
-  // "register-page.registration.info": "Register an account to subscribe to collections for email updates, and submit new items to OSPR.",
-  "register-page.registration.info": "Créer un compte pour pouvoir vous abonner aux collections et recevoir les nouveautés via mail ainsi que déposer de nouveaux Items dans OSPR.",
+  // "register-page.registration.info": "Register an account to subscribe to collections for email updates, and submit new items to DFSOC.",
+  "register-page.registration.info": "Créer un compte pour pouvoir vous abonner aux collections et recevoir les nouveautés via mail ainsi que déposer de nouveaux Items dans DFSOC.",
 
   // "register-page.registration.email": "Email Address *",
   "register-page.registration.email": "Adresse e-mail *",
@@ -4126,8 +4128,8 @@
   // "search.switch-configuration.title": "Show",
   "search.switch-configuration.title": "Afficher",
 
-  // "search.title": "OSPR :: Search",
-  "search.title": "OSPR :: Recherche",
+  // "search.title": "FOSRC :: Search",
+  "search.title": "DFSOC :: Recherche",
 
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Recherche",
@@ -4425,15 +4427,14 @@
   "search.filters.reset": "Réinitialiser filtres",
 
 
-
   // "search.form.search": "Search",
   "search.form.search": "Recherche",
 
-  // "search.form.search_dspace": "Search OSPR",
-  "search.form.search_dspace": "Recherche dans OSPR",
+  "search.form.search_dspace": "Search all FOSRC",
+  "search.form.search_dspace": "Recherche dans DFSOC",
 
-  // "search.form.search_mydspace": "Search MyOSPR",
-  "search.form.search_mydspace": "Recherche dans MyOSPR",
+  // "search.form.search_mydspace": "Search MyFOSRC",
+  "search.form.search_mydspace": "Recherche dans MonDFSOC",
 
 
 
@@ -4594,11 +4595,11 @@
   // "submission.import-external.title": "Import metadata from an external source",
   "submission.import-external.title": "Importer les métadonnées depuis une source externe",
 
-  // "submission.import-external.page.hint": "Enter a query above to find items from the web to import in to OSPR.",
-  "submission.import-external.page.hint": "Entrer votre recherche ci-dessus pour rechercher les publications à importer.",
+  // "submission.import-external.page.hint": "Enter a query above to find items from the web to import in to FOSRC.",
+  "submission.import-external.page.hint": "Entrer votre recherche ci-dessus pour rechercher les publications à importer DFSOC.",
 
-  // "submission.import-external.back-to-my-dspace": "Back to MyOSPR",
-  "submission.import-external.back-to-my-dspace": "De retour vers MyOSPR",
+  // "submission.import-external.back-to-my-dspace": "Back to MyFOSRC",
+  "submission.import-external.back-to-my-dspace": "De retour vers MonDFSOC",
 
   // "submission.import-external.search.placeholder": "Search the external source",
   "submission.import-external.search.placeholder": "Recherche source externe",
@@ -5039,7 +5040,7 @@
   // "submission.sections.general.sections_not_valid": "There are incomplete sections.",
   "submission.sections.general.sections_not_valid": "Section(s) incomplète(s).",
 
-  //OSPR Changes start here #897
+  //FOSRC Changes start here #897
   "submission.sections.submit.progressbar.describe.BibliographicMetadata"       : "Metadata Bibliographique",
   "submission.sections.submit.progressbar.describe.DescriptiveMetadata"         : "Metadata Descriptif",
   "submission.sections.submit.progressbar.describe.DescribeArticle"             : "Décrire Article",
@@ -5049,7 +5050,7 @@
   "submission.sections.submit.progressbar.describe.DescribeConferenceMaterial"  : "Décrire Conference Matereau",
   "submission.sections.submit.progressbar.describe.DescribeAccepetedManuscript" : "Décrire Accepeté Manuscript",
   "submission.sections.submit.progressbar.describe.DescribeSubmittedManuscript" : "Décrire Submit Manuscript",
-  //OSPR Changes end here #897
+  //FOSRC Changes end here #897
 
   // "submission.sections.submit.progressbar.CClicense": "Creative commons license",
   "submission.sections.submit.progressbar.CClicense": "Licence Creative Commons",
@@ -5241,10 +5242,10 @@
 
 
 
-  // "title": "OSPR",
-  "title": "OSPR",
-
-
+  // "title": "FOSRC",
+  "title": "DFSOC",
+  //"about": "About FOSRC",
+  "about": "About DFSOC",
 
   // "vocabulary-treeview.header": "Hierarchical tree view",
   "vocabulary-treeview.header": "Arborescence hiérarchique",
