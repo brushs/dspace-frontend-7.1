@@ -929,10 +929,10 @@
   // "browse.startsWith.submit": "Go",
   "browse.startsWith.submit": "Valider",
 
-  // "browse.startsWith.type_date": "Or type in a date (year-month) and click 'Browse'",
-  "browse.startsWith.type_date": "Ou tapez une date (année-mois) et cliquez sur 'Parcourir'",
+  // "browse.startsWith.type_date": "Or type in a date (year-month)(numbers only) and click 'Browse'",
+  "browse.startsWith.type_date": "Ou tapez une date (année-mois)(chiffres uniquement) et cliquez sur 'Parcourir'",
 
-  // "browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
+  // "browse.startsWith.type_text": "Type the first few letters and click on the Browse on",
   "browse.startsWith.type_text": "Tapez les premières lettres et cliquez sur le bouton Parcourir",
 
   // "browse.title": "Browsing {{ collection }} by {{ field }} {{ value }}",

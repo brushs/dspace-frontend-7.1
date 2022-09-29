@@ -665,9 +665,9 @@
 
   "browse.startsWith.submit": "Browse",
 
-  "browse.startsWith.type_date": "Or type in a date (year-month) and click 'Browse'",
+  "browse.startsWith.type_date": "Or type in a date (year-month)(numbers only) and click 'Browse'",
 
-  "browse.startsWith.type_date.label": "Or type in a date (year-month) and click on the Browse button",
+  "browse.startsWith.type_date.label": "Or type in a date (year-month)(numbers only) and click on the Browse button",
 
   "browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
 
