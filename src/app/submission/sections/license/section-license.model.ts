@@ -13,7 +13,7 @@ export const SECTION_LICENSE_FORM_LAYOUT = {
 export const SECTION_LICENSE_FORM_MODEL = [
   {
     id: 'granted',
-    label: 'I confirm the license above',
+    label: 'I confirm the license above (required)',
     required: true,
     value: false,
     validators: {
