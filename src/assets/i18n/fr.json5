@@ -2619,7 +2619,8 @@
   // "item.edit.tabs.view.title": "Item Edit -  View",
   "item.edit.tabs.view.title": "Édition Item - View",
 
-
+  // "item.edit.tabs.disabled.tooltip": "You're not authorized to access this tab",
+  "item.edit.tabs.disabled.tooltip": "Vous n'êtes pas autorisé à accéder à cet onglet si vous avez moins de deux collections",
 
   // "item.edit.withdraw.cancel": "Cancel",
   "item.edit.withdraw.cancel": "Annuler",
