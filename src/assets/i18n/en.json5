@@ -617,7 +617,7 @@
 
   "browse.metadata.author.breadcrumbs": "Browse by Author",
 
-  "browse.metadata.dateissued.breadcrumbs": "Browse by Date",
+  "browse.metadata.dateissued.breadcrumbs": "Browse by Issue Date",
 
   "browse.metadata.subject.breadcrumbs": "Browse by Subject",
 
@@ -665,13 +665,13 @@
 
   "browse.startsWith.submit": "Browse",
 
-  "browse.startsWith.type_date": "Or type in a date (year-month)(numbers only) and click 'Browse'",
+  "browse.startsWith.type_date": "type in a date(YY-MM) and click 'Browse'",
 
-  "browse.startsWith.type_date.label": "Or type in a date (year-month)(numbers only) and click on the Browse button",
+  "browse.startsWith.type_date.label": "type in a date(YY-MM) and click 'Browse'",
 
   "browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
 
-  "browse.title": "Browsing {{ collection }} by {{ field }} {{ value }}",
+  "browse.title": "Browse {{ collection }} by {{ field }} {{ value }}",
 
 
   "chips.remove": "Remove chip",
@@ -2305,7 +2305,7 @@
 
   "menu.section.browse_global_by_title": "By Title",
 
-  "menu.section.browse_global_communities_and_collections": "Communities & Collections",
+  "menu.section.browse_global_communities_and_collections": "Community List",
 
 
 
