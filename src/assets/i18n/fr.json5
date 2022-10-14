@@ -863,8 +863,8 @@
   // "browse.metadata.author.breadcrumbs": "Browse by Author",
   "browse.metadata.author.breadcrumbs": "Parcourir par Auteur",
 
-  // "browse.metadata.dateissued.breadcrumbs": "Browse by Date",
-  "browse.metadata.dateissued.breadcrumbs": "Parcourir par Date",
+  // "browse.metadata.dateissued.breadcrumbs": "Browse by Issue Date",
+  "browse.metadata.dateissued.breadcrumbs": "Parcourir par Date de publication",
 
   // "browse.metadata.subject.breadcrumbs": "Browse by Subject",
   "browse.metadata.subject.breadcrumbs": "Parcourir par Sujet",
@@ -929,13 +929,13 @@
   // "browse.startsWith.submit": "Go",
   "browse.startsWith.submit": "Valider",
 
-  // "browse.startsWith.type_date": "Or type in a date (year-month)(numbers only) and click 'Browse'",
-  "browse.startsWith.type_date": "Ou tapez une date (année-mois)(chiffres uniquement) et cliquez sur 'Parcourir'",
+  // "browse.startsWith.type_date": "type in a date(YY-MM) and click 'Browse'",
+  "browse.startsWith.type_date": "tape une date(AA-MM) et cliquez sur 'Parcourir'",
 
   // "browse.startsWith.type_text": "Type the first few letters and click on the Browse on",
   "browse.startsWith.type_text": "Tapez les premières lettres et cliquez sur le bouton Parcourir",
 
-  // "browse.title": "Browsing {{ collection }} by {{ field }} {{ value }}",
+  // "browse.title": "Browse {{ collection }} by {{ field }} {{ value }}",
   "browse.title": "Parcourir {{ collection }} par {{ field }} {{ value }}",
 
 
@@ -1262,7 +1262,7 @@
   "communityList.breadcrumbs": "Liste des Communautés",
 
   // "communityList.tabTitle": "FOSRC - Community List",
-  "communityList.tabTitle": "DFSOC - Liste des Communautés",
+  "communityList.tabTitle": "Liste des Communautés",
 
   // "communityList.title": "List of Communities",
   "communityList.title": "Liste des Communautés",
@@ -3078,7 +3078,7 @@
   "menu.section.browse_global_by_title": "Titre",
 
   // "menu.section.browse_global_communities_and_collections": "Communities & Collections",
-  "menu.section.browse_global_communities_and_collections": "Communautés & Collections",
+  "menu.section.browse_global_communities_and_collections": "Liste des Communautés",
 
 
 
