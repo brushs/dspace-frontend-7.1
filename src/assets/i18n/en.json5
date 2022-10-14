@@ -1695,7 +1695,7 @@
 
   "item.edit.breadcrumbs": "Edit Item",
 
-  "item.edit.tabs.disabled.tooltip": "You're not authorized to access this tab",
+  "item.edit.tabs.disabled.tooltip": "You're not authorized to access this tab with less than two collections",
 
 
   "item.edit.tabs.mapper.head": "Collection Mapper",
