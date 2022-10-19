@@ -5093,6 +5093,9 @@
   // "submission.sections.upload.delete.confirm.title": "Delete bitstream",
   "submission.sections.upload.delete.confirm.title": "Supprimer Bitstream",
 
+  //"submission.sections.upload.download.title": "Download bitstream",
+  "submission.sections.upload.download.title": "Télécharger le flux binaire",
+
   // "submission.sections.upload.delete.submit": "Delete",
   "submission.sections.upload.delete.submit": "Supprimer",
 
