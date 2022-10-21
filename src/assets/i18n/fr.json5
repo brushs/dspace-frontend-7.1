@@ -929,8 +929,8 @@
   // "browse.startsWith.submit": "Go",
   "browse.startsWith.submit": "Valider",
 
-  // "browse.startsWith.type_date": "type in a date(YY-MM) and click 'Browse'",
-  "browse.startsWith.type_date": "tape une date(AA-MM) et cliquez sur 'Parcourir'",
+  // "browse.startsWith.type_date": "type in a date (YY-MM) and click 'Browse'",
+  "browse.startsWith.type_date": "tape une date (AAAA-MM) et cliquez sur 'Parcourir'",
 
   // "browse.startsWith.type_text": "Type the first few letters and click on the Browse on",
   "browse.startsWith.type_text": "Tapez les premières lettres et cliquez sur le bouton Parcourir",
