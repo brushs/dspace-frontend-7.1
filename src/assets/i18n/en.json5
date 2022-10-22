@@ -665,9 +665,9 @@
 
   "browse.startsWith.submit": "Browse",
 
-  "browse.startsWith.type_date": "type in a date(YY-MM) and click 'Browse'",
+  "browse.startsWith.type_date": "type in a date (YYYY-MM) and click 'Browse'",
 
-  "browse.startsWith.type_date.label": "type in a date(YY-MM) and click 'Browse'",
+  "browse.startsWith.type_date.label": "type in a date (YYYY-MM) and click 'Browse'",
 
   "browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
 
