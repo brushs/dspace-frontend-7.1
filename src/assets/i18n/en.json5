@@ -482,6 +482,7 @@
 	"community.edit.tabs.roles.head": "Assign roles",
 	"community.edit.tabs.roles.title": "Community Edit – Roles",
 	"community.form.abstract": "Short description",
+	"community.form.description": "Description",
 	"community.form.description-topic-subject-EN": "Topic/Subject *",
 	"community.form.errors.title.required": "Please enter a community name",
 	"community.form.rights": "Copyright text (HTML)",
