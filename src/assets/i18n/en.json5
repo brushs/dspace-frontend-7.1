@@ -1492,6 +1492,7 @@
 	"search.results.head": "Search results",
 	"search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting",
 	"search.results.no-results-link": "Quotes around it",
+	"search.results.view-result": "View",
 	"search.search-form.placeholder": "Search the repository",
 	"search.sidebar.close": "Back to results",
 	"search.sidebar.filters.title": "Filters",
