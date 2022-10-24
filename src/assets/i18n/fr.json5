@@ -965,6 +965,8 @@
   "community.edit.tabs.roles.title": "Édition communauté - Rôles",
   // "community.form.abstract": "Short description",
   "community.form.abstract": "Description succincte",
+  // "community.form.description": "Description",
+  "community.form.description": "Description",
   // "community.form.description-topic-subject-EN": "Topic/Subject *",
   "community.form.description-topic-subject-EN": "",
   // "community.form.errors.title.required": "Please enter a community name",
