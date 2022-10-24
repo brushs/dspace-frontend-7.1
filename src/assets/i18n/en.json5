@@ -1,4 +1,4 @@
-﻿{
+{
 	"401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
 	"401.link.home-page": "Take me to the home page.",
 	"401.unauthorized": "Unauthorized",
@@ -281,7 +281,7 @@
 	"browse.metadata.author": "Author",
 	"browse.metadata.author.breadcrumbs": "Browse by author",
 	"browse.metadata.dateissued": "Issue date",
-	"browse.metadata.dateissued.breadcrumbs": "Browse by date",
+	"browse.metadata.dateissued.breadcrumbs": "Browse by Issue Date",
 	"browse.metadata.subject": "Subject",
 	"browse.metadata.subject.breadcrumbs": "Browse by subject",
 	"browse.metadata.title": "Title",
@@ -310,7 +310,7 @@
 	"browse.startsWith.type_date": "type in a date (YYYY-MM) and click 'Browse'",
 	"browse.startsWith.type_date.label": "type in a date (YYYY-MM) and click 'Browse'",
 	"browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
-	"browse.title": "Browsing {{ collection }} by {{ field }} {{ value }}",
+	"browse.title": "Browse {{ collection }} by {{ field }} {{ value }}",
 	"chips.remove": "Remove chip",
 	"collection.create.head": "Create a collection",
 	"collection.create.notifications.success": "Collection successfully created",
@@ -1045,7 +1045,7 @@
 	"menu.section.browse_global_by_dateissued": "By issue date",
 	"menu.section.browse_global_by_subject": "By subject",
 	"menu.section.browse_global_by_title": "By title",
-	"menu.section.browse_global_communities_and_collections": "Communities & collections",
+	"menu.section.browse_global_communities_and_collections": "Community List",
 	"menu.section.control_panel": "Control panel",
 	"menu.section.curation_task": "Curation task",
 	"menu.section.edit": "Edit",
