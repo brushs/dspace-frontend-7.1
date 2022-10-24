@@ -793,6 +793,8 @@
   "collection.edit.template.title": "Modifier le modèle d’article",
   // "collection.form.abstract": "Short description",
   "collection.form.abstract": "Description succincte",
+  // "collection.form.description": "Description",
+  "collection.form.description": "Description",
   // "collection.form.description-contact-address": "Contact address*",
   "collection.form.description-contact-address": "Adresse de contact *",
   // "collection.form.description-copyright": "Copyright (HTML) *",
