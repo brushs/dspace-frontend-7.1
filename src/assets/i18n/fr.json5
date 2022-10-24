@@ -2985,6 +2985,8 @@
   "search.results.no-results": "Votre recherche n'a retourné aucun résultat. Vous n'arrivez pas à trouver ce que vous recherchez ? Essayez de mettre",
   // "search.results.no-results-link": "Quotes around it",
   "search.results.no-results-link": "des guillemets avant et après les termes recherchés",
+  // "search.results.view-result": "View",
+  "search.results.view-result": "Afficher",
   // "search.search-form.placeholder": "Search the repository",
   "search.search-form.placeholder": "Rechercher dans le référentiel ...",
   // "search.sidebar.close": "Back to results",
