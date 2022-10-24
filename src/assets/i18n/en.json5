@@ -396,6 +396,7 @@
 	"collection.edit.template.notifications.delete.success": "Successfully deleted the item template",
 	"collection.edit.template.title": "Edit template item",
 	"collection.form.abstract": "Short description",
+	"collection.form.description": "Description",
 	"collection.form.description-contact-address": "Contact address*",
 	"collection.form.description-copyright": "Copyright (HTML) *",
 	"collection.form.description-description-html": "Description (HTML)*",
