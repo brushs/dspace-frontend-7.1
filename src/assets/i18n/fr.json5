@@ -2679,6 +2679,8 @@
   "repository.title.prefix": "DFSOC :: ",
   // "repository.title.prefixDSpace": "FOSRC ::",
   "repository.title.prefixDSpace": "DFSOC :: ",
+  // "repository.title.prefixhome.title": "FOSRC ::",
+  "repository.title.prefixhome.title": "DFSOC ::",
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Ajouter",
   // "resource-policies.add.for.": "Add a new policy",
