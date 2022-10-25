@@ -1720,7 +1720,7 @@
   // "item.edit.tabs.curate.title": "Item edit – Curate",
   "item.edit.tabs.curate.title": "Édition item - Gestion de contenu",
   // "item.edit.tabs.disabled.tooltip": "You are not authorized to access this tab.",
-  "item.edit.tabs.disabled.tooltip": "Vous n'êtes pas autorisé à accéder à cet onglet",
+  "item.edit.tabs.disabled.tooltip": "Vous n'êtes pas autorisé à accéder à cet onglet si vous avez mois de deux collections.",
   // "item.edit.tabs.item-mapper.title": "Item edit – Collection mapper",
   "item.edit.tabs.item-mapper.title": "Édition Item - Collection Mapper",
   // "item.edit.tabs.mapper.head": "Collection mapper",

@@ -859,7 +859,7 @@
 	"item.edit.tabs.bitstreams.title": "Item edit – Bitstreams",
 	"item.edit.tabs.curate.head": "Curate",
 	"item.edit.tabs.curate.title": "Item edit – Curate",
-	"item.edit.tabs.disabled.tooltip": "You are not authorized to access this tab.",
+	"item.edit.tabs.disabled.tooltip": "You are not authorized to access this tab with less than two collections.",
 	"item.edit.tabs.item-mapper.title": "Item edit – Collection mapper",
 	"item.edit.tabs.mapper.head": "Collection mapper",
 	"item.edit.tabs.metadata.head": "Metadata",
