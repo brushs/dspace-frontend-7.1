@@ -1583,6 +1583,11 @@
 	"submission.sections.accesses.form.until-hint": "Select the date until when the related access condition is applied.",
 	"submission.sections.accesses.form.until-label": "Grant access until",
 	"submission.sections.accesses.form.until-placeholder": "Until",
+
+    "submission.sections.license.granted-label": "I confirm the license above (required)",
+    "submission.sections.license.required": "You must accept the license",
+    "submission.sections.license.notgranted":  "You must accept the license",
+
 	"submission.sections.ccLicense.change": "Change your license type…",
 	"submission.sections.ccLicense.confirmation": "I grant the license above.",
 	"submission.sections.ccLicense.info.close": "Close",
