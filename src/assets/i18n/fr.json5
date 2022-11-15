@@ -3172,7 +3172,7 @@
   //"submission.sections.license.required": "You must accept the license",
   "submission.sections.license.required": "Vous devez accepter la licence",
   //"submission.sections.license.notgranted":  "You must accept the license",
-  "submission.sections.license.notgranted": "Vous devez accepter la licence"
+  "submission.sections.license.notgranted": "Vous devez accepter la licence",
 
   "submission.sections.accesses.form.until-placeholder": "Jusqu’au",
   // "submission.sections.ccLicense.change": "Change your license type…",
