@@ -7,17 +7,17 @@ import {
   DynamicTextAreaModel,
 
   /* OSPR change starts - add references to various dynamic control models,as needed */
-  //DynamicCheckboxModel,
-  //DynamicColorPickerModel,
-  //DynamicDatePickerModel,
-  //DynamicEditorModel,
-  //DynamicFileUploadModel,
-  //DynamicFormArrayModel,
-  //DynamicFormGroupModel,
-  //DynamicRadioGroupModel,
+  DynamicCheckboxModel,
+  DynamicColorPickerModel,
+  DynamicDatePickerModel,
+  DynamicEditorModel,
+  DynamicFileUploadModel,
+  DynamicFormArrayModel,
+  DynamicFormGroupModel,
+  DynamicRadioGroupModel,
   DynamicSelectModel,
-  //DynamicSliderModel,
-  //DynamicSwitchModel
+  DynamicSliderModel,
+  DynamicSwitchModel
   /* OSPR change ends - add references to various dynamic control models, as needed */
 
 } from '@ng-dynamic-forms/core';
@@ -85,27 +85,27 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       id: 'description-identifications',
       name: 'dc.description.identifications',
     }),
-    //new DynamicSelectModel({
-    //  id: 'description-identifications',
-    //  name: 'dc.description.identifications',
-    //}),
-    //new DynamicSelectModel({
+    new DynamicSelectModel({
+     id: 'description-identifications',
+     name: 'dc.description.identifications',
+    }),
+    // new DynamicSelectModel({
     //  id: 'description-blank',
     //  name: 'dc.description.blank',
-    //}),
+    // }),
     /* Use a text area instread of a dropdown list for now */
     new DynamicTextAreaModel({
       id: 'description-topic-subject',
       name: 'dc.description.topic-subject',
     }),
-    //new DynamicSelectModel({
-    //  id: 'description-topic-subject',
-    //  name: 'dc.description.topic-subject',
-    //}),
-    //new DynamicSelectModel({
+    new DynamicSelectModel({
+     id: 'description-topic-subject',
+     name: 'dc.description.topic-subject',
+    }),
+    // new DynamicSelectModel({
     //  id: 'description-blank',
     //  name: 'dc.description.blank',
-    //}),
+    // }),
     new DynamicTextAreaModel({
       id: 'description-home-page',
       name: 'dc.description.home-page',
@@ -139,20 +139,20 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.description.contact-address',
     }),
     new DynamicTextAreaModel({
-      id: 'description-copyright',
-      name: 'dc.description.copyright',
-    }),
-    new DynamicTextAreaModel({
-      id: 'description-copyright-french',
-      name: 'dc.description.copyright-french',
-    }),
-    new DynamicTextAreaModel({
       id: 'description-news-iframe',
       name: 'dc.description.news-iframe',
     }),
     new DynamicTextAreaModel({
       id: 'description-news-iframe-french',
       name: 'dc.description.news-iframe-french',
+    }),
+    new DynamicTextAreaModel({
+      id: 'description-copyright',
+      name: 'dc.description.copyright',
+    }),
+    new DynamicTextAreaModel({
+      id: 'description-copyright-french',
+      name: 'dc.description.copyright-french',
     }),
 
     /* Notes: */
@@ -184,45 +184,6 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     //  name: 'dc.description.tableofcontents',
     //}),
     /* OSPR changes end - add/remove fields for testing the new dynamic control models */
-
-    /* OSPR changes start - add placeholders for additional dynamic control models */
-    //new DynamicCheckboxModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicRadioModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicColorPickerModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicDatePickerModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicFileUploadModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicFormArrayModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicFormGroupModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicSliderModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    //new DynamicSwitchModel({
-    //  id: 'description-other-names',
-    //  name: 'dc.description.other-names',
-    //}),
-    /* OSPR changes end - add placeholders for additional dynamic control models */
   ];
 
   public constructor(protected formService: DynamicFormService,
@@ -235,249 +196,3 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     super(formService, translate, notificationsService, authService, requestService, objectCache);
   }
 }
-/* OSPR changes start - add examples of test code for the various dynamic control models */
-/* (see form-builder.service.spec.ts) */
-
-  //TestBed.configureTestingModule({
-  //  imports: [ReactiveFormsModule],
-  //  providers: [
-  //    { provide: FormBuilderService, useClass: FormBuilderService },
-  //    { provide: DynamicFormValidationService, useValue: { } },
-  //    { provide: NG_VALIDATORS, useValue: testValidator, multi: true },
-  //    { provide: NG_ASYNC_VALIDATORS, useValue: testAsyncValidator, multi: true }
-  //  ]
-  //});
-
-  //const vocabularyOptions: VocabularyOptions = {
-  //  name: 'type_programme',
-  //  closed: false
-  //};
-
-  //testModel = [
-
-  //  new DynamicSelectModel<string>(
-  //    {
-  //      id: 'testSelect',
-  //      options: [
-  //        {
-  //          label: 'Option 1',
-  //          value: 'option-1'
-  //        },
-  //        {
-  //          label: 'Option 2',
-  //          value: 'option-2'
-  //        }
-  //      ],
-  //      value: 'option-3'
-  //    }
-  //  ),
-
-  //  new DynamicInputModel(
-  //    {
-  //      id: 'testInput',
-  //      mask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-  //    }
-  //  ),
-
-  //  new DynamicCheckboxGroupModel(
-  //    {
-  //      id: 'testCheckboxGroup',
-  //      group: [
-  //        new DynamicCheckboxModel(
-  //          {
-  //            id: 'testCheckboxGroup1',
-  //            value: true
-  //          }
-  //        ),
-  //        new DynamicCheckboxModel(
-  //          {
-  //            id: 'testCheckboxGroup2',
-  //            value: true
-  //          }
-  //        )
-  //      ]
-  //    }
-  //  ),
-
-  //  new DynamicRadioGroupModel<string>(
-  //    {
-  //      id: 'testRadioGroup',
-  //      options: [
-  //        {
-  //          label: 'Option 1',
-  //          value: 'option-1'
-  //        },
-  //        {
-  //          label: 'Option 2',
-  //          value: 'option-2'
-  //        }
-  //      ],
-  //      value: 'option-3'
-  //    }
-  //  ),
-
-  //  new DynamicTextAreaModel({ id: 'testTextArea' }),
-
-  //  new DynamicCheckboxModel({ id: 'testCheckbox' }),
-
-  //  new DynamicFormArrayModel(
-  //    {
-  //      id: 'testFormArray',
-  //      initialCount: 5,
-  //      groupFactory: () => {
-  //        return [
-  //          new DynamicInputModel({ id: 'testFormArrayGroupInput' }),
-  //          new DynamicFormArrayModel({
-  //            id: 'testNestedFormArray', groupFactory: () => [
-  //              new DynamicInputModel({ id: 'testNestedFormArrayGroupInput' })
-  //            ]
-  //          })
-  //        ];
-  //      }
-  //    }
-  //  ),
-
-  //  new DynamicFormGroupModel(
-  //    {
-  //      id: 'testFormGroup',
-  //      group: [
-  //        new DynamicInputModel({ id: 'nestedTestInput' }),
-  //        new DynamicTextAreaModel({ id: 'nestedTestTextArea' })
-  //      ]
-  //    }
-  //  ),
-
-  //  new DynamicSliderModel({ id: 'testSlider' }),
-
-  //  new DynamicSwitchModel({ id: 'testSwitch' }),
-
-  //  new DynamicDatePickerModel({ id: 'testDatepicker', value: new Date() }),
-
-  //  new DynamicFileUploadModel({ id: 'testFileUpload' }),
-
-  //  new DynamicEditorModel({ id: 'testEditor' }),
-
-  //  new DynamicTimePickerModel({ id: 'testTimePicker' }),
-
-  //  new DynamicRatingModel({ id: 'testRating' }),
-
-  //  new DynamicColorPickerModel({ id: 'testColorPicker' }),
-
-  //  new DynamicOneboxModel({
-  //    id: 'testOnebox',
-  //    repeatable: false,
-  //    metadataFields: [],
-  //    submissionId: '1234',
-  //    hasSelectableMetadata: false
-  //  }),
-
-  //  new DynamicScrollableDropdownModel({
-  //    id: 'testScrollableDropdown',
-  //    vocabularyOptions: vocabularyOptions,
-  //    repeatable: false,
-  //    metadataFields: [],
-  //    submissionId: '1234',
-  //    hasSelectableMetadata: false
-  //  }),
-
-  //  new DynamicTagModel({
-  //    id: 'testTag',
-  //    repeatable: false,
-  //    metadataFields: [],
-  //    submissionId: '1234',
-  //    hasSelectableMetadata: false
-  //  }),
-
-  //  new DynamicListCheckboxGroupModel({
-  //    id: 'testCheckboxList',
-  //    vocabularyOptions: vocabularyOptions,
-  //    repeatable: true
-  //  }),
-
-  //  new DynamicListRadioGroupModel({ id: 'testRadioList', vocabularyOptions: vocabularyOptions, repeatable: false }),
-
-  //  new DynamicRelationGroupModel({
-  //    submissionId,
-  //    id: 'testRelationGroup',
-  //    formConfiguration: [{
-  //      fields: [{
-  //        hints: 'Enter the name of the author.',
-  //        input: { type: 'onebox' },
-  //        label: 'Authors',
-  //        languageCodes: [],
-  //        mandatory: 'true',
-  //        mandatoryMessage: 'Required field!',
-  //        repeatable: false,
-  //        selectableMetadata: [{
-  //          controlledVocabulary: 'RPAuthority',
-  //          closed: false,
-  //          metadata: 'dc.contributor.author'
-  //        }]
-  //      } as FormFieldModel]
-  //    } as FormRowModel, {
-  //      fields: [{
-  //        hints: 'Enter the affiliation of the author.',
-  //        input: { type: 'onebox' },
-  //        label: 'Affiliation',
-  //        languageCodes: [],
-  //        mandatory: 'false',
-  //        repeatable: false,
-  //        selectableMetadata: [{
-  //          controlledVocabulary: 'OUAuthority',
-  //          closed: false,
-  //          metadata: 'local.contributor.affiliation'
-  //        }]
-  //      } as FormFieldModel]
-  //    } as FormRowModel],
-  //    mandatoryField: '',
-  //    name: 'testRelationGroup',
-  //    relationFields: [],
-  //    scopeUUID: '',
-  //    submissionScope: '',
-  //    repeatable: false,
-  //    metadataFields: [],
-  //    hasSelectableMetadata: true
-  //  }),
-
-  //  new DynamicDsDatePickerModel({ id: 'testDate' }),
-
-  //  new DynamicLookupModel({
-  //    id: 'testLookup',
-  //    repeatable: false,
-  //    metadataFields: [],
-  //    submissionId: '1234',
-  //    hasSelectableMetadata: true
-  //  }),
-
-  //  new DynamicLookupNameModel({
-  //    id: 'testLookupName',
-  //    repeatable: false,
-  //    metadataFields: [],
-  //    submissionId: '1234',
-  //    hasSelectableMetadata: true
-  //  }),
-
-  //  new DynamicQualdropModel({ id: 'testCombobox', readOnly: false, required: false }),
-
-  //  new DynamicRowArrayModel(
-  //    {
-  //      id: 'testFormRowArray',
-  //      initialCount: 5,
-  //      notRepeatable: false,
-  //      relationshipConfig: undefined,
-  //      submissionId: '1234',
-  //      isDraggable: true,
-  //      groupFactory: () => {
-  //        return [
-  //          new DynamicInputModel({ id: 'testFormRowArrayGroupInput' })
-  //        ];
-  //      },
-  //      required: false,
-  //      metadataKey: 'dc.contributor.author',
-  //      metadataFields: ['dc.contributor.author'],
-  //      hasSelectableMetadata: true
-  //    },
-  //  ),
-  //];
-
-  /* OSPR changes end - add examples of test code for the various dynamic control models */
