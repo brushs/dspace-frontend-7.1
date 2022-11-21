@@ -68,12 +68,25 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     }),
 
     /* OSPR changes start - add/remove fields for testing the new dynamic control models */
-
-    new DynamicTextAreaModel({
+  
+    new DynamicInputModel({
       id: 'description-nom',
-      name: 'dc.description.nom',
+      name: 'dc.dc.description.nom',
+      required: true,
+      validators: {
+        required: null
+      },
+      errorMessages: {
+        required: 'Please enter a name for this title'
+      },
       hint: 'create.community.other-name.hint'
     }),
+
+    // new DynamicTextAreaModel({
+    //   id: 'description-nom',
+    //   name: 'dc.description.nom',
+    //   hint: 'create.community.other-name.hint'
+    // }),
     new DynamicTextAreaModel({
       id: 'description-other-names',
       name: 'dc.description.other-names',
@@ -81,10 +94,10 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       controlTooltip: 'create.community.other-name.hint'
     }),
     /* Use a text area instread of a dropdown list for now */
-    new DynamicTextAreaModel({
-      id: 'description-identifications',
-      name: 'dc.description.identifications',
-    }),
+    // new DynamicTextAreaModel({
+    //   id: 'description-identifications',
+    //   name: 'dc.description.identifications',
+    // }),
     new DynamicSelectModel({
      id: 'description-identifications',
      name: 'dc.description.identifications',
@@ -98,14 +111,10 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       id: 'description-topic-subject',
       name: 'dc.description.topic-subject',
     }),
-    new DynamicSelectModel({
-     id: 'description-topic-subject',
-     name: 'dc.description.topic-subject',
+    new DynamicTextAreaModel({
+      id: 'description-topic-subject-french',
+      name: 'dc.description.topic-subject-french',
     }),
-    // new DynamicSelectModel({
-    //  id: 'description-blank',
-    //  name: 'dc.description.blank',
-    // }),
     new DynamicTextAreaModel({
       id: 'description-home-page',
       name: 'dc.description.home-page',
