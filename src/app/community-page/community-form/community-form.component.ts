@@ -71,7 +71,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
   
     new DynamicInputModel({
       id: 'description-nom',
-      name: 'dc.dc.description.nom',
+      name: 'dc.description.nom',
       required: true,
       validators: {
         required: null
@@ -82,31 +82,18 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       hint: 'create.community.other-name.hint'
     }),
 
-    // new DynamicTextAreaModel({
-    //   id: 'description-nom',
-    //   name: 'dc.description.nom',
-    //   hint: 'create.community.other-name.hint'
-    // }),
     new DynamicTextAreaModel({
       id: 'description-other-names',
       name: 'dc.description.other-names',
       labelTooltip: 'create.community.other-name.hint',
       controlTooltip: 'create.community.other-name.hint'
     }),
-    /* Use a text area instread of a dropdown list for now */
-    // new DynamicTextAreaModel({
-    //   id: 'description-identifications',
-    //   name: 'dc.description.identifications',
-    // }),
-    new DynamicSelectModel({
-     id: 'description-identifications',
-     name: 'dc.description.identifications',
+
+    new DynamicTextAreaModel({
+      id: 'description-identifications',
+      name: 'dc.description.identifications',
     }),
-    // new DynamicSelectModel({
-    //  id: 'description-blank',
-    //  name: 'dc.description.blank',
-    // }),
-    /* Use a text area instread of a dropdown list for now */
+
     new DynamicTextAreaModel({
       id: 'description-topic-subject',
       name: 'dc.description.topic-subject',
@@ -164,34 +151,6 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.description.copyright-french',
     }),
 
-    /* Notes: */
-    /* - these are the original fields */
-    /* - they should eventually replace the corresponding ones used for testing above */
-
-    //new DynamicTextAreaModel({
-    //  id: 'description',
-    //  name: 'dc.description',
-    //}),
-    //new DynamicTextAreaModel({
-    //  id: 'poope',
-    //  name: 'local.poope',
-    //}),
-    //new DynamicTextAreaModel({
-    //  id: 'poope-more',
-    //  name: 'local.poope.more',
-    //}),
-    //new DynamicTextAreaModel({
-    //  id: 'abstract',
-    //  name: 'dc.description.abstract',
-    //}),
-    //new DynamicTextAreaModel({
-    //  id: 'rights',
-    //  name: 'dc.rights',
-    //}),
-    //new DynamicTextAreaModel({
-    //  id: 'tableofcontents',
-    //  name: 'dc.description.tableofcontents',
-    //}),
     /* OSPR changes end - add/remove fields for testing the new dynamic control models */
   ];
 
