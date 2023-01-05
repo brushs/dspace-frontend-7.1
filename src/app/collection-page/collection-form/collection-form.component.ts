@@ -138,10 +138,9 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       id: 'tableofcontents',
       name: 'dc.description.tableofcontents',
     }),
-
     new DynamicTextAreaModel({
-      id: 'description-news-iframe-french',
-      name: 'dc.description.news-iframe-french',
+      id: 'tableofcontents-french',
+      name: 'dc.description.tableofcontents-french',
     }),
     /*This is rights.license*/
     new DynamicTextAreaModel({

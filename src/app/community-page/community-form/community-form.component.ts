@@ -142,8 +142,8 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.description.tableofcontents',
     }),
     new DynamicTextAreaModel({
-      id: 'description-news-iframe-french',
-      name: 'dc.description.news-iframe-french',
+      id: 'tableofcontents-french',
+      name: 'dc.description.tableofcontents-french',
     }),
     /*This is copyright*/
     new DynamicTextAreaModel({
