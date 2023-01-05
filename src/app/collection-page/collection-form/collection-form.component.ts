@@ -98,64 +98,63 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       id: 'description-email-address',
       name: 'dc.description.email-address',
     }),
-
+    /*This is abstract*/
     new DynamicTextAreaModel({
-      id: 'description-short-description',
-      name: 'dc.description.short-descr',
+      id: 'abstract',
+      name: 'dc.description.abstract',
     }),
 
     new DynamicTextAreaModel({
-      id: 'description-short-description-french',
-      name: 'dc.description.short-descr-french',
+      id: 'abstract-french',
+      name: 'dc.description.abstract-french',
+    }),
+    /*This is description*/
+    new DynamicTextAreaModel({
+      id: 'description',
+      name: 'dc.description',
     }),
 
     new DynamicTextAreaModel({
-      id: 'description-description-html',
-      name: 'dc.description.description-html',
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-description-html-french',
-      name: 'dc.description.description-html-french',
+      id: 'description-french',
+      name: 'dc.description.french',
     }),
 
     new DynamicTextAreaModel({
       id: 'description-contact-address',
       name: 'dc.description.contact-address',
     }),
-
+    /*This is copyright*/
     new DynamicTextAreaModel({
-      id: 'description-copyright',
-      name: 'dc.description.copyright',
+      id: 'rights',
+      name: 'dc.rights',
     }),
 
     new DynamicTextAreaModel({
-      id: 'description-copyright-french',
-      name: 'dc.description.copyright-french',
+      id: 'rights-french',
+      name: 'dc.rights.french',
     }),
-
+    /*This is tableofcontents*/
     new DynamicTextAreaModel({
-      id: 'description-news-iframe',
-      name: 'dc.description.news-iframe',
+      id: 'tableofcontents',
+      name: 'dc.description.tableofcontents',
     }),
-
     new DynamicTextAreaModel({
-      id: 'description-news-iframe-french',
-      name: 'dc.description.news-iframe-french',
+      id: 'tableofcontents-french',
+      name: 'dc.description.tableofcontents-french',
     }),
-
+    /*This is rights.license*/
     new DynamicTextAreaModel({
-      id: 'description-license',
-      name: 'dc.description.license',
+      id: 'license',
+      name: 'dc.rights.license',
     }),
 
     new DynamicTextAreaModel({
       id: 'description-license-french',
       name: 'dc.description.license-french',
     }),
-
+    /*This is provenance*/
     new DynamicTextAreaModel({
-      id: 'description-provenance',
+      id: 'provenance',
       name: 'dc.description.provenance',
     }),
     
