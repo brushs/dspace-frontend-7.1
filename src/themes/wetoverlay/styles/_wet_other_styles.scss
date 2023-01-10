@@ -18,14 +18,15 @@
       border-color: #E3F2FD;
 }
 
-.dropdown-item:hover {
-  display: block;
+
+.dropdown-item.active {
   color: rgb(0, 0, 0);
 }
 
-.dropdown-item.active {
-   //color: rgb(0, 0, 0);
-   color: red;
+.dropdown-item:hover {
+  display: block;
+  color: rgb(255, 255, 255);
+  background-color:#26374a
 }
 
 a.nav-link:hover{
@@ -59,32 +60,7 @@ a.nav-link:focus{
   border-color: #E3F2FD;
 }
 
-.btn-dark {
-  color: black;
-  background-color: #f8f9fa;
-  border-color: black;
-}
 
-.btn-outline-primary{
-  color: #207698;
-  border-color: #212529;
-}
-
-.btn-outline-primary:disabled {
-  color: #207698;
-  background-color: transparent;
-  border-color: #212529;
-}
-
-.btn-outline-secondary{
-  color: #207698;
-  border-color: #212529;
-}
-
-.btn-primary.disabled .btn-primary:disabled {
-  color: #207698;
-  border-color: #212529;
-}
 
 .badge-primary {
   color: #207698;
