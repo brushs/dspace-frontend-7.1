@@ -77,78 +77,141 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
         required: null
       },
       errorMessages: {
-        required: 'Please enter a name for this title'
+        required: 'Please enter a nom for this title'
       },
       hint: 'create.community.other-name.hint'
     }),
 
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
       id: 'description-other-names',
       name: 'dc.description.other-names',
       labelTooltip: 'create.community.other-name.hint',
-      controlTooltip: 'create.community.other-name.hint'
+      controlTooltip: 'create.community.other-name.hint',
+      required: false,
+      validators: {
+        required: null
+      },
+      errorMessages: {
+        required: 'Please enter a other name for this title'
+      },
+      hint: 'create.community.other-name.hint'
     }),
 
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
+      id: 'description-autre-nom',
+      name: 'dc.description.autre-nom',
+      labelTooltip: 'create.community.other-name.hint',
+      controlTooltip: 'create.community.other-name.hint',
+      required: false,
+      validators: {
+        required: null
+      },
+      errorMessages: {
+        required: 'Please enter a autre nom for this title'
+      },
+      hint: 'create.community.other-name.hint'
+    }),
+
+    new DynamicInputModel({
       id: 'description-identifications',
       name: 'dc.description.identifications',
+      required: false,
+      validators: {
+        required: null
+      }
     }),
 
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
+      id: 'description-identifiants',
+      name: 'dc.description.identifiants',
+      required: false,
+      validators: {
+        required: null
+      }
+    }),
+
+    new DynamicInputModel({
       id: 'description-topic-subject',
       name: 'dc.description.topic-subject',
+      required: true,
+      validators: {
+        required: null
+      }
     }),
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
       id: 'description-topic-subject-french',
       name: 'dc.description.topic-subject-french',
+      required: true,
+      validators: {
+        required: null
+      }
     }),
-    new DynamicTextAreaModel({
+
+    new DynamicInputModel({
       id: 'description-home-page',
       name: 'dc.description.home-page',
+      required: false,
+      validators: {
+        required: null
+      }
     }),
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
       id: 'description-home-page-french',
       name: 'dc.description.home-page-french',
+      required: false,
+      validators: {
+        required: null
+      }
     }),
-    new DynamicTextAreaModel({
+
+    new DynamicInputModel({
       id: 'description-email-address',
       name: 'dc.description.email-address',
+      required: false,
+      validators: {
+        required: null
+      }
+    }),
+
+    /*This is abstract*/
+    new DynamicTextAreaModel({
+      id: 'abstract',
+      name: 'dc.description.abstract',
     }),
     new DynamicTextAreaModel({
-      id: 'description-short-description',
-      name: 'dc.description.short-descr',
+      id: 'abstract-french',
+      name: 'dc.description.abstract-french',
+    }),
+    /*This is description*/
+    new DynamicTextAreaModel({
+      id: 'description',
+      name: 'dc.description',
     }),
     new DynamicTextAreaModel({
-      id: 'description-short-description-french',
-      name: 'dc.description.short-descr-french',
-    }),
-    new DynamicTextAreaModel({
-      id: 'description-description-html',
-      name: 'dc.description.description-html',
-    }),
-    new DynamicTextAreaModel({
-      id: 'description-description-html-french',
-      name: 'dc.description.description-html-french',
+      id: 'description-french',
+      name: 'dc.description.french',
     }),
     new DynamicTextAreaModel({
       id: 'description-contact-address',
       name: 'dc.description.contact-address',
     }),
+    /*This is tableOfContents*/
     new DynamicTextAreaModel({
-      id: 'description-news-iframe',
-      name: 'dc.description.news-iframe',
+      id: 'tableofcontents',
+      name: 'dc.description.tableofcontents',
     }),
     new DynamicTextAreaModel({
-      id: 'description-news-iframe-french',
-      name: 'dc.description.news-iframe-french',
+      id: 'tableofcontents-french',
+      name: 'dc.description.tableofcontents-french',
+    }),
+    /*This is copyright*/
+    new DynamicTextAreaModel({
+      id: 'rights',
+      name: 'dc.rights',
     }),
     new DynamicTextAreaModel({
-      id: 'description-copyright',
-      name: 'dc.description.copyright',
-    }),
-    new DynamicTextAreaModel({
-      id: 'description-copyright-french',
-      name: 'dc.description.copyright-french',
+      id: 'rights-french',
+      name: 'dc.rights.french',
     }),
 
     /* OSPR changes end - add/remove fields for testing the new dynamic control models */

@@ -62,107 +62,79 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       },
     }),
 
-    new DynamicTextAreaModel({
-      id: 'description-other-names',
-      name: 'dc.description.other-names',
-      labelTooltip: 'create.community.other-name.hint',
-      controlTooltip: 'create.community.other-name.hint'
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-identifications',
-      name: 'dc.description.identifications',
-    }),
-
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
       id: 'description-topic-subject',
       name: 'dc.description.topic-subject',
+      required: true,
+      validators: {
+        required: null
+      }
+    }),
+    new DynamicInputModel({
+      id: 'description-topic-subject-french',
+      name: 'dc.description.topic-subject-french',
+      required: true,
+      validators: {
+        required: null
+      }
     }),
 
+    /*This is description*/
     new DynamicTextAreaModel({
-     id: 'description-topic-subject-french',
-     name: 'dc.description.topic-subject-french',
+      id: 'description',
+      name: 'dc.description',
+    }),
+    new DynamicTextAreaModel({
+      id: 'description-french',
+      name: 'dc.description.french',
     }),
 
-    new DynamicTextAreaModel({
-      id: 'description-home-page',
-      name: 'dc.description.home-page',
-    }),
-    
-    new DynamicTextAreaModel({
-      id: 'description-home-page-french',
-      name: 'dc.description.home-page-french',
-    }),
-
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
       id: 'description-email-address',
       name: 'dc.description.email-address',
+      required: false,
+      validators: {
+        required: null
+      }
     }),
 
+    /*This is copyright*/
     new DynamicTextAreaModel({
-      id: 'description-short-description',
-      name: 'dc.description.short-descr',
+      id: 'rights',
+      name: 'dc.rights',
     }),
-
     new DynamicTextAreaModel({
-      id: 'description-short-description-french',
-      name: 'dc.description.short-descr-french',
+      id: 'rights-french',
+      name: 'dc.rights.french',
     }),
 
+    /*This is rights.license*/
     new DynamicTextAreaModel({
-      id: 'description-description-html',
-      name: 'dc.description.description-html',
+      id: 'license',
+      name: 'dc.rights.license',
     }),
-
-    new DynamicTextAreaModel({
-      id: 'description-description-html-french',
-      name: 'dc.description.description-html-french',
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-contact-address',
-      name: 'dc.description.contact-address',
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-copyright',
-      name: 'dc.description.copyright',
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-copyright-french',
-      name: 'dc.description.copyright-french',
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-news-iframe',
-      name: 'dc.description.news-iframe',
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-news-iframe-french',
-      name: 'dc.description.news-iframe-french',
-    }),
-
-    new DynamicTextAreaModel({
-      id: 'description-license',
-      name: 'dc.description.license',
-    }),
-
     new DynamicTextAreaModel({
       id: 'description-license-french',
       name: 'dc.description.license-french',
     }),
 
-    new DynamicTextAreaModel({
-      id: 'description-provenance',
+    new DynamicInputModel({
+      id: 'provenance',
       name: 'dc.description.provenance',
+      required: false,
+      validators: {
+        required: null
+      }
     }),
-    
-    new DynamicTextAreaModel({
+    new DynamicInputModel({
       id: 'description-provenance-french',
       name: 'dc.description.provenance-french',
+      required: false,
+      validators: {
+        required: null
+      }
     }),
+
   ];
 
   public constructor(protected formService: DynamicFormService,
