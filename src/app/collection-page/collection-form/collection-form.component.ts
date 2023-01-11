@@ -49,30 +49,92 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
         required: 'Please enter a name for this title'
       },
     }),
+    /* OSPR changes start - add/remove fields for testing the new dynamic control models */
+    new DynamicInputModel({
+      id: 'description-nom',
+      name: 'dc.description.nom',
+      required: true,
+      validators: {
+        required: null
+      },
+      errorMessages: {
+        required: 'Please enter a name for this title'
+      },
+    }),
+
+    new DynamicInputModel({
+      id: 'description-topic-subject',
+      name: 'dc.description.topic-subject',
+      required: true,
+      validators: {
+        required: null
+      }
+    }),
+    new DynamicInputModel({
+      id: 'description-topic-subject-french',
+      name: 'dc.description.topic-subject-french',
+      required: true,
+      validators: {
+        required: null
+      }
+    }),
+
+    /*This is description*/
     new DynamicTextAreaModel({
       id: 'description',
       name: 'dc.description',
     }),
     new DynamicTextAreaModel({
-      id: 'abstract',
-      name: 'dc.description.abstract',
+      id: 'description-french',
+      name: 'dc.description.french',
     }),
+
+    new DynamicInputModel({
+      id: 'description-email-address',
+      name: 'dc.description.email-address',
+      required: false,
+      validators: {
+        required: null
+      }
+    }),
+
+    /*This is copyright*/
     new DynamicTextAreaModel({
       id: 'rights',
       name: 'dc.rights',
     }),
     new DynamicTextAreaModel({
-      id: 'tableofcontents',
-      name: 'dc.description.tableofcontents',
+      id: 'rights-french',
+      name: 'dc.rights.french',
     }),
+
+    /*This is rights.license*/
     new DynamicTextAreaModel({
       id: 'license',
       name: 'dc.rights.license',
     }),
     new DynamicTextAreaModel({
+      id: 'description-license-french',
+      name: 'dc.description.license-french',
+    }),
+
+    new DynamicInputModel({
       id: 'provenance',
       name: 'dc.description.provenance',
+      required: false,
+      validators: {
+        required: null
+      }
     }),
+    new DynamicInputModel({
+      id: 'description-provenance-french',
+      name: 'dc.description.provenance-french',
+      required: false,
+      validators: {
+        required: null
+      }
+    }),
+
   ];
 
   public constructor(protected formService: DynamicFormService,

@@ -306,6 +306,34 @@
     }
 
     .btn-outline-secondary {
+      // color: #207698;
       color: #212529;
-      border-color: #f8f9fa;
+      border-color: #212529;;
+  }
+
+  .btn-outline-secondary:hover {
+    color:#ffffff;
+    background-color:#0a270a;
+  }
+
+  .btn-dark {
+    color: black;
+    background-color: #f8f9fa;
+    border-color: black;
+  }
+  
+  .btn-outline-primary{
+    color: #207698;
+    border-color: #212529;
+  }
+  
+  .btn-outline-primary:disabled {
+    color: #207698;
+    background-color: transparent;
+    border-color: #212529;
+  }
+  
+  .btn-primary.disabled .btn-primary:disabled {
+    color: #207698;
+    border-color: #212529;
   }
