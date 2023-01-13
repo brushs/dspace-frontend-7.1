@@ -8,9 +8,9 @@ PLease replace this text with the deatail of the patch(s) that need to be applie
 
 ## Environments
 Please add a checkmar to each envrionemtn where we need to deploy the patch
-[ ] Prod
-[ ] Pre-Prod
-[ ] Dev
+- [ ] Prod
+- [ ] Pre-Prod
+- [ ] Dev
 
 
 ## links
