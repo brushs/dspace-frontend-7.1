@@ -8,6 +8,8 @@
 </div>
 <ds-page-with-sidebar [id]="'search-page'" [sidebarContent]="sidebarContent">
     <div class="row">
+        <!-- Adding title in h1 -->
+        <h1 id="wb-cont">{{'search.form.search' | translate}}</h1>
         <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
             <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
