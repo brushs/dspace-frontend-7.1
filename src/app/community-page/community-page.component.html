@@ -24,7 +24,7 @@
           <ds-dso-page-edit-button *ngIf="isCommunityAdmin$ | async" [pageRoute]="communityPageRoute$ | async" [dso]="communityPayload" [tooltipMsg]="'community.page.edit'"></ds-dso-page-edit-button>
         </div>
       </div>
-      <!--FOSRC section defined in community page.-->
+
       <section class="comcol-page-browse-section">
         <!-- Browse-By Links -->
         <ds-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">
