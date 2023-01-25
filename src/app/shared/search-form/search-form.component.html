@@ -1,4 +1,5 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="row" action="/search">
+<h1 id="wb-cont">{{'search.form.search' | translate}}</h1>
 <div *ngIf="isNotEmpty(scopes)" class="col-12 col-sm-3">
   <select  name="scope" class="form-control" aria-label="Search scope" (change)="onScopeChange($event.target.value)" tabindex="0">
     <option value>{{'search.form.search_dspace' | translate}}</option>

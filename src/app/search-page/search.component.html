@@ -10,26 +10,18 @@
 </div>
 <ds-page-with-sidebar [id]="'search-page'" [sidebarContent]="sidebarContent">
     <div class="row">
-        <!-- Adding title in h1 -->
-        <h1 id="wb-cont">{{'search.form.search' | translate}}</h1>
+        
         <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+            <h2>{{'search.results.head' | translate}}</h2>
             <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
             <ds-view-mode-switch [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch>
         </div>
         <div id="search-content" class="col-12">
-            <div class="d-block d-md-none search-controls clearfix">
-                
-                <!-- <button (click)="openSidebar()" aria-controls="#search-body"
-                        class="btn btn-outline-primary float-right open-sidebar"><i
-                        class="fas fa-sliders"></i> {{"search.sidebar.open"
-                        | translate}}
-                </button> -->
-            </div>
             <ds-search-results [searchResults]="resultsRD$ | async"
                                [searchConfig]="searchOptions$ | async"
                                [configuration]="configuration$ | async"
-                               [disableHeader]= true
+                               disableHeader= "true"
                                [context]="context"></ds-search-results>
         </div>
     </div>

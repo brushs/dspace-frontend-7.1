@@ -1,4 +1,3 @@
-<h2 *ngIf= true>{{ (configuration ? configuration + '.search.results.head' : 'search.results.head') | translate }}</h2>
 
 <div *ngIf="searchResults?.hasSucceeded && !searchResults?.isLoading && searchResults?.payload?.page.length > 0" @fadeIn>
         <ds-viewable-collection
