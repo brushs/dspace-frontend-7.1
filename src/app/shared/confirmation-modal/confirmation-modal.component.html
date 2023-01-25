@@ -9,10 +9,10 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="cancel btn btn-outline-secondary" (click)="cancelPressed()" aria-label="Cancel">
-      <i class="fas fa-times"></i> {{ cancelLabel | translate:{dsoName: dso?.name} }}
+      <span aria-hidden="true" class="fas fa-times"></span> {{ cancelLabel | translate:{dsoName: dso?.name} }}
     </button>
     <button type="button" class="confirm btn btn-{{brandColor}}" (click)="confirmPressed()" aria-label="Confirm" ngbAutofocus>
-      <i *ngIf="confirmIcon" class="{{confirmIcon}}"></i> {{ confirmLabel | translate:{dsoName: dso?.name} }}
+      <span aria-hidden="true" *ngIf="confirmIcon" class="{{confirmIcon}}"></span> {{ confirmLabel | translate:{dsoName: dso?.name} }}
     </button>
   </div>
 </div>
