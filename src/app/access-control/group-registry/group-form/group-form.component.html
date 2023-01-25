@@ -26,12 +26,12 @@
                (submitForm)="onSubmit()">
         <div before class="btn-group">
           <button (click)="onCancel()"
-                  class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> {{messagePrefix + '.return' | translate}}</button>
+                  class="btn btn-outline-secondary"><span aria-hidden="true" class="fas fa-arrow-left"></span> {{messagePrefix + '.return' | translate}}</button>
         </div>
         <div after *ngIf="groupBeingEdited != null" class="btn-group">
           <button class="btn btn-danger delete-button" [disabled]="!(canEdit$ | async) || groupBeingEdited.permanent"
                   (click)="delete()">
-            <i class="fa fa-trash"></i> {{ messagePrefix + '.actions.delete' | translate}}
+            <span aria-hidden="true" class="fa fa-trash"></span> {{ messagePrefix + '.actions.delete' | translate}}
           </button>
         </div>
       </ds-form>

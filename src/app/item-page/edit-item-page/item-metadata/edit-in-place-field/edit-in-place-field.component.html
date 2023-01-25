@@ -50,22 +50,26 @@
         <button [disabled]="!(canSetEditable() | async)" *ngIf="!(editable | async)"
                 (click)="setEditable(true)" class="btn btn-outline-primary btn-sm"
                 title="{{'item.edit.metadata.edit.buttons.edit' | translate}}">
-            <i class="fas fa-edit fa-fw"></i>
+            <span aria-hidden="true" class="fas fa-edit fa-fw"></span>
+            <span class="wb-inv">{{'item.edit.metadata.edit.buttons.edit' | translate}}</span>
         </button>
         <button [disabled]="!(canSetUneditable() | async) || (valid | async) === false" *ngIf="(editable | async)"
                 (click)="setEditable(false)" class="btn btn-outline-success btn-sm"
                 title="{{'item.edit.metadata.edit.buttons.unedit' | translate}}">
-            <i class="fas fa-check fa-fw"></i>
+            <span aria-hidden="true" class="fas fa-check fa-fw"></span>
+            <span class="wb-inv">{{'item.edit.metadata.edit.buttons.unedit' | translate}}</span>
         </button>
         <button [disabled]="!(canRemove() | async)" (click)="remove()"
                 class="btn btn-outline-danger btn-sm"
                 title="{{'item.edit.metadata.edit.buttons.remove' | translate}}">
-            <i class="fas fa-trash-alt fa-fw"></i>
+            <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
+            <span class="wb-inv">{{'item.edit.metadata.edit.buttons.remove' | translate}}</span>
         </button>
         <button [disabled]="!(canUndo() | async)" (click)="removeChangesFromField()"
                 class="btn btn-outline-warning btn-sm"
                 title="{{'item.edit.metadata.edit.buttons.undo' | translate}}">
-            <i class="fas fa-undo-alt fa-fw"></i>
+            <span aria-hidden="true" class="fas fa-undo-alt fa-fw"></span>
+            <span class="wb-inv">{{'item.edit.metadata.edit.buttons.undo' | translate}}</span>
         </button>
     </div>
 </td>

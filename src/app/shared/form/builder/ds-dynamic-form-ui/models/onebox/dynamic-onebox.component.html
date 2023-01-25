@@ -21,13 +21,13 @@
 </ng-template>
 
 <div *ngIf="!(isHierarchicalVocabulary() | async)" class="position-relative right-addon">
-  <i *ngIf="searching" class="fas fa-circle-notch fa-spin fa-2x fa-fw text-primary position-absolute mt-1 p-0" aria-hidden="true"></i>
-  <i *ngIf="!searching"
+  <span *ngIf="searching" class="fas fa-circle-notch fa-spin fa-2x fa-fw text-primary position-absolute mt-1 p-0" aria-hidden="true"></span>
+  <span *ngIf="!searching"
      dsAuthorityConfidenceState
      class="far fa-circle fa-2x fa-fw position-absolute mt-1 p-0"
      aria-hidden="true"
      [authorityValue]="currentValue"
-     (whenClickOnConfidenceNotAccepted)="whenClickOnConfidenceNotAccepted($event)"></i>
+     (whenClickOnConfidenceNotAccepted)="whenClickOnConfidenceNotAccepted($event)"></span>
   <input #instance="ngbTypeahead"
          class="form-control"
          [attr.aria-labelledby]="'label_' + model.id"
@@ -52,8 +52,8 @@
 </div>
 
 <div *ngIf="(isHierarchicalVocabulary() | async)" class="position-relative right-addon">
-  <i class="dropdown-toggle position-absolute tree-toggle" (click)="openTree($event)"
-     aria-hidden="true"></i>
+  <span class="dropdown-toggle position-absolute tree-toggle" (click)="openTree($event)"
+     aria-hidden="true"></span>
   <input class="form-control"
          [attr.aria-labelledby]="'label_' + model.id"
          [attr.autoComplete]="model.autoComplete"

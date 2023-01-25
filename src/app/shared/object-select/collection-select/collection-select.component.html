@@ -34,8 +34,10 @@
             [ngClass]="{'btn-danger': dangerConfirm, 'btn-primary': !dangerConfirm}"
             [disabled]="selectedIds?.length === 0"
             (click)="confirmSelected()">
-      <i class="fas fa-trash"></i> {{confirmButton | translate}}
+      <span aria-hidden="true" class="fas fa-trash"></span> {{confirmButton | translate}}
     </button>
-    <button class="btn btn-outline-secondary collection-cancel float-right mr-1" (click)="onCancel()"><i class="fas fa-times"></i> {{cancelButton | translate}}</button>
+    <button class="btn btn-outline-secondary collection-cancel float-right mr-1" (click)="onCancel()">
+      <span aria-hidden="true" class="fas fa-times"></span> {{cancelButton | translate}}
+    </button>
   </div>
 </ng-container>

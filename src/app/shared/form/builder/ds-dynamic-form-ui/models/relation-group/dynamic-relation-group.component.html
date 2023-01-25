@@ -34,22 +34,25 @@
                 class="btn btn-link"
                 [disabled]="isMandatoryFieldEmpty()"
                 (click)="save()">
-          <i class="fas fa-save text-primary fa-2x"
-             aria-hidden="true"></i>
+          <span class="fas fa-save text-primary fa-2x" aria-hidden="true"></span>
+          <span class="wb-inv">{{'form.save' | translate}}</span>
         </button>
         <button type="button"
                 class="btn btn-link"
                 [disabled]="!editMode"
                 (click)="delete()">
-          <i class="fas fa-trash text-danger fa-2x"
-             aria-hidden="true"></i>
+          <span class="fas fa-trash text-danger fa-2x"
+             aria-hidden="true"></span>
+          <span class="wb-inv">{{'form.remove' | translate}}</span>
+
         </button>
         <button type="button"
                 class="btn btn-link"
                 [disabled]="isMandatoryFieldEmpty()"
                 (click)="clear()">
-          <i class="fas fa-undo fa-2x"
-             aria-hidden="true"></i>
+          <span class="fas fa-undo fa-2x"
+             aria-hidden="true"></span>
+             <span class="wb-inv">{{'form.undo' | translate}}</span>
         </button>
 
     </div>

@@ -8,7 +8,9 @@
         <div *ngIf="!isEPersonFormShown">
           <button class="mr-auto btn btn-success addEPerson-button"
                   (click)="isEPersonFormShown = true">
-            <i class="fas fa-plus"></i>
+            <!-- OSPR Changes- i to span -->
+            <span aria-hidden="true" class="fas fa-plus"></span>
+            <!-- End OSPR Changes -->
             <span class="d-none d-sm-inline">{{labelPrefix + 'button.add' | translate}}</span>
           </button>
         </div>
@@ -36,7 +38,8 @@
                      [placeholder]="(labelPrefix + 'search.placeholder' | translate)">
               <span class="input-group-append">
                 <button type="submit" class="search-button btn btn-primary">
-                  <i class="fas fa-search"></i> {{ labelPrefix + 'search.button' | translate }}
+                  <!-- OSPR Changes- i to span -->
+                  <span aria-hidden="true" class="fas fa-search"></span> {{ labelPrefix + 'search.button' | translate }}
                 </button>
               </span>
             </div>
@@ -77,12 +80,14 @@
                     <button class="delete-button" (click)="toggleEditEPerson(epersonDto.eperson)"
                             class="btn btn-outline-primary btn-sm access-control-editEPersonButton"
                             title="{{labelPrefix + 'table.edit.buttons.edit' | translate: {name: epersonDto.eperson.name} }}">
-                      <i class="fas fa-edit fa-fw"></i>
+                      <!-- OSPR Changes- i to span -->
+                      <span aria-hidden="true" class="fas fa-edit fa-fw"></span>
+                      <span class="wb-inv">{{labelPrefix + 'table.edit.buttons.edit' | translate: {name: epersonDto.eperson.name} }}</span>
                     </button>
                     <button [disabled]="!epersonDto.ableToDelete" (click)="deleteEPerson(epersonDto.eperson)"
                             class="btn btn-outline-danger btn-sm access-control-deleteEPersonButton"
                             title="{{labelPrefix + 'table.edit.buttons.remove' | translate: {name: epersonDto.eperson.name} }}">
-                      <i class="fas fa-trash-alt fa-fw"></i>
+                      <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
                     </button>
                   </div>
                 </td>
