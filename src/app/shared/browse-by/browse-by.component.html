@@ -2,6 +2,7 @@
   <!-- OSPR Changes- modifying h3 to h1-->
   <h1 id="wb-cont" [ngClass]="{'sr-only': parentname }" >{{title | translate}}</h1>
   <!-- modified h3 to h1-->
+  <section>
   <ng-container *ngComponentOutlet="getStartsWithComponent(); injector: objectInjector;"></ng-container>
   <div *ngIf="objects?.hasSucceeded && !objects?.isLoading && objects?.payload?.page.length > 0" @fadeIn>
     <div *ngIf="!enableArrows">
@@ -70,4 +71,5 @@
   <div *ngIf="!objects?.isLoading && objects?.payload?.page.length === 0" class="alert alert-info w-100" role="alert">
     {{'browse.empty' | translate}}
   </div>
+  </section>
 </ng-container>
