@@ -35,7 +35,7 @@
                   [disabled]="!(isFormValid() | async) || (isProcessing | async)"
                   (click)="onSubmit()">
             <span *ngIf="(isProcessing | async)">
-                  <i class='fas fa-circle-notch fa-spin'></i> {{'submission.workflow.tasks.generic.processing' | translate}}
+                  <span aria-hidden="true" class='fas fa-circle-notch fa-spin'></span> {{'submission.workflow.tasks.generic.processing' | translate}}
                 </span>
             <span *ngIf="!(isProcessing | async)">
                   {{'form.submit' | translate}}

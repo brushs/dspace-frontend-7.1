@@ -7,7 +7,11 @@
        routerLinkActive="active"
        [class.active]="currentMode === viewModeEnum.ListElement"
        class="btn btn-secondary">
-          <i class="fas fa-list" title="{{'search.view-switch.show-list' | translate}}"></i>
+         <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+         <!-- <i class="fas fa-list" title="{{'search.view-switch.show-list' | translate}}"></i> -->
+         <span aria-hidden="true" class="fas fa-list" title="{{'search.view-switch.show-list' | translate}}"></span>
+         <span class="wb-inv">{{'search.view-switch.show-list' | translate}}</span>
+         <!-- End OSPR Changes -->
     </a>
     <a *ngIf="isToShow(viewModeEnum.GridElement)"
        routerLink="."
@@ -17,7 +21,11 @@
        routerLinkActive="active"
        [class.active]="currentMode === viewModeEnum.GridElement"
        class="btn btn-secondary">
-          <i class="fas fa-th-large" title="{{'search.view-switch.show-grid' | translate}}"></i>
+        <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+        <!-- <i class="fas fa-th-large" title="{{'search.view-switch.show-grid' | translate}}"></i> -->
+        <span aria-hidden="true" class="fas fa-th-large" title="{{'search.view-switch.show-grid' | translate}}"></span>
+        <span class="wb-inv">{{'search.view-switch.show-grid' | translate}}</span>
+        <!-- End OSPR Changes -->
     </a>
     <a *ngIf="isToShow(viewModeEnum.DetailedListElement)"
        routerLink="."
@@ -27,6 +35,11 @@
        routerLinkActive="active"
        [class.active]="currentMode === viewModeEnum.DetailedListElement"
        class="btn btn-secondary">
-      <i class="far fa-square" title="{{'search.view-switch.show-detail' | translate}}"></i>
+        <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+        <!-- <i class="far fa-square" title="{{'search.view-switch.show-detail' | translate}}"></i> -->
+        <span aria-hidden="true" class="far fa-square" title="{{'search.view-switch.show-detail' | translate}}"></span>
+        <span class="wb-inv">{{'search.view-switch.show-detail' | translate}}</span>
+        <!-- End OSPR Changes -->
+
     </a>
 </div>

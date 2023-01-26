@@ -6,15 +6,15 @@
             class="btn btn-danger"
             [disabled]="(processingSaveStatus | async) || (processingDepositStatus | async)"
             (click)="$event.preventDefault();confirmDiscard(content)">
-      <i class="fas fa-trash"></i> {{'submission.general.discard.submit' | translate}}
+      <span aria-hidden="true" class="fas fa-trash"></span> {{'submission.general.discard.submit' | translate}}
     </button>
   </div>
   <div class="col text-right d-flex justify-content-end align-items-center">
     <span *ngIf="!(hasUnsavedModification | async) && !(processingSaveStatus | async) && !(processingDepositStatus | async)">
-      <i class="fas fa-check-circle"></i> {{'submission.general.info.saved' | translate}}
+      <span aria-hidden="true" class="fas fa-check-circle"></span> {{'submission.general.info.saved' | translate}}
     </span>
     <span *ngIf="(hasUnsavedModification | async) && !(processingSaveStatus | async) && !(processingDepositStatus | async)">
-      <i class="fas fa-exclamation-circle"></i> {{'submission.general.info.pending-changes' | translate}}
+      <span aria-hidden="true" class="fas fa-exclamation-circle"></span> {{'submission.general.info.pending-changes' | translate}}
     </span>
     <div *ngIf="(processingSaveStatus | async) || (processingDepositStatus | async)" class="col d-flex justify-content-end align-items-center">
       <div class="progress w-75">
@@ -34,7 +34,7 @@
               id="save"
               [disabled]="false"
               (click)="save($event)">
-        <span><i class="fas fa-save"></i> {{'submission.general.save' | translate}}</span>
+        <span><span aria-hidden="true" class="fas fa-save"></span> {{'submission.general.save' | translate}}</span>
       </button>
       <!-- OSPR change ends here -->
       <button type="button"
@@ -44,7 +44,7 @@
               id="saveForLater"
               [disabled]="(processingSaveStatus | async) || (processingDepositStatus | async)"
               (click)="saveLater($event)">
-        <span><i class="fas fa-save"></i> {{'submission.general.save-later' | translate}}</span>
+        <span><span aria-hidden="true" class="fas fa-save"></span> {{'submission.general.save-later' | translate}}</span>
       </button>
       <!-- OSPR change starts here -->
       <!-- Notes:
@@ -57,7 +57,7 @@
               class="btn btn-success"
               [disabled]="false"
               (click)="deposit($event)">
-        <span><i class="fas fa-plus"></i> {{'submission.general.deposit' | translate}}</span>
+        <span><span aria-hidden="true" class="fas fa-plus"></span> {{'submission.general.deposit' | translate}}</span>
       </button>
       <!-- OSPR change ends here -->
     </div>

@@ -10,7 +10,7 @@
       <div class="align-middle pt-2">
         <a *ngIf="node!==loadingNode" [routerLink]="" (click)="getNextPage(node)"
            class="btn btn-outline-primary btn-sm" role="button">
-           <i class="fas fa-angle-down"></i> {{ 'communityList.showMore' | translate }}
+           <span aria-hidden="true" class="fas fa-angle-down"></span> {{ 'communityList.showMore' | translate }}
         </a>
         <ds-loading *ngIf="node===loadingNode && dataSource.loading$ | async" class="ds-loading"></ds-loading>
       </div>

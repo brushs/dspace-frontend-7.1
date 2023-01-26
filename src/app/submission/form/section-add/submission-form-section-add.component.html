@@ -8,7 +8,7 @@
           [disabled]="!(hasSections$ | async)"
           [ngClass]="{'w-100': (windowService.isXs() | async)}"
           ngbDropdownToggle>
-          {{ 'submission.sections.general.add-more' | translate }} <i class="fa fa-plus" aria-hidden="true"></i>
+          {{ 'submission.sections.general.add-more' | translate }} <span aria-hidden="true" class="fa fa-plus" aria-hidden="true"></span>
   </button>
   <div ngbDropdownMenu
        class="sections-dropdown-menu"

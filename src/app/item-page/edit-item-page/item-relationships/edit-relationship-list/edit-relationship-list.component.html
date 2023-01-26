@@ -1,7 +1,7 @@
 <h5>
     {{getRelationshipMessageKey() | async | translate}}
     <button class="ml-2 btn btn-success" (click)="openLookup()">
-        <i class="fas fa-plus"></i>
+        <span aria-hidden="true" class="fas fa-plus"></span>
         <span class="d-none d-sm-inline">&nbsp;{{"item.edit.relationships.edit.buttons.add" | translate}}</span>
     </button>
 </h5>

@@ -4,7 +4,8 @@
      params: {endColor: (sidebarActiveBg | async)}}">
     <div class="icon-wrapper">
         <a class="nav-item nav-link shortcut-icon" attr.aria.labelledby="sidebarName-{{section.id}}" [title]="('menu.section.icon.' + section.id) | translate" (click)="toggleSection($event)" href="javascript:void(0);">
-            <i class="fas fa-{{section.icon}} fa-fw"></i>
+            <span aria-hidden="true" class="fas fa-{{section.icon}} fa-fw"></span>
+            <span class="wb-inv">{{('menu.section.icon.' + section.id) | translate}}</span>
         </a>
     </div>
     <div class="sidebar-collapsible">
@@ -14,8 +15,9 @@
                 <ng-container
                         *ngComponentOutlet="(sectionMap$ | async).get(section.id).component; injector: (sectionMap$ | async).get(section.id).injector;"></ng-container>
             </span>
-            <i class="fas fa-chevron-right fa-pull-right"
-               [@rotate]="(expanded | async) ? 'expanded' : 'collapsed'" [title]="('menu.section.toggle.' + section.id) | translate"></i>
+            <span aria-hidden="true" class="fas fa-chevron-right fa-pull-right"
+               [@rotate]="(expanded | async) ? 'expanded' : 'collapsed'" [title]="('menu.section.toggle.' + section.id) | translate"></span>
+               <span class="wb-inv">{{('menu.section.toggle.' + section.id) | translate}}</span>
         </a>
         <ul class="sidebar-sub-level-items list-unstyled" @slide *ngIf="(expanded | async)">
             <li *ngFor="let subSection of (subSections$ | async)">

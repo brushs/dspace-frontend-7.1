@@ -35,10 +35,10 @@
             <a class="nav-item nav-link shortcut-icon"
                href="javascript:void(0);"
                (click)="toggle($event)">
-                <i *ngIf="(menuCollapsed | async)" class="fas fa-fw fa-angle-double-right"
-                   [title]="'menu.section.icon.pin' | translate"></i>
-                <i *ngIf="!(menuCollapsed | async)" class="fas fa-fw fa-angle-double-left"
-                   [title]="'menu.section.icon.unpin' | translate"></i>
+                <span *ngIf="(menuCollapsed | async)" class="fas fa-fw fa-angle-double-right"
+                   [title]="'menu.section.icon.pin' | translate"></span>
+                <span *ngIf="!(menuCollapsed | async)" class="fas fa-fw fa-angle-double-left"
+                   [title]="'menu.section.icon.unpin' | translate"></span>
             </a>
             <div class="sidebar-collapsible">
                 <a class="nav-item nav-link sidebar-section"

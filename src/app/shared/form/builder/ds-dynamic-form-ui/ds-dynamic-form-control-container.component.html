@@ -41,7 +41,9 @@
                     type="button"
                     ngbTooltip="{{'form.lookup-help' | translate}}"
                     placement="top"
-                    (click)="openLookup(); $event.stopPropagation();"><i class="fa fa-search"></i>
+                    (click)="openLookup(); $event.stopPropagation();">
+                    <span aria-hidden="true" class="fa fa-search"></span>
+                    <span class="wb-inv">{{'form.lookup-help' | translate}}</span>
             </button>
         </div>
     </div>
