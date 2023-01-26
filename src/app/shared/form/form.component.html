@@ -20,7 +20,10 @@
                     attr.aria-label="{{'form.remove' | translate}}"
                     (click)="removeItem($event, context, index)"
                     [disabled]="group.context.groups.length === 1 || isItemReadOnly(context, index)">
-              <span><i class="fas fa-trash" aria-hidden="true"></i></span>
+              <span>
+                <span class="fas fa-trash" aria-hidden="true"></span>
+                <span class="wb-inv">{{'form.remove' | translate}}</span>
+              </span>
             </button>
         </div>
         <div *ngIf="(!context.notRepeatable) && index === (group.context.groups.length - 1)" class="clearfix pl-4 w-100">
@@ -30,7 +33,9 @@
                     attr.aria-label="{{'form.add' | translate}}"
                     [disabled]="isItemReadOnly(context, index)"
                     (click)="insertItem($event, group.context, group.context.groups.length)">
-              <span><i class="fas fa-plus"></i> {{'form.add' | translate}}</span>
+              <span>
+                <span aria-hidden="true" class="fas fa-plus"></span> {{'form.add' | translate}}
+              </span>
             </button> 
           </div>
         </div>
@@ -60,11 +65,11 @@
         <div class="col text-right">
           <ng-content select="[before]"></ng-content>
             <button *ngIf="displayCancel" type="reset" class="btn btn-outline-secondary" (click)="reset()">
-              <i class="fa fa-times"></i> {{cancelLabel | translate}}
+              <span aria-hidden="true" class="fa fa-times"></span> {{cancelLabel | translate}}
             </button>
             <ng-content select="[between]"></ng-content>
             <button *ngIf="displaySubmit" type="submit" class="btn btn-primary" (click)="onSubmit()"
-                    [disabled]="!(isValid() | async)"><i class="fas fa-save"></i> {{submitLabel | translate}}
+                    [disabled]="!(isValid() | async)"><span aria-hidden="true" class="fas fa-save"></span> {{submitLabel | translate}}
             </button>
             <ng-content select="[after]"></ng-content>
         </div>

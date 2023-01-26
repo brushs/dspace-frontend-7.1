@@ -1,6 +1,7 @@
 <li class="sidebar-section">
     <a href="javascript:void(0);" class="nav-item nav-link shortcut-icon" attr.aria-labelledby="sidebarName-{{section.id}}" [title]="('menu.section.icon.' + section.id) | translate" [routerLink]="itemModel.link">
-        <i class="fas fa-{{section.icon}} fa-fw"></i>
+        <span class="fas fa-{{section.icon}} fa-fw"></span>
+        <span class="wb-inv">{{('menu.section.icon.' + section.id) | translate}}</span>
     </a>
     <div class="sidebar-collapsible">
         <span id="sidebarName-{{section.id}}" class="section-header-text">

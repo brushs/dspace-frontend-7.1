@@ -8,7 +8,7 @@
         <div>
           <button class="mr-auto btn btn-success"
                   [routerLink]="['newGroup']">
-            <i class="fas fa-plus"></i>
+            <span aria-hidden="true" class="fas fa-plus"></span>
             <span class="d-none d-sm-inline">{{messagePrefix + 'button.add' | translate}}</span>
           </button>
         </div>
@@ -24,7 +24,7 @@
                    [placeholder]="(messagePrefix + 'search.placeholder' | translate)" >
             <span class="input-group-append">
               <button type="submit" class="search-button btn btn-primary">
-                <i class="fas fa-search"></i> {{ messagePrefix + 'search.button' | translate }}
+                <span  aria-hidden="true" class="fas fa-search"></span> {{ messagePrefix + 'search.button' | translate }}
               </button>
             </span>
           </div>
@@ -68,7 +68,8 @@
                       class="btn btn-outline-primary btn-sm btn-edit"
                       title="{{messagePrefix + 'table.edit.buttons.edit' | translate: {name: groupDto.group.name} }}"
                     >
-                      <i class="fas fa-edit fa-fw"></i>
+                      <span aria-hidden="true" class="fas fa-edit fa-fw"></span>
+                      <span class="wb-inv">{{messagePrefix + 'table.edit.buttons.edit' | translate: {name: groupDto.group.name} }}</span>
                     </button>
                     <button *ngSwitchCase="false"
                       [disabled]="true"
@@ -76,13 +77,15 @@
                       placement="left"
                       [ngbTooltip]="'admin.access-control.epeople.table.edit.buttons.edit-disabled' | translate"
                     >
-                      <i class="fas fa-edit fa-fw"></i>
+                      <span aria-hidden="true" class="fas fa-edit fa-fw"></span>
+                      <span class="wb-inv">{{'admin.access-control.epeople.table.edit.buttons.edit-disabled' | translate}}</span>
                     </button>
                   </ng-container>
                   <button *ngIf="!groupDto.group?.permanent && groupDto.ableToDelete"
                           (click)="deleteGroup(groupDto)" class="btn btn-outline-danger btn-sm"
                           title="{{messagePrefix + 'table.edit.buttons.remove' | translate: {name: groupDto.group.name} }}">
-                    <i class="fas fa-trash-alt fa-fw"></i>
+                    <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
+                    <span class="wb-inv">{{messagePrefix + 'table.edit.buttons.remove' | translate: {name: groupDto.group.name} }}</span>
                   </button>
                 </div>
               </td>

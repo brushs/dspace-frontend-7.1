@@ -12,21 +12,23 @@
         <ng-container *ngIf="readMode">
           <ds-file-download-link [cssClasses]="'btn btn-link'" title="{{ 'submission.sections.upload.download.title' | translate }}"
                       [isBlank]="true" [bitstream]="getBitstream()">
-            <i class="fa fa-download fa-2x text-normal" aria-hidden="true"></i>
+            <span aria-hidden="true" class="fa fa-download fa-2x text-normal" aria-hidden="true"></span>
           </ds-file-download-link>
           <button class="btn btn-link"
                   [attr.aria-label]="'submission.sections.upload.edit.title' | translate"
                   title="{{ 'submission.sections.upload.edit.title' | translate }}"
                   (click)="$event.preventDefault();switchMode();">
-            <i class="fa fa-edit fa-2x text-normal"></i>
+            <span aria-hidden="true" class="fa fa-edit fa-2x text-normal"></span>
+            <span class="wb-inv">{{ 'submission.sections.upload.edit.title' | translate }}</span>
           </button>
           <button class="btn btn-link"
                   [attr.aria-label]="'submission.sections.upload.delete.confirm.title' | translate"
                   title="{{ 'submission.sections.upload.delete.confirm.title' | translate }}"
                   [disabled]="(processingDelete$ | async)"
                   (click)="$event.preventDefault();confirmDelete(content);">
-            <i *ngIf="(processingDelete$ | async)" class="fas fa-circle-notch fa-spin fa-2x text-danger"></i>
-            <i *ngIf="!(processingDelete$ | async)" class="fa fa-trash fa-2x text-danger"></i>
+            <span *ngIf="(processingDelete$ | async)" class="fas fa-circle-notch fa-spin fa-2x text-danger"></span>
+            <span  *ngIf="!(processingDelete$ | async)" class="fa fa-trash fa-2x text-danger"></span>
+            <span class="wb-inv">{{ 'submission.sections.upload.delete.confirm.title' | translate }}</span>
           </button>
         </ng-container>
         <ng-container *ngIf="!readMode">
@@ -34,19 +36,24 @@
                   [attr.aria-label]="'submission.sections.upload.save-metadata' | translate"
                   title="{{ 'submission.sections.upload.save-metadata' | translate }}"
                   (click)="saveBitstreamData($event);">
-            <i class="fa fa-save fa-2x text-success"></i>
+            <span aria-hidden="true" class="fa fa-save fa-2x text-success"></span>
+            <span class="wb-inv">{{ 'submission.sections.upload.save-metadata' | translate }}</span>
           </button>
           <button class="btn btn-link"
                   [attr.aria-label]="'submission.sections.upload.undo' | translate"
                   title="{{ 'submission.sections.upload.undo' | translate }}"
-                  (click)="$event.preventDefault();switchMode();"><i class="fa fa-ban fa-2x text-warning"></i></button>
+                  (click)="$event.preventDefault();switchMode();">
+                  <span aria-hidden="true" class="fa fa-ban fa-2x text-warning"></span>
+                  <span class="wb-inv">{{ 'submission.sections.upload.undo' | translate }}</span>
+          </button>
           <button class="btn btn-link"
                   [attr.aria-label]="'submission.sections.upload.delete.confirm.title' | translate"
                   title="{{ 'submission.sections.upload.delete.confirm.title' | translate }}"
                   [disabled]="(processingDelete$ | async)"
                   (click)="$event.preventDefault();confirmDelete(content);">
-            <i *ngIf="(processingDelete$ | async)" class="fas fa-circle-notch fa-spin fa-2x text-danger"></i>
-            <i *ngIf="!(processingDelete$ | async)" class="fa fa-trash fa-2x text-danger"></i>
+            <span aria-hidden="true" *ngIf="(processingDelete$ | async)" class="fas fa-circle-notch fa-spin fa-2x text-danger"></span>
+            <span aria-hidden="true" *ngIf="!(processingDelete$ | async)" class="fa fa-trash fa-2x text-danger"></span>
+            <span class="wb-inv">{{ 'submission.sections.upload.delete.confirm.title' | translate }}</span>
           </button>
         </ng-container>
       </div>

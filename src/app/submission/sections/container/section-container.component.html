@@ -14,12 +14,12 @@
       <ng-template ngbPanelTitle>
         <span class="float-left section-title" tabindex="0">{{ 'submission.sections.'+sectionData.header | translate }}</span>
         <div class="d-inline-block float-right">
-          <i *ngIf="!(sectionRef.isValid() | async) && !(sectionRef.hasErrors())" class="fas fa-exclamation-circle text-warning mr-3"
-             aria-hidden="true" title="{{'submission.sections.status.warnings.title' | translate}}"></i>
-          <i *ngIf="(sectionRef.hasErrors())" class="fas fa-exclamation-circle text-danger mr-3"
-             aria-hidden="true" title="{{'submission.sections.status.errors.title' | translate}}"></i>
-          <i *ngIf="(sectionRef.isValid() | async) && !(sectionRef.hasErrors())" class="fas fa-check-circle text-success mr-3"
-             aria-hidden="true" title="{{'submission.sections.status.valid.title' | translate}}"></i>
+          <span *ngIf="!(sectionRef.isValid() | async) && !(sectionRef.hasErrors())" class="fas fa-exclamation-circle text-warning mr-3"
+             aria-hidden="true" title="{{'submission.sections.status.warnings.title' | translate}}"></span>
+          <span *ngIf="(sectionRef.hasErrors())" class="fas fa-exclamation-circle text-danger mr-3"
+             aria-hidden="true" title="{{'submission.sections.status.errors.title' | translate}}"></span>
+          <span *ngIf="(sectionRef.isValid() | async) && !(sectionRef.hasErrors())" class="fas fa-check-circle text-success mr-3"
+             aria-hidden="true" title="{{'submission.sections.status.valid.title' | translate}}"></span>
           <a class="close"
              tabindex="0"
              role="button"
@@ -30,7 +30,7 @@
           </a>
           <a href="#" class="close mr-3" *ngIf="!sectionRef.isMandatory()"
              (click)="removeSection($event)">
-            <i class="fas fa-trash" aria-hidden="true" title="{{'submission.sections.section.remove.title' | translate}}" tabindex="0"></i>
+            <span class="fas fa-trash" aria-hidden="true" title="{{'submission.sections.section.remove.title' | translate}}" tabindex="0"></span>
           </a>
         </div>
       </ng-template>

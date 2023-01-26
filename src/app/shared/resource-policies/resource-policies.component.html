@@ -14,10 +14,10 @@
                       [title]="'resource-policies.delete.btn.title' | translate"
                       (click)="deleteSelectedResourcePolicies()">
                 <span *ngIf="(isProcessingDelete() | async)">
-                  <i class='fas fa-circle-notch fa-spin'></i> {{'submission.workflow.tasks.generic.processing' | translate}}
+                  <span aria-hidden="true" class='fas fa-circle-notch fa-spin'></span> {{'submission.workflow.tasks.generic.processing' | translate}}
                 </span>
                 <span *ngIf="!(isProcessingDelete() | async)">
-                  <i class='fas fa-trash-alt fa-fw'></i>
+                  <span aria-hidden="true" class='fas fa-trash-alt fa-fw'></span>
                   {{'resource-policies.delete.btn' | translate}}
                 </span>
               </button>
@@ -26,7 +26,7 @@
                       [disabled]="(isProcessingDelete() | async)"
                       [title]="'resource-policies.add.for.' + resourceType | translate"
                       (click)="redirectToResourcePolicyCreatePage()">
-                <i class='fas fa-plus'></i>
+                <span aria-hidden="true" class='fas fa-plus'></span>
                 {{'resource-policies.add.button' | translate}}
               </button>
             </div>
@@ -88,12 +88,14 @@
             <button class="btn btn-outline-primary btn-sm"
                     [title]="'resource-policies.table.headers.edit.policy' | translate"
                     (click)="redirectToResourcePolicyEditPage(entry.policy)">
-              <i class="fas fa-edit fa-fw"></i>
+              <span aria-hidden="true"  class="fas fa-edit fa-fw"></span>
+              <span class="wb-inv">{{'resource-policies.table.headers.edit.policy' | translate}}</span>
             </button>
             <button *ngIf="(hasGroup(entry.policy) | async)" class="btn btn-outline-primary btn-sm"
                     [title]="'resource-policies.table.headers.edit.group' | translate"
                     (click)="redirectToGroupEditPage(entry.policy)">
-              <i class="fas fa-users fa-fw"></i>
+              <span aria-hidden="true" class="fas fa-users fa-fw"></span>
+              <span class="wb-inv">{{'resource-policies.table.headers.edit.group' | translate}}</span>
             </button>
           </div>
         </td>

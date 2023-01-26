@@ -9,11 +9,11 @@
                 <div class="form-group row">
                     <div class="col text-right">
                         <button class="btn btn-outline-secondary" (click)="onCancel(dso)" [disabled]="(processing$ | async)">
-                            <i class="fas fa-times"></i> {{'community.delete.cancel' | translate}}
+                            <span aria-hidden="true" class="fas fa-times"></span> {{'community.delete.cancel' | translate}}
                         </button>
                         <button class="btn btn-danger mr-2" (click)="onConfirm(dso)" [disabled]="(processing$ | async)">
-                            <span *ngIf="processing$ | async"><i class='fas fa-circle-notch fa-spin'></i> {{'community.delete.processing' | translate}}</span>
-                            <span *ngIf="!(processing$ | async)"><i class="fas fa-trash"></i> {{'community.delete.confirm' | translate}}</span>
+                            <span *ngIf="processing$ | async"><span aria-hidden="true" class='fas fa-circle-notch fa-spin'></span> {{'community.delete.processing' | translate}}</span>
+                            <span *ngIf="!(processing$ | async)"><span aria-hidden="true" class="fas fa-trash"></span> {{'community.delete.confirm' | translate}}</span>
                         </button>
                     </div>
                 </div>

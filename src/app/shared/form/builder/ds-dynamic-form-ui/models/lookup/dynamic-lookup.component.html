@@ -5,11 +5,11 @@
   <div class="form-row align-items-center">
     <!--Simple lookup, first field -->
     <div class="col right-addon">
-      <i dsAuthorityConfidenceState
+      <span dsAuthorityConfidenceState
          class="far fa-circle fa-2x fa-fw position-absolute mt-1 p-0 pr-2"
          aria-hidden="true"
          [authorityValue]="model.value"
-         (whenClickOnConfidenceNotAccepted)="whenClickOnConfidenceNotAccepted(sdRef, $event)"></i>
+         (whenClickOnConfidenceNotAccepted)="whenClickOnConfidenceNotAccepted(sdRef, $event)"></span>
       <input class="form-control"
              [attr.aria-labelledby]="'label_' + model.id"
              [attr.autoComplete]="model.autoComplete"

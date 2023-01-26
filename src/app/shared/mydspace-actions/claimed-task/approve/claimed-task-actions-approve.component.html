@@ -3,6 +3,6 @@
         ngbTooltip="{{'submission.workflow.tasks.claimed.approve_help' | translate}}"
         [disabled]="processing$ | async"
         (click)="submitTask()">
-  <span *ngIf="processing$ | async"><i class='fas fa-circle-notch fa-spin'></i> {{'submission.workflow.tasks.generic.processing' | translate}}</span>
-  <span *ngIf="!(processing$ | async)"><i class="fa fa-thumbs-up"></i> {{'submission.workflow.tasks.claimed.approve' | translate}}</span>
+  <span *ngIf="processing$ | async"><span aria-hidden="true" class='fas fa-circle-notch fa-spin'></span> {{'submission.workflow.tasks.generic.processing' | translate}}</span>
+  <span *ngIf="!(processing$ | async)"><span aria-hidden="true" class="fa fa-thumbs-up"></span> {{'submission.workflow.tasks.claimed.approve' | translate}}</span>
 </button>

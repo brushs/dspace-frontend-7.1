@@ -1,7 +1,13 @@
 <h2>{{"search.filters.head" | translate}}</h2>
 <div *ngIf="(filters | async)?.hasSucceeded">
-    <div *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate">
-        <ds-search-filter [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
-    </div>
+  <div *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate">
+    <ds-search-filter [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
+  </div>
 </div>
-<a class="btn btn-primary" [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" role="button"><i class="fas fa-undo"></i> {{"search.filters.reset" | translate}}</a>
+<a class="btn btn-primary" [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge"
+  role="button">
+  <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+  <!-- <i class="fas fa-undo"></i> {{"search.filters.reset" | translate}} -->
+  <span class="fas fa-undo"></span> {{"search.filters.reset" | translate}}
+  <!-- End OSPR Changes -->
+</a>

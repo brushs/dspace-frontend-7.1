@@ -13,7 +13,11 @@
         <span class="input-group-append">
             <button type="submit" class="search-button btn btn-{{brandColor}}"
                     title="{{'search.form.search' | translate}}">
-                <i class="fas fa-search"></i>
+                <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+                <!-- <i class="fas fa-search"></i> -->
+                  <span class="fas fa-search"></span>
+                  <span class="wb-inv">{{'search.form.search' | translate}}</span>
+                <!-- End OSPR Changes -->
             </button>
         </span>
     </div>
