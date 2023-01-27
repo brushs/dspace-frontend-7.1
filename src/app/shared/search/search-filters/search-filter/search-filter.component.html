@@ -6,10 +6,10 @@
           [attr.aria-label]="((collapsed$ | async) ? 'search.filters.filter.expand' : 'search.filters.filter.collapse') | translate"
   >
     <!-- OSPR Changes-->
-    <h4 class="d-inline-block mb-0">
+    <fieldset class="d-inline-block mb-0">
       {{'search.filters.filter.' + filter.name + '.head'| translate}}
-    </h4>
-    <!-- h5 to h4 -->
+    </fieldset>
+    <!-- chaing h4 to fieldset as per accessbility requirement -->
 
     <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
     <span class="filter-toggle flex-grow-1 fas p-auto"
