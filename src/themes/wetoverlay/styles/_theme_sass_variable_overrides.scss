@@ -9,13 +9,25 @@
 
 
 /* Reassign color vars to semantic color scheme */
-$blue: #1C578A !default;
+$blue: #43515f !default;
 $blue-100: #E3F2FD !default;
 $green: #92C642 !default;
 $cyan: #207698 !default;
 $yellow: #ec9433 !default;
 $red: #CF4444 !default;
 $dark: #43515f !default;
+
+// $ospr-blue-900: #212529 !default;
+$ospr-blue-900: #091c2d !default;
+$ospr-blue-800: #26374a !default;
+$ospr-blue-500: #143c5f !default;
+$ospr-blue-400: #16446c !default;
+$ospr-blue-300: #1c578a !default;
+$ospr-blue-200: #2572b4 !default;
+
+
+$ospr-gray-500: #335075 !default;
+
 
 $gray-800: #343a40 !default;
 $gray-600: #6c757d !default;
@@ -52,10 +64,10 @@ $yiq-contrasted-threshold:  170 !default;
 
 
 $theme-colors: (
-  primary: $blue,
-  secondary: $gray-600,
+  primary: $ospr-blue-800,
+  secondary: $ospr-gray-500,
   success: $green,
-  info: $cyan,
+  info: $gray-600,
   warning: $yellow,
   danger: $red,
   light: $gray-100,
@@ -64,3 +76,16 @@ $theme-colors: (
 
 $link-color: map-get($theme-colors, info) !default;
 
+:root 
+
+{
+  --ospr-blue-900: #{$ospr-blue-900};
+  --ospr-blue-800: #{$ospr-blue-800};
+  --ospr-blue-500: #{$ospr-blue-500};
+  --ospr-blue-400: #{$ospr-blue-400};
+  --ospr-blue-300: #{$ospr-blue-300};
+  --ospr-blue-200: #{$ospr-blue-200};
+
+  --ospr-gray-500: #{$ospr-gray-500};
+
+}
