@@ -248,7 +248,7 @@
 	"admin.workflow.item.workflow": "Workflow",
 	"admin.workflow.title": "Administer workflow",
 	"administrativeView.search.results.head": "Administrative search",
-	"auth.errors.invalid-user": "Invalid email address or password",
+	"auth.errors.invalid-user": "Error: Invalid email address or password",
 	"auth.messages.expired": "Your session has expired. Please log in again.",
 	"auth.messages.token-refresh-failed": "Refreshing your session token failed. Please log in again.",
 	"bitstream.download.page": "Now downloading {{bitstream}}...",
