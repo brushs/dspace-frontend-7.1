@@ -32,13 +32,15 @@
             </label>
         </form>
 
-        <ng-container *ngIf="shouldShowSlider()">
+        <!--FOSRC changes start-->
+        <!-- <ng-container *ngIf="shouldShowSlider()">
             <nouislider [connect]="true" [min]="min" [max]="max" [step]="1"
                         [dsDebounce]="250" (onDebounce)="onSubmit()"
                         (keydown)="startKeyboardControl()" (keyup)="stopKeyboardControl()"
                         [(ngModel)]="range" ngDefaultControl>
             </nouislider>
-        </ng-container>
+        </ng-container> -->
+        <!--FOSRC changes end-->
       <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
         <div [@facetLoad]="animationState">
           <ds-search-facet-range-option *ngFor="let value of page.page; trackBy: trackUpdate" [filterConfig]="filterConfig" [filterValue]="value" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-range-option>
