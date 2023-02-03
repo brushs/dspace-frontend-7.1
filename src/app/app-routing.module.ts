@@ -63,9 +63,13 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
               .then((m) => m.LookupIdModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
+          // Start FOSRC Changes- 1396 
+          // note: path array oder matters
+          // register-page.module need to be load latter
           {
             path: REGISTER_PATH, component: ThemedPageNotFoundComponent
           },
+          // End of FOSRC changes
           {
             path: REGISTER_PATH,
             loadChildren: () => import('./register-page/register-page.module')
