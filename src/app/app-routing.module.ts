@@ -28,6 +28,8 @@ import { ThemedForbiddenComponent } from './forbidden/themed-forbidden.component
 import { GroupAdministratorGuard } from './core/data/feature-authorization/feature-authorization-guard/group-administrator.guard';
 import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-page/search-tips-page.component';
 
+
+
 @NgModule({
   imports: [
     RouterModule.forRoot([{
@@ -61,12 +63,19 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
               .then((m) => m.LookupIdModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
+          // Start FOSRC Changes- 1396 
+          // note: path array oder matters
+          // register-page.module need to be load latter
+          {
+            path: REGISTER_PATH, component: ThemedPageNotFoundComponent
+          },
+          // End of FOSRC changes
           {
             path: REGISTER_PATH,
             loadChildren: () => import('./register-page/register-page.module')
               .then((m) => m.RegisterPageModule),
             canActivate: [SiteRegisterGuard]
-          },
+          },         
           {
             path: FORGOT_PASSWORD_PATH,
             loadChildren: () => import('./forgot-password/forgot-password.module')
