@@ -33,14 +33,16 @@
           <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
       </div>
       <div id="search-content" class="col-12">
-          <div class="d-block d-md-none search-controls clearfix">
+          <!--FOSRC start changes : ticket 327-->
+          <!-- <div class="d-block d-md-none search-controls clearfix">
               <ds-view-mode-switch [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch>
               <button (click)="openSidebar()" aria-controls="#search-body"
                       class="btn btn-outline-primary float-right open-sidebar"><i
                       class="fas fa-sliders"></i> {{"search.sidebar.open"
                       | translate}}
               </button>
-          </div>
+          </div> -->
+          <!--FOSRC end changes-->
           <ds-search-results [searchResults]="resultsRD$ | async"
                              [searchConfig]="searchOptions$ | async"
                              [configuration]="configuration$ | async"

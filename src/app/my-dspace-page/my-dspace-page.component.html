@@ -39,14 +39,16 @@
                                      [inPlaceSearch]="inPlaceSearch">
                   </ds-search-sidebar>
                   <div id="search-content" class="col-12">
-                      <div class="d-block d-md-none search-controls clearfix">
+                        <!--FOSRC start changes : ticket 327-->
+                        <!-- <div class="d-block d-md-none search-controls clearfix">
                           <ds-view-mode-switch [viewModeList]="viewModeList" [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch>
                           <button (click)="openSidebar()" aria-controls="#search-body"
                                   class="btn btn-outline-primary float-right open-sidebar"><i
                                   class="fas fa-sliders"></i> {{"search.sidebar.open"
                               | translate}}
                           </button>
-                      </div>
+                      </div> -->
+                      <!--FOSRC end changes-->
                       <ds-my-dspace-results [searchResults]="resultsRD$ | async"
                                             [searchConfig]="searchOptions$ | async"
                                             [context]="context$ | async"
