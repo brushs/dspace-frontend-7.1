@@ -1,3 +1,4 @@
+<section>
 <div class="container" *ngIf="(isXsOrSm$ | async)">
     <div class="row">
         <div class="col-12">
@@ -28,6 +29,7 @@
         </div>
     </div>
 </ds-page-with-sidebar>
+</section>
 
 <ng-template #sidebarContent>
     <ds-search-sidebar id="search-sidebar" *ngIf="!(isXsOrSm$ | async)"
