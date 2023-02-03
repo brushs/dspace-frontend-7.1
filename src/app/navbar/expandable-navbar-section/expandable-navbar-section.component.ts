@@ -55,7 +55,7 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
 
   @HostListener('mouseleave', ['$event'])
   handleMouseLeave(event: MouseEvent) {
-    //this.deactivateSection(event);
+    this.deactivateSection(event);
   }
   
   @HostBinding('class') classAttribute: string = 'nav-item dropdown';
