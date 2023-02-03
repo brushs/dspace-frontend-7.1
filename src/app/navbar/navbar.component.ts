@@ -5,6 +5,7 @@ import { MenuService } from '../shared/menu/menu.service';
 import { MenuID, MenuItemType } from '../shared/menu/initial-menus-state';
 import { TextMenuItemModel } from '../shared/menu/menu-item/models/text.model';
 import { LinkMenuItemModel } from '../shared/menu/menu-item/models/link.model';
+import { ListLinkMenuItemModel } from '../shared/menu/menu-item/models/list-link.model';
 import { HostWindowService } from '../shared/host-window.service';
 import { environment } from '../../environments/environment';
 
@@ -74,10 +75,10 @@ export class NavbarComponent extends MenuComponent {
         active: false,
         visible: true,
         model: {
-          type: MenuItemType.LINK,
+          type: MenuItemType.LIST_LINK,
           text: `menu.section.browse_global_by_${typeConfig.id}`,
           link: `/browse/${typeConfig.id}`
-        } as LinkMenuItemModel
+        } as ListLinkMenuItemModel
       });
     });
     menuList.forEach((menuSection) => this.menuService.addSection(this.menuID, Object.assign(menuSection, {

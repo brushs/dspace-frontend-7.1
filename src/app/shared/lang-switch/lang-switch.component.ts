@@ -33,6 +33,7 @@ export class LangSwitchComponent implements OnInit {
   ngOnInit(): void {
     this.activeLangs = environment.languages.filter((MyLangConfig) => MyLangConfig.active === true);
     this.moreThanOneLanguage = (this.activeLangs.length > 1);
+    console.log( this.activeLangs );
   }
 
   /**
@@ -57,5 +58,12 @@ export class LangSwitchComponent implements OnInit {
     this.localeService.setCurrentLanguageCode(lang);
     this.localeService.refreshAfterChangeLanguage();
   }
+
+    /**
+   * Returns the label for a specific language code
+   */
+    getAlternateLanguageCode(langcode: string): string {
+      return langcode === "en" ? "fr" : "en"
+    }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Inject, Injector, OnInit } from '@angular/core';
+import { Component, Inject, Injector, OnInit, HostListener, HostBinding } from '@angular/core';
 import { NavbarSectionComponent } from '../navbar-section/navbar-section.component';
 import { MenuService } from '../../shared/menu/menu.service';
 import { MenuID } from '../../shared/menu/initial-menus-state';
@@ -6,12 +6,15 @@ import { slide } from '../../shared/animations/slide';
 import { first } from 'rxjs/operators';
 import { HostWindowService } from '../../shared/host-window.service';
 import { rendersSectionForMenu } from '../../shared/menu/menu-section.decorator';
+import { ThemeActionTypes } from 'src/app/shared/theme-support/theme.actions';
 
 /**
  * Represents an expandable section in the navbar
+ * OSPR Changes - changed the selector to list/attribute
+ * to conform with accessability guidlines
  */
 @Component({
-  selector: 'ds-expandable-navbar-section',
+  selector: 'li[ds-expandable-navbar-section]',
   templateUrl: './expandable-navbar-section.component.html',
   styleUrls: ['./expandable-navbar-section.component.scss'],
   animations: [slide]
@@ -29,12 +32,34 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
               private windowService: HostWindowService
   ) {
     super(menuSection, menuService, injector);
+    
   }
 
   ngOnInit() {
     super.ngOnInit();
   }
 
+  /**
+ * OSPR Changes - Moved host element actions
+ * and classes to component
+ */
+  @HostListener('window:keyup.enter', ['$event'])
+  handleKeyUp(event: KeyboardEvent) {
+    this.activateSection(event);
+  }
+
+  @HostListener('mouseenter', ['$event'])
+  handleMouseEnter(event: MouseEvent) {
+    this.activateSection(event);
+  }
+
+  @HostListener('mouseleave', ['$event'])
+  handleMouseLeave(event: MouseEvent) {
+    //this.deactivateSection(event);
+  }
+  
+  @HostBinding('class') classAttribute: string = 'nav-item dropdown';
+  
   /**
    * Overrides the super function that activates this section (triggered on hover)
    * Has an extra check to make sure the section can only be activated on non-mobile devices

@@ -58,6 +58,7 @@ import {
 import { DsDynamicFormComponent } from './form/builder/ds-dynamic-form-ui/ds-dynamic-form.component';
 import { DragClickDirective } from './utils/drag-click.directive';
 import { TruncatePipe } from './utils/truncate.pipe';
+import { TruncateStringPipe } from './utils/truncate-string.pipe';
 import { TruncatableComponent } from './truncatable/truncatable.component';
 import { TruncatableService } from './truncatable/truncatable.service';
 import { TruncatablePartComponent } from './truncatable/truncatable-part/truncatable-part.component';
@@ -229,6 +230,7 @@ import { TabbedRelatedEntitiesSearchComponent } from '../item-page/simple/relate
 import { RelatedEntitiesSearchComponent } from '../item-page/simple/related-entities/related-entities-search/related-entities-search.component';
 import { ConfigurationSearchPageComponent } from '../search-page/configuration-search-page.component';
 import { LinkMenuItemComponent } from './menu/menu-item/link-menu-item.component';
+import { ListLinkMenuItemComponent } from './menu/menu-item/list-link-menu-item.component';
 import { OnClickMenuItemComponent } from './menu/menu-item/onclick-menu-item.component';
 import { TextMenuItemComponent } from './menu/menu-item/text-menu-item.component';
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
@@ -280,6 +282,7 @@ const PIPES = [
   FileSizePipe,
   SafeUrlPipe,
   TruncatePipe,
+  TruncateStringPipe,
   EmphasizePipe,
   CapitalizePipe,
   ObjectKeysPipe,
@@ -521,6 +524,7 @@ const ENTRY_COMPONENTS = [
   CollectionSidebarSearchListElementComponent,
   CommunitySidebarSearchListElementComponent,
   LinkMenuItemComponent,
+  ListLinkMenuItemComponent,
   OnClickMenuItemComponent,
   TextMenuItemComponent
 ];
