@@ -43,18 +43,18 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
  * OSPR Changes - Moved host element actions
  * and classes to component
  */
-  @HostListener('window:keyup.enter', ['$event'])
-  handleKeyUp(event: KeyboardEvent) {
+  @HostListener('keyup.enter', ['$event'])
+  handleKeyUp(event: any) {
     this.activateSection(event);
   }
 
   @HostListener('mouseenter', ['$event'])
-  handleMouseEnter(event: MouseEvent) {
+  handleMouseEnter(event: any) {
     this.activateSection(event);
   }
 
   @HostListener('mouseleave', ['$event'])
-  handleMouseLeave(event: MouseEvent) {
+  handleMouseLeave(event: any) {
     this.deactivateSection(event);
   }
   
