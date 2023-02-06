@@ -67,9 +67,14 @@ mouse:hover {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
     .btn.disabled, .btn[disabled],
     fieldset[disabled] .btn {
+      // use to hide cursor
+      // pointer-events: none;
       cursor: not-allowed;
-      filter: alpha(opacity=65);
-      opacity: 0.65;
+      // disabled buttons loose saturation instead of opacity
+      // filter: alpha(opacity=65);
+      filter: grayscale(60%);
+      // override opacity
+      opacity: 1 !important;
       -webkit-box-shadow: none;
       box-shadow: none; }
   
@@ -269,7 +274,7 @@ mouse:hover {
       border-color: #574c05; }
     .btn-warning:active, .btn-warning.active,
     .open > .btn-warning.dropdown-toggle {
-      color: #000;
+      color: #000 !important;
       background-color: #c2aa0a;
       background-image: none;
       border-color: #574c05; }
@@ -277,7 +282,7 @@ mouse:hover {
       .open > .btn-warning.dropdown-toggle:hover,
       .open > .btn-warning.dropdown-toggle:focus,
       .open > .btn-warning.dropdown-toggle.focus {
-        color: #000;
+        color: #000 !important;
         background-color: #a08c09;
         border-color: #181501; }
     .btn-warning.disabled:hover, .btn-warning.disabled:focus, .btn-warning.disabled.focus, .btn-warning[disabled]:hover, .btn-warning[disabled]:focus, .btn-warning[disabled].focus,
@@ -398,7 +403,7 @@ mouse:hover {
       color: #fff; }
     
     .btn-warning:visited {
-      color: #000; }
+      color: #fff; }
     
     .btn-danger:visited {
       color: #fff; }
