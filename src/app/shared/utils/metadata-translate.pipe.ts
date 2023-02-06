@@ -18,7 +18,7 @@ export class MetadataTranslatePipe implements PipeTransform {
   constructor(private localeService: LocaleService){}
 
   transform(keyOrKeys: string | string[], dso: DSpaceObject, filter?: MetadataValueFilter) : MetadataValue[] {
-    let targetLang = this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en';
+    let targetLang = this.localeService.getCurrentLanguageCode() === 'en' ? 'en' : 'fr';
     return this.translateMetadata(dso.metadata, keyOrKeys, targetLang, filter);   
   }
 
