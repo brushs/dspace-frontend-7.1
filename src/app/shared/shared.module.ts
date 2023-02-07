@@ -116,6 +116,7 @@ import { CreateCommunityParentSelectorComponent } from './dso-selector/modal-wra
 import { CreateItemParentSelectorComponent } from './dso-selector/modal-wrappers/create-item-parent-selector/create-item-parent-selector.component';
 import { CreateCollectionParentSelectorComponent } from './dso-selector/modal-wrappers/create-collection-parent-selector/create-collection-parent-selector.component';
 import { CommunitySearchResultListElementComponent } from './object-list/search-result-list-element/community-search-result/community-search-result-list-element.component';
+import { MetadataTranslatePipe } from './utils/metadata-translate.pipe';
 import { CollectionSearchResultListElementComponent } from './object-list/search-result-list-element/collection-search-result/collection-search-result-list-element.component';
 import { EditItemSelectorComponent } from './dso-selector/modal-wrappers/edit-item-selector/edit-item-selector.component';
 import { EditCommunitySelectorComponent } from './dso-selector/modal-wrappers/edit-community-selector/edit-community-selector.component';
@@ -286,6 +287,7 @@ const PIPES = [
   EmphasizePipe,
   CapitalizePipe,
   ObjectKeysPipe,
+  MetadataTranslatePipe,
   ObjectValuesPipe,
   ConsolePipe,
   ObjNgFor
