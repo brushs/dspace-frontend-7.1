@@ -1,4 +1,4 @@
-import { Component, Inject, Injector, OnInit, HostListener, HostBinding } from '@angular/core';
+import { Component, Inject, Injector, OnInit, HostListener, HostBinding, ElementRef } from '@angular/core';
 import { NavbarSectionComponent } from '../navbar-section/navbar-section.component';
 import { MenuService } from '../../shared/menu/menu.service';
 import { MenuID } from '../../shared/menu/initial-menus-state';
@@ -26,10 +26,13 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
    */
   menuID = MenuID.PUBLIC;
 
+  isOpen: boolean;
+
   constructor(@Inject('sectionDataProvider') menuSection,
               protected menuService: MenuService,
               protected injector: Injector,
-              private windowService: HostWindowService
+              private windowService: HostWindowService,
+              private elRef:ElementRef
   ) {
     super(menuSection, menuService, injector);
     
@@ -37,6 +40,9 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
 
   ngOnInit() {
     super.ngOnInit();
+    this.active.subscribe( (menuState) =>{
+      this.isOpen = menuState;
+    })
   }
 
   /**
@@ -45,7 +51,13 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
  */
   @HostListener('keyup.enter', ['$event'])
   handleKeyUp(event: any) {
-    this.activateSection(event);
+    if(this.isOpen){
+      this.deactivateSection(event);
+    }
+    else{
+      this.activateSection(event);
+    }
+    event.stopPropagation();
   }
 
   @HostListener('mouseenter', ['$event'])
@@ -57,9 +69,26 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
   handleMouseLeave(event: any) {
     this.deactivateSection(event);
   }
+
+  @HostListener('focusout', ['$event'])
+  handleFocusOut(event: any) {
+   if(!this.elRef.nativeElement.contains(event.relatedTarget) && this.isOpen )
+    {
+      this.deactivateSection(event);
+    }
+  }
   
   @HostBinding('class') classAttribute: string = 'nav-item dropdown';
   
+
+  linkActivated(event: any) {
+    // Only activate if event is mouse event
+    if(event.detail){
+      this.deactivateSection(event)
+    }
+    event.stopPropagation();
+  }
+
   /**
    * Overrides the super function that activates this section (triggered on hover)
    * Has an extra check to make sure the section can only be activated on non-mobile devices
