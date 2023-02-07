@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <!-- OSPR Changes- modifying h2 to h1-->
-      <h1 id="wb-cont">{{'item.edit.item-mapper.head' | translate}}</h1>
-       <!-- modified h2 to h1-->
+      <h2>{{'item.edit.item-mapper.head' | translate}}</h2>
       <p [innerHTML]="'item.edit.item-mapper.item' | translate:{ name: (itemName$ | async) }" id="item-name"></p>
       <p>{{'item.edit.item-mapper.description' | translate}}</p>
 
