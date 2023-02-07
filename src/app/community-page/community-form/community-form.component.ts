@@ -76,14 +76,14 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.title.fosrctranslation',
       labelTooltip: 'titletranslation.hint',
       controlTooltip: 'titletranslation.hint',
+      hint: 'titletranslation.hint',
       required: true,
       validators: {
         required: null
       },
       errorMessages: {
         required: 'titletranslation.required' 
-      },
-      hint: 'titletranslation.hint'
+      }
     }),
 
     new DynamicInputModel({
