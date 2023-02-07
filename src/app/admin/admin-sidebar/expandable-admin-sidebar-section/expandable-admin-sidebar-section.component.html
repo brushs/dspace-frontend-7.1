@@ -1,7 +1,11 @@
-<li class="sidebar-section" [ngClass]="{'expanded': (expanded | async)}"
-    [@bgColor]="{
-     value: ((expanded | async) ? 'endBackground' : 'startBackground'),
-     params: {endColor: (sidebarActiveBg | async)}}">
+<!-- OSPR Changes
+  Replaced <li> with <div> elements to meet semantic rules
+  Removed commented animation of the background color as it was clashing with OSPR theme
+  [@bgColor]="{
+  value: ((expanded | async) ? 'endBackground' : 'startBackground'),
+  params: {endColor: (sidebarActiveBg | async)}}"  
+-->
+<div class="sidebar-section" [ngClass]="{'expanded': (expanded | async)}">
     <div class="icon-wrapper">
         <a class="nav-item nav-link shortcut-icon" attr.aria.labelledby="sidebarName-{{section.id}}" [title]="('menu.section.icon.' + section.id) | translate" (click)="toggleSection($event)" href="javascript:void(0);">
             <span aria-hidden="true" class="fas fa-{{section.icon}} fa-fw"></span>
@@ -26,4 +30,5 @@
             </li>
         </ul>
     </div>
-</li>
+  </div>
+  

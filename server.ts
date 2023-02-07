@@ -36,7 +36,9 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { hasValue, hasNoValue } from './src/app/shared/empty.util';
 import { APP_BASE_HREF } from '@angular/common';
 import { UIServerConfig } from './src/config/ui-server-config.interface';
-
+// Fix ReferenceError: KeyboardEvent is not defined
+global['KeyboardEvent'] = null;
+global['MouseEvent'] = null;
 /*
  * Set path for the browser application's dist folder
  */
