@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { LocaleService } from 'src/app/core/locale/locale.service';
-import { DSpaceObject } from 'src/app/core/shared/dspace-object.model';
-import { MetadataMapInterface, MetadataValue, MetadataValueFilter } from 'src/app/core/shared/metadata.models';
-import { Metadata } from 'src/app/core/shared/metadata.utils';
+import { LocaleService } from '../../core/locale/locale.service';
+import { DSpaceObject } from '../../core/shared/dspace-object.model';
+import { MetadataMapInterface, MetadataValue, MetadataValueFilter } from '../../core/shared/metadata.models';
+import { Metadata } from '../../core/shared/metadata.utils';
 import { hasValue, isEmpty } from '../empty.util';
 
 /**
