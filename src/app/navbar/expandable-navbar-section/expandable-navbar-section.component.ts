@@ -1,4 +1,4 @@
-import { Component, Inject, Injector, OnInit, HostListener, HostBinding, ElementRef } from '@angular/core';
+import { Component, Inject, Injector, OnInit, HostListener, HostBinding, ElementRef, OnDestroy } from '@angular/core';
 import { NavbarSectionComponent } from '../navbar-section/navbar-section.component';
 import { MenuService } from '../../shared/menu/menu.service';
 import { MenuID } from '../../shared/menu/initial-menus-state';
@@ -7,6 +7,7 @@ import { first } from 'rxjs/operators';
 import { HostWindowService } from '../../shared/host-window.service';
 import { rendersSectionForMenu } from '../../shared/menu/menu-section.decorator';
 import { ThemeActionTypes } from 'src/app/shared/theme-support/theme.actions';
+import { Subscription } from 'rxjs';
 
 /**
  * Represents an expandable section in the navbar
@@ -20,30 +21,38 @@ import { ThemeActionTypes } from 'src/app/shared/theme-support/theme.actions';
   animations: [slide]
 })
 @rendersSectionForMenu(MenuID.PUBLIC, true)
-export class ExpandableNavbarSectionComponent extends NavbarSectionComponent implements OnInit {
+export class ExpandableNavbarSectionComponent extends NavbarSectionComponent implements OnInit, OnDestroy {
   /**
    * This section resides in the Public Navbar
    */
   menuID = MenuID.PUBLIC;
 
+  /**
+ * OSPR added to fix keyboard navigation of submenu
+ */
   isOpen: boolean;
+  activationSubscription: Subscription;
 
   constructor(@Inject('sectionDataProvider') menuSection,
-              protected menuService: MenuService,
-              protected injector: Injector,
-              private windowService: HostWindowService,
-              private elRef:ElementRef
+    protected menuService: MenuService,
+    protected injector: Injector,
+    private windowService: HostWindowService,
+    private elRef: ElementRef
   ) {
     super(menuSection, menuService, injector);
-    
   }
 
   ngOnInit() {
     super.ngOnInit();
-    this.active.subscribe( (menuState) =>{
+    this.activationSubscription = this.active.subscribe((menuState) => {
       this.isOpen = menuState;
     })
   }
+
+  ngOnDestroy(): void {
+    this.activationSubscription.unsubscribe();
+  }
+
 
   /**
  * OSPR Changes - Moved host element actions
@@ -51,10 +60,10 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
  */
   @HostListener('keyup.enter', ['$event'])
   handleKeyUp(event: any) {
-    if(this.isOpen){
+    if (this.isOpen) {
       this.deactivateSection(event);
     }
-    else{
+    else {
       this.activateSection(event);
     }
     event.stopPropagation();
@@ -72,18 +81,20 @@ export class ExpandableNavbarSectionComponent extends NavbarSectionComponent imp
 
   @HostListener('focusout', ['$event'])
   handleFocusOut(event: any) {
-   if(!this.elRef.nativeElement.contains(event.relatedTarget) && this.isOpen )
-    {
+    if (!this.elRef.nativeElement.contains(event.relatedTarget) && this.isOpen) {
       this.deactivateSection(event);
     }
   }
-  
-  @HostBinding('class') classAttribute: string = 'nav-item dropdown';
-  
 
+  @HostBinding('class') classAttribute: string = 'nav-item dropdown';
+
+
+  /**
+  * Called when a link is activated by a click or enter press
+  */
   linkActivated(event: any) {
-    // Only activate if event is mouse event
-    if(event.detail){
+    // Only de-activate if event is mouse event
+    if (event.detail) {
       this.deactivateSection(event)
     }
     event.stopPropagation();
