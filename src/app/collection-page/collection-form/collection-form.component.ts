@@ -93,9 +93,9 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       id: 'description-email-address',
       name: 'dc.description.email-address',
       required: false,
-      validators: {
-        required: null
-      }
+      // validators: {
+      //   required: null
+      // }
     }),
 
     /*This is copyright*/
@@ -122,17 +122,17 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       id: 'provenance',
       name: 'dc.description.provenance',
       required: false,
-      validators: {
-        required: null
-      }
+      // validators: {
+      //   required: null
+      // }
     }),
     new DynamicInputModel({
       id: 'description-provenance-french',
       name: 'dc.description.provenance-french',
       required: false,
-      validators: {
-        required: null
-      }
+      // validators: {
+      //   required: null
+      // }
     }),
 
   ];
