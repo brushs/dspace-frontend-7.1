@@ -88,12 +88,6 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       labelTooltip: 'create.community.other-name.hint',
       controlTooltip: 'create.community.other-name.hint',
       required: false,
-      validators: {
-        required: null
-      },
-      errorMessages: {
-        required: 'Please enter a other name for this title'
-      },
       hint: 'create.community.other-name.hint'
     }),
 
@@ -103,12 +97,6 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       labelTooltip: 'create.community.other-name.hint',
       controlTooltip: 'create.community.other-name.hint',
       required: false,
-      validators: {
-        required: null
-      },
-      errorMessages: {
-        required: 'Please enter a autre nom for this title'
-      },
       hint: 'create.community.other-name.hint'
     }),
 
@@ -116,18 +104,12 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       id: 'description-identifications',
       name: 'dc.description.identifications',
       required: false,
-      validators: {
-        required: null
-      }
     }),
 
     new DynamicInputModel({
       id: 'description-identifiants',
       name: 'dc.description.identifiants',
       required: false,
-      validators: {
-        required: null
-      }
     }),
 
     new DynamicInputModel({
@@ -151,26 +133,17 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       id: 'description-home-page',
       name: 'dc.description.home-page',
       required: false,
-      validators: {
-        required: null
-      }
     }),
     new DynamicInputModel({
       id: 'description-home-page-french',
       name: 'dc.description.home-page-french',
       required: false,
-      validators: {
-        required: null
-      }
     }),
 
     new DynamicInputModel({
       id: 'description-email-address',
       name: 'dc.description.email-address',
       required: false,
-      validators: {
-        required: null
-      }
     }),
 
     /*This is abstract*/
