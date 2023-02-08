@@ -1,11 +1,9 @@
 <form class="w-100" [formGroup]="formData" (ngSubmit)="submitForm(formData.value)">
-  <fieldset class="flex-"  >
+  <fieldset >
     <legend>
-      <span class="col-12 font-weight-bold mb-1">
         {{'browse.startsWith.jump' | translate}}
-      </span>
     </legend>
-    <div class="row w-100" style="border: 1px solid white">
+    <div class="row w-100">
       <div class="col-6 col-md-2">
         <select id="year-select" class="form-control" (change)="setStartsWithYearEvent($event)"
           [attr.aria-label]="'browse.startsWith.choose_year.label' |translate">
