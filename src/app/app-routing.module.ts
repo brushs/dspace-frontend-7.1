@@ -28,14 +28,16 @@ import { ThemedForbiddenComponent } from './forbidden/themed-forbidden.component
 import { GroupAdministratorGuard } from './core/data/feature-authorization/feature-authorization-guard/group-administrator.guard';
 import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-page/search-tips-page.component';
 
-
-
 @NgModule({
   imports: [
     RouterModule.forRoot([{
       path: '', canActivate: [AuthBlockingGuard],
         children: [
           { path: '', redirectTo: '/home', pathMatch: 'full' },
+          // Start FOSRC Changes- 1386
+          // Remove 'End User Agreement'
+          { path: 'info/end-user-agreement', redirectTo:'404', pathMatch: 'full' },
+          // End of FOSRC changes
           { path: 'reload/:rnd', component: ThemedPageNotFoundComponent, pathMatch: 'full', canActivate: [ReloadGuard] },
           {
             path: 'home',
@@ -65,7 +67,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
           },
           // Start FOSRC Changes- 1396 
           // note: path array oder matters
-          // register-page.module need to be load latter
+          // register-page.module need to load below
           {
             path: REGISTER_PATH, component: ThemedPageNotFoundComponent
           },

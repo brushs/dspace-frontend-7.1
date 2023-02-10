@@ -58,6 +58,7 @@ import {
 import { DsDynamicFormComponent } from './form/builder/ds-dynamic-form-ui/ds-dynamic-form.component';
 import { DragClickDirective } from './utils/drag-click.directive';
 import { TruncatePipe } from './utils/truncate.pipe';
+import { TruncateStringPipe } from './utils/truncate-string.pipe';
 import { TruncatableComponent } from './truncatable/truncatable.component';
 import { TruncatableService } from './truncatable/truncatable.service';
 import { TruncatablePartComponent } from './truncatable/truncatable-part/truncatable-part.component';
@@ -115,6 +116,7 @@ import { CreateCommunityParentSelectorComponent } from './dso-selector/modal-wra
 import { CreateItemParentSelectorComponent } from './dso-selector/modal-wrappers/create-item-parent-selector/create-item-parent-selector.component';
 import { CreateCollectionParentSelectorComponent } from './dso-selector/modal-wrappers/create-collection-parent-selector/create-collection-parent-selector.component';
 import { CommunitySearchResultListElementComponent } from './object-list/search-result-list-element/community-search-result/community-search-result-list-element.component';
+import { MetadataTranslatePipe } from './utils/metadata-translate.pipe';
 import { CollectionSearchResultListElementComponent } from './object-list/search-result-list-element/collection-search-result/collection-search-result-list-element.component';
 import { EditItemSelectorComponent } from './dso-selector/modal-wrappers/edit-item-selector/edit-item-selector.component';
 import { EditCommunitySelectorComponent } from './dso-selector/modal-wrappers/edit-community-selector/edit-community-selector.component';
@@ -229,6 +231,7 @@ import { TabbedRelatedEntitiesSearchComponent } from '../item-page/simple/relate
 import { RelatedEntitiesSearchComponent } from '../item-page/simple/related-entities/related-entities-search/related-entities-search.component';
 import { ConfigurationSearchPageComponent } from '../search-page/configuration-search-page.component';
 import { LinkMenuItemComponent } from './menu/menu-item/link-menu-item.component';
+import { ListLinkMenuItemComponent } from './menu/menu-item/list-link-menu-item.component';
 import { OnClickMenuItemComponent } from './menu/menu-item/onclick-menu-item.component';
 import { TextMenuItemComponent } from './menu/menu-item/text-menu-item.component';
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
@@ -280,9 +283,11 @@ const PIPES = [
   FileSizePipe,
   SafeUrlPipe,
   TruncatePipe,
+  TruncateStringPipe,
   EmphasizePipe,
   CapitalizePipe,
   ObjectKeysPipe,
+  MetadataTranslatePipe,
   ObjectValuesPipe,
   ConsolePipe,
   ObjNgFor
@@ -521,6 +526,7 @@ const ENTRY_COMPONENTS = [
   CollectionSidebarSearchListElementComponent,
   CommunitySidebarSearchListElementComponent,
   LinkMenuItemComponent,
+  ListLinkMenuItemComponent,
   OnClickMenuItemComponent,
   TextMenuItemComponent
 ];
