@@ -1146,7 +1146,7 @@
   // "dso-selector.no-results": "No {{type}} found",
   "dso-selector.no-results": "Aucun {{type}} trouvé",
   // "dso-selector.placeholder": "Search for a {{type}}",
-  "dso-selector.placeholder": "Rechercher un(e) {{type}}",
+  "dso-selector.placeholder": "Rechercher {{type}}",
   // "error.bitstream": "Error fetching bitstream",
   "error.bitstream": "Erreur lors de la récupération du flux binaire",
   // "error.browse-by": "Error fetching items",
