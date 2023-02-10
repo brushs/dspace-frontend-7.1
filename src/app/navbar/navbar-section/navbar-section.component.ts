@@ -8,7 +8,7 @@ import { rendersSectionForMenu } from '../../shared/menu/menu-section.decorator'
  * Represents a non-expandable section in the navbar
  */
 @Component({
-  selector: 'ds-navbar-section',
+  selector: 'li[ds-navbar-section]',
   templateUrl: './navbar-section.component.html',
   styleUrls: ['./navbar-section.component.scss']
 })

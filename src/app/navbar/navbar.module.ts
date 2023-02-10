@@ -12,6 +12,7 @@ import { MenuModule } from '../shared/menu/menu.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ThemedNavbarComponent } from './themed-navbar.component';
+import { AuthNavMenuComponent } from '../shared/auth-nav-menu/auth-nav-menu.component';
 
 const effects = [
   NavbarEffects

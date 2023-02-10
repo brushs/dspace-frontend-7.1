@@ -1,4 +1,4 @@
-<div ngbDropdown class="navbar-nav" *ngIf="moreThanOneLanguage" display="dynamic" placement="bottom-right">
+<!-- <div ngbDropdown class="navbar-nav" *ngIf="moreThanOneLanguage" display="dynamic" placement="bottom-right">
   <a href="#" role="button"
      [attr.aria-label]="'nav.language' |translate"
      [title]="'nav.language' | translate" class="px-1"
@@ -14,4 +14,14 @@
                 {{ langLabel(lang) }}
     </li>
   </ul>
+</div> -->
+
+
+<div *ngIf="moreThanOneLanguage" class="navbar-nav">
+  <a href="#" role="button" 
+    [attr.aria-label]="'nav.language' | translate" 
+    [title]="'nav.language' | translate"
+    (click)="useLang(getAlternateLanguageCode(this.translate.currentLang), $event)" tabindex="0">
+     {{ langLabel(getAlternateLanguageCode(this.translate.currentLang)) }}
+  </a>
 </div>

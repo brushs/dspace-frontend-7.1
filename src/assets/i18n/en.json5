@@ -397,6 +397,9 @@
 	"collection.edit.template.title": "Edit template item",
 	
 	"collection.form.errors.title.required": "Please enter a collection name",
+	"collection.form.errors.description-nom.required": "Please enter a collection name in french",
+	"collection.form.errors.description-topic-subject.required": "Please enter a subject",
+	"collection.form.errors.description-topic-subject-french.required": "Please enter a subject in french",
 	"collection.form.title": "Name (required)",
     "collection.form.description-nom": "Nom (obligatoire)",
 	"collection.form.description-topic-subject": "Subject (required)",
@@ -487,6 +490,10 @@
 	"community.edit.tabs.roles.title": "Community Edit – Roles",
 
 	"community.form.errors.title.required": "Please enter a community name",
+	"community.form.errors.description-nom.required": "Please enter a community name in french",
+	"community.form.errors.description-topic-subject.required": "Please enter a subject",
+	"community.form.errors.description-topic-subject-french.required": "Please enter a subject in french",
+
 	"community.form.title": "Name (required)",
 	"community.form.description-nom": "Nom (obligatoire)",
 	"community.form.description-other-names": "Other name",
@@ -1166,9 +1173,9 @@
 	"mydspace.view-btn": "View",
 	"nav.browse.header": "Browse by",
 	"nav.community-browse.header": "By community",
-	"nav.language": "Switch to other language",
+	"nav.language": "Français",
 	"nav.login": "Log in",
-	"nav.logout": "User profile menu and log out",
+	"nav.logout": "Log out",
 	"nav.main.description": "Main navigation bar",
 	"nav.mydspace": "MyFOSRC",
 	"nav.profile": "Profile",

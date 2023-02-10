@@ -151,7 +151,7 @@ export class Metadata {
    * @param {MetadataMapInterface} mdMap The source map.
    * @param {string|string[]} keyOrKeys The metadata key(s) in scope. Wildcards are supported; see above.
    */
-  private static resolveKeys(mdMap: MetadataMapInterface = {}, keyOrKeys: string | string[]): string[] {
+  public static resolveKeys(mdMap: MetadataMapInterface = {}, keyOrKeys: string | string[]): string[] {
     const inputKeys: string[] = keyOrKeys instanceof Array ? keyOrKeys : [keyOrKeys];
     const outputKeys: string[] = [];
     for (const inputKey of inputKeys) {

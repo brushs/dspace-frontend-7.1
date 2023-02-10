@@ -6,20 +6,21 @@
           [attr.aria-label]="((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate"
   >
     <!-- FOSRC Changes started-->
-    <fieldset class="d-inline-block mb-0">
-      <legend>
-        {{'search.filters.filter.' + filter.name + '.head'| translate}}
-        <span class="filter-toggle fas p-auto"  
-          [ngClass]="(collapsed$ | async) ? 'fa-plus' : 'fa-minus'"
-          [title]="((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate">
+    <fieldset >
+      <legend class="flex-container">
+          <span>{{'search.filters.filter.' + filter.name + '.head'| translate}}</span>
+          <span class="filter-toggle fas p-auto"
+            [ngClass]="(collapsed$ | async) ? 'fa-plus' : 'fa-minus'"
+            [title]="((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate">
         </span>
-        <span class="wb-inv">
-          {{filter.name}} {{((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate}}
-        </span>
+          <span class="wb-inv">
+            {{filter.name}} {{((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate}}
+          </span>
       </legend>
     </fieldset>
     <!-- End FOSRC Changes -->
   </button>
+  
   <div [@slide]="(collapsed$ | async) ? 'collapsed' : 'expanded'"
        (@slide.start)="startSlide($event)" (@slide.done)="finishSlide($event)"
        class="search-filter-wrapper" [ngClass]="{ 'closed' : closed, 'notab': notab }">

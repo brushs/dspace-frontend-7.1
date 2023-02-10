@@ -26,7 +26,9 @@
 }
 
 .scrollable-dropdown-toggle {
+  display: block;
   padding:  0.70rem 0.70rem 0 0.70rem ;
+  right: 0;  
 }
 
 .scrollable-dropdown-input[readonly]{
