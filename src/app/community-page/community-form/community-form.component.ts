@@ -87,36 +87,12 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     }),
 
     new DynamicInputModel({
-      id: 'description-other-names',
-      name: 'dc.description.other-names',
-/*      labelTooltip: 'create.community.other-name.hint',
-      controlTooltip: 'create.community.other-name.hint',
-      required: false,
-      hint: 'create.community.other-name.hint'
-*/    }),
-
-    new DynamicInputModel({
-      id: 'description-autre-nom',
-      name: 'dc.description.autre-nom',
-/*      labelTooltip: 'create.community.other-name.hint',
-      controlTooltip: 'create.community.other-name.hint',
-      hint: 'create.community.other-name.hint',
-*/      required: false
-    }),
-
-    new DynamicInputModel({
-      id: 'description-identifications',
-      name: 'dc.description.identifications',
-      required: false,
-    }),
-
-    new DynamicInputModel({
       id: 'alternative-names',
       name: 'dc.title.alternative',
 /*      labelTooltip: 'alternative-names.hint',
       controlTooltip: 'alternative-names.hint',
-          hint: 'alternative-names.hint'
-*/      required: false,
+          hint: 'alternative-names.hint'*/
+      required: false,
       validators: {
         required: null
       },
@@ -130,8 +106,8 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.title.alternativetranslation',
 /*      labelTooltip: 'alternative-names-translation.hint',
       controlTooltip: 'alternative-names-translation.hint',
-      hint: 'alternative-names-translation.hint'
-*/      required: false,
+      hint: 'alternative-names-translation.hint'*/
+      required: false,
       validators: {
         required: null
       },
@@ -142,33 +118,23 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
 
     new DynamicInputModel({
       id: 'identifiers',
-      name: 'dc.identifiers',
+      name: 'dc.identifier',
 /*      labelTooltip: 'identifiers.hint',
       controlTooltip: 'identifiers.hint',
-            hint: 'identifiers.hint'
-
-*/      required: false,
+            hint: 'identifiers.hint'*/
+      required: false,
       validators: {
         //required: 'identifiers.required'
       }
     }),
-    /*
-        new DynamicInputModel({
-          id: 'description-identifiants',
-          name: 'dc.description.identifiants',
-          required: false,
-          validators: {
-            required: null
-          }
-        }),*/
 
     new DynamicInputModel({
       id: 'researcharea',
       name: 'dc.subject',
 /*      labelTooltip: 'researcharea.hint',
       controlTooltip: 'researcharea.hint',
-            hint: 'researcharea.hint'
-*/      required: true,
+            hint: 'researcharea.hint'*/
+      required: true,
       validators: {
         //required: 'researcharea.required'
       }
@@ -178,68 +144,55 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.subject.fosrctranslation',
 /*      labelTooltip: 'researcharea-fosrctranslation.hint',
       controlTooltip: 'researcharea-fosrctranslation.hint',
-      hint: 'researcharea-fosrctranslation.hint'
-*/      required: true,
+      hint: 'researcharea-fosrctranslation.hint'*/
+      required: true,
       validators: {
         //required: 'researcharea.required'
       }
     }),
 
     new DynamicInputModel({
-      id: 'home-page',
-      name: 'dc.identifier.home-page',
-/*      labelTooltip: 'home-page.hint',
-      controlTooltip: 'home-page.hint',
-            hint: 'home-page.hint'
-*/      required: false,
+      id: 'homepage-link',
+      name: 'dc.identifier.uri-home-page',
+/*      labelTooltip: 'homepage-link.hint',
+      controlTooltip: 'homepage-link.hint',
+            hint: 'homepage-link.hint'*/
+      required: false,
       validators: {
-        //required: 'home-page.required'
+        //required: 'homepage-link.required'
       }
     }),
     new DynamicInputModel({
-      id: 'home-pagetranslation',
-      name: 'dc.identifier.home-pagetranslation',
-/*      labelTooltip: 'home-pagetranslation.hint',
-      controlTooltip: 'home-pagetranslation.hint',
-            hint: 'home-pagetranslation.hint'
-*/      required: false,
+      id: 'homepage-link-fosrctranslation',
+      name: 'dc.identifier.uri-home-pagetranslation',
+/*      labelTooltip: 'homepage-link-translation.hint',
+      controlTooltip: 'homepage-link-fosrctranslation.hint',
+            hint: 'homepage-link-fosrctranslation.hint'*/
+      required: false,
       validators: {
-        //required: 'home-pagetranslation.required'
+        //required: 'homepage-link-fosrctranslation.required'
       }
     }),
 
     new DynamicInputModel({
-      id: 'description-home-page',
-      name: 'dc.description.home-page',
-      required: false,
-    }),
-    new DynamicInputModel({
-      id: 'description-home-page-french',
-      name: 'dc.description.home-page-french',
-      required: false,
-    }),
-
-    new DynamicInputModel({
-      id: 'description-email-address',
+      id: 'email-address',
       name: 'dc.description.email-address',
-      /*      labelTooltip:   'description-email-address.hint',
-            controlTooltip: 'description-email-address.hint',
-            hint:           'description-email-address.hint',
-      */
+      /*      labelTooltip:   'email-address.hint',
+            controlTooltip: 'email-address.hint',
+            hint:           'email-address.hint',*/
       required: false,
       validators: {
-        //required:     'description-email-address.required'
+        //required:     'email-address.required'
       }
     }),
 
-    /*This is abstract*/
+    /*This is short description*/
     new DynamicTextAreaModel({
       id: 'abstract',
       name: 'dc.description.abstract',
       /*      labelTooltip:   'abstract.hint',
             controlTooltip: 'abstract.hint',
-            hint:           'abstract.hint',
-      */
+            hint:           'abstract.hint',*/
       required: false,
       validators: {
         //required:     'abstract.required'
@@ -250,8 +203,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.description.abstracttranslation',
       /*      labelTooltip:   'abstracttranslation.hint',
             controlTooltip: 'abstracttranslation.hint',
-            hint:           'abstracttranslation.hint',
-      */
+            hint:           'abstracttranslation.hint',*/
       required: false,
       validators: {
         //required:     'abstracttranslation.required'
@@ -263,8 +215,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.description',
       /*      labelTooltip:   'description.hint',
             controlTooltip: 'description.hint',
-            hint:           'description.hint',
-      */
+            hint:           'description.hint',*/
       required: false,
       validators: {
         //required:     'description.required'
@@ -275,33 +226,30 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.description.fosrctranslation',
       /*      labelTooltip:   'description-fosrctranslation.hint',
             controlTooltip: 'description-fosrctranslation.hint',
-            hint:           'description-fosrctranslation.hint',
-      */
+            hint:           'description-fosrctranslation.hint',*/
       required: false,
       validators: {
         //required:     'description-fosrctranslation.required'
       }
     }),
     new DynamicTextAreaModel({
-      id: 'description-contact-address',
+      id: 'contact-address',
       name: 'dc.description.contact-address',
-      /*      labelTooltip:   'description-contact-address.hint',
-            controlTooltip: 'description-contact-address.hint',
-            hint:           'description-contact-address.hint',
-      */
+      /*      labelTooltip:   'contact-address.hint',
+            controlTooltip: 'contact-address.hint',
+            hint:           'contact-address.hint',*/
       required: false,
       validators: {
-        //required:     'description-contact-address.required'
+        //required:     'contact-address.required'
       }
     }),
-    /*This is tableOfContents*/
+    /*This is tableOfContents --News element*/
     new DynamicTextAreaModel({
       id: 'tableofcontents',
       name: 'dc.description.tableofcontents',
       /*      labelTooltip:   'tableofcontents.hint',
             controlTooltip: 'tableofcontents.hint',
-            hint:           'tableofcontents.hint',
-      */
+            hint:           'tableofcontents.hint',*/
       required: false,
       validators: {
         //required:     'tableofcontents.required'
@@ -312,8 +260,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.description.tableofcontentsTranslation',
       /*      labelTooltip:   'tableofcontentsTranslation.hint',
             controlTooltip: 'tableofcontentsTranslation.hint',
-            hint:           'tableofcontentsTranslation.hint',
-        */
+            hint:           'tableofcontentsTranslation.hint',*/
       required: false,
       validators: {
         //required:     'tableofcontentsTranslation.required'
@@ -325,8 +272,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.rights',
       /*      labelTooltip:   'rights.hint',
             controlTooltip: 'rights.hint',
-            hint:           'rights.hint',
-      */
+            hint:           'rights.hint',*/
       required: false,
       validators: {
         //required:     'rights.required'
@@ -337,8 +283,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.rights.fosrctranslation',
       /*      labelTooltip:   'rights-fosrctranslation.hint',
             controlTooltip: 'rights-fosrctranslation.hint',
-            hint:           'rights-fosrctranslation.hint',
-      */
+            hint:           'rights-fosrctranslation.hint',*/
       required: false,
       validators: {
         //required:     'rights-fosrctranslation.required'

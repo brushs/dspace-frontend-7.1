@@ -3,13 +3,13 @@ export const environment = {
 	"ui": {
 		"ssl": false,
 		"host": "localhost",
-		"port": 4000,
+		"port": 4010,
 		"nameSpace": "/",
 		"rateLimiter": {
 			"windowMs": 60000,
 			"max": 500
 		},
-		"baseUrl": "http://localhost:4000/"
+		"baseUrl": "http://localhost:4010/"
 	},
 	"rest": {
 		"ssl": true,
