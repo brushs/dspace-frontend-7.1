@@ -142,6 +142,7 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     this.formModel.forEach(
       (fieldModel: DynamicInputModel) => {
         fieldModel.value = this.dso.firstMetadataValue(fieldModel.name);
+        console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value)
       }
     );
     this.formGroup = this.formService.createFormGroup(this.formModel);

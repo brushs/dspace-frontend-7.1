@@ -46,33 +46,33 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
         required: null
       },
       errorMessages: {
-        required: 'Please enter a name for this title'
+        //required: 'Please enter a name for this title'
       },
     }),
     /* OSPR changes start - add/remove fields for testing the new dynamic control models */
     new DynamicInputModel({
-      id: 'description-nom',
-      name: 'dc.description.nom',
+      id: 'translatedTitle',
+      name: 'dc.title.fosrctranslation',
       required: true,
       validators: {
         required: null
       },
       errorMessages: {
-        required: 'Please enter a name for this title'
+        //required: 'Please enter a name for this title'
       },
     }),
 
     new DynamicInputModel({
-      id: 'description-topic-subject',
-      name: 'dc.description.topic-subject',
+      id: 'subject',
+      name: 'dc.subject',
       required: true,
       validators: {
         required: null
       }
     }),
     new DynamicInputModel({
-      id: 'description-topic-subject-french',
-      name: 'dc.description.topic-subject-french',
+      id: 'subject-fosrctranslation',
+      name: 'dc.subject.fosrctranslation',
       required: true,
       validators: {
         required: null
@@ -85,12 +85,12 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       name: 'dc.description',
     }),
     new DynamicTextAreaModel({
-      id: 'description-french',
-      name: 'dc.description.french',
+      id: 'description-fosrctranslation',
+      name: 'dc.description.fosrctranslation',
     }),
 
     new DynamicInputModel({
-      id: 'description-email-address',
+      id: 'email-address',
       name: 'dc.description.email-address',
       required: false,
     }),
@@ -101,8 +101,8 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       name: 'dc.rights',
     }),
     new DynamicTextAreaModel({
-      id: 'rights-french',
-      name: 'dc.rights.french',
+      id: 'rights-fosrctranslation',
+      name: 'dc.rights.fosrctranslation',
     }),
 
     /*This is rights.license*/
@@ -111,8 +111,8 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       name: 'dc.rights.license',
     }),
     new DynamicTextAreaModel({
-      id: 'description-license-french',
-      name: 'dc.description.license-french',
+      id: 'license-fosrctranslation',
+      name: 'dc.description.license-fosrctranslation',
     }),
 
     new DynamicInputModel({
@@ -121,8 +121,8 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       required: false,
     }),
     new DynamicInputModel({
-      id: 'description-provenance-french',
-      name: 'dc.description.provenance-french',
+      id: 'provenance-fosrctranslation',
+      name: 'dc.description.provenance-fosrctranslation',
       required: false,
     }),
 
