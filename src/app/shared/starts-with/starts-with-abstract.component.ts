@@ -78,7 +78,7 @@ export abstract class StartsWithAbstractComponent implements OnInit, OnDestroy {
    */
   setStartsWithParam() {
     if (this.startsWith === '-1') {
-      //this.startsWith = undefined;
+      this.startsWith = undefined;
     }
     this.router.navigate([], {
       queryParams: Object.assign({ startsWith: this.startsWith }),
