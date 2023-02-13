@@ -75,25 +75,23 @@
                       #wb-info .brand object,
                       #wb-info .brand img {
                         height: 25px;
-                        margin-top: 15px;
-                        max-width: 100%;
+                        margin-top: 0px;
+                        // To adjust Canada woodmark size 
+                        // max-width: 100%;
                         padding-right: 10px; }
                       #wb-info .tofpg {
                         line-height: 60px; }          
 
 
     #wb-info .ftr-urlt-lnk li {
-      display: inline-flex;
+      display: inline-block;
+      position: relative;
       float: none;
-      margin-right: 0.7em; }
-      #wb-info .ftr-urlt-lnk li:first-child:before {
-        content: "\2022";
-      content: "\2022" / ""; }
+      margin-right: 0.7em; } 
     [dir=rtl] #wb-info .ftr-urlt-lnk li {
       float: right; }
 
 
-        
         
 
 #wb-info {
@@ -113,18 +111,20 @@
       #wb-info .brand img {
         height: 40px;
         margin-bottom: 10px;
-        margin-top: 15px;
+        margin-top: 25px;
         width: auto; }
-    #wb-info .ftr-urlt-lnk ul {
+    #wb-info .subfooter ul {
+      list-style: none;
       margin: 0;
       padding: 0; }
-    #wb-info .ftr-urlt-lnk li:before {
+    // #wb-info .ftr-urlt-lnk li:not(:first-child):before 
+    #wb-info .subfooter li:not(:first-child):before 
+    {
       content: "\2022";
-      content: "\2022" / "";
       margin-right: 0.7em; }
     #wb-info .landscape {
       background: #26374a url(../../../../assets/images/landscape.png) no-repeat right bottom;
-      background-position: bottom -15px right 0px;
+      background-position: bottom 0px right 0px;
       }
       #wb-info .landscape a {
         color: #fff; }
@@ -139,7 +139,7 @@
         #wb-info .tofpg a:hover {
           text-decoration: none; }
     #wb-info nav {
-      padding-bottom: 2em;
+      padding-bottom: 1em;
       padding-top: 2em;
       position: relative; }
       #wb-info nav li {
@@ -171,6 +171,10 @@
       -webkit-column-count: 4;
          -moz-column-count: 4;
               column-count: 4; }
+    .colcount-md-5 {
+      -webkit-column-count: 5;
+          -moz-column-count: 5;
+              column-count: 5; }          
     .pstn-lft-md {
       position: absolute;
       left: 0;
