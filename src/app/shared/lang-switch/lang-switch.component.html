@@ -18,7 +18,7 @@
 
 
 <div *ngIf="moreThanOneLanguage" class="navbar-nav">
-  <a href="#" role="button" 
+  <a href="#" role="button" [attr.lang]="'nav.language.attribute' | translate"
     [attr.aria-label]="'nav.language' | translate" 
     [title]="'nav.language' | translate"
     (click)="useLang(getAlternateLanguageCode(this.translate.currentLang), $event)" tabindex="0">
