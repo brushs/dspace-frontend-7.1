@@ -83,21 +83,21 @@ mouse:hover {
     pointer-events: none; }
   
     .btn-default {
-      color: var(btn-default-text-color);
-      background-color: var(btn-default-bg-color);;
+      color: var(--btn-default-text-color);
+      background-color: var(--btn-default-bg-color) !important;
       border-color: #dcdee1; }
       .btn-default:focus, .btn-default.focus {
-        color: var(btn-default-text-color);
-        background-color: var(btn-default-interaction-bg-color);
+        color: var(--btn-default-text-color);
+        background-color: var(--btn-default-interaction-bg-color);
         border-color: #989da6; }
       .btn-default:hover {
-        color: var(btn-default-text-color);
-        background-color: var(btn-default-interaction-bg-color);
+        color: var(--btn-default-text-color);
+        background-color: var(--btn-default-interaction-bg-color);
         border-color: #bbbfc5; }
       .btn-default:active, .btn-default.active,
       .open > .btn-default.dropdown-toggle {
-        color: var(btn-default-text-color);
-        background-color: var(btn-default-interaction-bg-color);
+        color: var(--btn-default-text-color);
+        background-color: var(--btn-default-interaction-bg-color);
         background-image: none;
         border-color: #bbbfc5; }
         .btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus,
