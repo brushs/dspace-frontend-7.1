@@ -29,8 +29,9 @@ $ospr-blue-200: #2572b4 !default;
 // Text colors
 $gcweb-link-color: #295376 !default;
 
-$ospr-gray-500: #335075 !default;
-
+$btn-default-text-color: #335075 !default;
+$btn-default-interaction-bg-color: #cfd1d5 !default;
+$btn-default-bg-color:#eaebed !default;
 
 
 $gray-800: #343a40 !default;
@@ -71,7 +72,7 @@ $btn-link-disabled-opacity: 1 !default;
 
 $theme-colors: (
   primary: $ospr-blue-800,
-  secondary: $ospr-gray-500,
+  secondary: $btn-default-text-color,
   success: $green,
   info: $gray-700,
   warning: $yellow,
@@ -93,6 +94,8 @@ $link-color: map-get($theme-colors, link-color) !default;
   --ospr-blue-300: #{$ospr-blue-300};
   --ospr-blue-200: #{$ospr-blue-200};
 
-  --ospr-gray-500: #{$ospr-gray-500};
+  --btn-default-text-color: #{$btn-default-text-color};
+  --btn-default-interaction-bg-color: #{$btn-default-interaction-bg-color};
+  --btn-default-bg-color: #{$btn-default-bg-color};
 
 }
