@@ -34,6 +34,10 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
       path: '', canActivate: [AuthBlockingGuard],
         children: [
           { path: '', redirectTo: '/home', pathMatch: 'full' },
+          // Start FOSRC Changes- 1386
+          // Remove 'End User Agreement'
+          { path: 'info/end-user-agreement', redirectTo:'404', pathMatch: 'full' },
+          // End of FOSRC changes
           { path: 'reload/:rnd', component: ThemedPageNotFoundComponent, pathMatch: 'full', canActivate: [ReloadGuard] },
           {
             path: 'home',
@@ -61,12 +65,19 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
               .then((m) => m.LookupIdModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
+          // Start FOSRC Changes- 1396 
+          // note: path array oder matters
+          // register-page.module need to load below
+          {
+            path: REGISTER_PATH, component: ThemedPageNotFoundComponent
+          },
+          // End of FOSRC changes
           {
             path: REGISTER_PATH,
             loadChildren: () => import('./register-page/register-page.module')
               .then((m) => m.RegisterPageModule),
             canActivate: [SiteRegisterGuard]
-          },
+          },         
           {
             path: FORGOT_PASSWORD_PATH,
             loadChildren: () => import('./forgot-password/forgot-password.module')

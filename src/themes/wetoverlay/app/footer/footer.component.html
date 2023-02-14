@@ -1,60 +1,79 @@
 
-  <div class="global-footer">
+<div class="global-footer">
   <footer id="wb-info" class="text-lg-start">
     <div  id="transactFooter" class="landscape"> 
-    <nav class="container wb-navcurr" aria-labelledby="aboutOSPR">
-    <h2 class="wb-inv" id="aboutOSPR">{{ 'about' | translate }}</h2>
+    <nav class="pt-0 container wb-navcurr">>
+    <h2 class="wb-inv">{{'footer.section.about-gov' | translate}}"</h2>
     <ul class="list-unstyled colcount-md-3">
-      <li>
-        <a class="text-white"
-        routerLink="/community-list">{{ 'footer.link.community-list' | translate}}</a>
-      </li>
-    <li><a class="text-white" href="mailto:stevenson.gossage@ssc-spc.gc.ca">{{ 'footer.link.contact-us' | translate}}</a></li>
-    <li>
-      <a class="text-white"
-         routerLink="/browse/author">{{ 'footer.link.browse-by-author' | translate}}</a>
-    </li>
-    <li>
-      <a class="text-white"
-         routerLink="/browse/dateissued">{{ 'footer.link.browse-by-issue-date' | translate}}</a>
-    </li>
-    <li>
-      <a class="text-white"
-         routerLink="/browse/subject">{{ 'footer.link.browse-by-subject' | translate}}</a>
-    </li>
-    <li>
-      <a class="text-white"
-         routerLink="/browse/title">{{ 'footer.link.browse-by-title' | translate}}</a>
-    </li>
+      <li><a class="text-white" href="{{ 'footer.gc.contact-us.link' | translate}}">{{ 'footer.gc.contact-us' | translate}}</a></li>
+    <li>        <a class="text-white"
+      href="{{ 'footer.gc.departments-agencies.link' | translate}}">{{ 'footer.gc.departments-agencies' | translate}}</a>
+ </li>
+ <li>
+   <a class="text-white"
+      href="'{{ 'footer.gc.public-service.link' | translate}}">{{ 'footer.gc.public-service' | translate}}</a>
+ </li>
+ <li>
+   <a class="text-white"
+      href="'{{ 'footer.gc.news.link' | translate}}">{{ 'footer.gc.news' | translate}}</a>
+ </li>
+ <li>
+  <a class="text-white"
+     href="'{{ 'footer.gc.treaties-laws-regulations.link' | translate}}">{{ 'footer.gc.treaties-laws-regulations' | translate}}</a>
+</li>
+ <li>
+   <a class="text-white"
+      href="'{{ 'footer.gc.reporting.link' | translate}}">{{ 'footer.gc.reporting' | translate}}</a>
+ </li>
+ <li>
+   <a class="text-white"
+      href="'{{ 'footer.gc.prime-minister.link' | translate}}">{{ 'footer.gc.prime-minister' | translate}}</a>
+ </li>
+ <li>
+   <a class="text-white"
+      href="'{{ 'footer.gc.about-gov.link' | translate}}">{{ 'footer.gc.about-gov' | translate}}</a>
+ </li>
+ <li>
+   <a class="text-white"
+      href="'{{ 'footer.gc.open-gov.link' | translate}}">{{ 'footer.gc.open-gov' | translate}}</a>
+ </li>
     </ul>
     </nav>
     </div>
     <div class="brand">
       <div class="container">
       <div class="row">
-        <div class="center col-md-12 col-lg-10 p-1 text-lg-center">
-          <nav class="py-0 col-md-12 justify-content-center ftr-urlt-lnk" aria-labelledby="aboutGC">
-            <ul class="">
+          <nav class="col-md-9 col-lg-10 subfooter">
+            <h2 class="wb-inv">{{'footer.section.about-this-site' | translate}}"</h2>
+            <ul width="900" class="g-1 colcount-md-5 float-left">
               <li>
-                <a class="text-dark" href="#" (click)="showCookieSettings()">{{ 'footer.link.cookies' | translate}}</a>
+                <a class="text-dark"
+                href="'{{ 'footer.gc.social-media.link' | translate}}">{{ 'footer.gc.social-media' | translate}}</a>
               </li>
               <li>
                 <a class="text-dark"
-                  routerLink="info/privacy">{{ 'footer.link.privacy-policy' | translate}}</a>
+                href="'{{ 'footer.gc.mobile-applications.link' | translate}}">{{ 'footer.gc.mobile-applications' | translate}}</a>
               </li>
               <li>
                 <a class="text-dark"
-                  routerLink="info/end-user-agreement">{{ 'footer.link.end-user-agreement' | translate}}</a>
+                href="'{{ 'footer.gc.about-canada.ca.link' | translate}}">{{ 'footer.gc.about-canada.ca' | translate}}</a>
+              </li>
+              <li>
+                <a class="text-dark"
+                href="'{{ 'footer.gc.terms-conditions.link' | translate}}">{{ 'footer.gc.terms-conditions' | translate}}</a>
+              </li>
+              <li>
+                <a class="text-dark"
+                href="'{{ 'footer.gc.privacy.link' | translate}}">{{ 'footer.gc.privacy' | translate}}</a>
               </li>
             </ul>
           </nav>
-        </div>
 
         <div class="col-xs-6 visible-sm visible-xs tofpg">
           <a href="#wb-cont">Top of Page <span class="fa fa-chevron-up"></span></a>
         </div>
         <!-- Copyright -->
-        <div class="col-xs-6 col-md-2 text-right">
+        <div class="mb-3 col-xs-6 col-md-3 col-lg-2 text-right">
           <img src="../../../../assets/images/wmms-blk.svg" alt="{{'footer.symbol' | translate}}">
         </div>
       </div>

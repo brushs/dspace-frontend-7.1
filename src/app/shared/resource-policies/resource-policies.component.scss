@@ -1,3 +1,8 @@
 td .btn-link:focus {
   box-shadow: none !important;
 }
+/* -- Start FOSRC Changes - 318 -- */
+input.custom-control-input:checked + label.custom-control-label:after { 
+  background-color: #2196F3
+}
+/* -- End of OSPR changes -- */

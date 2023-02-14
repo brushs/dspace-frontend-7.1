@@ -3,3 +3,19 @@
   background-color: var(--bs-input-bg);
   color: var(--bs-input-color);
 }
+
+fieldset{
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%
+}
+legend{
+  font-size: 1rem;
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  width: 100%;
+}

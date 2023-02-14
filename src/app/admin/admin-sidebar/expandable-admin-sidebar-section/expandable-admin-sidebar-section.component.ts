@@ -1,4 +1,4 @@
-import { Component, Inject, Injector, OnInit } from '@angular/core';
+import { Component, HostBinding, Inject, Injector, OnInit } from '@angular/core';
 import { rotate } from '../../../shared/animations/rotate';
 import { AdminSidebarSectionComponent } from '../admin-sidebar-section/admin-sidebar-section.component';
 import { slide } from '../../../shared/animations/slide';
@@ -14,7 +14,7 @@ import { rendersSectionForMenu } from '../../../shared/menu/menu-section.decorat
  * Represents a expandable section in the sidebar
  */
 @Component({
-  selector: 'ds-expandable-admin-sidebar-section',
+  selector: 'li[ds-expandable-admin-sidebar-section]',
   templateUrl: './expandable-admin-sidebar-section.component.html',
   styleUrls: ['./expandable-admin-sidebar-section.component.scss'],
   animations: [rotate, slide, bgColor]
@@ -47,6 +47,17 @@ export class ExpandableAdminSidebarSectionComponent extends AdminSidebarSectionC
    * This is true when the section is active AND either the sidebar or it's preview is open
    */
   expanded: Observable<boolean>;
+
+  /** Attach classes to host element. */
+  // @HostBinding('class')
+  // get elementClasses() {
+  //   return {
+  //     'sidebar-section': true,
+  //     'expanded' : this.expanded,
+  //    // [`primary-button--${this.size}`]: true,
+  //    // 'primary-button--color': false
+  //   }
+  // }
 
   constructor(@Inject('sectionDataProvider') menuSection, protected menuService: MenuService,
               private variableService: CSSVariableService, protected injector: Injector) {
