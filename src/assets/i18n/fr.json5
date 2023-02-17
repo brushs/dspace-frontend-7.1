@@ -2464,6 +2464,7 @@
   "nav.community-browse.header": "Par Communauté",
   // "nav.language": "Switch to other language",
   "nav.language": "English",
+  "nav.language.attribute": "en",
   // "nav.login": "Log in",
   "nav.login": "Se connecter",
   // "nav.logout": "User profile menu and log out",
