@@ -253,7 +253,7 @@ mouse:hover {
     fieldset[disabled] .btn-info:hover,
     fieldset[disabled] .btn-info:focus,
     fieldset[disabled] .btn-info.focus {
-      color: #000;
+      color: #fff;
       background-color: #4d4d4d;
       border-color: #1a1a1a; }
     .btn-info .badge {
@@ -489,7 +489,7 @@ input.btn.btn-call-to-action {
       .btn-outline-primary {
         background-color: transparent;
         color: #207698;
-        border-color: #212529;; }
+        border-color: #207698;; }
         .btn-outline-primary:focus, .btn-outline-primary.focus {
           color: white;
           background-color: #207698;
@@ -566,9 +566,31 @@ input.btn.btn-call-to-action {
 
   // Buttons
 
-  
-    .btn-dark {
+  // hover bg color changed from f8f9fa to 55626f
+    .btn-dark:hover {
+      color: white;
+      background-color: #55626f;
+      border-color: black;
+    }
+  // btn-dark regular bg color #43515f
+    .btn-dark:active {
       color: black;
-      background-color: #f8f9fa;
+      background-color: #55626f;
+      border-color: black;
+    }
+
+    .btn-dark.disabled:hover, .btn-dark.disabled:focus, .btn-dark.disabled.focus, .btn-dark[disabled]:hover, .btn-dark[disabled]:focus, .btn-dark[disabled].focus,
+    fieldset[disabled] .btn-dark:hover,
+    fieldset[disabled] .btn-dark:focus,
+    fieldset[disabled] .btn-dark.focus {
+      color: white;
+      background-color: #55626f;
+      border-color: black;
+    .btn-dark .badge {
+      background-color: #55626f;; }
+    }
+
+    .btn-dark:focus {
+      color: white;
       border-color: black;
     }
