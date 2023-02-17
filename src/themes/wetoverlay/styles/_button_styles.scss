@@ -559,8 +559,8 @@ input.btn.btn-call-to-action {
             fieldset[disabled] .btn-outline-secondary:focus,
             fieldset[disabled] .btn-outline-secondary.focus {
               background-color: transparent;
-              border-color: #212529;
-              color: #000; }
+              border-color: #{$gray-700};
+              color: #{$gray-700}; }
             .btn-outline-secondary .badge {
               background-color: transparent; }
 
