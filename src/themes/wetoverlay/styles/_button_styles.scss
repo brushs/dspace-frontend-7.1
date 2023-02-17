@@ -567,7 +567,14 @@ input.btn.btn-call-to-action {
   // Buttons
 
   // hover bg color changed from f8f9fa to 55626f
-    .btn-dark:hover {
+
+  .btn-dark {
+    color: white;
+    background-color: #55626f;
+    border-color: black;
+  }
+
+  .btn-dark:hover {
       color: white;
       background-color: #55626f;
       border-color: black;
