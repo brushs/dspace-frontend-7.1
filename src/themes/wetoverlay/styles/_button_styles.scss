@@ -84,38 +84,38 @@ mouse:hover {
   
     .btn-default {
       color: var(--btn-default-text-color);
-      background-color: var(--btn-default-bg-color) !important;
-      border-color: #dcdee1; }
+      background-color: var(btn-default-bg-color) !important;
+      border-color: #{$gray-200}; }
       .btn-default:focus, .btn-default.focus {
         color: var(--btn-default-text-color);
         background-color: var(--btn-default-interaction-bg-color);
-        border-color: #989da6; }
+        border-color: #{$gray-500}; }
       .btn-default:hover {
         color: var(--btn-default-text-color);
         background-color: var(--btn-default-interaction-bg-color);
-        border-color: #bbbfc5; }
+        border-color: #{$gray-300}; }
       .btn-default:active, .btn-default.active,
       .open > .btn-default.dropdown-toggle {
         color: var(--btn-default-text-color);
         background-color: var(--btn-default-interaction-bg-color);
         background-image: none;
-        border-color: #bbbfc5; }
+        border-color: #{$gray-300}; }
         .btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus,
         .open > .btn-default.dropdown-toggle:hover,
         .open > .btn-default.dropdown-toggle:focus,
         .open > .btn-default.dropdown-toggle.focus {
-          color: var(--ospr-gray-500);
-          background-color: #bbbfc5;
-          border-color: #989da6; }
+          color: var(btn-default-text-color);
+          background-color: #{$gray-300};
+          border-color: #{$gray-500}; }
       .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled.focus, .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled].focus,
       fieldset[disabled] .btn-default:hover,
       fieldset[disabled] .btn-default:focus,
       fieldset[disabled] .btn-default.focus {
-        background-color: var(btn-default-bg-color);;
-        border-color: #dcdee1; }
+        background-color: var(btn-default-bg-color);
+        border-color: #{$gray-200}; }
       .btn-default .badge {
-        color: var(btn-default-bg-color);;
-        background-color: var(ospr-gray-500); }
+        color: var(btn-default-bg-color);
+        background-color: var(--btn-default-text-color); }
   
       .btn-primary {
         color: white;
