@@ -46,7 +46,7 @@ export class MetadataTranslatePipe implements PipeTransform {
         if (candidates) {
           for (const candidate of candidates) {
             if (Metadata.valueMatches(candidate as MetadataValue, filter)) {
-              const translatedKey = translationsSchemaName + "." + mdKey.replace(/\./g, seperatorChar);
+              const translatedKey = getKeyForTranslation(mdKey); //translationsSchemaName + "." + mdKey.replace(/\./g, seperatorChar);
               if (!mdMap[translatedKey]) {
                 matches.push(candidate as MetadataValue);
               }
@@ -71,3 +71,21 @@ export class MetadataTranslatePipe implements PipeTransform {
     return matches;
   }
 }
+function getKeyForTranslation(metaDataKey: string) {
+  var countDots = (metaDataKey.split(".").length - 1);
+  var result = metaDataKey;
+  switch(countDots) {
+    case 1:
+      result += ".fosrctranslation"
+      console.log("found one dot")
+      break;
+    case 2:
+      result += "translation"
+      console.log("found two dots")
+      break;
+    default:
+      console.log("found no dots or more than 2 dots")
+  }
+  return result;
+}
+

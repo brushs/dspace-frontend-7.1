@@ -1,7 +1,8 @@
 <div class="d-flex flex-row">
   <!--FOSRC change start-->
   <h1 id="wb-cont" class="item-page-title-field mr-auto">
-    {{'item.page.titleprefix' | translate}}<ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])"></ds-metadata-values>
+    {{'item.page.titleprefix' | translate}}<!-- <ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])"></ds-metadata-values> -->
+    <ds-metadata-values [mdValues]="'dc.title' | metaTranslate: object "></ds-metadata-values>
   </h1>
   <!--FOSRC change end (h2 is converted to h1)-->
   <div class="pl-2">
