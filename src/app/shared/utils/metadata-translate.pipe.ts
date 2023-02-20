@@ -52,10 +52,12 @@ export class MetadataTranslatePipe implements PipeTransform {
               }
               else{
                 // Check if specific metadata value has a translation (based on place in value array of metadata key)
+                var langAttr;
                 const found = mdMap[translatedKey].find((v: MetadataValue) =>
                   v.place === (candidate as MetadataValue).place && language === v.language);
                 if (hasValue(found)) {
-                  matches.push(Object.assign(new MetadataValue(), { value: found.value }));
+                  langAttr = (mdMap[translatedKey].find((v: MetadataValue) => v).language);
+                  matches.push(Object.assign(new MetadataValue(), { value: found.value, language: langAttr }));
                 }else{
                   matches.push(candidate as MetadataValue);
                 }
