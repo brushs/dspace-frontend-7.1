@@ -77,14 +77,14 @@ function getKeyForTranslation(metaDataKey: string) {
   switch(countDots) {
     case 1:
       result += ".fosrctranslation"
-      console.log("found one dot")
+      console.log("source: " + metaDataKey + ", target: " + result)
       break;
     case 2:
       result += "translation"
-      console.log("found two dots")
+      console.log("source: " + metaDataKey + ", target: " + result)
       break;
     default:
-      console.log("found no dots or more than 2 dots")
+      console.log("source: " + metaDataKey + ", target: " + result)
   }
   return result;
 }
