@@ -1292,6 +1292,7 @@
   "nav.browse.header": "Browse by",
   "nav.community-browse.header": "By community",
   "nav.language": "Français",
+  "nav.language.attribute": "fr",
   "nav.login": "Log in",
   "nav.logout": "Log out",
   "nav.main.description": "Main navigation bar",
