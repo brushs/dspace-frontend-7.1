@@ -154,7 +154,7 @@ mouse:hover {
   
         .btn-secondary {
           color: #000;
-          background-color: transparent;
+          background-color: white;
           border-color: var(--ospr-blue-900); }
           .btn-secondary:focus, .btn-secondary.focus {
           color: white;
@@ -182,8 +182,8 @@ mouse:hover {
           fieldset[disabled] .btn-secondary:hover,
           fieldset[disabled] .btn-secondary:focus,
           fieldset[disabled] .btn-secondary.focus {
-            background-color: var(--ospr-blue-200);
-            border-color: var(--ospr-blue-500); }
+            background-color: var(btn-default-bg-color);
+            border-color: #{$gray-200};  }
           .btn-secondary .badge {
             color: var(--ospr-blue-200);;
             background-color: white; }
@@ -524,6 +524,11 @@ input.btn.btn-call-to-action {
           background-color: white; }
 
 
+          .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+            color: black;
+            background-color: transparent;
+          }
+
           .btn-outline-secondary {
             background-color: transparent;
             // color: #207698;
@@ -562,7 +567,7 @@ input.btn.btn-call-to-action {
               border-color: #{$gray-700};
               color: #{$gray-700}; }
             .btn-outline-secondary .badge {
-              background-color: transparent; }
+              background-color: white; }
 
   // Buttons
 

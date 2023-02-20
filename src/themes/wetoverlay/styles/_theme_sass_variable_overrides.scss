@@ -29,14 +29,11 @@ $ospr-blue-200: #2572b4 !default;
 // Text colors
 $gcweb-link-color: #295376 !default;
 
-$btn-default-text-color: #335075 !default;
-$btn-default-interaction-bg-color: #cfd1d5 !default;
-$btn-default-bg-color:#eaebed !default;
 
-
-// gray-100 gray-400 gray-800 from dev
-// gray-200 gray-300 gray-500 gray-900 added to branch
-// gray-700 #495057 changed to 4d4d4d
+// gray-100 gray-400 gray-800 was from dev
+// gray-200 gray-300 gray-500 gray-900 was added
+// gray-700 #495057 was changed to 4d4d4d
+// $gray-100: #f8f9fa was changed to #eaebed
 
 $gray-900: #343333 !default;
 $gray-800: #343a40 !default;
@@ -44,13 +41,15 @@ $gray-700: #4d4d4d !default;
 $gray-600: #6c757d !default;
 $gray-500: #989da6 !default;
 $gray-400: #ced4da !default;
-$gray-200: #dcdee1 !default;
 $gray-300: #bbbfc5 !default;
-$gray-100: #f8f9fa !default;
+$gray-200: #dcdee1 !default;
+$gray-100: #eaebed !default;
 
 
 
-
+$btn-default-text-color: #335075 !default;
+$btn-default-interaction-bg-color: #cfd1d5 !default;
+$btn-default-bg-color: $gray-100;
 
 $body-color: $gray-800 !default;                    // Bootstrap $gray-800
 
@@ -84,7 +83,9 @@ $btn-link-disabled-opacity: 1 !default;
 
 $theme-colors: (
   primary: $ospr-blue-800,
-  secondary: $btn-default-text-color,
+  secondary: $gray-100,
+  outline-primary: $btn-default-text-color,
+  outline-secondary: $btn-default-text-color,
   success: $green,
   info: $gray-700,
   warning: $yellow,
