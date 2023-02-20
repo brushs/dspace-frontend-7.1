@@ -103,7 +103,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
 
     new DynamicInputModel({
       id: 'alternative-names-translation',
-      name: 'dc.title.alternativetranslation',
+      name: 'dc.title.alternative-fosrctranslation',
 /*      labelTooltip: 'alternative-names-translation.hint',
       controlTooltip: 'alternative-names-translation.hint',
       hint: 'alternative-names-translation.hint'*/
@@ -164,7 +164,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     }),
     new DynamicInputModel({
       id: 'homepage-link-fosrctranslation',
-      name: 'dc.identifier.uri-home-pagetranslation',
+      name: 'dc.identifier.uri-home-page-fosrctranslation',
 /*      labelTooltip: 'homepage-link-translation.hint',
       controlTooltip: 'homepage-link-fosrctranslation.hint',
             hint: 'homepage-link-fosrctranslation.hint'*/
@@ -200,7 +200,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     }),
     new DynamicTextAreaModel({
       id: 'abstracttranslation',
-      name: 'dc.description.abstracttranslation',
+      name: 'dc.description.abstract-fosrctranslation',
       /*      labelTooltip:   'abstracttranslation.hint',
             controlTooltip: 'abstracttranslation.hint',
             hint:           'abstracttranslation.hint',*/
@@ -257,7 +257,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     }),
     new DynamicTextAreaModel({
       id: 'tableofcontentsTranslation',
-      name: 'dc.description.tableofcontentsTranslation',
+      name: 'dc.description.tableofcontents-fosrctranslation',
       /*      labelTooltip:   'tableofcontentsTranslation.hint',
             controlTooltip: 'tableofcontentsTranslation.hint',
             hint:           'tableofcontentsTranslation.hint',*/
