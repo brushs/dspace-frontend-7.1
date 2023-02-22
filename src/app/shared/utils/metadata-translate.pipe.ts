@@ -46,16 +46,18 @@ export class MetadataTranslatePipe implements PipeTransform {
         if (candidates) {
           for (const candidate of candidates) {
             if (Metadata.valueMatches(candidate as MetadataValue, filter)) {
-              const translatedKey = translationsSchemaName + "." + mdKey.replace(/\./g, seperatorChar);
+              const translatedKey = getKeyForTranslation(mdKey); //translationsSchemaName + "." + mdKey.replace(/\./g, seperatorChar);
               if (!mdMap[translatedKey]) {
                 matches.push(candidate as MetadataValue);
               }
               else{
                 // Check if specific metadata value has a translation (based on place in value array of metadata key)
+                var langAttr;
                 const found = mdMap[translatedKey].find((v: MetadataValue) =>
                   v.place === (candidate as MetadataValue).place && language === v.language);
                 if (hasValue(found)) {
-                  matches.push(Object.assign(new MetadataValue(), { value: found.value }));
+                  langAttr = (mdMap[translatedKey].find((v: MetadataValue) => v).language);
+                  matches.push(Object.assign(new MetadataValue(), { value: found.value, language: langAttr }));
                 }else{
                   matches.push(candidate as MetadataValue);
                 }
@@ -71,3 +73,21 @@ export class MetadataTranslatePipe implements PipeTransform {
     return matches;
   }
 }
+function getKeyForTranslation(metaDataKey: string) {
+  var countDots = (metaDataKey.split(".").length - 1);
+  var result = metaDataKey;
+  switch(countDots) {
+    case 1:
+      result += ".fosrctranslation"
+      console.log("source: " + metaDataKey + ", target: " + result)
+      break;
+    case 2:
+      result += "translation"
+      console.log("source: " + metaDataKey + ", target: " + result)
+      break;
+    default:
+      console.log("source: " + metaDataKey + ", target: " + result)
+  }
+  return result;
+}
+
