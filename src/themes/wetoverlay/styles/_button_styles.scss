@@ -84,7 +84,7 @@ mouse:hover {
   
     .btn-default {
       color: var(--btn-default-text-color);
-      background-color: var(btn-default-bg-color) !important;
+      background-color: var(--btn-default-bg-color) !important;
       border-color: #{$gray-200}; }
       .btn-default:focus, .btn-default.focus {
         color: var(--btn-default-text-color);
@@ -104,19 +104,23 @@ mouse:hover {
         .open > .btn-default.dropdown-toggle:hover,
         .open > .btn-default.dropdown-toggle:focus,
         .open > .btn-default.dropdown-toggle.focus {
-          color: var(btn-default-text-color);
+          color: var(--btn-default-text-color);
           background-color: #{$gray-300};
           border-color: #{$gray-500}; }
       .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled.focus, .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled].focus,
       fieldset[disabled] .btn-default:hover,
       fieldset[disabled] .btn-default:focus,
       fieldset[disabled] .btn-default.focus {
-        background-color: var(btn-default-bg-color);
+        background-color: var(--btn-default-bg-color);
         border-color: #{$gray-200}; }
       .btn-default .badge {
-        color: var(btn-default-bg-color);
+        color: var(--btn-default-bg-color);
         background-color: var(--btn-default-text-color); }
   
+        .btn-default.disabled, .btn-default:disabled {
+        
+        }
+
       .btn-primary {
         color: white;
         background-color: var(--ospr-blue-500);
@@ -178,12 +182,18 @@ mouse:hover {
               color: white;
               background-color: var(--ospr-blue-300);
               border-color: var(--ospr-blue-900);  }
+              .btn-secondary.disabled, .btn-secondary:disabled {
+                color: #{$gray-700};
+                background-color: white;
+                border-color: #{$gray-700}; 
+              }
           .btn-secondary.disabled:hover, .btn-secondary.disabled:focus, .btn-secondary.disabled.focus, .btn-secondary[disabled]:hover, .btn-secondary[disabled]:focus, .btn-secondary[disabled].focus,
           fieldset[disabled] .btn-secondary:hover,
           fieldset[disabled] .btn-secondary:focus,
           fieldset[disabled] .btn-secondary.focus {
+            color: #{$gray-900};
             background-color: var(btn-default-bg-color);
-            border-color: #{$gray-200};  }
+            border-color: var(--ospr-blue-500); }
           .btn-secondary .badge {
             color: var(--ospr-blue-200);;
             background-color: white; }
@@ -291,6 +301,9 @@ mouse:hover {
     fieldset[disabled] .btn-warning.focus {
       background-color: #f2d40d;
       border-color: #917f08; }
+      .btn-warning.disabled, .btn-warning:disabled {
+        color: #000;
+      }
     .btn-warning .badge {
       color: #f2d40d;
       background-color: #000; }
@@ -435,6 +448,11 @@ mouse:hover {
     .btn {
       font-family: Lato, sans-serif; }
 
+      .text-secondary {
+
+        color: #6c757d !important
+      }
+
 /* Call-to-action button style - new with GCWeb v5 */
 .btn-call-to-action {
 	color: #fff;
@@ -519,7 +537,7 @@ input.btn.btn-call-to-action {
         fieldset[disabled] .btn-outline-primary.focus {
           background-color: transparent;
           border-color: #212529;
-          color: #207698; }
+          color: #26374a; }
         .btn-outline-primary .badge {
           background-color: white; }
 
