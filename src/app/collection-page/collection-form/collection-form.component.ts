@@ -112,7 +112,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }),
     new DynamicTextAreaModel({
       id: 'license-fosrctranslation',
-      name: 'dc.description.license-fosrctranslation',
+      name: 'dc.rights.license-fosrctranslation',
     }),
 
     new DynamicInputModel({
