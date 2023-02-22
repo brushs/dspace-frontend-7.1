@@ -82,7 +82,7 @@ function getKeyForTranslation(metaDataKey: string) {
       console.log("source: " + metaDataKey + ", target: " + result)
       break;
     case 2:
-      result += "translation"
+      result += "-forsctranslation"
       console.log("source: " + metaDataKey + ", target: " + result)
       break;
     default:
