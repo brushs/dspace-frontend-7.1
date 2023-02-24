@@ -158,42 +158,42 @@ mouse:hover {
   
         .btn-secondary {
           color: #000;
-          background-color: white;
-          border-color: var(--ospr-blue-900); }
+          background-color: transparent;
+          border-color: #{$gray-900};  }
           .btn-secondary:focus, .btn-secondary.focus {
-          color: white;
-          background-color: var(--ospr-blue-300);
-          border-color: var(--ospr-blue-900); }
+            color: white;
+            background-color: var(--ospr-blue-300);
+            border-color: var(--ospr-blue-900);  }
           .btn-secondary:hover {
             color: white;
             background-color: var(--ospr-blue-300);
-            border-color: var(--ospr-blue-900); }
+            border-color: var(--ospr-blue-900);  }
           .btn-secondary:active, .btn-secondary.active,
           .open > .btn-secondary.dropdown-toggle {
             color: white;
-            background-color: var(--ospr-blue-300);
+            background-color: #{$ospr-blue-300}; 
             background-image: none;
             background-color: transparent;
-            border-color: var(--ospr-blue-900); }
+            border-color: #{$gray-900};  }
             .btn-secondary:active:hover, .btn-secondary:active:focus, .btn-secondary:active.focus, .btn-secondary.active:hover, .btn-secondary.active:focus, .btn-secondary.active.focus,
             .open > .btn-secondary.dropdown-toggle:hover,
             .open > .btn-secondary.dropdown-toggle:focus,
             .open > .btn-secondary.dropdown-toggle.focus {
               color: white;
-              background-color: var(--ospr-blue-300);
-              border-color: var(--ospr-blue-900);  }
+              background-color: #{$ospr-blue-300}; 
+              border-color: #{$gray-900};   }
               .btn-secondary.disabled, .btn-secondary:disabled {
-                color: #{$gray-700};
-                background-color: white;
-                border-color: #{$gray-700}; 
+                color: #{$gray-800};
+                background-color: transparent;
+                border-color: #{$gray-800}; 
               }
           .btn-secondary.disabled:hover, .btn-secondary.disabled:focus, .btn-secondary.disabled.focus, .btn-secondary[disabled]:hover, .btn-secondary[disabled]:focus, .btn-secondary[disabled].focus,
           fieldset[disabled] .btn-secondary:hover,
           fieldset[disabled] .btn-secondary:focus,
           fieldset[disabled] .btn-secondary.focus {
-            color: #{$gray-900};
-            background-color: var(btn-default-bg-color);
-            border-color: var(--ospr-blue-500); }
+            color: #{$gray-700};
+            background-color: white;
+            border-color: #{$gray-700}; }
           .btn-secondary .badge {
             color: var(--ospr-blue-200);;
             background-color: white; }
@@ -514,15 +514,14 @@ input.btn.btn-call-to-action {
           border-color: var(--ospr-blue-900); }
         .btn-outline-primary:hover {
           color: #fff;
-          background-color: #207698;
+          background-color: $cyan;
           border-color: #091c2d; }
-        .btn-outline-primary:active, .btn-outline-primary.active,
-        .open > .btn-outline-primary.dropdown-toggle {
-          color:rgb(0, 0, 0);
-          background-color: var(--ospr-blue-300);
-          background-image: none;
-          background-color: transparent;
-          border-color:rgba(0, 123, 255, 1); }
+          .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
+          .show > .btn-outline-primary.dropdown-toggle{
+            color: white;
+            background-color: var(--ospr-blue-900);
+            background-image: none;
+            border-color: var(--ospr-blue-900); }
           .btn-outline-primary:active:hover, .btn-outline-primary:active:focus, .btn-outline-primary:active.focus, .btn-outline-primary.active:hover, .btn-outline-primary.active:focus, .btn-outline-primary.active.focus,
           .open > .btn-outline-primary.dropdown-toggle:hover,
           .open > .btn-outline-primary.dropdown-toggle:focus,
@@ -542,10 +541,7 @@ input.btn.btn-call-to-action {
           background-color: white; }
 
 
-          .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
-            color: black;
-            background-color: transparent;
-          }
+ 
 
           .btn-outline-secondary {
             background-color: transparent;
@@ -554,29 +550,33 @@ input.btn.btn-call-to-action {
              border-color: #212529;; }
             .btn-outline-secondary:focus, .btn-outline-secondary.focus {
               color: white;
-              background-color:#0a270a;
+              background-color: #{$gray-700};
               border-color: var(--ospr-blue-900);
               box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5); }
             .btn-outline-secondary:hover {
               color:#fff;
-              background-color:#0a270a;
+              background-color:#{$gray-700};
               //background-color: #26374a;
               border-color: #091c2d; }
-            .btn-outline-secondary:active, .btn-outline-secondary.active,
-            .open > .btn-outline-secondary.dropdown-toggle {
-              color:rgb(0, 0, 0);
-              background-color: var(--ospr-blue-300);
-              background-image: none;
-              background-color: transparent;
-              border-color:rgba(0, 123, 255, 1); }
+              .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active,
+              .show > .btn-outline-secondary.dropdown-toggle {
+                color: white;
+                background-color: var(--ospr-blue-900);
+                background-image: none;
+                border-color: var(--ospr-blue-900);
+              }
               .btn-outline-secondary:active:hover, .btn-outline-secondary:active:focus, .btn-outline-secondary:active.focus, .btn-outline-secondary.active:hover, .btn-outline-secondary.active:focus, .btn-outline-secondary.active.focus,
               .open > .btn-outline-secondary.dropdown-toggle:hover,
               .open > .btn-outline-secondary.dropdown-toggle:focus,
               .open > .btn-outline-secondary.dropdown-toggle.focus {
                 color: rgb(0, 0, 0);
-                background-color: var(--ospr-blue-300);
+                background-color: var(--ospr-blue-900);
                 border-color:rgba(0, 123, 255, 1);
                 box-shadow: 0 0 0 0.2rem rgb(32, 118, 152, 1); }
+                .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+                  color: #{$gray-700};
+                  background-color: transparent;
+                }
             .btn-outline-secondary.disabled:hover, .btn-outline-secondary.disabled:focus, .btn-outline-secondary.disabled.focus, .btn-outline-secondary[disabled]:hover, .btn-outline-secondary[disabled]:focus, .btn-outline-secondary[disabled].focus,
             fieldset[disabled] .btn-outline-secondary:hover,
             fieldset[disabled] .btn-outline-secondary:focus,

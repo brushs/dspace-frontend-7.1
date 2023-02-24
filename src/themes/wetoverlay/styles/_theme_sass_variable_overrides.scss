@@ -83,9 +83,9 @@ $btn-link-disabled-opacity: 1 !default;
 
 $theme-colors: (
   primary: $ospr-blue-800,
-  secondary: $gray-100,
-  outline-primary: $btn-default-text-color,
-  outline-secondary: $btn-default-text-color,
+  secondary: $ospr-blue-300,
+  outline-primary: $ospr-blue-900,
+  outline-secondary: $ospr-blue-900,
   success: $green,
   info: $gray-700,
   warning: $yellow,
