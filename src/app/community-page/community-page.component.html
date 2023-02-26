@@ -16,6 +16,27 @@
           <!-- Introductory text -->
           <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
+          <!-- Alternative Names -->
+          <ds-comcol-page-content [content]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+          <!-- Identifiers -->
+          <ds-comcol-page-content [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+          <!-- Main Area of Research -->
+          <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.subject' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+          <!-- Home Page URL -->
+          <ds-comcol-page-content [content]="('dc.identifier.uri-home-page' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier.uri-home-page' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+          <!-- Email -->
+          <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+          <!-- Description -->
+          <ds-comcol-page-content [content]="('dc.description' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+          <!-- Contact Address -->
+          <ds-comcol-page-content [content]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
           <!-- News -->
           <ds-comcol-page-content [content]="('dc.description.tableofcontents' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.tableofcontents' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
