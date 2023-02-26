@@ -35,6 +35,7 @@ import { Item } from '../core/shared/item.model';
 import { getFirstSucceededRemoteData } from '../core/shared/operators';
 import { PaginatedList } from '../core/data/paginated-list.model';
 import { SortOptions } from '../core/cache/models/sort-options.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-community-page',
@@ -159,13 +160,15 @@ export class CommunityPageComponent implements OnInit {
     protected sidebarService: SidebarService,
     protected windowService: HostWindowService,
     @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
-    protected routeService: RouteService
+    protected routeService: RouteService,
+    public translate: TranslateService
   ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
 
   }
 
   ngOnInit(): void {
+    console.log("currentLang: " + this.translate.currentLang);
     this.communityRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Community>),
       redirectOn4xx(this.router, this.authService)

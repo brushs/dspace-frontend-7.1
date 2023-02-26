@@ -3,7 +3,7 @@
     <ng-container *ngIf="parent?.payload as parentContext">
     <header class="comcol-header border-bottom mb-4 pb-4">
         <!-- Parent Name -->
-        <ds-comcol-page-header [name]="parentContext.name">
+        <ds-comcol-page-header [name]="('dc.title' | metaTranslate : parentContext)[0]?.value" [lang]="('dc.title' | metaTranslate : parentContext)[0]?.language">
         </ds-comcol-page-header>
         <!-- Handle -->
         <ds-comcol-page-handle

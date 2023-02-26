@@ -13,6 +13,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ComcolPageContentComponent {
 
+  // Optional lang
+  @Input() lang: string;
+
   // Optional title
   @Input() title: string;
 

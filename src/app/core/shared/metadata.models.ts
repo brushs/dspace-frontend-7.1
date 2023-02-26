@@ -32,11 +32,11 @@ export class MetadataValue implements MetadataValueInterface {
 
   /** The language. */
   @autoserialize
-  language: string;
+  public language: string;
 
   /** The string value. */
   @autoserialize
-  value: string;
+  public value: string;
 
   /**
    * The place of this MetadataValue within his list of metadata
@@ -52,6 +52,19 @@ export class MetadataValue implements MetadataValueInterface {
   /** The authority confidence value */
   @autoserialize
   confidence: number;
+
+  public toString() : string {
+    //return `value (${this.value}), language (${this.language})`;
+    return this.value;
+  }
+
+  get valueString() : string {
+    return this.value;
+  }
+
+  get langString() : string {
+    return this.language;
+  }         
 
   /**
    * Returns true if this Metadatum's authority key starts with 'virtual::'

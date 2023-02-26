@@ -54,6 +54,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
    * @type {(DynamicInputModel | DynamicTextAreaModel)[]}
    */
   formModel: DynamicFormControlModel[] = [
+    // Community Name
     new DynamicInputModel({
       id: 'title',
       name: 'dc.title',
@@ -70,7 +71,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
     }),
 
     /* OSPR changes start - add/remove fields for testing the new dynamic control models */
-
+    // Translated Community Name
     new DynamicInputModel({
       id: 'titletranslation',
       name: 'dc.title.fosrctranslation',
@@ -86,6 +87,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       }
     }),
 
+    // Alternative Names
     new DynamicInputModel({
       id: 'alternative-names',
       name: 'dc.title.alternative',
@@ -101,6 +103,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       }
     }),
 
+    // Translated Alternative Names
     new DynamicInputModel({
       id: 'alternative-names-translation',
       name: 'dc.title.alternative-fosrctranslation',
@@ -116,6 +119,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       }
     }),
 
+    // Identifiers
     new DynamicInputModel({
       id: 'identifiers',
       name: 'dc.identifier',
@@ -128,6 +132,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       }
     }),
 
+    // Main Area of Research
     new DynamicInputModel({
       id: 'researcharea',
       name: 'dc.subject',
@@ -139,6 +144,8 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
         //required: 'researcharea.required'
       }
     }),
+
+    // Translated Main Area of Research
     new DynamicInputModel({
       id: 'researcharea-fosrctranslation',
       name: 'dc.subject.fosrctranslation',
@@ -151,6 +158,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       }
     }),
 
+    // Home Page
     new DynamicInputModel({
       id: 'homepage-link',
       name: 'dc.identifier.uri-home-page',

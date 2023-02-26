@@ -8,8 +8,7 @@
               <div class="d-flex flex-row border-bottom mb-4 pb-4">
                 <div class="comcol-header mr-auto">
                   <!-- Collection Name -->
-                  <ds-comcol-page-header
-                          [name]="collection.name">
+                  <ds-comcol-page-header [name]="('dc.title' | metaTranslate : collection)[0]?.value" [lang]="('dc.title' | metaTranslate : collection)[0]?.language">
                   </ds-comcol-page-header>
                   <!-- Collection logo -->
                   <ds-comcol-page-logo *ngIf="logoRD$"
@@ -24,15 +23,10 @@
                           [title]="'collection.page.handle'" >
                   </ds-comcol-page-handle>
                   <!-- Introductory text -->
-                  <ds-comcol-page-content
-                          [content]="collection.introductoryText"
-                          [hasInnerHtml]="true">
+                  <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                   <!-- News -->
-                  <ds-comcol-page-content
-                          [content]="collection.sidebarText"
-                          [hasInnerHtml]="true"
-                          [title]="'collection.page.news'">
+                  <ds-comcol-page-content [content]="('dc.description.tableofcontents' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.tableofcontents' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                 </div>
                 <div class="pl-2">
@@ -80,9 +74,7 @@
             </section>
             <footer *ngIf="collection.copyrightText" class="border-top my-5 pt-4">
           <!-- Copyright -->
-          <ds-comcol-page-content
-                      [content]="collection.copyrightText"
-                      [hasInnerHtml]="true">
+          <ds-comcol-page-content [content]="('dc.rights' | metaTranslate : collection)[0]?.value" [lang]="('dc.rights' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
         </footer>
       </div>

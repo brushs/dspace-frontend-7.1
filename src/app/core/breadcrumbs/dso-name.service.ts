@@ -34,6 +34,7 @@ export class DSONameService {
     },
     Default: (dso: DSpaceObject): string => {
       // If object doesn't have dc.title metadata use name property
+      console.log("This is coming from the factory service method!");
       return dso.firstMetadataValue('dc.title') || dso.name || this.translateService.instant('dso.name.untitled');
     }
   };
@@ -44,6 +45,7 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getName(dso: DSpaceObject): string {
+    console.log("This is coming from the get function in the bottom!");
     const types = dso.getRenderTypes();
     const match = types
       .filter((type) => typeof type === 'string')
