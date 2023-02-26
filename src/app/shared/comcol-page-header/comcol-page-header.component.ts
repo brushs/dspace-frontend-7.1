@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ComcolPageHeaderComponent {
   @Input() name: string;
+  @Input() lang: string;
 }

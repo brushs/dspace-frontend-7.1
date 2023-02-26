@@ -79,14 +79,14 @@ function getKeyForTranslation(metaDataKey: string) {
   switch(countDots) {
     case 1:
       result += ".fosrctranslation"
-      console.log("source: " + metaDataKey + ", target: " + result)
+      console.log("case 1: source: " + metaDataKey + ", target: " + result)
       break;
     case 2:
-      result += "-forsctranslation"
-      console.log("source: " + metaDataKey + ", target: " + result)
+      result += "-fosrctranslation"
+      console.log("case 2: source: " + metaDataKey + ", target: " + result)
       break;
     default:
-      console.log("source: " + metaDataKey + ", target: " + result)
+      console.log("default: source: " + metaDataKey + ", target: " + result)
   }
   return result;
 }

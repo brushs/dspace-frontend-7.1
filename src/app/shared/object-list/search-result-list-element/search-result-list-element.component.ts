@@ -19,6 +19,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
    */
   dso: K;
   dsoTitle: string;
+  dsoLang: string;
 
   public constructor(protected truncatableService: TruncatableService, protected dsoNameService: DSONameService) {
     super();
@@ -31,6 +32,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
     if (hasValue(this.object)) {
       this.dso = this.object.indexableObject;
       this.dsoTitle = this.dsoNameService.getName(this.dso);
+      this.dsoLang = this.dsoNameService.getLang(this.dso);
     }
   }
 
