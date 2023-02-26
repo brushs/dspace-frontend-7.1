@@ -22,8 +22,20 @@
                           [content]="collection.handle"
                           [title]="'collection.page.handle'" >
                   </ds-comcol-page-handle>
+                  <!-- Subject -->
+                  <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : collection)[0]?.value" [lang]="('dc.subject' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  </ds-comcol-page-content>
                   <!-- Introductory text -->
                   <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  </ds-comcol-page-content>
+                  <!-- Email Address -->
+                  <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  </ds-comcol-page-content>
+                  <!-- License -->
+                  <ds-comcol-page-content [content]="('dc.rights.license' | metaTranslate : collection)[0]?.value" [lang]="('dc.rights.license' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  </ds-comcol-page-content>
+                  <!-- Provenance -->
+                  <ds-comcol-page-content [content]="('dc.description.provenance' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.provenance' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                 </div>
                 <div class="pl-2">
