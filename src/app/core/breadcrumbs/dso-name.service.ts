@@ -62,9 +62,13 @@ export class DSONameService {
    * @returns fr for French, otherwise en for all other languages
    */
   getLang(dso: DSpaceObject): string {
-    const result = dso.metadata['dc.language'][0]?.value
-    if(result.startsWith('fr')) {
-      return 'fr';
+    if( dso !== undefined && dso !== null && dso.metadata['dc.language'] !== undefined && dso.metadata['dc.language'] !== null) {
+      const result = dso.metadata['dc.language'][0]?.value
+      if(result.startsWith('fr')) {
+        return 'fr';
+      } else {
+        return 'en';
+      }
     } else {
       return 'en';
     }
