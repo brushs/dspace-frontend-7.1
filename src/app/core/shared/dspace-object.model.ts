@@ -77,7 +77,6 @@ export class DSpaceObject extends ListableObject implements CacheableObject {
    * @deprecated use {@link DSONameService} instead
    */
   get name(): string {
-    console.log("dc.title: " + this.firstMetadataValue('dc.title'));
     return (isUndefined(this._name)) ? this.firstMetadataValue('dc.title') : this._name;
   }
 
@@ -85,7 +84,6 @@ export class DSpaceObject extends ListableObject implements CacheableObject {
    * The fosrc translated name for this DSpaceObject
    */
   get fosrcTranslatedName(): string {
-    console.log("dc.title.fosrctranslation: " + this.firstMetadataValue('dc.title.fosrctranslation'));
     return (isUndefined(this._fosrcTranslatedName)) ? this.firstMetadataValue('dc.title.fosrctranslation') : this._fosrcTranslatedName;
   }
 
