@@ -38,7 +38,7 @@
       <!-- OSPR change start -->
       <span class="align-middle pt-2">
         <a [routerLink]="node.route" class="lead">
-          {{node.name}}
+          {{ 'dc.title' | metaTranslate : node.payload }}
         </a>
       </span>
       <!-- OSPR change end h1 to span -->

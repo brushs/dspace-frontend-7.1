@@ -56,22 +56,4 @@ export class DSONameService {
       return  this.factories.Default(dso);
     }
   }
-  /**
-   *  FOSRC Get Offical Language of the Item or Community or Collection
-   * @param dso DSpace Object
-   * @returns fr for French, otherwise en for all other languages
-   */
-  getLang(dso: DSpaceObject): string {
-    if( dso !== undefined && dso !== null && dso.metadata['dc.language'] !== undefined && dso.metadata['dc.language'] !== null) {
-      const result = dso.metadata['dc.language'][0]?.value
-      if(result.startsWith('fr')) {
-        return 'fr';
-      } else {
-        return 'en';
-      }
-    } else {
-      return 'en';
-    }
-  }
-
 }
