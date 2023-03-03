@@ -52,14 +52,15 @@ export class MetadataTranslatePipe implements PipeTransform {
               }
               else{
                 // Check if specific metadata value has a translation (based on place in value array of metadata key)
-                var langAttr;
+                var langAttr = (mdMap[translatedKey].find((v: MetadataValue) => v).language);
                 const found = mdMap[translatedKey].find((v: MetadataValue) =>
                   v.place === (candidate as MetadataValue).place && language === v.language);
                 if (hasValue(found)) {
                   langAttr = (mdMap[translatedKey].find((v: MetadataValue) => v).language);
                   matches.push(Object.assign(new MetadataValue(), { value: found.value, language: langAttr }));
                 }else{
-                  matches.push(candidate as MetadataValue);
+                  const newCandidate = Object.assign(new MetadataValue(), { value: candidate.value, language: flipLanguage(langAttr) });
+                  matches.push(newCandidate as MetadataValue);
                 }
               }
             }
@@ -71,6 +72,14 @@ export class MetadataTranslatePipe implements PipeTransform {
       }
     }
     return matches;
+  }
+}
+
+function flipLanguage(language: string) {
+  if(language.startsWith('fr')) {
+    return 'en';
+  } else {
+    return 'fr';
   }
 }
 function getKeyForTranslation(metaDataKey: string) {

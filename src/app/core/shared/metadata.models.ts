@@ -7,7 +7,6 @@ export const VIRTUAL_METADATA_PREFIX = 'virtual::';
 
 /** A single metadata value and its properties. */
 export interface MetadataValueInterface {
-
   /** The language. */
   language: string;
 
@@ -64,7 +63,7 @@ export class MetadataValue implements MetadataValueInterface {
 
   get langString() : string {
     return this.language;
-  }         
+  }    
 
   /**
    * Returns true if this Metadatum's authority key starts with 'virtual::'
