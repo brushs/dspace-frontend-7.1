@@ -26,7 +26,7 @@
   </ds-truncatable-part>
 
   <ds-truncatable-part [id]="dso.id" [minLines]="3" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-    <p><span [innerHTML]="firstMetadataValue('dc.description.abstract')"></span></p>
+    <p><span [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"></span></p>
   </ds-truncatable-part>
 
 </ds-truncatable>
