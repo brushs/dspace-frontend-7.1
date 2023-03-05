@@ -37,7 +37,7 @@
       </button>
       <!-- OSPR change start -->
       <span class="align-middle pt-2">
-        <a [routerLink]="node.route" class="lead">
+        <a [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" class="lead">
           {{ 'dc.title' | metaTranslate : node.payload }}
         </a>
       </span>
@@ -51,7 +51,7 @@
                   aria-hidden="true"></span>
           </button>
           <ds-truncatable-part [id]="node.id" [minLines]="3">
-            <span>{{ 'dc.description.abstract' | metaTranslate : node.payload}}</span>
+            <span [lang]="('dc.description.abstract' | metaTranslate : node.payload)[0]?.language">{{ 'dc.description.abstract' | metaTranslate : node.payload}}</span>
           </ds-truncatable-part>
         </div>
       </div>
@@ -74,8 +74,8 @@
                       aria-hidden="true"></span>
       </button>
       <h6 class="align-middle pt-2">
-        <a [routerLink]="node.route" class="lead">
-          {{node.name}}
+        <a [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" class="lead">
+          {{ 'dc.title' | metaTranslate : node.payload }}
         </a>
       </h6>
     </div>
@@ -87,7 +87,7 @@
                   aria-hidden="true"></span>
           </button>
           <ds-truncatable-part [id]="node.id" [minLines]="3">
-            <span>{{node.payload.shortDescription}}</span>
+            <span [lang]="('dc.description.abstract' | metaTranslate : node.payload)[0]?.language">{{ 'dc.description.abstract' | metaTranslate : node.payload}}</span>
           </ds-truncatable-part>
         </div>
       </div>

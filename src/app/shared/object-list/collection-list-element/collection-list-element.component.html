@@ -5,5 +5,5 @@
     {{('dc.title' | metaTranslate : object)}}
 </span>
 <div *ngIf="object.shortDescription" class="text-muted abstract-text">
-    <span [lang]="('dc.title' | metaTranslate : object)[0]?.language">{{('dc.description' | metaTranslate : object)}}</span>
+    <span [lang]="('dc.description.abstract' | metaTranslate : object)[0]?.language">{{('dc.description' | metaTranslate : object)}}</span>
 </div>
