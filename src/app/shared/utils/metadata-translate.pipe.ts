@@ -76,7 +76,11 @@ export class MetadataTranslatePipe implements PipeTransform {
 }
 
 function flipLanguage(language: string) {
-  if(language !== undefined && language !== null && language.startsWith('fr')) {
+  if(language === undefined || language === null) {
+    return 'en';
+  }
+
+  if(language.startsWith('fr')) {
     return 'en';
   } else {
     return 'fr';
