@@ -1,9 +1,9 @@
 <a *ngIf="linkType != linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/collections/' + object.id]" class="lead">
-    {{('dc.title' | metaTranslate : object)}}
+    {{('dc.title' | metaTranslate : object)[0]?.value }}
 </a>
 <span *ngIf="linkType == linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" class="lead">
-    {{('dc.title' | metaTranslate : object)}}
+    {{('dc.title' | metaTranslate : object)[0]?.value }}
 </span>
 <div *ngIf="object.shortDescription" class="text-muted abstract-text">
-    <span [lang]="('dc.description.abstract' | metaTranslate : object)[0]?.language">{{('dc.description' | metaTranslate : object)}}</span>
+    <span [lang]="('dc.description.abstract' | metaTranslate : object)[0]?.language">{{('dc.description' | metaTranslate : object)[0]?.value }}</span>
 </div>
