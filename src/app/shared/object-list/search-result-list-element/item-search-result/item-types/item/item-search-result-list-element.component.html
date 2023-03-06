@@ -3,7 +3,7 @@
 <ds-truncatable [id]="dso.id" *ngIf="object !== undefined && object !== null">
   <p>
     <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
-      rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title" lang="{{('dc.title' | metaTranslate: dso)[0]?.language}}">{{'dc.title' | metaTranslate: dso}}</a>
+      rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title" lang="{{('dc.title' | metaTranslate: dso)[0]?.language}}">{{('dc.title' | metaTranslate: dso)[0]?.value}}</a>
     <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
   </p>
 
