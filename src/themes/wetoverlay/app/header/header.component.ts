@@ -21,7 +21,6 @@ export class HeaderComponent extends BaseComponent implements OnInit{
 
   @HostListener("window:resize", [])
   onResize() {
-    console.log('here', window.innerWidth)
     this.hideToggleButton = !!(window.innerWidth > TOGGLE_DISPLAY_BREAKPOINT_SIZE);
   }
 }
