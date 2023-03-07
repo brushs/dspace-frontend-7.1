@@ -15,7 +15,7 @@ $green: #1b6c1c !default;
 $cyan: #207698 !default;
 $yellow: #f2d40d !default;
 $red: #bc3331 !default;
-$dark: #43515f !default;
+$dark:   lighten(#343a40, 90%) !default;
 $default: #eaebed !default;
 // $ospr-blue-900: #212529 !default;
 $ospr-blue-900: #091c2d !default;

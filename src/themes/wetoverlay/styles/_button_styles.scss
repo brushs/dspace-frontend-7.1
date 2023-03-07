@@ -72,7 +72,7 @@ mouse:hover {
       cursor: not-allowed;
       // disabled buttons loose saturation instead of opacity
       // filter: alpha(opacity=65);
-      filter: grayscale(60%);
+      filter: opacity(80%);
       // override opacity
       opacity: 1 !important;
       -webkit-box-shadow: none;
@@ -153,7 +153,7 @@ mouse:hover {
           background-color: var(--ospr-blue-400);
           border-color: var(--ospr-blue-500); }
         .btn-primary .badge {
-          color: var(--ospr-blue-200);;
+          color: var(--ospr-blue-200);
           background-color: white; }
   
         .btn-secondary {
@@ -195,7 +195,7 @@ mouse:hover {
             background-color: white;
             border-color: #{$gray-700}; }
           .btn-secondary .badge {
-            color: var(--ospr-blue-200);;
+            color: var(--ospr-blue-200);
             background-color: white; }
 
 
@@ -441,6 +441,8 @@ mouse:hover {
  WET button overwrites
  */
     
+
+
     body .btn-primary {
       background-color: var(--ospr-blue-800);
       border-color: var(--ospr-blue-800); }
@@ -507,7 +509,7 @@ input.btn.btn-call-to-action {
       .btn-outline-primary {
         background-color: transparent;
         color: #207698;
-        border-color: #207698;; }
+        border-color: #207698; }
         .btn-outline-primary:focus, .btn-outline-primary.focus {
           color: white;
           background-color: #207698;
@@ -547,7 +549,7 @@ input.btn.btn-call-to-action {
             background-color: transparent;
             // color: #207698;
              color: #212529;
-             border-color: #212529;; }
+             border-color: #212529; }
             .btn-outline-secondary:focus, .btn-outline-secondary.focus {
               color: white;
               background-color: #{$gray-700};
@@ -589,38 +591,85 @@ input.btn.btn-call-to-action {
 
   // Buttons
 
-  // hover bg color changed from f8f9fa to 55626f
 
   .btn-dark {
     color: white;
-    background-color: #55626f;
-    border-color: black;
-  }
-
-  .btn-dark:hover {
+    background-color: #343a40;
+    border-color: black; }
+    .btn-dark:focus, .btn-dark.focus {
       color: white;
-      background-color: #55626f;
+      background-color: #343a40;
       border-color: black;
+      // box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+      box-shadow: 0 0 0 0.2rem rgba(9, 34, 54, 0.5);
     }
-  // btn-dark regular bg color #43515f
-    .btn-dark:active {
-      color: black;
-      background-color: #55626f;
-      border-color: black;
-    }
-
+    .btn-dark:hover {
+      color: white;
+      background-color: black;
+      border-color: black; }
+      .btn-dark:not(:disabled):not(.disabled):active, .btn-dark:not(:disabled):not(.disabled).active,
+      .show > .btn-dark.dropdown-toggle {
+        color: white;
+        background-color: black;
+        border-color: black;
+      }
+      .btn-dark:active:hover, .btn-dark:active:focus, .btn-dark:active.focus, .btn-dark.active:hover, .btn-dark.active:focus, .btn-dark.active.focus,
+      .open > .btn-dark.dropdown-toggle:hover,
+      .open > .btn-dark.dropdown-toggle:focus,
+      .open > .btn-dark.dropdown-toggle.focus {
+        color: white;
+        background-color: #343a40;
+        border-color: black;
+      }
+        .btn-dark.disabled, .btn-dark:disabled {
+          color: white;
+          background-color: #343a40;
+          border-color: black;
+        }
     .btn-dark.disabled:hover, .btn-dark.disabled:focus, .btn-dark.disabled.focus, .btn-dark[disabled]:hover, .btn-dark[disabled]:focus, .btn-dark[disabled].focus,
     fieldset[disabled] .btn-dark:hover,
     fieldset[disabled] .btn-dark:focus,
     fieldset[disabled] .btn-dark.focus {
       color: white;
-      background-color: #55626f;
-      border-color: black;
+      background-color: #343a40; }
     .btn-dark .badge {
-      background-color: #55626f;; }
-    }
+      background-color: #343a40;}
 
-    .btn-dark:focus {
-      color: white;
-      border-color: black;
-    }
+
+
+  // hover bg color changed from f8f9fa to 55626f
+
+  // .btn-dark {
+  //   color: white;
+  //   background-color: #55626f;
+  //   border-color: black;
+  // }
+
+  // .btn-dark:hover {
+  //     color: white;
+  //     background-color: #55626f;
+  //     border-color: black;
+  //   }
+  // // btn-dark regular bg color #43515f
+  //   .btn-dark:active {
+  //     color: black;
+  //     background-color: #55626f;
+  //     border-color: black;
+  //   }
+
+  //   .btn-dark.disabled:hover, .btn-dark.disabled:focus, .btn-dark.disabled.focus, .btn-dark[disabled]:hover, .btn-dark[disabled]:focus, .btn-dark[disabled].focus,
+  //   fieldset[disabled] .btn-dark:hover,
+  //   fieldset[disabled] .btn-dark:focus,
+  //   fieldset[disabled] .btn-dark.focus {
+  //     color: white;
+  //     background-color: #55626f;
+  //     border-color: black;
+  //   .btn-dark .badge {
+  //     background-color: #55626f; }
+  //   }
+
+  //   .btn-dark:focus {
+  //     color: white;
+  //     border-color: black;
+  //   }
+
