@@ -31,6 +31,11 @@ export class DSpaceObject extends ListableObject implements CacheableObject {
   @deserializeAs('name')
   protected _name: string;
 
+  
+  @excludeFromEquals
+  @deserializeAs('fosrcTranslatedName')
+  protected _fosrcTranslatedName: string;
+
   /**
    * The human-readable identifier of this DSpaceObject
    */
@@ -73,6 +78,23 @@ export class DSpaceObject extends ListableObject implements CacheableObject {
    */
   get name(): string {
     return (isUndefined(this._name)) ? this.firstMetadataValue('dc.title') : this._name;
+  }
+
+  /**
+   * The fosrc translated name for this DSpaceObject
+   */
+  get fosrcTranslatedName(): string {
+    return (isUndefined(this._fosrcTranslatedName)) ? this.firstMetadataValue('dc.title.fosrctranslation') : this._fosrcTranslatedName;
+  }
+
+  /**
+   * The name for this DSpaceObject
+   */
+  set fosrcTranslatedName(name) {
+    if (hasValue(this.firstMetadata('dc.title.fosrctranslation'))) {
+      this.firstMetadata('dc.title.fosrctranslation').value = name;
+    }
+    this._fosrcTranslatedName = name;
   }
 
   /**

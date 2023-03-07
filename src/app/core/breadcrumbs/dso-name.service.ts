@@ -34,6 +34,7 @@ export class DSONameService {
     },
     Default: (dso: DSpaceObject): string => {
       // If object doesn't have dc.title metadata use name property
+      console.log("This is coming from the factory service method!");
       return dso.firstMetadataValue('dc.title') || dso.name || this.translateService.instant('dso.name.untitled');
     }
   };
@@ -48,12 +49,11 @@ export class DSONameService {
     const match = types
       .filter((type) => typeof type === 'string')
       .find((type: string) => Object.keys(this.factories).includes(type)) as string;
-
+    console.log("This is coming from the get function in the bottom! match: " + match);
     if (hasValue(match)) {
       return this.factories[match](dso);
     } else {
       return  this.factories.Default(dso);
     }
   }
-
 }

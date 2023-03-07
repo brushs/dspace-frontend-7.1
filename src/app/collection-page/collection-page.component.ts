@@ -174,7 +174,7 @@ export class CollectionPageComponent implements OnInit {
   ) {
     this.paginationConfig = new PaginationComponentOptions();
     this.paginationConfig.id = 'cp';
-    this.paginationConfig.pageSize = 5;
+    this.paginationConfig.pageSize = 10;
     this.paginationConfig.currentPage = 1;
     this.sortConfig = new SortOptions('dc.date.accessioned', SortDirection.DESC);
     this.isXsOrSm$ = this.windowService.isXsOrSm();

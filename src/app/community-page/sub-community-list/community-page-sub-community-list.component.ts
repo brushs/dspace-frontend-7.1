@@ -53,7 +53,7 @@ export class CommunityPageSubCommunityListComponent implements OnInit {
   ngOnInit(): void {
     this.config = new PaginationComponentOptions();
     this.config.id = this.pageId;
-    this.config.pageSize = 5;
+    this.config.pageSize = 10;
     this.config.currentPage = 1;
     this.sortConfig = new SortOptions('dc.title', SortDirection.ASC);
     this.initPage();
