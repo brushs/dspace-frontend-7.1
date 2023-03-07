@@ -77,6 +77,11 @@ mouse:hover {
       opacity: 1 !important;
       -webkit-box-shadow: none;
       box-shadow: none; }
+
+      button:not(:disabled):focus {
+
+        border-color: none;
+      }
   
   a.btn.disabled,
   fieldset[disabled] a.btn {

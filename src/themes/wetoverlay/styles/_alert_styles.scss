@@ -1,0 +1,181 @@
+.alert {
+    padding: 15px;
+    margin-bottom: 23px;
+    border: 1px solid transparent;
+    border-radius: 4px; }
+    .alert h4 {
+      margin-top: 0;
+      color: inherit; }
+    .alert .alert-link {
+      font-weight: bold; }
+    .alert > p,
+    .alert > ul {
+      margin-bottom: 0; }
+    .alert > p + p {
+      margin-top: 5px; }
+  
+  .alert-dismissable,
+  .alert-dismissible {
+    padding-right: 35px; }
+    .alert-dismissable .close,
+    .alert-dismissible .close {
+      position: relative;
+      top: -2px;
+      right: -21px;
+      color: inherit; }
+  
+  .alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6; }
+    .alert-success hr {
+      border-top-color: #c9e2b3; }
+    .alert-success .alert-link {
+      color: #2b542c; }
+  
+  .alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1; }
+    .alert-info hr {
+      border-top-color: #a6e1ec; }
+    .alert-info .alert-link {
+      color: #245269; }
+  
+  .alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc; }
+    .alert-warning hr {
+      border-top-color: #f7e1b5; }
+    .alert-warning .alert-link {
+      color: #66512c; }
+  
+  .alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1; }
+    .alert-danger hr {
+      border-top-color: #e4b9c0; }
+    .alert-danger .alert-link {
+      color: #843534; }
+
+
+
+/*
+ * Components
+ */
+ .alert-info > :first-child::before, .alert-success > :first-child::before, .alert-warning > :first-child::before, .alert-danger > :first-child::before {
+    color: inherit;
+    content: none; }
+  
+//   .alert {
+//     background-clip: content-box;
+//     background-color: inherit;
+//     border-left: 6px solid #000;
+//     margin-bottom: 23px;
+//     margin-left: 10px;
+//     padding: 0 0 0 15px; }
+//     .alert > p, .alert > ul, .alert > ol {
+//       margin-bottom: 0px; }
+//     .alert > * {
+//       margin-left: 15px; }
+//     .alert details {
+//       margin-left: .5em;
+//       padding-top: 15px; }
+//     .alert > :first-child:not(details) {
+//       margin-top: auto;
+//       padding-top: 15px; }
+//     .alert > :last-child {
+//       padding-bottom: 25px; }
+//     .alert::before {
+//       font-family: "Glyphicons Halflings";
+//       font-size: 26px;
+//       line-height: 2.3em;
+//       margin-left: -1.27em;
+//       padding: 2px;
+//       position: absolute; }
+//     .alert > :first-child {
+//       margin-left: 15px; }
+  
+  .alert-info {
+    border-color: #269abc; }
+  
+  .alert-success {
+    border-color: #278400;}
+  
+  .alert-warning {
+    border-color: #ee7100; }
+  
+  .alert-danger {
+    border-color: #d3080c; }
+
+
+      
+/*
+ *	Override the design of alerts and labels
+ */
+// .alert, .label {
+//     border-radius: 0;
+//     border-style: solid;
+//     border-width: 0 0 0 4px; }
+  
+//   .alert > :first-child {
+//     margin-left: 1.2em;
+//     margin-top: auto; }
+//     .alert > :first-child:before {
+//       display: inline-block;
+//       font-family: "Glyphicons Halflings";
+//       margin-left: -1.3em;
+//       position: absolute; }
+  
+//   .alert > strong:first-child,
+//   .alert > em:first-child,
+//   .alert > span:first-child {
+//     display: inline-block; }
+  
+//   .label-default, .label-default[href]:hover, .label-default[href]:focus, .label-default[href]:active, .label-primary, .label-primary[href]:hover, .label-primary[href]:focus, .label-primary[href]:active, .label-success, .label-success[href]:hover, .label-success[href]:focus, .label-success[href]:active, .alert-success, .label-info, .label-info[href]:hover, .label-info[href]:focus, .label-info[href]:active, .alert-info, .label-warning, .label-warning[href]:hover, .label-warning[href]:focus, .label-warning[href]:active, .alert-warning, .label-danger, .label-danger[href]:hover, .label-danger[href]:focus, .label-danger[href]:active, .alert-danger {
+//     color: #000; }
+  
+//   .label-default[href]:hover, .label-default[href]:focus, .label-default[href]:active, .label-primary[href]:hover, .label-primary[href]:focus, .label-primary[href]:active, .label-success[href]:hover, .label-success[href]:focus, .label-success[href]:active, .label-info[href]:hover, .label-info[href]:focus, .label-info[href]:active, .label-warning[href]:hover, .label-warning[href]:focus, .label-warning[href]:active, .label-danger[href]:hover, .label-danger[href]:focus, .label-danger[href]:active {
+//     text-decoration: underline; }
+  
+//   .label-default, .label-default[href]:hover, .label-default[href]:focus, .label-default[href]:active {
+//     background: #eee;
+//     border-color: #acacac; }
+  
+//   .label-primary, .label-primary[href]:hover, .label-primary[href]:focus, .label-primary[href]:active {
+//     background: #e8f2f4;
+//     border-color: #083c6c; }
+  
+//   .label-success, .label-success[href]:hover, .label-success[href]:focus, .label-success[href]:active, .alert-success, details.alert.alert-success, details.alert.alert-success[open] {
+//     background: #d8eeca;
+//     border-color: #278400; }
+  
+//   .alert-success > :first-child:before {
+//     color: #278400;
+//     content: "\e084"; }
+  
+  .label-info, .label-info[href]:hover, .label-info[href]:focus, .label-info[href]:active, .alert-info, details.alert.alert-info, details.alert.alert-info[open] {
+    background: #d7faff;
+    border-color: #269abc; }
+  
+//   .alert-info > :first-child:before {
+//     color: #269abc;
+//     content: "\e086"; }
+  
+  .label-warning, .label-warning[href]:hover, .label-warning[href]:focus, .label-warning[href]:active, .alert-warning, details.alert.alert-warning, details.alert.alert-warning[open] {
+    background: #f9f4d4;
+    border-color: #f90; }
+  
+//   .alert-warning > :first-child:before {
+//     color: #f90;
+//     content: "\e107"; }
+  
+  .label-danger, .label-danger[href]:hover, .label-danger[href]:focus, .label-danger[href]:active, .alert-danger, details.alert.alert-danger, details.alert.alert-danger[open] {
+    background: #f3e9e8;
+    border-color: #d3080c; }
+  
+//   .alert-danger > :first-child:before {
+//     color: #d3080c;
+//     content: "\e101"; }
