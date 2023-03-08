@@ -58,7 +58,8 @@ mouse:hover {
       border-color: var(--ospr-button-focus-border-color);
     }
     .btn:hover, .btn:focus, .btn.focus {
-      color: black;
+      // Color black is not appropriate in every color so removed override
+      // color: black;
       text-decoration: none; }
     .btn:active, .btn.active {
       background-image: none;
