@@ -73,29 +73,6 @@
           },
           "configurations": {
             "production": {
-              "assets": [
-                "src/assets",
-                {
-                  "glob": "**/*",
-                  "input": "./node_modules/gcweb/css",
-                  "output": "./GCweb/css"
-                },
-                {
-                  "glob": "**/*",
-                  "input": "./node_modules/gcweb/assets",
-                  "output": "./GCweb/assets"
-                },
-                {
-                  "glob": "**/*",
-                  "input": "./node_modules/wet-boew/css",
-                  "output": "./wet-boew/css"
-                },
-                {
-                  "glob": "**/*",
-                  "input": "./node_modules/wet-boew/assets",
-                  "output": "./wet-boew/assets"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "extractCss": true,
@@ -247,5 +224,8 @@
       }
     }
   },
-  "defaultProject": "dspace-angular"
+  "defaultProject": "dspace-angular",
+  "cli": {
+    "analytics": "23063946-3c9f-488a-8bba-3ce9f4c5f735"
+  }
 }
