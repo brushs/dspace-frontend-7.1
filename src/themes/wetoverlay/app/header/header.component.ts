@@ -1,7 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { HostWindowService } from 'src/app/shared/host-window.service';
+import { MenuService } from 'src/app/shared/menu/menu.service';
 import { HeaderComponent as BaseComponent } from '../../../../app/header/header.component';
 
-const TOGGLE_DISPLAY_BREAKPOINT_SIZE = 768;
 /**
  * Represents the header with the logo and simple navigation
  */
@@ -12,15 +13,13 @@ const TOGGLE_DISPLAY_BREAKPOINT_SIZE = 768;
   templateUrl: 'header.component.html',
   // templateUrl: '../../../../app/header/header.component.html',
 })
-export class HeaderComponent extends BaseComponent implements OnInit{
-  hideToggleButton; // Remove button component when not supposed to be visible for accessibility compliance
-
-  ngOnInit(): void {
-    this.hideToggleButton = (window.innerWidth > TOGGLE_DISPLAY_BREAKPOINT_SIZE);
-  }
-
-  @HostListener("window:resize", [])
-  onResize() {
-    this.hideToggleButton = (window.innerWidth > TOGGLE_DISPLAY_BREAKPOINT_SIZE);
+export class HeaderComponent extends BaseComponent {
+  isXsOrSm$; // Remove button component when not supposed to be visible for accessibility compliance
+  constructor(
+    protected windowService: HostWindowService,
+    menuService: MenuService
+  ) {
+    super(menuService);
+    this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
 }
