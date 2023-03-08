@@ -292,7 +292,7 @@
   "browse.startsWith.choose_year": "(Choose year)",
   "browse.startsWith.choose_year.label": "Choose the issue year",
   "browse.startsWith.jump": "Enter only the Year Or enter the Year and Month:",
-  "browse.startsWith.text": "Type the first few letters"
+  "browse.startsWith.text": "Type the first few letters",
   "browse.startsWith.months.april": "April",
   "browse.startsWith.months.august": "August",
   "browse.startsWith.months.december": "December",
