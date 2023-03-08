@@ -7,7 +7,6 @@
   </div>
   <div *ngIf="(isAuthenticated | async)" class="nav-item">
     <a routerLink="/logout" routerLinkActive="active" class="loginLink px-1">
-      <h2 hidden>{{ 'nav.login.heading' | translate }}</h2>
       {{ 'nav.logout' | translate }} 
     </a>
   </div>
