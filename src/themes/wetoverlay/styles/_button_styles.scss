@@ -152,12 +152,18 @@ mouse:hover {
             color: white;
             background-color: var(--ospr-blue-300);
             border-color: var(--ospr-blue-900); }
+            .btn-primary.disabled, .btn-primary:disabled {
+              color: white;
+              background-color: var(--ospr-blue-500);
+              border-color: var(--ospr-blue-200);
+            }
         .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus,
         fieldset[disabled] .btn-primary:hover,
         fieldset[disabled] .btn-primary:focus,
         fieldset[disabled] .btn-primary.focus {
-          background-color: var(--ospr-blue-400);
-          border-color: var(--ospr-blue-500); }
+          color: white;
+          background-color: var(--ospr-blue-500);
+          border-color: var(--ospr-blue-200); }
         .btn-primary .badge {
           color: var(--ospr-blue-200);
           background-color: white; }
