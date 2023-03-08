@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { HostWindowService } from 'src/app/shared/host-window.service';
-import { MenuService } from 'src/app/shared/menu/menu.service';
+import { HostWindowService } from '../../../../app/shared/host-window.service';
+import { MenuService } from '../../../../app/shared/menu/menu.service';
 import { HeaderComponent as BaseComponent } from '../../../../app/header/header.component';
 
 /**
