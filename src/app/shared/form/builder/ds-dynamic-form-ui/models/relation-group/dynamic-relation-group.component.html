@@ -2,8 +2,8 @@
    class="close position-relative"
    ngbTooltip="{{'form.group-collapse-help' | translate}}"
    placement="left">
+   
   <span class="fas fa-angle-up fa-fw fa-2x"
-        aria-hidden="true"
         (click)="collapseForm()"></span>
 </a>
 <a *ngIf="(formCollapsed | async)"
@@ -11,7 +11,6 @@
    ngbTooltip="{{'form.group-expand-help' | translate}}"
    placement="left">
   <span class="fas fa-angle-down fa-fw fa-2x"
-        aria-hidden="true"
         (click)="expandForm()"></span>
 </a>
 
@@ -33,7 +32,7 @@
         <button type="button"
                 class="btn btn-link"
                 [disabled]="isMandatoryFieldEmpty()"
-                (click)="save()">
+                (click)="save()">    
           <span class="fas fa-save text-primary fa-2x" aria-hidden="true"></span>
           <span class="wb-inv">{{'form.save' | translate}}</span>
         </button>

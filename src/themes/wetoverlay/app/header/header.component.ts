@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { HostWindowService } from '../../../../app/shared/host-window.service';
+import { MenuService } from '../../../../app/shared/menu/menu.service';
 import { HeaderComponent as BaseComponent } from '../../../../app/header/header.component';
 
 /**
@@ -12,4 +14,12 @@ import { HeaderComponent as BaseComponent } from '../../../../app/header/header.
   // templateUrl: '../../../../app/header/header.component.html',
 })
 export class HeaderComponent extends BaseComponent {
+  isXsOrSm$; // Remove button component when not supposed to be visible for accessibility compliance
+  constructor(
+    protected windowService: HostWindowService,
+    menuService: MenuService
+  ) {
+    super(menuService);
+    this.isXsOrSm$ = this.windowService.isXsOrSm();
+  }
 }
