@@ -1,35 +1,44 @@
 <header class="modal-header">
-          <div class="wet-skiplink__container"><nav><ul id="wb-tphp"><li class="wb-slc"><a data-testid="skip-link" href="{{getPath()}}#wb-cont" class="wet-skiplink__link">Skip to main content</a></li>
-          <li class="wb-slc"><a data-testid="skip-link" href="{{getPath()}}#wb-info" class="wet-skiplink__link">Skip to &#34;{{ 'about' | translate }}&#34;</a></li></ul></nav>
-        </div>
+    <div class="wet-skiplink__container">
+      <nav>
+      <ul id="wb-tphp">
+        <li class="wb-slc">
+          <a data-testid="skip-link" href="{{getPath()}}#wb-cont" class="wet-skiplink__link">{{'header.skiptolinks.main' | translate }}</a>
+        </li>
+        <li class="wb-slc">
+          <a data-testid="skip-link" href="{{getPath()}}#wb-info" class="wet-skiplink__link">{{ 'header.skiptolinks.about' | translate }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
     <div class="container">
       <div class="underline text-right pt-3 pr-2">
         <ds-lang-switch></ds-lang-switch>
-        </div>
+      </div>
         
       <div class="d-flex flex-row justify-content-between">
         <a class="navbar-brand">
           <img src="assets/images/Canada-logo.svg" [attr.alt]="'menu.header.image.logo' | translate"/>
         </a>
         <div>
-      <nav role="navigation" [attr.aria-label]="'nav.user.description' | translate" class="navbar underline navbar-light navbar-expand-md flex-shrink-0 px-0">
-        <!-- OSPR Changes remove login dropdown -->
-          <!-- <ds-search-navbar></ds-search-navbar> -->
-        <!-- OSPR Changed end -->
-        <!-- OSPR Changes replace Login button to nav bar -->
-        <!-- <ds-auth-nav-menu></ds-auth-nav-menu> -->
-        <ds-impersonate-navbar></ds-impersonate-navbar>
-        <div class="pl-2">
-          <button *ngIf="(isXsOrSm$ | async)" class="navbar-toggler" type="button" (click)="toggleNavbar()"
-                  aria-controls="collapsingNav"
-                  aria-expanded="false" [attr.aria-label]="'nav.toggle' | translate">
-            <!--button class="navbar-toggler" type="button" (click)="toggleNavbar()"
-                    aria-controls="collapsingNav"
-                    aria-expanded="false" [attr.aria-label]="'nav.toggle' | translate"> -->
-              <span class="navbar-toggler-icon fas fa-bars fa-fw" aria-hidden="true"></span>
-            </button>
-</div>
-      </nav>
+          <nav role="navigation" [attr.aria-label]="'nav.user.description' | translate" class="navbar underline navbar-light navbar-expand-md flex-shrink-0 px-0">
+            <!-- OSPR Changes remove login dropdown -->
+              <!-- <ds-search-navbar></ds-search-navbar> -->
+            <!-- OSPR Changed end -->
+            <!-- OSPR Changes replace Login button to nav bar -->
+            <!-- <ds-auth-nav-menu></ds-auth-nav-menu> -->
+            <ds-impersonate-navbar></ds-impersonate-navbar>
+            <div class="pl-2">
+              <button *ngIf="(isXsOrSm$ | async)" class="navbar-toggler" type="button" (click)="toggleNavbar()"
+                      aria-controls="collapsingNav"
+                      aria-expanded="false" [attr.aria-label]="'nav.toggle' | translate">
+                <!--button class="navbar-toggler" type="button" (click)="toggleNavbar()"
+                        aria-controls="collapsingNav"
+                        aria-expanded="false" [attr.aria-label]="'nav.toggle' | translate"> -->
+                  <span class="navbar-toggler-icon fas fa-bars fa-fw" aria-hidden="true"></span>
+                </button>
+            </div>
+          </nav>
         </div>
       </div>
     </div>

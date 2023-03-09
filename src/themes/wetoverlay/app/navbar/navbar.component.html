@@ -5,6 +5,7 @@
     <div class="container">
         <div class="reset-padding-md w-100">
             <div id="collapsingNav">
+              <h2 hidden>{{ 'nav.links.heading' | translate }}</h2>
                 <ul class="navbar-nav mr-auto shadow-none">
                     <li *ngFor="let section of (sections | async)">
                         <ng-container

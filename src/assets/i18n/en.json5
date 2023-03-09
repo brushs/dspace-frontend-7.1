@@ -1,4 +1,6 @@
 {
+  "header.skiptolinks.main": "Skip to main content.",
+  "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
   "401.link.home-page": "Take me to the home page.",
   "401.unauthorized": "Unauthorized",
@@ -732,7 +734,7 @@
   "footer.gc.about-gov.link": "https://www.canada.ca/en/government/system.html",
   "footer.gc.open-gov": "Open government",
   "footer.gc.open-gov.link": "http://open.canada.ca/en",
-  "footer.section.about-this-site": "About this site",
+  "footer.section.about-this-site": "About the Federal Open Science Repository of Canada (FOSRC)",
   "footer.gc.social-media": "Social media",
   "footer.gc.social-media.link": "https://www.canada.ca/en/social.html",
   "footer.gc.mobile-applications": "Mobile applications",
