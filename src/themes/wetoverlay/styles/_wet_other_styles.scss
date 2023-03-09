@@ -34,18 +34,6 @@
   background-color: #26374a
 }
 
-a.nav-link:hover {
-  color: #0535D2 !important;
-}
-
-a.nav-link:focus {
-  color: #0535D2 !important;
-}
-
-a.nav-link:active {
-  color: #0535D2 !important;
-}
-
 .align-right {
   margin-right: 0;
   margin-left: auto;
@@ -133,3 +121,34 @@ legend {
 .navbar-brand {
 	padding: 0px 0px;
  }
+
+
+ 
+// Link colors for navigation links on Focus, Hover and Active states
+a.nav-link:focus:hover:active {
+  color: var(--gcweb-link-active-color) !important;
+}
+
+// Link colors for links for Focus, Hover and Active
+// Link color was: #295376;
+
+a {
+	text-decoration: none; }
+	a:hover, a:focus, a:active {
+		color: var(--gcweb-link-active-color);
+		text-decoration: underline; }
+	a:focus {
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px; }
+
+  a {
+    text-decoration: underline; }
+    a:visited {
+      color: var(--gcweb-link-visited-color); }
+    a:not([href]) {
+      color: inherit;
+      text-decoration: none; }
+      a:not([href]):hover, a:not([href]):focus {
+        color: inherit;
+        outline: none;
+        text-decoration: none; }
