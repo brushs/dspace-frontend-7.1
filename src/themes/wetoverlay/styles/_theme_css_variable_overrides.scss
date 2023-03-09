@@ -7,6 +7,11 @@
   --ds-header-icon-color-hover: #{darken($link-color, 15%)};
   // Theme Variable overrides
 
+  --bs-font-size-base: 17pt;
+  --bs-font-size-lg: #{$font-size-lg};
+  --bs-font-size-sm: #{$font-size-sm};
+
+
 	// Body
 	$body-bg: #f9f9f9; // Body element's background colour (Bootstrap override).
 

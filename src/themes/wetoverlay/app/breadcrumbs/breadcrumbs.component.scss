@@ -16,12 +16,16 @@
 }
 //  color: var(--ds-breadcrumb-link-color) !important;
 li.breadcrumb-item > a {
-  color: #284162;
+  color: var(--gcweb-link-color);
   text-decoration: underline;
 }
 li.breadcrumb-item.active {
   color: var(--ds-breadcrumb-link-active-color) !important;
   font-style: normal;
+}
+// Added visited link color exclusively for breadcrumbs
+li.breadcrumb-item > a:visited {
+  color: var(--gcweb-link-visited-color) !important;
 }
 
 .breadcrumb-item+ .breadcrumb-item::before {

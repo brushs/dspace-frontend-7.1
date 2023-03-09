@@ -33,7 +33,10 @@ $ospr-blue-200: #2572b4 !default;
 
 
 // Text colors
-$gcweb-link-color: #295376 !default;
+// $gcweb-link-color: #295376 !default;
+$gcweb-link-color: #2b4380 !default;
+$gcweb-link-active-color: #0535d2 !default;
+$gcweb-link-visited-color: #7834bc !default;
 
 
 // gray-100 gray-400 gray-800 was from dev
@@ -50,7 +53,6 @@ $gray-400: #ced4da !default;
 $gray-300: #bbbfc5 !default;
 $gray-200: #dcdee1 !default;
 $gray-100: #eaebed !default;
-
 
 
 $btn-default-text-color: #335075 !default;
@@ -117,5 +119,9 @@ $link-color: map-get($theme-colors, link-color) !default;
   --btn-default-interaction-bg-color: #{$btn-default-interaction-bg-color};
   --btn-default-bg-color: #{$btn-default-bg-color};
   --ospr-button-focus-border-color: #{$dark};
+
+  --gcweb-link-color: #{$gcweb-link-color};
+  --gcweb-link-active-color: #{$gcweb-link-active-color};
+  --gcweb-link-visited-color: #{$gcweb-link-visited-color};
 
 }
