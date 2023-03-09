@@ -133,3 +133,16 @@ legend {
 .navbar-brand {
 	padding: 0px 0px;
  }
+
+
+ 
+a {
+  //  Refer to gcweb-link-color variable on _theme_sass_variable_overrides.scss
+  // color: #295376;
+	text-decoration: none; }
+	a:hover, a:focus {
+		color: #0535d2;
+		text-decoration: underline; }
+	a:focus {
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px; }
