@@ -606,7 +606,7 @@ input.btn.btn-call-to-action {
 
   .btn-dark {
     color: white;
-    background-color: #343a40;
+    background-color: #343a40 !important;
     border-color: black; }
     .btn-dark:focus, .btn-dark.focus {
       color: white;
