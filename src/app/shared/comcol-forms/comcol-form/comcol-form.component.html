@@ -14,13 +14,13 @@
               <button *ngIf="!markLogoForDeletion" type="button" class="btn btn-danger"
                       title="{{type.value + '.edit.logo.delete.title' | translate}}"
                       (click)="deleteLogo()">
-                <span aria-hidden="true" class="fas fa-trash" aria-hidden="true"></span>
+                <span aria-hidden="true" class="fas fa-trash" ></span>
                 <span class="wb-inv">{{type.value + '.edit.logo.delete.title' | translate}}</span>
               </button>
               <button *ngIf="markLogoForDeletion" type="button" class="btn btn-warning"
                       title="{{type.value + '.edit.logo.delete-undo.title' | translate}}"
                       (click)="undoDeleteLogo()">
-                <span aria-hidden="true" class="fas fa-undo" aria-hidden="true"></span>
+                <span aria-hidden="true" class="fas fa-undo" ></span>
                 <span class="wb-inv">{{type.value + '.edit.logo.delete-undo.title' | translate}}</span>
               </button>
             </div>
