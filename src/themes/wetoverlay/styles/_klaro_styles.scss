@@ -16,7 +16,7 @@
 .klaro .cookie-notice h2,
 .klaro .cookie-notice ul,
 .klaro .cookie-notice li {
-  color: var(--font-color-dark);
+  color: black;
 }
 
 
@@ -72,13 +72,21 @@
   color: #424242;
 }
 
+.klaro .cookie-modal .cm-btn.cm-btn-success, .klaro .context-notice .cm-btn.cm-btn-success, .klaro .cookie-notice .cm-btn.cm-btn-success {
+
+  color: white;
+  background: #091c2d;
+  border-color: #091c2d;
+
+}
+
+
 .klaro .cookie-modal .cm-btn,
 .klaro .context-notice .cm-btn,
 .klaro .cookie-notice .cm-btn {
-  color: rgb(255, 255, 255);
-  color: var(--font-color-dark, #eee);
-  background: var(--bs-secondary);
-  border-color: #212529;
+  color: white;
+  background: #091c2d;
+  border-color: #091c2d;
   border-radius: 6px;
   padding: 6px 10px;
   margin-right: 0.5em;
