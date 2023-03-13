@@ -152,3 +152,11 @@ a {
         color: inherit;
         outline: none;
         text-decoration: none; }
+
+.filters a {
+  color: var(--gcweb-link-color) !important;
+  text-decoration: underline !important;
+}
+.filters a:visited {
+  color: var(--gcweb-link-visited-color) !important;
+}
