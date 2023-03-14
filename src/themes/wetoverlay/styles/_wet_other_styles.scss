@@ -155,8 +155,13 @@ a {
 
 .filters a {
   color: var(--gcweb-link-color) !important;
+  text-decoration: none !important;
+}
+
+.filters a span {
   text-decoration: underline !important;
 }
+
 .filters a:visited {
   color: var(--gcweb-link-visited-color) !important;
 }
