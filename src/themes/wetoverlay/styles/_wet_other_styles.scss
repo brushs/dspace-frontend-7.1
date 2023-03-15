@@ -152,3 +152,18 @@ a {
         color: inherit;
         outline: none;
         text-decoration: none; }
+
+// The links on filters to use link styling on filters
+// Applied none underline for the rest of filters to prevent labels and space to have underline
+.filters a {
+  text-decoration: none !important;
+}
+// Used filter-value to style the text inside filters panel
+.filters a .filter-value {
+  color: var(--gcweb-link-color) !important;
+  text-decoration: underline !important;
+}
+// Also gave gc web visited link color
+.filters a:visited .filter-value{
+  color: var(--gcweb-link-visited-color) !important;
+}
