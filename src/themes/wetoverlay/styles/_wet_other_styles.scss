@@ -59,22 +59,28 @@
   border-color: #E3F2FD;
 }
 
+.badge {
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0 0 0 4px; }
 
 
-.badge-primary {
-  color: #207698;
-  background-color: #fff;
-}
 
-.badge-success {
-  color: #497405;
-  background-color: #fff;
-}
 
-.badge-info {
-  color: #207698;
-  background-color: #fff;
-}
+// .badge-primary {
+//   color: var(--ospr-blue-800) !important;;
+//   background-color: #fff;
+// }
+
+// .badge-success {
+//   color: #{$green};
+//   background-color: #fff;
+// }
+// // Changed from #207698
+// .badge-info {
+//   color: var(--ospr-blue-800) !important;
+//   background-color: #fff;
+// }
 
 
 
@@ -169,12 +175,12 @@ a {
   text-decoration: underline !important;
 }
 // Also gave gc web visited link color
-.filters a:visited .filter-value{
+.filters a:visited .filter-value {
   color: var(--gcweb-link-visited-color) !important;
 }
 
 // Nav-link are the tabs being used in edit communities and collection pages
-.nav-tabs a{
+.nav-tabs a {
   text-decoration: none !important;
   color: black;
 }
@@ -183,6 +189,15 @@ a {
   color: black;
 }
 
+// Removed underline on a tags from sidebar
+.sidebar-collapsible a {
+  text-decoration: none !important;
+}
+
+
+sidebar-section a {
+  text-decoration: none !important;
+}
 
 // Pagination not to have link styles on numbered buttons
 .page-link {
