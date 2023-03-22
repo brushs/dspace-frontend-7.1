@@ -44,6 +44,8 @@ mouse:hover {
     cursor: pointer;
     background-image: none;
     // border: 1px solid transparent;
+    // Added below a text-decoration none for a tag with button classes not to catch underline for links
+    text-decoration: none;
     padding: 10px 14px;
     font-size: 16px;
     line-height: 1.4375;
@@ -486,11 +488,6 @@ mouse:hover {
     .btn {
       font-family: Lato, sans-serif; }
 
-      .text-secondary {
-
-        color: #6c757d !important
-      }
-
 /* Call-to-action button style - new with GCWeb v5 */
 .btn-call-to-action {
 	color: #fff;
@@ -544,15 +541,15 @@ input.btn.btn-call-to-action {
 
       .btn-outline-primary {
         background-color: transparent;
-        color: #207698;
-        border-color: #207698; }
+        color: var(--ospr-blue-700);
+        border-color: var(--ospr-blue-700); }
         .btn-outline-primary:focus, .btn-outline-primary.focus {
           color: white;
-          background-color: #207698;
+          background-color: var(--ospr-blue-800);
           border-color: var(--ospr-blue-900); }
         .btn-outline-primary:hover {
           color: #fff;
-          background-color: $cyan;
+          background-color: var(--ospr-blue-800);
           border-color: #091c2d; }
           .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
           .show > .btn-outline-primary.dropdown-toggle{
@@ -565,8 +562,8 @@ input.btn.btn-call-to-action {
           .open > .btn-outline-primary.dropdown-toggle:focus,
           .open > .btn-outline-primary.dropdown-toggle.focus {
             color: rgb(0, 0, 0);
-            background-color: var(--ospr-blue-300);
-            border-color:rgba(0, 123, 255, 1);
+            background-color: var(--ospr-blue-900);
+            border-color: var(--ospr-blue-900);
             box-shadow: 0 0 0 0.2rem rgb(32, 118, 152, 1); }
         .btn-outline-primary.disabled:hover, .btn-outline-primary.disabled:focus, .btn-outline-primary.disabled.focus, .btn-outline-primary[disabled]:hover, .btn-outline-primary[disabled]:focus, .btn-outline-primary[disabled].focus,
         fieldset[disabled] .btn-outline-primary:hover,
@@ -711,3 +708,8 @@ input.btn.btn-call-to-action {
         .btn-light .badge {
           color: #f8f9fa;
           background-color: #212529;}
+
+
+          label .btn {
+            min-height: fit-content !important;
+          }
