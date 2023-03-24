@@ -209,10 +209,7 @@ sidebar-section a {
   color: black;
 }
 
-
-.badge {
-  text-decoration: none !important;}
-
+// When mouse over cursor uses pointer
   a.badge:hover, a.badge:focus {
     color: #fff;
     text-decoration: none;
@@ -228,7 +225,7 @@ sidebar-section a {
 
 // Override text and icon colors
 .text-muted {
-	color: #6f6f6f !important; }
+	color: #{$gray-650} !important; }
 
 .text-primary {
 	color: #2572b4 !important; }
