@@ -199,17 +199,21 @@ sidebar-section a {
 .page-item a:visited {
   color: black;
 }
-// Override visiting text color on badge text
-// .badge a {
-//   text-decoration: none !important;
-//   color: black;
-// }
+
+// Browse tabs on community pages not to have visited link colors
+.comcol-browse a:visited {
+  color: black;
+}
+// Browse tabs a links to have interaction color
+.comcol-browse a:hover {
+  color: #0535d2;
+}
 
 .badge:visited {
   color: black;
 }
 
-// When mouse over cursor uses pointer
+// Mouse over:pointer for badges
   a.badge:hover, a.badge:focus {
     color: #fff;
     text-decoration: none;
