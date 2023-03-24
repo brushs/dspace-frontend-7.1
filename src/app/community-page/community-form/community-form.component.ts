@@ -94,7 +94,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
 /*      labelTooltip: 'alternative-names.hint',
       controlTooltip: 'alternative-names.hint',
           hint: 'alternative-names.hint'*/
-      required: false,
+      required: true,
       validators: {
         required: null
       },
@@ -110,7 +110,7 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
 /*      labelTooltip: 'alternative-names-translation.hint',
       controlTooltip: 'alternative-names-translation.hint',
       hint: 'alternative-names-translation.hint'*/
-      required: false,
+      required: true,
       validators: {
         required: null
       },
@@ -138,11 +138,14 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       name: 'dc.subject',
 /*      labelTooltip: 'researcharea.hint',
       controlTooltip: 'researcharea.hint',
-            hint: 'researcharea.hint'*/
-      required: true,
+      hint: 'researcharea.hint'
+*/    required: true,
       validators: {
+        required: null
+      },
+      errorMessages: {
         //required: 'researcharea.required'
-      }
+      },
     }),
 
     // Translated Main Area of Research
@@ -154,7 +157,10 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
       hint: 'researcharea-fosrctranslation.hint'*/
       required: true,
       validators: {
-        //required: 'researcharea.required'
+        required: null
+      },
+      errorMessages: {
+        //required: 'researcharea-translation.required'
       }
     }),
 

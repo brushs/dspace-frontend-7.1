@@ -6,7 +6,8 @@
       rel="noopener noreferrer" 
       [routerLink]="[itemPageRoute]" 
       class="lead item-list-title" 
-      [innerHTML]="dsoTitle"></a>
+      lang="{{('dc.title' | metaTranslate: dso)[0]?.language}}">{{('dc.title' | metaTranslate: dso)[0]?.value}}</a>
+      
     <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
   </p>
   <ds-truncatable-part *ngIf="dso.allMetadata(['creativeworkseries.issn']).length > 0" 
