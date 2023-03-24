@@ -481,7 +481,7 @@ mouse:hover {
        * These two property overrides should be recommended upstream to
        * Bootstrap as a fix for button wrapping (see wet-boew/wet-boew#4454)
        */
-      height: auto;
+      height: fit-content;
       min-height: 36px;
       min-width: 36px;
       white-space: normal; }
