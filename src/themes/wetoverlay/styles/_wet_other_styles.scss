@@ -31,7 +31,7 @@
 .dropdown-item:hover {
   display: block;
   color: rgb(255, 255, 255);
-  background-color: #26374a
+  background-color: #26374a;
 }
 
 .align-right {
@@ -39,12 +39,17 @@
   margin-left: auto;
 }
 
+// Changed from 207698 to Dark blue
 .text-primary {
-  color: #207698 !important;
+  color: var(--ospr-blue-800) !important;
+}
+
+.text-secondary {
+  color: var(--ospr-blue-500) !important;
 }
 
 .text-light {
-  color: #207698 !important;
+  color: #{$gray-200} !important;
 }
 
 .page-item.active .page-link {
@@ -54,22 +59,20 @@
   border-color: #E3F2FD;
 }
 
+// .badge-primary {
+//   color: var(--ospr-blue-800) !important;;
+//   background-color: #fff;
+// }
 
-
-.badge-primary {
-  color: #207698;
-  background-color: #fff;
-}
-
-.badge-success {
-  color: #497405;
-  background-color: #fff;
-}
-
-.badge-info {
-  color: #207698;
-  background-color: #fff;
-}
+// .badge-success {
+//   color: #{$green};
+//   background-color: #fff;
+// }
+// // Changed from #207698
+// .badge-info {
+//   color: var(--ospr-blue-800) !important;
+//   background-color: #fff;
+// }
 
 
 
@@ -164,6 +167,101 @@ a {
   text-decoration: underline !important;
 }
 // Also gave gc web visited link color
-.filters a:visited .filter-value{
+.filters a:visited .filter-value {
   color: var(--gcweb-link-visited-color) !important;
 }
+
+// Nav-link are the tabs being used in edit communities and collection pages
+.nav-tabs a {
+  text-decoration: none !important;
+  color: black;
+}
+
+.nav-tabs a:visited {
+  color: black;
+}
+
+// Removed underline on a tags from sidebar
+.sidebar-collapsible a {
+  text-decoration: none !important;
+}
+
+
+sidebar-section a {
+  text-decoration: none !important;
+}
+
+// Pagination not to have link styles on numbered buttons
+.page-link {
+  text-decoration: none !important;
+}
+
+.page-item a:visited {
+  color: black;
+}
+
+// Browse tabs on community pages not to have visited link colors
+.comcol-browse a:visited {
+  color: black;
+}
+// Browse tabs a links to have interaction color
+.comcol-browse a:hover {
+  color: #0535d2;
+}
+
+.badge:visited {
+  color: black;
+}
+
+// Mouse over:pointer for badges
+  a.badge:hover, a.badge:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer; }
+
+  //  Alignment for btn-link used a tag browse button to drop an attachment file
+ .ds-base-drop-zone .btn-link {
+
+   min-height: auto !important;
+
+  }
+
+
+// Override text and icon colors
+.text-muted {
+	color: #{$gray-650} !important; }
+
+.text-primary {
+	color: #2572b4 !important; }
+
+a.text-primary:hover,
+a.text-primary:focus {
+	color: #1c578a; }
+
+.text-success {
+	color: #3c763d !important; }
+
+a.text-success:hover,
+a.text-success:focus {
+	color: #2b542c; }
+
+.text-info {
+	color: #31708f !important; }
+
+a.text-info:hover,
+a.text-info:focus {
+	color: #245269; }
+
+.text-warning {
+	color: #8a6d3b !important;}
+
+a.text-warning:hover,
+a.text-warning:focus {
+	color: #66512c; }
+
+.text-danger {
+	color: #a94442 !important; }
+
+a.text-danger:hover,
+a.text-danger:focus {
+	color: #843534; }
