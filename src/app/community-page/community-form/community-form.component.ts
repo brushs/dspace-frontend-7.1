@@ -94,9 +94,9 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
 /*      labelTooltip: 'alternative-names.hint',
       controlTooltip: 'alternative-names.hint',
           hint: 'alternative-names.hint'*/
-      required: true,
+      required: false,
       validators: {
-        required: null
+        //required: null
       },
       errorMessages: {
         //        required: 'alternative-names.required'
@@ -110,9 +110,9 @@ export class CommunityFormComponent extends ComColFormComponent<Community> {
 /*      labelTooltip: 'alternative-names-translation.hint',
       controlTooltip: 'alternative-names-translation.hint',
       hint: 'alternative-names-translation.hint'*/
-      required: true,
+      required: false,
       validators: {
-        required: null
+        //required: null
       },
       errorMessages: {
         //required: 'alternative-names-translation.required'
