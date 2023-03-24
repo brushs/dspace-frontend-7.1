@@ -59,14 +59,6 @@
   border-color: #E3F2FD;
 }
 
-.badge {
-    border-radius: 0;
-    border-style: solid;
-    border-width: 0 0 0 4px; }
-
-
-
-
 // .badge-primary {
 //   color: var(--ospr-blue-800) !important;;
 //   background-color: #fff;
@@ -207,3 +199,68 @@ sidebar-section a {
 .page-item a:visited {
   color: black;
 }
+// Override visiting text color on badge text
+// .badge a {
+//   text-decoration: none !important;
+//   color: black;
+// }
+
+.badge:visited {
+  color: black;
+}
+
+
+.badge {
+  text-decoration: none !important;}
+
+  a.badge:hover, a.badge:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer; }
+
+  //  Alignment for btn-link used a tag browse button to drop an attachment file
+ .ds-base-drop-zone .btn-link {
+
+   min-height: auto !important;
+
+  }
+
+
+// Override text and icon colors
+.text-muted {
+	color: #6f6f6f !important; }
+
+.text-primary {
+	color: #2572b4 !important; }
+
+a.text-primary:hover,
+a.text-primary:focus {
+	color: #1c578a; }
+
+.text-success {
+	color: #3c763d !important; }
+
+a.text-success:hover,
+a.text-success:focus {
+	color: #2b542c; }
+
+.text-info {
+	color: #31708f !important; }
+
+a.text-info:hover,
+a.text-info:focus {
+	color: #245269; }
+
+.text-warning {
+	color: #8a6d3b !important;}
+
+a.text-warning:hover,
+a.text-warning:focus {
+	color: #66512c; }
+
+.text-danger {
+	color: #a94442 !important; }
+
+a.text-danger:hover,
+a.text-danger:focus {
+	color: #843534; }

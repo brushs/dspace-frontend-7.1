@@ -14,7 +14,7 @@
   }
 
   .badge-secondary {
-    background-color: var(--bs-primary);
+    background-color: #{$ospr-blue-900};
     color: #{$gray-100};
   }
 

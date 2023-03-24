@@ -75,7 +75,7 @@ mouse:hover {
       cursor: not-allowed;
       // disabled buttons loose saturation instead of opacity
       // filter: alpha(opacity=65);
-      filter: opacity(80%);
+      filter: opacity(83%);
       // override opacity
       opacity: 1 !important;
       -webkit-box-shadow: none;
@@ -375,11 +375,23 @@ mouse:hover {
       color: #0535d2;
       text-decoration: underline;
       background-color: transparent; }
+      .btn-link.disabled, .btn-link:disabled {
+        color: #{$gray-650};
+        background-color: transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        pointer-events: all;
+      }
     .btn-link[disabled]:hover, .btn-link[disabled]:focus,
     fieldset[disabled] .btn-link:hover,
     fieldset[disabled] .btn-link:focus {
-      color: #6f6f6f;
+      color: #{$gray-650};
       text-decoration: none; }
+
+
+
+
+
   
   .btn-lg, .btn-group-lg > .btn {
     padding: 10px 16px;
@@ -451,7 +463,7 @@ mouse:hover {
       color: #fff; }
     
     .btn-warning:visited {
-      color: #fff; }
+      color: #000; }
     
     .btn-danger:visited {
       color: #fff; }
