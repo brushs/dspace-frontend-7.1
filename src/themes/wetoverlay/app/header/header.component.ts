@@ -52,7 +52,9 @@ export class HeaderComponent extends BaseComponent {
   ngAfterViewInit() {
     this.loadScripts();
   }
-
+  /** Dynamically append scripts to the DOM. Required here as opposed to angular.json to ensure component renders
+   *  so the menu element is detected when the script performs the check. Even including the script in the index.html with the 
+   * 'defer' attribute does not work. */
   async loadScripts() {
     let load = (src) => {
       return new Promise<void>((resolve, reject) => {
@@ -64,9 +66,8 @@ export class HeaderComponent extends BaseComponent {
       })
     }
 
-    await load("assets/scripts/jquery.magnific-popup.min.js");
-    await load("assets/scripts/wet-boew.js");
-    await load("assets/scripts/theme.js");
-    
+    await load("assets/gcweb/jquery.magnific-popup.min.js");
+    await load("assets/gcweb/wet-boew.min.js");
+    await load("assets/gcweb/theme.min.js");
   }
 }
