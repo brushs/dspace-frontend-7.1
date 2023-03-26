@@ -1,19 +1,26 @@
-import { Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { HostWindowService } from '../../../../app/shared/host-window.service';
 import { MenuService } from '../../../../app/shared/menu/menu.service';
 import { HeaderComponent as BaseComponent } from '../../../../app/header/header.component';
+import { Observable } from 'rxjs';
+import { Renderer2, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 /**
  * Represents the header with the logo and simple navigation
  */
 @Component({
   selector: 'ds-header',
+  // styleUrls: ['../../../../../node_modules/gcweb/css/theme.css'],
   styleUrls: ['../../styles/wet-theme.scss'],
   // styleUrls: ['../../../../app/header/header.component.scss'],
   templateUrl: 'header.component.html',
   // templateUrl: '../../../../app/header/header.component.html',
 })
 export class HeaderComponent extends BaseComponent {
+  isXs$: Observable<boolean>;
+  isSm$: Observable<boolean>;
+
   menuItems: Array<{link: string, label: string}> = [
     {link: 'https://www.canada.ca/en/services/jobs.html', label: 'Jobs and the workplace'},
     {link: 'https://www.canada.ca/en/services/immigration-citizenship.html', label: 'Immigration and citizenship'},
@@ -33,8 +40,33 @@ export class HeaderComponent extends BaseComponent {
   ]
   constructor(
     protected windowService: HostWindowService,
-    menuService: MenuService
+    menuService: MenuService,
+    private _renderer2: Renderer2, 
+    @Inject(DOCUMENT) private _document: Document
   ) {
     super(menuService);
+    this.isXs$ = this.windowService.isXs();
+    this.isSm$ = this.windowService.isSm();
+  }
+
+  ngAfterViewInit() {
+    this.loadScripts();
+  }
+
+  async loadScripts() {
+    let load = (src) => {
+      return new Promise<void>((resolve, reject) => {
+        let script = this._renderer2.createElement('script');
+        script.type="text/javascript";
+        script.src=src;
+        script.onload = () => { return resolve(); }
+        this._renderer2.appendChild(this._document.body, script)
+      })
+    }
+
+    await load("assets/scripts/jquery.magnific-popup.min.js");
+    await load("assets/scripts/wet-boew.js");
+    await load("assets/scripts/theme.js");
+    
   }
 }

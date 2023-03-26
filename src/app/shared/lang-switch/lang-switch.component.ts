@@ -60,6 +60,7 @@ export class LangSwitchComponent implements OnInit {
    */
   useLang(lang: string, event: any) {
     event.preventDefault();
+    // document.querySelector('html').setAttribute('lang', lang)
     this.localeService.setCurrentLanguageCode(lang);
     this.localeService.refreshAfterChangeLanguage();
   }

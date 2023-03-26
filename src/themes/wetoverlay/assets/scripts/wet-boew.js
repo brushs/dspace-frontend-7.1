@@ -6974,14 +6974,14 @@ var componentName = "wb-data-ajax",
 	contentUpdatedEvent = "wb-contentupdated",
 	$document = wb.doc,
 	s,
-	
+
 	/**
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
 	 * @param {string} ajaxType The type of AJAX operation, either after, append, before or replace
-	*/
+	 */
 	init = function( event ) {
-		
+
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)

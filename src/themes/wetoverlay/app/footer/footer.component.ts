@@ -10,9 +10,9 @@ import { FooterComponent as BaseComponent } from '../../../../app/footer/footer.
 })
 export class FooterComponent extends BaseComponent {
 
-  // ngAfterViewInit(): void {
-  //   import('../../scripts/jquery.magnific-popup.min.js');
-  //    import('../../scripts/wet-boew.min.js');
-  //    import('../../scripts/theme.min.js');
-  // }
+  ngAfterViewInit(): void {
+    // import('../../assets/scripts/jquery.magnific-popup.min.js');
+    //  import('../../assets/scripts/wet-boew.min.js');
+    //  import('../../assets/scripts/theme.min.js');
+  }
 }
