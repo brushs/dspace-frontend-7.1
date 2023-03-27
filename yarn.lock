@@ -5258,6 +5258,10 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
+"gcweb@https://github.com/wet-boew/themes-cdn/archive/v12.5.2-gcweb.tar.gz":
+  version "12.5.2"
+  resolved "https://github.com/wet-boew/themes-cdn/archive/v12.5.2-gcweb.tar.gz#cd6a63f2ae0f0248b55c4555332ad2388415d7bb"
+
 genfun@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/genfun/-/genfun-5.0.0.tgz#9dd9710a06900a5c4a5bf57aca5da4e52fe76537"
@@ -6531,6 +6535,11 @@ jest-worker@^26.3.0:
     "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
+
+jquery@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.4.tgz#ba065c188142100be4833699852bf7c24dc0252f"
+  integrity sha512-v28EW9DWDFpzcD9O5iyJXg3R3+q+mET5JhnjJzQUZMHOv67bpSIHq81GEYpPNZHG+XXHsfSme3nxp/hndKEcsQ==
 
 js-cookie@2.2.1:
   version "2.2.1"
@@ -12162,6 +12171,10 @@ websocket-extensions@>=0.1.1:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
   integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
+
+"wet-boew@https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.56.6.tar.gz":
+  version "4.0.5-6.6"
+  resolved "https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.56.6.tar.gz#dd3ff04203deaa090feb0c973f542e8ad887098c"
 
 whatwg-encoding@^1.0.5:
   version "1.0.5"

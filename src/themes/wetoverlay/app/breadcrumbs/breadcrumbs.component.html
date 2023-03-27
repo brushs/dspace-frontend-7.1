@@ -2,6 +2,9 @@
 <ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
     <nav *ngIf="(showBreadcrumbs$ | async)" aria-label="breadcrumb" class="nav-breadcrumb">
         <ol class="container breadcrumb">
+            
+            <!-- <li><a class="breadcrumb-item"  href="https://www.canada.ca/en.html">Canada.ca</a></li>
+            <li><a class="breadcrumb-item" href="#">Federal Open Science Repository of Canada</a></li> -->
             <ng-container
                     *ngTemplateOutlet="breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb; context: {text: 'home.breadcrumbs', url: '/'}"></ng-container>
             <ng-container *ngFor="let bc of breadcrumbs; let last = last;">
