@@ -19,6 +19,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
    */
   dso: K;
   dsoTitle: string;
+  dsoOfficialTitle: string; //FOSRC added
 
   public constructor(protected truncatableService: TruncatableService, protected dsoNameService: DSONameService) {
     super();
@@ -31,6 +32,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
     if (hasValue(this.object)) {
       this.dso = this.object.indexableObject;
       this.dsoTitle = this.dsoNameService.getName(this.dso);
+      this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso); //FOSRC added
     }
   }
 
