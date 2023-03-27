@@ -31,7 +31,7 @@ export class MyDSpaceItemStatusComponent implements OnInit {
    */
   ngOnInit() {
     this.badgeContent = this.status;
-    this.badgeClass = 'text-light badge ';
+    this.badgeClass = 'badge ';
     switch (this.status) {
       case MyDspaceItemStatusType.VALIDATION:
         this.badgeClass += 'badge-warning';

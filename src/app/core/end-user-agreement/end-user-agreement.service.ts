@@ -44,7 +44,13 @@ export class EndUserAgreementService {
       switchMap((authenticated) => {
         if (authenticated) {
           return this.authService.getAuthenticatedUserFromStore().pipe(
-            map((user) => hasValue(user) && user.hasMetadata(END_USER_AGREEMENT_METADATA_FIELD) && user.firstMetadata(END_USER_AGREEMENT_METADATA_FIELD).value === 'true')
+            //FOSRC removing end user agreeement (#1386) intrudec bug #1565 - 404 - error - when - new- users - are - logged -in
+            //FOSRC map((user) => hasValue(user) && user.hasMetadata(END_USER_AGREEMENT_METADATA_FIELD) && user.firstMetadata(END_USER_AGREEMENT_METADATA_FIELD).value === 'true')
+            map((user) => true) //FOSRC to fix #1565 we need to always return true here
+            /*
+             * FORSC DSpace 7.4 has added the ability to turn on and off the end user agreement and privacy policy
+             * Once we migrate to 7.4 or beyond we no longer will need this fix
+            */
           );
         } else {
           return observableOf(acceptedWhenAnonymous);
@@ -91,7 +97,15 @@ export class EndUserAgreementService {
    * Is the End User Agreement accepted in the cookie?
    */
   isCookieAccepted(): boolean {
-    return this.cookie.get(END_USER_AGREEMENT_COOKIE) === true;
+    //FOSRC removing end user agreeement (#1386) intrudec bug #1565 - 404 - error - when - new- users - are - logged -in
+    //FOSRC to fix #1565 we need to alwys return true here and we can set the cookie also
+    //return this.cookie.get(END_USER_AGREEMENT_COOKIE) === true;
+    this.setCookieAccepted(true);
+    return true;
+    /*
+     * FORSC DSpace 7.4 has added the ability to turn on and off the end user agreement and privacy policy
+     * Once we migrate to 7.4 or beyond we no longer will need this fix
+    */
   }
 
   /**
