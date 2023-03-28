@@ -14,7 +14,7 @@
   }
 
   .badge-secondary {
-    background-color: var(--bs-primary);
+    background-color: #{$ospr-blue-900};
     color: #{$gray-100};
   }
 
@@ -34,8 +34,8 @@ header {
 }
 
 .lead {
-  margin-bottom: 23px;
-  text-decoration: underline;
+  margin-bottom: 5px;
+  text-decoration: none;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.4; }

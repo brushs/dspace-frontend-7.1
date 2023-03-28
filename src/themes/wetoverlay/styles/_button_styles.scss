@@ -44,6 +44,8 @@ mouse:hover {
     cursor: pointer;
     background-image: none;
     // border: 1px solid transparent;
+    // Added below a text-decoration none for a tag with button classes not to catch underline for links
+    text-decoration: none;
     padding: 10px 14px;
     font-size: 16px;
     line-height: 1.4375;
@@ -73,7 +75,7 @@ mouse:hover {
       cursor: not-allowed;
       // disabled buttons loose saturation instead of opacity
       // filter: alpha(opacity=65);
-      filter: opacity(80%);
+      filter: opacity(83%);
       // override opacity
       opacity: 1 !important;
       -webkit-box-shadow: none;
@@ -89,7 +91,8 @@ mouse:hover {
     pointer-events: none; }
   
     .btn-default {
-      color: var(--btn-default-text-color);
+      // Override gcweblink visited style
+      color: var(--btn-default-text-color) !important;
       background-color: var(--btn-default-bg-color) !important;
       border-color: #{$gray-200}; }
       .btn-default:focus, .btn-default.focus {
@@ -122,9 +125,11 @@ mouse:hover {
       .btn-default .badge {
         color: var(--btn-default-bg-color);
         background-color: var(--btn-default-text-color); }
-  
         .btn-default.disabled, .btn-default:disabled {
-        
+          color: var(--btn-default-text-color);
+          // Override gcweblink visited style
+          background-color: var(--btn-default-bg-color) !important;
+          border-color: #{$gray-200};
         }
 
       .btn-primary {
@@ -207,8 +212,8 @@ mouse:hover {
             background-color: white;
             border-color: #{$gray-700}; }
           .btn-secondary .badge {
-            color: var(--ospr-blue-200);
-            background-color: white; }
+            color: white;
+            background-color: black; }
 
 
   .btn-success {
@@ -370,11 +375,23 @@ mouse:hover {
       color: #0535d2;
       text-decoration: underline;
       background-color: transparent; }
+      .btn-link.disabled, .btn-link:disabled {
+        color: #{$gray-650};
+        background-color: transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        pointer-events: all;
+      }
     .btn-link[disabled]:hover, .btn-link[disabled]:focus,
     fieldset[disabled] .btn-link:hover,
     fieldset[disabled] .btn-link:focus {
-      color: #6f6f6f;
+      color: #{$gray-650};
       text-decoration: none; }
+
+
+
+
+
   
   .btn-lg, .btn-group-lg > .btn {
     padding: 10px 16px;
@@ -417,8 +434,26 @@ mouse:hover {
     
     .btn-primary:visited {
       color: #fff; }
+
+    .btn-dark:visited {
+      color: #fff; }
+    
+    .btn-light:visited {
+      color: #000; }
     
     .btn-secondary:visited {
+      color: #000 }
+    .btn-secondary:visited:hover {
+      color: #fff }
+    .btn-secondary:visited:focus {
+      color: #fff }
+    .btn-secondary:visited:active {
+      color: #fff }
+      
+    .btn-outline-primary:visited {
+      color: #000; }
+    
+    .btn-outline-secondary:visited {
       color: #000; }
     
     .btn-success:visited {
@@ -428,10 +463,13 @@ mouse:hover {
       color: #fff; }
     
     .btn-warning:visited {
-      color: #fff; }
+      color: #000; }
     
     .btn-danger:visited {
       color: #fff; }
+    
+    .btn-link:visited {
+      color: var(--btn-default-text-color); }
     
     
     // *  Use button border style 'outset' to give buttons depth, except when disabled
@@ -443,7 +481,7 @@ mouse:hover {
        * These two property overrides should be recommended upstream to
        * Bootstrap as a fix for button wrapping (see wet-boew/wet-boew#4454)
        */
-      height: auto;
+      height: fit-content;
       min-height: 36px;
       min-width: 36px;
       white-space: normal; }
@@ -461,11 +499,6 @@ mouse:hover {
     
     .btn {
       font-family: Lato, sans-serif; }
-
-      .text-secondary {
-
-        color: #6c757d !important
-      }
 
 /* Call-to-action button style - new with GCWeb v5 */
 .btn-call-to-action {
@@ -520,15 +553,15 @@ input.btn.btn-call-to-action {
 
       .btn-outline-primary {
         background-color: transparent;
-        color: #207698;
-        border-color: #207698; }
+        color: var(--ospr-blue-700);
+        border-color: var(--ospr-blue-700); }
         .btn-outline-primary:focus, .btn-outline-primary.focus {
           color: white;
-          background-color: #207698;
+          background-color: var(--ospr-blue-800);
           border-color: var(--ospr-blue-900); }
         .btn-outline-primary:hover {
           color: #fff;
-          background-color: $cyan;
+          background-color: var(--ospr-blue-800);
           border-color: #091c2d; }
           .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
           .show > .btn-outline-primary.dropdown-toggle{
@@ -541,8 +574,8 @@ input.btn.btn-call-to-action {
           .open > .btn-outline-primary.dropdown-toggle:focus,
           .open > .btn-outline-primary.dropdown-toggle.focus {
             color: rgb(0, 0, 0);
-            background-color: var(--ospr-blue-300);
-            border-color:rgba(0, 123, 255, 1);
+            background-color: var(--ospr-blue-900);
+            border-color: var(--ospr-blue-900);
             box-shadow: 0 0 0 0.2rem rgb(32, 118, 152, 1); }
         .btn-outline-primary.disabled:hover, .btn-outline-primary.disabled:focus, .btn-outline-primary.disabled.focus, .btn-outline-primary[disabled]:hover, .btn-outline-primary[disabled]:focus, .btn-outline-primary[disabled].focus,
         fieldset[disabled] .btn-outline-primary:hover,
@@ -552,7 +585,8 @@ input.btn.btn-call-to-action {
           border-color: #212529;
           color: #26374a; }
         .btn-outline-primary .badge {
-          background-color: white; }
+          color: white;
+          background-color: #207698; }
 
 
  
@@ -599,14 +633,15 @@ input.btn.btn-call-to-action {
               border-color: #{$gray-700};
               color: #{$gray-700}; }
             .btn-outline-secondary .badge {
-              background-color: white; }
+              color: white;
+              background-color: #212529; }
 
   // Buttons
 
 
   .btn-dark {
     color: white;
-    background-color: #343a40 !important;
+    background-color: #343a40;
     border-color: black; }
     .btn-dark:focus, .btn-dark.focus {
       color: white;
@@ -648,40 +683,45 @@ input.btn.btn-call-to-action {
       background-color: #343a40;}
 
 
+      .btn-light {
+        color: #212529;
+        background-color: #f8f9fa;
+        border-color: #f8f9fa; }
+        .btn-light:focus, .btn-light.focus {
+          box-shadow:0 0 0 .2rem rgba(216,217,219,.5);
+        }
+        .btn-light:hover {
+          color: #212529;
+          background-color: #e2e6ea;
+          border-color: #dae0e5; }
+          .btn-light:not(:disabled):not(.disabled):active, .btn-light:not(:disabled):not(.disabled).active,
+          .show > .btn-light.dropdown-toggle {
+            color: #212529;
+            background-color: #dae0e5;
+            border-color: #d3d9df;
+          }
+          .btn-light:active:hover, .btn-light:active:focus, .btn-light:active.focus, .btn-light.active:hover, .btn-light.active:focus, .btn-light.active.focus,
+          .open > .btn-light.dropdown-toggle:hover,
+          .open > .btn-light.dropdown-toggle:focus,
+          .open > .btn-light.dropdown-toggle.focus {
+            box-shadow:0 0 0 .2rem rgba(216,217,219,.5)
+          }
+            .btn-light.disabled, .btn-light:disabled {
+              color: #212529;
+              background-color: #f8f9fa;
+              border-color: #f8f9fa;
+            }
+        .btn-light.disabled:hover, .btn-light.disabled:focus, .btn-light.disabled.focus, .btn-light[disabled]:hover, .btn-light[disabled]:focus, .btn-light[disabled].focus,
+        fieldset[disabled] .btn-light:hover,
+        fieldset[disabled] .btn-light:focus,
+        fieldset[disabled] .btn-light.focus {
+          color: #212529;
+          background-color: #f8f9fa; }
+        .btn-light .badge {
+          color: #f8f9fa;
+          background-color: #212529;}
 
-  // hover bg color changed from f8f9fa to 55626f
 
-  // .btn-dark {
-  //   color: white;
-  //   background-color: #55626f;
-  //   border-color: black;
-  // }
-
-  // .btn-dark:hover {
-  //     color: white;
-  //     background-color: #55626f;
-  //     border-color: black;
-  //   }
-  // // btn-dark regular bg color #43515f
-  //   .btn-dark:active {
-  //     color: black;
-  //     background-color: #55626f;
-  //     border-color: black;
-  //   }
-
-  //   .btn-dark.disabled:hover, .btn-dark.disabled:focus, .btn-dark.disabled.focus, .btn-dark[disabled]:hover, .btn-dark[disabled]:focus, .btn-dark[disabled].focus,
-  //   fieldset[disabled] .btn-dark:hover,
-  //   fieldset[disabled] .btn-dark:focus,
-  //   fieldset[disabled] .btn-dark.focus {
-  //     color: white;
-  //     background-color: #55626f;
-  //     border-color: black;
-  //   .btn-dark .badge {
-  //     background-color: #55626f; }
-  //   }
-
-  //   .btn-dark:focus {
-  //     color: white;
-  //     border-color: black;
-  //   }
-
+          label .btn {
+            min-height: fit-content !important;
+          }
