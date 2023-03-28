@@ -76,7 +76,6 @@ export class CreateComColPageComponent<TDomain extends Collection | Community> i
    */
   onSubmit(event) {
     const dso = event.dso;
-    const uploader = event.uploader;
 
     this.parentUUID$.pipe(
       take(1),
@@ -89,14 +88,7 @@ export class CreateComColPageComponent<TDomain extends Collection | Community> i
       .subscribe((dsoRD: TDomain) => {
         if (isNotUndefined(dsoRD)) {
           this.newUUID = dsoRD.uuid;
-          if (uploader.queue.length > 0) {
-            this.dsoDataService.getLogoEndpoint(this.newUUID).pipe(take(1)).subscribe((href: string) => {
-              uploader.options.url = href;
-              uploader.uploadAll();
-            });
-          } else {
-            this.navigateToNewPage();
-          }
+          this.navigateToNewPage();
           this.dsoDataService.refreshCache(dsoRD);
         }
         this.notificationsService.success(null, this.translate.get(this.type.value + '.create.notifications.success'));
