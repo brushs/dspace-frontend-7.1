@@ -11,9 +11,7 @@ import { DOCUMENT } from '@angular/common';
  */
 @Component({
   selector: 'ds-header',
-  // styleUrls: ['../../../../../node_modules/gcweb/css/theme.css'],
-  styleUrls: ['../../styles/wet-theme.scss'],
-  // styleUrls: ['../../../../app/header/header.component.scss'],
+  styleUrls: ['../../../../app/header/header.component.scss'],
   templateUrl: 'header.component.html',
   // templateUrl: '../../../../app/header/header.component.html',
 })
