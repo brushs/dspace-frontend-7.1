@@ -1,6 +1,7 @@
   <!-- OSPR Changes remove login dropdown  remove h2-->
   <div *ngIf="!(isAuthenticated | async)" class="nav-item">
     <a class="btn btn-primary btn-sm loginLink px-3 py-2" routerLink="/login" routerLinkActive="active" >
+      <h2 hidden>{{ 'nav.login.heading' | translate }}</h2>
       {{ 'nav.login' | translate }} 
     </a>
   </div>
