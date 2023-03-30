@@ -90,6 +90,10 @@
   "fosrc.item.edit.dynamic-field.error.translated.title" : "Vous devez saisir le titre principal traduit de l'élément.",
   "fosrc.item.edit.dynamic-field.error.date" : "Vous devez entrer au moins l'année.",
   "fosrc.item.edit.dynamic-field.error.author" : "Veuillez saisir au moins un auteur.",
+  // "alternative.title": "Alternative Title",
+  "alternative.title": "Titre alternatif",
+  //"official.title": "Official Title",
+  "official.title": "Titre officiel",
   // FOSRC SPECIFIC LABELS END
   
   // "header.skiptolinks.main": "Skip to main content.",

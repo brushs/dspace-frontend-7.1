@@ -90,6 +90,8 @@
   "fosrc.item.edit.dynamic-field.error.translated.title" : "You must enter the translated main title for this item.",
   "fosrc.item.edit.dynamic-field.error.date" : "You must enter at least the year.", 
   "fosrc.item.edit.dynamic-field.error.author" : "Please enter at least one Author.",
+  "alternative.title": "Alternative Title",
+  "official.title": "Official Title",
   // FOSRC SPECIFIC LABELS END
 
   "header.skiptolinks.main": "Skip to main content.",

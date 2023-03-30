@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { hasValue } from '../../shared/empty.util';
 import { DSpaceObject } from '../shared/dspace-object.model';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  MetadataValue
+} from '../shared/metadata.models';
+import * as e from 'express';
 
 /**
  * Returns a name for a {@link DSpaceObject} based
@@ -56,4 +60,42 @@ export class DSONameService {
       return  this.factories.Default(dso);
     }
   }
+
+  
+  /** OSPR Change start
+   * Get the name for the given {@link DSpaceObject}
+   *
+   * @param dso  The {@link DSpaceObject} you want a name for
+   */
+  getOfficialName(dso: DSpaceObject): string {
+    const officialLang = dso.firstMetadataValue('dc.language');
+    let officialTitles: string[] = []
+    if(officialLang !== undefined && officialLang !== null) {
+      let allTitles:MetadataValue[] = dso.allMetadata('dc.title');
+      allTitles.forEach(function (singleTitle) {
+        if(officialLang.includes(singleTitle['language'])) {
+          //console.log("Official Title: " + singleTitle.value);
+          officialTitles.push(singleTitle.value);
+        }        
+      });
+    } else {
+      //console.log("Official Title Else: " + this.getName(dso))
+      return this.getName(dso);
+    }
+
+    return officialTitles.join(",,, ");
+  }
+
+  /* Get the name for the given {@link DSpaceObject}
+   *
+   * @param dso  The {@link DSpaceObject} you want a name for
+   */
+  getTranslatedName(dso: DSpaceObject, currentLang: string): string {
+    if (currentLang == 'fr' && dso.firstMetadataValue('dc.title.fosrctranslation') != undefined && dso.firstMetadataValue('dc.title.fosrctranslation') != null ) {
+      return dso.firstMetadataValue('dc.title.fosrctranslation');
+    } else {
+      return "";
+    }
+  }
+  // OSPR Change end
 }
