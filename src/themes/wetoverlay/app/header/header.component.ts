@@ -11,9 +11,7 @@ import { DOCUMENT } from '@angular/common';
  */
 @Component({
   selector: 'ds-header',
-  // styleUrls: ['../../../../../node_modules/gcweb/css/theme.css'],
-  styleUrls: ['../../styles/wet-theme.scss'],
-  // styleUrls: ['../../../../app/header/header.component.scss'],
+  styleUrls: ['../../../../app/header/header.component.scss'],
   templateUrl: 'header.component.html',
   // templateUrl: '../../../../app/header/header.component.html',
 })
@@ -21,23 +19,6 @@ export class HeaderComponent extends BaseComponent {
   isXs$: Observable<boolean>;
   isSm$: Observable<boolean>;
 
-  menuItems: Array<{link: string, label: string}> = [
-    {link: 'https://www.canada.ca/en/services/jobs.html', label: 'Jobs and the workplace'},
-    {link: 'https://www.canada.ca/en/services/immigration-citizenship.html', label: 'Immigration and citizenship'},
-    {link: 'https://travel.gc.ca/', label: 'Travel and tourism'},
-    {link: 'https://www.canada.ca/en/services/business.html', label: 'Business and industry'},
-    {link: 'https://www.canada.ca/en/services/environment.html', label: 'Environment and natural resources'},
-    {link: 'https://www.canada.ca/en/services/benefits.html', label: 'Benefits'},
-    {link: 'https://www.canada.ca/en/services/health.html', label: 'Health'},
-    {link: 'https://www.canada.ca/en/services/taxes.html', label: 'Taxes'},
-    {link: 'https://www.canada.ca/en/services/defence.html', label: 'National security and defence'},
-    {link: 'https://www.canada.ca/en/services/culture.html', label: 'Culture, history and sport'},
-    {link: 'https://www.canada.ca/en/services/policing.html', label: 'Policing, justice and emergencies'},
-    {link: 'https://www.canada.ca/en/services/transport.html', label: 'Transport and infrastructure'},
-    {link: 'https://international.gc.ca/world-monde/index.aspx?lang=eng', label: 'Canada and the world'},
-    {link: 'https://www.canada.ca/en/services/finance.html', label: 'Money and finances'},
-    {link: 'https://www.canada.ca/en/services/science.html', label: 'Science and innovation'},
-  ]
   constructor(
     protected windowService: HostWindowService,
     menuService: MenuService,
@@ -47,6 +28,10 @@ export class HeaderComponent extends BaseComponent {
     super(menuService);
     this.isXs$ = this.windowService.isXs();
     this.isSm$ = this.windowService.isSm();
+  }
+  
+  forceGetRequest(query) {
+    window.location.href = `https://www.canada.ca/en/sr/srb.html?q=${query}&wb-srch-sub=`;
   }
 
   ngAfterViewInit() {
@@ -66,8 +51,7 @@ export class HeaderComponent extends BaseComponent {
       })
     }
 
-    await load("assets/gcweb/jquery.magnific-popup.min.js");
-    await load("assets/gcweb/wet-boew.min.js");
-    await load("assets/gcweb/theme.min.js");
+    await load("https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js");
+    await load("https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js");
   }
 }

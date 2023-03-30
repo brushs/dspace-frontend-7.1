@@ -14,6 +14,7 @@ import { TruncatableService } from '../../../truncatable/truncatable.service';
 import { followLink } from '../../../utils/follow-link-config.model';
 import { LinkService } from '../../../../core/cache/builders/link.service';
 import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 /**
  * This component renders pool task object for the search result in the list view.
@@ -50,9 +51,10 @@ export class PoolSearchResultListElementComponent extends SearchResultListElemen
   constructor(
     protected linkService: LinkService,
     protected truncatableService: TruncatableService,
-    protected dsoNameService: DSONameService
+    protected dsoNameService: DSONameService,
+    protected localeService: LocaleService
   ) {
-    super(truncatableService, dsoNameService);
+    super(truncatableService, dsoNameService, localeService);
   }
 
   /**

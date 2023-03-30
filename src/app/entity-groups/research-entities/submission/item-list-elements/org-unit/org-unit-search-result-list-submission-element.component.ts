@@ -17,6 +17,7 @@ import { ItemDataService } from '../../../../../core/data/item-data.service';
 import { SelectableListService } from '../../../../../shared/object-list/selectable-list/selectable-list.service';
 import { NameVariantModalComponent } from '../../name-variant-modal/name-variant-modal.component';
 import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 @listableObjectComponent('OrgUnitSearchResult', ViewMode.ListElement, Context.EntitySearchModal)
 @listableObjectComponent('OrgUnitSearchResult', ViewMode.ListElement, Context.EntitySearchModalWithNameVariants)
@@ -43,9 +44,10 @@ export class OrgUnitSearchResultListSubmissionElementComponent extends SearchRes
               private itemDataService: ItemDataService,
               private bitstreamDataService: BitstreamDataService,
               private selectableListService: SelectableListService,
-              protected dsoNameService: DSONameService
+              protected dsoNameService: DSONameService,
+              protected localeService: LocaleService
   ) {
-    super(truncatableService, dsoNameService);
+    super(truncatableService, dsoNameService, localeService);
   }
 
   ngOnInit() {
