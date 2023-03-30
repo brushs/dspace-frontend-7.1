@@ -90,6 +90,10 @@
   "fosrc.item.edit.dynamic-field.error.translated.title" : "Vous devez saisir le titre principal traduit de l'élément.",
   "fosrc.item.edit.dynamic-field.error.date" : "Vous devez entrer au moins l'année.",
   "fosrc.item.edit.dynamic-field.error.author" : "Veuillez saisir au moins un auteur.",
+  // "alternative.title": "Alternative Title",
+  "alternative.title": "Titre alternatif",
+  //"official.title": "Official Title",
+  "official.title": "Titre officiel",
   // FOSRC SPECIFIC LABELS END
   
   // "header.skiptolinks.main": "Skip to main content.",
@@ -600,8 +604,6 @@
   "auth.messages.expired": "Votre session a expiré. Veuillez vous reconnecter.",
   // "auth.messages.token-refresh-failed": "Refreshing your session token failed. Please log in again.",
   "auth.messages.token-refresh-failed": "Le rafraîchissement de votre jeton de session a échoué. Veuillez vous reconnecter.",
-  // "alternative.title": "Alternative Title",
-  "alternative.title": "Titre alternatif",
   // "bitstream.download.page": "Now downloading {{bitstream}}...",
   "bitstream.download.page": "Téléchargement de {{bitstream}} en cours…",
   // "bitstream.edit.authorizations.link": "Edit bitstream's policies",
@@ -2646,8 +2648,6 @@
   "nav.user.description": "Barre de profil utilisateur",
   // "none.listelement.badge": "Item",
   "none.listelement.badge": "Item",
-  //"official.title": "Official Title",
-  "official.title": "Titre officiel",
   // "orgunit.listelement.badge": "Organization unit",
   "orgunit.listelement.badge": "Structure",
   // "orgunit.page.city": "City",

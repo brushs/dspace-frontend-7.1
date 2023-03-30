@@ -90,6 +90,8 @@
   "fosrc.item.edit.dynamic-field.error.translated.title" : "You must enter the translated main title for this item.",
   "fosrc.item.edit.dynamic-field.error.date" : "You must enter at least the year.", 
   "fosrc.item.edit.dynamic-field.error.author" : "Please enter at least one Author.",
+  "alternative.title": "Alternative Title",
+  "official.title": "Official Title",
   // FOSRC SPECIFIC LABELS END
 
   "header.skiptolinks.main": "Skip to main content.",
@@ -343,7 +345,6 @@
   "admin.workflow.item.workflow": "Workflow",
   "admin.workflow.title": "Administer workflow",
   "administrativeView.search.results.head": "Administrative search",
-  "alternative.title": "Alternative Title",
   "auth.errors.invalid-user": "Error: Invalid email address or password",
   "auth.messages.expired": "Your session has expired. Please sign in again.",
   "auth.messages.token-refresh-failed": "Refreshing your session token failed. Please sign in again.",
@@ -1404,7 +1405,6 @@
   "nav.toggle": "Toggle navigation",
   "nav.user.description": "User profile bar",
   "none.listelement.badge": "Item",
-  "official.title": "Official Title",
   "orgunit.listelement.badge": "Organization unit",
   "orgunit.page.city": "City",
   "orgunit.page.country": "Country",
