@@ -343,6 +343,7 @@
   "admin.workflow.item.workflow": "Workflow",
   "admin.workflow.title": "Administer workflow",
   "administrativeView.search.results.head": "Administrative search",
+  "alternative.title": "Alternative Title",
   "auth.errors.invalid-user": "Error: Invalid email address or password",
   "auth.messages.expired": "Your session has expired. Please sign in again.",
   "auth.messages.token-refresh-failed": "Refreshing your session token failed. Please sign in again.",
