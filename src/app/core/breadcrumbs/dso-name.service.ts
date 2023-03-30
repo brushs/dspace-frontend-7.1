@@ -67,17 +67,34 @@ export class DSONameService {
    *
    * @param dso  The {@link DSpaceObject} you want a name for
    */
-    getOfficialName(dso: DSpaceObject): string {
+  getOfficialName(dso: DSpaceObject): string {
     const officialLang = dso.firstMetadataValue('dc.language');
+    let officialTitles: string[] = []
     if(officialLang !== undefined && officialLang !== null) {
       let allTitles:MetadataValue[] = dso.allMetadata('dc.title');
       allTitles.forEach(function (singleTitle) {
         if(officialLang.includes(singleTitle['language'])) {
-          return (singleTitle as MetadataValue).value;
+          //console.log("Official Title: " + singleTitle.value);
+          officialTitles.push(singleTitle.value);
         }        
       });
     } else {
+      //console.log("Official Title Else: " + this.getName(dso))
       return this.getName(dso);
+    }
+
+    return officialTitles.join(",,, ");
+  }
+
+  /* Get the name for the given {@link DSpaceObject}
+   *
+   * @param dso  The {@link DSpaceObject} you want a name for
+   */
+  getTranslatedName(dso: DSpaceObject, currentLang: string): string {
+    if (currentLang == 'fr' && dso.firstMetadataValue('dc.title.fosrctranslation') != undefined && dso.firstMetadataValue('dc.title.fosrctranslation') != null ) {
+      return dso.firstMetadataValue('dc.title.fosrctranslation');
+    } else {
+      return "";
     }
   }
   // OSPR Change end

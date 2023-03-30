@@ -14,6 +14,7 @@ import { SearchResultListElementComponent } from '../../../search-result-list-el
 import { ClaimedTaskSearchResult } from '../../../../object-collection/shared/claimed-task-search-result.model';
 import { ClaimedTask } from '../../../../../core/tasks/models/claimed-task-object.model';
 import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 /**
  * This component renders claimed task declined object for the search result in the list view.
@@ -44,9 +45,10 @@ export class ClaimedDeclinedSearchResultListElementComponent extends SearchResul
   public constructor(
     protected linkService: LinkService,
     protected truncatableService: TruncatableService,
-    protected dsoNameService: DSONameService
+    protected dsoNameService: DSONameService,
+    protected localeService: LocaleService
   ) {
-    super(truncatableService, dsoNameService);
+    super(truncatableService, dsoNameService, localeService);
   }
 
   /**

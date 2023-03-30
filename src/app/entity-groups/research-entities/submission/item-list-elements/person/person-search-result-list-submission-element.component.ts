@@ -17,6 +17,7 @@ import { MetadataValue } from '../../../../../core/shared/metadata.models';
 import { ItemDataService } from '../../../../../core/data/item-data.service';
 import { SelectableListService } from '../../../../../shared/object-list/selectable-list/selectable-list.service';
 import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 @listableObjectComponent('PersonSearchResult', ViewMode.ListElement, Context.EntitySearchModalWithNameVariants)
 @Component({
@@ -41,9 +42,10 @@ export class PersonSearchResultListSubmissionElementComponent extends SearchResu
               private itemDataService: ItemDataService,
               private bitstreamDataService: BitstreamDataService,
               private selectableListService: SelectableListService,
-              protected dsoNameService: DSONameService
+              protected dsoNameService: DSONameService,
+              protected localeService: LocaleService
   ) {
-    super(truncatableService, dsoNameService);
+    super(truncatableService, dsoNameService, localeService);
   }
 
   ngOnInit() {

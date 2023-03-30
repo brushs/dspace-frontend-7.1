@@ -13,6 +13,7 @@ import { RemoteData } from '../../../core/data/remote-data';
 import { of as observableOf } from 'rxjs';
 import { Context } from '../../../core/shared/context.model';
 import { DSONameService } from '../../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 @Component({
   selector: 'ds-sidebar-search-list-element',
@@ -41,9 +42,10 @@ export class SidebarSearchListElementComponent<T extends SearchResult<K>, K exte
 
   public constructor(protected truncatableService: TruncatableService,
                      protected linkService: LinkService,
-                     protected dsoNameService: DSONameService
+                     protected dsoNameService: DSONameService,
+                     protected localeService: LocaleService
   ) {
-    super(truncatableService, dsoNameService);
+    super(truncatableService, dsoNameService, localeService);
   }
 
   /**

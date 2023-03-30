@@ -2487,6 +2487,8 @@
   "nav.user.description": "Barre de profil utilisateur",
   // "none.listelement.badge": "Item",
   "none.listelement.badge": "Item",
+  //"official.title": "Official Title",
+  "official.title": "Titre Officiel",
   // "orgunit.listelement.badge": "Organization unit",
   "orgunit.listelement.badge": "Structure",
   // "orgunit.page.city": "City",
