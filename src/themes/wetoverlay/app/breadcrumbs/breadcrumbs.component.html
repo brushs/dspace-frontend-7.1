@@ -1,5 +1,5 @@
-<div class="container">
-<ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
+<!-- <div class="container"> -->
+<!-- <ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
     <nav *ngIf="(showBreadcrumbs$ | async)" aria-label="breadcrumb" class="nav-breadcrumb">
         <ol class="container breadcrumb">
             <ng-container
@@ -17,5 +17,30 @@
     <ng-template #activeBreadcrumb let-text="text">
         <li class="breadcrumb-item active" aria-current="page">{{text | translate}}</li>
     </ng-template>
-</ng-container>
-</div>
+</ng-container> -->
+<nav id="wb-bc" property="breadcrumb">
+    <h2>You are here:</h2>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="https://www.canada.ca/en.html">Canada.ca</a></li>
+            <li><a href="#">Federal Open Science Repository of Canada</a></li>
+            <ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
+                      <ng-container
+                              *ngTemplateOutlet="breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb; context: {text: 'home.breadcrumbs', url: '/'}"></ng-container>
+                      <ng-container *ngFor="let bc of breadcrumbs; let last = last;">
+                          <ng-container *ngTemplateOutlet="!last ? breadcrumb : activeBreadcrumb; context: bc"></ng-container>
+                      </ng-container>
+          
+              <ng-template #breadcrumb let-text="text" let-url="url">
+                  <li class="breadcrumb-item"><a [routerLink]="url">{{text | translate}}</a></li>
+              </ng-template>
+          
+              <ng-template #activeBreadcrumb let-text="text">
+                  <li class="breadcrumb-item active" aria-current="page">{{text | translate}}</li>
+              </ng-template>
+          </ng-container>
+        </ol>
+    </div>
+  </nav>
+
+<!-- </div> -->

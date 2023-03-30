@@ -21,24 +21,17 @@
 
 .dropdown-item.active {
   color: rgb(0, 0, 0);
+  background-color: #207698;
+}
+
+.dropdown-item.selected {
+  color: #fff;
 }
 
 .dropdown-item:hover {
   display: block;
   color: rgb(255, 255, 255);
-  background-color: #26374a
-}
-
-a.nav-link:hover {
-  color: #0535D2 !important;
-}
-
-a.nav-link:focus {
-  color: #0535D2 !important;
-}
-
-a.nav-link:active {
-  color: #0535D2 !important;
+  background-color: #26374a;
 }
 
 .align-right {
@@ -46,12 +39,17 @@ a.nav-link:active {
   margin-left: auto;
 }
 
+// Changed from 207698 to Dark blue
 .text-primary {
-  color: #207698 !important;
+  color: var(--ospr-blue-800) !important;
+}
+
+.text-secondary {
+  color: var(--ospr-blue-500) !important;
 }
 
 .text-light {
-  color: #207698 !important;
+  color: #{$gray-200} !important;
 }
 
 .page-item.active .page-link {
@@ -61,131 +59,27 @@ a.nav-link:active {
   border-color: #E3F2FD;
 }
 
+// .badge-primary {
+//   color: var(--ospr-blue-800) !important;;
+//   background-color: #fff;
+// }
+
+// .badge-success {
+//   color: #{$green};
+//   background-color: #fff;
+// }
+// // Changed from #207698
+// .badge-info {
+//   color: var(--ospr-blue-800) !important;
+//   background-color: #fff;
+// }
 
 
-.badge-primary {
-  color: #207698;
-  background-color: #fff;
-}
-
-.badge-success {
-  color: #497405;
-  background-color: #fff;
-}
-
-.badge-info {
-  color: #207698;
-  background-color: #fff;
-}
-
-.klaro .cookie-modal p,
-.klaro .cookie-modal strong,
-.klaro .cookie-modal h1,
-.klaro .cookie-modal h2,
-.klaro .cookie-modal ul,
-.klaro .cookie-modal li,
-.klaro .context-notice p,
-.klaro .context-notice strong,
-.klaro .context-notice h1,
-.klaro .context-notice h2,
-.klaro .context-notice ul,
-.klaro .context-notice li,
-.klaro .cookie-notice p,
-.klaro .cookie-notice strong,
-.klaro .cookie-notice h1,
-.klaro .cookie-notice h2,
-.klaro .cookie-notice ul,
-.klaro .cookie-notice li {
-  color: var(--font-color-dark);
-}
-
-
-.klaro .cookie-modal .cm-btn.cm-btn-success,
-.klaro .context-notice .cm-btn.cm-btn-success,
-.klaro .cookie-notice .cm-btn.cm-btn-success {
-  background: var(--bs-primary);
-}
-
-.klaro .cookie-modal .cm-modal.cm-klaro {
-  background: #f8f9fa;
-  color: var(--bs-light);
-}
-
-.klaro .cookie-modal .cm-modal .hide svg {
-  stroke: black;
-}
-
-.klaro .cookie-modal a,
-.klaro .context-notice a,
-.klaro .cookie-notice a {
-  color: var(--ds-navbar-link-color);
-  text-decoration: none;
-}
-
-
-.klaro .cookie-modal .cm-btn.cm-btn-info,
-.klaro .context-notice .cm-btn.cm-btn-info,
-.klaro .cookie-notice .cm-btn.cm-btn-info {
-  background: var(--bs-blue);
-  border-color: black;
-  color: white;
-}
-
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-service span.cm-opt-out,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-service span.cm-required,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-purpose span.cm-opt-out,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-purpose span.cm-required,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-service span.cm-opt-out,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-service span.cm-required,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-purpose span.cm-opt-out,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-purpose span.cm-required {
-  padding-left: 0.2em;
-  font-size: 0.8em;
-  color: #495057;
-}
-
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-service p.purposes,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-services li.cm-purpose p.purposes,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-service p.purposes,
-.klaro .cookie-modal .cm-modal .cm-body ul.cm-purposes li.cm-purpose p.purposes {
-  font-size: 0.8em;
-  color: #424242;
-}
-
-.klaro .cookie-modal .cm-btn,
-.klaro .context-notice .cm-btn,
-.klaro .cookie-notice .cm-btn {
-  color: rgb(255, 255, 255);
-  color: var(--font-color-dark, #eee);
-  background: var(--bs-secondary);
-  border-color: #212529;
-  border-radius: 6px;
-  padding: 6px 10px;
-  margin-right: 0.5em;
-  border: 0;
-  padding: 0.4em;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-.klaro .cookie-notice:not(.cookie-modal-notice) {
-  background: var(--gray-100);
-  z-index: 999;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  right: 0;
-}
 
 .navbar-light .navbar-nav .nav-link {
   color: #212529;
 }
 
-button:focus-visible {
-  /* custom focus styles */
-  box-shadow: 0 0 2px 2px #01090f;
-  border-color: blue;
-}
 
 .page-link:focus-visible {
   /* custom focus styles */
@@ -193,18 +87,6 @@ button:focus-visible {
   border-color: blue;
 }
 
-button:not(:disabled),
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled) {
-  cursor: pointer;
-}
-
-mouse:hover {
-  color: green;
-  background-color: grey;
-  border-color: black;
-}
 
 .wb-invisible, .wb-inv, .wb-show-onfocus, .wb-sl, #wb-lng h2, #wb-glb-mn h2, #wb-srch h2, #wb-srch label, #wb-sm h2, #wb-bc h2, #wb-sec h2, #wb-info h2, #mb-pnl h3, .wb-calevt-cal .cal-days td ul, .wb-fnote dt, #mb-pnl .srch-pnl label {
   clip: rect(1px, 1px, 1px, 1px);
@@ -219,3 +101,167 @@ mouse:hover {
 .underline {
   text-decoration: underline;
 }
+
+
+legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
+
+
+
+.no-outline:focus {
+  outline: none;
+}
+
+.navbar-brand {
+	padding: 0px 0px;
+ }
+
+
+ 
+// Link colors for navigation links on Focus, Hover and Active states
+a.nav-link:focus:hover:active {
+  color: var(--gcweb-link-active-color) !important;
+}
+
+// Link colors for links for Focus, Hover and Active
+// Link color was: #295376;
+
+a {
+	text-decoration: none; }
+	a:hover, a:focus, a:active {
+		color: var(--gcweb-link-active-color);
+		text-decoration: underline; }
+	a:focus {
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px; }
+
+  a {
+    text-decoration: underline; }
+    a:visited {
+      color: var(--gcweb-link-visited-color); }
+    a:not([href]) {
+      color: inherit;
+      text-decoration: none; }
+      a:not([href]):hover, a:not([href]):focus {
+        color: inherit;
+        outline: none;
+        text-decoration: none; }
+
+// The links on filters to use link styling on filters
+// Applied none underline for the rest of filters to prevent labels and space to have underline
+.filters a {
+  text-decoration: none !important;
+}
+// Used filter-value to style the text inside filters panel
+.filters a .filter-value {
+  color: var(--gcweb-link-color) !important;
+  text-decoration: underline !important;
+}
+// Also gave gc web visited link color
+.filters a:visited .filter-value {
+  color: var(--gcweb-link-visited-color) !important;
+}
+
+// Nav-link are the tabs being used in edit communities and collection pages
+.nav-tabs a {
+  text-decoration: none !important;
+  color: black;
+}
+
+.nav-tabs a:visited {
+  color: black;
+}
+
+// Removed underline on a tags from sidebar
+.sidebar-collapsible a {
+  text-decoration: none !important;
+}
+
+
+sidebar-section a {
+  text-decoration: none !important;
+}
+
+// Pagination not to have link styles on numbered buttons
+.page-link {
+  text-decoration: none !important;
+}
+
+.page-item a:visited {
+  color: black;
+}
+
+// Browse tabs on community pages not to have visited link colors
+.comcol-browse a:visited {
+  color: black;
+}
+// Browse tabs a links to have interaction color
+.comcol-browse a:hover {
+  color: #0535d2;
+}
+
+.badge:visited {
+  color: black;
+}
+
+// Mouse over:pointer for badges
+  a.badge:hover, a.badge:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer; }
+
+  //  Alignment for btn-link used a tag browse button to drop an attachment file
+ .ds-base-drop-zone .btn-link {
+
+   min-height: auto !important;
+
+  }
+
+
+// Override text and icon colors
+.text-muted {
+	color: #{$gray-650} !important; }
+
+.text-primary {
+	color: #2572b4 !important; }
+
+a.text-primary:hover,
+a.text-primary:focus {
+	color: #1c578a; }
+
+.text-success {
+	color: #3c763d !important; }
+
+a.text-success:hover,
+a.text-success:focus {
+	color: #2b542c; }
+
+.text-info {
+	color: #31708f !important; }
+
+a.text-info:hover,
+a.text-info:focus {
+	color: #245269; }
+
+.text-warning {
+	color: #8a6d3b !important;}
+
+a.text-warning:hover,
+a.text-warning:focus {
+	color: #66512c; }
+
+.text-danger {
+	color: #a94442 !important; }
+
+a.text-danger:hover,
+a.text-danger:focus {
+	color: #843534; }

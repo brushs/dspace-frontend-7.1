@@ -3,32 +3,75 @@
 // still uses Sass variables internally. So if you want to override bootstrap (or other sass
 // variables) you can do so here. Their CSS counterparts will include the changes you make here
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Noto-Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&subset=latin,latin-ext');
+// @import url('https://fonts.gstatic.com/s/notosans/v25/o-0OIpQlx3QUlC5A4PNr4ARMQ_m87A.woff2');
 
-//$font-family-sans-serif: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin,latin-ext');
 
 
+// $font-family-sans-serif: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// Breadcrumbs were #43515f
 /* Reassign color vars to semantic color scheme */
-$blue: #43515f !default;
-$blue-100: #E3F2FD !default;
-$green: #92C642 !default;
+$blue: #091c2d !default;
+$blue-100: #5198d6 !default;
+$green: #1b6c1c !default;
 $cyan: #207698 !default;
-$yellow: #ec9433 !default;
-$red: #CF4444 !default;
-$dark: #43515f !default;
+$yellow: #f2d40d !default;
+$red: #bc3331 !default;
+$dark:   lighten(#343a40, 90%) !default;
+$default: #eaebed !default;
+// $ospr-blue-900: #212529 !default;
+$ospr-blue-900: #091c2d !default;
+$ospr-blue-800: #26374a !default;
+$ospr-blue-500: #143c5f !default;
+$ospr-blue-400: #16446c !default;
+$ospr-blue-300: #1c578a !default;
+$ospr-blue-200: #2572b4 !default;
 
+
+// Text colors
+// $gcweb-link-color: #295376 !default;
+$gcweb-link-color: #2b4380 !default;
+$gcweb-link-active-color: #0535d2 !default;
+$gcweb-link-visited-color: #7834bc !default;
+
+
+// gray-100 gray-400 gray-800 was from dev
+// gray-200 gray-300 gray-500 gray-900 was added
+// gray-700 #495057 was changed to 4d4d4d
+// $gray-100: #f8f9fa was changed to #eaebed
+
+$gray-900: #343333 !default;
 $gray-800: #343a40 !default;
+$gray-700: #4d4d4d !default;
+$gray-650: #545454 !default;
 $gray-600: #6c757d !default;
+$gray-550: #6f6f6f !default;
+$gray-500: #989da6 !default;
 $gray-400: #ced4da !default;
-$gray-100: #f8f9fa !default;
+$gray-300: #bbbfc5 !default;
+$gray-200: #dcdee1 !default;
+$gray-100: #eaebed !default;
 
-$body-color: $gray-800 !default;                    // Bootstrap $gray-800
+
+
+
+$btn-default-text-color: #335075 !default;
+$btn-default-interaction-bg-color: #cfd1d5 !default;
+$btn-default-bg-color: $gray-100;
+
+// Changed from gray-800 to $gray-900
+$body-color: $gray-900 !default;                    // Bootstrap $gray-800
 
 $table-accent-bg: $gray-100 !default;   // Bootstrap $gray-100
 $table-hover-bg: $gray-400 !default;   // Bootstrap $gray-400
 
 $yiq-contrasted-threshold:  170 !default;
 
+$btn-link-disabled-opacity: 1 !default; 
 /*
  Default Mixins and namespace variables
  */
@@ -52,14 +95,38 @@ $yiq-contrasted-threshold:  170 !default;
 
 
 $theme-colors: (
-  primary: $blue-100,
-  secondary: $gray-600,
+  primary: $ospr-blue-800,
+  secondary: $ospr-blue-300,
+  outline-primary: $ospr-blue-900,
+  outline-secondary: $ospr-blue-900,
   success: $green,
-  info: $cyan,
+  info: $gray-700,
   warning: $yellow,
   danger: $red,
   light: $gray-100,
-  dark: $dark
+  dark: $dark,
+  link-color: $gcweb-link-color
 ) !default;
 
-$link-color: map-get($theme-colors, info) !default;
+$link-color: map-get($theme-colors, link-color) !default;
+
+:root 
+
+{
+  --ospr-blue-900: #{$ospr-blue-900};
+  --ospr-blue-800: #{$ospr-blue-800};
+  --ospr-blue-500: #{$ospr-blue-500};
+  --ospr-blue-400: #{$ospr-blue-400};
+  --ospr-blue-300: #{$ospr-blue-300};
+  --ospr-blue-200: #{$ospr-blue-200};
+
+  --btn-default-text-color: #{$btn-default-text-color};
+  --btn-default-interaction-bg-color: #{$btn-default-interaction-bg-color};
+  --btn-default-bg-color: #{$btn-default-bg-color};
+  --ospr-button-focus-border-color: #{$dark};
+
+  --gcweb-link-color: #{$gcweb-link-color};
+  --gcweb-link-active-color: #{$gcweb-link-active-color};
+  --gcweb-link-visited-color: #{$gcweb-link-visited-color};
+
+}

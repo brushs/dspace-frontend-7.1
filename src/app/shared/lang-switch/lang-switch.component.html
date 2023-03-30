@@ -17,11 +17,14 @@
 </div> -->
 
 
-<div *ngIf="moreThanOneLanguage" class="navbar-nav">
+<ng-container *ngIf="moreThanOneLanguage">
   <a href="#" role="button" [attr.lang]="'nav.language.attribute' | translate"
     [attr.aria-label]="'nav.language' | translate" 
     [title]="'nav.language' | translate"
     (click)="useLang(getAlternateLanguageCode(this.translate.currentLang), $event)" tabindex="0">
-     {{ langLabel(getAlternateLanguageCode(this.translate.currentLang)) }}
+    <span class="d-none d-sm-block">
+      {{ langLabel(getAlternateLanguageCode(this.translate.currentLang)) }}
+    </span>
+    <abbr title="{{ langLabel(getAlternateLanguageCode(this.translate.currentLang)) }}" class="d-block d-sm-none h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">{{ ('nav.language.attribute' | translate) }}</abbr>
   </a>
-</div>
+</ng-container>

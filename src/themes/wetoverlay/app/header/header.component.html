@@ -1,30 +1,95 @@
-<header class="modal-header">
-          <div class="wet-skiplink__container"><nav><ul id="wb-tphp"><li class="wb-slc"><a data-testid="skip-link" href="{{getPath()}}#wb-cont" class="wet-skiplink__link">Skip to main content</a></li>
-          <li class="wb-slc"><a data-testid="skip-link" href="{{getPath()}}#wb-info" class="wet-skiplink__link">Skip to &#34;{{ 'about' | translate }}&#34;</a></li></ul></nav>
+<nav>
+    <ul id="wb-tphp">
+        <li class="wb-slc">
+            <a class="wb-sl" href="#wb-cont">Skip to main content</a>
+        </li>
+        <li class="wb-slc">
+            <a class="wb-sl" href="#wb-info">Skip to "About government"</a>
+        </li>
+        <li class="wb-slc visible-md visible-lg">
+            <a class="wb-sl" href="#wb-sec">Skip to section menu</a>
+        </li>
+    </ul>
+</nav>
+<header>
+    <div id="wb-bnr" class="container">
+        <div class="row">
+            <section id="wb-lng" class="col-xs-3 col-sm-12 pull-right text-right">
+                <h2 class="wb-inv">Language selection</h2>
+                <ul class="list-inline mrgn-bttm-0">
+                    <li>
+                        <ds-lang-switch></ds-lang-switch>
+                    </li>
+                </ul>
+            </section>
+    
+            <div class="brand col-xs-9 col-sm-5 col-md-4 text-left" property="publisher" resource="#wb-publisher"
+                typeof="GovernmentOrganization">
+                <a href="https://www.canada.ca/en.html" property="url"><img src="/assets/wetoverlay/images/sig-blk-en.svg"
+                        alt="{{ 'menu.header.image.logo' | translate }}" property="logo"><span class="wb-inv"> / 
+                            <span lang="fr">{{ 'menu.header.image.logo' | translate }}</span>
+                        </span>
+                </a>
+                <meta property="name" content="Government of Canada">
+                <meta property="areaServed" typeof="Country" content="Canada">
+                <link property="logo" href="../GCWeb/assets/wmms-blk.svg">
+            </div>
+            <section id="wb-srch" class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-12 col-sm-5 col-md-4">
+                <h2>Search</h2>
+                <form (submit)="forceGetRequest(srch.value)" action="https://www.canada.ca/en/sr/srb.html" method="get" name="cse-search-box" role="search">
+                    <div class="form-group wb-srch-qry">
+                        <label for="wb-srch-q" class="wb-inv">Search Canada.ca</label>
+                        <input #srch id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search"
+                            value="" size="34" maxlength="170" placeholder="Search Canada.ca">
+                        <datalist id="wb-srch-q-ac">
+                        </datalist>
+                    </div>
+                    <div class="form-group submit">
+                        <button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span
+                                class="fa fa-search"></span><span class="wb-inv">Search</span></button>
+                    </div>
+                </form>
+            </section>
         </div>
-    <div class="container">
-      <div class="d-flex flex-row justify-content-between">
-        <a class="navbar-brand my-2">
-          <img src="assets/images/Canada-logo.svg" [attr.alt]="'menu.header.image.logo' | translate"/>
-        </a>
-  
-        <nav role="navigation" [attr.aria-label]="'nav.user.description' | translate" class="navbar underline navbar-light navbar-expand-md flex-shrink-0 px-0">
-          <!-- OSPR Changes remove login dropdown -->
-            <!-- <ds-search-navbar></ds-search-navbar> -->
-          <!-- OSPR Changed end -->
-          <ds-lang-switch></ds-lang-switch>
-          <!-- OSPR Changes replace Login button to nav bar -->
-          <!-- <ds-auth-nav-menu></ds-auth-nav-menu> -->
-          <ds-impersonate-navbar></ds-impersonate-navbar>
-          <div class="pl-2">
-            <button class="navbar-toggler" type="button" (click)="toggleNavbar()"
-                    aria-controls="collapsingNav"
-                    aria-expanded="false" [attr.aria-label]="'nav.toggle' | translate">
-              <span class="navbar-toggler-icon fas fa-bars fa-fw" aria-hidden="true"></span>
-            </button>
-          </div>
-        </nav>
-      </div>
     </div>
-  </header>
-  
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                    <nav class="gcweb-menu" typeof="SiteNavigationElement">
+                    <h2 class="wb-inv">Menu</h2>
+                    <button type="button" aria-haspopup="true" aria-expanded="false"><span class="wb-inv">Main </span>Menu <span
+                             aria-hidden="true" class="fa fa-chevron-down"></span></button>
+                             <ul role="menu" aria-orientation="vertical" data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html">
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/jobs.html">Jobs and the workplace</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration and citizenship</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://travel.gc.ca/">Travel and tourism</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/business.html">Business and industry</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/benefits.html">Benefits</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/health.html">Health</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/taxes.html">Taxes</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/environment.html">Environment and natural resources</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/defence.html">National security and defence</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/culture.html">Culture, history and sport</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/policing.html">Policing, justice and emergencies</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/transport.html">Transport and infrastructure</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and the world</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/finance.html">Money and finances</a></li>
+                                <li role="presentation"><a role="menuitem" href="https://www.canada.ca/en/services/science.html">Science and innovation</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-xs-offset-6 col-xs-6 col-md-offset-0 col-md-4">
+                    <section id="wb-so">
+                        <ds-auth-nav-menu></ds-auth-nav-menu>
+                    </section>
+                </div>
+         </div>
+                
+        </div>
+    <ds-themed-breadcrumbs></ds-themed-breadcrumbs>
+</header>
+
+
+
+

@@ -5,14 +5,17 @@
     <div class="container">
         <div class="reset-padding-md w-100">
             <div id="collapsingNav">
+              <h2 hidden>{{ 'nav.links.heading' | translate }}</h2>
                 <ul class="navbar-nav mr-auto shadow-none">
-                    <ng-container *ngFor="let section of (sections | async)">
+                    <li *ngFor="let section of (sections | async)">
                         <ng-container
-                                *ngComponentOutlet="(sectionMap$ | async).get(section.id).component; injector: (sectionMap$ | async).get(section.id).injector;"></ng-container>
-                    </ng-container>
-                    <div class="login mt-2 px-0 col text-md-right text-sm-left">
-                        <ds-auth-nav-menu></ds-auth-nav-menu> 
-                        </div>
+                            *ngComponentOutlet="(sectionMap$ | async).get(section.id).component; injector: (sectionMap$ | async).get(section.id).injector;">
+                        </ng-container>
+                    </li>
+                    <li class="login mt-0 px-0 col text-md-right text-sm-left">
+                        <!-- Ospr change - move to be parallel with menu -->
+                        <!-- <ds-auth-nav-menu></ds-auth-nav-menu>  -->
+                    </li>
                 </ul>
             </div>
         </div>

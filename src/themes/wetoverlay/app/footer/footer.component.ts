@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FooterComponent as BaseComponent } from '../../../../app/footer/footer.component';
 
 @Component({
@@ -9,4 +9,5 @@ import { FooterComponent as BaseComponent } from '../../../../app/footer/footer.
   //templateUrl: '../../../../app/footer/footer.component.html'
 })
 export class FooterComponent extends BaseComponent {
+  
 }

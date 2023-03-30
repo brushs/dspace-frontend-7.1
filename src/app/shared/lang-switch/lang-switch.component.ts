@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 
 import { LangConfig } from '../../../config/lang-config.interface';
 import { environment } from '../../../environments/environment';
 import { LocaleService } from '../../core/locale/locale.service';
+import { HostWindowService } from '../host-window.service';
 
 @Component({
   selector: 'ds-lang-switch',
@@ -24,10 +26,13 @@ export class LangSwitchComponent implements OnInit {
   // A language switch only makes sense if there is more than one active language to switch between.
   moreThanOneLanguage: boolean;
 
+  isXsOrSm$: Observable<boolean>;
   constructor(
     public translate: TranslateService,
-    private localeService: LocaleService
+    private localeService: LocaleService,
+    protected windowService: HostWindowService
   ) {
+    this.isXsOrSm$ = windowService.isXsOrSm();
   }
 
   ngOnInit(): void {
@@ -55,6 +60,7 @@ export class LangSwitchComponent implements OnInit {
    */
   useLang(lang: string, event: any) {
     event.preventDefault();
+    // document.querySelector('html').setAttribute('lang', lang)
     this.localeService.setCurrentLanguageCode(lang);
     this.localeService.refreshAfterChangeLanguage();
   }
