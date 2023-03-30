@@ -211,21 +211,27 @@ sidebar-section a {
   color: black;
 }
 
+
+.comcol-browse a {
+  color: black;
+  text-decoration: none !important;
+}
+
 // Browse tabs on community pages not to have visited link colors
 .comcol-browse a:visited {
   color: black;
 }
 // Browse tabs a links to have interaction color
 .comcol-browse a:hover {
-  color: #0535d2;
+  color: var(--gcweb-link-active-color);
 }
 
 .comcol-browse a:focus {
-  color: #0535d2;
+  color: var(--gcweb-link-active-color);
 }
 
 .comcol-browse a:active {
-  color: #0535d2;
+  color: var(--gcweb-link-active-color);
 }
 
 .badge:visited {
