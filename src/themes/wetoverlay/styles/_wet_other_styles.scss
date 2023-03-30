@@ -128,9 +128,20 @@ legend {
 
  
 // Link colors for navigation links on Focus, Hover and Active states
-a.nav-link:focus:hover:active {
+a.nav-link:focus {
   color: var(--gcweb-link-active-color) !important;
 }
+
+a.nav-link:active {
+  color: var(--gcweb-link-active-color) !important;
+}
+a.nav-link:hover {
+  color: var(--gcweb-link-active-color) !important;
+}
+
+
+
+
 
 // Link colors for links for Focus, Hover and Active
 // Link color was: #295376;
@@ -171,7 +182,7 @@ a {
   color: var(--gcweb-link-visited-color) !important;
 }
 
-// Nav-link are the tabs being used in edit communities and collection pages
+// Nav-tabs are the tabs being used in edit communities and collection pages
 .nav-tabs a {
   text-decoration: none !important;
   color: black;
@@ -206,6 +217,14 @@ sidebar-section a {
 }
 // Browse tabs a links to have interaction color
 .comcol-browse a:hover {
+  color: #0535d2;
+}
+
+.comcol-browse a:focus {
+  color: #0535d2;
+}
+
+.comcol-browse a:active {
   color: #0535d2;
 }
 
