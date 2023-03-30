@@ -46,16 +46,7 @@ import { ThemedFullItemPageComponent } from './full/themed-full-item-page.compon
         ],
         data: {
           menu: {
-            public: [{
-              id: 'statistics_item_:id',
-              active: true,
-              visible: true,
-              model: {
-                type: MenuItemType.LINK,
-                text: 'menu.section.statistics',
-                link: 'statistics/items/:id/',
-              } as LinkMenuItemModel,
-            }],
+            public: [],
           },
         },
       }
