@@ -13,7 +13,7 @@ import { SearchResultListElementComponent } from '../../../../../shared/object-l
 import { TruncatableService } from '../../../../../shared/truncatable/truncatable.service';
 import { WorkflowItemSearchResult } from '../../../../../shared/object-collection/shared/workflow-item-search-result.model';
 import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../../../../core/locale/locale.service';
 
 @listableObjectComponent(WorkflowItemSearchResult, ViewMode.ListElement, Context.AdminWorkflowSearch)
 @Component({
