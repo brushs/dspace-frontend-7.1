@@ -108,7 +108,9 @@ export class SearchComponent implements OnInit {
    * Observable for whether or not the sidebar is currently collapsed
    */
   isSidebarCollapsed$: Observable<boolean>;
-
+  /* Start FOSRC Changes - 1619 */
+  adminSearch: boolean;
+  /* End of FOSRC Changes */
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
@@ -128,6 +130,12 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.isSidebarCollapsed$ = this.isSidebarCollapsed();
     this.searchLink = this.getSearchLink();
+    /* Start FOSRC Changes - 1619 */
+    this.adminSearch = false;
+    if (this.searchLink == "/admin/search") {
+      this.adminSearch = true;
+    }
+    /* End of FOSRC Changes */
     this.searchOptions$ = this.getSearchOptions();
     this.sub = this.searchOptions$.pipe(
       switchMap((options) => this.service.search(
