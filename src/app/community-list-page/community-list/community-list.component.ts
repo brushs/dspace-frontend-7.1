@@ -17,6 +17,7 @@ import { isEmpty } from '../../shared/empty.util';
 @Component({
   selector: 'ds-community-list',
   templateUrl: './community-list.component.html',
+  styleUrls: ['./community-list.component.scss']
 })
 export class CommunityListComponent implements OnInit, OnDestroy {
 
@@ -69,6 +70,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
    */
   toggleExpanded(node: FlatNode) {
     this.loadingNode = node;
+    console.log(node)
     if (node.isExpanded) {
       this.expandedNodes = this.expandedNodes.filter((node2) => node2.name !== node.name);
       node.isExpanded = false;
