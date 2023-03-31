@@ -5,4 +5,11 @@ td .btn-link:focus {
 input.custom-control-input:checked + label.custom-control-label:after { 
   background-color: #2196F3
 }
-/* -- End of OSPR changes -- */
+/* -- End of FOSPR changes -- */
+
+/* -- Start FOSRC Changes - 1618 - */
+label.custom-control-label:after { 
+  background-color: #e8f0f7;
+  border: 1px solid black;
+}
+/* -- End of FOSRC changes -- */
