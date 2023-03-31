@@ -164,12 +164,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.isAuthBlocking$ = this.store.pipe(select(isAuthenticationBlocking)).pipe(
       distinctUntilChanged()
     );
+
+    /* Start FOSRC Changes - 1620 
+    // disable cookie consent klaro service
     this.isAuthBlocking$
       .pipe(
         filter((isBlocking: boolean) => isBlocking === false),
         take(1)
       ).subscribe(() => this.initializeKlaro());
-
+    End of FOSRC changes */
     const env: string = environment.production ? 'Production' : 'Development';
     const color: string = environment.production ? 'red' : 'green';
     console.info(`Environment: %c${env}`, `color: ${color}; font-weight: bold;`);
