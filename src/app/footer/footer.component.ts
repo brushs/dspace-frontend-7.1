@@ -19,9 +19,12 @@ export class FooterComponent {
   }
 
   showCookieSettings() {
+    /* Start FOSRC Changes - 1620 
+    // disable any chance for cookie setting pop up
     if (hasValue(this.cookies)) {
       this.cookies.showSettings();
     }
     return false;
+    End of FOSRC changes */
   }
 }
