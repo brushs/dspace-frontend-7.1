@@ -6,6 +6,7 @@ import {
   MetadataValue
 } from '../shared/metadata.models';
 import * as e from 'express';
+import { Metadata } from '../shared/metadata.utils';
 
 /**
  * Returns a name for a {@link DSpaceObject} based
@@ -90,11 +91,11 @@ export class DSONameService {
    *
    * @param dso  The {@link DSpaceObject} you want a name for
    */
-  getTranslatedName(dso: DSpaceObject, currentLang: string): string {
+  getTranslatedName(dso: DSpaceObject, currentLang: string): MetadataValue {
     if (currentLang == 'fr' && dso.firstMetadataValue('dc.title.fosrctranslation') != undefined && dso.firstMetadataValue('dc.title.fosrctranslation') != null ) {
-      return dso.firstMetadataValue('dc.title.fosrctranslation');
+      return dso.firstMetadata('dc.title.fosrctranslation');
     } else {
-      return "";
+      return undefined;
     }
   }
   // OSPR Change end
