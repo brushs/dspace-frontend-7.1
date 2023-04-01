@@ -68,23 +68,23 @@ export class DSONameService {
    *
    * @param dso  The {@link DSpaceObject} you want a name for
    */
-  getOfficialName(dso: DSpaceObject): string {
+  getOfficialName(dso: DSpaceObject): MetadataValue[] {
     const officialLang = dso.firstMetadataValue('dc.language');
-    let officialTitles: string[] = []
+    let officialTitles: MetadataValue[] = []
     if(officialLang !== undefined && officialLang !== null) {
       let allTitles:MetadataValue[] = dso.allMetadata('dc.title');
       allTitles.forEach(function (singleTitle) {
         if(officialLang.includes(singleTitle['language'])) {
           //console.log("Official Title: " + singleTitle.value);
-          officialTitles.push(singleTitle.value);
+          officialTitles.push(singleTitle);
         }        
       });
     } else {
       //console.log("Official Title Else: " + this.getName(dso))
-      return this.getName(dso);
+      return dso.allMetadata('dc.title');
     }
 
-    return officialTitles.join(",,, ");
+    return officialTitles;
   }
 
   /* Get the name for the given {@link DSpaceObject}

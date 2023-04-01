@@ -21,7 +21,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
    */
   dso: K;
   dsoTitle: string;
-  dsoOfficialTitle: string; //FOSRC added
+  dsoOfficialTitle: MetadataValue[]; //FOSRC added
   dsoTranslatedTitle: MetadataValue; //FOSRC added
 
   public constructor(protected truncatableService: TruncatableService, protected dsoNameService: DSONameService, protected localeService: LocaleService) {
