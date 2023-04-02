@@ -13,7 +13,7 @@ import { SearchResultListElementComponent } from '../../../search-result-list-el
 import { ClaimedTaskSearchResult } from '../../../../object-collection/shared/claimed-task-search-result.model';
 import { ClaimedTask } from '../../../../../core/tasks/models/claimed-task-object.model';
 import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../../../../core/locale/locale.service';
 
 /**
  * This component renders claimed task approved object for the search result in the list view.

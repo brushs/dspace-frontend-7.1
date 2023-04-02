@@ -10,7 +10,7 @@ import { TruncatableService } from '../../../../../shared/truncatable/truncatabl
 import { LinkService } from '../../../../../core/cache/builders/link.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../../../../core/locale/locale.service';
 
 @listableObjectComponent('PersonSearchResult', ViewMode.ListElement, Context.SideBarSearchModal)
 @listableObjectComponent('PersonSearchResult', ViewMode.ListElement, Context.SideBarSearchModalCurrent)

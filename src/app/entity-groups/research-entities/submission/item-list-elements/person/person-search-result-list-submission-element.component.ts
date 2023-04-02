@@ -17,7 +17,7 @@ import { MetadataValue } from '../../../../../core/shared/metadata.models';
 import { ItemDataService } from '../../../../../core/data/item-data.service';
 import { SelectableListService } from '../../../../../shared/object-list/selectable-list/selectable-list.service';
 import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../../../../core/locale/locale.service';
 
 @listableObjectComponent('PersonSearchResult', ViewMode.ListElement, Context.EntitySearchModalWithNameVariants)
 @Component({

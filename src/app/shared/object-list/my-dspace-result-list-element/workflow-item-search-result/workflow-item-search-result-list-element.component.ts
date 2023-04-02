@@ -16,7 +16,7 @@ import { TruncatableService } from '../../../truncatable/truncatable.service';
 import { followLink } from '../../../utils/follow-link-config.model';
 import { SearchResultListElementComponent } from '../../search-result-list-element/search-result-list-element.component';
 import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../../../core/locale/locale.service';
 
 /**
  * This component renders workflowitem object for the search result in the list view.
