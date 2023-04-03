@@ -2,7 +2,10 @@
 <div class="container" *ngIf="(isXsOrSm$ | async)">
     <div class="row">
         <div class="col-12">
-            <h1 id="wb-cont">{{'search.form.search' | translate}}</h1>
+            <!-- FOSRC Changes - 1619 -->
+            <h1 *ngIf="adminSearch" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
+            <h1 *ngIf="!adminSearch" id="wb-cont">{{'search.form.search' | translate}}</h1> 
+            <!-- End of FOSRC Changes-->
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
             <h2>{{'search.results.head' | translate}}</h2>
             <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
@@ -15,7 +18,10 @@
     <div class="row">
         
         <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
-            <h1 id="wb-cont">{{'search.form.search' | translate}}</h1>
+            <!-- FOSRC Changes - 1619 -->
+            <h1 *ngIf="adminSearch" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
+            <h1 *ngIf="!adminSearch" id="wb-cont">{{'search.form.search' | translate}}</h1> 
+            <!-- End of FOSRC Changes-->
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
             <h2>{{'search.results.head' | translate}}</h2>
             <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
