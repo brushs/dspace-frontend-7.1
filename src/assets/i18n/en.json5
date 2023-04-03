@@ -266,6 +266,8 @@
   "fosrc.item.edit.dynamic-field.error.author" : "Please enter at least one Author.",
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",
+  "header.skiptolinks.aboutgc": "Skip to about government",
+  "header.skiptolinks.menu": "Skip to section menu",
   "official.title" : "Official Title",
   "submission.sections.accesses.form.label.filedescription" : "File Description / description du fichier",
   "submission.sections.accesses.form.label.filename" : "Filename (* required) / Nom de fichier (obligatoire)",
