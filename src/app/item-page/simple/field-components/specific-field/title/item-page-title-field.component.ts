@@ -31,4 +31,5 @@ export class ItemPageTitleFieldComponent extends ItemPageFieldComponent {
         'dc.title'
     ];
 
+
 }

@@ -68,13 +68,12 @@ export class DSONameService {
    *
    * @param dso  The {@link DSpaceObject} you want a name for
    */
-  getOfficialName(dso: DSpaceObject): MetadataValue[] {
-    const officialLang = dso.firstMetadataValue('dc.language');
+  getOfficialName(dso: DSpaceObject, currentLang: string): MetadataValue[] {
     let officialTitles: MetadataValue[] = []
-    if(officialLang !== undefined && officialLang !== null) {
+    if(currentLang !== undefined && currentLang !== null) {
       let allTitles:MetadataValue[] = dso.allMetadata('dc.title');
       allTitles.forEach(function (singleTitle) {
-        if(officialLang.includes(singleTitle['language'])) {
+        if(currentLang == singleTitle['language']) {
           //console.log("Official Title: " + singleTitle.value);
           officialTitles.push(singleTitle);
         }        
@@ -84,6 +83,10 @@ export class DSONameService {
       return dso.allMetadata('dc.title');
     }
 
+    if(officialTitles.length == 0) {
+      return [dso.firstMetadata('dc.title')]
+    }
+    
     return officialTitles;
   }
 
@@ -97,6 +100,26 @@ export class DSONameService {
     } else {
       return undefined;
     }
+  }
+
+  /* Get the name for the given {@link DSpaceObject}
+   *
+   * @param dso  The {@link DSpaceObject} you want a name for
+   */
+  getAlternativeTitleExists(dso: DSpaceObject, currentLang: string): boolean {
+    return (this.getMetadataByFieldAndLanguage(dso, 'dc.title.alternative', currentLang) != undefined || 
+            this.getMetadataByFieldAndLanguage(dso, 'dc.title.fosrctranslation', currentLang) != undefined)
+  }
+
+  getMetadataByFieldAndLanguage(dso: DSpaceObject, field: string, currentLang: string): MetadataValue {
+    let result:MetadataValue
+    dso.allMetadata(field).forEach(function(singleItem) {
+      if(singleItem.language == currentLang) {
+        result = singleItem
+        return
+      }
+    })
+    return result
   }
   // OSPR Change end
 }
