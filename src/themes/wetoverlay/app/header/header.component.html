@@ -1,13 +1,13 @@
 <nav>
     <ul id="wb-tphp">
         <li class="wb-slc">
-            <a class="wb-sl" href="#wb-cont">Skip to main content</a>
+            <a class="wb-sl" href="{{getPath()}}#wb-cont">{{ 'header.skiptolinks.main' | translate }}</a>
         </li>
         <li class="wb-slc">
-            <a class="wb-sl" href="#wb-info">Skip to "About government"</a>
+            <a class="wb-sl" href="{{getPath()}}#wb-info">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
         </li>
         <li class="wb-slc visible-md visible-lg">
-            <a class="wb-sl" href="#wb-sec">Skip to section menu</a>
+            <a class="wb-sl" href="{{getPath()}}#wb-sec">{{ 'header.skiptolinks.menu' | translate }}</a>
         </li>
     </ul>
 </nav>
