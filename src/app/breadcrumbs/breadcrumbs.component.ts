@@ -30,4 +30,14 @@ export class BreadcrumbsComponent {
     this.showBreadcrumbs$ = breadcrumbsService.showBreadcrumbs$;
   }
 
+  // OSPR code start
+  public getPath(): string {
+    let locationPath = document.location.href;
+    if(locationPath.indexOf("#") > 0) {
+      return locationPath.substring(0, locationPath.indexOf("#"));
+    }
+    return locationPath;
+  }
+  // OSPR code end
+
 }
