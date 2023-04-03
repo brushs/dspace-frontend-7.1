@@ -28,6 +28,9 @@ export class HeaderComponent extends BaseComponent {
     super(menuService);
     this.isXs$ = this.windowService.isXs();
     this.isSm$ = this.windowService.isSm();
+    // FOSRC code start
+    this.getPath();
+    // FOSRC code end
   }
   
   forceGetRequest(query) {
@@ -54,4 +57,15 @@ export class HeaderComponent extends BaseComponent {
     await load("https://www.canada.ca/etc/designs/canada/wet-boew/js/wet-boew.min.js");
     await load("https://www.canada.ca/etc/designs/canada/wet-boew/js/theme.min.js");
   }
+
+  // FOSRC code start
+  public getPath(): string {
+    this.locationPath = document.location.href;
+    if(this.locationPath.indexOf("#") > 0) {
+      return this.locationPath.substring(0, this.locationPath.indexOf("#"));
+    }
+    return this.locationPath;
+  }
+  // FOSRC code end
+  
 }
