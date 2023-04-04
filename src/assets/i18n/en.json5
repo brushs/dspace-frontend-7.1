@@ -270,6 +270,7 @@
   "fosrc.item.edit.dynamic-field.error.author": "Please enter at least one Author.",
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",
+  "logout.breadcrumbs": "Sign Out",
   "official.title": "Official Title",
   "submission.sections.accesses.form.error.filename": "The name of the file is required",
   "submission.sections.accesses.form.error.translated.filename": "The translated name of the file is required",
