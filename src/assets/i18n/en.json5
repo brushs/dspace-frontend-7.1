@@ -50,6 +50,7 @@
   // end FOSRC the above can be deleted
 
   //start FOSRC - community form
+  "community.breadcrumbs": "Community List",
   "community.form.errors.description-nom.required": "Error: You must enter a community name in french",
   "community.form.errors.description-topic-subject.required": "Error:  You must enter a subject/topic/research area",
   "community.form.errors.description-topic-subject-french.required": "Error: You must enter the translation of the subject/topic/research area",

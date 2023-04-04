@@ -14,47 +14,61 @@ import { CommunityPageAdministratorGuard } from './community-page-administrator.
 import { MenuItemType } from '../shared/menu/initial-menus-state';
 import { LinkMenuItemModel } from '../shared/menu/menu-item/models/link.model';
 import { ThemedCommunityPageComponent } from './themed-community-page.component';
+import { I18nBreadcrumbResolver } from '../core/breadcrumbs/i18n-breadcrumb.resolver';
+import { I18nBreadcrumbsService } from '../core/breadcrumbs/i18n-breadcrumbs.service';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: COMMUNITY_CREATE_PATH,
-        component: CreateCommunityPageComponent,
-        canActivate: [AuthenticatedGuard, CreateCommunityPageGuard]
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/community-list'
       },
       {
-        path: ':id',
-        resolve: {
-          dso: CommunityPageResolver,
-          breadcrumb: CommunityBreadcrumbResolver
-        },
-        runGuardsAndResolvers: 'always',
+        path: '',
+        resolve: { breadcrumb: I18nBreadcrumbResolver },
+        data: { breadcrumbKey: 'community' },
         children: [
           {
-            path: COMMUNITY_EDIT_PATH,
-            loadChildren: () => import('./edit-community-page/edit-community-page.module')
-              .then((m) => m.EditCommunityPageModule),
-            canActivate: [CommunityPageAdministratorGuard]
+            path: COMMUNITY_CREATE_PATH,
+            component: CreateCommunityPageComponent,
+            canActivate: [AuthenticatedGuard, CreateCommunityPageGuard]
           },
           {
-            path: 'delete',
-            pathMatch: 'full',
-            component: DeleteCommunityPageComponent,
-            canActivate: [AuthenticatedGuard],
+            path: ':id',
+            resolve: {
+              dso: CommunityPageResolver,
+              breadcrumb: CommunityBreadcrumbResolver
+            },
+            runGuardsAndResolvers: 'always',
+            children: [
+              {
+                path: COMMUNITY_EDIT_PATH,
+                loadChildren: () => import('./edit-community-page/edit-community-page.module')
+                  .then((m) => m.EditCommunityPageModule),
+                canActivate: [CommunityPageAdministratorGuard]
+              },
+              {
+                path: 'delete',
+                pathMatch: 'full',
+                component: DeleteCommunityPageComponent,
+                canActivate: [AuthenticatedGuard],
+              },
+              {
+                path: '',
+                component: ThemedCommunityPageComponent,
+                pathMatch: 'full',
+              }
+            ],
+            data: {
+              menu: {
+                public: [],
+              },
+            },
           },
-          {
-            path: '',
-            component: ThemedCommunityPageComponent,
-            pathMatch: 'full',
-          }
         ],
-        data: {
-          menu: {
-            public: [],
-          },
-        },
-      },
+      }
     ])
   ],
   providers: [
@@ -63,7 +77,9 @@ import { ThemedCommunityPageComponent } from './themed-community-page.component'
     DSOBreadcrumbsService,
     LinkService,
     CreateCommunityPageGuard,
-    CommunityPageAdministratorGuard
+    CommunityPageAdministratorGuard,
+    I18nBreadcrumbResolver,
+    I18nBreadcrumbsService
   ]
 })
 export class CommunityPageRoutingModule {
