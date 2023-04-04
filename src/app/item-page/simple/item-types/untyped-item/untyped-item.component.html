@@ -9,12 +9,14 @@
     <ds-dso-page-edit-button [pageRoute]="itemPageRoute" [dso]="object" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
   </div>
 </div>
-<div>
-<h2 class="item-page-field" *ngIf="dsoAlternativeTitleExists">{{'alternative.title' | translate}}
-  <ds-metadata-values [mdValues]="'dc.title.alternative' | metaTranslate: object "></ds-metadata-values><br/>
-  <ds-metadata-values [mdValues]="'dc.title.fosrctransation' | metaTranslate: object "></ds-metadata-values>
-</h2>
-</div>
+<!--div>
+  <h2-- class="item-page-field" *ngIf="dsoAlternativeTitleExists">
+    {{'alternative.title' | translate}}
+    <ds-metadata-values [mdValues]="'dc.title.alternative' | metaTranslate: object "></ds-metadata-values><br />
+    <ds-metadata-values [mdValues]="'dc.title.fosrctransation' | metaTranslate: object "></!--ds-metadata-values>
+    <ds-metadata-values [mdValues]="dsoAlternateTitles"></ds-metadata-values>
+  </h2>
+</div-->
 <div class="row">
   <div class="col-xs-12 col-md-4">
     <ng-container *ngIf="!mediaViewer.image">
@@ -25,28 +27,29 @@
     <ng-container *ngIf="mediaViewer.image">
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
+    <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
     <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
     <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
-      [parentItem]="object"
-      [itemType]="'Person'"
-      [metadataFields]="['dc.contributor.author', 'dc.creator']"
-      [label]="'relationships.isAuthorOf' | translate">
+                                     [parentItem]="object"
+                                     [itemType]="'Person'"
+                                     [metadataFields]="['dc.contributor.author', 'dc.creator']"
+                                     [label]="'relationships.isAuthorOf' | translate">
     </ds-metadata-representation-list>
     <ds-generic-item-page-field [item]="object"
-      [fields]="['journal.title']"
-      [label]="'item.page.journal-title'">
+                                [fields]="['journal.title']"
+                                [label]="'item.page.journal-title'">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
-      [fields]="['journal.identifier.issn']"
-      [label]="'item.page.journal-issn'">
+                                [fields]="['journal.identifier.issn']"
+                                [label]="'item.page.journal-issn'">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
-      [fields]="['journalvolume.identifier.name']"
-      [label]="'item.page.volume-title'">
+                                [fields]="['journalvolume.identifier.name']"
+                                [label]="'item.page.volume-title'">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.publisher']"
-      [label]="'item.page.publisher'">
+                                [fields]="['dc.publisher']"
+                                [label]="'item.page.publisher'">
     </ds-generic-item-page-field>
     <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
   </div>
