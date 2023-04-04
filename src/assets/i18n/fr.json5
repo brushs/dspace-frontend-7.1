@@ -81,6 +81,9 @@
   "collection.form.title": "Le nom de la collection (obligatoire)",
 
   // start FOSRC - community form
+  
+  // "community.breadcrumbs": "Community List",
+  "community.breadcrumbs": "Liste des communautés",
   //"community.form.title": "Community name (required)",
   "community.form.title": "Nom de la communauté (obligatoire)",
   //"community.form.hints.title.hint": "You must enter a name for this community",
