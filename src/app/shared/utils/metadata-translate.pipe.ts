@@ -40,7 +40,7 @@ export class MetadataTranslatePipe implements PipeTransform {
     const seperatorChar = '!';
 
     for (const mdMap of mdMaps) {
-      console.log( mdMap);
+      // console.log( mdMap);
       for (const mdKey of Metadata.resolveKeys(mdMap, keyOrKeys)) {
         const candidates = mdMap[mdKey];
         if (candidates) {
@@ -92,14 +92,14 @@ function getKeyForTranslation(metaDataKey: string) {
   switch(countDots) {
     case 1:
       result += ".fosrctranslation"
-      console.log("case 1: source: " + metaDataKey + ", target: " + result)
+      //console.log("case 1: source: " + metaDataKey + ", target: " + result)
       break;
     case 2:
       result += "-fosrctranslation"
-      console.log("case 2: source: " + metaDataKey + ", target: " + result)
+      //console.log("case 2: source: " + metaDataKey + ", target: " + result)
       break;
     default:
-      console.log("default: source: " + metaDataKey + ", target: " + result)
+      //console.log("default: source: " + metaDataKey + ", target: " + result)
   }
   return result;
 }
