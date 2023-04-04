@@ -174,7 +174,7 @@ export class ListableObjectComponentLoaderComponent implements OnInit, OnChanges
       0,
       undefined,
       [
-        [this.badges.nativeElement],
+        [this.badges?.nativeElement],
       ]);
 
     this.connectInputsAndOutputs();
