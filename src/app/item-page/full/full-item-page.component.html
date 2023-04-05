@@ -15,8 +15,7 @@
           {{"item.page.link.simple" | translate}}
         </a>
       </div>
-      <!-- OSPR changes change table to list-->
-      <div class="list-group list-group-striped">
+      <!-- OSPR changes change table to dl-->
         <dl>
           <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
             <ng-container *ngFor="let mdValue of mdEntry.value;">
@@ -35,7 +34,6 @@
             </div> -->
           </ng-container>
         </dl>
-      </div>
       <!-- OSPR changes end  -->
       <ds-item-page-full-file-section [item]="item"></ds-item-page-full-file-section>
       <ds-item-page-collections [item]="item"></ds-item-page-collections>
