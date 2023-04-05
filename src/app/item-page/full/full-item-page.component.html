@@ -16,17 +16,26 @@
         </a>
       </div>
       <!-- OSPR changes change table to list-->
-      <ul class="list-group list-group-striped">
-        <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
-          <li *ngFor="let mdValue of mdEntry.value;" class="list-group-item pl-3" >
-            <div class="row">
+      <div class="list-group list-group-striped">
+        <dl>
+          <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
+            <ng-container *ngFor="let mdValue of mdEntry.value;">
+              <dt class="p-2">
+                {{mdEntry.key}} {{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
+              </dt>
+              <dd class="p-2 pl-4">
+                {{mdValue.value}}
+              </dd>
+            </ng-container>
+  
+            <!-- <div class="row">
               <span class="col-md-3 text-start">{{mdEntry.key}}</span>
               <span class="col-md-8">{{mdValue.value}}</span>
               <span class="col-md-1">{{mdValue.language}}</span>
-            </div>
-          </li>
-        </ng-container>
-      </ul>
+            </div> -->
+          </ng-container>
+        </dl>
+      </div>
       <!-- OSPR changes end  -->
       <ds-item-page-full-file-section [item]="item"></ds-item-page-full-file-section>
       <ds-item-page-collections [item]="item"></ds-item-page-collections>
