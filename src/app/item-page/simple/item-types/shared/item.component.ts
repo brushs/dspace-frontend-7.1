@@ -26,6 +26,7 @@ export class ItemComponent implements OnInit {
   dsoOfficialTitle: MetadataValue[]; //FOSRC added
   dsoTranslatedTitle: MetadataValue; //FOSRC added
   dsoAlternativeTitleExists: boolean; //FOSRC added
+  dsoAlternateTitles: MetadataValue[]; //FOSRC added
 
   public constructor(protected dsoNameService: DSONameService, protected localeService: LocaleService) {
   }
@@ -35,5 +36,7 @@ export class ItemComponent implements OnInit {
     this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
     this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
     this.dsoAlternativeTitleExists = this.dsoNameService.getAlternativeTitleExists(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
+    this.dsoAlternateTitles = this.dsoNameService.getMetadataByFieldAndLanguage(this.object, ['dc.title.fosrctranslation', 'dc.title.alternative', 'dc.title.alternative-fosrctranslation'], this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
+    //console.log("ngInit in Item-Component: ", this.dsoAlternateTitles);
   }
 }

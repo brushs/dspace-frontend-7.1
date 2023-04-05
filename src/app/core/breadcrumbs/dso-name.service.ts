@@ -39,7 +39,7 @@ export class DSONameService {
     },
     Default: (dso: DSpaceObject): string => {
       // If object doesn't have dc.title metadata use name property
-      console.log("This is coming from the factory service method!");
+      //console.log("This is coming from the factory service method!");
       return dso.firstMetadataValue('dc.title') || dso.name || this.translateService.instant('dso.name.untitled');
     }
   };
@@ -54,7 +54,7 @@ export class DSONameService {
     const match = types
       .filter((type) => typeof type === 'string')
       .find((type: string) => Object.keys(this.factories).includes(type)) as string;
-    console.log("This is coming from the get function in the bottom! match: " + match);
+    //console.log("This is coming from the get function in the bottom! match: " + match);
     if (hasValue(match)) {
       return this.factories[match](dso);
     } else {
@@ -107,19 +107,19 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getAlternativeTitleExists(dso: DSpaceObject, currentLang: string): boolean {
-    return (this.getMetadataByFieldAndLanguage(dso, 'dc.title.alternative', currentLang) != undefined || 
-            this.getMetadataByFieldAndLanguage(dso, 'dc.title.fosrctranslation', currentLang) != undefined)
+    return (!(this.getMetadataByFieldAndLanguage(dso, ['dc.title.alternative', 'dc.title.alternative-fosrctranslation', 'dc.title.fosrctranslation'], currentLang)))
   }
 
-  getMetadataByFieldAndLanguage(dso: DSpaceObject, field: string, currentLang: string): MetadataValue {
-    let result:MetadataValue
-    dso.allMetadata(field).forEach(function(singleItem) {
-      if(singleItem.language == currentLang) {
-        result = singleItem
-        return
+  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string[], currentLang: string): MetadataValue[] {
+    let result: MetadataValue[] = [];
+    dso.allMetadata(fields).forEach(function (singleItem) {
+      if (singleItem.language === currentLang) {
+        //console.log("DSO - Name_service: getMetadataByFieldAndLanguage currentLang:" + currentLang + ", itemLang = " + singleItem.language + ", item value:" + singleItem.value);
+        result.push(singleItem);
       }
     })
-    return result
+    //console.log("DSO - Name_service: getMetadataByFieldAndLanguage: ", result);
+    return result;
   }
   // OSPR Change end
 }
