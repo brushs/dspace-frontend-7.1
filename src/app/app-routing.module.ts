@@ -145,11 +145,19 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
           },
           {
             path: 'login',
+            redirectTo: 'sign-in',
+          },
+          {
+            path: 'sign-in',
             loadChildren: () => import('./login-page/login-page.module')
               .then((m) => m.LoginPageModule),
           },
           {
             path: 'logout',
+            redirectTo: 'sign-out'
+          },
+          {
+            path: 'sign-out',
             loadChildren: () => import('./logout-page/logout-page.module')
               .then((m) => m.LogoutPageModule),
           },
