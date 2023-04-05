@@ -47,6 +47,6 @@ export class ItemPageAlternateTitleFieldComponent extends ItemPageFieldComponent
     super();
   }
   ngOnInit() {
-    this.values = this.dsoNS.getMetadataByFieldAndLanguage(this.item, '', this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
+    this.values = this.dsoNS.getMetadataByFieldAndLanguage(this.item, this.fields, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
   }
 }

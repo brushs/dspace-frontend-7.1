@@ -107,14 +107,12 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getAlternativeTitleExists(dso: DSpaceObject, currentLang: string): boolean {
-    return (this.getMetadataByFieldAndLanguage(dso, 'dc.title.alternative', currentLang) != undefined || 
-            this.getMetadataByFieldAndLanguage(dso, 'dc.title.fosrctranslation', currentLang) != undefined)
+    return (!(this.getMetadataByFieldAndLanguage(dso, ['dc.title.alternative', 'dc.title.alternative-fosrctranslation', 'dc.title.fosrctranslation'], currentLang)))
   }
 
-  getMetadataByFieldAndLanguage(dso: DSpaceObject, field: string, currentLang: string): MetadataValue[] {
+  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string[], currentLang: string): MetadataValue[] {
     let result: MetadataValue[] = [];
-    //dso.allMetadata(field).forEach(function(singleItem) {
-    dso.allMetadata(['dc.title.fosrctranslation', 'dc.title.alternative', 'dc.title.alternative-fosrctranslation']).forEach(function (singleItem) {
+    dso.allMetadata(fields).forEach(function (singleItem) {
       if (singleItem.language === currentLang) {
         //console.log("DSO - Name_service: getMetadataByFieldAndLanguage currentLang:" + currentLang + ", itemLang = " + singleItem.language + ", item value:" + singleItem.value);
         result.push(singleItem);

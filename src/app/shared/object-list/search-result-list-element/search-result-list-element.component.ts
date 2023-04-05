@@ -37,7 +37,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
       this.dsoTitle = this.dsoNameService.getName(this.dso);
       this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
       this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
-      console.log("ngOnInit: " + this.dsoOfficialTitle);
+      //console.log("ngOnInit: " + this.dsoOfficialTitle);
     }
   }
 
