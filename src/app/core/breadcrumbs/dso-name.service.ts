@@ -107,7 +107,7 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getAlternativeTitleExists(dso: DSpaceObject, currentLang: string): boolean {
-    return (!(this.getMetadataByFieldAndLanguage(dso, ['dc.title.alternative', 'dc.title.alternative-fosrctranslation', 'dc.title.fosrctranslation'], currentLang)))
+    return (this.getMetadataByFieldAndLanguage(dso, ['dc.title.alternative', 'dc.title.alternative-fosrctranslation', 'dc.title.fosrctranslation'], currentLang)).length > 0;
   }
 
   getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string[], currentLang: string): MetadataValue[] {

@@ -37,6 +37,6 @@ export class ItemComponent implements OnInit {
     this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
     this.dsoAlternativeTitleExists = this.dsoNameService.getAlternativeTitleExists(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
     this.dsoAlternateTitles = this.dsoNameService.getMetadataByFieldAndLanguage(this.object, ['dc.title.fosrctranslation', 'dc.title.alternative', 'dc.title.alternative-fosrctranslation'], this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
-    //console.log("ngInit in Item-Component: ", this.dsoAlternateTitles);
+    //console.log("ngInit in Item-Component: AlternateTitlesExist: " + this.dsoAlternativeTitleExists + " AlternateTitles: ", this.dsoAlternateTitles);
   }
 }
