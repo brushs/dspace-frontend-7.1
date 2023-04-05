@@ -15,17 +15,19 @@
           {{"item.page.link.simple" | translate}}
         </a>
       </div>
-      <table class="table table-responsive table-striped">
-        <tbody>
-          <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue">
-            <tr *ngFor="let mdValue of mdEntry.value">
-              <td>{{mdEntry.key}}</td>
-              <td>{{mdValue.value}}</td>
-              <td>{{mdValue.language}}</td>
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
+      <!-- OSPR changes change table to list-->
+      <ul class="list-group list-group-striped">
+        <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
+          <li *ngFor="let mdValue of mdEntry.value;" class="list-group-item pl-3" >
+            <div class="row">
+              <span class="col-md-3 text-start">{{mdEntry.key}}</span>
+              <span class="col-md-8">{{mdValue.value}}</span>
+              <span class="col-md-1">{{mdValue.language}}</span>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+      <!-- OSPR changes end  -->
       <ds-item-page-full-file-section [item]="item"></ds-item-page-full-file-section>
       <ds-item-page-collections [item]="item"></ds-item-page-collections>
       <ds-item-versions class="mt-2" [item]="item"></ds-item-versions>
