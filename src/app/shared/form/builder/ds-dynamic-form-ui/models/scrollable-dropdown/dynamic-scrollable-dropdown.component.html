@@ -1,10 +1,16 @@
 <div #sdRef="ngbDropdown" ngbDropdown display="dynamic" placement="bottom-right" class="w-100">
   <div class="position-relative right-addon">
-    
+
     <span ngbDropdownToggle class="position-absolute scrollable-dropdown-toggle"></span>
-    <!-- OSPR - This input needs work, there's no way to go down the list of item with the keyboard  -->
+    <!-- OSPR - This input needs work, there's no way to go down the list of item with the keyboard  \
+  FOSRC - added translate pipe to model.placeholder
+  - changed [value]="(currentValue | async)" to [value]="selectedValueFormatter() | translate"
+      -- added for debuging to input tag:
+      FOSRC--- {{selectedValueFormatter() | translate}} ---FOSRC
+      - must be removed
+  -->
     <input class="form-control"
-           [attr.aria-label]="model.placeholder"
+           [attr.aria-label]="model.placeholder | translate"
            [attr.autoComplete]="model.autoComplete"
            [class.is-invalid]="showErrorMessages"
            [class.scrollable-dropdown-input]="!model.readOnly"
@@ -12,11 +18,11 @@
            [name]="model.name"
            [readonly]="true"
            [type]="model.inputType"
-           [value]="(currentValue | async)"
+           [value]="selectedValueFormatter() | translate"
            (blur)="onBlur($event)"
            (click)="$event.stopPropagation(); openDropdown(sdRef);"
            (focus)="onFocus($event);openDropdown(sdRef);"
-           (keypress)="$event.preventDefault()">
+           (keypress)="$event.preventDefault()">FOSRC--- {{selectedValueFormatter() | translate}} ---FOSRC
   </div>
 
   <div ngbDropdownMenu
@@ -33,13 +39,14 @@
          [scrollWindow]="false">
 
       <button class="dropdown-item disabled" *ngIf="optionsList && optionsList.length == 0">{{'form.no-results' | translate}}</button>
-      <button class="dropdown-item collection-item text-truncate" *ngFor="let listEntry of optionsList" (click)="onSelect(listEntry); sdRef.close()" title="{{ listEntry.display }}">
-        {{inputFormatter(listEntry)}}
+      <!-- FOSRC added translate pipe to results of "inputFormatter(listEntry)"-->
+      <button class="dropdown-item collection-item text-truncate" *ngFor="let listEntry of optionsList" (click)="onSelect(listEntry); sdRef.close()" title="{{ listEntry.display | translate}}">
+        {{inputFormatter(listEntry) | translate}}
       </button>
       <div class="scrollable-dropdown-loading text-center" *ngIf="loading"><p>{{'form.loading' | translate}}</p></div>
     </div>
 
+    </div>
   </div>
-</div>
 
 
