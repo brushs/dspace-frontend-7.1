@@ -2382,7 +2382,7 @@
   // "loading.top-level-communities": "Loading top-level communities...",
   "loading.top-level-communities": "Communautés de 1er niveau en cours de chargement…",
   // "login.breadcrumbs": "Login",
-  "login.breadcrumbs": "Connection",
+  "login.breadcrumbs": "Se connecter",
   // "login.form.email": "Email address (* Required)",
   "login.form.email": "Courrier électronique  (* obligatoire)",
   // "login.form.forgot-password": "Have you forgotten your password?",
