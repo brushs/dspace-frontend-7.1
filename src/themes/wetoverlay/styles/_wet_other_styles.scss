@@ -144,7 +144,6 @@ a.nav-link:hover {
 
 .nav-link.active {
   border-width: 4px 1px 0 1px;
-  bottom: 0
 }
 
 
@@ -228,17 +227,29 @@ sidebar-section a {
 .comcol-browse a:visited {
   color: black;
 }
-// Browse tabs a links to have interaction color
+// Browse tabs a links to have bold style with bordered tab
 .comcol-browse a:hover {
-  color: var(--gcweb-link-active-color);
+  color: black;
+  font-weight: bold;
 }
 
 .comcol-browse a:focus {
-  color: var(--gcweb-link-active-color);
+  color: black;
+  font-weight: bold;
 }
 
 .comcol-browse a:active {
-  color: var(--gcweb-link-active-color);
+  color: black;
+  font-weight: bold;
+}
+
+.list-group-item {
+
+  border-radius: 1px;
+}
+
+.list-group-item:active {
+  border-width: 4px 1px 0 1px !important;
 }
 
 .badge:visited {
