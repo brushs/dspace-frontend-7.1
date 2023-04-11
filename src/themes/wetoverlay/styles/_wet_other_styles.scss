@@ -129,16 +129,23 @@ legend {
  
 // Link colors for navigation links on Focus, Hover and Active states
 a.nav-link:focus {
-  color: var(--gcweb-link-active-color) !important;
+  color: black !important;
+  font-weight: bold;
 }
 
 a.nav-link:active {
-  color: var(--gcweb-link-active-color) !important;
+  color: black !important;
+  font-weight: bold;
 }
 a.nav-link:hover {
-  color: var(--gcweb-link-active-color) !important;
+  color: black !important;
+  font-weight: bold;
 }
 
+.nav-link.active {
+  border-width: 4px 1px 0 1px;
+  bottom: 0
+}
 
 
 
