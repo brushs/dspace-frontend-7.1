@@ -244,12 +244,23 @@ sidebar-section a {
 .comcol-browse .active {
   color: black;
   font-weight: bold;
-  border-top-width: 4px;
 }
 
-.list-group-item:active {
-  border-width: 4px 1px 0 1px !important;
+.comcol-browse .list-group-item:active  {
+  border-top-width: 4px;
+  border-bottom: none;
 }
+
+.comcol-browse .list-group-item:focus {
+  border-top-width: 4px;
+  border-bottom: none;
+}
+
+.comcol-browse .list-group-item:hover {
+  border-top-width: 4px;
+  border-bottom: none;
+}
+
 
 .badge:visited {
   color: black;
