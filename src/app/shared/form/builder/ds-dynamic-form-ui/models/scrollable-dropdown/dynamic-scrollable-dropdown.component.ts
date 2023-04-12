@@ -174,13 +174,8 @@ export class DsDynamicScrollableDropdownComponent extends DsDynamicVocabularyCom
     if (this.optionsList && (this.currentIndex || this.currentIndex == 0)) {
       //console.log("Not-X selectedValue: ", this.optionsList[this.currentIndex].display);
       ret = this.optionsList[this.currentIndex].display
-    } else {
-      ret = 'MyFOSRC empty current -- Index not set'
-    }
-    if (!ret) {
-      ret = 'MyFOSRC empty current'
-    }
-    console.log("selectedValue - ret: ", ret);
+    } 
+    //console.log("selectedValue - ret: ", ret);
     return ret;
   }
 
