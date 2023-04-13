@@ -16,15 +16,19 @@
           <!-- Introductory text -->
           <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
-          <!-- Alternative Names -->
+         <!-- Alternative Names -->
+          <!-- Start FOSRC Changes - 1568
           <ds-comcol-page-content [content]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
+          End of FOSRC changes -->
           <!-- Identifiers -->
           <ds-comcol-page-content [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
           <!-- Main Area of Research -->
+          <!-- Start FOSRC Changes - 1568
           <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.subject' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
+          End of FOSRC changes -->
           <!-- Home Page URL -->
           <ds-comcol-page-content [content]="('dc.identifier.uri-home-page' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier.uri-home-page' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>

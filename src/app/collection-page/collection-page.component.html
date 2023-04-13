@@ -23,8 +23,10 @@
                           [title]="'collection.page.handle'" >
                   </ds-comcol-page-handle>
                   <!-- Subject -->
+                  <!-- Start FOSRC Changes - 1568
                   <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : collection)[0]?.value" [lang]="('dc.subject' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
+                  End of FOSRC changes -->
                   <!-- Introductory text -->
                   <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
