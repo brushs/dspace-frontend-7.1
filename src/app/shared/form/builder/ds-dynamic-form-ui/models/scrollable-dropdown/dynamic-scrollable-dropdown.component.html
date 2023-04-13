@@ -5,9 +5,6 @@
     <!-- OSPR - This input needs work, there's no way to go down the list of item with the keyboard  \
   FOSRC - added translate pipe to model.placeholder
   - changed [value]="(currentValue | async)" to [value]="selectedValueFormatter() | translate"
-      -- added for debuging to input tag:
-      FOSRC--- {{selectedValueFormatter() | translate}} ---FOSRC
-      - must be removed
   -->
     <input class="form-control"
            [attr.aria-label]="model.placeholder | translate"
