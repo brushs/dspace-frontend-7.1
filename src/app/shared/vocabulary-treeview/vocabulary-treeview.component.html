@@ -39,7 +39,7 @@
                     [ngbTooltip]="node.item?.otherInformation?.note"
                     [openDelay]="500"
                     container="body"
-                    (click)="onSelect(node.item)">{{node.item.display}}</button>
+                    (click)="onSelect(node.item)">{{node.item.display | translate}}</button>
         </cdk-tree-node>
 
         <!-- expandable node -->
