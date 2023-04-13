@@ -128,24 +128,24 @@ legend {
 
  
 // Link colors for navigation links on Focus, Hover and Active states
-a.nav-link:focus {
+.nav-tabs a.nav-link:focus {
   color: black !important;
   font-weight: bold;
   border-bottom: none;
 }
 
-a.nav-link:active {
+.nav-tabs a.nav-link:active {
   color: black !important;
   font-weight: bold;
   border-bottom: none;
 }
-a.nav-link:hover {
+.nav-tabs a.nav-link:hover {
   color: black !important;
   font-weight: bold;
   border-bottom: none;
 }
 
-.nav-link.active {
+.nav-tabs .nav-link.active {
   border-top-width: 4px;
 }
 
