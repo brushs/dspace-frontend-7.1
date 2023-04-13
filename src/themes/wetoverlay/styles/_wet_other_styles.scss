@@ -149,7 +149,9 @@ legend {
   border-top-width: 4px;
 }
 
-
+a.nav-link:active, a.nav-link:focus, a.nav-link:hover {
+  color: var(--gcweb-link-active-color) !important;
+}
 
 
 // Link colors for links for Focus, Hover and Active
@@ -222,27 +224,27 @@ sidebar-section a {
 
 
 .comcol-browse a {
-  color: black;
+  color: black !important;
   text-decoration: none !important;
 }
 
 // Browse tabs on community pages not to have visited link colors
 .comcol-browse a:visited {
-  color: black;
+  color: black !important;
 }
 // Browse tabs a links to have bold style with bordered tab
 .comcol-browse a:hover {
-  color: black;
+  color: black !important;
   font-weight: bold;
 }
 
 .comcol-browse a:focus {
-  color: black;
+  color: black !important;
   font-weight: bold;
 }
 
 .comcol-browse .active {
-  color: black;
+  color: black !important;
   font-weight: bold;
 }
 
