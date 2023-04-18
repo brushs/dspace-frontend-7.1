@@ -40,8 +40,9 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
   formModel: DynamicFormControlModel[] = [
     new DynamicInputModel({
       id: 'title',
-      name: 'dc.title',
+      name: this.translate.currentLang === 'en' ? 'dc.title' : 'dc.title.fosrctranslation',
       required: true,
+      //languageCodes: [{'code': 'en', 'display': 'En'}, {'code': 'fr', 'display': 'Fr'}],
       validators: {
         required: null
       },
@@ -52,7 +53,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     /* OSPR changes start - add/remove fields for testing the new dynamic control models */
     new DynamicInputModel({
       id: 'translatedTitle',
-      name: 'dc.title.fosrctranslation',
+      name: this.translate.currentLang === 'fr' ? 'dc.title' : 'dc.title.fosrctranslation',
       required: true,
       validators: {
         required: null
@@ -136,5 +137,6 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
                      protected requestService: RequestService,
                      protected objectCache: ObjectCacheService) {
     super(formService, translate, notificationsService, authService, requestService, objectCache);
+    console.log("current Language from collection-form: " + translate.currentLang);
   }
 }
