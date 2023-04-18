@@ -1,5 +1,5 @@
 {
   "test": "FR",
-  // "fosrc.item.edit.contolled.vocabulary.gccore.node.000.values.1": "Arts, Music, Literature",
-  "fosrc.item.edit.contolled.vocabulary.gccore.node.000.values.1": "Arts, musique, littérature"
+  // "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore.node.000.1": "Arts, Music, Literature",
+  "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore.node.000.1": "Arts, musique, littérature"
 }
