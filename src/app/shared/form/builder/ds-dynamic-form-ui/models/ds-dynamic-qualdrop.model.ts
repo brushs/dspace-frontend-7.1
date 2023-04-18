@@ -45,6 +45,7 @@ export class DynamicQualdropModel extends DynamicFormGroupModel {
     });
 
     this.hint = config.hint;
+    console.log("DsDynamicQualdropModelConfig: ", config);
   }
 
   get value() {

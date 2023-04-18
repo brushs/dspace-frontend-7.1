@@ -150,6 +150,8 @@ export class DsDynamicScrollableDropdownComponent extends DsDynamicVocabularyCom
     let result: Observable<string>;
 
     if (init) {
+      // FOSRC console loging to be removed
+      console.log("Dyanmic-scrollable-dropdown.component: setCurrentValue: init is true, value: ", value);
       result = this.getInitValueFromModel().pipe(
         map((formValue: FormFieldMetadataValueObject) => formValue.display)
       );
