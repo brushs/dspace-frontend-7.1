@@ -33,11 +33,11 @@ export class FormFieldMetadataValueObject implements MetadataValueInterface {
               otherInformation: any = null,
     metadata: string = null, private translationService: TranslateService = null) {
     // FOSRC console loging to be removed
-    if (isNotNull(value) && typeof value === 'string') {
+    /*if (isNotNull(value) && typeof value === 'string') {
       console.log("FormFieldMetadataValueObject: StringValue: %s display: %s metadata: %s", value, display, metadata);
     } else if (isNotNull(value)) {
       console.log("FormFieldMetadataValueObject: ObjectValue:", value);
-    }
+    }*/
     //FOSRC inject this into this file to translate keys
     this.value = isNotNull(value) ? ((typeof value === 'string') ? value.trim() : value) : null;
     //this.translationService = AppInjector.get(TranslateService);
@@ -64,7 +64,7 @@ export class FormFieldMetadataValueObject implements MetadataValueInterface {
 
     this.otherInformation = otherInformation;
     // FOSRC console loggin to be removed 
-    console.log("FormFieldMetadataValueObject: Everything: ", this);
+    //console.log("FormFieldMetadataValueObject: Everything: ", this);
   }
 
   /**
