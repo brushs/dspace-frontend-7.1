@@ -13,7 +13,6 @@ import { Injectable } from '@angular/core';
 import { getDSORoute } from '../../app-routing-paths';
 import { LocaleService } from '../../core/locale/locale.service';
 
-
 /**
  * Service to calculate DSpaceObject breadcrumbs for a single part of the route
  */
@@ -21,7 +20,7 @@ import { LocaleService } from '../../core/locale/locale.service';
   providedIn: 'root'
 })
 export class DSOBreadcrumbsService implements BreadcrumbsProviderService<ChildHALResource & DSpaceObject> {
-  // * @param {TranslateService} translateService
+  // * @param {LocalService} localeService
   constructor(
     private linkService: LinkService,
     private dsoNameService: DSONameService,
