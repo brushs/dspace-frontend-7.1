@@ -11,6 +11,8 @@ import { RemoteData } from '../data/remote-data';
 import { hasValue } from '../../shared/empty.util';
 import { Injectable } from '@angular/core';
 import { getDSORoute } from '../../app-routing-paths';
+import { LocaleService } from '../../core/locale/locale.service';
+
 
 /**
  * Service to calculate DSpaceObject breadcrumbs for a single part of the route
@@ -19,9 +21,11 @@ import { getDSORoute } from '../../app-routing-paths';
   providedIn: 'root'
 })
 export class DSOBreadcrumbsService implements BreadcrumbsProviderService<ChildHALResource & DSpaceObject> {
+  // * @param {TranslateService} translateService
   constructor(
     private linkService: LinkService,
-    private dsoNameService: DSONameService
+    private dsoNameService: DSONameService,
+    private localeService: LocaleService
   ) {
 
   }
@@ -34,7 +38,34 @@ export class DSOBreadcrumbsService implements BreadcrumbsProviderService<ChildHA
    */
   getBreadcrumbs(key: ChildHALResource & DSpaceObject, url: string): Observable<Breadcrumb[]> {
     const label = this.dsoNameService.getName(key);
-    const crumb = new Breadcrumb(label, url);
+
+    /**
+     * Start of change for FOSRC, ticket 1432
+     * Translating the breadcrums to right language based on current language.
+     * Only need to handle Items, community and collections are handled differently.
+     */
+    // 
+    let enTitle:string;
+    let frTitle:string;
+    try {
+      const titleObj = JSON.parse(label);
+      enTitle = titleObj.en;
+      frTitle = titleObj.fr;
+    }
+    catch (e: unknown) { 
+      // leave community and collections without touching.
+      enTitle = label;
+      frTitle = label;
+    }
+    let crumbLabel:string;
+    if (this.localeService.getCurrentLanguageCode() === "fr"){
+      crumbLabel = frTitle;
+    }else {
+      crumbLabel = enTitle;
+    }
+    /**End of FOSRC changes. */
+
+    const crumb = new Breadcrumb(crumbLabel, url);
     const propertyName = key.getParentLinkKey();
     return this.linkService.resolveLink(key, followLink(propertyName))[propertyName].pipe(
       find((parentRD: RemoteData<ChildHALResource & DSpaceObject>) => parentRD.hasSucceeded || parentRD.statusCode === 204),
