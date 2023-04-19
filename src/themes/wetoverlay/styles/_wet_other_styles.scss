@@ -127,7 +127,52 @@ legend {
  }
 
 
- 
+ .nav-tabs {
+  // border-bottom: 1px solid #bbbfc5;
+  // border-bottom: none;
+  border-top: none;
+  margin-bottom: 5px;
+ }
+
+
+ .nav-tabs .nav-link {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: #f8f9fa;
+  border-color: #{$gray-300} !important;
+  border-radius: 0;
+  display: grid;
+  margin-left:5px; 
+}
+// Media query for edit pages nav-tabs
+@media screen and (max-width: 640px) {
+  .nav {
+      padding-left:2px;
+      padding-right:2px;
+  }
+  .nav li {
+      display:block !important;
+      width:100%;
+      margin:0px;
+  }
+  .nav li.active {
+      border-bottom:1px solid #ddd!important;
+      margin: 0px;
+  }
+}
+
+// Nav tabs to have gcweb style
+.nav-tabs .nav-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-top-right-radius: 0;
+}
+
+.nav-tabs .nav-item:last-child {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-top-left-radius: 0;
+}
+
 // Link colors for navigation links on Focus, Hover and Active states
 .nav-tabs a.nav-link:focus {
   color: black !important;
@@ -147,7 +192,9 @@ legend {
 }
 
 .nav-tabs .nav-link.active {
-  border-top-width: 4px;
+  border-top-width: 4px !important;
+  font-weight: bold !important;
+  border-bottom: none;
 }
 
 a.nav-link:active, a.nav-link:focus, a.nav-link:hover {
@@ -259,7 +306,7 @@ sidebar-section a {
   border-top-width: 4px !important;
   z-index: 2;
   background-color: white;
-  border-color: #{$gray-300};;
+  border-color: #{$gray-300};
   color: black !important;
   font-weight: bold;
   border-bottom: none;
