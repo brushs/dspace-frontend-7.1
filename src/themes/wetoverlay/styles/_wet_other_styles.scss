@@ -131,6 +131,7 @@ legend {
   // border-bottom: 1px solid #bbbfc5;
   // border-bottom: none;
   border-top: none;
+  border-bottom: none;
   margin-bottom: 5px;
  }
 
@@ -148,7 +149,10 @@ legend {
   .nav {
       padding-left:2px;
       padding-right:2px;
+      display: flex;
+      position: static;
   }
+
   .nav li {
       display:block !important;
       width:100%;
