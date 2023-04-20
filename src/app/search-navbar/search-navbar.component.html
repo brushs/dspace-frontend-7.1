@@ -1,0 +1,19 @@
+<div id="search-navbar-container" [title]="'nav.search' | translate" (dsClickOutside)="collapse()">
+  <div class="d-inline-block position-relative">
+    <section>
+      <h2 hidden="true">{{'nav.search' | translate}}</h2>
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)" autocomplete="on">
+        <input #searchInput [@toggleAnimation]="isExpanded" name="query"
+             formControlName="query" type="text" placeholder="{{searchExpanded ? ('nav.search' | translate) : ''}}"
+             class="d-inline-block bg-transparent position-absolute form-control dropdown-menu-right p-1">
+        <a class="submit-icon" [routerLink]="" [attr.aria-label]="('nav.search' | translate)" (click)="searchExpanded ? onSubmit(searchForm.value) : expand()">
+            <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+            <!-- <em class="fas fa-search fa-lg fa-fw"></em>-->
+            <span class="fas fa-search fa-lg fa-fw"></span>
+            <span class="wb-inv">{{'nav.search' | translate}}</span>
+          <!-- End OSPR Changes -->
+        </a>
+      </form>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+@media screen and (min-width: map-get($grid-breakpoints, md)) {
+    dt {
+        text-align: right;
+    }
+    dd {
+        word-break: break-word;
+        word-wrap: break-word;
+        overflow-wrap: break-word;      
+    }
+}

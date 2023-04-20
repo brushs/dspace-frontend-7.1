@@ -1,0 +1,154 @@
+<ds-loading *ngIf="(dataSource.loading$ | async) && !loadingNode" class="ds-loading"></ds-loading>
+<!-- OSPR change - switch to gcweb template -->
+<ul class="list-unstyled">
+  <ng-container *ngFor="let node of (dataSource['communityList$'] | async); let i = index; let first = first;">
+      <li [style.padding-left]="(node.level * 40) + 'px'">
+        
+        <!-- Nodes with child nodes/subcommunities/nested content -->
+        <ng-container *ngIf="(node.isExpandable$ | async)">
+        
+            <details class="pb-0" [attr.open]= "node.isExpanded? '': null" >
+              <summary #toggle [attr.aria-label]="'toggle ' + node.name" [attr.id]="'parent-node-' + node.id" class="mb-0" (click)="toggleExpanded(node)" (keydown.enter)="$event.preventDefault();toggle.click()" (keydown.space)="$event.preventDefault();toggle.click()">
+                <a (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" (keydown.space)="$event.stopPropagation()" [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" >
+                  {{('dc.title' | metaTranslate : node.payload)[0]?.value }}
+                </a>
+                <div class="row" *ngIf="node?.payload?.shortDescription">
+                  <div class="col">
+                    <sub>{{node.payload.shortDescription}}</sub>
+                  </div>
+                </div>
+              </summary>
+            </details>
+
+          </ng-container>
+
+          <!-- Nodes without child nodes/subcommunities/nested content -->
+          <ng-container *ngIf="!(node.isExpandable$ | async)">
+            
+            <div class="well well-sm bg-white leaf-node">
+              <a [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" >
+                {{ ('dc.title' | metaTranslate : node.payload)[0]?.value }}
+              </a>
+              <div class="row" *ngIf="node?.payload?.shortDescription">
+                <div class="col">
+                  <sub>{{node.payload.shortDescription}}</sub>
+                </div>
+              </div>
+            </div>
+          
+          </ng-container>
+
+          <!-- Nodes with "show more" content -->
+          <ng-container *ngIf="node.isShowMoreNode">
+
+            <div class="well well-sm bg-white mb-1 leaf-node">
+              <a *ngIf="node!==loadingNode" [routerLink]="" (click)="getNextPage(node)" role="button">
+                <span aria-hidden="true" class="fas fa-angle-down"></span> {{ 'communityList.showMore' | translate }}
+              </a>
+            </div>
+            
+          </ng-container>
+
+    </li>
+    <li *ngIf="(node===loadingNode) && (dataSource.loading$ | async)" [style.padding-left]="((node.level+1) * 40) + 'px'">
+      <ds-loading class="ds-loading"></ds-loading>
+    </li>
+  </ng-container>
+</ul>
+<!-- OSPR change to gcweb template end -->
+
+<!-- <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl"> -->
+  <!-- This is the tree node template for show more node -->
+  <!-- <cdk-tree-node *cdkTreeNodeDef="let node; when: isShowMore" cdkTreeNodePadding
+                 class="example-tree-node show-more-node">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" cdkTreeNodeToggle>
+        <span class="fa fa-chevron-right invisible" aria-hidden="true"></span>
+      </button>
+      <div class="align-middle pt-2">
+        <a *ngIf="node!==loadingNode" [routerLink]="" (click)="getNextPage(node)"
+           class="btn btn-outline-primary btn-sm" role="button">
+           <span aria-hidden="true" class="fas fa-angle-down"></span> {{ 'communityList.showMore' | translate }}
+        </a>
+        <ds-loading *ngIf="node===loadingNode && dataSource.loading$ | async" class="ds-loading"></ds-loading>
+      </div>
+    </div>
+    <div class="text-muted" cdkTreeNodePadding>
+      <div class="d-flex">
+      </div>
+    </div>
+  </cdk-tree-node> -->
+  <!-- This is the tree node template for expandable nodes (coms and subcoms with children) -->
+  <!-- <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding
+                 class="example-tree-node expandable-node">
+    <div class="btn-group"> -->
+      <!-- OSPR change start -->
+      <!-- <button type="button" class="btn btn-default" cdkTreeNodeToggle
+              [id]="'parent-node-' + node.id"
+              [title]="'toggle ' + node.name"
+              [attr.aria-label]="'toggle ' + node.name"
+              (click)="toggleExpanded(node)"
+              [ngClass]="(hasChild(null, node)| async) ? 'visible' : 'invisible'"> -->
+      <!-- OSPR change end -->
+        <!-- <span class="{{node.isExpanded ? 'fa fa-chevron-down' : 'fa fa-chevron-right'}}"
+              aria-hidden="true"></span>
+      </button> -->
+      <!-- OSPR change start -->
+      <!-- <span class="align-middle pt-2">
+        <a [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" class="lead">
+          {{('dc.title' | metaTranslate : node.payload)[0]?.value }}
+        </a>
+      </span> -->
+      <!-- OSPR change end h1 to span -->
+    <!-- </div>
+    <ds-truncatable [id]="node.id">
+      <div class="text-muted" cdkTreeNodePadding>
+        <div class="d-flex" *ngIf="node.payload.shortDescription">
+          <button type="button" class="btn btn-default invisible">
+            <span class="{{node.isExpanded ? 'fa fa-chevron-down' : 'fa fa-chevron-right'}}"
+                  aria-hidden="true"></span>
+          </button>
+          <ds-truncatable-part [id]="node.id" [minLines]="3">
+            <span [lang]="('dc.description.abstract' | metaTranslate : node.payload)[0]?.language">{{('dc.description.abstract' | metaTranslate : node.payload)[0]?.value }}</span>
+          </ds-truncatable-part>
+        </div>
+      </div>
+    </ds-truncatable>
+    <div class="d-flex" *ngIf="node===loadingNode && dataSource.loading$ | async"
+         cdkTreeNodePadding>
+      <button type="button" class="btn btn-default invisible">
+        <span class="{{node.isExpanded ? 'fa fa-chevron-down' : 'fa fa-chevron-right'}}"
+              aria-hidden="true"></span>
+      </button>
+      <ds-loading class="ds-loading"></ds-loading>
+    </div>
+  </cdk-tree-node> -->
+  <!-- This is the tree node template for leaf nodes (collections and (sub)coms without children) -->
+  <!-- <cdk-tree-node *cdkTreeNodeDef="let node; when: !(hasChild && isShowMore)" cdkTreeNodePadding
+                 class="example-tree-node childless-node">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" cdkTreeNodeToggle>
+                <span class="fa fa-chevron-right invisible"
+                      aria-hidden="true"></span>
+      </button>
+      <h6 class="align-middle pt-2">
+        <a [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" class="lead">
+          {{('dc.title' | metaTranslate : node.payload)[0]?.value }}
+        </a>
+      </h6>
+    </div>
+    <ds-truncatable [id]="node.id">
+      <div class="text-muted" cdkTreeNodePadding>
+        <div class="d-flex" *ngIf="node.payload.shortDescription">
+          <button type="button" class="btn btn-default invisible">
+            <span class="{{node.isExpanded ? 'fa fa-chevron-down' : 'fa fa-chevron-right'}}"
+                  aria-hidden="true"></span>
+          </button>
+          <ds-truncatable-part [id]="node.id" [minLines]="3">
+            <span [lang]="('dc.description.abstract' | metaTranslate : node.payload)[0]?.language">{{('dc.description.abstract' | metaTranslate : node.payload)[0]?.value }}</span>
+          </ds-truncatable-part>
+        </div>
+      </div>
+    </ds-truncatable>
+  </cdk-tree-node>
+</cdk-tree> -->

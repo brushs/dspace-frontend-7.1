@@ -1,0 +1,76 @@
+<!--the OSPR changes shown here have been implemented at both the theme and the app level-->
+<div class="item-metadata">
+  <div class="button-row top d-flex mb-2">
+    <button class="mr-auto btn btn-success"
+            (click)="add()">
+      <span aria-hidden="true" class="fas fa-plus"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.add-button" | translate}}</span>
+    </button>
+    <button class="btn btn-warning" *ngIf="isReinstatable() | async"
+            (click)="reinstate()">
+      <span aria-hidden="true" class="fas fa-undo-alt"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.reinstate-button" | translate}}</span>
+    </button>
+    <!--OSPR fix begins here-->
+    <!--[disabled]="!(hasChanges() | async) || !(isValid() | async)"-->
+    <button class="btn btn-primary"
+            [disabled]="false"
+            (click)="submit()">
+      <span aria-hidden="true" class="fas fa-save"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.save-button" | translate}}</span>
+    </button>
+    <!--[disabled]="!(hasChanges() | async)"-->
+    <button class="btn btn-danger" *ngIf="!(isReinstatable() | async)"
+            [disabled]="false"
+            (click)="discard()">
+      <span aria-hidden="true" class="fas fa-times"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.discard-button" | translate}}</span>
+    </button>
+    <!--OSPR fix ends here-->
+  </div>
+  <table class="table table-responsive table-striped table-bordered" *ngIf="((updates$ | async)| dsObjectValues).length > 0">
+    <tbody>
+      <tr>
+        <th><span id="fieldName">{{'item.edit.metadata.headers.field' | translate}}</span></th>
+        <th><span id="fieldValue">{{'item.edit.metadata.headers.value' | translate}}</span></th>
+        <th class="text-center"><span id="fieldLang">{{'item.edit.metadata.headers.language' | translate}}</span></th>
+        <th class="text-center">{{'item.edit.metadata.headers.edit' | translate}}</th>
+      </tr>
+      <tr *ngFor="let updateValue of ((updates$ | async)| dsObjectValues); trackBy: trackUpdate"
+          ds-edit-in-place-field
+          [fieldUpdate]="updateValue || {}"
+          [url]="url"
+          [ngClass]="{
+                'table-warning': updateValue.changeType === 0,
+                'table-danger': updateValue.changeType === 2,
+                'table-success': updateValue.changeType === 1
+            }">
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="((updates$ | async)| dsObjectValues).length == 0">
+    <ds-alert [content]="'item.edit.metadata.empty'" [type]="AlertTypeEnum.Info"></ds-alert>
+  </div>
+  <div class="button-row bottom">
+    <div class="mt-2 float-right">
+      <button class="btn btn-warning" *ngIf="isReinstatable() | async"
+              (click)="reinstate()">
+        <span aria-hidden="true" class="fas fa-undo-alt"></span> {{"item.edit.metadata.reinstate-button" | translate}}
+      </button>
+      <!--OSPR fix starts here-->
+      <!--[disabled]="!(hasChanges() | async)"-->
+      <button class="btn btn-primary mr-0"
+              [disabled]="false"
+              (click)="submit()">
+        <span aria-hidden="true" class="fas fa-save"></span> {{"item.edit.metadata.save-button" | translate}}
+      </button>
+      <!--[disabled]="!(hasChanges() | async)"-->
+      <button class="btn btn-danger" *ngIf="!(isReinstatable() | async)"
+              [disabled]="false"
+              (click)="discard()">
+        <span aria-hidden="true" class="fas fa-times"></span> {{"item.edit.metadata.discard-button" | translate}}
+      </button>
+      <!--OSPR fix ends here-->
+    </div>
+  </div>
+</div>

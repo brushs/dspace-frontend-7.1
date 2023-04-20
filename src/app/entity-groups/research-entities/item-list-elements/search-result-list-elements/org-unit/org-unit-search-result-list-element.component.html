@@ -1,0 +1,19 @@
+<!-- OSPR Changes - Re-structure to ensure semantic correctness and introduce paragraphs where needed -->
+<ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+<ds-truncatable [id]="dso.id">
+  <p>
+    <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
+      rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead"
+      lang="{{('dc.title' | metaTranslate: dso)[0]?.language}}">{{('dc.title' | metaTranslate: dso)[0]?.value}}</a>
+      <!-- [innerHTML]="firstMetadataValue('organization.legalName')"></a> -->
+
+    <span *ngIf="linkType == linkTypes.None" class="lead"
+      [innerHTML]="firstMetadataValue('organization.legalName')"></span>
+  </p>
+  <ds-truncatable-part *ngIf="dso.allMetadata(['dc.description']).length > 0" 
+    [id]="dso.id"
+    [minLines]="3">
+    <p class="text-muted"><span [innerHTML]="firstMetadataValue('dc.description')"></span></p>
+  </ds-truncatable-part>
+</ds-truncatable>
+<!-- End changes -->

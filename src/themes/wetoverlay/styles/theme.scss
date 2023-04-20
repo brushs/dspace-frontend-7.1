@@ -1,0 +1,20 @@
+// This file combines the other scss files in to one. You usually shouldn't edit this file directly
+
+@import './_theme_sass_variable_overrides.scss';
+@import '../../../styles/_variables.scss';
+@import '../../../styles/_mixins.scss';
+@import '../../../styles/helpers/font_awesome_imports.scss';
+@import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../../../node_modules/nouislider/distribute/nouislider.min';
+@import '../../../styles/_custom_variables.scss';
+@import './_theme_css_variable_overrides.scss';
+@import '../../../styles/bootstrap_variables_mapping.scss';
+@import '../../../styles/_truncatable-part.component.scss';
+@import './wet-theme.scss'; // Imported but wrapped so only the header and footer gets the changes
+@import './_button_styles.scss';
+@import './_alert_styles.scss';
+@import './_form_styles.scss';
+@import './heading_styles';
+@import './_wet_other_styles.scss';
+@import './_global-styles.scss';
+@import './_klaro_styles.scss';

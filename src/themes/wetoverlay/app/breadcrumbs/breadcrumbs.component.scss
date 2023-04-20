@@ -1,0 +1,33 @@
+.nav-breadcrumb {
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    max-width: 960px;
+    width: fit-content;
+}
+
+.breadcrumb {
+  border-radius: 0;
+  margin-top: calc(-1 * var(--ds-content-spacing));
+  padding-bottom: var(--ds-content-spacing / 3);
+  padding-top: var(--ds-content-spacing / 3);
+  background-color: #ffffff;
+}
+//  color: var(--ds-breadcrumb-link-color) !important;
+li.breadcrumb-item > a {
+  color: var(--gcweb-link-color);
+  text-decoration: underline;
+}
+li.breadcrumb-item.active {
+  color: var(--ds-breadcrumb-link-active-color) !important;
+  font-style: normal;
+}
+// Added visited link color exclusively for breadcrumbs
+li.breadcrumb-item > a:visited {
+  color: var(--gcweb-link-visited-color) !important;
+}
+
+.breadcrumb-item+ .breadcrumb-item::before {
+  content: quote(">") !important;
+}

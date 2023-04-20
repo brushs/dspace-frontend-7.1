@@ -1,0 +1,8 @@
+stages:
+  - accessibility
+   
+variables:
+  a11y_urls: "https://dev.ospr.link https://www.ospr.link https://www.ospr.link/home https://dev.ospr.link/home https://www.ospr.link/search?spc.page=1 https://dev.ospr.link/search?spc.page=1"
+   
+include:
+  - template: "Verify/Accessibility.gitlab-ci.yml"

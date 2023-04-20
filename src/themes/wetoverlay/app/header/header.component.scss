@@ -1,0 +1,67 @@
+
+.navbar-brand img {
+    max-height: var(--ds-header-logo-height);
+    max-width: 125%;
+    width: 125%;
+    @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+      max-height: var(--ds-header-logo-height-xs);
+    }
+  }
+ .modal-header{
+   border-bottom: 0px;
+   padding-top: 0px;
+   padding-bottom: 0px;
+ } 
+  .navbar-toggler .navbar-toggler-icon {
+    background-image: none !important;
+    line-height: 1.5;
+  }
+  
+  .navbar ::ng-deep {
+    a {
+      color: var(--ds-header-icon-color);
+  
+      &:hover, &focus {
+        color: var(--ds-header-icon-color-hover);
+      }
+    }
+  }
+  
+      
+.wet-skiplink__container {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.wet-skiplink__link {
+  height: 0;
+  font-size: 0;
+}
+
+.wet-skiplink__link:focus {
+  background-color: #26384a;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  height: auto;
+  font-size: 16px;
+}
+
+.wet-skiplink__link:hover {
+  color: white;
+  background-color: #444;
+}
+
+.wb-slc {
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 100%;
+  z-index: -1; 
+  display: block !important;
+}
+  

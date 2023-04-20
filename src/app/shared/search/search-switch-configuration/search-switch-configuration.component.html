@@ -1,0 +1,15 @@
+<div *ngIf="configurationList?.length > 1" class="search-switch-configuration">
+   <!-- OSPR Changes-->
+  <h2 id="configuration-switch">{{ 'search.switch-configuration.title' | translate}}</h2>
+  <!-- h5 to h2 -->
+  <select class="form-control"
+          aria-labelledby="configuration-switch"
+          [compareWith]="compare"
+          [(ngModel)]="selectedOption"
+          (change)="onSelect()">
+    <option *ngFor="let option of configurationList;" [ngValue]="option.value">
+      {{option.label | translate}}
+    </option>
+  </select>
+
+</div>

@@ -1,0 +1,23 @@
+:host ::ng-deep {
+    .fa-chevron-right {
+        padding-left: calc(var(--bs-spacer) / 2);
+        font-size: 0.5rem;
+        line-height: 3;
+    }
+
+    .sidebar-sub-level-items {
+        list-style: disc;
+        color: var(--bs-navbar-light-color);
+        overflow: hidden;
+
+    }
+
+    .sidebar-collapsible {
+        display: flex;
+        flex-direction: column;
+    }
+
+    li.sidebar-section.expanded {
+      background-color: var(--ds-admin-sidebar-active-bg) !important;
+    }
+}

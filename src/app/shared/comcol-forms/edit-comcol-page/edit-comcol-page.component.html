@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between border-bottom">
+        <!-- OSPR Changes- modifying h2 to h1-->
+        <h1 id="wb-cont">{{ type + '.edit.head' | translate }}</h1>
+        <!-- modified h2 to h1-->
+        <div>
+          <a class="btn btn-danger"
+             [routerLink]="((type === 'community') ? '/communities/' : '/collections/') + (dsoRD$ | async)?.payload.uuid + '/delete'">
+            <span aria-hidden="true" class="fas fa-trash"></span> {{type + '.edit.delete' | translate}}</a>
+        </div>
+      </div>
+      <div class="pt-2">
+        <ul class="nav nav-tabs justify-content-start mb-2">
+          <li *ngFor="let page of pages" class="nav-item">
+            <a class="nav-link"
+               [ngClass]="{'active' : page === currentPage}"
+               [routerLink]="['./' + page]">
+              {{ type + '.edit.tabs.' + page + '.head' | translate}}
+            </a>
+          </li>
+        </ul>
+        <div class="tab-pane active">
+          <div class="mb-4">
+            <router-outlet></router-outlet>
+          </div>
+          <div class="col-12 text-right">
+            <a *ngIf="!hideReturnButton" [routerLink]="getPageUrl((dsoRD$ | async)?.payload)" class="btn btn-outline-secondary">
+              <span aria-hidden="true" class="fas fa-arrow-left"></span> {{ type + '.edit.return' | translate }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

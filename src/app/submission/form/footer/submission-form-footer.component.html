@@ -1,0 +1,81 @@
+<!--the OSPR changes shown here have been implemented at both the theme and the app level-->
+<div class="row" *ngIf="!!submissionId">
+  <div class="col">
+    <button *ngIf="(showDepositAndDiscard | async)"
+            type="button"
+            class="btn btn-danger"
+            [disabled]="(processingSaveStatus | async) || (processingDepositStatus | async)"
+            (click)="$event.preventDefault();confirmDiscard(content)">
+      <span aria-hidden="true" class="fas fa-trash"></span> {{'submission.general.discard.submit' | translate}}
+    </button>
+  </div>
+  <div class="col text-right d-flex justify-content-end align-items-center">
+    <span *ngIf="!(hasUnsavedModification | async) && !(processingSaveStatus | async) && !(processingDepositStatus | async)">
+      <span aria-hidden="true" class="fas fa-check-circle"></span> {{'submission.general.info.saved' | translate}}
+    </span>
+    <span *ngIf="(hasUnsavedModification | async) && !(processingSaveStatus | async) && !(processingDepositStatus | async)">
+      <span aria-hidden="true" class="fas fa-exclamation-circle"></span> {{'submission.general.info.pending-changes' | translate}}
+    </span>
+    <div *ngIf="(processingSaveStatus | async) || (processingDepositStatus | async)" class="col d-flex justify-content-end align-items-center">
+      <div class="progress w-75">
+        <div *ngIf="(processingSaveStatus | async)" class="progress-bar progress-bar-striped progress-bar-animated bg-info" [style.width]="'100%'" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Saving...</div>
+        <div *ngIf="(processingDepositStatus | async)" class="progress-bar progress-bar-striped progress-bar-animated bg-info" [style.width]="'100%'" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Depositing...</div>
+      </div>
+    </div>
+    <div class="ml-2">
+      <!-- OSPR change starts here -->
+      <!-- Notes:
+             1. The following line has been removed below
+              [disabled]="(processingSaveStatus | async) || !(hasUnsavedModification | async)"
+             2. Hence the button has been enabled, but further work may be needed to ensure that the proper error messages
+                are diaplayed -->
+      <button type="button"
+              class="btn btn-secondary"
+              id="save"
+              [disabled]="false"
+              (click)="save($event)">
+        <span><span aria-hidden="true" class="fas fa-save"></span> {{'submission.general.save' | translate}}</span>
+      </button>
+      <!-- OSPR change ends here -->
+      <button type="button"
+              [class.btn-primary]="!(showDepositAndDiscard | async)"
+              [class.btn-secondary]="(showDepositAndDiscard | async)"
+              class="btn"
+              id="saveForLater"
+              [disabled]="(processingSaveStatus | async) || (processingDepositStatus | async)"
+              (click)="saveLater($event)">
+        <span><span aria-hidden="true" class="fas fa-save"></span> {{'submission.general.save-later' | translate}}</span>
+      </button>
+      <!-- OSPR change starts here -->
+      <!-- Notes:
+             1. The following line has been removed below
+                [disabled]="(submissionIsInvalid | async) || (processingSaveStatus | async) || (processingDepositStatus | async)"
+             2. Hence the button has been enabled, but further work may be needed to ensure that the proper error messages
+                are diaplayed -->
+      <button *ngIf="(showDepositAndDiscard | async)"
+              type="button"
+              class="btn btn-success"
+              [disabled]="false"
+              (click)="deposit($event)">
+        <span><span aria-hidden="true" class="fas fa-plus"></span> {{'submission.general.deposit' | translate}}</span>
+      </button>
+      <!-- OSPR change ends here -->
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title text-danger">{{'submission.general.discard.confirm.title' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('cancel')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{'submission.general.discard.confirm.info' | translate}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('cancel')">{{'submission.general.discard.confirm.cancel' | translate}}</button>
+    <button type="button" class="btn btn-danger" (click)="c('ok')">{{'submission.general.discard.confirm.submit' | translate}}</button>
+  </div>
+</ng-template>

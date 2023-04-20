@@ -1,0 +1,13 @@
+<a *ngIf="isAuthorized$ | async"
+   [routerLink]="[pageRoute, 'edit', 'metadata']"
+   class="edit-button btn btn-dark btn-sm"
+   [ngbTooltip]="tooltipMsg | translate"
+   role="button" [title]="tooltipMsg |translate" [attr.aria-label]="tooltipMsg |translate">
+	
+  <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+  <span aria-hidden="true" class="fas fa-pencil-alt fa-fw"></span>
+  <span class="wb-inv">{{tooltipMsg |translate}}</span>
+  <!-- <i class="fas fa-pencil-alt fa-fw"></i> -->
+<!-- End OSPR Changes -->   
+
+</a>

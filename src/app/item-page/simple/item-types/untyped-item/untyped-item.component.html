@@ -1,0 +1,83 @@
+<div class="d-flex flex-row">
+  <!--FOSRC change start-->
+  <h1 id="wb-cont" class="item-page-title-field mr-auto">
+    {{'official.title' | translate}} <!-- <ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])"></ds-metadata-values> -->
+    <ds-metadata-values [mdValues]="dsoOfficialTitle"></ds-metadata-values>
+  </h1>
+  <!--FOSRC change end (h2 is converted to h1)-->
+  <div class="pl-2">
+    <ds-dso-page-edit-button [pageRoute]="itemPageRoute" [dso]="object" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
+  </div>
+</div>
+<!--div>
+  <h2-- class="item-page-field" *ngIf="dsoAlternativeTitleExists">
+    {{'alternative.title' | translate}}
+    <ds-metadata-values [mdValues]="'dc.title.alternative' | metaTranslate: object "></ds-metadata-values><br />
+    <ds-metadata-values [mdValues]="'dc.title.fosrctransation' | metaTranslate: object "></!--ds-metadata-values>
+    <ds-metadata-values [mdValues]="dsoAlternateTitles"></ds-metadata-values>
+  </h2>
+</div-->
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <ng-container *ngIf="!mediaViewer.image">
+      <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+        <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+      </ds-metadata-field-wrapper>
+    </ng-container>
+    <ng-container *ngIf="mediaViewer.image">
+      <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
+    </ng-container>
+    <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
+    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+    <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
+                                     [parentItem]="object"
+                                     [itemType]="'Person'"
+                                     [metadataFields]="['dc.contributor.author', 'dc.creator']"
+                                     [label]="'relationships.isAuthorOf' | translate">
+    </ds-metadata-representation-list>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['journal.title']"
+                                [label]="'item.page.journal-title'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['journal.identifier.issn']"
+                                [label]="'item.page.journal-issn'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['journalvolume.identifier.name']"
+                                [label]="'item.page.volume-title'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.publisher']"
+                                [label]="'item.page.publisher'">
+    </ds-generic-item-page-field>
+    <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.description']"
+      [label]="'item.page.description'">
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.subject']"
+      [separator]="','"
+      [label]="'item.page.subject'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.identifier.citation']"
+      [label]="'item.page.citation'">
+    </ds-generic-item-page-field>
+    <ds-item-page-uri-field [item]="object"
+      [fields]="['dc.identifier.uri']"
+      [label]="'item.page.uri'">
+    </ds-item-page-uri-field>
+    <ds-item-page-collections [item]="object"></ds-item-page-collections>
+    <div>
+      <a class="btn btn-outline-primary" [routerLink]="[itemPageRoute + '/full']" role="button">
+        <span aria-hidden="true" class="fas fa-info-circle"></span> {{"item.page.link.full" | translate}}
+      </a>
+    </div>
+  </div>
+</div>

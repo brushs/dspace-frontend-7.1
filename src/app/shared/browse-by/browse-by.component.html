@@ -1,0 +1,75 @@
+<ng-container *ngVar="(objects$ | async) as objects">
+  <!-- OSPR Changes- modifying h3 to h1-->
+  <h1 id="wb-cont" [ngClass]="{'sr-only': parentname }" >{{title | translate}}</h1>
+  <!-- modified h3 to h1-->
+  <section>
+  <ng-container *ngComponentOutlet="getStartsWithComponent(); injector: objectInjector;"></ng-container>
+  <div *ngIf="objects?.hasSucceeded && !objects?.isLoading && objects?.payload?.page.length > 0" @fadeIn>
+    <div *ngIf="!enableArrows">
+      <ds-viewable-collection
+        [config]="paginationConfig"
+        [sortConfig]="sortConfig"
+        [objects]="objects">
+      </ds-viewable-collection>
+    </div>
+    <div *ngIf="enableArrows">
+      <!--DSPR Sprint5 issue 248/249/250/251-->
+      <div class="row">
+        <div class="result-order-settings">
+          <ds-sidebar-dropdown
+                  *ngIf="sortConfig"
+                  [id]="'search-sidebar-sort'"
+                  [label]="'search.sidebar.settings.sort-by'"
+                  (change)="reloadOrder($event)"
+          >
+            <option *ngFor="let direction of (sortDirections | dsKeys)"
+                    [value]="sortConfig.field + ',' + direction.key"
+                    [selected]="direction.value === (sortConfig.direction)? 'selected': null">
+                {{'sorting.' + direction.key | translate}}
+            </option>
+          </ds-sidebar-dropdown>
+        </div>
+        <div class="page-size-settings">
+          <ds-sidebar-dropdown
+                  [id]="'search-sidebar-rpp'"
+                  [label]="'search.sidebar.settings.rpp'"
+                  (change)="reloadRPP($event)"
+          >
+            <option *ngFor="let pageSizeOption of paginationConfig?.pageSizeOptions"
+                    [value]="pageSizeOption"
+                    [selected]="pageSizeOption === +(paginationConfig.pageSize) ? 'selected': null">
+                {{pageSizeOption}}
+            </option>
+          </ds-sidebar-dropdown>
+        </div>
+      </div>
+
+      <!--DSPR Sprint5 issue 248/249/250/251-->
+      <ds-pagination
+          [paginationOptions]="paginationConfig"
+          [pageInfoState]="objects?.payload"
+          [collectionSize]="objects?.payload?.totalElements"
+          [sortOptions]="sortConfig"
+          [hideGear]="true"
+          [hidePagerWhenSinglePage]="hidePagerWhenSinglePage"
+          [hidePaginationDetail]="hidePaginationDetail"
+          (pageChange)="onPageChange($event)"
+          (pageSizeChange)="onPageSizeChange($event)"
+          (sortDirectionChange)="onSortDirectionChange($event)"
+          (sortFieldChange)="onSortFieldChange($event)"
+          (paginationChange)="onPaginationChange($event)">
+        <ul class="list-unstyled">
+          <li *ngFor="let object of objects?.payload?.page" class="mt-4 mb-4">
+            <ds-listable-object-component-loader [object]="object"></ds-listable-object-component-loader>
+          </li>
+        </ul>
+      </ds-pagination>
+    </div>
+  </div>
+  <ds-loading *ngIf="!objects || objects?.isLoading" message="{{'loading.browse-by' | translate}}"></ds-loading>
+  <ds-error *ngIf="objects?.hasFailed" message="{{'error.browse-by' | translate}}"></ds-error>
+  <div *ngIf="!objects?.isLoading && objects?.payload?.page.length === 0" class="alert alert-info w-100" role="alert">
+    {{'browse.empty' | translate}}
+  </div>
+  </section>
+</ng-container>

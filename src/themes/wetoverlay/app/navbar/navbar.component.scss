@@ -1,0 +1,57 @@
+nav.navbar {
+
+    align-items: baseline;
+    background-color: none;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -10px;
+    max-width: 1170px;
+}
+
+/** Mobile menu styling **/
+@media screen and (max-width: map-get($grid-breakpoints, md)) {
+    .navbar {
+        width: 100vw;
+        background-color: var(--bs-white);
+        position: absolute;
+        overflow: hidden;
+        height: 0;
+        &.open {
+            height: 100vh; //doesn't matter because wrapper is sticky
+        }
+    }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, md)) {
+    .reset-padding-md {
+        margin-left: calc(var(--bs-spacer) / -2);
+        margin-right: calc(var(--bs-spacer) / -2);
+    }
+}
+
+/* TODO remove when https://github.com/twbs/bootstrap/issues/24726 is fixed */
+.navbar-expand-md.navbar-container {
+    @media screen and (max-width: map-get($grid-breakpoints, md)) {
+        > .container {
+            padding: 0 var(--bs-spacer);
+        }
+        padding: 0;
+    }
+}
+nav.navbar a.nav-link {
+    color: #17A2B8;
+    text-decoration: underline;
+  }
+.navbar-nav {
+  ::ng-deep a.nav-link {
+    color: var(--ds-navbar-link-color);
+    text-decoration: underline;
+  }
+  ::ng-deep a.nav-link:hover {
+    color: #0535D2;
+  }
+}
+
+.login {
+text-decoration: underline;
+}

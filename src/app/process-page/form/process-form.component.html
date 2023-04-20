@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <!-- OSPR Changes- modifying h2 to h1-->
+        <h1 id="wb-cont" class="col-12">
+            {{headerKey | translate}}
+        </h1>
+        <!-- modified h2 to h1-->
+        <div class="col-12 col-md-6">
+            <form #form="ngForm" (ngSubmit)="submitForm(form)">
+                <ds-scripts-select [script]="selectedScript" (select)="selectedScript = $event; parameters = undefined"></ds-scripts-select>
+                <ds-process-parameters [initialParams]="parameters" [script]="selectedScript" (updateParameters)="parameters = $event"></ds-process-parameters>
+                <button [routerLink]="['/processes']" class="btn btn-light float-left">{{ 'process.new.cancel' | translate }}</button>
+                <button type="submit" class="btn btn-light float-right">{{ 'process.new.submit' | translate }}</button>
+            </form>
+        </div>
+        <div class="col-12 col-md-6">
+            <ds-script-help [script]="selectedScript"></ds-script-help>
+        </div>
+    </div>
+
+    <div *ngIf="missingParameters.length > 0" class="mt-3 alert alert-danger validation-error">
+        {{'process.new.parameter.required.missing' | translate}}
+        <ul>
+            <li *ngFor="let missing of missingParameters">{{missing}}</li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<!-- OSPR Changes - Re-structure to ensure semantic correctness and introduce paragraphs where needed -->
+<ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+<ds-truncatable [id]="dso.id">
+  <p>
+    <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
+      rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead" [innerHTML]="name"></a>
+    <span *ngIf="linkType == linkTypes.None" class="lead"
+      [innerHTML]="firstMetadataValue('person.familyName') + ', ' + firstMetadataValue('person.givenName')"></span>
+  </p>
+  <ds-truncatable-part *ngIf="dso.allMetadata(['person.jobTitle']).length > 0" [id]="dso.id" [minLines]="1">
+    <p class="text-muted">
+      <ng-container *ngFor="let value of allMetadataValues(['person.jobTitle']); let last=last;">
+        <span [innerHTML]="value"></span>
+      </ng-container>
+    </p>
+  </ds-truncatable-part>
+</ds-truncatable>
+<!-- End changes -->

@@ -1,0 +1,30 @@
+<!-- <div ngbDropdown class="navbar-nav" *ngIf="moreThanOneLanguage" display="dynamic" placement="bottom-right">
+  <a href="#" role="button"
+     [attr.aria-label]="'nav.language' |translate"
+     [title]="'nav.language' | translate" class="px-1"
+     (click)="$event.preventDefault()" data-toggle="dropdown" ngbDropdownToggle
+     tabindex="0">
+     <i></i> {{ 'Lang.title' | translate }}
+  </a>
+  <ul ngbDropdownMenu class="dropdown-menu" [attr.aria-label]="'nav.language' |translate">
+    <li class="dropdown-item" tabindex="0" #langSelect *ngFor="let lang of translate.getLangs()"
+            (keyup.enter)="useLang(lang)"
+            (click)="useLang(lang)"
+            [class.active]="lang === translate.currentLang">
+                {{ langLabel(lang) }}
+    </li>
+  </ul>
+</div> -->
+
+
+<ng-container *ngIf="moreThanOneLanguage">
+  <a href="#" role="button" [attr.lang]="'nav.language.attribute' | translate"
+    [attr.aria-label]="'nav.language' | translate" 
+    [title]="'nav.language' | translate"
+    (click)="useLang(getAlternateLanguageCode(this.translate.currentLang), $event)" tabindex="0">
+    <span class="d-none d-sm-block">
+      {{ langLabel(getAlternateLanguageCode(this.translate.currentLang)) }}
+    </span>
+    <abbr title="{{ langLabel(getAlternateLanguageCode(this.translate.currentLang)) }}" class="d-block d-sm-none h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">{{ ('nav.language.attribute' | translate) }}</abbr>
+  </a>
+</ng-container>

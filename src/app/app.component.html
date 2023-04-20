@@ -1,0 +1,4 @@
+<ds-themed-root
+  [shouldShowFullscreenLoader]="(isAuthBlocking$ | async) || (isThemeLoading$ | async)"
+  [shouldShowRouteLoader]="isRouteLoading$ | async"
+  [shouldShowWelcome]="loadWelcome$ | async"></ds-themed-root>

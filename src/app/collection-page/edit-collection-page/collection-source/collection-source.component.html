@@ -1,0 +1,72 @@
+<!--the OSPR changes shown here have been implemented at both the theme and app level-->
+<div class="container-fluid">
+  <div class="d-inline-block float-right">
+    <!-- OSPR fix starts here-->
+    <!--[disabled]="!(hasChanges() | async)"-->
+    <button class=" btn btn-danger" *ngIf="!(isReinstatable() | async)"
+            [disabled]="!(hasChanges() | async)"
+            (click)="discard()">
+      <span aria-hidden="true" class="fas fa-times"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.discard-button" | translate}}</span>
+    </button>
+    <!-- OSPR fix ends here-->
+    <button class="btn btn-warning" *ngIf="isReinstatable() | async"
+            (click)="reinstate()">
+      <span aria-hidden="true" class="fas fa-undo-alt"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.reinstate-button" | translate}}</span>
+    </button>
+    <!-- OSPR fix starts here-->
+    <!--[disabled]="!(hasChanges() | async) || !isValid() || (initialHarvestType === harvestTypeNone && contentSource.harvestType === initialHarvestType)"-->
+    <button class="btn btn-primary"
+            [disabled]="false"
+            (click)="onSubmit()">
+      <span aria-hidden="true" class="fas fa-save"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.save-button" | translate}}</span>
+    </button>
+    <!--OSPR fix ends here-->
+  </div>
+  <h4>{{ 'collection.edit.tabs.source.head' | translate }}</h4>
+  <div *ngIf="contentSource" class="form-check mb-4">
+    <input type="checkbox" class="form-check-input" id="externalSourceCheck" [checked]="(contentSource?.harvestType !== harvestTypeNone)" (change)="changeExternalSource()">
+    <label class="form-check-label" for="externalSourceCheck">{{ 'collection.edit.tabs.source.external' | translate }}</label>
+  </div>
+  <ds-loading *ngIf="!contentSource" [message]="'loading.content-source' | translate"></ds-loading>
+  <h4 *ngIf="contentSource && (contentSource?.harvestType !== harvestTypeNone)">{{ 'collection.edit.tabs.source.form.head' | translate }}</h4>
+</div>
+<ds-form *ngIf="formGroup && contentSource && (contentSource?.harvestType !== harvestTypeNone)"
+         [formId]="'collection-source-form-id'"
+         [formGroup]="formGroup"
+         [formModel]="formModel"
+         [formLayout]="formLayout"
+         [displaySubmit]="false"
+         [displayCancel]="false"
+         (dfChange)="onChange($event)"
+         (submitForm)="onSubmit()"
+         (cancel)="onCancel()"></ds-form>
+<div class="container-fluid" *ngIf="(contentSource?.harvestType !== harvestTypeNone)">
+  <div class="d-inline-block float-right">
+    <!--OSPR fix begins here-->
+    <!--[disabled]="!(hasChanges() | async)"-->
+    <button class=" btn btn-danger" *ngIf="!(isReinstatable() | async)"
+            [disabled]="!(hasChanges() | async)"
+            (click)="discard()">
+      <span aria-hidden="true" class="fas fa-times"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.discard-button" | translate}}</span>
+    </button>
+    <!-- OSPR fix ends here-->
+    <button class="btn btn-warning" *ngIf="isReinstatable() | async"
+            (click)="reinstate()">
+      <span aria-hidden="true" class="fas fa-undo-alt"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.reinstate-button" | translate}}</span>
+    </button>
+    <!-- OSPR fix begins here -->
+    <!--[disabled]="!(hasChanges() | async) || !isValid() || (initialHarvestType === harvestTypeNone && contentSource.harvestType === initialHarvestType)"-->
+    <button class="btn btn-primary"
+            [disabled]="false"
+            (click)="onSubmit()">
+      <span aria-hidden="true" class="fas fa-save"></span>
+      <span class="d-none d-sm-inline">&nbsp;{{"item.edit.metadata.save-button" | translate}}</span>
+    </button>
+    <!-- OSPR fix ends here -->
+  </div>
+</div>

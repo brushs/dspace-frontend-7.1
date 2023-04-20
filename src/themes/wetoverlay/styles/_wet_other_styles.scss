@@ -1,0 +1,292 @@
+.underline {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #333333;
+}
+
+.list-group-item.hover {
+  color: #762c29;
+  font-weight: bold;
+  background-color: #E3F2FD;
+}
+
+
+.list-group-item.active {
+  z-index: 2;
+  color: #207698;
+  background-color: #f8f9fa;
+  border-color: #E3F2FD;
+}
+
+
+.dropdown-item.active {
+  color: rgb(0, 0, 0);
+  background-color: #207698;
+}
+
+.dropdown-item.selected {
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  display: block;
+  color: rgb(255, 255, 255);
+  background-color: #26374a;
+}
+
+.align-right {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+// Changed from 207698 to Dark blue
+.text-primary {
+  color: var(--ospr-blue-800) !important;
+}
+
+.text-secondary {
+  color: var(--ospr-blue-500) !important;
+}
+
+.text-light {
+  color: #{$gray-200} !important;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #212529;
+  border-color: #E3F2FD;
+}
+
+// .badge-primary {
+//   color: var(--ospr-blue-800) !important;;
+//   background-color: #fff;
+// }
+
+// .badge-success {
+//   color: #{$green};
+//   background-color: #fff;
+// }
+// // Changed from #207698
+// .badge-info {
+//   color: var(--ospr-blue-800) !important;
+//   background-color: #fff;
+// }
+
+
+
+.navbar-light .navbar-nav .nav-link {
+  color: #212529;
+}
+
+
+.page-link:focus-visible {
+  /* custom focus styles */
+  box-shadow: 0 0 2px 2px #01090f;
+  border-color: blue;
+}
+
+
+.wb-invisible, .wb-inv, .wb-show-onfocus, .wb-sl, #wb-lng h2, #wb-glb-mn h2, #wb-srch h2, #wb-srch label, #wb-sm h2, #wb-bc h2, #wb-sec h2, #wb-info h2, #mb-pnl h3, .wb-calevt-cal .cal-days td ul, .wb-fnote dt, #mb-pnl .srch-pnl label {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px; 
+}
+
+
+.underline {
+  text-decoration: underline;
+}
+
+
+legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
+
+
+
+.no-outline:focus {
+  outline: none;
+}
+
+.navbar-brand {
+	padding: 0px 0px;
+ }
+
+
+ 
+// Link colors for navigation links on Focus, Hover and Active states
+a.nav-link:focus {
+  color: var(--gcweb-link-active-color) !important;
+}
+
+a.nav-link:active {
+  color: var(--gcweb-link-active-color) !important;
+}
+a.nav-link:hover {
+  color: var(--gcweb-link-active-color) !important;
+}
+
+
+
+
+
+// Link colors for links for Focus, Hover and Active
+// Link color was: #295376;
+
+a {
+	text-decoration: none; }
+	a:hover, a:focus, a:active {
+		color: var(--gcweb-link-active-color);
+		text-decoration: underline; }
+	a:focus {
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px; }
+
+  a {
+    text-decoration: underline; }
+    a:visited {
+      color: var(--gcweb-link-visited-color); }
+    a:not([href]) {
+      color: inherit;
+      text-decoration: none; }
+      a:not([href]):hover, a:not([href]):focus {
+        color: inherit;
+        outline: none;
+        text-decoration: none; }
+
+// The links on filters to use link styling on filters
+// Applied none underline for the rest of filters to prevent labels and space to have underline
+.filters a {
+  text-decoration: none !important;
+}
+// Used filter-value to style the text inside filters panel
+.filters a .filter-value {
+  color: var(--gcweb-link-color) !important;
+  text-decoration: underline !important;
+}
+// Also gave gc web visited link color
+.filters a:visited .filter-value {
+  color: var(--gcweb-link-visited-color) !important;
+}
+
+// Nav-tabs are the tabs being used in edit communities and collection pages
+.nav-tabs a {
+  text-decoration: none !important;
+  color: black;
+}
+
+.nav-tabs a:visited {
+  color: black;
+}
+
+// Removed underline on a tags from sidebar
+.sidebar-collapsible a {
+  text-decoration: none !important;
+}
+
+
+sidebar-section a {
+  text-decoration: none !important;
+}
+
+// Pagination not to have link styles on numbered buttons
+.page-link {
+  text-decoration: none !important;
+}
+
+.page-item a:visited {
+  color: black;
+}
+
+
+.comcol-browse a {
+  color: black;
+  text-decoration: none !important;
+}
+
+// Browse tabs on community pages not to have visited link colors
+.comcol-browse a:visited {
+  color: black;
+}
+// Browse tabs a links to have interaction color
+.comcol-browse a:hover {
+  color: var(--gcweb-link-active-color);
+}
+
+.comcol-browse a:focus {
+  color: var(--gcweb-link-active-color);
+}
+
+.comcol-browse a:active {
+  color: var(--gcweb-link-active-color);
+}
+
+.badge:visited {
+  color: black;
+}
+
+// Mouse over:pointer for badges
+  a.badge:hover, a.badge:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer; }
+
+  //  Alignment for btn-link used a tag browse button to drop an attachment file
+ .ds-base-drop-zone .btn-link {
+
+   min-height: auto !important;
+
+  }
+
+
+// Override text and icon colors
+.text-muted {
+	color: #{$gray-650} !important; }
+
+.text-primary {
+	color: #2572b4 !important; }
+
+a.text-primary:hover,
+a.text-primary:focus {
+	color: #1c578a; }
+
+.text-success {
+	color: #3c763d !important; }
+
+a.text-success:hover,
+a.text-success:focus {
+	color: #2b542c; }
+
+.text-info {
+	color: #31708f !important; }
+
+a.text-info:hover,
+a.text-info:focus {
+	color: #245269; }
+
+.text-warning {
+	color: #8a6d3b !important;}
+
+a.text-warning:hover,
+a.text-warning:focus {
+	color: #66512c; }
+
+.text-danger {
+	color: #a94442 !important; }
+
+a.text-danger:hover,
+a.text-danger:focus {
+	color: #843534; }

@@ -1,0 +1,42 @@
+<a [ngClass]="{'btn-sm': small}" class="btn btn-secondary my-1 move-link" [routerLink]="[getMoveRoute()]" [title]="'admin.search.item.move' | translate">
+  <span aria-hidden="true" class="fa fa-arrow-circle-right"></span>
+  <span class="wb-inv">{{"admin.search.item.move" | translate}}</span>
+  <span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.move" | translate}}</span>
+</a>
+
+<a [ngClass]="{'btn-sm': small}" *ngIf="item && item.isDiscoverable" class="btn btn-secondary my-1 private-link" [routerLink]="[getPrivateRoute()]" [title]="'admin.search.item.make-private' | translate">
+    <span aria-hidden="true" class="fa fa-eye-slash"></span>
+    <span class="wb-inv">{{"admin.search.item.make-private" | translate}}</span>
+    <span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.make-private" | translate}}</span>
+</a>
+
+<a [ngClass]="{'btn-sm': small}" *ngIf="item && !item.isDiscoverable" class="btn btn-secondary my-1 public-link" [routerLink]="[getPublicRoute()]" [title]="'admin.search.item.make-public' | translate">
+    <span aria-hidden="true" class="fa fa-eye"></span>
+    <span class="wb-inv">{{"admin.search.item.make-public" | translate}}</span>
+    <span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.make-public" | translate}}</span>
+</a>
+
+<a [ngClass]="{'btn-sm': small}" class="btn btn-secondary my-1 edit-link" [routerLink]="[getEditRoute()]" [title]="'admin.search.item.edit' | translate">
+  <span aria-hidden="true" class="fa fa-edit"></span>
+  <span class="wb-inv">{{"admin.search.item.edit" | translate}}</span>
+  <span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.edit" | translate}}</span>
+</a>
+
+<a [ngClass]="{'btn-sm': small}" *ngIf="item && !item.isWithdrawn" class="btn btn-warning t my-1 withdraw-link" [routerLink]="[getWithdrawRoute()]" [title]="'admin.search.item.withdraw' | translate">
+  <span aria-hidden="true" class="fa fa-ban"></span>
+  <span class="wb-inv">{{"admin.search.item.withdraw" | translate}}</span>
+  <span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.withdraw" | translate}}</span>
+</a>
+
+<a [ngClass]="{'btn-sm': small}" *ngIf="item && item.isWithdrawn" class="btn btn-warning my-1 reinstate-link" [routerLink]="[getReinstateRoute()]" [title]="'admin.search.item.reinstate' | translate">
+  <span aria-hidden="true" class="fa fa-undo"></span>
+  <span class="wb-inv">{{"admin.search.item.reinstate" | translate}}</span>
+  <span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.reinstate" | translate}}</span>
+</a>
+
+<a [ngClass]="{'btn-sm': small}" class="btn btn-danger my-1 delete-link" [routerLink]="[getDeleteRoute()]" [title]="'admin.search.item.delete' | translate">
+    <span aria-hidden="true" class="fa fa-trash"></span>
+    <span class="wb-inv">{{"admin.search.item.delete" | translate}}</span>
+    <span *ngIf="!small" class="d-none d-sm-inline"> {{"admin.search.item.delete" | translate}}</span>
+</a>
+

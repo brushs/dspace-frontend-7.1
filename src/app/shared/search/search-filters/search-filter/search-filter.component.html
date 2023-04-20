@@ -1,0 +1,32 @@
+<div class="facet-filter d-block mb-3 p-3" *ngIf="active$ | async"
+     [id]="regionId" [attr.aria-labelledby]="toggleId" [ngClass]="{ 'focus': focusBox }" role="region">
+  <button (click)="toggle()" (focusin)="focusBox = true" (focusout)="focusBox = false"
+          class="filter-name d-flex" [attr.aria-controls]="regionId" [id]="toggleId"
+          [attr.aria-expanded]="false"
+          [attr.aria-label]="((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate"
+  >
+    <!-- FOSRC Changes started-->
+    <fieldset >
+      <legend class="flex-container">
+          <span>{{'search.filters.filter.' + filter.name + '.head'| translate}}</span>
+          <span class="filter-toggle fas p-auto"
+            [ngClass]="(collapsed$ | async) ? 'fa-plus' : 'fa-minus'"
+            [title]="((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate">
+        </span>
+          <span class="wb-inv">
+            {{filter.name}} {{((collapsed$ | async) ? 'search.filters.filter.' + filter.name + '.expand' : 'search.filters.filter.' + filter.name + '.collapse') | translate}}
+          </span>
+      </legend>
+    </fieldset>
+    <!-- End FOSRC Changes -->
+  </button>
+  
+  <div [@slide]="(collapsed$ | async) ? 'collapsed' : 'expanded'"
+       (@slide.start)="startSlide($event)" (@slide.done)="finishSlide($event)"
+       class="search-filter-wrapper" [ngClass]="{ 'closed' : closed, 'notab': notab }">
+    <ds-search-facet-filter-wrapper
+      [filterConfig]="filter"
+      [inPlaceSearch]="inPlaceSearch">
+    </ds-search-facet-filter-wrapper>
+  </div>
+</div>
