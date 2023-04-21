@@ -15,6 +15,8 @@ import { FormFieldMetadataValueObject } from '../../models/form-field-metadata-v
 import { VocabularyEntry } from '../../../../../core/submission/vocabularies/models/vocabulary-entry.model';
 import { DsDynamicInputModel } from './ds-dynamic-input.model';
 import { PageInfo } from '../../../../../core/shared/page-info.model';
+import { AppInjector } from '../../../../../app.injector';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * An abstract class to be extended by form components that handle vocabulary
@@ -33,12 +35,14 @@ export abstract class DsDynamicVocabularyComponent extends DynamicFormControlCom
   @Output() abstract focus: EventEmitter<any> = new EventEmitter<any>();
 
   public abstract pageInfo: PageInfo;
+  private translationService; //FOSRC inject this into this file to translate keys
 
   protected constructor(protected vocabularyService: VocabularyService,
                         protected layoutService: DynamicFormLayoutService,
                         protected validationService: DynamicFormValidationService
   ) {
     super(layoutService, validationService);
+    this.translationService = AppInjector.get(TranslateService);//FOSRC inject this into this file to translate keys
   }
 
   /**
@@ -63,6 +67,11 @@ export abstract class DsDynamicVocabularyComponent extends DynamicFormControlCom
       initValue$ = initEntry$.pipe(map((initEntry: VocabularyEntry) => {
         if (isNotEmpty(initEntry)) {
           // Integrate FormFieldMetadataValueObject with retrieved information
+          //FOSRC added for key substitution for languge display
+          const display = initEntry.display;
+          if (display && display.startsWith("fosrc.item.edit.dynamic-field.values.")) {
+            initEntry.display = this.translationService.instant(display);
+          }
           return new FormFieldMetadataValueObject(
             initEntry.value,
             null,
@@ -77,6 +86,11 @@ export abstract class DsDynamicVocabularyComponent extends DynamicFormControlCom
         }
       }));
     } else if (isNotEmpty(this.model.value) && (this.model.value instanceof VocabularyEntry)) {
+      //FOSRC added for key substitution for languge display
+      const display = this.model.value.display;
+      if (display && display.startsWith("fosrc.item.edit.dynamic-field.values.")) {
+        this.model.value.display = this.translationService.instant(display);
+      }
       initValue$ = observableOf(
         new FormFieldMetadataValueObject(
           this.model.value.value,

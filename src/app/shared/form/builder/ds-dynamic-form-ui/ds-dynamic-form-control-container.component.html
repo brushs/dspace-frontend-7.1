@@ -24,17 +24,17 @@
 
         </div>
         <div *ngIf="model.languageCodes && model.languageCodes.length > 0" class="col-xs-2" >
-            <select
-                    #language="ngModel"
-                    [disabled]="model.readOnly"
-                    [(ngModel)]="model.language"
-                    class="form-control"
-                    (blur)="onBlur($event)"
-                    (change)="onChangeLanguage($event)"
-                    [ngModelOptions]="{standalone: true}"
-                    required>
-                <option *ngFor="let lang of model.languageCodes" [value]="lang.code">{{lang.display}}</option>
-            </select>
+          <select #language="ngModel"
+                  [disabled]="model.readOnly"
+                  [(ngModel)]="model.language"
+                  class="form-control"
+                  (blur)="onBlur($event)"
+                  (change)="onChangeLanguage($event)"
+                  [ngModelOptions]="{standalone: true}"
+                  required>
+            <!--FOSRC added transalate pipe to lang.display-->
+            <option *ngFor="let lang of model.languageCodes" [value]="lang.code">{{lang.display | translate}}</option>
+          </select>
         </div>
         <div *ngIf="isRelationship" class="col-auto text-center">
             <button class="btn btn-secondary"
@@ -49,31 +49,28 @@
     </div>
     <ng-container *ngTemplateOutlet="endTemplate?.templateRef; context: model"></ng-container>
     <ng-container *ngIf="value?.isVirtual">
-        <ds-existing-metadata-list-element
-                *ngIf="model.hasSelectableMetadata"
-                [reoRel]="relationshipValue$ | async"
-                [submissionItem]="item$ | async"
-                [listId]="listId"
-                [metadataFields]="model.metadataFields"
-                [submissionId]="model.submissionId"
-                [relationshipOptions]="model.relationship"
-                (remove)="onRemove()"
-        >
-        </ds-existing-metadata-list-element>
-        <ds-existing-relation-list-element
-                *ngIf="!model.hasSelectableMetadata"
-                [ngClass]="{'d-block pb-2 pt-2': !context?.index}"
-                [reoRel]="relationshipValue$ | async"
-                [submissionItem]="item$ | async"
-                [listId]="listId"
-                [metadataFields]="model.metadataFields"
-                [submissionId]="model.submissionId"
-                [relationshipOptions]="model.relationship"
-        >
-        </ds-existing-relation-list-element>
-        <small *ngIf="hasHint && (model.repeatable === false || context?.index === context?.context?.groups?.length - 1) && (!showErrorMessages || errorMessages.length === 0)"
+      <!--FOSRC added transalate pipe to [metadataFields]="model.metadataFields" -->
+      <ds-existing-metadata-list-element *ngIf="model.hasSelectableMetadata"
+                                         [reoRel]="relationshipValue$ | async"
+                                         [submissionItem]="item$ | async"
+                                         [listId]="listId"
+                                         [metadataFields]="model.metadataFields"
+                                         [submissionId]="model.submissionId"
+                                         [relationshipOptions]="model.relationship"
+                                         (remove)="onRemove()">
+      </ds-existing-metadata-list-element>
+      <ds-existing-relation-list-element *ngIf="!model.hasSelectableMetadata"
+                                         [ngClass]="{'d-block pb-2 pt-2': !context?.index}"
+                                         [reoRel]="relationshipValue$ | async"
+                                         [submissionItem]="item$ | async"
+                                         [listId]="listId"
+                                         [metadataFields]="model.metadataFields"
+                                         [submissionId]="model.submissionId"
+                                         [relationshipOptions]="model.relationship">
+      </ds-existing-relation-list-element>
+      <small *ngIf="hasHint && (model.repeatable === false || context?.index === context?.context?.groups?.length - 1) && (!showErrorMessages || errorMessages.length === 0)"
              class="text-muted ds-hint" [innerHTML]="model.hint | translate" [ngClass]="getClass('element', 'hint')"></small>
-        <div class="clearfix w-100 mb-2"></div>
+      <div class="clearfix w-100 mb-2"></div>
     </ng-container>
     <ng-content></ng-content>
 </div>

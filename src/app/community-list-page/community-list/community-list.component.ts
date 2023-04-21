@@ -70,7 +70,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
    */
   toggleExpanded(node: FlatNode) {
     this.loadingNode = node;
-    console.log(node)
+    //console.log(node)
     if (node.isExpanded) {
       this.expandedNodes = this.expandedNodes.filter((node2) => node2.name !== node.name);
       node.isExpanded = false;

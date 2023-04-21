@@ -17,6 +17,10 @@ import { RelationshipOptions } from '../models/relationship-options.model';
 import { VocabularyOptions } from '../../../../core/submission/vocabularies/models/vocabulary-options.model';
 import { ParserType } from './parser-type';
 import { isNgbDateStruct } from '../../../date.util';
+import { AppInjector } from '../../../../../app/app.injector';
+import { TranslateService } from '@ngx-translate/core';
+
+
 
 export const SUBMISSION_ID: InjectionToken<string> = new InjectionToken<string>('submissionId');
 export const CONFIG_DATA: InjectionToken<FormFieldModel> = new InjectionToken<FormFieldModel>('configData');
@@ -24,8 +28,8 @@ export const INIT_FORM_VALUES: InjectionToken<any> = new InjectionToken<any>('in
 export const PARSER_OPTIONS: InjectionToken<ParserOptions> = new InjectionToken<ParserOptions>('parserOptions');
 
 export abstract class FieldParser {
-
   protected fieldId: string;
+  private translationService; //FOSRC inject this into this file to translate keys
 
   constructor(
     @Inject(SUBMISSION_ID) protected submissionId: string,
@@ -33,6 +37,7 @@ export abstract class FieldParser {
     @Inject(INIT_FORM_VALUES) protected initFormValues: any,
     @Inject(PARSER_OPTIONS) protected parserOptions: ParserOptions
   ) {
+    this.translationService = AppInjector.get(TranslateService);//FOSRC inject this into this file to translate keys
   }
 
   public abstract modelFactory(fieldValue?: FormFieldMetadataValueObject, label?: boolean): any;
@@ -330,8 +335,8 @@ export abstract class FieldParser {
       this.configData.selectableMetadata.forEach((option, key) => {
         if (key === 0) {
           controlModel.value = option.metadata;
-        }
-        controlModel.options.push({ label: option.label, value: option.metadata });
+        }//FOSRC inject this into this file to translate keys for the labels
+        controlModel.options.push({ label: this.translationService.instant(option.label), value: option.metadata });
       });
     }
   }
