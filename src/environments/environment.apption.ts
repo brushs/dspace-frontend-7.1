@@ -6,7 +6,7 @@ export const environment: Partial<GlobalConfig> = {
   // NOTE: these must be "synced" with the 'dspace.ui.url' setting in your backend's local.cfg.
   ui: {
     ssl: true,
-    host: '0.0.0.0',
+    host: 'dspaceangularsteve.azurewebsites.net',
     port: 4000,
     // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
     nameSpace: '/',
