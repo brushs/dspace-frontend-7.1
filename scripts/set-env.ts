@@ -26,9 +26,21 @@ switch (environment) {
     console.log(`Building ${colors.blue.bold(`test`)} environment`);
     environmentFilePath = '../src/environments/environment.test.ts';
     break;
-  default:
+  case '--sandbox':
+    console.log(`Building ${colors.blue.bold(`sandbox`)} environment`);
+    environmentFilePath = '../src/environments/environment.sandbox.ts';
+    break;
+  case '--dev':
     console.log(`Building ${colors.green.bold(`development`)} environment`);
     environmentFilePath = '../src/environments/environment.dev.ts';
+    break;
+  case '--apption':
+    console.log(`Building ${colors.green.bold(`apption`)} environment`);
+    environmentFilePath = '../src/environments/environment.apption.ts';
+    break;
+  default:
+    console.log(`Building ${colors.green.bold(`local`)} environment`);
+    environmentFilePath = '../src/environments/environment.local.ts';
 }
 
 const processEnv = {
