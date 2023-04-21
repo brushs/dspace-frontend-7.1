@@ -11,7 +11,7 @@ ADD . /app/
 RUN yarn install --network-timeout 300000
 # Set this to control the environmental config used
 ENV NODE_ENV apption
-RUN yarn run set-env
+RUN yarn run set-env apption
 # Set again to control the type of build to be performed
 ENV NODE_ENV development
 RUN yarn run build
