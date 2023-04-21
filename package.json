@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "config:dev": "ts-node --project ./tsconfig.ts-node.json scripts/set-env.ts --dev",
+    "config:apption": "ts-node --project ./tsconfig.ts-node.json scripts/set-env.ts --apption",
+    "config:sandbox": "ts-node --project ./tsconfig.ts-node.json scripts/set-env.ts --sandbox",
     "config:prod": "ts-node --project ./tsconfig.ts-node.json scripts/set-env.ts --prod",
     "config:test": "ts-node --project ./tsconfig.ts-node.json scripts/set-mock-env.ts",
     "config:test:watch": "nodemon --config mock-nodemon.json",
@@ -20,7 +22,6 @@
     "serve": "ts-node --project ./tsconfig.ts-node.json scripts/serve.ts",
     "start:dev": "npm-run-all --parallel config:dev:watch serve",
     "start:prod": "yarn run build:prod && yarn run serve:ssr",
-    "start:local": "npm-run-all --parallel config:local:watch serve",
     "start:apption": "npm-run-all --parallel config:apption:watch serve",
     "start:sandbox": "npm-run-all --parallel config:sandbox:watch serve",
     "analyze": "webpack-bundle-analyzer dist/browser/stats.json",

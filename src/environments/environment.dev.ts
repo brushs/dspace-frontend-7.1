@@ -12,11 +12,11 @@ export const environment = {
 		"baseUrl": "http://localhost:4000/"
 	},
 	"rest": {
-		"ssl": true,
-		"host": "www.dev.ospr.link",
-		"port": 443,
-		"nameSpace": "/server",
-		"baseUrl": "https://www.dev.ospr.link/server"
+		"ssl": false,
+		"host": 'localhost',
+		"port": 8080,
+		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
+		"nameSpace": '/server',
 	},
 	"cache": {
 		"msToLive": {
