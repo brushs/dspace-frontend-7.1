@@ -146,19 +146,19 @@ legend {
 }
 // Media query for edit pages nav-tabs
 @media screen and (max-width: 640px) {
-  .nav {
+  .nav-tabs {
       padding-left:2px;
       padding-right:2px;
       display: flex;
       position: static;
   }
 
-  .nav li {
+  .nav-tabs li {
       display:block !important;
       width:100%;
       margin:0px;
   }
-  .nav li.active {
+  .nav-tabs li.active {
       border-bottom:1px solid #ddd!important;
       margin: 0px;
   }
