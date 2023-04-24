@@ -316,6 +316,8 @@
   "fosrc.item.edit.dynamic-field.hint.series.pagination": "Saisissez la pagination de l'élément.",
   "fosrc.item.edit.dynamic-field.hint.edition": "Saisissez l'édition de l'élément.",
   "fosrc.item.edit.dynamic-field.hint.name.book.title": "Entrez le nom du titre du livre.",
+  //"fosrc.item.edit.dynamic-field.hint.series.book.title": "Enter the series title of the item.",
+  "fosrc.item.edit.dynamic-field.hint.series.book.title": "Saisissez le titre de la série de l'élément.",
   "fosrc.item.edit.dynamic-field.hint.identification.numbers.or.codes": "Si l'article a des numéros d'identification ou des codes qui lui sont associés, veuillez entrer les types et les numéros ou codes réels.",
   "fosrc.item.edit.dynamic-field.hint.types.content": "Sélectionnez le(s) type(s) de contenu de l'élément.",
   "fosrc.item.edit.dynamic-field.hint.conference.start.date": "Saisissez la date de début de la conférence pour l'élément.",
