@@ -11,7 +11,8 @@ import { FormGroup } from '@angular/forms';
 import {
   DynamicFormControlModel,
   DynamicFormService,
-  DynamicInputModel
+  DynamicInputModel,
+  DynamicSelectModel
 } from '@ng-dynamic-forms/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FileUploader } from 'ng2-file-upload';
@@ -139,12 +140,20 @@ export class ComColFormComponent<T extends Collection | Community> implements On
   }
 
   ngOnInit(): void {
+    // FOSRC start
+    let i = 0;
     this.formModel.forEach(
       (fieldModel: DynamicInputModel) => {
+        i++;
         fieldModel.value = this.dso.firstMetadataValue(fieldModel.name);
-        console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value)
+        if (this.dso.firstMetadata(fieldModel.name.replace('-lang',''))?.language &&
+            this.formModel[i] instanceof DynamicSelectModel) {
+          (this.formModel[i] as DynamicSelectModel<any>).select( 0 );//this.dso.firstMetadata(fieldModel.name.replace('-lang',''))?.language === 'fr' ? 1 : 0 );
+        }
+        console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value + " dso.firstMetaData(...).language: " + this.dso.firstMetadata(fieldModel.name.replace('-lang',''))?.language);
       }
     );
+    // FOSRC end
     this.formGroup = this.formService.createFormGroup(this.formModel);
 
     this.updateFieldTranslations();
@@ -224,16 +233,27 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     });
 
     const operations: Operation[] = [];
+    // FOSRC start
+    let i = 0;
     this.formModel.forEach((fieldModel: DynamicInputModel) => {
-      if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name)) {
+      i++;
+      if (i < this.formModel.length && 
+        !fieldModel.name.includes("-lang") && 
+        (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name) ||
+        this.dso.firstMetadata(fieldModel.name)?.language !== (this.formModel[i] as DynamicSelectModel<any>).value)) {
+        let langCode = null;
+        if (this.formModel[i].name.includes('-lang')) {
+          langCode = (this.formModel[i] as DynamicSelectModel<any>).value;
+        }
         operations.push({
           op: 'replace',
           path: `/metadata/${fieldModel.name}`,
           value: {
             value: fieldModel.value,
-            language: null,
+            language: langCode,
           },
         });
+        // FOSRC end
       }
     });
 
