@@ -181,6 +181,7 @@ import { SortablejsModule } from 'ngx-sortablejs';
 import { LogInContainerComponent } from './log-in/container/log-in-container.component';
 import { LogInShibbolethComponent } from './log-in/methods/shibboleth/log-in-shibboleth.component';
 import { LogInPasswordComponent } from './log-in/methods/password/log-in-password.component';
+import { LogInOidcComponent } from './log-in/methods/oidc/log-in-oidc.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { CustomSwitchComponent } from './form/builder/ds-dynamic-form-ui/models/custom-switch/custom-switch.component';
 import { BundleListElementComponent } from './object-list/bundle-list-element/bundle-list-element.component';
@@ -421,6 +422,7 @@ const COMPONENTS = [
   ExistingRelationListElementComponent,
   LogInShibbolethComponent,
   LogInPasswordComponent,
+  LogInOidcComponent,
   LogInContainerComponent,
   ItemVersionsComponent,
   ItemSearchResultListElementComponent,
@@ -509,6 +511,7 @@ const ENTRY_COMPONENTS = [
   SearchAuthorityFilterComponent,
   LogInPasswordComponent,
   LogInShibbolethComponent,
+  LogInOidcComponent,
   BundleListElementComponent,
   ClaimedTaskActionsApproveComponent,
   ClaimedTaskActionsRejectComponent,
