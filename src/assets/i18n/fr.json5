@@ -2393,6 +2393,8 @@
   "login.form.new-user": "Vous n’avez pas encore de compte? Cliquez ici pour vous enregistrer.",
   // "login.form.or-divider": "or",
   "login.form.or-divider": "ou",
+  // "login.form.oidc": "Log in with OIDC",
+  "login.form.oidc": "Connexion par OpenID",
   // "login.form.password": "Password (* Required)",
   "login.form.password": "Mot de passe (* obligatoire)",
   // "login.form.shibboleth": "Log in with Shibboleth",
