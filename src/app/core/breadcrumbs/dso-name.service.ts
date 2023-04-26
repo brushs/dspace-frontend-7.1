@@ -66,17 +66,23 @@ export class DSONameService {
       return originalResult;
     }
 
-    let newResult:string;
+    // if: dso.type.value is collection or community
+    // then: getTranslatedName if available else take getOfficialName
+    // else: getOfficialName
+
+    let translatedName:string;
+    let officialName:string;
     let mdValue:MetadataValue;
     mdValue = this.getTranslatedName(dso, currentLang);
     if(mdValue) 
-      newResult = mdValue.value;
-    if(!newResult) {
-      newResult = this.getOfficialName(dso, currentLang)[0].value;
+    translatedName = mdValue.value;
+    officialName = this.getOfficialName(dso, currentLang)[0].value;
+
+    if(dso.type.value.toLowerCase().includes("item") && translatedName) {
+      return translatedName;
+    } else {
+      return officialName;
     }
-
-    return newResult;
-
   }
   // FOSRC End
 
