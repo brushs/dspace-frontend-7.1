@@ -70,18 +70,18 @@ export class DSONameService {
     // then: getTranslatedName if available else take getOfficialName
     // else: getOfficialName
 
-    let translatedName:string;
-    let officialName:string;
-    let mdValue:MetadataValue;
-    mdValue = this.getTranslatedName(dso, currentLang);
-    if(mdValue) 
-    translatedName = mdValue.value;
+    let translatedName:string = undefined;
+    let officialName:string = undefined;
+    let mdValue:MetadataValue = this.getTranslatedName(dso, currentLang);
+    if(mdValue && mdValue.value){ 
+      translatedName = mdValue.value;
+    }
     officialName = this.getOfficialName(dso, currentLang)[0].value;
 
-    if(dso.type.value.toLowerCase().includes("item") && translatedName) {
+    if(dso.type.value.toLowerCase().includes("item") || !translatedName) {
+      return officialName
+    }else {
       return translatedName;
-    } else {
-      return officialName;
     }
   }
   // FOSRC End
