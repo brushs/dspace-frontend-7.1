@@ -49,18 +49,39 @@ export class DSONameService {
    *
    * @param dso  The {@link DSpaceObject} you want a name for
    */
-  getName(dso: DSpaceObject): string {
+  getName(dso: DSpaceObject, currentLang: string = undefined): string {
+    let originalResult:string;
     const types = dso.getRenderTypes();
     const match = types
       .filter((type) => typeof type === 'string')
       .find((type: string) => Object.keys(this.factories).includes(type)) as string;
     //console.log("This is coming from the get function in the bottom! match: " + match);
     if (hasValue(match)) {
-      return this.factories[match](dso);
+      originalResult = this.factories[match](dso);
     } else {
-      return  this.factories.Default(dso);
+      originalResult =  this.factories.Default(dso);
+    }
+
+    if(!currentLang) {
+      return originalResult;
+    }
+
+    let newResult:string;
+    let mdValue:MetadataValue;
+    mdValue = this.getTranslatedName(dso, currentLang);
+    if(mdValue) 
+      newResult = mdValue.value;
+    if(!newResult) {
+      newResult = this.getOfficialName(dso, currentLang)[0].value;
+    }
+
+    if(newResult !== originalResult) {
+      return newResult;
+    } else {
+      return originalResult;
     }
   }
+  // FOSRC End
 
   
   /** OSPR Change start
@@ -78,13 +99,10 @@ export class DSONameService {
           officialTitles.push(singleTitle);
         }        
       });
-    } else {
-      //console.log("Official Title Else: " + this.getName(dso))
-      return dso.allMetadata('dc.title');
     }
 
     if(officialTitles.length == 0) {
-      return [dso.firstMetadata('dc.title')]
+      return dso.allMetadata('dc.title');
     }
     
     return officialTitles;
