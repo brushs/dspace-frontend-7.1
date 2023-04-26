@@ -11,7 +11,6 @@
     "config:test:watch": "nodemon --config mock-nodemon.json",
     "config:dev:watch": "nodemon",
     "prestart:dev": "yarn run config:dev",
-    "prebuild": "yarn run config:dev",
     "pretest": "yarn run config:test",
     "pretest:watch": "yarn run config:test",
     "pretest:headless": "yarn run config:test",
