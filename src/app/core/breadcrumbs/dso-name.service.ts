@@ -75,11 +75,8 @@ export class DSONameService {
       newResult = this.getOfficialName(dso, currentLang)[0].value;
     }
 
-    if(newResult !== originalResult) {
-      return newResult;
-    } else {
-      return originalResult;
-    }
+    return newResult;
+
   }
   // FOSRC End
 
