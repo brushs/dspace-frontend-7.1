@@ -57,6 +57,10 @@ export const environment: GlobalConfig = {
       // This is independent from the idle warning.
       timeLeftBeforeTokenRefresh: 2 * 60 * 1000, // 2 minutes
     },
+    login: {
+      // Whether or not to show the password field on the login page.
+      enablePassword: false
+    }
   },
   // Form settings
   form: {
