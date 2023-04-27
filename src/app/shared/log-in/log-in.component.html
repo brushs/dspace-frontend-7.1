@@ -1,15 +1,19 @@
 <ds-loading *ngIf="(loading | async) || (isAuthenticated | async)" class="m-5"></ds-loading>
 <div *ngIf="!(loading | async) && !(isAuthenticated | async)" class="px-4 py-3 login-container">
   <ng-container *ngFor="let authMethod of (authMethods | async); let i = index">
-    <div *ngIf="i === 1" class="text-center mt-2">
+    <div *ngIf="i === 1 && enablePassword" class="text-center mt-2">
       <span class="align-middle">{{"login.form.or-divider" | translate}}</span>
     </div>
-    <ds-log-in-container [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
+    <div *ngIf="i === 1 || enablePassword"> 
+      <ds-log-in-container  [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
+    </div>
   </ng-container>
 
-  <div class="dropdown-divider"></div>
+  <div *ngif = "enablePassword" class="dropdown-divider"></div>
   <!--Start FOSRC Changes- Issue 1396 -->
   <!--a class="dropdown-item text-wrap" *ngIf="canRegister$ | async" [routerLink]="[getRegisterRoute()]">{{"login.form.new-user" | translate}}</a-->
   <!-- End of FOSRC changes-->
+  <div *ngif = "enablePassword">
   <a class="dropdown-item text-wrap" [routerLink]="[getForgotRoute()]">{{"login.form.forgot-password" | translate}}</a>
+  </div>
 </div>
