@@ -15,6 +15,7 @@ import {
 import { hasValue, isNotEmpty } from '../shared/empty.util';
 import { AuthTokenInfo } from '../core/auth/models/auth-token-info.model';
 import { isAuthenticated } from '../core/auth/selectors';
+import { environment } from 'src/environments/environment';
 
 /**
  * This component represents the login page
@@ -32,6 +33,10 @@ export class LoginPageComponent implements OnDestroy, OnInit {
    */
   sub: Subscription;
 
+  /**
+   * Whether the password login is enabled
+   */
+  public passwordLogin = environment.auth?.login?.enablePassword;
   /**
    * Initialize instance variables
    *
