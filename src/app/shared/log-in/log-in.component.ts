@@ -31,6 +31,7 @@ export class LogInComponent implements OnInit {
    * @type {boolean}
    */
   @Input() isStandalonePage: boolean;
+  @Input() enablePassword: boolean;
 
   /**
    * The list of authentication methods available
