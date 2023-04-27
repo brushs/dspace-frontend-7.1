@@ -77,8 +77,9 @@ export class DSONameService {
       translatedName = mdValue.value;
     }
     officialName = this.getOfficialName(dso, currentLang)[0].value;
-
-    if(dso.type.value.toLowerCase().includes("item") || !translatedName) {
+    //console.log("DSO-name.service: getName: types count: %s typesArr[0]: %s", (types as []).length, types[0]);
+    let isItem = dso.getDSpaceType() === "Item" ? "Item" : undefined;
+    if(isItem || !(translatedName)) {
       return officialName
     }else {
       return translatedName;
