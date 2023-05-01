@@ -1,10 +1,10 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="row" action="/search">
-<div *ngIf="isNotEmpty(scopes)" class="col-12 col-sm-3">
+<!--div *ngIf="isNotEmpty(scopes)" class="col-12 col-sm-3">
   <select  name="scope" class="form-control" aria-label="Search scope" (change)="onScopeChange($event.target.value)" tabindex="0">
     <option value>{{'search.form.search_dspace' | translate}}</option>
     <option *ngFor="let scopeOption of scopes" [selected]="scopeOption.id === scope" [value]="scopeOption.id">{{scopeOption?.name ? scopeOption.name : 'search.form.search_dspace' | translate}}</option>
   </select>
-</div>
+</div-->
     <div [ngClass]="{'col-sm-9': isNotEmpty(scopes)}" class="col-12">
     <div class="form-group input-group">
       <label class="wb-inv" for="fosrc-search">{{'search.search-form.placeholder' | translate}}</label>    
