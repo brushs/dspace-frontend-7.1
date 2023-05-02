@@ -35,7 +35,10 @@ import { AuthRequestService } from '../../app/core/auth/auth-request.service';
 import { ServerAuthRequestService } from '../../app/core/auth/server-auth-request.service';
 
 export function createTranslateLoader() {
-  return new TranslateJson5UniversalLoader('dist/server/assets/i18n/', '.json5');
+  return new TranslateJson5UniversalLoader([
+    {prefix: 'dist/server/assets/i18n/core', suffix: '.json5'},
+    {prefix: 'dist/server/assets/i18n/controlled_vocabulary', suffix: '.json5'},
+  ]);
 }
 
 @NgModule({

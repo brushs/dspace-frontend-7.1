@@ -168,7 +168,7 @@ export class CommunityPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("currentLang: " + this.translate.currentLang);
+    // console.log("currentLang: " + this.translate.currentLang);
     this.communityRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Community>),
       redirectOn4xx(this.router, this.authService)

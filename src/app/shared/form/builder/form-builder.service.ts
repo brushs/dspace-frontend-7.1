@@ -32,16 +32,20 @@ import { dateToString, isNgbDateStruct } from '../../date.util';
 import { DYNAMIC_FORM_CONTROL_TYPE_RELATION_GROUP } from './ds-dynamic-form-ui/ds-dynamic-form-constants';
 import { CONCAT_GROUP_SUFFIX, DynamicConcatModel } from './ds-dynamic-form-ui/models/ds-dynamic-concat.model';
 import { VIRTUAL_METADATA_PREFIX } from '../../../core/shared/metadata.models';
+import { AppInjector } from '../../../app.injector';
+import { TranslateService } from '@ngx-translate/core';
+import { VocabularyEntry } from '../../../core/submission/vocabularies/models/vocabulary-entry.model';
 
 @Injectable()
 export class FormBuilderService extends DynamicFormService {
-
+  private translationService; //FOSRC inject this into this file to translate keys
   constructor(
     componentService: DynamicFormComponentService,
     validationService: DynamicFormValidationService,
     protected rowParser: RowParser
   ) {
     super(componentService, validationService);
+    this.translationService = AppInjector.get(TranslateService);//FOSRC inject this into this file to translate keys
   }
 
   findById(id: string, groupModel: DynamicFormControlModel[], arrayIndex = null): DynamicFormControlModel | null {
@@ -137,7 +141,12 @@ export class FormBuilderService extends DynamicFormService {
         if (isNgbDateStruct(controlValue)) {
           return new FormFieldMetadataValueObject(controlValue, controlLanguage, authority, controlValue as any, place);
         } else {
-          return new FormFieldMetadataValueObject((controlValue as any).value, controlLanguage, authority, (controlValue as any).display, place, (controlValue as any).confidence);
+          if (controlValue instanceof VocabularyEntry || controlValue instanceof FormFieldMetadataValueObject) {
+            const display = (controlValue as VocabularyEntry).display ? ((controlValue as VocabularyEntry).display.startsWith("fosrc.item.edit.dynamic-field.values") ? this.translationService.instant((controlValue as VocabularyEntry).display) : "displayFail") : "displayFail";
+            return new FormFieldMetadataValueObject((controlValue as any).value, controlLanguage, authority, display, place, (controlValue as any).confidence);
+          } else {
+            return new FormFieldMetadataValueObject((controlValue as any).value, controlLanguage, authority, (controlValue as any).display, place, (controlValue as any).confidence);
+          }
         }
       }
     };
@@ -201,8 +210,11 @@ export class FormBuilderService extends DynamicFormService {
         } else if (isNotUndefined((controlModel as any).value) && isNotEmpty((controlModel as any).value)) {
           const controlArrayValue = [];
           // Normalize control value as an array of FormFieldMetadataValueObject
-          const values = Array.isArray((controlModel as any).value) ? (controlModel as any).value : [(controlModel as any).value];
+          let values = Array.isArray((controlModel as any).value) ? (controlModel as any).value : [(controlModel as any).value];
           values.forEach((controlValue) => {
+            if (controlValue && controlValue.type == "vocabularyEntry" && controlValue.display && controlValue.display.startsWith("fosrc.item.edit.dynamic-field.values.")) {
+              controlValue.display = this.translationService.instant(controlValue.display);
+            }
             controlArrayValue.push(normalizeValue(controlModel, controlValue, controlModelIndex));
           });
 

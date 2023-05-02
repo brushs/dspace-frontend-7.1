@@ -146,11 +146,7 @@ export class ComColFormComponent<T extends Collection | Community> implements On
       (fieldModel: DynamicInputModel) => {
         i++;
         fieldModel.value = this.dso.firstMetadataValue(fieldModel.name);
-        if (this.dso.firstMetadata(fieldModel.name.replace('-lang',''))?.language &&
-            this.formModel[i] instanceof DynamicSelectModel) {
-          (this.formModel[i] as DynamicSelectModel<any>).select( 0 );//this.dso.firstMetadata(fieldModel.name.replace('-lang',''))?.language === 'fr' ? 1 : 0 );
-        }
-        console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value + " dso.firstMetaData(...).language: " + this.dso.firstMetadata(fieldModel.name.replace('-lang',''))?.language);
+        // console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value)
       }
     );
     // FOSRC end

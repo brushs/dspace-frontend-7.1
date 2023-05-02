@@ -11,6 +11,7 @@ import { RemoteData } from '../data/remote-data';
 import { hasValue } from '../../shared/empty.util';
 import { Injectable } from '@angular/core';
 import { getDSORoute } from '../../app-routing-paths';
+import { LocaleService } from '../../core/locale/locale.service';
 
 /**
  * Service to calculate DSpaceObject breadcrumbs for a single part of the route
@@ -19,9 +20,11 @@ import { getDSORoute } from '../../app-routing-paths';
   providedIn: 'root'
 })
 export class DSOBreadcrumbsService implements BreadcrumbsProviderService<ChildHALResource & DSpaceObject> {
+  // * @param {LocalService} localeService
   constructor(
     private linkService: LinkService,
-    private dsoNameService: DSONameService
+    private dsoNameService: DSONameService,
+    private localeService: LocaleService
   ) {
 
   }
@@ -33,8 +36,9 @@ export class DSOBreadcrumbsService implements BreadcrumbsProviderService<ChildHA
    * @param url The url to use as a link for this breadcrumb
    */
   getBreadcrumbs(key: ChildHALResource & DSpaceObject, url: string): Observable<Breadcrumb[]> {
-    const label = this.dsoNameService.getName(key);
+    const label = this.dsoNameService.getName(key, this.localeService.getCurrentLanguageCode());
     const crumb = new Breadcrumb(label, url);
+
     const propertyName = key.getParentLinkKey();
     return this.linkService.resolveLink(key, followLink(propertyName))[propertyName].pipe(
       find((parentRD: RemoteData<ChildHALResource & DSpaceObject>) => parentRD.hasSucceeded || parentRD.statusCode === 204),

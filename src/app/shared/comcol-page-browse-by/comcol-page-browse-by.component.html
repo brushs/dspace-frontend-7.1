@@ -4,10 +4,10 @@
   <div class="d-none d-sm-block">
     <!-- OSPR Change div to list -->
     <ul class="list-group list-group-horizontal">
-      <li *ngFor="let option of allOptions"class="list-group-item">
+      <li *ngFor="let option of allOptions"class="list-group-item" routerLinkActive="active">
       <a  [routerLink]="option.routerLink"
          [queryParams]="option.params"
-         routerLinkActive="active">{{ option.label | translate }}</a>
+         >{{ option.label | translate }}</a>
         </li>
     </ul>
     <!-- End change -->
