@@ -17,7 +17,7 @@ import { listableObjectComponent } from '../../../../shared/object-collection/sh
 })
 export class UntypedItemComponent extends ItemComponent {
   /* Start FOSRC Changes - 1594 */
-  hasDcRelationMetaData: boolean;
+  hasDcRelationMetaData: boolean = false;
   hasDcRelationMetaData_isformatof: boolean = false;
   hasDcRelationMetaData_ispartof: boolean = false;
   hasDcRelationMetaData_isreferencedby: boolean = false;
@@ -60,8 +60,6 @@ export class UntypedItemComponent extends ItemComponent {
       if (this.object.metadata['dc.relation.isversionof']){
         this.hasDcRelationMetaData_isversionof = true;
       }
-    } else {
-      this.hasDcRelationMetaData = false;
     }
   }
   ngOnInit(): void {
