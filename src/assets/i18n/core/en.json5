@@ -1288,6 +1288,17 @@
   "item.edit.withdraw.header": "Withdraw item: {{id}}",
   "item.edit.withdraw.success": "The item was withdrawn successfully",
   "item.listelement.badge": "Item",
+  // Start FOSRC Changes - 1594
+  "item.page.relationship": "Relation",
+  "item.page.1.relationship_identifiers": "Is Format Of",
+  "item.page.2.relationship_identifiers": "Is Part Of",
+  "item.page.3.relationship_identifiers": "Is Referenced By",
+  "item.page.4.relationship_identifiers": "Is Related To",
+  "item.page.5.relationship_identifiers": "Is Replaced By",
+  "item.page.6.relationship_identifiers": "Is Required By",
+  "item.page.7.relationship_identifiers": "Is Translation Of",
+  "item.page.8.relationship_identifiers": "Is Version Of",
+  // End of FOSRC Changes
   "item.page.abstract": "Abstract",
   "item.page.author": "Author(s)",
   "item.page.bitstreams.collapse": "Collapse",
