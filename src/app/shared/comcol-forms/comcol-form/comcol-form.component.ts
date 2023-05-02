@@ -10,6 +10,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import {
   DynamicFormControlModel,
+  DynamicFormLayout,
   DynamicFormService,
   DynamicInputModel,
   DynamicSelectModel
@@ -80,6 +81,11 @@ export class ComColFormComponent<T extends Collection | Community> implements On
    * The form group of this form
    */
   formGroup: FormGroup;
+  
+  /**
+   * The form group of this form
+   */
+  formLayout: DynamicFormLayout = {};
 
   /**
    * The uploader configuration options
@@ -143,9 +149,27 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     // FOSRC start
     let i = 0;
     this.formModel.forEach(
-      (fieldModel: DynamicInputModel) => {
+      (fieldModel: DynamicInputModel | DynamicSelectModel<string>) => {
         i++;
         fieldModel.value = this.dso.firstMetadataValue(fieldModel.name);
+
+        if(fieldModel.name.includes('-lang')) {
+          let languageValue;
+          let metadataField = fieldModel.name.replace('-lang', '');
+          if( languageValue = this.dso.metadata[metadataField]?.[0]?.language) {
+            (fieldModel as DynamicSelectModel<string>).select(languageValue === 'en' ? 0 : 1)
+          }
+          this.formLayout[this.formModel[i-1].id] = {      
+            grid: {
+              control: "col-sm-9",
+            }
+          }
+          this.formLayout[fieldModel.id] = {      
+            grid: {
+              control: "col-sm-3",
+            }
+          }
+        }
         // console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value)
       }
     );
