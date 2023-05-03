@@ -42,6 +42,7 @@
 </div>
 <ds-form *ngIf="formModel"
          [formId]="'comcol-form-id'"
+         [formLayout]="formLayout"
          [formModel]="formModel"
          [displayCancel]="false"
          (submitForm)="onSubmit()">
