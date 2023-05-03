@@ -4,6 +4,7 @@ import { SectionsDirective } from '../sections.directive';
 import { SectionDataObject } from '../models/section-data.model';
 import { rendersSectionType } from '../sections-decorator';
 import { AlertType } from '../../../shared/alert/aletr-type';
+import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * This component represents a section that contains the submission license form.
@@ -50,6 +51,11 @@ export class SubmissionSectionContainerComponent implements OnInit {
    */
   @ViewChild('sectionRef') sectionRef: SectionsDirective;
 
+   /**
+   * The NgbAccordion reference
+   */
+  @ViewChild('acc') ngbAccordion: NgbAccordion;
+
   /**
    * Initialize instance variables
    *
@@ -72,6 +78,11 @@ export class SubmissionSectionContainerComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    if(this.sectionData.header.toLowerCase().includes('describe.describe')) {
+      this.ngbAccordion.collapse(this.sectionData.id)
+    }
+  }
   /**
    * Remove section from submission form
    *
