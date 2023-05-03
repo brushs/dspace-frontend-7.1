@@ -650,6 +650,12 @@
   //"submission.sections.accesses.form.label.translated.filename": "Translated Filename",
   "submission.sections.accesses.form.label.translated.filename": "Le nom du fichier traduit (* obligatoire)",
 
+  // "input.label.datepicker.year": "Year",
+  "input.label.datepicker.year": "Année",
+  // "input.label.datepicker.month": "Month",
+  "input.label.datepicker.month": "Mois",
+  // "input.label.datepicker.day": "Day",
+  "input.label.datepicker.day": "Jour",
   // "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
   "profile.security.form.notifications.error.change-failed": "Une erreur s'est produite lors de la tentative de modification du mot de passe. Veuillez vérifier si le mot de passe actuel est correct.",
   // "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
