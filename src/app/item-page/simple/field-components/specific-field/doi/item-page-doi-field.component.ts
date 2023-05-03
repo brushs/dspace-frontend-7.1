@@ -10,7 +10,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 /**
  * This component is used for displaying the sponsorship (dc.identifier.doi) of an item
  */
-export class ItemPageAbstractFieldComponent extends ItemPageFieldComponent {
+export class ItemPageDoiFieldComponent extends ItemPageFieldComponent {
 
     /**
      * The item to display metadata for

@@ -28,6 +28,14 @@ export class ItemComponent implements OnInit {
   dsoAlternativeTitleExists: boolean; //FOSRC added
   dsoAlternateTitles: MetadataValue[]; //FOSRC added
   dsoSponsorship: MetadataValue[]; //FOSRC added
+  dsoDoi: MetadataValue[]; //FOSRC added
+  dsoGovdoc: MetadataValue[]; //FOSRC added
+  dsoIsbn: MetadataValue[]; //FOSRC added
+  dsoIssn: MetadataValue[]; //FOSRC added
+  dsoIso: MetadataValue[]; //FOSRC added
+  dsoOrganization: MetadataValue[]; //FOSRC added
+  dsoOther: MetadataValue[]; //FOSRC added
+  dsoKeywords: MetadataValue[]; //FOSRC added
 
   public constructor(protected dsoNameService: DSONameService, protected localeService: LocaleService) {
   }
@@ -39,6 +47,14 @@ export class ItemComponent implements OnInit {
     this.dsoAlternativeTitleExists = this.dsoNameService.getAlternativeTitleExists(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
     this.dsoAlternateTitles = this.dsoNameService.getMetadataByFieldAndLanguage(this.object, ['dc.title.fosrctranslation', 'dc.title.alternative', 'dc.title.alternative-fosrctranslation'], this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
     this.dsoSponsorship = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoDoi = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoGovdoc = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoIsbn = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoIssn = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoIso = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoOrganization = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoOther = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
+    this.dsoKeywords = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
     //console.log("ngInit in Item-Component: AlternateTitlesExist: " + this.dsoAlternativeTitleExists + " AlternateTitles: ", this.dsoAlternateTitles);
   }
 }

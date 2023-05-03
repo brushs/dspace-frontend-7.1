@@ -33,6 +33,14 @@ import { MediaViewerImageComponent } from './media-viewer/media-viewer-image/med
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { ItemPageAlternateTitleFieldComponent } from './simple/field-components/specific-field/alternateTitle/item-page-alternate-title-field.component';
 import { ItemPageSponsorshipFieldComponent } from './simple/field-components/specific-field/sponsorship/item-page-sponsorship-field.component';
+import { ItemPageDoiFieldComponent } from './simple/field-components/specific-field/doi/item-page-doi-field.component';
+import { ItemPageGovdocFieldComponent } from './simple/field-components/specific-field/govdoc/item-page-govdoc-field.component';
+import { ItemPageIsbnFieldComponent } from './simple/field-components/specific-field/isbn/item-page-isbn-field.component';
+import { ItemPageIssnFieldComponent } from './simple/field-components/specific-field/issn/item-page-issn-field.component';
+import { ItemPageIsoFieldComponent } from './simple/field-components/specific-field/iso/item-page-iso-field.component';
+import { ItemPageKeywordsFieldComponent } from './simple/field-components/specific-field/keywords/item-page-keywords-field.component';
+import { ItemPageOrganizationFieldComponent } from './simple/field-components/specific-field/organization/item-page-organization-field.component';
+import { ItemPageOtherFieldComponent } from './simple/field-components/specific-field/other/item-page-other-field.component';
 
 
 const ENTRY_COMPONENTS = [
@@ -50,6 +58,14 @@ const DECLARATIONS = [
   ItemPageAuthorFieldComponent,
   ItemPageAlternateTitleFieldComponent,
   ItemPageSponsorshipFieldComponent,
+  ItemPageDoiFieldComponent,
+  ItemPageGovdocFieldComponent,
+  ItemPageIsbnFieldComponent,
+  ItemPageIssnFieldComponent,
+  ItemPageIsoFieldComponent,
+  ItemPageKeywordsFieldComponent,
+  ItemPageOrganizationFieldComponent,
+  ItemPageOtherFieldComponent,
   ItemPageDateFieldComponent,
   ItemPageAbstractFieldComponent,
   ItemPageUriFieldComponent,
