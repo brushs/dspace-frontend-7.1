@@ -8,7 +8,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
     templateUrl: '../item-page-field.component.html'
 })
 /**
- * This component is used for displaying the sponsorship (dc.description.subject) of an item
+ * This component is used for displaying the sponsorship (dc.subject) of an item
  */
 export class ItemPageAbstractFieldComponent extends ItemPageFieldComponent {
 
@@ -25,7 +25,7 @@ export class ItemPageAbstractFieldComponent extends ItemPageFieldComponent {
 
     /**
      * Fields (schema.element.qualifier) used to render their values.
-     * In this component, we want to display values for metadata 'dc.description.subject'
+     * In this component, we want to display values for metadata 'dc.subject'
      */
     fields: string[] = [
         'dc.subject'

@@ -4,11 +4,11 @@ import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
-    selector: 'ds-item-page-sponsorship-field',
+    selector: 'ds-item-page-iso-field',
     templateUrl: '../item-page-field.component.html'
 })
 /**
- * This component is used for displaying the sponsorship (dc.description.sponsorship) of an item
+ * This component is used for displaying the sponsorship (dc.language.iso) of an item
  */
 export class ItemPageAbstractFieldComponent extends ItemPageFieldComponent {
 
@@ -25,15 +25,15 @@ export class ItemPageAbstractFieldComponent extends ItemPageFieldComponent {
 
     /**
      * Fields (schema.element.qualifier) used to render their values.
-     * In this component, we want to display values for metadata 'dc.description.sponsorship'
+     * In this component, we want to display values for metadata 'dc.language.iso'
      */
     fields: string[] = [
-        'dc.description.sponsorship'
+        'dc.language.iso'
     ];
 
     /**
      * Label i18n key for the rendered metadata
      */
-    label = 'item.page.sponsorship';
+    label = 'item.page.iso';
 
 }

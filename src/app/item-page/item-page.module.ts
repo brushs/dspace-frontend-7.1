@@ -32,6 +32,8 @@ import { MediaViewerVideoComponent } from './media-viewer/media-viewer-video/med
 import { MediaViewerImageComponent } from './media-viewer/media-viewer-image/media-viewer-image.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { ItemPageAlternateTitleFieldComponent } from './simple/field-components/specific-field/alternateTitle/item-page-alternate-title-field.component';
+import { ItemPageSponsorshipFieldComponent } from './simple/field-components/specific-field/sponsorship/item-page-sponsorship-field.component';
+
 
 const ENTRY_COMPONENTS = [
   // put only entry components that use custom decorator
@@ -47,6 +49,7 @@ const DECLARATIONS = [
   MetadataUriValuesComponent,
   ItemPageAuthorFieldComponent,
   ItemPageAlternateTitleFieldComponent,
+  ItemPageSponsorshipFieldComponent,
   ItemPageDateFieldComponent,
   ItemPageAbstractFieldComponent,
   ItemPageUriFieldComponent,
