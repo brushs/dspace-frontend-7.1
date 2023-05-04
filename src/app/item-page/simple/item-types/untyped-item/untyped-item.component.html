@@ -78,6 +78,58 @@
       [fields]="['dc.identifier.citation']"
       [label]="'item.page.citation'">
     </ds-generic-item-page-field>
+    <!-- Start FOSRC Changes - 1594 -->
+    <ds-metadata-field-wrapper *ngIf="hasDcRelationMetaData" [label]="'item.page.relationship' | translate">
+      <div *ngIf="hasDcRelationMetaData_isformatof">
+      {{'item.page.1.relationship_identifiers' | translate}}: 
+      <a *ngFor="let mdValue of this.object.metadata['dc.relation.isformatof']; let last=last;" [href]="mdValue.value">
+        {{ this.object.metadata['dc.relation.isformatof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+      </a>
+      </div>
+      <div *ngIf="hasDcRelationMetaData_ispartof">
+        {{'item.page.2.relationship_identifiers' | translate}}: 
+        <a *ngFor="let mdValue of this.object.metadata['dc.relation.ispartof']; let last=last;" [href]="mdValue.value">
+           {{ this.object.metadata['dc.relation.ispartof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+        </a>
+      </div>
+      <div *ngIf="hasDcRelationMetaData_isreferencedby">
+        {{'item.page.3.relationship_identifiers' | translate}}: 
+        <a *ngFor="let mdValue of this.object.metadata['dc.relation.isreferencedby']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.isreferencedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+        </a>
+      </div>
+      <div *ngIf="hasDcRelationMetaData_isrelatedto">
+        {{'item.page.4.relationship_identifiers' | translate}}: 
+        <a *ngFor="let mdValue of this.object.metadata['dc.relation.isrelatedto']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.isrelatedto']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+        </a>
+      </div>
+      <div *ngIf="hasDcRelationMetaData_isreplacedby">
+        {{'item.page.5.relationship_identifiers' | translate}}: 
+        <a *ngFor="let mdValue of this.object.metadata['dc.relation.isreplacedby']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.isreplacedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+        </a>
+      </div>
+      <div *ngIf="hasDcRelationMetaData_isrequiredby">
+        {{'item.page.6.relationship_identifiers' | translate}}: 
+        <a *ngFor="let mdValue of this.object.metadata['dc.relation.isrequiredby']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.isrequiredby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+        </a>
+      </div>
+      <div *ngIf="hasDcRelationMetaData_istranslationof">
+        {{'item.page.7.relationship_identifiers' | translate}}: 
+        <a *ngFor="let mdValue of this.object.metadata['dc.relation.istranslationof']; let last=last;" [href]="mdValue.value">
+          {{ this.object.metadata['dc.relation.istranslationof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+        </a>
+      </div>
+      <div *ngIf="hasDcRelationMetaData_isversionof">
+        {{'item.page.8.relationship_identifiers' | translate}}: 
+        <a *ngFor="let mdValue of this.object.metadata['dc.relation.isversionof']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.isversionof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+        </a>
+      </div>
+    </ds-metadata-field-wrapper>
+    <!-- End of FOSRC Changes  -->
     <ds-item-page-uri-field [item]="object"
       [fields]="['dc.identifier.uri']"
       [label]="'item.page.uri'">

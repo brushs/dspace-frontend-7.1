@@ -1,5 +1,7 @@
 {
   "test": "FR",
+  //"fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore": "Government of Canada Core Subject Thesaurus",
+  "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore": "Thésaurus des sujets de base du gouvernement du Canada",
   // "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore.node.000.0": "Arts, Music, Literature",
   "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore.node.000.0": "Arts, musique, littérature",
   // "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore.node.3000.0": "Agriculture",

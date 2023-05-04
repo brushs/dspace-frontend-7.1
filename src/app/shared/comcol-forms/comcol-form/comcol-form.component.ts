@@ -10,8 +10,10 @@ import {
 import { FormGroup } from '@angular/forms';
 import {
   DynamicFormControlModel,
+  DynamicFormLayout,
   DynamicFormService,
-  DynamicInputModel
+  DynamicInputModel,
+  DynamicSelectModel
 } from '@ng-dynamic-forms/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FileUploader } from 'ng2-file-upload';
@@ -79,6 +81,11 @@ export class ComColFormComponent<T extends Collection | Community> implements On
    * The form group of this form
    */
   formGroup: FormGroup;
+  
+  /**
+   * The form group of this form
+   */
+  formLayout: DynamicFormLayout = {};
 
   /**
    * The uploader configuration options
@@ -139,12 +146,34 @@ export class ComColFormComponent<T extends Collection | Community> implements On
   }
 
   ngOnInit(): void {
+    // FOSRC start
+    let i = 0;
     this.formModel.forEach(
-      (fieldModel: DynamicInputModel) => {
+      (fieldModel: DynamicInputModel | DynamicSelectModel<string>) => {
+        i++;
         fieldModel.value = this.dso.firstMetadataValue(fieldModel.name);
+
+        if(fieldModel.name.includes('-lang')) {
+          let languageValue;
+          let metadataField = fieldModel.name.replace('-lang', '');
+          if( languageValue = this.dso.metadata[metadataField]?.[0]?.language) {
+            (fieldModel as DynamicSelectModel<string>).select(languageValue === 'en' ? 0 : 1)
+          }
+          this.formLayout[this.formModel[i-1].id] = {      
+            grid: {
+              control: "col-sm-9",
+            }
+          }
+          this.formLayout[fieldModel.id] = {      
+            grid: {
+              control: "col-sm-3",
+            }
+          }
+        }
         // console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value)
       }
     );
+    // FOSRC end
     this.formGroup = this.formService.createFormGroup(this.formModel);
 
     this.updateFieldTranslations();
@@ -224,16 +253,27 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     });
 
     const operations: Operation[] = [];
+    // FOSRC start
+    let i = 0;
     this.formModel.forEach((fieldModel: DynamicInputModel) => {
-      if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name)) {
+      i++;
+      if (i < this.formModel.length && 
+        !fieldModel.name.includes("-lang") && 
+        (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name) ||
+        this.dso.firstMetadata(fieldModel.name)?.language !== (this.formModel[i] as DynamicSelectModel<any>).value)) {
+        let langCode = null;
+        if (this.formModel[i].name.includes('-lang')) {
+          langCode = (this.formModel[i] as DynamicSelectModel<any>).value;
+        }
         operations.push({
           op: 'replace',
           path: `/metadata/${fieldModel.name}`,
           value: {
             value: fieldModel.value,
-            language: null,
+            language: langCode,
           },
         });
+        // FOSRC end
       }
     });
 
