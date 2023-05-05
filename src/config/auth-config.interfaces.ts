@@ -20,4 +20,8 @@ export interface AuthConfig extends Config {
     // This is independent from the idle warning.
     timeLeftBeforeTokenRefresh: number;
   };
+
+  login: {
+    enablePassword: boolean;
+  }
 }

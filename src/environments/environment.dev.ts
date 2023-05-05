@@ -38,6 +38,9 @@ export const environment = {
 		},
 		"rest": {
 			"timeLeftBeforeTokenRefresh": 120000
+		},
+		"login": {
+			"enablePassword": false
 		}
 	},
 	"form": {
