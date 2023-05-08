@@ -41,7 +41,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
   formModel: DynamicFormControlModel[] = [
     new DynamicInputModel({
       id: 'title',
-      name: this.translate.currentLang === 'en' ? 'dc.title' : 'dc.title.fosrctranslation',
+      name: 'dc.title', //this.translate.currentLang === 'en' ? 'dc.title' : 'dc.title.fosrctranslation',
       required: true,
       //languageCodes: [{'code': 'en', 'display': 'En'}, {'code': 'fr', 'display': 'Fr'}],
       validators: {
@@ -56,7 +56,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }}),
     new DynamicSelectModel({
       id: 'dc-title-lang',
-      name: (this.translate.currentLang === 'en' ? 'dc.title' : 'dc.title.fosrctranslation') + '-lang',
+      name: 'dc.title-lang',//(this.translate.currentLang === 'en' ? 'dc.title' : 'dc.title.fosrctranslation') + '-lang',
       label: 'Language',
 //      value: this.translate.currentLang,
       options: [{
@@ -75,7 +75,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     /* OSPR changes start - add/remove fields for testing the new dynamic control models */
     new DynamicInputModel({
       id: 'translatedTitle',
-      name: this.translate.currentLang === 'fr' ? 'dc.title' : 'dc.title.fosrctranslation',
+      name: 'dc.title.fosrctranslation',//this.translate.currentLang === 'fr' ? 'dc.title' : 'dc.title.fosrctranslation',
       required: true,
       validators: {
         required: null
@@ -86,7 +86,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }),
     new DynamicSelectModel({
       id: 'dc-title-fosrctranslation-lang',
-      name: (this.translate.currentLang === 'fr' ? 'dc.title' : 'dc.title.fosrctranslation') + '-lang',
+      name: 'dc.title.fosrctranslation-lang', //(this.translate.currentLang === 'fr' ? 'dc.title' : 'dc.title.fosrctranslation') + '-lang',
       label: 'Language',
 //      value: this.translate.currentLang,
       options: [{
@@ -104,7 +104,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
 
     new DynamicInputModel({
       id: 'subject',
-      name: this.translate.currentLang === 'en' ? 'dc.subject' : 'dc.subject.fosrctranslation',
+      name: 'dc.subject', //this.translate.currentLang === 'en' ? 'dc.subject' : 'dc.subject.fosrctranslation',
       required: true,
       validators: {
         required: null
@@ -112,7 +112,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }),
     new DynamicSelectModel({
       id: 'subject-lang',
-      name: (this.translate.currentLang === 'en' ? 'dc.subject' : 'dc.subject.fosrctranslation') + '-lang',
+      name: 'dc.subject-lang', //(this.translate.currentLang === 'en' ? 'dc.subject' : 'dc.subject.fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -130,7 +130,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
 
     new DynamicInputModel({
       id: 'subject-fosrctranslation',
-      name: this.translate.currentLang === 'fr' ? 'dc.subject' : 'dc.subject.fosrctranslation',
+      name: 'dc.subject.fosrctranslation', //this.translate.currentLang === 'fr' ? 'dc.subject' : 'dc.subject.fosrctranslation',
       required: true,
       validators: {
         required: null
@@ -138,7 +138,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }),
     new DynamicSelectModel({
       id: 'subject-fosrctranslation-lang',
-      name: (this.translate.currentLang === 'fr' ? 'dc.subject' : 'dc.subject.fosrctranslation') + '-lang',
+      name: 'dc.subject.fosrctranslation-lang', //(this.translate.currentLang === 'fr' ? 'dc.subject' : 'dc.subject.fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -158,11 +158,11 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     /*This is description*/
     new DynamicTextAreaModel({
       id: 'description',
-      name: this.translate.currentLang === 'en' ? 'dc.description' : 'dc.description.fosrctranslation',
+      name: 'dc.description', //this.translate.currentLang === 'en' ? 'dc.description' : 'dc.description.fosrctranslation',
     }),
     new DynamicSelectModel({
       id: 'description-lang',
-      name: (this.translate.currentLang === 'en' ? 'dc.description' : 'dc.description.fosrctranslation') + '-lang',
+      name: 'dc.description-lang', //(this.translate.currentLang === 'en' ? 'dc.description' : 'dc.description.fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -180,11 +180,11 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
 
     new DynamicTextAreaModel({
       id: 'description-fosrctranslation',
-      name: this.translate.currentLang === 'fr' ? 'dc.description' : 'dc.description.fosrctranslation',
+      name: 'dc.description.fosrctranslation', //this.translate.currentLang === 'fr' ? 'dc.description' : 'dc.description.fosrctranslation',
     }),
     new DynamicSelectModel({
       id: 'description-fosrctranslation-lang',
-      name: (this.translate.currentLang === 'fr' ? 'dc.description' : 'dc.description.fosrctranslation') + '-lang',
+      name: 'dc.description.fosrctranslation-lang', //(this.translate.currentLang === 'fr' ? 'dc.description' : 'dc.description.fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -210,11 +210,11 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     /*This is copyright*/
     new DynamicTextAreaModel({
       id: 'rights',
-      name: this.translate.currentLang === 'en' ? 'dc.rights' : 'dc.rights.fosrctranslation',
+      name: 'dc.rights', //this.translate.currentLang === 'en' ? 'dc.rights' : 'dc.rights.fosrctranslation',
     }),
     new DynamicSelectModel({
       id: 'rights-lang',
-      name: (this.translate.currentLang === 'en' ? 'dc.rights' : 'dc.rights.fosrctranslation') + '-lang',
+      name: 'dc.rights-lang', //(this.translate.currentLang === 'en' ? 'dc.rights' : 'dc.rights.fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -232,11 +232,11 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
 
     new DynamicTextAreaModel({
       id: 'rights-fosrctranslation',
-      name: this.translate.currentLang === 'fr' ? 'dc.rights' : 'dc.rights.fosrctranslation',
+      name: 'dc.rights.fosrctranslation', //this.translate.currentLang === 'fr' ? 'dc.rights' : 'dc.rights.fosrctranslation',
     }),
     new DynamicSelectModel({
       id: 'rights-fosrctranslation-lang',
-      name: (this.translate.currentLang === 'fr' ? 'dc.rights' : 'dc.rights.fosrctranslation') + '-lang',
+      name: 'dc.rights.fosrctranslation-lang', //(this.translate.currentLang === 'fr' ? 'dc.rights' : 'dc.rights.fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -256,11 +256,11 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     /*This is rights.license*/
     new DynamicTextAreaModel({
       id: 'license',
-      name: this.translate.currentLang === 'en' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation',
+      name: 'dc.rights.license', //this.translate.currentLang === 'en' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation',
     }),
     new DynamicSelectModel({
       id: 'license-lang',
-      name: (this.translate.currentLang === 'en' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation') + '-lang',
+      name: 'dc.rights.license-lang', //(this.translate.currentLang === 'en' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -278,11 +278,11 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
 
     new DynamicTextAreaModel({
       id: 'license-fosrctranslation',
-      name: this.translate.currentLang === 'fr' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation',
+      name: 'dc.rights.license-fosrctranslation', //this.translate.currentLang === 'fr' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation',
     }),
     new DynamicSelectModel({
       id: 'license-fosrctranslation-lang',
-      name: (this.translate.currentLang === 'fr' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation') + '-lang',
+      name: 'dc.rights.license-fosrctranslation-lang', //(this.translate.currentLang === 'fr' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -301,12 +301,12 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
 
     new DynamicInputModel({
       id: 'provenance',
-      name: this.translate.currentLang === 'en' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation',
+      name: 'dc.description.provenance', //this.translate.currentLang === 'en' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation',
       required: false,
     }),
     new DynamicSelectModel({
       id: 'provenance-lang',
-      name: (this.translate.currentLang === 'en' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation') + '-lang',
+      name: 'dc.description.provenance-lang', //(this.translate.currentLang === 'en' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{
@@ -324,12 +324,12 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
 
     new DynamicInputModel({
       id: 'provenance-fosrctranslation',
-      name: this.translate.currentLang === 'fr' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation',
+      name: 'dc.description.provenance-fosrctranslation', //this.translate.currentLang === 'fr' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation',
       required: false,
     }),
     new DynamicSelectModel({
       id: 'provenance-fosrctranslation-lang',
-      name: (this.translate.currentLang === 'fr' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation') + '-lang',
+      name: 'dc.description.provenance-fosrctranslation-lang', //(this.translate.currentLang === 'fr' ? 'dc.description.provenance' : 'dc.description.provenance-fosrctranslation') + '-lang',
       label: 'Language',
       value: this.translate.currentLang,
       options: [{

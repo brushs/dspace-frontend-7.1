@@ -156,9 +156,11 @@ export class ComColFormComponent<T extends Collection | Community> implements On
         if(fieldModel.name.includes('-lang')) {
           let languageValue;
           let metadataField = fieldModel.name.replace('-lang', '');
-          if( languageValue = this.dso.metadata[metadataField]?.[0]?.language) {
-            (fieldModel as DynamicSelectModel<string>).select(languageValue === 'en' ? 0 : 1)
-          }
+          try {
+            if (languageValue = this.dso.metadata[metadataField]?.[0]?.language) {
+              (fieldModel as DynamicSelectModel<string>).select(languageValue === 'en' ? 0 : 1)
+            }
+          } catch (e){ }
           this.formLayout[this.formModel[i-1].id] = {      
             grid: {
               control: "col-sm-9",
