@@ -8,6 +8,7 @@
   "item.page.iso": "ISO",
   "item.page.organization": "Organization",
   "item.page.other": "Other",
+  "item.page.identifiers": "Identifiers",
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
   "collection.form.errors.description-topic-subject.required": "Please enter a subject",
