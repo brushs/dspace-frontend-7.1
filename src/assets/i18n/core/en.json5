@@ -408,6 +408,11 @@
   "header.skiptolinks.aboutgc": "Skip to about government",
   "header.skiptolinks.menu": "Skip to section menu",
 
+  "input.label.datepicker.year": "Year",
+  "input.label.datepicker.month": "Month",
+  "input.label.datepicker.day": "Day",
+  "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
+  "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
   // FOSRC SPECIFIC LABELS END
 
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
