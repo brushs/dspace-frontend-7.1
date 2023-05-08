@@ -236,6 +236,7 @@ import { OnClickMenuItemComponent } from './menu/menu-item/onclick-menu-item.com
 import { TextMenuItemComponent } from './menu/menu-item/text-menu-item.component';
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
 import { SearchNavbarComponent } from '../search-navbar/search-navbar.component';
+import { OSPRTruncatePipe } from './utils/ospr-truncate';
 
 /**
  * Declaration needed to make sure all decorator functions are called in time
@@ -288,6 +289,7 @@ const PIPES = [
   CapitalizePipe,
   ObjectKeysPipe,
   MetadataTranslatePipe,
+  OSPRTruncatePipe,
   ObjectValuesPipe,
   ConsolePipe,
   ObjNgFor
