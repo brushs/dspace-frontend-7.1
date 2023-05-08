@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 /**
  * This component renders any content inside this wrapper.
@@ -16,5 +16,18 @@ export class MetadataFieldWrapperComponent {
    */
   @Input() label: string;
 
+  @Input() subheading: boolean;
+
   @Input() hideIfNoTextContent = true;
+
+  ngOnInit(): void {
+    console.log("metadata-field-wrapper.subheading: " + this.subheading);
+  }
+
+  ngOnChanges(simpleChanges: SimpleChanges): void {
+    if(this.label.toLowerCase().includes('gov')) {
+      console.log("metadata-field-wrapper.label: ", this.label);
+      console.log("metadata-field-wrapper.simpleChanges: ", simpleChanges);
+    }
+  }
 }

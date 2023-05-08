@@ -1,5 +1,12 @@
 {
   // FOSRC SPECIFIC LABELS START
+  "item.page.sponsorship": "Patronage",
+  "item.page.doi": "DOI",
+  "item.page.govdoc": "Numéro du document gouvernemental",
+  "item.page.issn": "ISSN",
+  "item.page.iso": "ISO",
+  "item.page.organization": "Organisation",
+  "item.page.other": "Autre",
   // "alternative.title": "Alternative Title",
   "alternative.title": "Titre alternatif",
   //"collection.form.translatedTitle": "The translated collection Name (required)",

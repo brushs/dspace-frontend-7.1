@@ -30,12 +30,15 @@
     <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
     <ds-item-page-sponsorship-field [item]="object"></ds-item-page-sponsorship-field>
     <ds-item-page-doi-field [item]="object"></ds-item-page-doi-field>
+    
+    <h5>Identifier</h5>
     <ds-item-page-govdoc-field [item]="object"></ds-item-page-govdoc-field>
     <ds-item-page-isbn-field [item]="object"></ds-item-page-isbn-field>
     <ds-item-page-issn-field [item]="object"></ds-item-page-issn-field>
     <ds-item-page-iso-field [item]="object"></ds-item-page-iso-field>
     <ds-item-page-organization-field [item]="object"></ds-item-page-organization-field>
     <ds-item-page-other-field [item]="object"></ds-item-page-other-field>
+
     <ds-item-page-keywords-field [item]="object"></ds-item-page-keywords-field>
     <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
     <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
@@ -81,49 +84,49 @@
     <!-- Start FOSRC Changes - 1594 -->
     <ds-metadata-field-wrapper *ngIf="hasDcRelationMetaData" [label]="'item.page.relationship' | translate">
       <div *ngIf="hasDcRelationMetaData_isformatof">
-      {{'item.page.1.relationship_identifiers' | translate}}: 
+      <h6>{{'item.page.1.relationship_identifiers' | translate}}: </h6>
       <a *ngFor="let mdValue of this.object.metadata['dc.relation.isformatof']; let last=last;" [href]="mdValue.value">
         {{ this.object.metadata['dc.relation.isformatof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
       </a>
       </div>
       <div *ngIf="hasDcRelationMetaData_ispartof">
-        {{'item.page.2.relationship_identifiers' | translate}}: 
+        <h6>{{'item.page.2.relationship_identifiers' | translate}}: </h6>
         <a *ngFor="let mdValue of this.object.metadata['dc.relation.ispartof']; let last=last;" [href]="mdValue.value">
            {{ this.object.metadata['dc.relation.ispartof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
         </a>
       </div>
       <div *ngIf="hasDcRelationMetaData_isreferencedby">
-        {{'item.page.3.relationship_identifiers' | translate}}: 
+        <h6>{{'item.page.3.relationship_identifiers' | translate}}: </h6>
         <a *ngFor="let mdValue of this.object.metadata['dc.relation.isreferencedby']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.isreferencedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
         </a>
       </div>
       <div *ngIf="hasDcRelationMetaData_isrelatedto">
-        {{'item.page.4.relationship_identifiers' | translate}}: 
+        <h6>{{'item.page.4.relationship_identifiers' | translate}}: </h6>
         <a *ngFor="let mdValue of this.object.metadata['dc.relation.isrelatedto']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.isrelatedto']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
         </a>
       </div>
       <div *ngIf="hasDcRelationMetaData_isreplacedby">
-        {{'item.page.5.relationship_identifiers' | translate}}: 
+        <h6>{{'item.page.5.relationship_identifiers' | translate}}: </h6>
         <a *ngFor="let mdValue of this.object.metadata['dc.relation.isreplacedby']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.isreplacedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
         </a>
       </div>
       <div *ngIf="hasDcRelationMetaData_isrequiredby">
-        {{'item.page.6.relationship_identifiers' | translate}}: 
+        <h6>{{'item.page.6.relationship_identifiers' | translate}}: </h6>
         <a *ngFor="let mdValue of this.object.metadata['dc.relation.isrequiredby']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.isrequiredby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
         </a>
       </div>
       <div *ngIf="hasDcRelationMetaData_istranslationof">
-        {{'item.page.7.relationship_identifiers' | translate}}: 
+        <h6>{{'item.page.7.relationship_identifiers' | translate}}: </h6>
         <a *ngFor="let mdValue of this.object.metadata['dc.relation.istranslationof']; let last=last;" [href]="mdValue.value">
           {{ this.object.metadata['dc.relation.istranslationof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
         </a>
       </div>
       <div *ngIf="hasDcRelationMetaData_isversionof">
-        {{'item.page.8.relationship_identifiers' | translate}}: 
+        <h6>{{'item.page.8.relationship_identifiers' | translate}}: </h6>
         <a *ngFor="let mdValue of this.object.metadata['dc.relation.isversionof']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.isversionof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
         </a>

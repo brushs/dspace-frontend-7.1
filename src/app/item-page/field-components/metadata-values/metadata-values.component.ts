@@ -27,4 +27,10 @@ export class MetadataValuesComponent {
    */
   @Input() label: string;
 
+  @Input() subheading: boolean;
+
+  ngOnInit(): void {
+    console.log("metadata-values.subheading: " + this.subheading);
+  }
+
 }

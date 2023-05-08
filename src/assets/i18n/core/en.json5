@@ -1,6 +1,13 @@
 {
   // FOSRC SPECIFIC LABELS START
   "alternative.title": "Alternative Title",
+  "item.page.sponsorship": "Sponsorship",
+  "item.page.doi": "DOI",
+  "item.page.govdoc": "Government Document",
+  "item.page.issn": "ISSN",
+  "item.page.iso": "ISO",
+  "item.page.organization": "Organization",
+  "item.page.other": "Other",
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
   "collection.form.errors.description-topic-subject.required": "Please enter a subject",

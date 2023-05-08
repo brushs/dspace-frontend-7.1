@@ -5,7 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-issn-field',
-    templateUrl: '../item-page-field.component.html'
+    templateUrl: './item-page-issn-field.component.html'
 })
 /**
  * This component is used for displaying the sponsorship (dc.identifier.issn) of an item
