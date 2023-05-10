@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
 import { Observable, of as observableOf, Subscription } from 'rxjs';
-import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, mergeMap, switchMap, take } from 'rxjs/operators';
 import { AuthService } from '../../core/auth/auth.service';
 import { SubmissionDefinitionsModel } from '../../core/config/models/config-submission-definitions.model';
 import { Collection } from '../../core/shared/collection.model';
@@ -17,6 +17,7 @@ import { SubmissionService } from '../submission.service';
 import { Item } from '../../core/shared/item.model';
 import { SectionsType } from '../sections/sections-type';
 import { SectionsService } from '../sections/sections.service';
+import { AlertType } from '../../shared/alert/aletr-type';
 
 /**
  * This component represents the submission form.
@@ -83,6 +84,12 @@ export class SubmissionFormComponent implements OnChanges, OnDestroy {
   public uploadEnabled$: Observable<boolean>;
 
   /**
+    *
+    * The errors to display at the top of the form  
+    */
+  public errorsToShow$: Observable<any>;
+
+  /**
    * Observable of the list of submission's sections
    * @type {Observable<WorkspaceitemSectionsObject>}
    */
@@ -100,6 +107,12 @@ export class SubmissionFormComponent implements OnChanges, OnDestroy {
    */
   protected isActive: boolean;
 
+  /**
+   * Enum to get Alert Type
+   * @type {EnumType}
+   */
+  public AlertTypeEnum = AlertType;
+  
   /**
    * Array to track all subscriptions and unsubscribe them onDestroy
    * @type {Array}
@@ -177,8 +190,18 @@ export class SubmissionFormComponent implements OnChanges, OnDestroy {
       // start auto save
       this.submissionService.startAutoSave(this.submissionId);
     }
+
+    if(this.submissionSections) {
+        this.errorsToShow$ = this.submissionSections?.pipe(
+          map(sections => (sections as any).filter(x => !!(x.errorsToShow.length)))
+        )
+      }
   }
 
+  getErrorTranslationKey(path: string) {
+    let splittedString = path.split('/');
+    return `community.form.error.panel.${splittedString[splittedString.length-1]}`;
+  }
   /**
    * Unsubscribe from all subscriptions, destroy instance variables
    * and reset submission state
