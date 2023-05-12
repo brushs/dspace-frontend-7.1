@@ -113,15 +113,6 @@
   "community.form.rights-fosrctranslation.required": "",
   //Error Panel mandatory Fields 
 
-  "community.form.error.panel.dc.type": "Publication Type: ",
-  "community.form.error.panel.dc.language.iso": "Publication Language: ",
-  "community.form.error.panel.dc.title": "Title: ",
-  "community.form.error.panel.dc.date.issued": "Publication Date: ",
-  "community.form.error.panel.dc.contributor.author": "Author: ",
-  "community.form.error.panel.dc.subject": "Subject: ",
-  "community.form.error.panel.upload": "",
-  "community.form.error.panel.license": "",
-
   "community.form.error.validation.required": "This field is required.",
   "community.form.error.validation.license.notgranted": "You must grant this license to complete your submission. If you are unable to grant this license at this time, you may save your work and return later or remove the submission.",
   "community.form.error.validation.filerequired": "The file upload is mandatory.",
@@ -406,6 +397,15 @@
   "fosrc.item.edit.dynamic-field.values.5.common_identifiers": "Other",
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+
+  "fosrc.item.form.error.panel.dc.type": "Publication Type: ",
+  "fosrc.item.form.error.panel.dc.language.iso": "Publication Language: ",
+  "fosrc.item.form.error.panel.dc.title": "Title: ",
+  "fosrc.item.form.error.panel.dc.date.issued": "Publication Date: ",
+  "fosrc.item.form.error.panel.dc.contributor.author": "Author: ",
+  "fosrc.item.form.error.panel.dc.subject": "Subject: ",
+  "fosrc.item.form.error.panel.upload": "",
+  "fosrc.item.form.error.panel.license": "",
 
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",

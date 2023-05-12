@@ -198,23 +198,6 @@
   "community.form.hints.rights-fosrctranslation.hint": "Veuillez fournir la traduction du droit d'auteur",
   //"community.form.rights-fosrctranslation.required": "",
   "community.form.rights-fosrctranslation.required": "",
-  // TODO Translate the folllowing labels:
-  // "community.form.error.panel.dc.type": "Publication Type",
-  "community.form.error.panel.dc.type": "Publication Type",
-  // "community.form.error.panel.dc.language.iso": "Publication Language",
-  "community.form.error.panel.dc.language.iso": "Publication Language",
-  // "community.form.error.panel.dc.title": "Title",
-  "community.form.error.panel.dc.title": "Publication Language",
-  // "community.form.error.panel.dc.date.issued": "Publication Language",
-  "community.form.error.panel.dc.date.issued": "Publication Date",
-  // "community.form.error.panel.dc.contributor.author": "Author",
-  "community.form.error.panel.dc.contributor.author": "Author",
-  // "community.form.error.panel.dc.subject": "Subject",
-  "community.form.error.panel.dc.subject": "Subject",
-  // "community.form.error.panel.upload": "",
-  "community.form.error.panel.upload": "",
-  // "community.form.error.panel.license": "",
-  "community.form.error.panel.license": "",
 
   // end FOSRC - community Form
 
@@ -632,6 +615,24 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   // "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+
+    // TODO Translate the folllowing labels:
+  // "fosrc.item.form.error.panel.dc.type": "Publication Type",
+  "fosrc.item.form.error.panel.dc.type": "Publication Type",
+  // "fosrc.item.form.error.panel.dc.language.iso": "Publication Language",
+  "fosrc.item.form.error.panel.dc.language.iso": "Publication Language",
+  // "fosrc.item.form.error.panel.dc.title": "Title",
+  "fosrc.item.form.error.panel.dc.title": "Publication Language",
+  // "fosrc.item.form.error.panel.dc.date.issued": "Publication Language",
+  "fosrc.item.form.error.panel.dc.date.issued": "Publication Date",
+  // "fosrc.item.form.error.panel.dc.contributor.author": "Author",
+  "fosrc.item.form.error.panel.dc.contributor.author": "Author",
+  // "fosrc.item.form.error.panel.dc.subject": "Subject",
+  "fosrc.item.form.error.panel.dc.subject": "Subject",
+  // "fosrc.item.form.error.panel.upload": "",
+  "fosrc.item.form.error.panel.upload": "",
+  // "fosrc.item.form.error.panel.license": "",
+  "fosrc.item.form.error.panel.license": "",
 
   // "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.about": "Passer à « Au sujet du Dépôt fédéral de science ouverte du Canada (DFSOC)»",
