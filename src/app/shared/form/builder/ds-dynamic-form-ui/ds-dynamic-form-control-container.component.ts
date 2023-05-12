@@ -79,8 +79,8 @@ import { DsDynamicRelationGroupComponent } from './models/relation-group/dynamic
 import { DsDatePickerInlineComponent } from './models/date-picker-inline/dynamic-date-picker-inline.component';
 import { DYNAMIC_FORM_CONTROL_TYPE_CUSTOM_SWITCH } from './models/custom-switch/custom-switch.model';
 import { CustomSwitchComponent } from './models/custom-switch/custom-switch.component';
-import { find, map, startWith, switchMap, take } from 'rxjs/operators';
-import { combineLatest as observableCombineLatest, Observable, Subscription } from 'rxjs';
+import { distinctUntilChanged, filter, find, map, startWith, switchMap, take,  } from 'rxjs/operators';
+import { combineLatest as observableCombineLatest, Observable, Subscription, of as observableOf } from 'rxjs';
 import { SearchResult } from '../../../search/search-result.model';
 import { DSpaceObject } from '../../../../core/shared/dspace-object.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -213,6 +213,7 @@ export class DsDynamicFormControlContainerComponent extends DynamicFormControlCo
   listId: string;
   searchConfig: string;
   value: MetadataValue;
+  errors$: Observable<any>; // Subscription to get errors on dynamic array elements. 
   /**
    * List of subscriptions to unsubscribe from
    */
@@ -331,6 +332,12 @@ export class DsDynamicFormControlContainerComponent extends DynamicFormControlCo
         );
       }
     }
+    // When form type is array, error messages are not passed. To display validation errors in the label, the following
+    // checks if any of the input values associated with the metadata key is invalid.
+    if(this.model.type === 'ARRAY' && this.model.required) {
+      this.errors$ = this.submissionService.getSectionsWithErrorsList(this.model.submissionId, this.model.metadataKey);
+    }
+    
   }
 
   get isCheckbox(): boolean {

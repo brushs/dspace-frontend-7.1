@@ -190,12 +190,7 @@ export class SubmissionFormComponent implements OnChanges, OnDestroy {
       // start auto save
       this.submissionService.startAutoSave(this.submissionId);
     }
-
-    if(this.submissionSections) {
-        this.errorsToShow$ = this.submissionSections?.pipe(
-          map(sections => (sections as any).filter(x => !!(x.errorsToShow.length)))
-        )
-      }
+    this.errorsToShow$ = this.submissionService.getSectionsWithErrorsList(this.submissionId);
   }
 
   getErrorTranslationKey(path: string) {
