@@ -195,7 +195,7 @@ export class SubmissionFormComponent implements OnChanges, OnDestroy {
 
   getErrorTranslationKey(path: string) {
     let splittedString = path.split('/');
-    return `"fosrc.item.form.error.panel.${splittedString[splittedString.length-1]}`;
+    return `fosrc.item.form.error.panel.${splittedString[splittedString.length-1]}`;
   }
   /**
    * Unsubscribe from all subscriptions, destroy instance variables
