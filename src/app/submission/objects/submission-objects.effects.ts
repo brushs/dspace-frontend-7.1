@@ -207,10 +207,14 @@ export class SubmissionObjectEffects {
             return new DepositSubmissionAction(action.payload.submissionId);
           } else {
             this.notificationsService.warning(null, this.translate.get('submission.sections.general.sections_not_valid'));
-            return this.parseSaveResponse((currentState.submission as SubmissionState).objects[action.payload.submissionId],
-              response, action.payload.submissionId, currentState.forms);
+            return [
+              new SaveSubmissionFormSuccessAction(action.payload.submissionId, currentState.submission, false),
+              ...this.parseSaveResponse((currentState.submission as SubmissionState).objects[action.payload.submissionId],
+              response, action.payload.submissionId, currentState.forms, false)
+            ];
           }
         }),
+        mergeMap((actions: any) => observableFrom(actions)),
         catchError(() => observableOf(new SaveSubmissionFormErrorAction(action.payload.submissionId))));
     }));
 
