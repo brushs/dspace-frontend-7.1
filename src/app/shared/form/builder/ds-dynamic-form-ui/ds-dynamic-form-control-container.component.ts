@@ -331,6 +331,7 @@ export class DsDynamicFormControlContainerComponent extends DynamicFormControlCo
         );
       }
     }
+    console.log("FormContainer: ", this.model.type);
   }
 
   get isCheckbox(): boolean {
