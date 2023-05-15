@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ThemedComponent } from '../../../../app/shared/theme-support/themed.component';
 import { SearchComponent } from '../../../../app/search-page/search.component';
-//import { MySearchComponent } from './my-search-component/my-search.component';
+import { MySearchComponent } from './my-search-component/my-search.component';
 import { SearchConfigurationOption } from '../../../../app/shared/search/search-switch-configuration/search-configuration-option.model';
 import { Context } from '../../../../app/core/shared/context.model';
 import { CollectionElementLinkType } from '../../../../app/shared/object-collection/collection-element-link.type';
@@ -17,12 +17,13 @@ import { ListableObject } from '../../../../app/shared/object-collection/shared/
  * Themed wrapper for SearchComponent
  */
 @Component({
-  selector: 'ds-mythemed-search',
+  selector: 'ds-mythemed-search2',
   styleUrls: [],
-  templateUrl: '../../../../app/search-page/search.component.html',
+  //templateUrl: '../../../../app/search-page/search.component.html',
+  templateUrl: './my-search-component/my-search.component.html',
 })
 
-export class MyThemedSearchComponent extends SearchComponent {
+export class MyThemedSearchComponent extends MySearchComponent {
   protected inAndOutputNames: (keyof SearchComponent & keyof this)[] = [ 'context',  'inPlaceSearch',  'searchEnabled', 'sideBarWidth'];
 
   //@Input() configurationList: SearchConfigurationOption[] = [];
@@ -38,7 +39,7 @@ export class MyThemedSearchComponent extends SearchComponent {
 
   //@Input() linkType: CollectionElementLinkType;
   //@Input() paginationId = 'spc';
-  //@Input() searchEnabled = true;
+  @Input() searchEnabled = true;
 
   @Input() sideBarWidth = 3;
 

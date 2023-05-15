@@ -15,11 +15,17 @@ import { SearchConfigurationService } from '../../../../app/core/shared/search/s
 //import { ResearchEntitiesModule } from '../entity-groups/research-entities/research-entities.module';
 //import { ThemedSearchPageComponent } from './themed-search-page.component';
 import { AdvancedSearchPageComponent } from './advanced-search-page.component';
+import { MyThemedSearchComponent } from './mythemed-search.component';
+import { MySearchComponent } from './my-search-component/my-search.component';
+import { GeoSearchPageComponent } from '../geo-search-page/geo-search-page.component';
 
 const components = [
   //SearchPageComponent,
   //SearchComponent,
   AdvancedSearchPageComponent,
+  MyThemedSearchComponent,
+  MySearchComponent,
+  GeoSearchPageComponent
   //SearchTrackerComponent,
   //ThemedSearchPageComponent
 ];
