@@ -4,7 +4,8 @@ import {
   DynamicFormService,
   DynamicInputModel,
   DynamicTextAreaModel,
-  DynamicSelectModel
+  DynamicSelectModel,
+  DynamicFormGroupModel
 } from '@ng-dynamic-forms/core';
 import { Collection } from '../../core/shared/collection.model';
 import { ComColFormComponent } from '../../shared/comcol-forms/comcol-form/comcol-form.component';
@@ -39,6 +40,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
    * @type {(DynamicInputModel | DynamicTextAreaModel)[]}
    */
   formModel: DynamicFormControlModel[] = [
+    //new DynamicFormGroupModel(new DynamicFormGroupModelConfig
     new DynamicInputModel({
       id: 'title',
       name: 'dc.title', //this.translate.currentLang === 'en' ? 'dc.title' : 'dc.title.fosrctranslation',
@@ -53,7 +55,9 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }, {'grid': {
       control: "col-sm-10",
       label: "col-sm-3"
-    }}),
+    }
+    }),
+    /*
     new DynamicSelectModel({
       id: 'dc-title-lang',
       name: 'dc.title-lang',//(this.translate.currentLang === 'en' ? 'dc.title' : 'dc.title.fosrctranslation') + '-lang',
@@ -72,7 +76,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       label: "col-sm-3"
     }}),
 
-    /* OSPR changes start - add/remove fields for testing the new dynamic control models */
+    /* OSPR changes start - add/remove fields for testing the new dynamic control models *//*
     new DynamicInputModel({
       id: 'translatedTitle',
       name: 'dc.title.fosrctranslation',//this.translate.currentLang === 'fr' ? 'dc.title' : 'dc.title.fosrctranslation',
@@ -155,7 +159,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }}),
 
 
-    /*This is description*/
+    /*This is description*//*
     new DynamicTextAreaModel({
       id: 'description',
       name: 'dc.description', //this.translate.currentLang === 'en' ? 'dc.description' : 'dc.description.fosrctranslation',
@@ -207,7 +211,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       required: false,
     }),
 
-    /*This is copyright*/
+    /*This is copyright*//*
     new DynamicTextAreaModel({
       id: 'rights',
       name: 'dc.rights', //this.translate.currentLang === 'en' ? 'dc.rights' : 'dc.rights.fosrctranslation',
@@ -253,7 +257,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     }}),
 
 
-    /*This is rights.license*/
+    /*This is rights.license*//*
     new DynamicTextAreaModel({
       id: 'license',
       name: 'dc.rights.license', //this.translate.currentLang === 'en' ? 'dc.rights.license' : 'dc.rights.license-fosrctranslation',
@@ -344,7 +348,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
       control: "col-sm-2",
       label: "col-sm-3"
     }}),
-
+    */
 
   ];
 
