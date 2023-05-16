@@ -274,7 +274,6 @@ export class ComColFormComponent<T extends Collection | Community> implements On
         }
       })
     });
-    console.log(operations)
     this.submitForm.emit({
       dso: updatedDSO,
       uploader: hasValue(this.uploaderComponent) ? this.uploaderComponent.uploader : undefined,

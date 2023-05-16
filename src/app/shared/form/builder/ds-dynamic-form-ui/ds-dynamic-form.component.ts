@@ -46,7 +46,4 @@ export class DsDynamicFormComponent extends DynamicFormComponent {
   constructor(changeDetectorRef: ChangeDetectorRef, componentService: DynamicFormComponentService) {
     super(changeDetectorRef, componentService);
   }
-  ngOnInit() {
-    console.log("Form Model: ", this.formModel);
-  }
 }

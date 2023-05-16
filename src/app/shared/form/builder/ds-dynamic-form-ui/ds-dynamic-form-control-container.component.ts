@@ -337,8 +337,6 @@ export class DsDynamicFormControlContainerComponent extends DynamicFormControlCo
     if(this.model.type === 'ARRAY' && this.model.required) {
       this.errors$ = this.submissionService.getSectionsWithErrorsList(this.model.submissionId, this.model.metadataKey);
     }
-    
-    console.log("FormContainer: ", this.model.type);
   }
 
   get isCheckbox(): boolean {
