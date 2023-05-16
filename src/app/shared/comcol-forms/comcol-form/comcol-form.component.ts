@@ -261,20 +261,20 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     const operations: Operation[] = [];
     this.formModel.forEach((fieldRowModel: DynamicRowGroupModel) => {
       fieldRowModel.group.forEach((fieldModel: DynamicInputModel) => {
-        if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name)) {
+        let languageChanged = (this.dso.firstMetadata(fieldModel.name) && this.dso.firstMetadata(fieldModel.name).language !== fieldModel['language']);
+        if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name) || languageChanged) {
           operations.push({
             op: 'replace',
             path: `/metadata/${fieldModel.name}`,
             value: {
               value: fieldModel.value,
-              language: null,
+              language: fieldModel['language'],
             },
           });
         }
       })
     });
     console.log(operations)
-
     this.submitForm.emit({
       dso: updatedDSO,
       uploader: hasValue(this.uploaderComponent) ? this.uploaderComponent.uploader : undefined,
