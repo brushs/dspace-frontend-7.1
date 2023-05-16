@@ -4,7 +4,8 @@ import {
   DynamicFormService,
   DynamicInputModel,
   DynamicTextAreaModel,
-  DynamicSelectModel
+  DynamicSelectModel,
+  DynamicFormGroupModel
 } from '@ng-dynamic-forms/core';
 import { Collection } from '../../core/shared/collection.model';
 import { ComColFormComponent } from '../../shared/comcol-forms/comcol-form/comcol-form.component';
