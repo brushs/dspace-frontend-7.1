@@ -259,6 +259,21 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     });
 
     const operations: Operation[] = [];
+    this.formModel.forEach((fieldRowModel: DynamicRowGroupModel) => {
+      fieldRowModel.group.forEach((fieldModel: DynamicInputModel) => {
+        if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name)) {
+          operations.push({
+            op: 'replace',
+            path: `/metadata/${fieldModel.name}`,
+            value: {
+              value: fieldModel.value,
+              language: null,
+            },
+          });
+        }
+      })
+    });
+    console.log(operations)
 
     this.submitForm.emit({
       dso: updatedDSO,

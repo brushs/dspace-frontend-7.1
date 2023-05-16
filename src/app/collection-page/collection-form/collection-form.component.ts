@@ -55,6 +55,7 @@ export class CollectionFormComponent extends ComColFormComponent<Collection> {
     console.log("current Language from collection-form: " + translate.currentLang);
   }
   ngOnInit() {
-    this.formModel = this.formBuilderService.modelFromConfiguration(this.dso.id, JSON.stringify(CollectionFormLayout), null);
+    console.log(this.dso)
+    this.formModel = this.formBuilderService.modelFromConfiguration(this.dso.id, JSON.stringify(CollectionFormLayout), this.dso.uuid, this.dso.metadata);
   }
 }
