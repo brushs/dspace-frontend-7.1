@@ -199,7 +199,7 @@ export const CollectionFormLayout = {
             repeatable: false,
             hints: "collection.form.hints.license-fosrctranslation.hint",
             selectableMetadata: [{
-                metadata: "dc.rights.license-lang",
+                metadata: "dc.rights.license.fosrctranslation",
                 label: null,
                 closed: false
             }],
