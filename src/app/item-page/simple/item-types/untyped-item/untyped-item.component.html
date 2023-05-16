@@ -80,6 +80,21 @@
       [label]="'item.page.subject'">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.rights']"
+      [separator]="','"
+      [label]="'item.page.rights'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['local.peerreview']"
+      [separator]="','"
+      [label]="'item.page.local.peerreview'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.rights.openaccesslevel']"
+      [separator]="','"
+      [label]="'item.page.dc.rights.openaccesslevel'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
       [fields]="['dc.identifier.citation']"
       [label]="'item.page.citation'">
     </ds-generic-item-page-field>
