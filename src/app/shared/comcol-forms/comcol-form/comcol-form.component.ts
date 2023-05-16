@@ -255,7 +255,7 @@ export class ComColFormComponent<T extends Collection | Community> implements On
         ...this.dso.metadata,
         ...formMetadata
       },
-      type: Community.type
+      type: this.type
     });
 
     const operations: Operation[] = [];
