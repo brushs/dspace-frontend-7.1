@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, HostListener, NgZone } from '@angular/core';
 import { HostWindowService } from '../../../../app/shared/host-window.service';
 import { MenuService } from '../../../../app/shared/menu/menu.service';
 import { HeaderComponent as BaseComponent } from '../../../../app/header/header.component';
@@ -23,6 +23,7 @@ export class HeaderComponent extends BaseComponent {
     protected windowService: HostWindowService,
     menuService: MenuService,
     private _renderer2: Renderer2, 
+    private zone: NgZone,
     @Inject(DOCUMENT) private _document: Document
   ) {
     super(menuService);
@@ -38,7 +39,14 @@ export class HeaderComponent extends BaseComponent {
   }
 
   ngAfterViewInit() {
-    this.loadScripts();
+    this.loadScripts().then(x=>{
+      this.zone.runOutsideAngular(() => {
+        setTimeout(()=> {
+          let skipSectionList = document.querySelector('#wb-tphp')
+          skipSectionList.removeChild(skipSectionList.lastChild)
+        }, 500)
+      })
+    });
   }
   /** Dynamically append scripts to the DOM. Required here as opposed to angular.json to ensure component renders
    *  so the menu element is detected when the script performs the check. Even including the script in the index.html with the 

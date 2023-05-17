@@ -94,7 +94,7 @@
   "community.form.hints.description.hint": "Please describe your community",
   "community.form.description.required": "Error: You must describe your community",
   "community.form.description-fosrctranslation": "Translated description",
-  "community.form.hints.description-fosrctranslation.hint": "PLease provide the translation of the description",
+  "community.form.hints.description-fosrctranslation.hint": "Please provide the translation of the description",
   "community.form.description-fosrctranslation.required": "Error: You must provide the translation of the description",
   "community.form.contact-address": "Contact address", //"Adresse de contact",
   "community.form.hints.contact-address.hint": "PLease provide a mailing address for your department",
