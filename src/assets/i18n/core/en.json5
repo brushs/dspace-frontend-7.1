@@ -1,14 +1,18 @@
 {
   // FOSRC SPECIFIC LABELS START
-  "alternative.title": "Alternative Title",
+  //Simple item page translations ticket 1587
+  "item.page.keywords": "Keywords",
   "item.page.sponsorship": "Sponsorship",
   "item.page.doi": "DOI",
-  "item.page.govdoc": "Government Document",
+  "item.page.govdoc": "Government Docucument Number",
+  "item.page.isbn": "ISBN",
   "item.page.issn": "ISSN",
-  "item.page.iso": "ISO",
   "item.page.organization": "Organization",
   "item.page.other": "Other",
+  "item.page.iso": "Language of the publication",
+  "item.page.subject": "Subject",
   "item.page.identifiers": "Identifiers",
+  // Simple item page translation ends  "alternative.title": "Alternative Title",
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
   "collection.form.errors.description-topic-subject.required": "Please enter a subject",
@@ -398,6 +402,15 @@
   "fosrc.item.edit.dynamic-field.values.5.common_identifiers": "Other",
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+
+  "fosrc.item.form.error.panel.dc.type": "Publication Type: ",
+  "fosrc.item.form.error.panel.dc.language.iso": "Publication Language: ",
+  "fosrc.item.form.error.panel.dc.title": "Title: ",
+  "fosrc.item.form.error.panel.dc.date.issued": "Publication Date: ",
+  "fosrc.item.form.error.panel.dc.contributor.author": "Author: ",
+  "fosrc.item.form.error.panel.dc.subject": "Subject: ",
+  "fosrc.item.form.error.panel.upload": "Upload",
+  "fosrc.item.form.error.panel.license": "License",
 
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",

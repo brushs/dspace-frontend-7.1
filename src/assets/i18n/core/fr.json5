@@ -1,13 +1,29 @@
 {
   // FOSRC SPECIFIC LABELS START
-  "item.page.sponsorship": "Patronage",
+  //Simple item page translations ticket 1587
+  // "item.page.keywords": "Keywords",
+  "item.page.keywords": "Keywords",
+  // "item.page.sponsorship": "Sponsorship",
+  "item.page.sponsorship": "Commanditaires",
+  // "item.page.doi": "DOI",
   "item.page.doi": "DOI",
+  // "item.page.govdoc": "Government Docucument Number",
   "item.page.govdoc": "Numéro du document gouvernemental",
+  // "item.page.isbn": "ISBN",
+  "item.page.isbn": "ISBN",
+  // "item.page.issn": "ISSN",
   "item.page.issn": "ISSN",
-  "item.page.iso": "ISO",
+  // "item.page.organization": "Organization",
   "item.page.organization": "Organisation",
+  // "item.page.other": "Other",
   "item.page.other": "Autre",
+  // "item.page.iso": "Language of the publication",
+  "item.page.iso": "Langue de publication",
+  // "item.page.subject": "Subject",
+  "item.page.subject": "Suject",
+  //"item.page.identifiers": "Identifiers",
   "item.page.identifiers": "Identifiants",
+  // Simple item page translation ends
   // "alternative.title": "Alternative Title",
   "alternative.title": "Titre alternatif",
   //"collection.form.translatedTitle": "The translated collection Name (required)",
@@ -425,6 +441,14 @@
   "fosrc.item.edit.dynamic-field.error.author": "Erreur: Veuillez saisir au moins un auteur.",
   // "fosrc.item.edit.dynamic-field.error.language.publication": "Error: The official language for this publication is mandatory.",
   "fosrc.item.edit.dynamic-field.error.language.publication": "Erreur: La langue officielle de cette publication est obligatoire.",
+  // "fosrc.item.edit.dynamic-field.error.empty": "Required field is blank",
+  "fosrc.item.edit.dynamic-field.error.empty": "Le champ obligatoire est vide", // TODO: FOSRC Official translation
+  // "community.form.error.validation.required": "This field is required.",
+  "community.form.error.validation.required": "Ce champ est obligatoire.", // TODO: FOSRC Official translation
+  // "community.form.error.validation.license.notgranted": "You must grant this license to complete your submission. If you are unable to grant this license at this time, you may save your work and return later or remove the submission.",
+  "community.form.error.validation.license.notgranted": "Vous devez accorder cette licence pour compléter votre soumission. Si vous n'êtes pas en mesure d'accorder cette licence pour le moment, vous pouvez économiser votre travail et revenir plus tard ou supprimer la soumission.", // TODO: FOSRC Official translation
+  // "community.form.error.validation.filerequired": "The file upload is mandatory.",
+  "community.form.error.validation.filerequired": "Le téléchargement de fichiers est obligatoire.", // TODO: FOSRC Official translation
   // Values for selectable dropdown list for item submission form
   // "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Yes",
   "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Oui",
@@ -606,7 +630,7 @@
   "fosrc.item.edit.dynamic-field.values.2.contributor_identifiers": "ROR",
   // "fosrc.item.edit.dynamic-field.values.3.contributor_identifiers": "Other",
   "fosrc.item.edit.dynamic-field.values.3.contributor_identifiers": "Autre",
-  // "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Gov't Doc #",
+  // "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Government Docucument Number",
   "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Numéro du document gouvernemental",
   // "fosrc.item.edit.dynamic-field.values.2.common_identifiers": "ISBN",
   "fosrc.item.edit.dynamic-field.values.2.common_identifiers": "ISBN",
@@ -620,6 +644,24 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   // "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+
+  // TODO Translate the folllowing labels:
+  // "fosrc.item.form.error.panel.dc.type": "Publication Type",
+  "fosrc.item.form.error.panel.dc.type": "Type de publication",
+  // "fosrc.item.form.error.panel.dc.language.iso": "Publication Language",
+  "fosrc.item.form.error.panel.dc.language.iso": "Publication Language",
+  // "fosrc.item.form.error.panel.dc.title": "Title",
+  "fosrc.item.form.error.panel.dc.title": "Titre",
+  // "fosrc.item.form.error.panel.dc.date.issued": "Publication Date",
+  "fosrc.item.form.error.panel.dc.date.issued": "Date de publication",
+  // "fosrc.item.form.error.panel.dc.contributor.author": "Author",
+  "fosrc.item.form.error.panel.dc.contributor.author": "Auteur",
+  // "fosrc.item.form.error.panel.dc.subject": "Subject",
+  "fosrc.item.form.error.panel.dc.subject": "Suject",
+  // "fosrc.item.form.error.panel.upload": "Upload",
+  "fosrc.item.form.error.panel.upload": "Télécharger ",
+  // "fosrc.item.form.error.panel.license": "License",
+  "fosrc.item.form.error.panel.license": "Licence",
 
   // "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.about": "Passer à « Au sujet du Dépôt fédéral de science ouverte du Canada (DFSOC)»",
@@ -668,7 +710,7 @@
   "profile.security.form.notifications.error.change-failed": "Une erreur s'est produite lors de la tentative de modification du mot de passe. Veuillez vérifier si le mot de passe actuel est correct.",
   // "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
   "profile.security.form.notifications.error.general": "Veuillez remplir les champs obligatoires du formulaire de sécurité.",
-  
+
   // FOSRC SPECIFIC LABELS END
 
   // "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
@@ -2060,7 +2102,7 @@
   // "item.edit.bitstreams.bundle.displaying": "Currently displaying {{ amount }} bitstreams of {{ total }}.",
   "item.edit.bitstreams.bundle.displaying": "{{ amount }} flux binaires actuellement visible(s) sur un total de {{ total }}.",
   // "item.edit.bitstreams.bundle.edit.buttons.upload": "Upload",
-  "item.edit.bitstreams.bundle.edit.buttons.upload": "Téléverser ",
+  "item.edit.bitstreams.bundle.edit.buttons.upload": "Télécharger ",
   // "item.edit.bitstreams.bundle.load.all": "Load all ({{total}})",
   "item.edit.bitstreams.bundle.load.all": "Télécharger tout ({{total}})",
   // "item.edit.bitstreams.bundle.load.more": "Load more",
@@ -2126,7 +2168,7 @@
   // "item.edit.bitstreams.save-button": "Save",
   "item.edit.bitstreams.save-button": "Confirmer",
   // "item.edit.bitstreams.upload-button": "Upload",
-  "item.edit.bitstreams.upload-button": "Téléverser ",
+  "item.edit.bitstreams.upload-button": "Télécharger ",
   // "item.edit.breadcrumbs": "Edit item",
   "item.edit.breadcrumbs": "Modifier l’article",
   // "item.edit.delete.cancel": "Cancel",
@@ -4255,7 +4297,7 @@
   // "submission.sections.submit.progressbar.license": "Deposit license",
   "submission.sections.submit.progressbar.license": "Licence de dépôt",
   // "submission.sections.submit.progressbar.upload": "Upload files",
-  "submission.sections.submit.progressbar.upload": "Téléverser fichiers",
+  "submission.sections.submit.progressbar.upload": "Télécharger fichiers",
   // "submission.sections.toggle.aria.close": "Collapse {{sectionHeader}} section",
   "submission.sections.toggle.aria.close": "Réduire la section {{sectionHeader}}",
   // "submission.sections.toggle.aria.open": "Expand {{sectionHeader}} section",
