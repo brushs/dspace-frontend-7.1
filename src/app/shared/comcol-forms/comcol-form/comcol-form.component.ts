@@ -36,6 +36,7 @@ import { UploaderComponent } from '../../uploader/uploader.component';
 import { Operation } from 'fast-json-patch';
 import { NoContent } from '../../../core/shared/NoContent.model';
 import { getFirstCompletedRemoteData } from '../../../core/shared/operators';
+import { DynamicRowGroupModel } from '../../form/builder/ds-dynamic-form-ui/models/ds-dynamic-row-group-model';
 
 /**
  * A form for creating and editing Communities or Collections
@@ -156,9 +157,11 @@ export class ComColFormComponent<T extends Collection | Community> implements On
         if(fieldModel.name.includes('-lang')) {
           let languageValue;
           let metadataField = fieldModel.name.replace('-lang', '');
-          if( languageValue = this.dso.metadata[metadataField]?.[0]?.language) {
-            (fieldModel as DynamicSelectModel<string>).select(languageValue === 'en' ? 0 : 1)
-          }
+          try {
+            if (languageValue = this.dso.metadata[metadataField]?.[0]?.language) {
+              (fieldModel as DynamicSelectModel<string>).select(languageValue === 'en' ? 0 : 1)
+            }
+          } catch (e){ }
           this.formLayout[this.formModel[i-1].id] = {      
             grid: {
               control: "col-sm-9",
@@ -209,6 +212,7 @@ export class ComColFormComponent<T extends Collection | Community> implements On
    * Checks which new fields were added and sends the updated version of the DSO to the parent component
    */
   onSubmit() {
+    console.log(this.dso, this.formModel)
     if (this.markLogoForDeletion && hasValue(this.dso.id) && hasValue(this.dso._links.logo)) {
       this.dsoService.deleteLogo(this.dso).pipe(
         getFirstCompletedRemoteData()
@@ -232,16 +236,18 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     }
 
     const formMetadata = {}  as MetadataMap;
-    this.formModel.forEach((fieldModel: DynamicInputModel) => {
-      const value: MetadataValue = {
-        value: fieldModel.value as string,
-        language: null
-      } as any;
-      if (formMetadata.hasOwnProperty(fieldModel.name)) {
-        formMetadata[fieldModel.name].push(value);
-      } else {
-        formMetadata[fieldModel.name] = [value];
-      }
+    this.formModel.forEach((fieldRowModel: DynamicRowGroupModel) => {
+      fieldRowModel.group.forEach((fieldModel: DynamicInputModel) => {
+        const value: MetadataValue = {
+          value: fieldModel.value as string,
+          language: fieldModel.value ? fieldModel['language'] : null
+        } as any;
+        if (formMetadata.hasOwnProperty(fieldModel.name)) {
+          formMetadata[fieldModel.name].push(value);
+        } else {
+          formMetadata[fieldModel.name] = [value];
+        }
+      })
     });
 
     const updatedDSO = Object.assign({}, this.dso, {
@@ -249,34 +255,25 @@ export class ComColFormComponent<T extends Collection | Community> implements On
         ...this.dso.metadata,
         ...formMetadata
       },
-      type: Community.type
+      type: this.type
     });
 
     const operations: Operation[] = [];
-    // FOSRC start
-    let i = 0;
-    this.formModel.forEach((fieldModel: DynamicInputModel) => {
-      i++;
-      if (i < this.formModel.length && 
-        !fieldModel.name.includes("-lang") && 
-        (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name) ||
-        this.dso.firstMetadata(fieldModel.name)?.language !== (this.formModel[i] as DynamicSelectModel<any>).value)) {
-        let langCode = null;
-        if (this.formModel[i].name.includes('-lang')) {
-          langCode = (this.formModel[i] as DynamicSelectModel<any>).value;
+    this.formModel.forEach((fieldRowModel: DynamicRowGroupModel) => {
+      fieldRowModel.group.forEach((fieldModel: DynamicInputModel) => {
+        let languageChanged = (this.dso.firstMetadata(fieldModel.name) && this.dso.firstMetadata(fieldModel.name).language !== fieldModel['language']);
+        if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name) || languageChanged) {
+          operations.push({
+            op: 'replace',
+            path: `/metadata/${fieldModel.name}`,
+            value: {
+              value: fieldModel.value,
+              language: fieldModel['language'],
+            },
+          });
         }
-        operations.push({
-          op: 'replace',
-          path: `/metadata/${fieldModel.name}`,
-          value: {
-            value: fieldModel.value,
-            language: langCode,
-          },
-        });
-        // FOSRC end
-      }
+      })
     });
-
     this.submitForm.emit({
       dso: updatedDSO,
       uploader: hasValue(this.uploaderComponent) ? this.uploaderComponent.uploader : undefined,

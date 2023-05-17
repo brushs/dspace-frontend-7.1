@@ -198,6 +198,7 @@
   "community.form.hints.rights-fosrctranslation.hint": "Veuillez fournir la traduction du droit d'auteur",
   //"community.form.rights-fosrctranslation.required": "",
   "community.form.rights-fosrctranslation.required": "",
+
   // end FOSRC - community Form
 
   // start FOSRC - the below fields can be deleted
@@ -417,6 +418,8 @@
   "fosrc.item.edit.dynamic-field.error.author": "Erreur: Veuillez saisir au moins un auteur.",
   // "fosrc.item.edit.dynamic-field.error.language.publication": "Error: The official language for this publication is mandatory.",
   "fosrc.item.edit.dynamic-field.error.language.publication": "Erreur: La langue officielle de cette publication est obligatoire.",
+  // "fosrc.item.edit.dynamic-field.error.select.empty": "Required field is blank",
+  "fosrc.item.edit.dynamic-field.error.empty": "Required field is blank", // TODO: translate
   // Values for selectable dropdown list for item submission form
   // "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Yes",
   "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Oui",
@@ -617,6 +620,24 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   // "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+
+    // TODO Translate the folllowing labels:
+  // "fosrc.item.form.error.panel.dc.type": "Publication Type",
+  "fosrc.item.form.error.panel.dc.type": "Publication Type",
+  // "fosrc.item.form.error.panel.dc.language.iso": "Publication Language",
+  "fosrc.item.form.error.panel.dc.language.iso": "Publication Language",
+  // "fosrc.item.form.error.panel.dc.title": "Title",
+  "fosrc.item.form.error.panel.dc.title": "Publication Language",
+  // "fosrc.item.form.error.panel.dc.date.issued": "Publication Language",
+  "fosrc.item.form.error.panel.dc.date.issued": "Publication Date",
+  // "fosrc.item.form.error.panel.dc.contributor.author": "Author",
+  "fosrc.item.form.error.panel.dc.contributor.author": "Author",
+  // "fosrc.item.form.error.panel.dc.subject": "Subject",
+  "fosrc.item.form.error.panel.dc.subject": "Subject",
+  // "fosrc.item.form.error.panel.upload": "",
+  "fosrc.item.form.error.panel.upload": "",
+  // "fosrc.item.form.error.panel.license": "",
+  "fosrc.item.form.error.panel.license": "",
 
   // "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.about": "Passer à « Au sujet du Dépôt fédéral de science ouverte du Canada (DFSOC)»",

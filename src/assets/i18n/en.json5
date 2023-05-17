@@ -94,7 +94,7 @@
   "community.form.hints.description.hint": "Please describe your community",
   "community.form.description.required": "Error: You must describe your community",
   "community.form.description-fosrctranslation": "Translated description",
-  "community.form.hints.description-fosrctranslation.hint": "PLease provide the translation of the description",
+  "community.form.hints.description-fosrctranslation.hint": "Please provide the translation of the description",
   "community.form.description-fosrctranslation.required": "Error: You must provide the translation of the description",
   "community.form.contact-address": "Contact address", //"Adresse de contact",
   "community.form.hints.contact-address.hint": "PLease provide a mailing address for your department",
@@ -1319,6 +1319,20 @@
   "item.page.relationships.isOrgUnitOfPerson": "Authors",
   "item.page.relationships.isOrgUnitOfProject": "Research projects",
   "item.page.return": "Back",
+  
+  //Simple item page translations ticket 1587
+  "item.page.keywords" : "Keywords",
+  "item.page.sponsorship" : "Sponsorship",
+  "item.page.doi" : "DOI",
+  "item.page.govdoc" : "GovDocs",
+  "item.page.isbn" : "ISBN",
+  "item.page.issn" : "ISSN",
+  "item.page.organization" : "Organization",
+  "item.page.other" : "Other",
+  "item.page.iso" : "ISO",
+  "item.page.subject" : "Subject",
+  // Simple item page translation ends
+  
   "item.page.subject": "Keywords",
   "item.page.titleprefix": "Title: ",
   "item.page.uri": "URI",

@@ -4,9 +4,12 @@
     <label *ngIf="!isCheckbox && hasLabel"
            [id]="'label_' + model.id"
            [for]="id"
-           [innerHTML]="(model.required && model.label) ? (model.label | translate) + ' *' : (model.label | translate)"
-           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]"></label>
-    <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
+           [ngClass]="[getClass('element', 'label'), getClass('grid', 'label')]">
+           <ng-container *ngIf="hasLabel"> {{ ((model.required && model.label) ? (model.label | translate) + ' *' : (model.label | translate)) }}</ng-container>
+           <small *ngIf="(showErrorMessages || (errors$ | async)?.length) && model.required" class="text-danger" [innerText]="('fosrc.item.edit.dynamic-field.error.empty' | translate)"></small>
+
+          </label>
+          <ng-container *ngTemplateOutlet="startTemplate?.templateRef; context: model"></ng-container>
     <!--    Should be *ngIf instead of class d-none, but that breaks the #componentViewContainer reference-->
     <div [ngClass]="{'form-row': model.hasLanguages || isRelationship,
                       'd-none': value?.isVirtual && (model.hasSelectableMetadata || context?.index > 0)}">
@@ -19,7 +22,7 @@
               && (!showErrorMessages || errorMessages.length === 0)" class="clearfix w-100 mb-2"></div>
 
           <div *ngIf="showErrorMessages" [ngClass]="[getClass('element', 'errors'), getClass('grid', 'errors')]">
-            <small *ngFor="let message of errorMessages" class="invalid-feedback d-block">{{ message | translate: model.validators }}</small>
+            <small *ngFor="let message of errorMessages" class="invalid-feedback d-block">{{ message | translate: model.validators }} </small>
           </div>
 
         </div>

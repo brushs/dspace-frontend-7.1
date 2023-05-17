@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { Observable, of as observableOf, Subscription, timer as observableTimer } from 'rxjs';
+import { Observable, of as observableOf, Subscription, timer as observableTimer, BehaviorSubject } from 'rxjs';
 import { catchError, concatMap, distinctUntilChanged, filter, find, map, startWith, take, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -334,6 +334,24 @@ export class SubmissionService {
       distinctUntilChanged());
   }
 
+  getSectionsWithErrorsList(submissionId: string, metadataKey: string = null): Observable<SectionDataObject[]> {
+    return this.getSubmissionObject(submissionId).pipe(
+      filter((submission: SubmissionObjectEntry) => isNotUndefined(submission.sections) && !submission.isLoading),
+      map((submission: SubmissionObjectEntry) => submission.sections),
+      map((sections: SubmissionSectionEntry) => {
+        return Object.keys(sections).reduce( (prev, key) => {
+          let errorsToShow;
+          if((!!sections[key].errorsToShow.length && (metadataKey === null || (errorsToShow = sections[key].errorsToShow.find(error => error.path.includes(metadataKey)) ))) ) {
+            prev.push(errorsToShow || sections[key]);
+          }
+            return prev;
+        }, [])
+      }),
+      startWith([]),
+      distinctUntilChanged());
+  }
+
+  
   /**
    * Return the correct REST endpoint link path depending on the page route
    *
