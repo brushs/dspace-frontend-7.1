@@ -36,4 +36,18 @@ export class ItemPageIsoFieldComponent extends ItemPageFieldComponent {
      */
     label = 'item.page.iso';
 
+    public getLanguageValue(): string {
+        let languageFields: string[] = ['dc.language.iso', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en', 'dc.language']
+
+        let returnValue = null;
+        
+        languageFields.forEach((languageField) => {
+            returnValue = this.item.firstMetadataValue(languageField);
+            if(!returnValue) {
+                return
+            }
+        });
+
+        return returnValue;
+    }
 }

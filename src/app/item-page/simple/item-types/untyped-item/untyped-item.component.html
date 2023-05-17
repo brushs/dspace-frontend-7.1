@@ -36,10 +36,11 @@
       <ds-item-page-govdoc-field [item]="object"></ds-item-page-govdoc-field>
       <ds-item-page-isbn-field [item]="object"></ds-item-page-isbn-field>
       <ds-item-page-issn-field [item]="object"></ds-item-page-issn-field>
-      <ds-item-page-iso-field [item]="object"></ds-item-page-iso-field>
       <ds-item-page-organization-field [item]="object"></ds-item-page-organization-field>
       <ds-item-page-other-field [item]="object"></ds-item-page-other-field>
     </div>
+
+    <ds-item-page-iso-field [item]="object"></ds-item-page-iso-field>
 
     <ds-item-page-keywords-field [item]="object"></ds-item-page-keywords-field>
     <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
@@ -79,11 +80,11 @@
       [separator]="','"
       [label]="'item.page.subject'">
     </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
+    <ds-generic-item-page-link-field [item]="object"
       [fields]="['dc.rights']"
       [separator]="','"
       [label]="'item.page.rights'">
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-link-field>
     <ds-generic-item-page-field [item]="object"
       [fields]="['local.peerreview']"
       [separator]="','"
