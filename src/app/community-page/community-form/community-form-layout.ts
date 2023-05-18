@@ -73,7 +73,7 @@ export const CommunityFormLayout = {
             repeatable: false,
             hints: "community.form.hints.alternative-names-translation.hint",
             selectableMetadata: [{
-               metadata: "dc.title.alternative-fosrctranslation",
+                metadata: "dc.title.alternative-fosrctranslation",
                 label: null,
                 closed: false
             }],
@@ -150,7 +150,7 @@ export const CommunityFormLayout = {
             languageCodes: [],
             typeBind: []
         }]
-    }, 
+    },
     {
         fields: [{
             input: {
