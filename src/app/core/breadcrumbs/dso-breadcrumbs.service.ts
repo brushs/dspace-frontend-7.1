@@ -35,17 +35,20 @@ export class DSOBreadcrumbsService implements BreadcrumbsProviderService<ChildHA
    * @param key The key (a DSpaceObject) used to resolve the breadcrumb
    * @param url The url to use as a link for this breadcrumb
    */
-  getBreadcrumbs(key: ChildHALResource & DSpaceObject, url: string): Observable<Breadcrumb[]> {
+  getBreadcrumbs(key: ChildHALResource & DSpaceObject, url: string, language?: string): Observable<Breadcrumb[]> {
     const label = this.dsoNameService.getName(key, this.localeService.getCurrentLanguageCode());
-    const crumb = new Breadcrumb(label, url);
-
+    const crumb = new Breadcrumb(label, url, language);
     const propertyName = key.getParentLinkKey();
     return this.linkService.resolveLink(key, followLink(propertyName))[propertyName].pipe(
       find((parentRD: RemoteData<ChildHALResource & DSpaceObject>) => parentRD.hasSucceeded || parentRD.statusCode === 204),
       switchMap((parentRD: RemoteData<ChildHALResource & DSpaceObject>) => {
         if (hasValue(parentRD.payload)) {
+          let lang = 'en';
+          if(this.localeService.getCurrentLanguageCode() === 'fr' && (parentRD.payload.metadata?.['dc.title']?.[0]?.language === 'fr' || parentRD.payload.metadata?.['dc.title.fosrctranslation']?.[0]?.language === 'fr')) {
+            lang = 'fr';
+          }
           const parent = parentRD.payload;
-          return this.getBreadcrumbs(parent, getDSORoute(parent));
+          return this.getBreadcrumbs(parent, getDSORoute(parent), lang);
         }
         return observableOf([]);
 
