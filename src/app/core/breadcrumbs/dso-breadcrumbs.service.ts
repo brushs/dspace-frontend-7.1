@@ -43,8 +43,12 @@ export class DSOBreadcrumbsService implements BreadcrumbsProviderService<ChildHA
       find((parentRD: RemoteData<ChildHALResource & DSpaceObject>) => parentRD.hasSucceeded || parentRD.statusCode === 204),
       switchMap((parentRD: RemoteData<ChildHALResource & DSpaceObject>) => {
         if (hasValue(parentRD.payload)) {
+          let lang = 'en';
+          if(this.localeService.getCurrentLanguageCode() === 'fr' && (parentRD.payload.metadata?.['dc.title']?.[0]?.language === 'fr' || parentRD.payload.metadata?.['dc.title.fosrctranslation']?.[0]?.language === 'fr')) {
+            lang = 'fr';
+          }
           const parent = parentRD.payload;
-          return this.getBreadcrumbs(parent, getDSORoute(parent));
+          return this.getBreadcrumbs(parent, getDSORoute(parent), lang);
         }
         return observableOf([]);
 

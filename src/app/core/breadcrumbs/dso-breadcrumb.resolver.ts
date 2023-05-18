@@ -40,12 +40,9 @@ export abstract class DSOBreadcrumbResolver<T extends ChildHALResource & DSpaceO
       map((object: T) => {
         if (hasValue(object)) {
           let lang = 'en';
-          if(hasValue(object.metadata['dc.title']) && hasValue(object.metadata['dc.title.fosrctranslation'])) {
-            const langToCheck = this.translate.currentLang === 'fr' ? 'fr': 'en';
-           if(langToCheck === 'fr' && (object.metadata['dc.title'][0]?.language === 'fr' || object.metadata['dc.title.fosrctranslation'][0]?.language === 'fr')) {
-              lang = 'fr';
-           };
-          }
+          if(this.translate.currentLang === 'fr' && (object.metadata['dc.title']?.[0]?.language === 'fr' || object.metadata['dc.title.fosrctranslation']?.[0]?.language === 'fr')) {
+            lang = 'fr';
+          };
           const fullPath = state.url;
           const url = fullPath.substr(0, fullPath.indexOf(uuid)) + uuid;
           return {provider: this.breadcrumbService, key: object, url: url, lang: lang};
