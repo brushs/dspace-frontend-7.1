@@ -209,8 +209,7 @@ export class SubmissionObjectEffects {
             return [
               new SaveSubmissionFormSuccessAction(action.payload.submissionId, currentState.submission, false),
               ...this.parseSaveResponse((currentState.submission as SubmissionState).objects[action.payload.submissionId],
-              response, action.payload.submissionId, currentState.forms),
-              
+              response, action.payload.submissionId, currentState.forms)
             ];
           }
         }),
