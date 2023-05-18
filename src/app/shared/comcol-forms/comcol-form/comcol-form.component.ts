@@ -37,6 +37,7 @@ import { Operation } from 'fast-json-patch';
 import { NoContent } from '../../../core/shared/NoContent.model';
 import { getFirstCompletedRemoteData } from '../../../core/shared/operators';
 import { DynamicRowGroupModel } from '../../form/builder/ds-dynamic-form-ui/models/ds-dynamic-row-group-model';
+import { DynamicRowArrayModel } from '../../form/builder/ds-dynamic-form-ui/models/ds-dynamic-row-array-model';
 
 /**
  * A form for creating and editing Communities or Collections
@@ -236,8 +237,14 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     }
 
     const formMetadata = {}  as MetadataMap;
-    this.formModel.forEach((fieldRowModel: DynamicRowGroupModel) => {
-      fieldRowModel.group.forEach((fieldModel: DynamicInputModel) => {
+    this.formModel.forEach((fieldRowModel: DynamicRowGroupModel | DynamicRowArrayModel) => {
+      let groupsToIterate = []
+      if(fieldRowModel instanceof DynamicRowGroupModel) {
+        groupsToIterate.push(fieldRowModel.group)
+      } else if(fieldRowModel instanceof DynamicRowArrayModel) {
+        groupsToIterate = fieldRowModel.groups.map(({group}) => group)
+      }
+      groupsToIterate.forEach((fieldModel: DynamicInputModel) => {
         const value: MetadataValue = {
           value: fieldModel.value as string,
           language: fieldModel.value ? fieldModel['language'] : null
@@ -260,7 +267,7 @@ export class ComColFormComponent<T extends Collection | Community> implements On
 
     const operations: Operation[] = [];
     this.formModel.forEach((fieldRowModel: DynamicRowGroupModel) => {
-      fieldRowModel.group.forEach((fieldModel: DynamicInputModel) => {
+      fieldRowModel.group?.forEach((fieldModel: DynamicInputModel) => {
         let languageChanged = (this.dso.firstMetadata(fieldModel.name) && this.dso.firstMetadata(fieldModel.name).language !== fieldModel['language']);
         if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name) || languageChanged) {
           operations.push({
