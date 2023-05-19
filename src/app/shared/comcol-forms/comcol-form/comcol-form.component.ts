@@ -213,7 +213,6 @@ export class ComColFormComponent<T extends Collection | Community> implements On
    * Checks which new fields were added and sends the updated version of the DSO to the parent component
    */
   onSubmit() {
-    console.log(this.dso, this.formModel)
     if (this.markLogoForDeletion && hasValue(this.dso.id) && hasValue(this.dso._links.logo)) {
       this.dsoService.deleteLogo(this.dso).pipe(
         getFirstCompletedRemoteData()
@@ -244,7 +243,6 @@ export class ComColFormComponent<T extends Collection | Community> implements On
       } else if(fieldRowModel instanceof DynamicRowArrayModel) {
         groupsToIterate = fieldRowModel.groups.map(({group}) => group)
       }
-      console.log(groupsToIterate)
       groupsToIterate.forEach((fieldModel: DynamicInputModel) => {
         const value: MetadataValue = {
           value: fieldModel.value as string,
