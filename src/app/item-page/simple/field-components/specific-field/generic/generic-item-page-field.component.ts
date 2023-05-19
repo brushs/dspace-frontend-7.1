@@ -35,6 +35,6 @@ export class GenericItemPageFieldComponent extends ItemPageFieldComponent {
    */
   @Input() label: string;
 
-  @Input() filterLang: boolean;
+  @Input() filterLang: boolean = false;
 
 }
