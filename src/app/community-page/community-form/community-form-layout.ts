@@ -94,8 +94,8 @@ export const CommunityFormLayout = {
                 label: null,
                 closed: false
             }],
-            "languageCodes": StandardLanguageCodes,
-            "typeBind": []
+            languageCodes: StandardLanguageCodes,
+            typeBind: []
         }]
     }, {
         fields: [{
@@ -147,7 +147,7 @@ export const CommunityFormLayout = {
                 label: null,
                 closed: false
             }],
-            languageCodes: [],
+            languageCodes: StandardLanguageCodes,
             typeBind: []
         }]
     },
