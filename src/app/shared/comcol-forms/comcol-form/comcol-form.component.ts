@@ -240,10 +240,11 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     this.formModel.forEach((fieldRowModel: DynamicRowGroupModel | DynamicRowArrayModel) => {
       let groupsToIterate = []
       if(fieldRowModel instanceof DynamicRowGroupModel) {
-        groupsToIterate.push(fieldRowModel.group)
+        groupsToIterate = fieldRowModel.group
       } else if(fieldRowModel instanceof DynamicRowArrayModel) {
         groupsToIterate = fieldRowModel.groups.map(({group}) => group)
       }
+      console.log(groupsToIterate)
       groupsToIterate.forEach((fieldModel: DynamicInputModel) => {
         const value: MetadataValue = {
           value: fieldModel.value as string,
