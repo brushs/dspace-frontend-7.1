@@ -66,5 +66,17 @@ export class UntypedItemComponent extends ItemComponent {
     super.ngOnInit();
     this.checkRelationMetaData ();
   }
+
+  public hasIdentifiers(): boolean {
+    var keyList: string[] = ['govdoc','issn','isbn','other','organization','pubmedID']
+    var result: boolean = false;
+    keyList.forEach((item) => {
+      if(this.object.metadata['dc.identifier.' + item]) {
+        result = true;
+        return;
+      }
+    });
+    return result;
+  }
   /* End of FOSRC Changes */
 }

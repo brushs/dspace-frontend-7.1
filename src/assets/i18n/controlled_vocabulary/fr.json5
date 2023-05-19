@@ -58,5 +58,7 @@
   "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore.node.78000.0": "Eau",
   "item.page.rights": "Droits",
   "item.page.local.peerreview": "Review de Peer",
-  "item.page.dc.rights.openaccesslevel": "Acces Niveau Ouvert"
+  "item.page.dc.rights.openaccesslevel": "Acces Niveau Ouvert",
+  "item.page.keywords": "Mots-clés",
+  "item.page.subject": "Sujet"
 }

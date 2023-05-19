@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { LocaleService } from '../../../core/locale/locale.service';
 import { MetadataValue } from '../../../core/shared/metadata.models';
+
 
 /**
  * This component renders the configured 'values' into the ds-metadata-field-wrapper component.
@@ -29,8 +31,17 @@ export class MetadataValuesComponent {
 
   @Input() subheading: boolean;
 
+  @Input() filterLang: boolean = false;
+
+  constructor(
+    public localeService: LocaleService
+  ) { }
+
   ngOnInit(): void {
     console.log("metadata-values.subheading: " + this.subheading);
+    if(this.filterLang) {
+      this.mdValues = this.mdValues.filter(mdValue => mdValue.language === this.localeService.getCurrentLanguageCode());
+    }
   }
 
 }

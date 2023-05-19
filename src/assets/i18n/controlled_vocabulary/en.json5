@@ -30,5 +30,7 @@
   "fosrc.item.edit.dynamic-field.values.contolled.vocabulary.gccore.node.78000.0": "Water",
   "item.page.rights": "Rights",
   "item.page.local.peerreview": "Peer Review",
-  "item.page.dc.rights.openaccesslevel": "Open Access Level"
+  "item.page.dc.rights.openaccesslevel": "Open Access Level",
+  "item.page.keywords": "Keywords",
+  "item.page.subject": "Subject"
 }
