@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { startWith, switchMap } from 'rxjs/operators';
+import { startWith, switchMap, tap, map } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model';
 import { RemoteData } from '../../../../../app/core/data/remote-data';
 import { DSpaceObject } from '../../../../../app/core/shared/dspace-object.model';
@@ -21,6 +21,8 @@ import { Context } from '../../../../../app/core/shared/context.model';
 import { SortOptions } from '../../../../../app/core/cache/models/sort-options.model';
 import { followLink } from '../../../../../app/shared/utils/follow-link-config.model';
 import { Item } from '../../../../../app/core/shared/item.model';
+import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
+
 
 @Component({
   selector: 'ds-search',
@@ -49,6 +51,8 @@ export class MySearchComponent implements OnInit {
    * The current paginated search options
    */
   searchOptions$: Observable<PaginatedSearchOptions>;
+
+  geoChange$:Observable<PaginatedSearchOptions>;
 
   /**
    * The current available sort options
@@ -99,6 +103,10 @@ export class MySearchComponent implements OnInit {
   @Input()
   context: Context;
 
+  //gdata: any;
+  @ViewChild(GeoSearchPageComponent) geoComponent: GeoSearchPageComponent;
+
+
   /**
    * Link to the search page
    */
@@ -137,7 +145,24 @@ export class MySearchComponent implements OnInit {
     }
     /* End of FOSRC Changes */
     this.searchOptions$ = this.getSearchOptions();
+    console.log("this.searchOptions$ = " + this.searchOptions$);
+    var geoquery = '';
     this.sub = this.searchOptions$.pipe(
+      map((options) => {
+        console.log('retrieve geo data');
+        if (options.geoQuery != undefined )
+        {
+           //var geodata = this.geoComponent.getGeoData();
+           geoquery = options.geoQuery;
+        }
+        //var [lat1,lng1,lat2,lng2] = geodata.split(',');
+        //var newquery = 'nrcan.geospatial.bbox:%5B' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + '%5D';
+
+        console.log("geoquery = " + geoquery);
+        return options;
+      }),
+
+
       switchMap((options) => this.service.search(
           options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
         ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
@@ -197,6 +222,27 @@ export class MySearchComponent implements OnInit {
       return currentPath(this.router);
     }
     return this.service.getSearchLink();
+  }
+
+
+  onGeoChanged(value: string) {
+    console.log("###" + value);
+    var geodata  = null;
+    var geoquery = null;
+    if (this.geoComponent != null && this.geoComponent.getGeoData() != null && this.geoComponent.getGeoData() != '')  { 
+      geodata = this.geoComponent.getGeoData();
+      var [lat1,lng1,lat2,lng2] = geodata.split(',');
+      //var geoquery = 'nrcan.geospatial.bbox:[' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + ']';
+      geoquery = 'geospatial.bbox:[' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + ']';
+      if (lat1 == undefined || lng1 == undefined || lat2 == undefined || lng2 == undefined) {
+        geoquery = ''; // reset geoquery
+      }
+    }
+    
+    var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
+    oldValue.geoQuery = geoquery;
+    this.searchConfigService.paginatedSearchOptions.next(oldValue);
+
   }
 
   /**
