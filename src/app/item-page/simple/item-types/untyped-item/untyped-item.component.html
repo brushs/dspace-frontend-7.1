@@ -85,11 +85,10 @@
       [separator]="','"
       [label]="'item.page.subject'">
     </ds-generic-item-page-field>
-    <ds-item-page-uri-field [item]="object"
-      [fields]="['dc.rights']"
-      [separator]="','"
-      [label]="'item.page.rights'">
-    </ds-item-page-uri-field>
+
+    <h5 *ngIf="hasRights()">{{'item.page.rights' | translate}}</h5>
+    <ds-item-page-rights-field [item]="object"></ds-item-page-rights-field>
+
     <ds-generic-item-page-field [item]="object"
       [fields]="['local.peerreview']"
       [separator]="','"

@@ -78,5 +78,12 @@ export class UntypedItemComponent extends ItemComponent {
     });
     return result;
   }
+
+  public hasRights(): boolean {
+    if(this.object.metadata['dc.rights']) {
+        return true;
+    }
+    return false;
+  }
   /* End of FOSRC Changes */
 }
