@@ -5,7 +5,7 @@ import { MySearchComponent } from './my-search-component/my-search.component';
 import { SearchConfigurationOption } from '../../../../app/shared/search/search-switch-configuration/search-configuration-option.model';
 import { Context } from '../../../../app/core/shared/context.model';
 import { CollectionElementLinkType } from '../../../../app/shared/object-collection/collection-element-link.type';
-import { SelectionConfig } from '../../../../app/shared/search/search-results/search-results.component';
+//import { SelectionConfig } from '../../../../app/shared/search/search-results/search-results.component';
 import { ViewMode } from '../../../../app/core/shared/view-mode.model';
 //import { SearchObjects } from '../../../../app/shared/search/models/search-objects.model';
 import { DSpaceObject } from '../../../../app/core/shared/dspace-object.model';
