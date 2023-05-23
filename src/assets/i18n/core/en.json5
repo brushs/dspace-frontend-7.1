@@ -1,5 +1,21 @@
 {
   // FOSRC SPECIFIC LABELS START
+
+  // Contact us page labels
+  "contact-us.breadcrumbs": "Contact a department or an agency",
+  "contact-us.header": "Contact a department or an agency",
+  "contact-us.description": "Please contact your affiliated department or agency with any questions or comments.",
+  "contact-us.general.header": "General enquiries",
+  "contact-us.general.description": "For more information about the FOSRC and its policies and standards, contact ",
+  "contact-us.contact.agriculture": "Agriculture and Agri-Food Canada",
+  "contact-us.contact.food-inspection": "Canadian Food Inspection Agency",
+  "contact-us.contact.space": "Canadian Space Agency",
+  "contact-us.contact.environment": "Environment and Climate Change Canada",
+  "contact-us.contact.fisheries": "Fisheries and Oceans Canada",
+  "contact-us.contact.health": "Health Canada",
+  "contact-us.contact.public-health": "Public Health Agency of Canada",
+  "contact-us.contact.transport": "Transport Canada",
+
   "alternative.title": "Alternative Title",
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
