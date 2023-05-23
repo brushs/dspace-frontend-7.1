@@ -40,7 +40,7 @@
       <ds-item-page-other-field [item]="object"></ds-item-page-other-field>
     </div>
 
-    <ds-item-page-iso-field [item]="object"></ds-item-page-iso-field>
+    <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object"></ds-item-page-iso-field>
 
     <ds-item-page-keywords-field [item]="object"></ds-item-page-keywords-field>
     <ds-item-page-date-field [item]="object"></ds-item-page-date-field>

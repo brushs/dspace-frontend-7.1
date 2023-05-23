@@ -85,5 +85,20 @@ export class UntypedItemComponent extends ItemComponent {
     }
     return false;
   }
+
+  public hasLanguage(): boolean {
+    let languageFields: string[] = ['dc.language.iso', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en', 'dc.language']
+
+    let returnValue = false;
+    
+    languageFields.forEach((languageField) => {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          return
+        }
+    });
+
+    return returnValue;
+  }
   /* End of FOSRC Changes */
 }
