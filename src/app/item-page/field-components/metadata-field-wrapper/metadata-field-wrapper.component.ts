@@ -21,13 +21,5 @@ export class MetadataFieldWrapperComponent {
   @Input() hideIfNoTextContent = true;
 
   ngOnInit(): void {
-    console.log("metadata-field-wrapper.subheading: " + this.subheading);
-  }
-
-  ngOnChanges(simpleChanges: SimpleChanges): void {
-    if(this.label.toLowerCase().includes('gov')) {
-      console.log("metadata-field-wrapper.label: ", this.label);
-      console.log("metadata-field-wrapper.simpleChanges: ", simpleChanges);
-    }
   }
 }

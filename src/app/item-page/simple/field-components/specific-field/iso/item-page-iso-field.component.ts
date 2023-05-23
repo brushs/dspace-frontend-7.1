@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Item } from '../../../../../core/shared/item.model';
+import { Metadata } from '../../../../../core/shared/metadata.utils';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
@@ -28,7 +29,7 @@ export class ItemPageIsoFieldComponent extends ItemPageFieldComponent {
      * In this component, we want to display values for metadata 'dc.language.iso'
      */
     fields: string[] = [
-        'dc.language.iso'
+        'dc.language.iso', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en', 'dc.language'
     ];
 
     /**
@@ -36,14 +37,14 @@ export class ItemPageIsoFieldComponent extends ItemPageFieldComponent {
      */
     label = 'item.page.iso';
 
-    public getLanguageValue(): string {
+    public getLanguageValue(): Metadata {
         let languageFields: string[] = ['dc.language.iso', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en', 'dc.language']
 
         let returnValue = null;
         
         languageFields.forEach((languageField) => {
-            returnValue = this.item.firstMetadataValue(languageField);
-            if(!returnValue) {
+            returnValue = this.item.firstMetadata(languageField);
+            if(returnValue) {
                 return
             }
         });
