@@ -40,7 +40,7 @@ export const environment = {
 			"timeLeftBeforeTokenRefresh": 120000
 		},
 		"login": {
-			"enablePassword": false
+			"enablePassword": true
 		}
 	},
 	"form": {
