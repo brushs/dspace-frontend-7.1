@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {combineLatest, Observable, of as observableOf, ReplaySubject} from 'rxjs';
 import {Breadcrumb} from './breadcrumb/breadcrumb.model';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, provideRoutes, Router} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {hasNoValue, hasValue, isUndefined} from '../shared/empty.util';
 
@@ -59,9 +59,9 @@ export class BreadcrumbsService {
       hasValue(data) && hasValue(data.breadcrumb) &&
       hasValue(routeConfig) && hasValue(routeConfig.resolve) && hasValue(routeConfig.resolve.breadcrumb)
     ) {
-      const { provider, key, url } = data.breadcrumb;
+      const { provider, key, url, lang } = data.breadcrumb;
       if (!last) {
-        return combineLatest(provider.getBreadcrumbs(key, url), this.resolveBreadcrumbs(route.firstChild))
+        return combineLatest(provider.getBreadcrumbs(key, url, lang), this.resolveBreadcrumbs(route.firstChild))
           .pipe(map((crumbs) => [].concat.apply([], crumbs)));
       } else {
         return provider.getBreadcrumbs(key, url);

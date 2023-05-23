@@ -73,7 +73,7 @@ export const CommunityFormLayout = {
             repeatable: false,
             hints: "community.form.hints.alternative-names-translation.hint",
             selectableMetadata: [{
-               metadata: "dc.title.alternative-fosrctranslation",
+                metadata: "dc.title.alternative-fosrctranslation",
                 label: null,
                 closed: false
             }],
@@ -94,8 +94,8 @@ export const CommunityFormLayout = {
                 label: null,
                 closed: false
             }],
-            "languageCodes": StandardLanguageCodes,
-            "typeBind": []
+            languageCodes: StandardLanguageCodes,
+            typeBind: []
         }]
     }, {
         fields: [{
@@ -147,10 +147,10 @@ export const CommunityFormLayout = {
                 label: null,
                 closed: false
             }],
-            languageCodes: [],
+            languageCodes: StandardLanguageCodes,
             typeBind: []
         }]
-    }, 
+    },
     {
         fields: [{
             input: {
