@@ -97,10 +97,12 @@ export class DSONameService {
     let officialTitles: MetadataValue[] = []
     if(currentLang !== undefined && currentLang !== null) {
       let allTitles:MetadataValue[] = dso.allMetadata('dc.title');
-      allTitles.forEach(function (singleTitle) {
+      let allTranslatedTitles:MetadataValue[] = dso.allMetadata('dc.title.fosrctranslation');
+      allTitles.forEach(function (singleTitle, index) {
         if(currentLang == singleTitle['language']) {
-          //console.log("Official Title: " + singleTitle.value);
           officialTitles.push(singleTitle);
+        } else if (currentLang == allTranslatedTitles[index]['language']) {
+          officialTitles.push(allTranslatedTitles[index]);
         }        
       });
     }
@@ -117,8 +119,12 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getTranslatedName(dso: DSpaceObject, currentLang: string): MetadataValue {
-    if (currentLang == 'fr' && dso.firstMetadataValue('dc.title.fosrctranslation') != undefined && dso.firstMetadataValue('dc.title.fosrctranslation') != null ) {
-      return dso.firstMetadata('dc.title.fosrctranslation');
+    let titleMetadata = dso.firstMetadata('dc.title');
+    let fosrcTitleMetadata = dso.firstMetadata('dc.title.fosrctranslation');
+    if(titleMetadata?.language === currentLang) {
+      return titleMetadata;
+    } else if(fosrcTitleMetadata?.language === currentLang ) {
+      return fosrcTitleMetadata;
     } else {
       return undefined;
     }
