@@ -99,9 +99,9 @@ export class DSONameService {
       let allTitles:MetadataValue[] = dso.allMetadata('dc.title');
       let allTranslatedTitles:MetadataValue[] = dso.allMetadata('dc.title.fosrctranslation');
       allTitles.forEach(function (singleTitle, index) {
-        if(currentLang == singleTitle['language']) {
+        if(currentLang == singleTitle?.['language']) {
           officialTitles.push(singleTitle);
-        } else if (currentLang == allTranslatedTitles[index]['language']) {
+        } else if (currentLang == allTranslatedTitles?.[index]?.['language']) {
           officialTitles.push(allTranslatedTitles[index]);
         }        
       });
@@ -122,7 +122,7 @@ export class DSONameService {
     let allTitles: MetadataValue[] = dso.allMetadata('dc.title');
     let fosrcTitleMetadata = dso.firstMetadata('dc.title.fosrctranslation');
     let translation;
-    if(translation = allTitles.find( title => title.language == currentLang)) {
+    if(translation = allTitles?.find( title => title.language == currentLang)) {
       return translation;
     } else if(fosrcTitleMetadata?.language === currentLang ) {
       return fosrcTitleMetadata;
