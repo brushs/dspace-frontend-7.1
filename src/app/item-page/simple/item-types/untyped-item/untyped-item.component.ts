@@ -66,5 +66,39 @@ export class UntypedItemComponent extends ItemComponent {
     super.ngOnInit();
     this.checkRelationMetaData ();
   }
+
+  public hasIdentifiers(): boolean {
+    var keyList: string[] = ['govdoc','issn','isbn','other','organization','pubmedID']
+    var result: boolean = false;
+    for(let item of keyList) {
+      if(this.object.metadata['dc.identifier.' + item]) {
+        result = true;
+        break;
+      }
+    };
+    return result;
+  }
+
+  public hasRights(): boolean {
+    if(this.object.metadata['dc.rights']) {
+        return true;
+    }
+    return false;
+  }
+
+  public hasLanguage(): boolean {
+    let languageFields: string[] = ['dc.language.iso', 'dc.language', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
   /* End of FOSRC Changes */
 }

@@ -5,7 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-organization-field',
-    templateUrl: '../item-page-field.component.html'
+    templateUrl: './item-page-organization-field.component.html'
 })
 /**
  * This component is used for displaying the sponsorship (dc.identifier.organization) of an item

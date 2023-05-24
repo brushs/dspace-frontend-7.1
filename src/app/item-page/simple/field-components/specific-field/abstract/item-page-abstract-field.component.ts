@@ -5,7 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-abstract-field',
-    templateUrl: '../item-page-field.component.html'
+    templateUrl: './item-page-abstract-field.component.html'
 })
 /**
  * This component is used for displaying the abstract (dc.description.abstract) of an item
