@@ -38,7 +38,6 @@ export class MetadataValuesComponent {
   ) { }
 
   ngOnInit(): void {
-    console.log("metadata-values.subheading: " + this.subheading);
     if(this.filterLang) {
       this.mdValues = this.mdValues.filter(mdValue => mdValue.language === this.localeService.getCurrentLanguageCode());
     }

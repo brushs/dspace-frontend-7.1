@@ -1,6 +1,6 @@
-<div class="item-page-field">
+<div class="item-page-field" *ngIf="getLanguageValue()">
   <!-- <ds-metadata-values [mdValues]="item?.allMetadata(fields)" [separator]="separator" [label]="label"></ds-metadata-values> -->
   <!-- <ds-metadata-values [subheading]="false" [mdValues]="getLanguageValue()" [separator]="separator" [label]="label"></ds-metadata-values> -->
   <h6>{{ label | translate }}</h6>
-  <span [attr.lang]="getLanguageValue().language" [innerHTML]="(getLanguageValue().value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
+  <span [attr.lang]="getLanguageValue()?.language" [innerHTML]="(getLanguageValue()?.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
 </div>

@@ -70,12 +70,12 @@ export class UntypedItemComponent extends ItemComponent {
   public hasIdentifiers(): boolean {
     var keyList: string[] = ['govdoc','issn','isbn','other','organization','pubmedID']
     var result: boolean = false;
-    keyList.forEach((item) => {
+    for(let item of keyList) {
       if(this.object.metadata['dc.identifier.' + item]) {
         result = true;
-        return;
+        break;
       }
-    });
+    };
     return result;
   }
 
@@ -87,16 +87,16 @@ export class UntypedItemComponent extends ItemComponent {
   }
 
   public hasLanguage(): boolean {
-    let languageFields: string[] = ['dc.language.iso', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en', 'dc.language']
+    let languageFields: string[] = ['dc.language.iso', 'dc.language', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en']
 
     let returnValue = false;
     
-    languageFields.forEach((languageField) => {
+    for(var languageField of languageFields) {
         if(this.object.metadata[languageField]) {
           returnValue = true;
-          return
+          break;
         }
-    });
+    };
 
     return returnValue;
   }

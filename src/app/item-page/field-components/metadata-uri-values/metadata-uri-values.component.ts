@@ -44,7 +44,6 @@ export class MetadataUriValuesComponent extends MetadataValuesComponent {
       const currentHostname = location.hostname;
       return rawValue.replace(urlObj.hostname, currentHostname);
     } catch (Error) {
-      console.log("Unable to extract FQDN from rawValue! " + rawValue)
       return rawValue;
     }
   }
