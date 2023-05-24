@@ -22,7 +22,7 @@ FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /app/dist/browser /usr/share/nginx/html
-COPY --from=build /app/src/environment.ts /
+COPY --from=build /app/src/environments/environment.ts /
 
 COPY ./nginx.conf /etc/nginx
 
