@@ -119,10 +119,11 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getTranslatedName(dso: DSpaceObject, currentLang: string): MetadataValue {
-    let titleMetadata = dso.firstMetadata('dc.title');
+    let allTitles: MetadataValue[] = dso.allMetadata('dc.title');
     let fosrcTitleMetadata = dso.firstMetadata('dc.title.fosrctranslation');
-    if(titleMetadata?.language === currentLang) {
-      return titleMetadata;
+    let translation;
+    if(translation = allTitles.find( title => title.language == currentLang)) {
+      return translation;
     } else if(fosrcTitleMetadata?.language === currentLang ) {
       return fosrcTitleMetadata;
     } else {
