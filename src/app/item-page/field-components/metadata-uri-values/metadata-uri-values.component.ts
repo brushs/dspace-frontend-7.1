@@ -37,4 +37,14 @@ export class MetadataUriValuesComponent extends MetadataValuesComponent {
    * The label for this iteration of metadata values
    */
   @Input() label: string;
+
+  public domainAwareValue (rawValue: string): string {
+    try {
+      const urlObj = new URL(rawValue);
+      const currentHostname = location.hostname;
+      return rawValue.replace(urlObj.hostname, currentHostname);
+    } catch (Error) {
+      return rawValue;
+    }
+  }
 }
