@@ -47,6 +47,12 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
+            path: 'about-us',
+            loadChildren: () => import('./about-us-page/about-us-page.module')
+              .then((m) => m.AboutUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
             path: 'contact-us',
             loadChildren: () => import('./contact-us-page/contact-us-page.module')
               .then((m) => m.ContactUsPageModule),

@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { I18nBreadcrumbResolver } from '../core/breadcrumbs/i18n-breadcrumb.resolver';
 import { I18nBreadcrumbsService } from '../core/breadcrumbs/i18n-breadcrumbs.service';
-import { ThemedContactUsPageComponent } from './themed-contact-us-page.component';
+import { ThemedAboutUsPageComponent } from './themed-about-us-page.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: '', pathMatch: 'full', component: ThemedContactUsPageComponent, resolve: { breadcrumb: I18nBreadcrumbResolver }, data: { breadcrumbKey: 'contact-us', title: 'contact-us.breadcrumbs' } }
+      { path: '', pathMatch: 'full', component: ThemedAboutUsPageComponent, resolve: { breadcrumb: I18nBreadcrumbResolver }, data: { breadcrumbKey: 'about-us', title: 'about-us.breadcrumbs' } }
     ])
   ],
   providers: [
@@ -15,5 +15,5 @@ import { ThemedContactUsPageComponent } from './themed-contact-us-page.component
     I18nBreadcrumbsService
   ]
 })
-export class ContactUsPageRoutingModule {
+export class AboutUsPageRoutingModule {
 }

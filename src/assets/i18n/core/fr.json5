@@ -30,6 +30,9 @@
   // "contact-us.contact.transport": "Transport Canada",
   "contact-us.contact.transport": "Transports Canada",
 
+  // About us page labels
+  "about-us.breadcrumbs": "Le DFSOC",
+
   //Simple item page translations ticket 1587
   // "item.page.keywords": "Keywords",
   "item.page.keywords": "Keywords",
