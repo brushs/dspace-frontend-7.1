@@ -53,6 +53,12 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
+            path: 'policies-and-standards',
+            loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
+              .then((m) => m.PoliciesAndStandardsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
             path: 'contact-us',
             loadChildren: () => import('./contact-us-page/contact-us-page.module')
               .then((m) => m.ContactUsPageModule),
