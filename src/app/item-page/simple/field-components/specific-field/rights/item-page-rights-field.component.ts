@@ -4,13 +4,13 @@ import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
-    selector: 'ds-item-page-issn-field',
-    templateUrl: './item-page-issn-field.component.html'
+    selector: 'ds-item-page-rights-field',
+    templateUrl: './item-page-rights-field.component.html'
 })
 /**
  * This component is used for displaying the sponsorship (dc.identifier.issn) of an item
  */
-export class ItemPageIssnFieldComponent extends ItemPageFieldComponent {
+export class ItemPageRightsFieldComponent extends ItemPageFieldComponent {
 
     /**
      * The item to display metadata for
@@ -28,12 +28,7 @@ export class ItemPageIssnFieldComponent extends ItemPageFieldComponent {
      * In this component, we want to display values for metadata 'dc.identifier.issn'
      */
     fields: string[] = [
-        'dc.identifier.issn'
+        'dc.rights'
     ];
-
-    /**
-     * Label i18n key for the rendered metadata
-     */
-    label = 'item.page.issn';
 
 }

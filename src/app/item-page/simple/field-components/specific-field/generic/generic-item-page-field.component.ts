@@ -5,7 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
   selector: 'ds-generic-item-page-field',
-  templateUrl: '../item-page-field.component.html'
+  templateUrl: './generic-item-page-field.component.html'
 })
 /**
  * This component can be used to represent metadata on a simple item page.
@@ -34,5 +34,7 @@ export class GenericItemPageFieldComponent extends ItemPageFieldComponent {
    * Label i18n key for the rendered metadata
    */
   @Input() label: string;
+
+  @Input() filterLang: boolean = false;
 
 }

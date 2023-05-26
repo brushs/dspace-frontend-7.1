@@ -5,7 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-govdoc-field',
-    templateUrl: '../item-page-field.component.html'
+    templateUrl: './item-page-govdoc-field.component.html'
 })
 /**
  * This component is used for displaying the sponsorship (dc.identifier.govdoc) of an item

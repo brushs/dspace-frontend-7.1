@@ -5,7 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-other-field',
-    templateUrl: '../item-page-field.component.html'
+    templateUrl: './item-page-other-field.component.html'
 })
 /**
  * This component is used for displaying the sponsorship (dc.identifier.other) of an item
