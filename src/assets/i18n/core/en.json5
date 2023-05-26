@@ -18,7 +18,9 @@
 
   // About us page labels
   "about-us.breadcrumbs": "About the FOSRC",
-
+  // Policies page labels
+  "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
+  
   //Simple item page translations ticket 1587
   "item.page.keywords": "Keywords",
   "item.page.sponsorship": "Sponsorship",
