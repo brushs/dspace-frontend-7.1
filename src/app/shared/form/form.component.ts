@@ -18,6 +18,8 @@ import { hasValue, isNotEmpty, isNotNull, isNull } from '../empty.util';
 import { FormService } from './form.service';
 import { FormEntry, FormError } from './form.reducer';
 import { FormFieldMetadataValueObject } from './builder/models/form-field-metadata-value.model';
+import { NotificationsService } from '../notifications/notifications.service';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * The default form component.
@@ -105,6 +107,8 @@ export class FormComponent implements OnDestroy, OnInit {
 
   constructor(private formService: FormService,
               protected changeDetectorRef: ChangeDetectorRef,
+              private notificationService: NotificationsService,
+              private translate: TranslateService,
               private formBuilderService: FormBuilderService) {
   }
 
@@ -295,6 +299,7 @@ export class FormComponent implements OnDestroy, OnInit {
     if (this.getFormGroupValidStatus()) {
       this.submitForm.emit(this.formService.getFormData(this.formId));
     } else {
+      this.notificationService.error(this.translate.instant('form.errors.general.fields_not_valid'))
       this.formService.validateAllFormFields(this.formGroup);
     }
   }

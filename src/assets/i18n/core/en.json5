@@ -191,6 +191,10 @@
   "footer.gc.privacy": "Privacy",
   "footer.gc.privacy.link": "https://www.canada.ca/en/transparency/privacy.html",
   "footer.symbol": "Symbol of the Government of Canada",
+
+  // general form error
+  "form.errors.general.fields_not_valid": "Form contains invalid required fields.",
+
   // hints for item submission form
   "fosrc.item.edit.dynamic-field.hint.book.series.title": "Please enter the title of the series if applicable.",
   "fosrc.item.edit.dynamic-field.hint.series.book.number": "Please enter the book number from the series if applicable.",
