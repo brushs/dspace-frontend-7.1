@@ -5,7 +5,7 @@ import { BreadcrumbsComponent as BaseComponent } from '../../../../app/breadcrum
  * Component representing the breadcrumbs of a page
  */
 @Component({
-  selector: 'ds-breadcrumbs',
+  selector: '[ds-breadcrumbs]',
   templateUrl: './breadcrumbs.component.html',
   //templateUrl: '../../../../app/breadcrumbs/breadcrumbs.component.html',
   styleUrls: ['../../styles/wet-theme.scss']

@@ -31,11 +31,11 @@
                       </ng-container>
           
               <ng-template #breadcrumb let-text="text" let-url="url" let-lang="lang">
-                  <li class="breadcrumb-item"><a [attr.lang]="lang" [routerLink]="url" >{{text | translate}}</a></li>
+                  <li property="itemListElement" class="breadcrumb-item"><a property="item" [attr.lang]="lang" [routerLink]="url" >{{text | translate}}</a></li>
               </ng-template>
           
               <ng-template #activeBreadcrumb let-text="text" let-lang="lang">
-                  <li class="breadcrumb-item active" aria-current="page"><a [attr.lang]="lang" href="{{getPath()}}">{{text | translate}}</a></li>
+                  <li property="itemListElement" class="breadcrumb-item active" aria-current="page"><a property="item" [attr.lang]="lang" href="{{getPath()}}">{{text | translate}}</a></li>
               </ng-template>
           </ng-container>
         </ol>
