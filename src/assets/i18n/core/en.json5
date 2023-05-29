@@ -22,6 +22,7 @@
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
   
   //Simple item page translations ticket 1587
+  "alternative.title": "Alternative Title",
   "item.page.keywords": "Keywords",
   "item.page.sponsorship": "Sponsorship",
   "item.page.doi": "DOI",
@@ -33,7 +34,7 @@
   "item.page.iso": "Language of the publication",
   "item.page.subject": "Subject",
   "item.page.identifiers": "Identifiers",
-  // Simple item page translation ends  "alternative.title": "Alternative Title",
+  // Simple item page translation ends  
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
   "collection.form.errors.description-topic-subject.required": "Please enter a subject",

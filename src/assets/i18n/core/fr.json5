@@ -40,6 +40,8 @@
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
 
   //Simple item page translations ticket 1587
+  // "alternative.title": "Alternative Title",
+  "alternative.title": "Titre alternatif",
   // "item.page.keywords": "Keywords",
   "item.page.keywords": "Keywords",
   // "item.page.sponsorship": "Sponsorship",
@@ -63,8 +65,6 @@
   //"item.page.identifiers": "Identifiers",
   "item.page.identifiers": "Identifiants",
   // Simple item page translation ends
-  // "alternative.title": "Alternative Title",
-  "alternative.title": "Titre alternatif",
   //"collection.form.translatedTitle": "The translated collection Name (required)",
   "collection.form.translatedTitle": "La traduction du nom de la collection (obligatoire)",
   //"collection.form.hints.translatedTitle.hint": "The translated name of this collection",
