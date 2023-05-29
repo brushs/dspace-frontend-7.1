@@ -65,7 +65,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
-            path: 'politiques-et-normes-policies-and-standards',
+            path: 'politiques-et-normes',
             loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
               .then((m) => m.PoliciesAndStandardsPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
