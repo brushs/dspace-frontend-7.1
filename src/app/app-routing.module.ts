@@ -46,6 +46,24 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             data: { showBreadcrumbs: false },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
+          {
+            path: 'about-us',
+            loadChildren: () => import('./about-us-page/about-us-page.module')
+              .then((m) => m.AboutUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'policies-and-standards',
+            loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
+              .then((m) => m.PoliciesAndStandardsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'contact-us',
+            loadChildren: () => import('./contact-us-page/contact-us-page.module')
+              .then((m) => m.ContactUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
           { path: 'tips-for-searching', pathMatch: 'full', component: SearchTipsPageComponent },
           {
             path: 'community-list',

@@ -1,6 +1,47 @@
 {
   // FOSRC SPECIFIC LABELS START
+  
+  // Contact us page labels
+  // "contact-us.breadcrumbs": "Contact Us",
+  "contact-us.breadcrumbs": "Communiquer avec un ministère ou un organisme",
+  // "contact-us.header": "Contact a department or an agency",
+  "contact-us.header": "Communiquer avec un ministère ou un organisme",
+  // "contact-us.description": "Please contact your affiliated department or agency with any questions or comments.",
+  "contact-us.description": "Pour toute question ou commentaire sur le contenu , veuillez contacter le ministère ou l'organisme ci-dessous concerné. Pour des questions d'ordre général ou pour en savoir plus, veuillez contacter l'équipe du DFSOC.",
+  // "contact-us.general.header": "General enquiries.",
+  "contact-us.general.header": "Renseignements généraux",
+  // "contact-us.general.description": "For more information about the FOSRC and its policies and standards, contact",
+  "contact-us.general.description": "Pour plus d'informations sur DFSOC, ses politiques et ses normes, veuillez contacter ",
+  
+  // "contact-us.contact.agriculture": "Agriculture and Agri-Food Canada",
+  "contact-us.contact.agriculture": "Agriculture et Agroalimentaire Canada",
+  // "contact-us.contact.food-inspecion": "Canadian Food Inspection Agency",
+  "contact-us.contact.food-inspection": "Agence canadienne d'inspection des aliments",
+  // "contact-us.contact.space": "Canadian Space Agency",
+  "contact-us.contact.space": "Agence spatiale canadienne",
+  // "contact-us.contact.environment": "Environment and Climate Change Canada",
+  "contact-us.contact.environment": "Environnement et Changement climatique Canada",
+  // "contact-us.contact.fisheries": "Fisheries and Oceans Canada",
+  "contact-us.contact.fisheries": "Pêches et Océans Canada",
+  // "contact-us.contact.health": "Health Canada",
+  "contact-us.contact.health": "Santé Canada",
+  // "contact-us.contact.public-health": "Public Health Agency of Canada",
+  "contact-us.contact.public-health": "Agence de la santé publique du Canada",
+  // "contact-us.contact.transport": "Transport Canada",
+  "contact-us.contact.transport": "Transports Canada",
+
+  // Policies page labels
+  // About us page labels
+  // "about-us.breadcrumbs": "About the FOSRC",
+  "about-us.breadcrumbs": "Le DFSOC",
+  
+  // Policies page labels
+  // "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
+  "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
+
   //Simple item page translations ticket 1587
+  // "alternative.title": "Alternative Title",
+  "alternative.title": "Titre alternatif",
   // "item.page.keywords": "Keywords",
   "item.page.keywords": "Keywords",
   // "item.page.sponsorship": "Sponsorship",
@@ -24,8 +65,6 @@
   //"item.page.identifiers": "Identifiers",
   "item.page.identifiers": "Identifiants",
   // Simple item page translation ends
-  // "alternative.title": "Alternative Title",
-  "alternative.title": "Titre alternatif",
   //"collection.form.translatedTitle": "The translated collection Name (required)",
   "collection.form.translatedTitle": "La traduction du nom de la collection (obligatoire)",
   //"collection.form.hints.translatedTitle.hint": "The translated name of this collection",
