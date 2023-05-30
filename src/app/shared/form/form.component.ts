@@ -299,7 +299,7 @@ export class FormComponent implements OnDestroy, OnInit {
     if (this.getFormGroupValidStatus()) {
       this.submitForm.emit(this.formService.getFormData(this.formId));
     } else {
-      this.notificationService.error(this.translate.instant('form.errors.general.fields_not_valid'))
+      this.notificationService.error(this.translate.instant('form.errors.general.fields-not-valid'))
       this.formService.validateAllFormFields(this.formGroup);
     }
   }
