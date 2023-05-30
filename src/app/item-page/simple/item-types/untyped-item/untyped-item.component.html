@@ -36,6 +36,7 @@
       <ds-item-page-govdoc-field [item]="object"></ds-item-page-govdoc-field>
       <ds-item-page-isbn-field [item]="object"></ds-item-page-isbn-field>
       <ds-item-page-issn-field [item]="object"></ds-item-page-issn-field>
+      <ds-item-page-fosrc-projectid-field [item]="object"></ds-item-page-fosrc-projectid-field>
       <ds-item-page-organization-field [item]="object"></ds-item-page-organization-field>
       <ds-item-page-other-field [item]="object"></ds-item-page-other-field>
     </div>
@@ -50,6 +51,101 @@
                                      [metadataFields]="['dc.contributor.author', 'dc.creator']"
                                      [label]="'relationships.isAuthorOf' | translate">
     </ds-metadata-representation-list>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.location.fosrcconference']"
+                                [label]="'item.page.location.fosrcconference'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.title.fosrcprojectname']"
+                                [label]="'item.page.title.fosrcprojectname'">
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.articletype']"
+                                [label]="'item.page.local.articletype'">
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.book.edition']"
+                                [label]="'item.page.local.book.edition'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.book.seriesnum']"
+    [label]="'item.page.local.book.seriesnum'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.book.volume']"
+                                [label]="'item.page.local.book.volume'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.chapter.book']"
+    [label]="'item.page.local.chapter.book'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.chapter.edition']"
+                                [label]="'item.page.local.chapter.edition'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.chapter.seriesnum']"
+    [label]="'item.page.local.chapter.seriesnum'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.chapter.seriesnum']"
+                                [label]="'item.page.local.chapter.seriesnum'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.conference.edition']"
+    [label]="'item.page.local.conference.edition'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.conference.enddate']"
+                                [label]="'item.page.local.conference.enddate'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.conference.name']"
+    [label]="'item.page.local.conference.name'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.conference.series']"
+                                [label]="'item.page.local.conference.series'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.conference.startdate']"
+    [label]="'item.page.local.conference.startdate'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.conferencetype']"
+                                [label]="'item.page.local.conferencetype'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.pagination']"
+    [label]="'item.page.local.pagination'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.peerreview']"
+                                [label]="'item.page.local.peerreview'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.report.edition']"
+    [label]="'item.page.local.report.edition'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.report.reportnum']"
+                                [label]="'item.page.local.report.reportnum'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.report.series']"
+    [label]="'item.page.local.report.series'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.report.seriesnum']"
+                                [label]="'item.page.local.report.seriesnum'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['local.reporttype']"
+    [label]="'item.page.local.reporttype'">
+    </ds-generic-item-page-field>
+
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['journal.title']"
                                 [label]="'item.page.journal-title'">
@@ -73,6 +169,16 @@
     <ds-generic-item-page-field [item]="object"
       [fields]="['dc.description']"
       [label]="'item.page.description'">
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['dc.description.fosrcfull']"
+    [label]="'item.page.description'">
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['dc.description.fosrcfull']"
+    [label]="'item.page.description'">
     </ds-generic-item-page-field>
 
     <ds-generic-item-page-field [filterLang]="true" [item]="object"

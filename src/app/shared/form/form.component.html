@@ -69,7 +69,7 @@
             </button>
             <ng-content select="[between]"></ng-content>
             <button *ngIf="displaySubmit" type="submit" class="btn btn-primary" (click)="onSubmit()"
-                    [disabled]="!(isValid() | async)"><span aria-hidden="true" class="fas fa-save"></span> {{submitLabel | translate}}
+                    ><span aria-hidden="true" class="fas fa-save"></span> {{submitLabel | translate}}
             </button>
             <ng-content select="[after]"></ng-content>
         </div>
