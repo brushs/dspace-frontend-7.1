@@ -8,6 +8,8 @@ npm-debug.log
 /build/
 /.vs/
 
+/src/environments/
+src/environments/
 
 /coverage
 
