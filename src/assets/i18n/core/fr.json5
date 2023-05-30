@@ -769,6 +769,9 @@
 
   // "nav.lang.selection": "Language selection",
   "nav.lang.selection": "Sélection de la langue",
+  // "nav.breadcrumbs.here": "You are here:",
+  "nav.breadcrumbs.here": "Vous êtes ici:",
+  
 
   // FOSRC SPECIFIC LABELS END
 
