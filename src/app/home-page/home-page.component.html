@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngIf="translate.currentLang === 'en' || true">
+  <ng-container *ngIf="translate.currentLang === 'en'">
 
     <div class="row profile">
       <div class="col-md-12 pull-left">
@@ -69,6 +69,93 @@
           <div class="col-md-4 mrgn-bttm-md">
             <h3><a [routerLink]="'/policies-and-standards'">Policies and standards</a></h3>
             <p>Details about retention, withdrawal, copyright, official languages, and accessibility.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="translate.currentLang === 'fr'">
+
+    <div class="row profile">
+      <div class="col-md-12 pull-left">
+        <h1 property="name" id="wb-cont">Le Dépôt fédéral de science ouverte du Canada (DFSOC)</h1>
+        <p>Le Dépôt fédéral de science ouverte du Canada (DFSOC) offre un accès public, sur le Web, aux articles et
+          publications scientifiques rédigés par le gouvernement fédéral et provenant des ministères et organismes à
+          vocation scientifique participants.</p>
+        <section class="alert alert-info">
+          <h2>Annonce du lancement de la version bêta du DFSOC</h2>
+          <p>Bienvenue au lancement de la version bêta du DFSOC—offrant un aperçu interne au gouvernement du Canada,
+            avant le lancement public officiel prévu le 18 septembre 2023. Au cours de cette phase bêta, nous ajouterons
+            régulièrement de nouveaux articles et de nouvelles publications et nous peaufinerons la navigation et
+            l'affichage du dépôt. Consultez régulièrement cette page afin d’obtenir toutes les mises à jour et <a
+              href="">contactez-nous</a> pour signaler tout problème ou question. </p>
+        </section>
+        <form (submit)="search(searchRepo.value); $event.stopPropagation();" id="validation-example">
+          <h2>Recherche dans le dépôt</h2>
+          <label for="searchRepo" class="wb-inv">Recherche dans le dépôt</label>
+          <div class="input-group mrgn-tp-md">
+            <input #searchRepo name="text" type="text" class="form-control" id="searchRepo" />
+            <span class="input-group-btn"><button type="button" class="btn btn-primary">Recherche</button></span>
+          </div>
+        </form>
+      </div>
+      <section>
+        <div class="col-md-12 pull-left">
+          <div class="row">
+            <div class="col-md-8 pull-left">
+              <h2>Communautés</h2>
+              <p class="text-justify">Sélectionnez une communauté pour parcourir ses collections.</p>
+              <ul>
+                <li>
+                  <a
+                    [routerLink]="'/communities/00a6222f-4761-4167-81e1-44007f19557f?spc.page=1&scope=00a6222f-4761-4167-81e1-44007f19557f&spc.sf=score&spc.sd=DESC'">Agriculture
+                    et Agroalimentaire Canada</a>
+                </li>
+                <li>
+                  <a  [routerLink]="'/communities/307d8eca-9337-48d3-a296-6ea96f5a75c5'">Agence canadienne d'inspection des
+                    aliments</a>
+                </li>
+                <li><a  [routerLink]="'/communities/9dbd2e32-3f4c-459b-817a-8837505aeaca'">Agence spatiale canadienne</a></li>
+                <li><a
+                     [routerLink]="'/communities/55c80426-b231-433d-8354-5369caf925c3?spc.page=1&scope=55c80426-b231-433d-8354-5369caf925c3&spc.sf=score&spc.sd=DESC'">Environnement
+                    et Changement climatique Canada</a></li>
+                <li><a
+                     [routerLink]="'/communities/425ddb4a-2ffc-4108-957f-ac70e9207e57?spc.page=1&scope=425ddb4a-2ffc-4108-957f-ac70e9207e57&spc.sf=score&spc.sd=DESC'">Pêches
+                    et Océans Canada</a></li>
+                <li><a  [routerLink]="'/communities/456a6d96-ca50-4ac2-a15c-03dfbf951b30'">Santé Canada</a></li>
+                <li><a
+                     [routerLink]="'/communities/3b4da5fb-1231-4cae-bdca-afbb136bf9b6?spc.page=1&scope=3b4da5fb-1231-4cae-bdca-afbb136bf9b6&spc.sf=score&spc.sd=DESC'">Agence
+                    de la santé publique du Canada</a></li>
+                <li><a
+                     [routerLink]="'/communities/41c0de91-fb07-4227-b958-f36a99323651?spc.page=1&scope=41c0de91-fb07-4227-b958-f36a99323651&spc.sf=score&spc.sd=DESC'">Transports
+                    Canada</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4 pull-right">
+              <h2>Contactez-nous</h2>
+              <p>Pour contacter directement les ministères et organismes participants, veuillez consulter la page
+                <a [routerLink]="'/contactez-nous'">Contactez-nous</a>.
+              </p>
+              <p>Pour des questions d'ordre général, veuillez envoyer un courriel à <a
+                  href="mailto:FOSRC-DFSOC@nrc-cnrc.gc.ca">FOSRC-DFSOC@nrc-cnrc.gc.ca.</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="row">
+      <section class="gc-srvinfo col-md-12">
+        <h2>Services et information</h2>
+        <div class="row">
+          <div class="col-md-4 mrgn-bttm-md">
+            <h3><a [routerLink]="'/à-propos'">À propos </a></h3>
+            <p>Pour en savoir plus sur le DFSOC.</p>
+          </div>
+          <div class="col-md-4 mrgn-bttm-md">
+            <h3><a [routerLink]="'/politiques-et-normes'">Politiques et normes</a></h3>
+            <p>Renseignements sur la conservation, le retrait, les droits d'auteur, les langues officielles et
+              l'accessibilité.</p>
           </div>
         </div>
       </section>
