@@ -32,6 +32,7 @@ import { createSelector, select, Store } from '@ngrx/store';
 import { AddMetaTagAction, ClearMetaTagAction } from './meta-tag.actions';
 import { coreSelector } from '../core.selectors';
 import { CoreState } from '../core.reducers';
+import { LocaleService } from '../locale/locale.service';
 
 /**
  * The base selector function to select the metaTag section in the store
@@ -82,6 +83,7 @@ export class MetadataService {
     private rootService: RootDataService,
     private store: Store<CoreState>,
     private hardRedirectService: HardRedirectService,
+    private localeService: LocaleService
   ) {
   }
 
@@ -173,7 +175,7 @@ export class MetadataService {
    * Add <meta name="title" ... >  to the <head>
    */
   private setTitleTag(): void {
-    const value = this.dsoNameService.getName(this.currentObject.getValue());
+    const value = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
     this.addMetaTag('title', value);
     this.title.setTitle(value);
   }

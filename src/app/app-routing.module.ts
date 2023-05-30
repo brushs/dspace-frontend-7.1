@@ -53,7 +53,19 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
+            path: 'à-propos',
+            loadChildren: () => import('./about-us-page/about-us-page.module')
+              .then((m) => m.AboutUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
             path: 'policies-and-standards',
+            loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
+              .then((m) => m.PoliciesAndStandardsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'politiques-et-normes',
             loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
               .then((m) => m.PoliciesAndStandardsPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
@@ -64,9 +76,21 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
               .then((m) => m.ContactUsPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
+          {
+            path: 'contactez-nous',
+            loadChildren: () => import('./contact-us-page/contact-us-page.module')
+              .then((m) => m.ContactUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
           { path: 'tips-for-searching', pathMatch: 'full', component: SearchTipsPageComponent },
           {
             path: 'community-list',
+            loadChildren: () => import('./community-list-page/community-list-page.module')
+              .then((m) => m.CommunityListPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'liste-des-communautés',
             loadChildren: () => import('./community-list-page/community-list-page.module')
               .then((m) => m.CommunityListPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
