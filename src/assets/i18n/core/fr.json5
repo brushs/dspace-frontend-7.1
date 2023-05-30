@@ -767,6 +767,12 @@
   // "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
   "profile.security.form.notifications.error.general": "Veuillez remplir les champs obligatoires du formulaire de sécurité.",
 
+  // "nav.lang.selection": "Language selection",
+  "nav.lang.selection": "Sélection de la langue",
+  // "nav.breadcrumbs.here": "You are here:",
+  "nav.breadcrumbs.here": "Vous êtes ici:",
+  
+
   // FOSRC SPECIFIC LABELS END
 
   // "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
