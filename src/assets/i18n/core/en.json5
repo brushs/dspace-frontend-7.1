@@ -128,10 +128,10 @@
   "community.form.hints.description.hint": "Please describe your community",
   "community.form.description.required": "Error: You must describe your community",
   "community.form.description-fosrctranslation": "Translated description",
-  "community.form.hints.description-fosrctranslation.hint": "PLease provide the translation of the description",
+  "community.form.hints.description-fosrctranslation.hint": "Please provide the translation of the description",
   "community.form.description-fosrctranslation.required": "Error: You must provide the translation of the description",
   "community.form.contact-address": "Contact address", //"Adresse de contact",
-  "community.form.hints.contact-address.hint": "PLease provide a mailing address for your department",
+  "community.form.hints.contact-address.hint": "Please provide a mailing address for your department",
   "community.form.errors.contact-address.required": "",
   "community.form.tableofcontents": "News",
   "community.form.hints.tableofcontents.hint": "Latest news about your community",
@@ -215,7 +215,8 @@
   "footer.symbol": "Symbol of the Government of Canada",
 
   // general form error
-  "form.errors.general.fields_not_valid": "Form contains invalid required fields.",
+  "form.errors.general.fields-not-valid": "Form contains invalid required fields.",
+  "form.errors.general.no-changes": "There are no changes to be saved",
 
   // hints for item submission form
   "fosrc.item.edit.dynamic-field.hint.book.series.title": "Please enter the title of the series if applicable.",
@@ -473,6 +474,9 @@
   "input.label.datepicker.day": "Day",
   "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
   "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
+
+  "nav.lang.selection": "Language selection",
+  "nav.breadcrumbs.here": "You are here:",
   // FOSRC SPECIFIC LABELS END
 
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
