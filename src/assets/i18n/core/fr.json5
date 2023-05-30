@@ -1,6 +1,6 @@
 {
   // FOSRC SPECIFIC LABELS START
-  
+
   // Contact us page labels
   // "contact-us.breadcrumbs": "Contact Us",
   "contact-us.breadcrumbs": "Communiquer avec un ministère ou un organisme",
@@ -12,7 +12,7 @@
   "contact-us.general.header": "Renseignements généraux",
   // "contact-us.general.description": "For more information about the FOSRC and its policies and standards, contact",
   "contact-us.general.description": "Pour plus d'informations sur DFSOC, ses politiques et ses normes, veuillez contacter ",
-  
+
   // "contact-us.contact.agriculture": "Agriculture and Agri-Food Canada",
   "contact-us.contact.agriculture": "Agriculture et Agroalimentaire Canada",
   // "contact-us.contact.food-inspecion": "Canadian Food Inspection Agency",
@@ -34,7 +34,7 @@
   // About us page labels
   // "about-us.breadcrumbs": "About the FOSRC",
   "about-us.breadcrumbs": "Le DFSOC",
-  
+
   // Policies page labels
   // "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
@@ -554,8 +554,8 @@
   "fosrc.item.edit.dynamic-field.values.6.creative_commons": "Creative Commons Attribution - Pas d'utilisation commerciale - Pas de modification 4.0 International (CC BY-NC-ND 4.0)",
   "fosrc.item.edit.dynamic-field.values.6.creative_commons.link": "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr",
   // "fosrc.item.edit.dynamic-field.values.7.creative_commons": "None",
-  "fosrc.item.edit.dynamic-field.values.7.creative_commons": "Aucun Licence",
-  "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "Aucun",
+  "fosrc.item.edit.dynamic-field.values.7.creative_commons": "Aucun",
+  "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "Aucun Licence",
   // "fosrc.item.edit.dynamic-field.values.1.subject_list": "Arts, Music, Literature",
   "fosrc.item.edit.dynamic-field.values.1.subject_list": "Arts, musique, littérature",
   // "fosrc.item.edit.dynamic-field.values.2.subject_list": "Agriculture",

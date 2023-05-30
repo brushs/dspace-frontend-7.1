@@ -20,7 +20,7 @@
   "about-us.breadcrumbs": "About the FOSRC",
   // Policies page labels
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
-  
+
   //Simple item page translations ticket 1587
   "alternative.title": "Alternative Title",
   "item.page.keywords": "Keywords",
@@ -349,8 +349,8 @@
   "fosrc.item.edit.dynamic-field.values.5.creative_commons.link": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
   "fosrc.item.edit.dynamic-field.values.6.creative_commons": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)",
   "fosrc.item.edit.dynamic-field.values.6.creative_commons.link": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "fosrc.item.edit.dynamic-field.values.7.creative_commons": "No License",
-  "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "None",
+  "fosrc.item.edit.dynamic-field.values.7.creative_commons": "None",
+  "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "No License",
   "fosrc.item.edit.dynamic-field.values.1.subject_list": "Arts, Music, Literature",
   "fosrc.item.edit.dynamic-field.values.2.subject_list": "Agriculture",
   "fosrc.item.edit.dynamic-field.values.3.subject_list": "Economics and Industry",
