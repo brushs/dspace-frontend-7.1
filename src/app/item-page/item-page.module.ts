@@ -42,6 +42,7 @@ import { ItemPageIsoFieldComponent } from './simple/field-components/specific-fi
 import { ItemPageKeywordsFieldComponent } from './simple/field-components/specific-field/keywords/item-page-keywords-field.component';
 import { ItemPageOrganizationFieldComponent } from './simple/field-components/specific-field/organization/item-page-organization-field.component';
 import { ItemPageOtherFieldComponent } from './simple/field-components/specific-field/other/item-page-other-field.component';
+import { ItemPageFOSRCProjectIdFieldComponent } from './simple/field-components/specific-field/fosrc-projectid/item-page-fosrc-projectid-field.component';
 
 
 const ENTRY_COMPONENTS = [
@@ -63,6 +64,7 @@ const DECLARATIONS = [
   ItemPageGovdocFieldComponent,
   ItemPageIsbnFieldComponent,
   ItemPageIssnFieldComponent,
+  ItemPageFOSRCProjectIdFieldComponent,
   ItemPageRightsFieldComponent,
   ItemPageIsoFieldComponent,
   ItemPageKeywordsFieldComponent,
