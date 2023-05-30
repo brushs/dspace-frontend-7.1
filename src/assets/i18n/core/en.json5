@@ -215,7 +215,8 @@
   "footer.symbol": "Symbol of the Government of Canada",
 
   // general form error
-  "form.errors.general.fields_not_valid": "Form contains invalid required fields.",
+  "form.errors.general.fields-not-valid": "Form contains invalid required fields.",
+  "form.errors.general.no-changes": "There are no changes to be saved",
 
   // hints for item submission form
   "fosrc.item.edit.dynamic-field.hint.book.series.title": "Please enter the title of the series if applicable.",

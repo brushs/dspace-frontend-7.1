@@ -339,8 +339,11 @@
   "footer.symbol": "Symbole du gouvernement du Canada",
 
   // general form error
-  // "form.errors.general.fields_not_valid": "Form contains invalid required fields.",
-  "form.errors.general.fields_not_valid": "Le formulaire contient des champs obligatoires non valides.", //TODO - offcial translation
+  // "form.errors.general.fields-not-valid": "Form contains invalid required fields.",
+  "form.errors.general.fields-not-valid": "Le formulaire contient des champs obligatoires non valides.", //TODO - offcial translation
+  // "form.errors.general.no-changes": "There are no changes to be saved",
+  "form.errors.general.no-changes": "Il n'y a pas de modifications à enregistrer", // TODO - official translation
+  
 
   // hints for item submission form
   // "fosrc.item.edit.dynamic-field.hint.book.series.title": "Please enter the title of the series if applicable.",
