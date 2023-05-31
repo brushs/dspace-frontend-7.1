@@ -39,6 +39,12 @@ export class MetadataUriValuesComponent extends MetadataValuesComponent {
   @Input() label: string;
 
   public domainAwareValue (rawValue: string): string {
+    const domainList = ['dev.ospr.link','ospr.link','localhost','open-science.canada.ca','science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']
+    if(!domainList.some((x: string) => rawValue.includes(x))) {
+      console.log("inside domainAware if statement: " + rawValue)
+      return rawValue;
+    }
+    //console.log("outside domainAware if statement: " + rawValue)
     try {
       const urlObj = new URL(rawValue);
       const currentHostname = location.hostname;
