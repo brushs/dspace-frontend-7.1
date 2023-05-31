@@ -147,26 +147,39 @@ export class MySearchComponent implements OnInit {
     this.searchOptions$ = this.getSearchOptions();
     console.log("this.searchOptions$ = " + this.searchOptions$);
     var geoquery = '';
+    var realSearchTerm = '';
     this.sub = this.searchOptions$.pipe(
       map((options) => {
+
+        let optionsCopy = Object.create(
+          Object.getPrototypeOf(options),
+          Object.getOwnPropertyDescriptors(options)
+        );
+
         console.log('retrieve geo data');
-        if (options.geoQuery != undefined )
+        var geoquery = this.getGeoData();
+        //if (options.geoQuery != undefined )
+        if (geoquery != '')
         {
-           //var geodata = this.geoComponent.getGeoData();
-           geoquery = options.geoQuery;
+           var query = options.query;
+           if (options.query == '')
+           //{
+             optionsCopy.query = geoquery;
+           //}
         }
         //var [lat1,lng1,lat2,lng2] = geodata.split(',');
         //var newquery = 'nrcan.geospatial.bbox:%5B' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + '%5D';
-
         console.log("geoquery = " + geoquery);
-        return options;
+        return optionsCopy;
       }),
 
 
-      switchMap((options) => this.service.search(
-          options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
-        ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
-      )
+      switchMap((optionsCopy) => {
+        return this.service.search(
+          //options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
+          optionsCopy, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
+        ).pipe(getFirstSucceededRemoteData(), startWith(undefined));
+      })
     ).subscribe((results) => {
         this.resultsRD$.next(results);
       });
@@ -227,22 +240,28 @@ export class MySearchComponent implements OnInit {
 
   onGeoChanged(value: string) {
     console.log("###" + value);
-    var geodata  = null;
     var geoquery = null;
-    if (this.geoComponent != null && this.geoComponent.getGeoData() != null && this.geoComponent.getGeoData() != '')  { 
+    geoquery  = this.getGeoData();
+
+    var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
+    // oldValue.geoQuery = geoquery;
+    this.searchConfigService.paginatedSearchOptions.next(oldValue);
+
+  }
+
+  private getGeoData() {
+    var geodata = '';
+    var geoquery = '';
+    if (this.geoComponent != null && this.geoComponent.getGeoData() != null && this.geoComponent.getGeoData() != '') {
       geodata = this.geoComponent.getGeoData();
-      var [lat1,lng1,lat2,lng2] = geodata.split(',');
+      var [lat1, lng1, lat2, lng2] = geodata.split(',');
       //var geoquery = 'nrcan.geospatial.bbox:[' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + ']';
-      geoquery = 'geospatial.bbox:[' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + ']';
+      geoquery = 'geospatial.bbox:[' + lat1 + ',' + lng1 + ' TO ' + lat2 + ',' + lng2 + ']';
       if (lat1 == undefined || lng1 == undefined || lat2 == undefined || lng2 == undefined) {
         geoquery = ''; // reset geoquery
       }
     }
-    
-    var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
-    oldValue.geoQuery = geoquery;
-    this.searchConfigService.paginatedSearchOptions.next(oldValue);
-
+    return geoquery ;
   }
 
   /**
