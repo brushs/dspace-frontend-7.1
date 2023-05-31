@@ -30,7 +30,7 @@
     <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
     <ds-item-page-sponsorship-field [item]="object"></ds-item-page-sponsorship-field>
     <ds-item-page-uri-field [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
-
+  
     <h5 *ngIf="hasIdentifiers()">{{'item.page.identifiers' | translate}}</h5>
     <div style="padding-left: 18px">
       <ds-item-page-govdoc-field [item]="object"></ds-item-page-govdoc-field>
