@@ -53,98 +53,110 @@
     </ds-metadata-representation-list>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['dc.location.fosrcconference']"
-                                [label]="'item.page.location.fosrcconference'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.conference.location'">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['dc.title.fosrcprojectname']"
-                                [label]="'item.page.title.fosrcprojectname'">
+                                [label]="'Name / Nom'">
     </ds-generic-item-page-field>
 
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.articletype']"
-                                [label]="'item.page.local.articletype'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.sub-type'">
     </ds-generic-item-page-field>
 
+    <h5>Book</h5>
+    <div style="padding-left: 18px">
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.book.edition']"
-                                [label]="'item.page.local.book.edition'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.book.seriesnum']"
-    [label]="'item.page.local.book.seriesnum'">
+    [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.book.volume']"
-                                [label]="'item.page.local.book.volume'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.series.volume'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.chapter.book']"
-    [label]="'item.page.local.chapter.book'">
+    [label]="'fosrc.item.edit.dynamic-field.label.book.title'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.chapter.edition']"
-                                [label]="'item.page.local.chapter.edition'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.book.title'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
-    [fields]="['local.chapter.seriesnum']"
-    [label]="'item.page.local.chapter.seriesnum'">
+    [fields]="['local.chapter.series']"
+    [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
-                                [fields]="['local.chapter.seriesnum']"
-                                [label]="'item.page.local.chapter.seriesnum'">
+                                [fields]="['local.chapter.series']"
+                                [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
     </ds-generic-item-page-field>
+    </div>
+
+    <h5>Conference</h5>
+    <div style="padding-left: 18px">
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.conference.edition']"
-    [label]="'item.page.local.conference.edition'">
+    [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.conference.enddate']"
-                                [label]="'item.page.local.conference.enddate'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.conference.end.date'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.conference.name']"
-    [label]="'item.page.local.conference.name'">
+    [label]="'fosrc.item.edit.dynamic-field.label.conference.name'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.conference.series']"
-                                [label]="'item.page.local.conference.series'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.conference.startdate']"
-    [label]="'item.page.local.conference.startdate'">
+    [label]="'fosrc.item.edit.dynamic-field.label.conference.start.date'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.conferencetype']"
-                                [label]="'item.page.local.conferencetype'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.pagination']"
-    [label]="'item.page.local.pagination'">
+    [label]="'fosrc.item.edit.dynamic-field.label.record.management.pagination'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.peerreview']"
-                                [label]="'item.page.local.peerreview'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.record.management.peer.review'" [subheading]="true">
     </ds-generic-item-page-field>
+    </div>
+
+    <h5>Report</h5>
+    <div style="padding-left: 18px">
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.report.edition']"
-    [label]="'item.page.local.report.edition'">
+    [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
     </ds-generic-item-page-field>
+    
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.report.reportnum']"
-                                [label]="'item.page.local.report.reportnum'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.report.no'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.report.series']"
-    [label]="'item.page.local.report.series'">
+    [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.report.seriesnum']"
-                                [label]="'item.page.local.report.seriesnum'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.reporttype']"
-    [label]="'item.page.local.reporttype'">
+    [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
     </ds-generic-item-page-field>
+    </div>
 
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['journal.title']"
@@ -173,13 +185,13 @@
 
     <ds-generic-item-page-field [item]="object"
     [fields]="['dc.description.fosrcfull']"
-    [label]="'item.page.description.fosrcfull'">
+    [label]="'fosrc.item.edit.dynamic-field.label.description'">
     </ds-generic-item-page-field>
 
     <ds-generic-item-page-field [filterLang]="true" [item]="object"
       [fields]="['creativework.keywords']"
       [separator]="','"
-      [label]="'item.page.keywords'">
+      [label]="'fosrc.item.edit.dynamic-field.label.keywords'">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
       [fields]="['dc.subject']"

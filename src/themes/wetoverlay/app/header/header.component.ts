@@ -5,14 +5,15 @@ import { HeaderComponent as BaseComponent } from '../../../../app/header/header.
 import { Observable } from 'rxjs';
 import { Renderer2, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Represents the header with the logo and simple navigation
  */
 @Component({
   selector: 'ds-header',
-  styleUrls: ['../../../../app/header/header.component.scss'],
-  templateUrl: 'header.component.html',
+  styleUrls: ['../../../../app/header/header.component.scss', './header.component.scss'],
+  templateUrl: './header.component.html',
   // templateUrl: '../../../../app/header/header.component.html',
 })
 export class HeaderComponent extends BaseComponent {
@@ -23,6 +24,7 @@ export class HeaderComponent extends BaseComponent {
     protected windowService: HostWindowService,
     menuService: MenuService,
     private _renderer2: Renderer2, 
+    public translate: TranslateService,
     private zone: NgZone,
     @Inject(DOCUMENT) private _document: Document
   ) {
