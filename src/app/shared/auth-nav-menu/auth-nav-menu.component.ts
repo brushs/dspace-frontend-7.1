@@ -14,7 +14,7 @@ import { EPerson } from '../../core/eperson/models/eperson.model';
 import { AuthService, LOGIN_ROUTE, LOGOUT_ROUTE } from '../../core/auth/auth.service';
 
 @Component({
-  selector: 'ds-auth-nav-menu',
+  selector: 'ds-auth-nav-menu, [ds-auth-nav-menu]',
   templateUrl: './auth-nav-menu.component.html',
   styleUrls: ['./auth-nav-menu.component.scss'],
   animations: [fadeInOut, fadeOut]

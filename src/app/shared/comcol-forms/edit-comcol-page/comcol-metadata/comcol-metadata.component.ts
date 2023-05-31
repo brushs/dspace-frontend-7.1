@@ -75,6 +75,8 @@ export class ComcolMetadataComponent<TDomain extends Community | Collection> imp
             this.notificationsService.error(null, this.translate.get(`${this.type.value}.edit.notifications.error`));
           }
         });
+    } else {
+      this.notificationsService.warning(null, this.translate.get(`form.errors.general.no-changes`))
     }
   }
 
