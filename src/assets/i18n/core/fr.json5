@@ -339,8 +339,11 @@
   "footer.symbol": "Symbole du gouvernement du Canada",
 
   // general form error
-  // "form.errors.general.fields_not_valid": "Form contains invalid required fields.",
-  "form.errors.general.fields_not_valid": "Le formulaire contient des champs obligatoires non valides.", //TODO - offcial translation
+  // "form.errors.general.fields-not-valid": "Form contains invalid required fields.",
+  "form.errors.general.fields-not-valid": "Le formulaire contient des champs obligatoires non valides.", //TODO - offcial translation
+  // "form.errors.general.no-changes": "There are no changes to be saved",
+  "form.errors.general.no-changes": "Il n'y a pas de modifications à enregistrer", // TODO - official translation
+
 
   // hints for item submission form
   // "fosrc.item.edit.dynamic-field.hint.book.series.title": "Please enter the title of the series if applicable.",
@@ -467,7 +470,7 @@
   // "fosrc.item.edit.dynamic-field.label.keywords": "Keywords",
   "fosrc.item.edit.dynamic-field.label.keywords": "Mots-clés",
   // "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Type of Open Access",
-  "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Champ d'accès ouvert",
+  "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Libre accès",
   // "fosrc.item.edit.dynamic-field.label.record.management.peer.review": "Peer Review",
   "fosrc.item.edit.dynamic-field.label.record.management.peer.review": "Examen par les pairs",
   // "fosrc.item.edit.dynamic-field.label.record.management.internal.notes": "Internal Notes",
@@ -771,7 +774,7 @@
   "nav.lang.selection": "Sélection de la langue",
   // "nav.breadcrumbs.here": "You are here:",
   "nav.breadcrumbs.here": "Vous êtes ici:",
-  
+
 
   // FOSRC SPECIFIC LABELS END
 
