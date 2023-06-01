@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-page-details, [ds-page-details]',
@@ -6,5 +8,10 @@ import { Component, Input } from '@angular/core';
   templateUrl: './page-details.component.html'
 })
 export class PageDetailsComponent {
+  lastModified;
+  constructor(public translate: TranslateService) {}
 
+  ngOnInit(){
+    this.lastModified = document.lastModified;
+  }
 }

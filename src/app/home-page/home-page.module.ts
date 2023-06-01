@@ -9,7 +9,6 @@ import { TopLevelCommunityListComponent } from './top-level-community-list/top-l
 import { StatisticsModule } from '../statistics/statistics.module';
 import { ThemedHomeNewsComponent } from './home-news/themed-home-news.component';
 import { ThemedHomePageComponent } from './themed-home-page.component';
-import { PageDetailsComponent } from '../shared/page-details/page-details.component';
 
 const DECLARATIONS = [
   HomePageComponent,
@@ -17,7 +16,6 @@ const DECLARATIONS = [
   TopLevelCommunityListComponent,
   ThemedHomeNewsComponent,
   HomeNewsComponent,
-  PageDetailsComponent
 ];
 
 @NgModule({
