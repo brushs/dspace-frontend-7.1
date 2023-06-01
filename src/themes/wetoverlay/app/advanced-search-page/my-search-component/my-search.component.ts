@@ -161,12 +161,15 @@ export class MySearchComponent implements OnInit {
         //if (options.geoQuery != undefined )
         if (geoquery != '')
         {
-           var query = options.query;
-           if (options.query == '')
-           //{
-             optionsCopy.query = geoquery;
-           //}
+          var query = options.query;
+          if (options.query == '')
+            optionsCopy.query = geoquery;
+          else
+            optionsCopy.query =  geoquery + ' ' + options.query;
+
         }
+        else
+          optionsCopy.query = options.query;
         //var [lat1,lng1,lat2,lng2] = geodata.split(',');
         //var newquery = 'nrcan.geospatial.bbox:%5B' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + '%5D';
         console.log("geoquery = " + geoquery);
