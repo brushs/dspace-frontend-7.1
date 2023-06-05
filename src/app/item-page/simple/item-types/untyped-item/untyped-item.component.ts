@@ -100,5 +100,50 @@ export class UntypedItemComponent extends ItemComponent {
 
     return returnValue;
   }
+
+  public hasBook(): boolean {
+    let languageFields: string[] = ['local.book.edition', 'local.book.seriesnum', 'local.book.volume', 'local.chapter.book', 'local.chapter.edition', 'local.chapter.series', 'local.chapter.series']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasReport(): boolean {
+    let languageFields: string[] = ['local.report.edition', 'local.report.reportnum', 'local.report.series', 'local.report.seriesnum', 'local.reporttype']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasConference(): boolean {
+    let languageFields: string[] = ['local.conference.edition', 'local.conference.enddate', 'local.conference.name', 'local.conference.series', 'local.conference.startdate', 'local.conferencetype', 'local.pagination', 'local.peerreview']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
   /* End of FOSRC Changes */
 }

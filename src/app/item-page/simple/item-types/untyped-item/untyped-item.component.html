@@ -65,7 +65,7 @@
                                 [label]="'fosrc.item.edit.dynamic-field.label.sub-type'">
     </ds-generic-item-page-field>
 
-    <h5>Book</h5>
+    <h5 *ngIf="hasBook()">{{ 'fosrc.item.edit.dynamic-field.values.2.publication_type' | translate}}</h5>
     <div style="padding-left: 18px">
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.book.edition']"
@@ -97,7 +97,7 @@
     </ds-generic-item-page-field>
     </div>
 
-    <h5>Conference</h5>
+    <h5 *ngIf="hasConference()">{{ 'fosrc.item.edit.dynamic-field.values.4.publication_type' | translate}}</h5>
     <div style="padding-left: 18px">
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.conference.edition']"
@@ -133,7 +133,7 @@
     </ds-generic-item-page-field>
     </div>
 
-    <h5>Report</h5>
+    <h5 *ngIf="hasReport()">{{ 'fosrc.item.edit.dynamic-field.values.5.publication_type' | translate}}</h5>
     <div style="padding-left: 18px">
     <ds-generic-item-page-field [item]="object"
     [fields]="['local.report.edition']"
