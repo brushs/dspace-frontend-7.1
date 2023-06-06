@@ -131,6 +131,21 @@ export class UntypedItemComponent extends ItemComponent {
     return returnValue;
   }
 
+  public hasArticle(): boolean {
+    let languageFields: string[] = ['local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
   public hasConference(): boolean {
     let languageFields: string[] = ['local.conference.edition', 'local.conference.enddate', 'local.conference.name', 'local.conference.series', 'local.conference.startdate', 'local.conferencetype', 'local.pagination', 'local.peerreview']
 

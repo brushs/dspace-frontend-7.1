@@ -158,6 +158,28 @@
     </ds-generic-item-page-field>
     </div>
 
+    <!-- Article -->
+    <h5 *ngIf="hasArticle()">{{ 'fosrc.item.edit.dynamic-field.values.1.publication_type' | translate}}</h5>
+    <div style="padding-left: 18px">
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.acceptedmanuscript.journaltitle']"
+                                [label]="'item.page.journal-title'" [subheading]="true">
+    </ds-generic-item-page-field>
+    
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.acceptedmanuscript.journalvolume']"
+                                [label]="'journalvolume.listelement.badge'" [subheading]="true">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.acceptedmanuscript.journalissue']"
+                                [label]="'relationships.isJournalIssueOf'" [subheading]="true">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.acceptedmanuscript.articlenum']"
+                                [label]="'relationships.isPublicationOfArticleNumber'" [subheading]="true">
+    </ds-generic-item-page-field>
+    </div>
+
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['journal.title']"
                                 [label]="'item.page.journal-title'">
