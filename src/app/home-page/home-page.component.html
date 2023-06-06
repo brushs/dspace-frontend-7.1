@@ -30,19 +30,25 @@
               <h2>Communities</h2>
               <p class="text-justify">Select a community to browse its collections.</p>
               <ul>
-                <li><a [routerLink]="'/communities/00a6222f-4761-4167-81e1-44007f19557f'">
-                    Agriculture and Agri-Food Canada</a> </li>
-                <li><a [routerLink]="'/communities/307d8eca-9337-48d3-a296-6ea96f5a75c5'">Canadian Food Inspection
-                    Agency</a></li>
-                <li><a [routerLink]="'/communities/9dbd2e32-3f4c-459b-817a-8837505aeaca'">Canadian Space Agency</a></li>
-                <li><a [routerLink]="'/communities/55c80426-b231-433d-8354-5369caf925c3'">Environment and Climate Change
+                <li>
+                  <a [routerLink]="!subcommunities['Agriculture and Agri-Food Canada'] ? null :'/communities/' + subcommunities['Agriculture and Agri-Food Canada']">
+                    Agriculture and Agri-Food Canada
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="!subcommunities['Canadian Food Inspection Agency'] ? null :'/communities/' + subcommunities['Canadian Food Inspection Agency']">
+                    Canadian Food Inspection Agency
+                  </a>
+                </li>
+                <li><a [routerLink]="!subcommunities['Canadian Space Agency'] ? null :'/communities/' + subcommunities['Canadian Space Agency']">Canadian Space Agency</a></li>
+                <li><a [routerLink]="!subcommunities['Environment and Climate Change Canada'] ? null :'/communities/' + subcommunities['Environment and Climate Change Canada']">Environment and Climate Change
                     Canada</a></li>
-                <li><a [routerLink]="'/communities/425ddb4a-2ffc-4108-957f-ac70e9207e57'">Fisheries and Oceans
+                <li><a [routerLink]="!subcommunities['Fisheries and Oceans Canada'] ? null :'/communities/' + subcommunities['Fisheries and Oceans Canada']">Fisheries and Oceans
                     Canada</a></li>
-                <li><a [routerLink]="'/communities/456a6d96-ca50-4ac2-a15c-03dfbf951b30'">Health Canada</a></li>
-                <li><a [routerLink]="'/communities/3b4da5fb-1231-4cae-bdca-afbb136bf9b6'">Public Health Agency of
-                    Canada</a></li>
-                <li><a [routerLink]="'/communities/41c0de91-fb07-4227-b958-f36a99323651'">Transport Canada</a></li>
+                <li><a [routerLink]="!subcommunities['Health Canada'] ? null :'/communities/' + subcommunities['Health Canada']">Health Canada</a></li>
+                <li><a [routerLink]="!subcommunities['Public Health Agency of Canada'] ? null :'/communities/' + subcommunities['Public Health Agency of Canada']">
+                  Public Health Agency of Canada</a></li>
+                <li><a [routerLink]="!subcommunities['Transport Canada'] ? null :'/communities/' + subcommunities['Transport Canada']">Transport Canada</a></li>
               </ul>
             </div>
             <div class="col-md-4 pull-right">
@@ -107,28 +113,28 @@
               <p class="text-justify">Sélectionnez une communauté pour parcourir ses collections.</p>
               <ul>
                 <li>
-                  <a [routerLink]="'/communities/00a6222f-4761-4167-81e1-44007f19557f'">
+                  <a  [routerLink]=" !subcommunities['Agriculture and Agri-Food Canada'] ? null: '/communities/' + subcommunities['Agriculture and Agri-Food Canada']">
                     Agriculture
                     et Agroalimentaire Canada
                   </a>
                 </li>
                 <li>
-                  <a  [routerLink]="'/communities/307d8eca-9337-48d3-a296-6ea96f5a75c5'">Agence canadienne d'inspection des
-                    aliments</a>
+                  <a [routerLink]=" !subcommunities['Canadian Food Inspection Agency'] ? null: '/communities/' + subcommunities['Canadian Food Inspection Agency']">Agence canadienne d'inspection des aliments</a>
                 </li>
-                <li><a  [routerLink]="'/communities/9dbd2e32-3f4c-459b-817a-8837505aeaca'">Agence spatiale canadienne</a></li>
+                <li><a [routerLink]=" subcommunities['Canadian Space Agency'] ? null: '/communities/' + subcommunities['Canadian Space Agency']">Agence spatiale canadienne</a>
+                </li>
                 <li><a
-                     [routerLink]="'/communities/55c80426-b231-433d-8354-5369caf925c3?spc.page=1&scope=55c80426-b231-433d-8354-5369caf925c3&spc.sf=score&spc.sd=DESC'">Environnement
+                    [routerLink]=" !subcommunities['Environment and Climate Change Canada'] ? null: '/communities/' + subcommunities['Environment and Climate Change Canada']">Environnement
                     et Changement climatique Canada</a></li>
                 <li><a
-                     [routerLink]="'/communities/425ddb4a-2ffc-4108-957f-ac70e9207e57?spc.page=1&scope=425ddb4a-2ffc-4108-957f-ac70e9207e57&spc.sf=score&spc.sd=DESC'">Pêches
+                    [routerLink]=" !subcommunities['Fisheries and Oceans Canada'] ? null: '/communities/' + subcommunities['Fisheries and Oceans Canada']">Pêches
                     et Océans Canada</a></li>
-                <li><a  [routerLink]="'/communities/456a6d96-ca50-4ac2-a15c-03dfbf951b30'">Santé Canada</a></li>
+                <li><a [routerLink]=" !subcommunities['Health Canada'] ? null: '/communities/' + subcommunities['Health Canada']" >Santé Canada</a></li>
                 <li><a
-                     [routerLink]="'/communities/3b4da5fb-1231-4cae-bdca-afbb136bf9b6?spc.page=1&scope=3b4da5fb-1231-4cae-bdca-afbb136bf9b6&spc.sf=score&spc.sd=DESC'">Agence
+                    [routerLink]=" !subcommunities['Public Health Agency of Canada'] ? null: '/communities/' + subcommunities['Public Health Agency of Canada']">Agence
                     de la santé publique du Canada</a></li>
                 <li><a
-                     [routerLink]="'/communities/41c0de91-fb07-4227-b958-f36a99323651?spc.page=1&scope=41c0de91-fb07-4227-b958-f36a99323651&spc.sf=score&spc.sd=DESC'">Transports
+                    [routerLink]=" !subcommunities['Transport Canada'] ? null: '/communities/' + subcommunities['Transport Canada']">Transports
                     Canada</a></li>
               </ul>
             </div>
@@ -161,4 +167,5 @@
       </section>
     </div>
   </ng-container>
+  <ds-page-details></ds-page-details>
 </div>
