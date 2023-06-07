@@ -2188,5 +2188,39 @@
   "workflow-item.send-back.notification.success.content": "This workflow item was successfully sent back to the submitter.",
   "workflow-item.send-back.notification.success.title": "Sent back to submitter",
   "workflow-item.send-back.title": "Send workflow item back to submitter",
-  "workflow-item.view.breadcrumbs": "Workflow view"
+  "workflow-item.view.breadcrumbs": "Workflow view",
+
+  "publisher.search.results.head": "Publisher Search Results",
+
+  "area.search.results.head": "Area Search Results",
+
+  "division.search.results.head": "Division Search Results",
+
+  "language.search.results.head": "Language Search Results",
+  
+  "serial.search.results.head": "Serial Search Results",
+  
+  "sponsor.search.results.head": "Sponsor Search Results",
+  
+  "province.search.results.head": "Province Search Results",
+  
+  "country.search.results.head": "Country Search Results",
+  
+
+  
+  "publisher.listelement.badge": "Publisher",
+
+  "area.listelement.badge": "Area",
+
+  "division.listelement.badge": "Division",
+
+  "language.listelement.badge": "Language",
+
+  "serial.listelement.badge": "Serial",
+
+  "country.listelement.badge": "Country",
+
+  "province.listelement.badge": "Province",
+
+  "sponsor.listelement.badge": "Sponsor",
 }
