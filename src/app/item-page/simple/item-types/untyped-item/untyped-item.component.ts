@@ -102,7 +102,22 @@ export class UntypedItemComponent extends ItemComponent {
   }
 
   public hasBook(): boolean {
-    let languageFields: string[] = ['local.book.edition', 'local.book.seriesnum', 'local.book.volume', 'local.chapter.book', 'local.chapter.edition', 'local.chapter.series', 'local.chapter.series']
+    let languageFields: string[] = ['local.book.series', 'local.book.seriesnum', 'local.book.pagination', 'local.book.edition']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasBookChapter(): boolean {
+    let languageFields: string[] = ['local.chapter.book', 'local.chapter.series', 'local.chapter.seriesnum', 'local.chapter.pagination', 'local.chapter.edition']
 
     let returnValue = false;
     
@@ -132,7 +147,7 @@ export class UntypedItemComponent extends ItemComponent {
   }
 
   public hasArticle(): boolean {
-    let languageFields: string[] = ['local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum']
+    let languageFields: string[] = ['dc.date.submitted','dc.date.accepted','local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum']
 
     let returnValue = false;
     
