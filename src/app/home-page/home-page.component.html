@@ -121,7 +121,7 @@
                 <li>
                   <a [routerLink]=" !subcommunities['Canadian Food Inspection Agency'] ? null: '/communities/' + subcommunities['Canadian Food Inspection Agency']">Agence canadienne d'inspection des aliments</a>
                 </li>
-                <li><a [routerLink]=" subcommunities['Canadian Space Agency'] ? null: '/communities/' + subcommunities['Canadian Space Agency']">Agence spatiale canadienne</a>
+                <li><a [routerLink]=" !subcommunities['Canadian Space Agency'] ? null: '/communities/' + subcommunities['Canadian Space Agency']">Agence spatiale canadienne</a>
                 </li>
                 <li><a
                     [routerLink]=" !subcommunities['Environment and Climate Change Canada'] ? null: '/communities/' + subcommunities['Environment and Climate Change Canada']">Environnement
