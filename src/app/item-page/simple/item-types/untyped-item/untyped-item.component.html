@@ -57,7 +57,7 @@
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['dc.title.fosrcprojectname']"
-                                [label]="'Name / Nom'">
+                                [label]="'admin.access-control.epeople.form.table.name'">
     </ds-generic-item-page-field>
 
     <ds-generic-item-page-field [item]="object"
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Book Chapter -->
-    <h5 *ngIf="hasBookChapter()">{{ 'fosrc.item.edit.dynamic-field.values.2.publication_type' | translate}}</h5>
+    <h5 *ngIf="hasBookChapter()">{{ 'fosrc.item.edit.dynamic-field.values.3.publication_type' | translate}}</h5>
     <div style="padding-left: 18px">
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.chapter.book']"
