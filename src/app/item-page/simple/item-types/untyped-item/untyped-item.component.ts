@@ -131,6 +131,21 @@ export class UntypedItemComponent extends ItemComponent {
     return returnValue;
   }
 
+  public hasProject(): boolean {
+    let languageFields: string[] = ['dc.title.fosrcprojectname', 'dc.title.fosrcprojectid']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
   public hasReport(): boolean {
     let languageFields: string[] = ['local.report.edition', 'local.report.reportnum', 'local.report.series', 'local.report.seriesnum', 'local.reporttype']
 
