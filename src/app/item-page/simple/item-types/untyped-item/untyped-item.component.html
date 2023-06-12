@@ -28,6 +28,12 @@
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
     <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
+    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+    <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
+                                     [parentItem]="object"
+                                     [itemType]="'Person'"
+                                     [metadataFields]="['dc.contributor.author', 'dc.creator']"
+                                     [label]="'relationships.isAuthorOf' | translate">
     <ds-item-page-sponsorship-field [item]="object"></ds-item-page-sponsorship-field>
     <ds-item-page-uri-field [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
   
@@ -44,26 +50,25 @@
     <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object"></ds-item-page-iso-field>
 
     <ds-item-page-keywords-field [item]="object"></ds-item-page-keywords-field>
-    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
-    <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
-                                     [parentItem]="object"
-                                     [itemType]="'Person'"
-                                     [metadataFields]="['dc.contributor.author', 'dc.creator']"
-                                     [label]="'relationships.isAuthorOf' | translate">
     </ds-metadata-representation-list>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['dc.location.fosrcconference']"
                                 [label]="'fosrc.item.edit.dynamic-field.label.conference.location'">
     </ds-generic-item-page-field>
+    <h5 *ngIf="hasProject()">{{'item.page.identifiers' | translate}}</h5>
     <ds-generic-item-page-field [item]="object"
                                 [fields]="['dc.title.fosrcprojectname']"
-                                [label]="'admin.access-control.epeople.form.table.name'">
+                                [label]="'fosrc.item.edit.dynamic-field.label.project.name'">
     </ds-generic-item-page-field>
-
     <ds-generic-item-page-field [item]="object"
+                                [fields]="['dc.title.fosrcprojectid']"
+                                [label]="'fosrc.item.edit.dynamic-field.label.project.number'">
+    </ds-generic-item-page-field>
+    </f5>
+    <!-- <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.articletype']"
                                 [label]="'fosrc.item.edit.dynamic-field.label.sub-type'">
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-field> -->
 
     <!-- Book -->
     <h5 *ngIf="hasBook()">{{ 'fosrc.item.edit.dynamic-field.values.2.publication_type' | translate}}</h5>
@@ -118,10 +123,6 @@
                                 [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
-                                [fields]="['local.conference.enddate']"
-                                [label]="'fosrc.item.edit.dynamic-field.label.conference.end.date'" [subheading]="true">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.conference.name']"
                                 [label]="'fosrc.item.edit.dynamic-field.label.conference.name'" [subheading]="true">
     </ds-generic-item-page-field>
@@ -134,16 +135,12 @@
                                 [label]="'fosrc.item.edit.dynamic-field.label.conference.start.date'" [subheading]="true">
     </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.conference.enddate']"
+                                [label]="'fosrc.item.edit.dynamic-field.label.conference.end.date'" [subheading]="true">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
                                 [fields]="['local.conferencetype']"
                                 [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['local.pagination']"
-                                [label]="'fosrc.item.edit.dynamic-field.label.record.management.pagination'" [subheading]="true">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['local.peerreview']"
-                                [label]="'fosrc.item.edit.dynamic-field.label.record.management.peer.review'" [subheading]="true">
     </ds-generic-item-page-field>
     </div>
 
@@ -249,7 +246,10 @@
 
     <h5 *ngIf="hasRights()">{{'item.page.rights' | translate}}</h5>
     <ds-item-page-rights-field [item]="object"></ds-item-page-rights-field>
-
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.pagination']"
+                                [label]="'fosrc.item.edit.dynamic-field.label.record.management.pagination'" [subheading]="true">
+    </ds-generic-item-page-field>
     <ds-generic-item-page-field [item]="object"
       [fields]="['local.peerreview']"
       [separator]="','"
