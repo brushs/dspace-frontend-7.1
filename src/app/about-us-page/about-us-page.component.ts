@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Component({
   selector: 'ds-about-us-page',
-  styleUrls: ['./about-us-page.component.scss'],
+  styleUrls: ['../../themes/wetoverlay/styles/static-pages.scss'],
   templateUrl: './about-us-page.component.html'
 })
 export class AboutUsPageComponent {
