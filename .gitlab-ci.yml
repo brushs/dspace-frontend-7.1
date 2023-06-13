@@ -21,7 +21,7 @@ test:
     - frontend
     - dev
   script:
-    - echo "Testing UI"
+    - echo "Testing UI..."
     - yarn install
     - yarn run test
 
