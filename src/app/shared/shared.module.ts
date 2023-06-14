@@ -237,6 +237,7 @@ import { TextMenuItemComponent } from './menu/menu-item/text-menu-item.component
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
 import { SearchNavbarComponent } from '../search-navbar/search-navbar.component';
 import { OSPRTruncatePipe } from './utils/ospr-truncate';
+import { PageDetailsComponent } from './page-details/page-details.component';
 
 /**
  * Declaration needed to make sure all decorator functions are called in time
@@ -339,6 +340,7 @@ const COMPONENTS = [
   AbstractListableElementComponent,
   ObjectCollectionComponent,
   PaginationComponent,
+  PageDetailsComponent,
   SearchFormComponent,
   PageWithSidebarComponent,
   SidebarDropdownComponent,

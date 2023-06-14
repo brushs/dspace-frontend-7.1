@@ -41,14 +41,7 @@ export class HeaderComponent extends BaseComponent {
   }
 
   ngAfterViewInit() {
-    this.loadScripts().then(x=>{
-      this.zone.runOutsideAngular(() => {
-        setTimeout(()=> {
-          let skipSectionList = document.querySelector('#wb-tphp')
-          skipSectionList.removeChild(skipSectionList.lastChild)
-        }, 500)
-      })
-    });
+    this.loadScripts();
   }
   /** Dynamically append scripts to the DOM. Required here as opposed to angular.json to ensure component renders
    *  so the menu element is detected when the script performs the check. Even including the script in the index.html with the 

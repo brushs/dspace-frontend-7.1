@@ -49,7 +49,7 @@
                   <li> Transport Canada</li>
                 </ul>
                 <p>If you are an employee from one of these organizations interested in depositing your work, contact
-                  your departmental <a href="contactUs-eng.html">representative</a> for more information.
+                  your departmental <a [routerLink]="'/contact-us'">representative</a> for more information.
                 <p>Please <a href="mailto:FOSRC-DFSOC@nrc-cnrc.gc.ca">contact the FOSRC</a> if you would like to learn
                   more about the repository.</p>
 
@@ -131,7 +131,7 @@
 
 
                 <p>Si vous êtes membre du personnel de l’une de ces organisations et que vous souhaitez déposer vos
-                  travaux, contactez votre représentant <a href="contactUs-fra.html">ministériel</a> ou représentante
+                  travaux, contactez votre représentant <a [routerLink]="'/contactez-nous'">ministériel</a> ou représentante
                   ministérielle pour en savoir plus.</p>
                 <p>N’hésitez pas à communiquer avec le <a href="mailto:FOSRC-DFSOC@nrc-cnrc.gc.ca">DFSOC</a> si vous
                   souhaitez de plus amples renseignements au sujet du dépôt.</p>
@@ -177,4 +177,5 @@
       </div>
     </div>
   </div>
+  <ds-page-details></ds-page-details>
 </div>
