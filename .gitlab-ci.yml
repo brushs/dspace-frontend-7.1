@@ -12,6 +12,7 @@ build-dev:
     - dev
   script:
     - echo "Building UI"
+    - echo $PATH
     - yarn install
     - yarn run build:prod
   #artifacts:
