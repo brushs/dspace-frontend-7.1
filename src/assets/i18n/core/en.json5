@@ -22,6 +22,7 @@
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
 
   //Simple item page translations ticket 1587
+  "item.page.heading.project": "Project",
   "alternative.title": "Alternative Title",
   "item.page.keywords": "Keywords",
   "item.page.sponsorship": "Sponsorship",

@@ -36,8 +36,9 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
       this.dso = this.object.indexableObject;
       this.dsoTitle = this.dsoNameService.getName(this.dso);
       this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
-      this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
-      //console.log("ngOnInit: " + this.dsoOfficialTitle);
+      this.dsoTranslatedTitle = this.dsoNameService.getAlternateTitle(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
+      console.log("ngOnInit: official : ", this.dsoOfficialTitle);
+      console.log("ngOnInit: alt : ", this.dsoTranslatedTitle);
     }
   }
 

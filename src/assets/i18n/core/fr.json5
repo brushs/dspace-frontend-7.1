@@ -40,6 +40,8 @@
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
 
   //Simple item page translations ticket 1587
+  //"item.page.heading.project": "Project",
+  "item.page.heading.project": "Projet",
   // "alternative.title": "Alternative Title",
   "alternative.title": "Titre alternatif",
   // "item.page.keywords": "Keywords",

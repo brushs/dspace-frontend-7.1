@@ -4,13 +4,13 @@ import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
-    selector: 'ds-item-page-sponsorship-field',
-    templateUrl: '../item-page-field.component.html'
+    selector: 'ds-item-page-fosrc-projectid-field',
+    templateUrl: './item-page-fosrc-projectid-field.component.html'
 })
 /**
- * This component is used for displaying the sponsorship (dc.description.sponsorship) of an item
+ * This component is used for displaying the sponsorship (dc.identifier.issn) of an item
  */
-export class ItemPageSponsorshipFieldComponent extends ItemPageFieldComponent {
+export class ItemPageFOSRCProjectIdFieldComponent extends ItemPageFieldComponent {
 
     /**
      * The item to display metadata for
@@ -25,15 +25,15 @@ export class ItemPageSponsorshipFieldComponent extends ItemPageFieldComponent {
 
     /**
      * Fields (schema.element.qualifier) used to render their values.
-     * In this component, we want to display values for metadata 'dc.description.sponsorship'
+     * In this component, we want to display values for metadata 'dc.identifier.issn'
      */
     fields: string[] = [
-        'dc.description.sponsorship'
+        'dc.identifier.fosrcprojectid'
     ];
 
     /**
      * Label i18n key for the rendered metadata
      */
-    label = 'fosrc.item.edit.dynamic-field.label.sponsors';
+    label = 'Identifier / Identifiant';
 
 }

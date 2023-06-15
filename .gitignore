@@ -4,10 +4,12 @@
 /typings
 /tsd_typings/
 npm-debug.log
-
+.vs/
 /build/
 /.vs/
 
+/src/environments/
+src/environments/
 
 /coverage
 
