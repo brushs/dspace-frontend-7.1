@@ -4,6 +4,7 @@ stages:
   - deploy
 
 build-dev:
+  when: manual
   stage: build
   #image: node:16.18.1-slim
   tags:
@@ -11,13 +12,12 @@ build-dev:
     - dev
   script:
     - echo "Building UI"
-    - id
-    - echo $PATH
-    - cd /opt/ospr/frontend-src/ui-7.1/
     - yarn install
     - yarn run build:prod
-
+  #artifacts:
+    
 test-dev:
+  when: manual
   stage: test
   #image: node:16.18.1-slim
   tags:
@@ -27,16 +27,16 @@ test-dev:
     - echo "Testing UI..."
     - id
     - echo $PATH
-    - cd /opt/ospr/frontend-src/ui-7.1/
     - yarn install
     - yarn run test
+    #- cd /opt/ospr/frontend-src/ui-7.1/
   allow_failure: true
-  only: 
-    - branches
 
 deploy-dev:
   when: manual
   stage: deploy
+  only:
+    - develop
   tags:
     - frontend
     - dev
