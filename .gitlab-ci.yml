@@ -43,5 +43,8 @@ deploy-dev:
     - dev
   script:
     - echo "Deploying to dev-ospr.g.ent.cloud-nuage.canada.ca ..."
+    - pwd
     - cp -Rf /home/gitlab-runner/builds/SXBNBJVNn/0/open-science-repository/frontend/DSpace-ui-13/dist /opt/ospr/OSPR-UI/
     - cp -Rf /home/gitlab-runner/builds/SXBNBJVNn/0/open-science-repository/frontend/DSpace-ui-13/node_modules /opt/ospr/OSPR-UI/
+    - pm2 restart /opt/ospr/ospr-ui.json
+    - pm2 status /opt/ospr/ospr-ui.json
