@@ -15,7 +15,10 @@ build-dev:
     - echo $PATH
     - yarn install
     - yarn run build:prod
-  #artifacts:
+  artifacts: 
+    paths: 
+      - dist
+      - node_modules
     
 test-dev:
   when: manual
@@ -31,6 +34,10 @@ test-dev:
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
+  artifacts: 
+    paths: 
+      - dist
+      - node_modules
   allow_failure: true
 
 deploy-dev:
