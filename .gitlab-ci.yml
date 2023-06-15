@@ -19,7 +19,7 @@ build-dev:
     paths: 
       - dist
       - node_modules
-    
+    expire_in: 5 days
 test-dev:
   when: manual
   stage: test
@@ -38,6 +38,7 @@ test-dev:
     paths: 
       - dist
       - node_modules
+    expire_in: 5 day
   allow_failure: true
 
 deploy-dev:
@@ -55,3 +56,9 @@ deploy-dev:
     - cp -Rf /home/gitlab-runner/builds/SXBNBJVNn/0/open-science-repository/frontend/DSpace-ui-13/node_modules /opt/ospr/OSPR-UI/
     - pm2 restart /opt/ospr/ospr-ui.json
     - pm2 status /opt/ospr/ospr-ui.json
+  artifacts: 
+    paths: 
+      - dist
+      - node_modules
+    expire_in: 5 days
+  
