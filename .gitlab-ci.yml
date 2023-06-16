@@ -51,6 +51,7 @@ deploy-dev:
     - dev
   script:
     - echo "Deploying to dev-ospr.g.ent.cloud-nuage.canada.ca ..."
+    - echo $SHELL
     - pwd
     - cp -Rf dist /opt/ospr/OSPR-UI/
     - cp -Rf node_modules /opt/ospr/OSPR-UI/
