@@ -52,11 +52,14 @@ deploy-dev:
   script:
     - echo "Deploying to dev-ospr.g.ent.cloud-nuage.canada.ca ..."
     - echo $SHELL
+    - echo $PATH
     - pwd
     - cp -Rf dist /opt/ospr/OSPR-UI/
     - cp -Rf node_modules /opt/ospr/OSPR-UI/
-    - pm2 restart /opt/ospr/ospr-ui.json
-    - pm2 status /opt/ospr/ospr-ui.json
+    - ~/node_modules/.bin/pm2 restart /opt/ospr/ospr-ui.json
+    - ~/node_modules/.bin/pm2 status /opt/ospr/ospr-ui.json
+  variables:
+    GIT_STRATEGY: none
   artifacts: 
     paths: 
       - dist
