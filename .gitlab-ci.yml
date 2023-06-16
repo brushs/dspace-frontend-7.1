@@ -13,6 +13,7 @@ build-dev:
   script:
     - echo "Building UI"
     - echo $PATH
+    - cp -f ./FOSRC-Config/dev/src/environments/environment.prod.ts src/environments/environment.prod.ts
     - yarn install
     - yarn run build:prod
   artifacts: 
@@ -34,12 +35,13 @@ test-dev:
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
-  artifacts: 
-    paths: 
-      - dist
-      - node_modules
-    expire_in: 5 day
-  allow_failure: true
+  variables:
+    GIT_STRATEGY: none
+  #artifacts: 
+    #paths: 
+      #- dist
+      #- node_modules
+    #expire_in: 5 days
 
 deploy-dev:
   when: manual
@@ -60,9 +62,9 @@ deploy-dev:
     - ~/node_modules/.bin/pm2 status /opt/ospr/ospr-ui.json
   variables:
     GIT_STRATEGY: none
-  artifacts: 
-    paths: 
-      - dist
-      - node_modules
-    expire_in: 5 days
+  #artifacts: 
+    #paths: 
+      #- dist
+      #- node_modules
+    #expire_in: 5 days
   
