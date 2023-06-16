@@ -13,7 +13,7 @@ build-dev:
   script:
     - echo "Building UI"
     - echo $PATH
-    - cp -f ./FOSRC-Config/dev/src/environments/environment.prod.ts src/environments/environment.prod.ts
+    - cp -f ./FOSRC-Config/dev/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
     - yarn install
     - yarn run build:prod
   artifacts: 
