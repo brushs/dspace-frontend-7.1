@@ -1,0 +1,78 @@
+
+  <!-- following is for layer icon -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""
+  />
+    <!-- follow is for leaflet draw -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-draw@latest/dist/leaflet.draw-src.css"
+  />
+
+<div class="container">
+    <h3 class="col-8 px-0 height">Bounding Box:</h3>
+    <div class="map"  id="map" style="width: 580px; height: 500px;"></div>
+    <div class="mx-0 col-12">
+        <div class="row"><div class="col-12"> &nbsp;</div></div>
+        <!-- North  -->
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-1">North:</div>
+          <div class="col-sm-2">
+            <input
+              class="form-control l form-control-sm"
+              type="text"
+              value="{{ lat2 }}"
+            />
+          </div>
+        </div>
+        <!-- space row -->
+        <div class="row"><div class="col-12"> &nbsp;</div></div>
+        <!-- East and West -->
+        <div class="row">
+          <div class="col-sm-1">West:</div>
+          <div class="col-sm-2">
+            <input
+              class="form-control l form-control-sm"
+              type="text"
+              value="{{ lng1 }}"
+            />
+          </div>
+        
+          <div class="col-sm-2"></div>
+          <div class="col-sm-1">East:</div>
+          <div class="col-sm-2">
+            <input
+              class="form-control l form-control-sm"
+              type="text"
+              value = "{{ lng2}}"
+            />
+          </div>
+        </div>
+        <div class="row"><div class="col-12"> &nbsp;</div></div>
+        <!-- South -->
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-1">South:</div>
+          <div class="col-sm-2">
+            <input
+              class="form-control l form-control-sm"
+              type="text"
+              value="{{ lat1 }}"
+            />
+          </div>
+          <div class="col-sm-2"></div>
+
+        </div>
+
+        <hr class="solid">
+        <br/>
+        <p class="text-center">
+          <a routerLink="/home" class="btn btn-primary">{{home}}</a> 
+
+        </p>      
+    </div>
+</div>
