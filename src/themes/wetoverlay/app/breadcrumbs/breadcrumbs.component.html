@@ -19,23 +19,24 @@
     </ng-template>
 </ng-container> -->
 <nav id="wb-bc" property="breadcrumb">
-    <h2>You are here:</h2>
+    <h2>{{'nav.breadcrumbs.here' | translate}} </h2>
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="https://www.canada.ca/en.html">Canada.ca</a></li>
             <ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
                       <ng-container
-                              *ngTemplateOutlet="breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb; context: {text: 'home.breadcrumbs', url: '/'}"></ng-container>
+                              *ngTemplateOutlet="breadcrumbs?.length > 0 ? breadcrumb : activeBreadcrumb; context: {text: 'home.breadcrumbs', url: '/home', isHome: true }"></ng-container>
                       <ng-container *ngFor="let bc of breadcrumbs; let last = last;">
                           <ng-container *ngTemplateOutlet="!last ? breadcrumb : activeBreadcrumb; context: bc"></ng-container>
                       </ng-container>
           
               <ng-template #breadcrumb let-text="text" let-url="url" let-lang="lang">
-                  <li class="breadcrumb-item"><a [attr.lang]="lang" [routerLink]="url" >{{text | translate}}</a></li>
+                  <li property="itemListElement" class="breadcrumb-item"><a property="item" [attr.lang]="lang" [routerLink]="url" >{{text | translate}}</a></li>
               </ng-template>
           
-              <ng-template #activeBreadcrumb let-text="text" let-lang="lang">
-                  <li class="breadcrumb-item active" aria-current="page"><a [attr.lang]="lang" href="{{getPath()}}">{{text | translate}}</a></li>
+              <ng-template #activeBreadcrumb let-text="text" let-url="url" let-lang="lang" let-isHome="isHome">
+                <!-- FIXME: Didn't remove the getpath call to avoid code breaking, but will need to address later. Routerlink field is best practice -->
+                  <li property="itemListElement" class="breadcrumb-item active" aria-current="page"><a property="item" [routerLink]="isHome ? url: null" [attr.lang]="lang" [attr.href]="isHome ? null : getPath()">{{text | translate}}</a></li>
               </ng-template>
           </ng-container>
         </ol>

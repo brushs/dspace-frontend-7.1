@@ -1,6 +1,6 @@
 {
   // FOSRC SPECIFIC LABELS START
-  
+
   // Contact us page labels
   // "contact-us.breadcrumbs": "Contact Us",
   "contact-us.breadcrumbs": "Communiquer avec un ministère ou un organisme",
@@ -12,7 +12,7 @@
   "contact-us.general.header": "Renseignements généraux",
   // "contact-us.general.description": "For more information about the FOSRC and its policies and standards, contact",
   "contact-us.general.description": "Pour plus d'informations sur DFSOC, ses politiques et ses normes, veuillez contacter ",
-  
+
   // "contact-us.contact.agriculture": "Agriculture and Agri-Food Canada",
   "contact-us.contact.agriculture": "Agriculture et Agroalimentaire Canada",
   // "contact-us.contact.food-inspecion": "Canadian Food Inspection Agency",
@@ -34,12 +34,14 @@
   // About us page labels
   // "about-us.breadcrumbs": "About the FOSRC",
   "about-us.breadcrumbs": "Le DFSOC",
-  
+
   // Policies page labels
   // "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
 
   //Simple item page translations ticket 1587
+  //"item.page.heading.project": "Project",
+  "item.page.heading.project": "Projet",
   // "alternative.title": "Alternative Title",
   "alternative.title": "Titre alternatif",
   // "item.page.keywords": "Keywords",
@@ -339,8 +341,11 @@
   "footer.symbol": "Symbole du gouvernement du Canada",
 
   // general form error
-  // "form.errors.general.fields_not_valid": "Form contains invalid required fields.",
-  "form.errors.general.fields_not_valid": "Le formulaire contient des champs obligatoires non valides.", //TODO - offcial translation
+  // "form.errors.general.fields-not-valid": "Form contains invalid required fields.",
+  "form.errors.general.fields-not-valid": "Le formulaire contient des champs obligatoires non valides.", //TODO - offcial translation
+  // "form.errors.general.no-changes": "There are no changes to be saved",
+  "form.errors.general.no-changes": "Il n'y a pas de modifications à enregistrer", // TODO - official translation
+
 
   // hints for item submission form
   // "fosrc.item.edit.dynamic-field.hint.book.series.title": "Please enter the title of the series if applicable.",
@@ -467,13 +472,13 @@
   // "fosrc.item.edit.dynamic-field.label.keywords": "Keywords",
   "fosrc.item.edit.dynamic-field.label.keywords": "Mots-clés",
   // "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Type of Open Access",
-  "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Champ d'accès ouvert",
+  "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Libre accès",
   // "fosrc.item.edit.dynamic-field.label.record.management.peer.review": "Peer Review",
   "fosrc.item.edit.dynamic-field.label.record.management.peer.review": "Examen par les pairs",
   // "fosrc.item.edit.dynamic-field.label.record.management.internal.notes": "Internal Notes",
   "fosrc.item.edit.dynamic-field.label.record.management.internal.notes": "Remarques internes",
-  // "fosrc.item.edit.dynamic-field.label.record.management.creative.commons": "Select the appropriate open license for this item.",
-  "fosrc.item.edit.dynamic-field.label.record.management.creative.commons": "Sélectionnez la licence ouverte appropriée pour cet élément.",
+  // "fosrc.item.edit.dynamic-field.label.record.management.creative.commons": "Rights",
+  "fosrc.item.edit.dynamic-field.label.record.management.creative.commons": "Droits",
   // "fosrc.item.edit.dynamic-field.label.record.management.pagination": "Pagination",
   "fosrc.item.edit.dynamic-field.label.record.management.pagination": "Pagination",
   // required/errors for item submission form
@@ -554,8 +559,8 @@
   "fosrc.item.edit.dynamic-field.values.6.creative_commons": "Creative Commons Attribution - Pas d'utilisation commerciale - Pas de modification 4.0 International (CC BY-NC-ND 4.0)",
   "fosrc.item.edit.dynamic-field.values.6.creative_commons.link": "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr",
   // "fosrc.item.edit.dynamic-field.values.7.creative_commons": "None",
-  "fosrc.item.edit.dynamic-field.values.7.creative_commons": "Aucun Licence",
-  "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "Aucun",
+  "fosrc.item.edit.dynamic-field.values.7.creative_commons": "Aucune",
+  "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "Aucune Licence",
   // "fosrc.item.edit.dynamic-field.values.1.subject_list": "Arts, Music, Literature",
   "fosrc.item.edit.dynamic-field.values.1.subject_list": "Arts, musique, littérature",
   // "fosrc.item.edit.dynamic-field.values.2.subject_list": "Agriculture",
@@ -766,6 +771,12 @@
   "profile.security.form.notifications.error.change-failed": "Une erreur s'est produite lors de la tentative de modification du mot de passe. Veuillez vérifier si le mot de passe actuel est correct.",
   // "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
   "profile.security.form.notifications.error.general": "Veuillez remplir les champs obligatoires du formulaire de sécurité.",
+
+  // "nav.lang.selection": "Language selection",
+  "nav.lang.selection": "Sélection de la langue",
+  // "nav.breadcrumbs.here": "You are here:",
+  "nav.breadcrumbs.here": "Vous êtes ici:",
+
 
   // FOSRC SPECIFIC LABELS END
 

@@ -94,6 +94,7 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getOfficialName(dso: DSpaceObject, currentLang: string): MetadataValue[] {
+    let isItem = dso.getDSpaceType() === "Item" ? "Item" : undefined;
     let officialTitles: MetadataValue[] = [];
     let fosrctranslation: MetadataValue;
     if(currentLang !== undefined && currentLang !== null) {
@@ -102,7 +103,7 @@ export class DSONameService {
       allTitles?.forEach(function (singleTitle, index) {
         if(currentLang == singleTitle?.['language']) {
           officialTitles.push(singleTitle);
-        } else if ( fosrctranslation = allTranslatedTitles?.find(title => title.language === currentLang)) {
+        } else if ( (fosrctranslation = allTranslatedTitles?.find(title => title.language === currentLang)) && !isItem ) {
           officialTitles.push(fosrctranslation);
         }        
       });
@@ -121,12 +122,25 @@ export class DSONameService {
    */
   getTranslatedName(dso: DSpaceObject, currentLang: string): MetadataValue {
     let allTitles: MetadataValue[] = dso.allMetadata('dc.title');
-    let fosrcTitleMetadata = dso.firstMetadata('dc.title.fosrctranslation');
+    let fosrcTitleMetadata = dso.firstMetadata(['dc.title.alternative','dc.title.fosrctranslation']);
     let translation;
     if(translation = allTitles?.find( title => title?.language == currentLang)) {
       return translation;
     } else if(fosrcTitleMetadata?.language === currentLang ) {
       return fosrcTitleMetadata;
+    } else {
+      return undefined;
+    }
+  }
+  /* Get the alternate title for the given {@link DSpaceObject}
+   *
+   * @param dso  The {@link DSpaceObject} you want a name for
+   */
+  getAlternateTitle(dso: DSpaceObject, currentLang: string): MetadataValue {
+    let fosrcTitleMetadata: MetadataValue[] = dso.allMetadata(['dc.title.alternative', 'dc.title.fosrctranslation']);
+    let translation;
+    if (translation = fosrcTitleMetadata?.find(title => title?.language == currentLang)) {
+      return translation;
     } else {
       return undefined;
     }

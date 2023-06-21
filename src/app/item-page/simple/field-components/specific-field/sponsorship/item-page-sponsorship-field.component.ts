@@ -34,6 +34,6 @@ export class ItemPageSponsorshipFieldComponent extends ItemPageFieldComponent {
     /**
      * Label i18n key for the rendered metadata
      */
-    label = 'item.page.sponsorship';
+    label = 'fosrc.item.edit.dynamic-field.label.sponsors';
 
 }

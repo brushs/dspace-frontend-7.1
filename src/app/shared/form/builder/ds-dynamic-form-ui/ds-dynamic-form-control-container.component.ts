@@ -377,6 +377,13 @@ export class DsDynamicFormControlContainerComponent extends DynamicFormControlCo
   onChangeLanguage(event) {
     if (isNotEmpty((this.model as any).value)) {
       this.onChange(event);
+    } else {
+      /* 
+        If the language is changed but the field is empty, set it to empty
+        Required to trigger a field metadata change/validation when only language is changed
+      */
+      this.model.value = '';
+      this.onChange(event)
     }
   }
 

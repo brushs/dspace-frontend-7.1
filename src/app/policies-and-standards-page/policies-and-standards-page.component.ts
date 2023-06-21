@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Component({
   selector: 'ds-policies-and-standards-page',
-  styleUrls: ['./policies-and-standards-page.component.scss'],
+  styleUrls: ['../../themes/wetoverlay/styles/static-pages.scss'],
   templateUrl: './policies-and-standards-page.component.html'
 })
 export class PoliciesAndStandardsPageComponent {
