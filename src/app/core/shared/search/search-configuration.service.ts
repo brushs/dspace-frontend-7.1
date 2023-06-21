@@ -261,6 +261,16 @@ export class SearchConfigurationService implements OnDestroy {
     }));
   }
 
+  //dummy method to make sure the searchOptions is initialized
+  getConfiguratitionSearchConfig( configuration:any): Observable<SearchConfig> {
+    return null;//observableOf(new SearchConfig());
+  }
+
+  getConfigurationSortOptions( configuration:any): Observable<SortOptions[]> {
+    return null;//observableOf([]);
+  }
+
+
   /**
    * Sets up a subscription to all necessary parameters to make sure the searchOptions emits a new value every time they update
    * @param {SearchOptions} defaults Default values for when no parameters are available
