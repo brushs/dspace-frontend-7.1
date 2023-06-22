@@ -8,7 +8,7 @@
               <div class="d-flex flex-row border-bottom mb-4 pb-4">
                 <div class="comcol-header mr-auto">
                   <!-- Collection Name -->
-                  <ds-comcol-page-header [name]="('dc.title' | metaTranslate : collection)[0]?.value" [lang]="('dc.title' | metaTranslate : collection)[0]?.language">
+                  <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.language">
                   </ds-comcol-page-header>
                   <!-- Collection logo -->
                   <ds-comcol-page-logo *ngIf="logoRD$"
@@ -28,16 +28,16 @@
                   </ds-comcol-page-content>
                   End of FOSRC changes -->
                   <!-- Introductory text -->
-                  <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  <ds-comcol-page-content [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                   <!-- Email Address -->
                   <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                   <!-- License -->
-                  <ds-comcol-page-content [content]="('dc.rights.license' | metaTranslate : collection)[0]?.value" [lang]="('dc.rights.license' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  <ds-comcol-page-content [content]="(['dc.rights.license','dc.rights.license-fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.rights.license','dc.rights.license-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                   <!-- Provenance -->
-                  <ds-comcol-page-content [content]="('dc.description.provenance' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.provenance' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  <ds-comcol-page-content [content]="(['dc.description.provenance', 'dc.description.provenance-fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.description.provenance', 'dc.description.provenance-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                 </div>
                 <div class="pl-2">

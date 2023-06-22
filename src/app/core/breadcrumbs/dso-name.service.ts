@@ -154,10 +154,19 @@ export class DSONameService {
     return (this.getMetadataByFieldAndLanguage(dso, ['dc.title.alternative', 'dc.title.alternative-fosrctranslation', 'dc.title.fosrctranslation'], currentLang)).length > 0;
   }
 
-  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string[], currentLang: string): MetadataValue[] {
+  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string | string[], currentLang: string, strict: boolean = false): MetadataValue[] {
+    /**
+     * 
+     * FOSRC added new param strict which defaulkt so false which allows this method
+     * to return metadata that has no defined language. strict = true will only return
+     * metadata for which the language is set.
+     * Also updated fields parameter to accept string or string[]
+     * as part of fix for #1824
+     **/
     let result: MetadataValue[] = [];
-    dso.allMetadata(fields).forEach(function (singleItem) {
-      if (singleItem.language === currentLang) {
+    const myFields = (fields instanceof Array) ? fields : [fields]
+    dso.allMetadata(myFields).forEach(function (singleItem) {
+      if (singleItem.language === currentLang || (!strict && (singleItem.language === undefined || singleItem.language === null || singleItem.language === ''))) {
         //console.log("DSO - Name_service: getMetadataByFieldAndLanguage currentLang:" + currentLang + ", itemLang = " + singleItem.language + ", item value:" + singleItem.value);
         result.push(singleItem);
       }

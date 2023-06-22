@@ -6,7 +6,7 @@
       <div class="d-flex flex-row border-bottom mb-4 pb-4">
         <div class="comcol-header mr-auto">
           <!-- Community name -->
-          <ds-comcol-page-header [name]="('dc.title' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title' | metaTranslate : communityPayload)[0]?.language"></ds-comcol-page-header>
+          <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language"></ds-comcol-page-header>
           <!-- Community logo -->
           <ds-comcol-page-logo *ngIf="logoRD$" [logo]="(logoRD$ | async)?.payload" [alternateText]="'Community Logo'">
           </ds-comcol-page-logo>
@@ -14,7 +14,7 @@
           <ds-comcol-page-handle [content]="communityPayload.handle" [title]="'community.page.handle'">
           </ds-comcol-page-handle>
           <!-- Introductory text -->
-          <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          <ds-comcol-page-content [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
          <!-- Alternative Names -->
           <!-- Start FOSRC Changes - 1568
@@ -30,19 +30,19 @@
           </ds-comcol-page-content>
           End of FOSRC changes -->
           <!-- Home Page URL -->
-          <ds-comcol-page-content [content]="('dc.identifier.uri-home-page' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier.uri-home-page' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          <ds-comcol-page-content [content]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
           <!-- Email -->
           <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
           <!-- Description -->
-          <ds-comcol-page-content [content]="('dc.description' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          <ds-comcol-page-content [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
           <!-- Contact Address -->
           <ds-comcol-page-content [content]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
           <!-- News -->
-          <ds-comcol-page-content [content]="('dc.description.tableofcontents' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.tableofcontents' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          <ds-comcol-page-content [content]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
         </div>
         <div class="pl-2">
