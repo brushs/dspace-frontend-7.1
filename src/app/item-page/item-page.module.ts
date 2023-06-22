@@ -12,6 +12,7 @@ import { ItemPageAbstractFieldComponent } from './simple/field-components/specif
 import { ItemPageUriFieldComponent } from './simple/field-components/specific-field/uri/item-page-uri-field.component';
 import { ItemPageTitleFieldComponent } from './simple/field-components/specific-field/title/item-page-title-field.component';
 import { ItemPageFieldComponent } from './simple/field-components/specific-field/item-page-field.component';
+import { ItemPageDoiFieldComponent } from './simple/field-components/specific-field/doi/item-page-doi-field.component';
 import { FileSectionComponent } from './simple/field-components/file-section/file-section.component';
 import { CollectionsComponent } from './field-components/collections/collections.component';
 import { FullItemPageComponent } from './full/full-item-page.component';
@@ -52,6 +53,7 @@ const DECLARATIONS = [
   ItemPageUriFieldComponent,
   ItemPageTitleFieldComponent,
   ItemPageFieldComponent,
+  ItemPageDoiFieldComponent,
   FileSectionComponent,
   CollectionsComponent,
   FullFileSectionComponent,
