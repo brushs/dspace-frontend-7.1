@@ -53,7 +53,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
-            path: 'à-propos',
+            path: 'a-propos',
             loadChildren: () => import('./about-us-page/about-us-page.module')
               .then((m) => m.AboutUsPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
