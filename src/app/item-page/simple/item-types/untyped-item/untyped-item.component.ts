@@ -177,7 +177,13 @@ export class UntypedItemComponent extends ItemComponent {
   }
 
   public hasConference(): boolean {
-    let languageFields: string[] = ['local.conference.edition', 'local.conference.enddate', 'local.conference.name', 'local.conference.series', 'local.conference.startdate', 'local.conferencetype', 'local.pagination', 'local.peerreview']
+    let languageFields: string[] = ['local.conference.name',
+      'local.conference.startdate',
+      'local.conference.enddate',
+      'dc.location.fosrcconference',
+      'local.conference.series',
+      'local.conference.edition',
+      'local.conferencetype']
 
     let returnValue = false;
     
