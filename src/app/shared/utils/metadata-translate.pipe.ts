@@ -43,14 +43,8 @@ export class MetadataTranslatePipe implements PipeTransform {
     const seperatorChar = '!';
     let key: string = "";
     let keys: string[] = keyOrKeys instanceof Array ? keyOrKeys : [keyOrKeys];
-    /*keys = keys.map((k: string) =>{
-      console.log("orig: key: ", k);
-      k = k.replace(/[\u200B-\u200D\uFEFF]/g, '');
-      console.log("new: key: ", k);
-      return k;
-    });*/
     if (keys.length > 1) {
-      console.log('translateMetadata: keyOrKeys: ', keys);
+      //console.log('translateMetadata: keyOrKeys: ', keys);
     } else {
       //console.log("new: keys[0]: ", keys[0]);
       key = keys[0];
@@ -60,6 +54,24 @@ export class MetadataTranslatePipe implements PipeTransform {
     {
       let x = 0;
     }
+    /**
+    * FOSRC this whole else method was re-written as we no longer require to match specific 
+    * metadata values with corresponding translations - instead we should only show English
+    * when viewing in English and only show French when viewing in French 
+    *
+    * When values in one language are missing, we should consider (for the specific field)
+    * displaying a message in the viewing language to inform the end-user that they can
+    * request the tranlated text for the field and provide a link (or similar) 
+    * which would allow them to request the translation
+    *
+    * Exception: official titles will be displayed in viewing language only if a
+    * coresponding official title exists, otherwise the title will be displayed in
+    * the language provided and wraped an span using the appropriate lang attribute
+    *
+    * Also added dso as the first paramenter
+    * June 6th 2023
+    *
+    **/
     this.dsoNameService.getMetadataByFieldAndLanguage(dso, keys, language).forEach((mv: MetadataValue) => {
       if (Metadata.valueMatches(mv, filter)) {
         matches.push(mv);
