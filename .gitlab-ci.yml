@@ -68,3 +68,132 @@ deploy-dev:
       #- node_modules
     #expire_in: 5 days
   
+build-preprod:
+  when: manual
+  stage: build
+  #image: node:16.18.1-slim
+  tags:
+    - frontend
+    - preprod
+  script:
+    - echo "Building UI"
+    - echo $PATH
+    - cp -f ./FOSRC-Config/preprod/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
+    - yarn install
+    - yarn run build:prod
+  artifacts: 
+    paths: 
+      - dist
+      - node_modules
+    expire_in: 5 days
+test-preprod:
+  when: manual
+  stage: test
+  #image: node:16.18.1-slim
+  tags:
+    - frontend
+    - preprod
+  script:
+    - echo "Testing UI..."
+    - id
+    - echo $PATH
+    - yarn install
+    - yarn run test
+    #- cd /opt/ospr/frontend-src/ui-7.1/
+  variables:
+    GIT_STRATEGY: none
+  #artifacts: 
+    #paths: 
+      #- dist
+      #- node_modules
+    #expire_in: 5 days
+
+deploy-preprod:
+  when: manual
+  stage: deploy
+  only:
+    - develop
+  tags:
+    - frontend
+    - preprod
+  script:
+    - echo "Deploying to qa-ospr.g.ent.cloud-nuage.canada.ca ..."
+    - echo $SHELL
+    - echo $PATH
+    - pwd
+    - cp -Rf dist /opt/ospr/OSPR-UI/
+    - cp -Rf node_modules /opt/ospr/OSPR-UI/
+    - pm2 restart /opt/ospr/ospr-ui.json
+    - pm2 status /opt/ospr/ospr-ui.json
+  variables:
+    GIT_STRATEGY: none
+  #artifacts: 
+    #paths: 
+      #- dist
+      #- node_modules
+    #expire_in: 5 days
+
+build-prod:
+  when: manual
+  stage: build
+  #image: node:16.18.1-slim
+  tags:
+    - frontend
+    - prod
+  script:
+    - echo "Building UI"
+    - echo $PATH
+    - cp -f ./FOSRC-Config/prod/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
+    - yarn install
+    - yarn run build:prod
+  artifacts: 
+    paths: 
+      - dist
+      - node_modules
+    expire_in: 5 days
+test-prod:
+  when: manual
+  stage: test
+  #image: node:16.18.1-slim
+  tags:
+    - frontend
+    - prod
+  script:
+    - echo "Testing UI..."
+    - id
+    - echo $PATH
+    - yarn install
+    - yarn run test
+    #- cd /opt/ospr/frontend-src/ui-7.1/
+  variables:
+    GIT_STRATEGY: none
+  #artifacts: 
+    #paths: 
+      #- dist
+      #- node_modules
+    #expire_in: 5 days
+
+deploy-prod:
+  when: manual
+  stage: deploy
+  only:
+    - develop
+  tags:
+    - frontend
+    - prod
+  script:
+    - echo "Deploying to open-science.canada.ca ..."
+    - echo $SHELL
+    - echo $PATH
+    - pwd
+    - cp -Rf dist /opt/OSPR/OSPR-UI/
+    - cp -Rf node_modules /opt/OSPR/OSPR-UI/
+    - ~/node_modules/.bin/pm2 restart /opt/OSPR/ospr-ui.json
+    - ~/node_modules/.bin/pm2 status /opt/OSPR/ospr-ui.json
+  variables:
+    GIT_STRATEGY: none
+  #artifacts: 
+    #paths: 
+      #- dist
+      #- node_modules
+    #expire_in: 5 days
