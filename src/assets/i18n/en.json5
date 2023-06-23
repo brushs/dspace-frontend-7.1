@@ -1738,6 +1738,7 @@
   "relationships.isProjectOf": "Research projects",
   "relationships.isPublicationOf": "Publications",
   "relationships.isPublicationOfJournalIssue": "Articles",
+  "relationships.isPublicationOfArticleNumber": "Article Number",
   "relationships.isSingleJournalOf": "Journal",
   "relationships.isSingleVolumeOf": "Journal volume",
   "relationships.isVolumeOf": "Journal volumes",

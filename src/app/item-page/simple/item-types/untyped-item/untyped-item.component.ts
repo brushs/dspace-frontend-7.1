@@ -100,5 +100,101 @@ export class UntypedItemComponent extends ItemComponent {
 
     return returnValue;
   }
+
+  public hasBook(): boolean {
+    let languageFields: string[] = ['local.book.series', 'local.book.seriesnum', 'local.book.pagination', 'local.book.edition']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasBookChapter(): boolean {
+    let languageFields: string[] = ['local.chapter.book', 'local.chapter.series', 'local.chapter.seriesnum', 'local.chapter.pagination', 'local.chapter.edition']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasProject(): boolean {
+    let languageFields: string[] = ['dc.title.fosrcprojectname', 'dc.title.fosrcprojectid']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasReport(): boolean {
+    let languageFields: string[] = ['local.report.edition', 'local.report.reportnum', 'local.report.series', 'local.report.seriesnum', 'local.reporttype']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasArticle(): boolean {
+    let languageFields: string[] = ['dc.date.submitted','dc.date.accepted','local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
+
+  public hasConference(): boolean {
+    let languageFields: string[] = ['local.conference.name',
+      'local.conference.startdate',
+      'local.conference.enddate',
+      'dc.location.fosrcconference',
+      'local.conference.series',
+      'local.conference.edition',
+      'local.conferencetype']
+
+    let returnValue = false;
+    
+    for(var languageField of languageFields) {
+        if(this.object.metadata[languageField]) {
+          returnValue = true;
+          break;
+        }
+    };
+
+    return returnValue;
+  }
   /* End of FOSRC Changes */
 }

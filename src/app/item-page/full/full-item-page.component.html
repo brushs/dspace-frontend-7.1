@@ -23,7 +23,7 @@
                 {{mdEntry.key}} {{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
               </dt>
               <dd class="p-2 pl-4">
-                {{mdValue.value}}
+                {{(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') |  translate}}
               </dd>
             </ng-container>
           </ng-container>

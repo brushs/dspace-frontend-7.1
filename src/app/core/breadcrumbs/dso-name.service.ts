@@ -94,6 +94,7 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getOfficialName(dso: DSpaceObject, currentLang: string): MetadataValue[] {
+    let isItem = dso.getDSpaceType() === "Item" ? "Item" : undefined;
     let officialTitles: MetadataValue[] = [];
     let fosrctranslation: MetadataValue;
     if(currentLang !== undefined && currentLang !== null) {
@@ -102,7 +103,7 @@ export class DSONameService {
       allTitles?.forEach(function (singleTitle, index) {
         if(currentLang == singleTitle?.['language']) {
           officialTitles.push(singleTitle);
-        } else if ( fosrctranslation = allTranslatedTitles?.find(title => title.language === currentLang)) {
+        } else if ( (fosrctranslation = allTranslatedTitles?.find(title => title.language === currentLang)) && !isItem ) {
           officialTitles.push(fosrctranslation);
         }        
       });
@@ -121,12 +122,25 @@ export class DSONameService {
    */
   getTranslatedName(dso: DSpaceObject, currentLang: string): MetadataValue {
     let allTitles: MetadataValue[] = dso.allMetadata('dc.title');
-    let fosrcTitleMetadata = dso.firstMetadata('dc.title.fosrctranslation');
+    let fosrcTitleMetadata = dso.firstMetadata(['dc.title.alternative','dc.title.fosrctranslation']);
     let translation;
     if(translation = allTitles?.find( title => title?.language == currentLang)) {
       return translation;
     } else if(fosrcTitleMetadata?.language === currentLang ) {
       return fosrcTitleMetadata;
+    } else {
+      return undefined;
+    }
+  }
+  /* Get the alternate title for the given {@link DSpaceObject}
+   *
+   * @param dso  The {@link DSpaceObject} you want a name for
+   */
+  getAlternateTitle(dso: DSpaceObject, currentLang: string): MetadataValue {
+    let fosrcTitleMetadata: MetadataValue[] = dso.allMetadata(['dc.title.alternative', 'dc.title.fosrctranslation']);
+    let translation;
+    if (translation = fosrcTitleMetadata?.find(title => title?.language == currentLang)) {
+      return translation;
     } else {
       return undefined;
     }
@@ -140,10 +154,19 @@ export class DSONameService {
     return (this.getMetadataByFieldAndLanguage(dso, ['dc.title.alternative', 'dc.title.alternative-fosrctranslation', 'dc.title.fosrctranslation'], currentLang)).length > 0;
   }
 
-  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string[], currentLang: string): MetadataValue[] {
+  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string | string[], currentLang: string, strict: boolean = false): MetadataValue[] {
+    /**
+     * 
+     * FOSRC added new param strict which defaulkt so false which allows this method
+     * to return metadata that has no defined language. strict = true will only return
+     * metadata for which the language is set.
+     * Also updated fields parameter to accept string or string[]
+     * as part of fix for #1824
+     **/
     let result: MetadataValue[] = [];
-    dso.allMetadata(fields).forEach(function (singleItem) {
-      if (singleItem.language === currentLang) {
+    const myFields = (fields instanceof Array) ? fields : [fields]
+    dso.allMetadata(myFields).forEach(function (singleItem) {
+      if (singleItem.language === currentLang || (!strict && (singleItem.language === undefined || singleItem.language === null || singleItem.language === ''))) {
         //console.log("DSO - Name_service: getMetadataByFieldAndLanguage currentLang:" + currentLang + ", itemLang = " + singleItem.language + ", item value:" + singleItem.value);
         result.push(singleItem);
       }

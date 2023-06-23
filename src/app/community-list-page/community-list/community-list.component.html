@@ -9,8 +9,8 @@
         
             <details class="pb-0" [attr.open]= "node.isExpanded? '': null" >
               <summary #toggle [attr.aria-label]="'toggle ' + node.name" [attr.id]="'parent-node-' + node.id" class="mb-0" (click)="toggleExpanded(node)" (keydown.enter)="$event.preventDefault();toggle.click()" (keydown.space)="$event.preventDefault();toggle.click()">
-                <a (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" (keydown.space)="$event.stopPropagation()" [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" >
-                  {{('dc.title' | metaTranslate : node.payload)[0]?.value }}
+                <a (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" (keydown.space)="$event.stopPropagation()" [routerLink]="node.route" [lang]="(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.language">
+                  {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
                 </a>
                 <div class="row" *ngIf="node?.payload?.shortDescription">
                   <div class="col">
@@ -26,8 +26,8 @@
           <ng-container *ngIf="!(node.isExpandable$ | async)">
             
             <div class="well well-sm bg-white leaf-node">
-              <a [routerLink]="node.route" [lang]="('dc.title' | metaTranslate : node.payload)[0]?.language" >
-                {{ ('dc.title' | metaTranslate : node.payload)[0]?.value }}
+              <a [routerLink]="node.route" [lang]="(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.language">
+                {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
               </a>
               <div class="row" *ngIf="node?.payload?.shortDescription">
                 <div class="col">

@@ -1,17 +1,14 @@
+<!--Skip to content section -->
 <nav>
     <ul id="wb-tphp">
         <li class="wb-slc">
-            <a class="wb-sl" href="{{getPath()}}#wb-cont">{{ 'header.skiptolinks.main' | translate }}</a>
+            <a class="wb-sl" href="#wb-main">{{ 'header.skiptolinks.main' | translate }}</a>
         </li>
         <li class="wb-slc">
-            <a class="wb-sl" href="{{getPath()}}#wb-info">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
-        </li>
-        <li class="wb-slc visible-md visible-lg">
-            <a class="wb-sl" href="{{getPath()}}#wb-sec">{{ 'header.skiptolinks.menu' | translate }}</a>
+            <a class="wb-sl" [routerLink]="'/about-us'">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
         </li>
     </ul>
 </nav>
-
 <!--Header Start section -->
 <header>
     <ng-container *ngIf="translate.currentLang === 'en' ">

@@ -3271,6 +3271,8 @@
   "relationships.isPublicationOf": "Publications",
   // "relationships.isPublicationOfJournalIssue": "Articles",
   "relationships.isPublicationOfJournalIssue": "Articles",
+  // "relationships.isPublicationOfArticleNumber": "Article Number",
+  "relationships.isPublicationOfArticleNumber": "Numéro d'article",
   // "relationships.isSingleJournalOf": "Journal",
   "relationships.isSingleJournalOf": "Journal",
   // "relationships.isSingleVolumeOf": "Journal volume",
