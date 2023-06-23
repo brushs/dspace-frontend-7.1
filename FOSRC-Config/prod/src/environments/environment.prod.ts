@@ -1,5 +1,4 @@
 
-
 export const environment = {
   production: true,
   ui: {
@@ -16,7 +15,7 @@ export const environment = {
   },
   rest: {
 	  ssl: true,	 
-	  host: 'qa-ospr.g.ent.cloud-nuage.canada.ca', 
+	  host: 'open-science.canada.ca', 
 	  port: 443,
 	  nameSpace: '/server',
   },
