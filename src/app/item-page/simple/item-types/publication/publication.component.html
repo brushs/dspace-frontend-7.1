@@ -73,11 +73,8 @@
       [label]="'item.page.subject'">
     </ds-generic-item-page-field>
     <!--DOI -->
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.identifier.doi']"
-      [separator]="','"
-      [label]="'DOI'">
-    </ds-generic-item-page-field>
+    <ds-item-page-odi-field [item]="object" >
+    </ds-item-page-odi-field>
     <!-- -->
     <ds-generic-item-page-field [item]="object"
       [fields]="['dc.identifier.citation']"
