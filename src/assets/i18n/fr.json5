@@ -14,7 +14,7 @@
   "collection.form.hints.subject.hint": "Au moins un sujet est requis.",
   //"collection.form.errors.subject.required": "Error: At least one Subject is required",
   "collection.form.errors.subject.required": "Erreur: Au moins un sujet est requis.",
-  //"collection.form.subject-fosrctranslation": "Translation for subject (required)", 
+  //"collection.form.subject-fosrctranslation": "Translation for subject (required)",
   "collection.form.subject-fosrctranslation": "La traduction du sujet (obligatoire)",
   //"collection.form.hints.subject-fosrctranslation.hint": "Please enter the translation for the Subject",
   "collection.form.hints.subject-fosrctranslation.hint": "La traduction du sujet est requis.",
@@ -35,7 +35,7 @@
   "collection.form.rights": "Texte de droit d’auteur",
   // "collection.form.hints.rights.hint": "Please enter the Copyright information",
   "collection.form.hints.rights.hint": "Veuillez saisir les informations relatives au droit d'auteur.",
-  //"collection.form.rights-fosrctranslation": "Translated Copyright information", 
+  //"collection.form.rights-fosrctranslation": "Translated Copyright information",
   "collection.form.rights-fosrctranslation": "Les informations de droit d'auteur traduites.",
   // "collection.form.hints.rights-fosrctranslation.hint": "PLease provide the translated Copyright information",
   "collection.form.hints.rights-fosrctranslation.hint": "Veuillez fournir les informations de droit d'auteur traduites.",
@@ -81,7 +81,7 @@
   "collection.form.title": "Le nom de la collection (obligatoire)",
 
   // start FOSRC - community form
-  
+
   // "community.breadcrumbs": "Community List",
   "community.breadcrumbs": "Liste des communautés",
   //"community.form.title": "Community name (required)",
@@ -169,7 +169,7 @@
   "community.form.hints.description-fosrctranslation.hint": "Veuillez fournir la traduction de la description",
   //"community.form.description-fosrctranslation.required": "Error: You must provide the Translation of the description",
   "community.form.description-fosrctranslation.required": "Erreur : Vous devez fournir la traduction de la description",
-  //"community.form.contact-address": "Contact address", 
+  //"community.form.contact-address": "Contact address",
   "community.form.contact-address": "Adresse de contact",
   //"community.form.hints.contact-address.hint": "PLease provide a mailing address for your department",
   "community.form.hints.contact-address.hint": "Veuillez fournir une adresse postale pour votre département",
@@ -2192,7 +2192,7 @@
   // "item.page.journal-title": "Journal title",
   "item.page.journal-title": "Titre de la revue",
   // "item.page.link.full": "Full item page",
-  "item.page.link.full": "Notice complète",
+  "item.page.link.full": "Métadonnées complètes",
   // "item.page.link.simple": "Simple item page",
   "item.page.link.simple": "Page de l’article simple",
   // "item.page.person.search.title": "Articles by this author",
