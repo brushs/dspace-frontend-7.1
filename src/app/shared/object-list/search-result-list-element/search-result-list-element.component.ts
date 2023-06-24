@@ -37,6 +37,14 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
       this.dsoTitle = this.dsoNameService.getName(this.dso);
       this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
       this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
+      if (this.dsoOfficialTitle == undefined || this.dsoOfficialTitle == null || this.dsoOfficialTitle.length == 0 ) {
+        this.dsoOfficialTitle = [
+          Object.assign(new MetadataValue(), {
+            value: this.dsoTitle,
+            language: undefined,
+          }),
+        ];
+      }
       //console.log("ngOnInit: " + this.dsoOfficialTitle);
     }
   }
