@@ -40,7 +40,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
       if (this.dsoOfficialTitle == undefined || this.dsoOfficialTitle == null || this.dsoOfficialTitle.length == 0 ) {
         this.dsoOfficialTitle = [
           Object.assign(new MetadataValue(), {
-            value: this.dsoTitle,
+            value: this.dsoTitle||'No title',
             language: undefined,
           }),
         ];
