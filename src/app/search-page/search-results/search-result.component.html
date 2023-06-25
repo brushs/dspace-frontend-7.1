@@ -1,0 +1,15 @@
+<ds-truncatable @fadeIn [id]="dso.id">
+    <p>
+        <strong>{{ (dso.type + '.listelement.badge') | translate }}</strong>
+    </p>
+    <ds-truncatable-part [minLines]="1" [id]="dso.id">
+        <p>
+            <strong>
+                <a [attr.href]="itemLink" [innerText]="'dc.title' | metaTranslate : dso"></a>
+            </strong>
+        </p>
+    </ds-truncatable-part>
+    <ds-truncatable-part [minLines]="3" [id]="dso.id">
+        <p [innerText]=" 'dc.description' | metaTranslate : dso"></p>
+    </ds-truncatable-part>
+</ds-truncatable>

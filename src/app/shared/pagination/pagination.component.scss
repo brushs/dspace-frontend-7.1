@@ -6,3 +6,9 @@
         padding-left: 20px;
     }
 }
+
+::ng-deep {
+    .pagination {
+        display: flex !important;
+    }
+}

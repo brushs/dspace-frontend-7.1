@@ -2,12 +2,12 @@ import { Component, Injector, Input, OnInit } from '@angular/core';
 import { renderFilterType } from '../search-filter-type-decorator';
 import { FilterType } from '../../../filter-type.model';
 import { SearchFilterConfig } from '../../../search-filter-config.model';
-import { FILTER_CONFIG, IN_PLACE_SEARCH } from '../../../../../core/shared/search/search-filter.service';
+import { FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB } from '../../../../../core/shared/search/search-filter.service';
 import { GenericConstructor } from '../../../../../core/shared/generic-constructor';
 import { SearchFacetFilterComponent } from '../search-facet-filter/search-facet-filter.component';
 
 @Component({
-  selector: 'ds-search-facet-filter-wrapper',
+  selector: 'ds-search-facet-filter-wrapper, ul[ds-search-facet-filter-wrapper]',
   templateUrl: './search-facet-filter-wrapper.component.html'
 })
 
@@ -24,6 +24,11 @@ export class SearchFacetFilterWrapperComponent implements OnInit {
    * True when the search component should show results on the current page
    */
   @Input() inPlaceSearch;
+
+  /**
+   * Render facets using Gcweb template
+   */
+  @Input() useGcWeb = false;
 
   /**
    * The constructor of the search facet filter that should be rendered, based on the filter config's type
@@ -45,7 +50,8 @@ export class SearchFacetFilterWrapperComponent implements OnInit {
     this.objectInjector = Injector.create({
       providers: [
         { provide: FILTER_CONFIG, useFactory: () => (this.filterConfig), deps: [] },
-        { provide: IN_PLACE_SEARCH, useFactory: () => (this.inPlaceSearch), deps: [] }
+        { provide: IN_PLACE_SEARCH, useFactory: () => (this.inPlaceSearch), deps: [] },
+        { provide: USE_GC_WEB, useFactory: () => (this.useGcWeb), deps: [] },
       ],
       parent: this.injector
     });

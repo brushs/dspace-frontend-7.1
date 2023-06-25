@@ -133,6 +133,7 @@ export class ObjectCollectionComponent implements OnInit {
   viewModeEnum = ViewMode;
 
   ngOnInit(): void {
+    console.log(this.objects)
     this.currentMode$ = this.route
       .queryParams
       .pipe(

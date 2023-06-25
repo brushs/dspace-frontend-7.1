@@ -43,6 +43,11 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
   @Input() inPlaceSearch;
 
   /**
+   * Use GC Web Template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * Emits true when this option should be visible and false when it should be invisible
    */
   isVisible: Observable<boolean>;
@@ -128,5 +133,9 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
     if (hasValue(this.sub)) {
       this.sub.unsubscribe();
     }
+  }
+
+  onSelect() {
+    this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: this.addQueryParams})
   }
 }

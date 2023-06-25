@@ -1,0 +1,10 @@
+<!-- <a class="badge badge-primary mr-1 mb-1 text-capitalize"
+   [routerLink]="searchLink"
+   [queryParams]="(removeParameters | async)" queryParamsHandling="merge">
+    {{('search.filters.applied.' + key) | translate}}: {{'search.filters.' + filterName + '.' + value | translate: {default: normalizeFilterValue(value)} }}
+    <span> ×</span>
+</a> -->
+
+<a [routerLink]="searchLink" [queryParams]="(removeParameters | async)" queryParamsHandling="merge">
+    {{('search.filters.applied.' + key) | translate}}: {{'search.filters.' + filterName + '.' + value | translate: {default: normalizeFilterValue(value)} }}
+    <span class="fa fa-times text-danger"> <span class="wb-inv">Remove filter</span></span> </a>

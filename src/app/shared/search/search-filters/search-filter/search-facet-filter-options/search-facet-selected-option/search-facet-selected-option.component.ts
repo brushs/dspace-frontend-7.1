@@ -42,6 +42,11 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
   @Input() inPlaceSearch;
 
   /**
+   * Use GC Web Template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * UI parameters when this filter is removed
    */
   removeQueryParams;
@@ -114,4 +119,8 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
+
+  onSelect() {
+    this.router.navigate([this.searchLink], { queryParams: this.removeQueryParams, queryParamsHandling: 'merge' })
+   }
 }

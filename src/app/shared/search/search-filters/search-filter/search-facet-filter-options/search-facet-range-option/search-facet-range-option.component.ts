@@ -44,6 +44,11 @@ export class SearchFacetRangeOptionComponent implements OnInit, OnDestroy {
   @Input() inPlaceSearch;
 
   /**
+   * Use GcWeb Template insteqad of the dspace template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * Emits true when this option should be visible and false when it should be invisible
    */
   isVisible: Observable<boolean>;

@@ -7,7 +7,7 @@ import { FilterType } from '../../../filter-type.model';
 import { renderFacetFor } from '../search-filter-type-decorator';
 import { facetLoad, SearchFacetFilterComponent } from '../search-facet-filter/search-facet-filter.component';
 import { SearchFilterConfig } from '../../../search-filter-config.model';
-import { FILTER_CONFIG, IN_PLACE_SEARCH, SearchFilterService } from '../../../../../core/shared/search/search-filter.service';
+import { FILTER_CONFIG, IN_PLACE_SEARCH, SearchFilterService, USE_GC_WEB } from '../../../../../core/shared/search/search-filter.service';
 import { SearchService } from '../../../../../core/shared/search/search.service';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
@@ -82,9 +82,10 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
               @Inject(IN_PLACE_SEARCH) public inPlaceSearch: boolean,
               @Inject(FILTER_CONFIG) public filterConfig: SearchFilterConfig,
               @Inject(PLATFORM_ID) private platformId: any,
-              private route: RouteService) {
+              private route: RouteService,
+              @Inject(USE_GC_WEB) public useGcWeb: any,
+              ) {
     super(searchService, filterService, rdbs, router, searchConfigService, inPlaceSearch, filterConfig);
-
   }
 
   /**

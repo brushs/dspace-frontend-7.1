@@ -1,11 +1,25 @@
-<a class="d-flex flex-row"
-   [tabIndex]="-1"
-   [routerLink]="[searchLink]"
-   [queryParams]="removeQueryParams" queryParamsHandling="merge">
-  <label class="mb-0">
-    <input type="checkbox" [checked]="true" class="my-1 align-self-stretch"/>
-    <span class="filter-value pl-1 text-capitalize">
-        {{ 'search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label} }}
-    </span>
-  </label>
-</a>
+<ng-container *ngIf="!useGcWeb else GcWebTemplate">
+  <a class="d-flex flex-row"
+     [tabIndex]="-1"
+     [routerLink]="[searchLink]"
+     [queryParams]="removeQueryParams" queryParamsHandling="merge">
+    <label class="mb-0">
+      <input type="checkbox" [checked]="true" class="my-1 align-self-stretch"/>
+      <span class="filter-value pl-1 text-capitalize">
+          {{ 'search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label} }}
+      </span>
+    </label>
+  </a>
+</ng-container>
+
+
+
+<ng-template #GcWebTemplate>
+    <input [checked]="true" (change)="onSelect()" type="checkbox" 
+     [attr.name]="'facet-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})" 
+     [attr.id]="'facet-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})"
+     /> 
+    <label [attr.for]="'facet-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})">
+      {{ 'search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label} }}
+    </label>
+</ng-template>

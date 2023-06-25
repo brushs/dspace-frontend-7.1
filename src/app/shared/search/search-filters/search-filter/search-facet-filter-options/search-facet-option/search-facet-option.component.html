@@ -1,14 +1,29 @@
-<a *ngIf="isVisible | async" class="d-flex flex-row"
-   [tabIndex]="-1"
-   [routerLink]="[searchLink]"
-   [queryParams]="addQueryParams" queryParamsHandling="merge">
-  <label class="mb-0">
-    <input type="checkbox" [checked]="false" class="my-1 align-self-stretch"/>
-    <span class="filter-value px-1">
-      {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}
-    </span>
-  </label>
-  <span class="float-right filter-value-count ml-auto">
-                        <span class="badge badge-secondary badge-pill">{{filterValue.count}}</span>
-                    </span>
-</a>
+<ng-container *ngIf="!useGcWeb else GcWebTemplate">
+  <a *ngIf="isVisible | async" class="d-flex flex-row"
+     [tabIndex]="-1"
+     [routerLink]="[searchLink]"
+     [queryParams]="addQueryParams" queryParamsHandling="merge">
+    <label class="mb-0">
+      <input type="checkbox" [checked]="false" class="my-1 align-self-stretch"/>
+      <span class="filter-value px-1">
+        {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}
+      </span>
+    </label>
+    <span class="float-right filter-value-count ml-auto">
+                          <span class="badge badge-secondary badge-pill">{{filterValue.count}}</span>
+                      </span>
+  </a>
+</ng-container>
+
+<ng-template #GcWebTemplate>
+  <li *ngIf="isVisible | async" class="checkbox gc-chckbxrdio">
+   <input (change)="onSelect()" type="checkbox" 
+    [attr.name]="'facet-' + ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})" 
+    [attr.id]="'facet-' + ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})" 
+    /> 
+   <label [attr.for]="'facet-' + ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})">
+    {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}<span class="badge mrgn-lft-lg">{{filterValue.count}}</span>
+   </label>
+ </li>
+
+</ng-template>

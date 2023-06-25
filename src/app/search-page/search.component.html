@@ -1,3 +1,34 @@
+
+<div class="container">
+    <div tempstyle class="row">
+        <div class="col-md-12">
+            <h1 property="name" id="wb-cont">{{'search.form.search' | translate}}</h1>
+        </div>
+    
+        <!-- <ng-container [ngTemplateOutlet]="searchFilters"></ng-container> -->
+        <div gc-search-filters class="col-md-4 pull-left"></div>
+        <div class="col-md-8 pull-right mrgn-bttm-lg">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
+                        <gc-search-labels></gc-search-labels>
+
+                        <div class="input-group">
+                                <label for="main-searchrepository">{{ 'home.search-form.placeholder' | translate }}</label>
+                                <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" id="main-searchrepository" />
+                                <span class="input-group-btn">
+                                    <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button"><span
+                                            class="fa fa-search"></span><span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}</span></button>
+                                </span>
+                            </div>
+                    </div>
+                    <ng-container [ngTemplateOutlet]="searchResults"></ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section>
 <div class="container" *ngIf="(isXsOrSm$ | async)">
     <div class="row">
@@ -14,6 +45,7 @@
         </div>
     </div>
 </div>
+
 <ds-page-with-sidebar [id]="'search-page'" [sidebarContent]="sidebarContent">
     <div class="row">
         
@@ -71,299 +103,70 @@
 
 
 
-
 <ng-template #searchResults>
-    <div tempstyle class="row mrgn-lft-sm mrgn-rght-sm">
-        <div class="panel panel-primary">
+    <div *ngVar="(configuration$| async) as config" tempstyle class="row mrgn-lft-sm mrgn-rght-sm">
+        <div *ngVar="(resultsRD$ | async) as searchResults" class="panel panel-primary w-100">
             <header class="panel-heading">
-                <h2 class="panel-title h4">Search Results</h2>
+                <h2 class="panel-title h4">{{'search.results.head' | translate}}</h2>
             </header>
             <div class="panel-body">
                 <div class="row well well-small mrgn-lft-md mrgn-rght-md">
                     <div class=" col-md-8 pull-left">
                         <div class="input-group">
                             <label for="Sortby">Sort by</label>
-                            <select class="form-control" id="Sortby" name="Sortby">
-                                <option label="Select">Select</option>
-                                <option label="Least relevant">Least relevant</option>
-                                <option label="Most Relevant">Most Relevant</option>
-                                <option label="Title ascending">Title ascending</option>
-                                <option label="Title descending">Title descending</option>
-                                <option label="Date issued - ascending">Date issued - ascending</option>
-                                <option label="Date issued - descending">Date issued - descending</option>
-                                <option label="Accessioned date ascending">Accessioned date ascending</option>
-                                <option label="Accessioned date descending">Accessioned date descending</option>
+                            <select (change)="reloadOrder($event)" class="form-control" id="Sortby" name="Sortby">
+                                
+                                <option 
+                                    *ngFor="let sortOption of (sortOptions$ | async)" 
+                                    [attr.label]="('sorting.' + sortOption?.field + '.' +sortOption?.direction) | translate"
+                                    [value]="sortOption?.field + ',' + sortOption?.direction.toString()"
+                                    [selected]="sortOption?.field === config?.sort?.field && sortOption?.direction === (config?.sort?.direction)? 'selected': null"
+                                    >
+                                    {{('sorting.' + sortOption?.field + '.' +sortOption?.direction) | translate}}
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4 pull-right">
                         <div class="input-group">
-                            <label for="pageResults">Results per page</label>
-                            <select class="form-control" id="pageResults" name="pageResults">
-                                <option label="Select"></option>
-                                <option value="1">1</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="40">40</option>
-                                <option value="60">60</option>
-                                <option value="80">80</option>
-                                <option value="100">100</option>
+                            <label for="pageResults">{{'search.sidebar.settings.rpp' | translate}}</label>
+                            <select [attr.id]="'pageResults'" (change)="reloadRPP($event)" class="form-control" id="pageResults" name="pageResults">
+                                <option 
+                                    *ngFor="let pageSizeOption of (paginationOptions$ | async)?.pageSizeOptions"
+                                    [value]="pageSizeOption" [selected]="pageSizeOption === +((paginationOptions$ | async).pageSize)">{{pageSizeOption}}</option>
                             </select>
                         </div>
                     </div>
                 </div>
+                <ds-loading *ngIf="hasNoValue(searchResults) || hasNoValue(searchResults.payload) || searchResults.isLoading"
+                    message="{{'loading.search-results' | translate}}"></ds-loading>
+
+                <ds-error *ngIf="searchResults?.hasFailed && (!searchResults?.errorMessage || searchResults?.statusCode != 400)"
+                    message="{{'error.search-results' | translate}}"></ds-error>
+
+                <div *ngIf="searchResults?.payload?.page.length == 0 || searchResults?.statusCode == 400">
+                    {{ 'search.results.no-results' | translate }}
+                    <a [routerLink]="['/search']" [queryParams]="{ query: surroundStringWithQuotes((searchOptions$ | async)?.query) }"
+                        queryParamsHandling="merge">
+                        {{"search.results.no-results-link" | translate}}
+                    </a>
+                </div>
+
+                <ds-pagination
+                    [paginationOptions]="(paginationOptions$ | async)"
+                    [pageInfoState]="searchResults?.payload"
+                    [collectionSize]="searchResults?.payload?.totalElements"
+                    [sortOptions]="config?.sort"
+                    [hideGear]="true"
+                    [hidePagerWhenSinglePage]="true"
+                    >
                 <ul class="list-unstyled">
-                    <li>
-                        <p><strong>Item</strong></p>
-                        <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
-                        <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
-                            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that
-                            experienced by conservation biology over the last 15 years. Restoration ecology and conservation
-                            biology share many underlying biodiversity goals, but di er in striking ways.</p>
-                    </li>
-                    <li>
-                        <p><strong>Item</strong></p>
-                        <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
-                        <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
-                            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that
-                            experienced by conservation biology over the last 15 years. Restoration ecology and conservation
-                            biology share many underlying biodiversity goals, but di er in striking ways.
-                        </p>
-                    </li>
-                    <li>
-                        <p><strong>Item</strong></p>
-                        <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
-                        <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
-                            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that
-                            experienced by conservation biology over the last 15 years. Restoration ecology and conservation
-                            biology share many underlying biodiversity goals, but di er in striking ways.
-                        </p>
-                    </li>
-                    <li>
-                        <p><strong>Item</strong></p>
-                        <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
-                        <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
-                            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that
-                            experienced by conservation biology over the last 15 years. Restoration ecology and conservation
-                            biology share many underlying biodiversity goals, but di er in striking ways.
-                        </p>
-                    </li>
-                    <li>
-                        <p><strong>Item</strong></p>
-                        <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
-                        <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
-                            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that
-                            experienced by conservation biology over the last 15 years. Restoration ecology and conservation
-                            biology share many underlying biodiversity goals, but di er in striking ways.</p>
+                    <li *ngFor="let result of searchResults?.payload?.page">
+                        <gc-search-result [searchResult]="result"></gc-search-result>
                     </li>
                 </ul>
+                </ds-pagination>
             </div>
         </div>
     </div>
 </ng-template>
-
-
-<ng-template #searchFilters>
-    <div class="col-md-4 pull-left">
-        <form action="#" method="get" id="searchForm" class="wb-tables-filter" >
-           <section class="panel panel-default">
-              <header class="panel-heading">
-                 <h2 class="panel-title h4">Filters</h2>
-              </header>
-              <div class="panel-body">
-                 <section id="details-elements">
-                    <details open="open" class="gc-chckbxrdio">
-                       <summary>Author</summary>
-                     <div class="form-group">
-                        <fieldset>
-                          <legend><span class="field-name wb-inv">Author</span></legend>
-                          <ul class="list-unstyled">
-                           <li class="checkbox gc-chckbxrdio">
-                              <input type="checkbox" name="author" value="3" id="author3" /> 
-                             <label for="author3">
-                                 Peter<span class="badge mrgn-lft-lg">6</span>
-                             </label>
-                           </li>
-                       <li class="checkbox gc-chckbxrdio">
-                             <input type="checkbox" name="author" value="12" id="author12" /> 
-                             <label for="author12">
-                                 Andrei Soutyrine 
-                                 <span class="badge  mrgn-lft-lg" >9</span>
-                             </label>
-                       </li>
-                        <li class="checkbox gc-chckbxrdio">
-                            <input type="checkbox" name="author" value="13" id="author13" /> 
-                            <label for="author13"> 
-                                Blais, Daniel 
-                                 <span class="badge  mrgn-lft-lg">10</span>
-                                 
-                            </label>
-                          </li>
-                         </ul>
-                       </fieldset>
-                       <label for="authors" class="wb-inv">Authors</label>
-                       <div class="input-group">
-                          <input type="text" class="form-control" id="authors" placeholder="Search author last name" />
-                          <span class="input-group-btn">
-                             <button class="btn btn-default" type="button" value="submit">
-                                 <span class="glyphicon-search glyphicon"></span>
-                                 <span class="wb-inv">Search Author Last Name</span>
-                             </button>
-                          </span>
-                       </div>
-                       </div>
-                    </details>
-                    <details class="gc-chckbxrdio">
-                       <summary>Subject</summary>
-                      <fieldset>
-                          <legend><span class="field-name wb-inv">Subject</span></legend>
-                           <ul class="list-unstyled">
-                               <li class="checkbox gc-chckbxrdio">
-                                 <input type="checkbox" name="subject" value="1" id="subject1" />
-                                 <label for="subject1">
-                                     
-                                         GC Core Thesaurus 
-                                     <span class="badge">13</span>
-                                     
-                                 </label>
-                             </li>
-                             <li class="checkbox gc-chckbxrdio">
-                                 <input type="checkbox" name="subject" value="2" id="subject2" />
-                                 <label for="subject2">
-                                     
-                                     Economics and Industry
-                                     <span class="badge">9</span>
-                                 
-                                 </label>
-                          </li>
-                        </ul>
-                       </fieldset>
-                       <label for="subjects" class="wb-inv">Subjects</label>
-                       <div class="input-group">
-                          <input type="text" class="form-control" id="subjects" placeholder="Search subject name" />
-                          <span class="input-group-btn">
-                          <button class="btn btn-default" type="button"  value="submit"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">Search subject</span></button>
-                          </span>
-                       </div>
-                    </details>
-                    <details class="gc-chckbxrdio">
-                       <summary>Date</summary>
-                       <div class="row mrgn-tp-md">
-                          <div class="form-group col-sm-6 pull-left">
-                             <label for="startdate"><span class="field-name">Start Date</span></label>
-                             <input class="form-control" id="startdate" name="startdate" type="date" data-rule-dateISO="true" />
-                          </div>
-                          <div class="form-group col-sm-6 pull-right">
-                             <label for="enddate"><span class="field-name">End Date</span></label>
-                             <input class="form-control" id="enddate" name="enddate" type="date" data-rule-dateISO="true" />
-                          </div>
-                       </div>
-                      <ul class="list-unstyled">
-                         <li> <a href="#" class="list-group-item">1954 - 1959 <span class="badge">1</span> </a></li>
-                          <li> <a href="#" class="list-group-item"> 1960 - 1979 <span class="badge">2</span></a></li>
-                          <li> <a href="#" class="list-group-item"> 1980 - 1999 <span class="badge">3</span></a></li>
-                          <li> <a href="#" class="list-group-item"> 2000 - 2019 <span class="badge">29</span></a></li>
-                          <li> <a href="#" class="list-group-item"> 2020 - 2024 <span class="badge">84</span></a></li>
-                      </ul>
-                    </details>
-                    <details class="gc-chckbxrdio">
-                       <summary>Contains files</summary>
-                       <fieldset>
-                          <legend><span class="field-name wb-inv">Contains files</span></legend>
-                           <ul class="list-unstyled lst-spcd-2">
-                             <li class="radio">
-                                 
-                                     <input type="radio" name="containFile" value="1" id="yes" /> 
-                                     <label for="yes" ><span class="mrgn-rght-lg">Yes</span> <span class="badge">120</span>
-                                     </label>
-                                 
-                             </li>
-                         <li class="radio">
-                             
-                                 <input type="radio" name="containFile" value="2" id="no" /> 
-                                 <label for="no" >No <span class="badge">2</span></label>
-                             
-                          </li>
-                          </ul>
-                       </fieldset>
-                    </details>
-                    <details class="gc-chckbxrdio">
-                       <summary>Item type</summary>
-                       <fieldset>
-                          <legend><span class="field-name wb-inv">Item type</span></legend>
-                      <ul class="list-unstyled">
-                         <li class="checkbox gc-chckbxrdio">
-                            <input type="checkbox" name="Publication" value="1" id="Publication" />
-                            <label for="Publication"> Publication <span class="badge">14</span></label>
-                          </li>
-                          <li class="checkbox gc-chckbxrdio">
-                            <input type="checkbox" name="Person" value="2" id="Person" />  <label for="Person">Person <span class="badge">2</span></label>
-                           </li>
-                       <li class="checkbox gc-chckbxrdio">
-                             <input type="checkbox" name="Journal" value="3" id="Journal" /> <label for="Journal">Journal <span class="badge">2</span></label>
-                           </li>
-                       <li class="checkbox gc-chckbxrdio">
-                             <input type="checkbox" name="Organization unit" value="4" id="Organizationunit" /><label for="Organizationunit"> Organization unit <span class="badge ">1</span></label>
-                          </li>
-                        <li class="checkbox gc-chckbxrdio">
-                             <input type="checkbox" name="Project" value="5" id="Project" /><label for="Project"> Project <span class="badge">1</span></label>
-                         </li>
-                     </ul>
-                          <label for="item_type" class="wb-inv">Item Type</label>
-                          <div class="input-group">
-                             <input type="text" class="form-control" id="item_type" placeholder="Search item type" />
-                             <span class="input-group-btn">
-                             <button class="btn btn-default" type="button" value="submit"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">Search Item Type</span></button>
-                             </span>
-                          </div>
-                       </fieldset>
-                    </details>
-                    
-                 </section>
-             </div>
-             <footer class="panel-footer">
-                 <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Reset Filters</button></footer>
-             </section>
-         </form>
-     </div>
-</ng-template>
-
-<div class="container">
-    <div tempstyle class="row">
-        <div class="col-md-12">
-            <h1 property="name" id="wb-cont">Search</h1>
-        </div>
-    
-        <ng-container [ngTemplateOutlet]="searchFilters"></ng-container>
-        <div class="col-md-8 pull-right mrgn-bttm-lg">
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
-                        <h3 class="panel-title h5">Filters applied:</h3>
-                        <ul class="list-unstyled list-inline">
-                            <li><a
-                                    href="/search?spc.page=1&amp;query=test&amp;spc.sf=score&amp;spc.sd=DESC&amp;spc.rpp=100">Subject:
-                                    Astrophysics <span class="glyphicon glyphicon-remove text-danger"> <span
-                                            class="wb-inv">Remove filter</span></span> </a></li>
-                            <li><a
-                                    href="/search?spc.page=1&amp;query=test&amp;spc.sf=score&amp;spc.sd=DESC&amp;spc.rpp=100">Author:
-                                    Peter <span class="glyphicon glyphicon-remove text-danger"> <span class="wb-inv">Remove
-                                            filter</span></span> </a></li>
-                        </ul>
-                        <label for="searchrepository">Search the repository</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="searchrepository" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" value="submit" type="button"><span
-                                        class="glyphicon-search glyphicon"></span><span class="wb-inv">Search the
-                                        Repository</span></button>
-                            </span>
-                        </div>
-                    </div>
-                    <ng-container [ngTemplateOutlet]="searchResults"></ng-container>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
