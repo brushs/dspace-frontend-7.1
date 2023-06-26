@@ -36,8 +36,8 @@ import { ServerAuthRequestService } from '../../app/core/auth/server-auth-reques
 
 export function createTranslateLoader() {
   return new TranslateJson5UniversalLoader([
-    {prefix: 'dist/server/assets/i18n/core', suffix: '.json5'},
-    {prefix: 'dist/server/assets/i18n/controlled_vocabulary', suffix: '.json5'},
+    {prefix: 'dist/server/assets/i18n/core/', suffix: '.json5'},
+    {prefix: 'dist/server/assets/i18n/controlled_vocabulary/', suffix: '.json5'},
   ]);
 }
 
