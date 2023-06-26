@@ -8,3 +8,15 @@
 ::ng-deep .search-controls {
     margin-bottom: var(--bs-spacer);
 }
+
+[gcweb] {
+   ::ng-deep {
+     .btn-primary {
+      background-color: #26374a;
+      border-color: #26374a;
+    }
+   }
+   .h4 {
+    margin-top: unset;
+   }
+}

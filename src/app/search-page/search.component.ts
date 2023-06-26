@@ -28,7 +28,7 @@ import { DSONameService } from '../core/breadcrumbs/dso-name.service';
 import { stripOperatorFromFilterValue } from '../shared/search/search.utils';
 @Component({
   selector: 'ds-search',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['./search.component.scss', '../../themes/wetoverlay/styles/static-pages.scss'],
   templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [pushInOut],
@@ -179,8 +179,6 @@ export class SearchComponent implements OnInit {
 
     this.sortOptions$ = this.searchConfigService.getConfigurationSortOptionsObservable(searchConfig$);
     this.searchConfigService.initializeSortOptionsFromConfiguration(searchConfig$);
-    this.resultsRD$.subscribe(console.log);
-    this.configuration$.subscribe(console.log)
 
     this.paginationService = AppInjector.get(PaginationService);
     this.dsoNameService = AppInjector.get(DSONameService);
