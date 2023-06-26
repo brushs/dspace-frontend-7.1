@@ -8,7 +8,7 @@ import { SEARCH_CONFIG_SERVICE } from '../../../my-dspace-page/my-dspace-page.co
 import { PaginationService } from '../../../core/pagination/pagination.service';
 
 @Component({
-  selector: 'ds-search-settings',
+  selector: 'ds-search-settings, [ds-search-settings]',
   styleUrls: ['./search-settings.component.scss'],
   templateUrl: './search-settings.component.html'
 })
@@ -27,6 +27,11 @@ export class SearchSettingsComponent {
    * All sort options that are shown in the settings
    */
   @Input() sortOptions: SortOptions[];
+
+  /**
+   * All sort options that are shown in the settings
+   */
+  @Input() useGcWeb: boolean = false;
 
   constructor(private service: SearchService,
               private route: ActivatedRoute,

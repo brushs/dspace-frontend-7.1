@@ -50,6 +50,7 @@ export class ObjectCollectionComponent implements OnInit {
   @Input() hideGear = false;
   @Input() selectable = false;
   @Input() selectionConfig: {repeatable: boolean, listId: string};
+  @Input() useGcWeb = false;
   @Output() deselectObject: EventEmitter<ListableObject> = new EventEmitter<ListableObject>();
   @Output() selectObject: EventEmitter<ListableObject> = new EventEmitter<ListableObject>();
 
@@ -133,7 +134,6 @@ export class ObjectCollectionComponent implements OnInit {
   viewModeEnum = ViewMode;
 
   ngOnInit(): void {
-    console.log(this.objects)
     this.currentMode$ = this.route
       .queryParams
       .pipe(

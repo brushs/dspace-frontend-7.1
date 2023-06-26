@@ -33,7 +33,6 @@ export class HomePageComponent implements OnInit {
     this.http.get(`${environment.rest.baseUrl}/api/core/communities/search/top?page=0&size=20&sort=dc.title,ASC&embed.size=subcommunities=10&embed=subcommunities`).subscribe(x => {
       if (x['_embedded']?.['communities']) {
         let scienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'))?.['_embedded']?.['subcommunities']
-        console.log(scienceCommunity?.['_embedded']?.['subcommunities'])
         if (scienceCommunity?.['_embedded']?.['subcommunities']) {
           this.subcommunities = scienceCommunity?.['_embedded']?.['subcommunities'].reduce((prev, curr) => {
             prev[curr.name] = curr.id;

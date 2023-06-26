@@ -1,19 +1,42 @@
 <ng-container *ngVar="searchOptions as config">
-    <div class="row">
-    <div class="result-order-settings">
-    <ds-sidebar-dropdown
-            *ngIf="config?.sort"
-            [id]="'search-sidebar-sort'"
-            [label]="'search.sidebar.settings.sort-by'"
-            (change)="reloadOrder($event)"
-    >
-        <option *ngFor="let sortOption of sortOptions"
-                [value]="sortOption.field + ',' + sortOption.direction.toString()"
-                [selected]="sortOption.field === config?.sort.field && sortOption.direction === (config?.sort.direction)? 'selected': null">
-            {{'sorting.' + sortOption.field + '.' + sortOption.direction | translate}}
-        </option>
-    </ds-sidebar-dropdown>
-    </div>
-    <ds-page-size-selector></ds-page-size-selector>
-    </div>
+        <ng-container *ngIf="!useGcWeb; else GcWebTemplate">
+        <div class="row">
+        <div class="result-order-settings">
+        <ds-sidebar-dropdown
+                *ngIf="config?.sort"
+                [id]="'search-sidebar-sort'"
+                [label]="'search.sidebar.settings.sort-by'"
+                (change)="reloadOrder($event)"
+        >
+            <option *ngFor="let sortOption of sortOptions"
+                    [value]="sortOption.field + ',' + sortOption.direction.toString()"
+                    [selected]="sortOption.field === config?.sort.field && sortOption.direction === (config?.sort.direction)? 'selected': null">
+                {{'sorting.' + sortOption.field + '.' + sortOption.direction | translate}}
+            </option>
+        </ds-sidebar-dropdown>
+        </div>
+        <ds-page-size-selector></ds-page-size-selector>
+        </div>
+    </ng-container>
+
+    <ng-template #GcWebTemplate>
+        <div class=" col-md-8 pull-left">
+            <div class="input-group">
+                <label for="Sortby">{{'search.sidebar.settings.sort-by' | translate}}</label>
+                <select (change)="reloadOrder($event)" class="form-control" id="Sortby" name="Sortby">
+                    
+                    <option 
+                        *ngFor="let sortOption of sortOptions" 
+                        [attr.label]="('sorting.' + sortOption?.field + '.' +sortOption?.direction) | translate"
+                        [value]="sortOption?.field + ',' + sortOption?.direction.toString()"
+                        [selected]="sortOption?.field === config?.sort?.field && sortOption?.direction === (config?.sort?.direction)? 'selected': null"
+                        >
+                        {{('sorting.' + sortOption?.field + '.' +sortOption?.direction) | translate}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 pull-right" ds-page-size-selector [useGcWeb]="true"></div>
+    </ng-template>
 </ng-container>
+

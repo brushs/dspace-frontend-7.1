@@ -50,6 +50,7 @@ export class ObjectListComponent {
   @Input() hidePagerWhenSinglePage = true;
   @Input() selectable = false;
   @Input() selectionConfig: { repeatable: boolean, listId: string };
+  @Input() useGcWeb = false;
 
   /**
    * The link type of the listable elements

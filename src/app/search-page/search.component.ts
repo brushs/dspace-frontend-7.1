@@ -28,7 +28,7 @@ import { DSONameService } from '../core/breadcrumbs/dso-name.service';
 import { stripOperatorFromFilterValue } from '../shared/search/search.utils';
 @Component({
   selector: 'ds-search',
-  styleUrls: ['./search.component.scss', '../../themes/wetoverlay/styles/static-pages.scss'],
+  styleUrls: ['../../themes/wetoverlay/styles/static-pages.scss', './search.component.scss', ],
   templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [pushInOut],
@@ -184,7 +184,6 @@ export class SearchComponent implements OnInit {
     this.dsoNameService = AppInjector.get(DSONameService);
 
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
-
   }
 
   // this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
@@ -238,26 +237,6 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  /**
-   * Reload results per page
-   */
-  reloadRPP(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    this.paginationOptions$.pipe(
-      take(1)
-    ).subscribe((pagination: PaginationComponentOptions) => {
-      this.paginationService.updateRoute(pagination.id, {page: 1, pageSize: +value});
-    }) ;
-  }
-
-  reloadOrder(event: Event) {
-    const values = (event.target as HTMLInputElement).value.split(',');
-    this.paginationService.updateRoute(this.searchConfigService.paginationID, {
-      sortField: values[0],
-      sortDirection: values[1] as SortDirection,
-      page: 1
-    });
-  }
 
     /**
    * Method to change the given string by surrounding it by quotes if not already present.

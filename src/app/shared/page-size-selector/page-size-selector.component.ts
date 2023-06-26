@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { PaginationComponentOptions } from '../pagination/pagination-component-options.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { map, take } from 'rxjs/operators';
 import { PaginationService } from '../../core/pagination/pagination.service';
 
 @Component({
-  selector: 'ds-page-size-selector',
+  selector: 'ds-page-size-selector, [ds-page-size-selector]',
   styleUrls: ['./page-size-selector.component.scss'],
   templateUrl: './page-size-selector.component.html'
 })
@@ -23,6 +23,7 @@ export class PageSizeSelectorComponent implements OnInit {
    */
   paginationOptions$: Observable<PaginationComponentOptions>;
 
+  @Input() useGcWeb = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,

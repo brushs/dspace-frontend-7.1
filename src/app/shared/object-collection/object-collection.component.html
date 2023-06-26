@@ -19,6 +19,7 @@
                 [importConfig]="importConfig"
                 (importObject)="importObject.emit($event)"
                 (contentChange)="contentChange.emit()"
+                [useGcWeb]="true"
                 *ngIf="(currentMode$ | async) === viewModeEnum.ListElement">
 </ds-object-list>
 
