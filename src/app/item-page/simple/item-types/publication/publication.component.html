@@ -1,7 +1,8 @@
 <div class="d-flex flex-row">
   <!--FOSRC change start-->
   <h1 class="item-page-title-field mr-auto">
-    {{'publication.page.titleprefix' | translate}}<ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])"></ds-metadata-values>
+    <!-- {{'publication.page.titleprefix' | translate}} -->
+    <ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])"></ds-metadata-values>
   </h1>
   <!--FOSRC change end (h2 is converted to h1)-->
   <div class="pl-2">
@@ -38,10 +39,11 @@
       [fields]="['journalvolume.identifier.name']"
       [label]="'publication.page.volume-title'">
     </ds-generic-item-page-field>
+    <!--
     <ds-generic-item-page-field [item]="object"
       [fields]="['dc.publisher']"
       [label]="'publication.page.publisher'">
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-field>-->
   </div>
   <div class="col-xs-12 col-md-6">
     <ds-related-items
@@ -70,10 +72,67 @@
       [separator]="','"
       [label]="'item.page.subject'">
     </ds-generic-item-page-field>
+    <!--DOI -->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.identifier.doi']"
+      [separator]="','"
+      [label]="'DOI'">
+    </ds-generic-item-page-field>
+    <!-- -->
     <ds-generic-item-page-field [item]="object"
       [fields]="['dc.identifier.citation']"
       [label]="'item.page.citation'">
     </ds-generic-item-page-field>
+
+    <!-- Publisher-->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.publisher']"
+      [separator]="','"
+      [label]="'item.page.publisher'">
+    </ds-generic-item-page-field>
+    <!-- -->
+
+    <!-- Summary -->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['nrcan.summary']"
+      [separator]="','"
+      [label]="'Plain Language Summary'">
+    </ds-generic-item-page-field>
+    <!-- -->
+
+
+    <!-- Meeting-->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['nrcan.meeting.name']"
+      [separator]="','"
+      [label]="'Meeting'">
+    </ds-generic-item-page-field>
+    <!-- -->
+
+    <!-- Area -->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['nrcan.area']"
+      [separator]="','"
+      [label]="'Area'">
+    </ds-generic-item-page-field>
+    <!-- -->
+
+
+    <!-- Polygon -->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['geospatial.polygon']"
+      [separator]="','"
+      [label]="'Polygon'">
+    </ds-generic-item-page-field>
+    <!-- -->
+
+    <!-- Language -->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.language']"
+      [separator]="','"
+      [label]="'item.preview.dc.language.iso'">
+    </ds-generic-item-page-field>
+    <!-- -->
     <ds-item-page-uri-field [item]="object"
       [fields]="['dc.identifier.uri']"
       [label]="'item.page.uri'">
