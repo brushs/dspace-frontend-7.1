@@ -1186,7 +1186,7 @@
   "item.page.journal.search.title": "Articles in this journal",
   "item.page.journal-issn": "Journal ISSN",
   "item.page.journal-title": "Journal title",
-  "item.page.link.full": "Full item page",
+  "item.page.link.full": "Full metadata",
   "item.page.link.simple": "Simple item page",
   "item.page.person.search.title": "Articles by this author",
   "item.page.publisher": "Publisher",
@@ -2197,17 +2197,17 @@
   "division.search.results.head": "Division Search Results",
 
   "language.search.results.head": "Language Search Results",
-  
-  "serial.search.results.head": "Serial Search Results",
-  
-  "sponsor.search.results.head": "Sponsor Search Results",
-  
-  "province.search.results.head": "Province Search Results",
-  
-  "country.search.results.head": "Country Search Results",
-  
 
-  
+  "serial.search.results.head": "Serial Search Results",
+
+  "sponsor.search.results.head": "Sponsor Search Results",
+
+  "province.search.results.head": "Province Search Results",
+
+  "country.search.results.head": "Country Search Results",
+
+
+
   "publisher.listelement.badge": "Publisher",
 
   "area.listelement.badge": "Area",
