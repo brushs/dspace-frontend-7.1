@@ -28,7 +28,7 @@ export class ItemPageIsbnFieldComponent extends ItemPageFieldComponent {
      * In this component, we want to display values for metadata 'dc.identifier.isbn'
      */
     fields: string[] = [
-        'dc.identifier.isban'
+        'dc.identifier.isbn'
     ];
 
     /**

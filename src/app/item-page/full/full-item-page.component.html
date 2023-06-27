@@ -19,11 +19,11 @@
         <dl>
           <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
             <ng-container *ngFor="let mdValue of mdEntry.value;">
-              <dt class="p-2">
-                {{mdEntry.key}} {{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
+              <dt class="p-2" lang="en">
+                {{mdEntry.key}}{{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
               </dt>
-              <dd class="p-2 pl-4">
-                {{mdValue.value}}
+              <dd class="p-2 pl-4" lang="{{mdValue.language ? mdValue.language : 'en'}}">
+                {{mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate}}
               </dd>
             </ng-container>
           </ng-container>

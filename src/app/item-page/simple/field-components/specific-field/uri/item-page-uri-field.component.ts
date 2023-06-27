@@ -27,7 +27,7 @@ export class ItemPageUriFieldComponent extends ItemPageFieldComponent {
   /**
    * Fields (schema.element.qualifier) used to render their values.
    */
-  @Input() fields: string[];
+  @Input() fields: string[] = ['dc.identifier.uri'];
 
   /**
    * Label i18n key for the rendered metadata

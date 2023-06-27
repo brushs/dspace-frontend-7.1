@@ -28,7 +28,7 @@ export class ItemPageAbstractFieldComponent extends ItemPageFieldComponent {
      * In this component, we want to display values for metadata 'dc.description.abstract'
      */
     fields: string[] = [
-        'dc.description.abstract'
+      'dc.description.abstract', 'dc.description.abstract-fosrctranslation'
     ];
 
     /**
