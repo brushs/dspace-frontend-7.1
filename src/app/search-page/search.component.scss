@@ -10,13 +10,30 @@
 }
 
 [gcweb] {
-   ::ng-deep {
-     .btn-primary {
+  ::ng-deep {
+    .btn-primary {
       background-color: #26374a;
       border-color: #26374a;
     }
-   }
-   .h4 {
+
+    .pagination {
+      font-size: initial;
+      line-height: initial;
+      display: flex !important;
+    }
+    .form-control {
+      min-height: unset;
+    }
+    .input-group-btn {
+      .btn {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+  }
+
+  .h4 {
     margin-top: unset;
-   }
+  }
+
 }

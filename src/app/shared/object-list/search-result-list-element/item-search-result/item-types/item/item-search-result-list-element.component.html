@@ -1,9 +1,9 @@
 <!-- OSPR Changes - Re-structure to ensure semantic correctness and introduce paragraphs where needed -->
-<ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
+<ds-type-badge *ngIf="showLabel" [useGcWeb]="useGcWeb" [object]="dso"></ds-type-badge>
 <ds-truncatable [id]="dso.id" *ngIf="object !== undefined && object !== null">
   <p>
     <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
-      rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title" lang="{{('dc.title' | metaTranslate: dso)[0]?.language}}">
+      rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title">
       {{'official.title' | translate}}: 
         <span lang="{{dsoOfficialTitle[0].language}}">{{dsoOfficialTitle[0].value}}</span><br/>
       <span *ngIf='dsoTranslatedTitle'>{{'alternative.title' | translate}}: <span lang="{{dsoTranslatedTitle.language}}">{{ dsoTranslatedTitle.value }}</span></span></a>

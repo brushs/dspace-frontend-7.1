@@ -30,6 +30,29 @@
     </div>
 </div>
 
+
+<ng-template #searchResults>
+    <div class="row mrgn-lft-sm mrgn-rght-sm">
+        <div class="panel panel-primary w-100">
+            <header class="panel-heading">
+                <h2 class="panel-title h4">{{'search.results.head' | translate}}</h2>
+            </header>
+            <div class="panel-body">
+                <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-md mrgn-rght-md"></div>
+
+                <ds-search-results [searchResults]="resultsRD$ | async"
+                [searchConfig]="searchOptions$ | async"
+                [configuration]="configuration$ | async"
+                [useGcWeb]="true"
+                disableHeader= "true"
+                [context]="context"></ds-search-results>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
 <!-- <section>
 <div class="container" *ngIf="(isXsOrSm$ | async)">
     <div class="row">
@@ -72,7 +95,7 @@
 </ds-page-with-sidebar>
 </section> -->
 
-<ng-template #sidebarContent>
+<!-- <ng-template #sidebarContent>
     <ds-search-sidebar id="search-sidebar" *ngIf="!(isXsOrSm$ | async)"
                        [resultCount]="(resultsRD$ | async)?.payload?.totalElements"
                        [searchOptions]="(searchOptions$ | async)"
@@ -84,90 +107,20 @@
                        [sortOptions]="(sortOptions$ | async)"
                        (toggleSidebar)="closeSidebar()">
     </ds-search-sidebar>
-</ng-template>
+</ng-template> -->
 
-<ng-template #searchForm>
-    <!-- <ds-search-form *ngIf="searchEnabled" id="search-form"
+<!-- <ng-template #searchForm>
+    <ds-search-form *ngIf="searchEnabled" id="search-form"
                     [query]="(searchOptions$ | async)?.query"
                     [scope]="(searchOptions$ | async)?.scope"
                     [currentUrl]="searchLink"
                     [scopes]="(scopeListRD$ | async)"
                     [inPlaceSearch]="inPlaceSearch"
                     [searchPlaceholder]="'search.search-form.placeholder' | translate">
-    </ds-search-form> -->
+    </ds-search-form>
     <div class="row mb-3 mb-md-1">
         <div class="labels col-sm-9 offset-sm-3">
             <ds-search-labels *ngIf="searchEnabled" [inPlaceSearch]="inPlaceSearch"></ds-search-labels>
         </div>
     </div>
-</ng-template>
-
-
-
-<ng-template #searchResults>
-    <div *ngVar="(configuration$| async) as config" class="row mrgn-lft-sm mrgn-rght-sm">
-        <div *ngVar="(resultsRD$ | async) as searchResults" class="panel panel-primary w-100">
-            <header class="panel-heading">
-                <h2 class="panel-title h4">{{'search.results.head' | translate}}</h2>
-            </header>
-            <div class="panel-body">
-                <div class="row well well-small mrgn-lft-md mrgn-rght-md">
-                    <div class=" col-md-8 pull-left">
-                        <div class="input-group">
-                            <label for="Sortby">{{'search.sidebar.settings.sort-by' | translate}}</label>
-                            <select (change)="reloadOrder($event)" class="form-control" id="Sortby" name="Sortby">
-                                
-                                <option 
-                                    *ngFor="let sortOption of (sortOptions$ | async)" 
-                                    [attr.label]="('sorting.' + sortOption?.field + '.' +sortOption?.direction) | translate"
-                                    [value]="sortOption?.field + ',' + sortOption?.direction.toString()"
-                                    [selected]="sortOption?.field === config?.sort?.field && sortOption?.direction === (config?.sort?.direction)? 'selected': null"
-                                    >
-                                    {{('sorting.' + sortOption?.field + '.' +sortOption?.direction) | translate}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4 pull-right">
-                        <div class="input-group">
-                            <label for="pageResults">{{'search.sidebar.settings.rpp' | translate}}</label>
-                            <select [attr.id]="'pageResults'" (change)="reloadRPP($event)" class="form-control" id="pageResults" name="pageResults">
-                                <option 
-                                    *ngFor="let pageSizeOption of (paginationOptions$ | async)?.pageSizeOptions"
-                                    [value]="pageSizeOption" [selected]="pageSizeOption === +((paginationOptions$ | async).pageSize)">{{pageSizeOption}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <ds-loading *ngIf="hasNoValue(searchResults) || hasNoValue(searchResults.payload) || searchResults.isLoading"
-                    message="{{'loading.search-results' | translate}}"></ds-loading>
-
-                <ds-error *ngIf="searchResults?.hasFailed && (!searchResults?.errorMessage || searchResults?.statusCode != 400)"
-                    message="{{'error.search-results' | translate}}"></ds-error>
-
-                <div *ngIf="searchResults?.payload?.page.length == 0 || searchResults?.statusCode == 400">
-                    {{ 'search.results.no-results' | translate }}
-                    <a [routerLink]="['/search']" [queryParams]="{ query: surroundStringWithQuotes((searchOptions$ | async)?.query) }"
-                        queryParamsHandling="merge">
-                        {{"search.results.no-results-link" | translate}}
-                    </a>
-                </div>
-
-                <ds-pagination
-                    [paginationOptions]="(paginationOptions$ | async)"
-                    [pageInfoState]="searchResults?.payload"
-                    [collectionSize]="searchResults?.payload?.totalElements"
-                    [sortOptions]="config?.sort"
-                    [hideGear]="true"
-                    [hidePagerWhenSinglePage]="true"
-                    >
-                <ul class="list-unstyled">
-                    <li *ngFor="let result of searchResults?.payload?.page">
-                        <gc-search-result [searchResult]="result"></gc-search-result>
-                    </li>
-                </ul>
-                </ds-pagination>
-            </div>
-        </div>
-    </div>
-</ng-template>
+</ng-template> -->
