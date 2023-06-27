@@ -1,0 +1,19 @@
+<div class="item-page-field">
+  <!-- <ds-metadata-values [mdValues]="item?.allMetadata(fields)" [separator]="separator" [label]="label"></ds-metadata-values> -->
+  <div class="simple-view-element">
+    <h5 class="simple-view-element-header" *ngIf="label">{{ label | translate }}</h5>
+    <ds-truncatable [id]="item.id">
+    <div  class="simple-view-element-body">
+        <!--<span [attr.lang]="field.language" [innerHTML]="field.value"></span> -->
+
+        <ds-truncatable-part [id]="item?.id" [minLines]="3" class="item-list-abstract">
+          <span [ngClass]="{'text-muted': !item.firstMetadataValue(field)}"
+                [innerHTML]="(item.firstMetadataValue(field)) || ('mydspace.results.no-abstract' | translate)"></span>
+        </ds-truncatable-part>
+        <!--
+        <span>{{item?.firstMetadata(field)}}</span>
+        -->
+    </div>
+    </ds-truncatable>
+  </div>
+</div>
