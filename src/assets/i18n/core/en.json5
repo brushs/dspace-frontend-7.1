@@ -1142,6 +1142,8 @@
   "home.title": "Home",
   "home.top-home.browser": "Browse the repository",
   "home.top-home.head": "Federal Open Science Repository of Canada (FOSRC)",
+  "home.top-home.head.dev": "DEV -- Federal Open Science Repository of Canada (FOSRC)",
+  "home.top-home.head.pre-prod": "Pre-Prod -- Federal Open Science Repository of Canada (FOSRC)",
   "home.top-level-communities.head": "Communities in FOSRC",
   "home.top-level-communities.help": "Select a community to browse its collections.",
   "idle-modal.header": "Session will expire soon",

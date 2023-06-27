@@ -20,6 +20,21 @@ export class ComcolPageHandleComponent {
   @Input() content: string;
 
   public getHandle(): string {
-    return this.content;
+    //FOSRC made this function domain aware to fix #1820
+    const domainList = ['dev.ospr.link', 'ospr.link', 'localhost', 'open-science.canada.ca', 'science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']
+    const rawValue = this.content;
+    if (!domainList.some((x: string) => rawValue.includes(x))) {
+      return rawValue;
+    }
+    //console.log("outside domainAware if statement: " + rawValue)
+    try {
+      const urlObj = new URL(rawValue);
+      const currentHostname = location.hostname;
+      return rawValue.replace(urlObj.hostname, currentHostname);
+    } catch (Error) {
+      return rawValue;
+    }
+    //return this.content;
   }
+
 }
