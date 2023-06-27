@@ -30,7 +30,17 @@
         border-top-left-radius: 0;
       }
     }
-  }
+    .dropdown-list > ul {
+     padding: unset !important;
+    }
+    .dropdown-item {
+      &:hover {
+        a,a:visited {
+          color: white !important;
+        }
+      }
+    } 
+   }
 
   .h4 {
     margin-top: unset;
