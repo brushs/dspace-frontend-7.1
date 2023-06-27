@@ -61,7 +61,13 @@
       [relationType]="'isJournalIssueOfPublication'"
       [label]="'relationships.isJournalIssueOf' | translate">
     </ds-related-items>
-    <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+    <!-- abstract -->
+    <!--<ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>-->
+    <ds-item-page-collapsable-field [item]="object"
+     [label] ="'item.page.abstract'"
+     [field] ="'dc.description.abstract'" >
+    </ds-item-page-collapsable-field>
+    <!-- -->
     <ds-generic-item-page-field [item]="object"
       [fields]="['dc.description']"
       [label]="'publication.page.description'">
@@ -87,14 +93,21 @@
       [separator]="','"
       [label]="'item.page.publisher'">
     </ds-generic-item-page-field>
-    <!-- -->
-
-    <!-- Summary -->
+    <!-- 
+    <div>xxxCitation</div>
+    <ds-item-page-citation-field [item]="object">
+    </ds-item-page-citation-field>
+-->
+    <!-- Summary
     <ds-generic-item-page-field [item]="object"
       [fields]="['nrcan.summary']"
       [separator]="','"
       [label]="'Plain Language Summary'">
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-field> -->
+    <ds-item-page-collapsable-field [item]="object"
+     [label] ="'Plain Language Summary'"
+     [field] ="'nrcan.summary'" >
+    </ds-item-page-collapsable-field>
     <!-- -->
 
 
@@ -117,7 +130,7 @@
 
     <!-- Polygon -->
     <ds-generic-item-page-field [item]="object"
-      [fields]="['geospatial.polygon']"
+      [fields]="['geospatial.bbox']"
       [separator]="','"
       [label]="'Polygon'">
     </ds-generic-item-page-field>

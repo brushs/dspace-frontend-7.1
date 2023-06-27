@@ -52,7 +52,7 @@ export class GeoSearchPageComponent implements OnInit {
   lat2: any;
   lng2: any;
   @Input() geodata: any;
-  @Output() geoChangeEvent = new EventEmitter<string>();  
+  @Output() geoChangeEvent = new EventEmitter<string>();
 
 
   constructor(private cdr: ChangeDetectorRef) { }
@@ -91,7 +91,8 @@ export class GeoSearchPageComponent implements OnInit {
 
     L.control.layers(baselayers, overlays).addTo(this.map);
 
-    baselayers['openstreetmap'].addTo(this.map);
+    //baselayers['openstreetmap'].addTo(this.map);
+    baselayers['googleStreets'].addTo(this.map);
 
         this.drawnItems = new L.FeatureGroup();
 
@@ -116,7 +117,7 @@ export class GeoSearchPageComponent implements OnInit {
     };
 
     var drawControl = new L.Control.Draw(options);
-    this.map.addControl(drawControl);    
+    this.map.addControl(drawControl);
 
     var app = this;
     this.map.on(L.Draw.Event.CREATED, function (e) {
@@ -140,13 +141,17 @@ export class GeoSearchPageComponent implements OnInit {
     });
 
     this.map.on('draw:deleted', function (e) {
-      app.lat1 = '';  
+      app.lat1 = '';
       app.lng1 = '';
       app.lat2 = '';
       app.lng2 = '';
       app.geodata = '';
       console.log("geo data deleted");
     });
+
+    setTimeout(
+        function () { this.map.invalidateSize(); console.log("resize"); }.bind({ map: this.map }),
+        200);
   }
 
   private updateData(value: any) {
