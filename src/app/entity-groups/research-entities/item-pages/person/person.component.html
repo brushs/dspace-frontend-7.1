@@ -57,6 +57,18 @@
       [fields]="['person.givenName']"
       [label]="'person.page.firstname'">
     </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.description.abstract']"
+      [label]="'Description'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.description.contact-address']"
+      [label]="'Email'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['person.identifier.orcid']"
+      [label]="'ORCID'">
+    </ds-generic-item-page-field>
     <div>
       <a class="btn btn-outline-primary" [routerLink]="[itemPageRoute + '/full']">
         {{"item.page.link.full" | translate}}
