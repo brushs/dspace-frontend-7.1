@@ -82,10 +82,9 @@
     <ds-item-page-odi-field [item]="object" >
     </ds-item-page-odi-field>
     <!-- -->
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.identifier.citation']"
-      [label]="'item.page.citation'">
-    </ds-generic-item-page-field>
+    <!-- Citation -->
+    <ds-item-page-citation-field [item]="object">
+    </ds-item-page-citation-field>
 
     <!-- Publisher-->
     <ds-generic-item-page-field [item]="object"
@@ -93,17 +92,8 @@
       [separator]="','"
       [label]="'item.page.publisher'">
     </ds-generic-item-page-field>
-    <!-- 
-    <div>xxxCitation</div>
-    <ds-item-page-citation-field [item]="object">
-    </ds-item-page-citation-field>
--->
-    <!-- Summary
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['nrcan.summary']"
-      [separator]="','"
-      [label]="'Plain Language Summary'">
-    </ds-generic-item-page-field> -->
+
+    <!-- Summary -->
     <ds-item-page-collapsable-field [item]="object"
      [label] ="'Plain Language Summary'"
      [field] ="'nrcan.summary'" >

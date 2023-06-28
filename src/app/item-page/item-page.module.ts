@@ -14,7 +14,7 @@ import { ItemPageTitleFieldComponent } from './simple/field-components/specific-
 import { ItemPageFieldComponent } from './simple/field-components/specific-field/item-page-field.component';
 import { ItemPageDoiFieldComponent } from './simple/field-components/specific-field/doi/item-page-doi-field.component';
 import { ItemPageCollapsableFieldComponent } from './simple/field-components/specific-field/collapsable/item-page-collapsable-field.component';
-//import { ItemPageCitationFieldComponent } from './simple/field-components/specific-field/citation/item-page-citation-field.component';
+import { ItemPageCitationFieldComponent } from './simple/field-components/specific-field/citation/item-page-citation-field.component';
 import { FileSectionComponent } from './simple/field-components/file-section/file-section.component';
 import { CollectionsComponent } from './field-components/collections/collections.component';
 import { FullItemPageComponent } from './full/full-item-page.component';
@@ -57,7 +57,7 @@ const DECLARATIONS = [
   ItemPageFieldComponent,
   ItemPageDoiFieldComponent,
   ItemPageCollapsableFieldComponent,
-  //ItemPageCitationFieldComponent,
+  ItemPageCitationFieldComponent,
   FileSectionComponent,
   CollectionsComponent,
   FullFileSectionComponent,

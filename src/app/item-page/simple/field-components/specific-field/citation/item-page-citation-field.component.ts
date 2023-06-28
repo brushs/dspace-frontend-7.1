@@ -1,7 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
-import { TranslatePipe } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -24,13 +23,13 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
    */
   @Input() separator: string;
 
-  /**
-   * Fields (schema.element.qualifier) used to render their values.
-   */
+
   fields: string[] = ['dc.identifier.citation'];
 
   fieldsAuthor: string[] = ['dc.creator'];
   fieldsTitle: string[] = ['dc.title'];
+  fieldPageRange: string = 'nrcan.pagination.pagerange';
+
 
   @Output() valuesAuthors: string;
   /**
@@ -39,15 +38,16 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
   label = 'item.page.citation';
 
   labelTitle = 'item.page.titleprefix';
+  lablePageRange = 'item.page.pagerange';
 
-  constructor(public  tralateService: TranslateService) {
+  constructor(public tralateService: TranslateService) {
     super();
   }
 
   ngOnInit() {
     var allAuthors = this.item.allMetadata(this.fieldsAuthor);
-    var authors: string = "";
-    var translatedAuthors: string ;
+    var authors: string = '';
+    var translatedAuthors: string;
 
     this.tralateService.get('item.page.author').subscribe((res: string) => {
       translatedAuthors = res;
@@ -55,10 +55,9 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
 
     for (var author in allAuthors) {
       //this.valuesAuthors = this.valuesAuthors.concat("author" + author);
-      authors = authors + translatedAuthors + ":" + allAuthors[author].value + ",";
+      authors =
+        authors + translatedAuthors + ':' + allAuthors[author].value + ',';
     }
     this.valuesAuthors = authors;
-    console.log(authors);
-    //this.valuesAuthors = this.dsoNS.getMetadataByFieldAndLanguage(
   }
 }
