@@ -29,8 +29,18 @@ export class ItemPageDoiFieldComponent extends ItemPageFieldComponent {
    */
   fields: string[] = ['dc.identifier.doi'];
 
+  isHidden = false;
+
   /**
    * Label i18n key for the rendered metadata
    */
-  label = 'ODI';
+  label = 'DOI';
+  ngOnInit() {
+    var doi = this.item.allMetadata(this.fields);
+    if (doi && doi.length == 0) {
+      this.isHidden = true;
+    }
+
+  }
+
 }

@@ -28,10 +28,20 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
    */
   fields: string[] = ['dc.description.abstract'];
 
-  @Input() field: string ; // = 'dc.description.abstract';
+  @Input() field: string; // = 'dc.description.abstract';
+
+  isHidden: boolean = false;
 
   /**
    * Label i18n key for the rendered metadata
    */
-  @Input() label: string ;
+  @Input() label: string;
+
+  ngOnInit() {
+    var fieldValues = this.item.allMetadata(this.field);
+    if (fieldValues && (fieldValues.length == 0)
+      || (fieldValues.length > 0 && fieldValues[0].value.startsWith("No abstract"))) {
+      this.isHidden = true;
+    }
+  }
 }
