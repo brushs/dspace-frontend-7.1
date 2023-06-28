@@ -4,7 +4,12 @@
     <h5 class="simple-view-element-header" *ngIf="label">{{ label|translate }}</h5>
     <div  class="simple-view-element-body">
           <!--<span [attr.lang]="field.language" [innerHTML]="field.value"></span> -->
-          <span>{{ [valuesAuthors] }}, {{labelTitle|translate }} {{item?.allMetadata(fieldsTitle)}}</span>
+          <span>{{ [valuesAuthors] }},
+            {{labelTitle|translate }} {{item?.allMetadata(fieldsTitle)}},
+            vol(issue): {{item?.allMetadata('nrcan.issue')}},
+            page-range: {{item?.allMetadata('nrcan.pagination.pagerange')}},
+            DOI: {{item?.allMetadata('dc.identifier.doi')}}
+          </span>
     </div>
   </div>
 </div>
