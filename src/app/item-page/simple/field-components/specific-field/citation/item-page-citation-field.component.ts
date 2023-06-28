@@ -56,7 +56,7 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
     for (var author in allAuthors) {
       //this.valuesAuthors = this.valuesAuthors.concat("author" + author);
       authors =
-        authors + translatedAuthors + ':' + allAuthors[author].value + ',';
+        authors + allAuthors[author].value + ',';
     }
     this.valuesAuthors = authors;
   }
