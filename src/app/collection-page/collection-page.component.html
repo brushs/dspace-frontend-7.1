@@ -1,5 +1,5 @@
 <div class="container">
-  <section> 
+  <section>
   <div class="collection-page"
          *ngVar="(collectionRD$ | async) as collectionRD">
         <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut>
@@ -23,12 +23,12 @@
                           [title]="'collection.page.handle'" >
                   </ds-comcol-page-handle>
                   <!-- Subject -->
-                  <!-- Start FOSRC Changes - 1568
+                  <!-- Start FOSRC Changes - 1568 -->
                   <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : collection)[0]?.value" [lang]="('dc.subject' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
-                  End of FOSRC changes -->
+                  <!--End of FOSRC changes -->
                   <!-- Introductory text -->
-                  <ds-comcol-page-content [content]="('dc.description.abstract' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+                  <ds-comcol-page-content [content]="('dc.description' | metaTranslate : collection)[0]?.value" [lang]="('dc.description' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
                   </ds-comcol-page-content>
                   <!-- Email Address -->
                   <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
@@ -95,7 +95,7 @@
         <ds-loading *ngIf="collectionRD?.isLoading"
             message="{{'loading.collection' | translate}}"></ds-loading>
   </div>
-  </section> 
+  </section>
 </div>
 
 <ng-template #searchResultsPage>
