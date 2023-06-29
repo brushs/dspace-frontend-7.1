@@ -15,6 +15,13 @@
       background-color: #26374a;
       border-color: #26374a;
     }
+    .btn-secondary:hover {
+      color: white;
+      background-color: #1c578a;
+      background-color: var(--ospr-blue-300);
+      border-color: #091c2d;
+      border-color: var(--ospr-blue-900);
+    }
 
     .pagination {
       font-size: initial;
@@ -35,13 +42,13 @@
     }
     .dropdown-item {
       &:hover {
-        a,a:visited {
           color: white !important;
-        }
       }
     } 
+    .input-group .input-group-btn button {
+      min-height: unset;
+    }
    }
-
   .h4 {
     margin-top: unset;
   }

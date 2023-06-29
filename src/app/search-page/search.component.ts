@@ -137,7 +137,7 @@ export class SearchComponent implements OnInit {
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
               protected routeService: RouteService,
               protected router: Router,
-              protected route?: ActivatedRoute,
+              protected route: ActivatedRoute,
               ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
@@ -253,6 +253,7 @@ export class SearchComponent implements OnInit {
 
 
     applyQuery(term) {
+      console.log(this.route)
       this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
     }
 
