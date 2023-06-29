@@ -65,12 +65,14 @@
     <!--<ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>-->
     <ds-item-page-collapsable-field [item]="object"
      [label] ="'item.page.abstract'"
-     [field] ="'dc.description.abstract'" >
+     [field] ="'dc.description.abstract'"
+     [postfix]="'abst'">
     </ds-item-page-collapsable-field>
     <!-- -->
     <ds-item-page-collapsable-field [item]="object"
       [label]="'publication.page.description'"
-      [field]="'dc.description'">
+      [field]="'dc.description'"
+      [postfix]="'desc'">
     </ds-item-page-collapsable-field>
 
     <ds-generic-item-page-field [item]="object"
@@ -96,7 +98,8 @@
     <!-- Summary -->
     <ds-item-page-collapsable-field [item]="object"
      [label] ="'Plain Language Summary'"
-     [field] ="'nrcan.summary'" >
+     [field] ="'nrcan.summary'"
+     [postfix]="'sumr'">
     </ds-item-page-collapsable-field>
     <!-- -->
 
