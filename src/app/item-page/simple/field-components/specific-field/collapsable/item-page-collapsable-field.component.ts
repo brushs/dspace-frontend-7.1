@@ -23,15 +23,17 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
    */
   @Input() separator: string;
 
+  @Input() postfix: string;
+
   /**
    * Fields (schema.element.qualifier) used to render their values.
    */
-  fields: string[] = ['dc.description.abstract'];
 
   @Input() field: string; // = 'dc.description.abstract';
 
   isHidden: boolean = false;
 
+  idEx: string;
   /**
    * Label i18n key for the rendered metadata
    */
@@ -43,5 +45,6 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
       || (fieldValues.length > 0 && fieldValues[0].value.startsWith("No abstract"))) {
       this.isHidden = true;
     }
+    this.idEx =  this.postfix + this.item.id;
   }
 }
