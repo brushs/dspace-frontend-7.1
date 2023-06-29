@@ -38,26 +38,31 @@
 </ng-container>
 
 <ng-template #GCWebTemplate>
+  <form #form="ngForm" (ngSubmit)="onSubmit(value)"
+  [action]="action" (keydown)="onKeydown($event)"
+  (keydown.arrowdown)="shiftFocusDown($event)"
+  (keydown.arrowup)="shiftFocusUp($event)" (keydown.esc)="close()"
+  (dsClickOutside)="close();">
   <div class="input-group">
     <input [(ngModel)]="value"
     #inputField
-    [dsDebounce]="debounceTime" (onDebounce)="find($event)"
+    [ngModelOptions]="{standalone: true}" autocomplete="off"
+    [dsDebounce]="debounceTime" 
+    (onDebounce)="find($event)"
     [ngModelOptions]="{standalone: true}"
-    (keydown)="onKeydown($event)"
-    (keydown.arrowdown)="shiftFocusDown($event)"
-    (keydown.arrowup)="shiftFocusUp($event)" (keydown.esc)="close()"
-    (dsClickOutside)="close();" type="text" class="form-control" [attr.id]=" 'search-input-' + name" [placeholder]="placeholder" />
-    <span class="input-group-btn">
-      <span class="btn btn-default" >
+    (dsClickOutside)="close();" type="text" class="form-control" [attr.id]=" 'search-input-' + name" 
+    [placeholder]="placeholder" />
+    <div class="input-group-btn">
+      <button class="btn btn-default" >
         <span class="fa-search fa"></span>
-        <span class="wb-inv">{{'search.filters.search.submit' | translate}}</span>
-      </span>
-    </span>
+        <span class="wb-inv">{{placeholder| translate}}</span>
+      </button>
+    </div>
     <div class="autocomplete dropdown-menu" [ngClass]="{'show': (show | async) && isNotEmpty(suggestions)}">
       <div class="dropdown-list">
         <ul *ngFor="let suggestionOption of suggestions">
           <li class="d-block dropdown-item">
-            <a href="#"   (click)="onClickSuggestion(suggestionOption.value)" #suggestion>
+            <a href="#" (click)="onClickSuggestion(suggestionOption.value)" #suggestion>
               <span [innerHTML]="suggestionOption.displayValue"></span>
             </a>
           </li>
@@ -65,4 +70,5 @@
         </div>
       </div>
     </div>
+    </form>
 </ng-template>
