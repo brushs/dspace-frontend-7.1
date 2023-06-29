@@ -16,7 +16,7 @@
 </ng-container>
 
 <ng-template #GcWebTemplate>
-  <li *ngIf="isVisible | async" class="checkbox gc-chckbxrdio">
+  <ng-container *ngIf="isVisible | async">
    <input (change)="onSelect()" type="checkbox" 
     [attr.name]="'facet-' + ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})" 
     [attr.id]="'facet-' + ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})" 
@@ -24,6 +24,6 @@
    <label [attr.for]="'facet-' + ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})">
     {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}<span class="badge mrgn-lft-lg">{{filterValue.count}}</span>
    </label>
- </li>
+  </ng-container>
 
 </ng-template>

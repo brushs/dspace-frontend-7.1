@@ -29,6 +29,11 @@ export class TruncatableComponent {
    */
   @Input() onHover = false;
 
+  /**
+   * Instead of click, have a show more button
+   */
+  @Input() useShowMore = false;
+
   public constructor(private service: TruncatableService) {
   }
 

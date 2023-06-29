@@ -20,6 +20,8 @@ export class SearchLabelsComponent {
    * Emits the currently active filters
    */
   appliedFilters: Observable<Params>;
+  
+  @Input() useGcWeb = false;
 
   /**
    * True when the search component should show results on the current page

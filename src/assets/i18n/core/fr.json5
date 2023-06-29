@@ -740,6 +740,12 @@
   "logout.breadcrumbs": "Se déconnecter",
   // "official.title": "Official Title",
   "official.title": "Titre officiel",
+
+  // "search.filters.applied": "Filters Applied:",
+  "search.filters.applied": "Filtres Appliqués:",
+  // "search.filters.remove": "Remove Filter",
+  "search.filters.remove": "Supprimer le filtre",
+
   //"submission.sections.accesses.form.error.filename": "The name of the file is required",
   "submission.sections.accesses.form.error.filename": "Vous devez entrer un nom pour ce fichier.",
   //"submission.sections.accesses.form.error.translated.filename": "The translated name of the file is required",

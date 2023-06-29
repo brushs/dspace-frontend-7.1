@@ -49,20 +49,21 @@
     [ngModelOptions]="{standalone: true}" autocomplete="off"
     [dsDebounce]="debounceTime" 
     (onDebounce)="find($event)"
+    [name]="name"
     [ngModelOptions]="{standalone: true}"
     (dsClickOutside)="close();" type="text" class="form-control" [attr.id]=" 'search-input-' + name" 
     [placeholder]="placeholder" />
     <div class="input-group-btn">
       <button class="btn btn-default" >
         <span class="fa-search fa"></span>
-        <span class="wb-inv">{{placeholder| translate}}</span>
+        <span class="wb-inv">{{placeholder | translate}}</span>
       </button>
     </div>
     <div class="autocomplete dropdown-menu" [ngClass]="{'show': (show | async) && isNotEmpty(suggestions)}">
       <div class="dropdown-list">
-        <ul *ngFor="let suggestionOption of suggestions">
-          <li class="d-block dropdown-item">
-            <a href="#" (click)="onClickSuggestion(suggestionOption.value)" #suggestion>
+        <ul>
+          <li *ngFor="let suggestionOption of suggestions">
+            <a href="#" class="d-block dropdown-item" (click)="onClickSuggestion(suggestionOption.value)" #suggestion>
               <span [innerHTML]="suggestionOption.displayValue"></span>
             </a>
           </li>

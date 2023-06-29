@@ -40,13 +40,13 @@
       </li>
     </ng-container>
     <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
-      <li class="checkbox gc-chckbxrdio">
-        <ds-search-facet-option *ngFor="let value of page.page; trackBy: trackUpdate" [filterConfig]="filterConfig" [filterValue]="value" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
+      <li #el *ngFor="let value of page.page; trackBy: trackUpdate" class="checkbox gc-chckbxrdio">
+        <ds-search-facet-option [selfRef]="el" [filterConfig]="filterConfig" [filterValue]="value" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
       </li>
     </ng-container>
   </ul>
 
-  <div class="clearfix toggle-more-filters pb-1">
+  <p class="clearfix toggle-more-filters pb-1">
     <a class="float-left" *ngIf="!(isLastPage$ | async)"
        (click)="showMore()" href="javascript:void(0);">
       {{"search.filters.filter.show-more" | translate}}
@@ -55,7 +55,7 @@
        (click)="showFirstPageOnly()" href="javascript:void(0);">
       {{"search.filters.filter.show-less" | translate}}
     </a>
-</div>
+  </p>
 
 
 <ds-filter-input-suggestions [suggestions]="(filterSearchResults | async)"
