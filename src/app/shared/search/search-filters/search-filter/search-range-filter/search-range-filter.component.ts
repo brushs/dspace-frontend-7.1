@@ -61,7 +61,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
   /**
    * The current range of the filter
    */
-  range;
+  range = [];
 
   /**
    * Subscription to unsubscribe from

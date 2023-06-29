@@ -238,10 +238,6 @@ import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-co
 import { SearchNavbarComponent } from '../search-navbar/search-navbar.component';
 import { OSPRTruncatePipe } from './utils/ospr-truncate';
 import { PageDetailsComponent } from './page-details/page-details.component';
-import { GCSearchLabelsComponent } from '../search-page/search-filter-labels/search-filter-labels.component';
-import { GCSearchLabelComponent } from '../search-page/search-filter-label/search-filter-label.component';
-import { GCFiltersComponent } from '../search-page/search-filters/search-filters.component';
-import { GCFilterComponent } from '../search-page/search-filters/search-filter/search-filter.component';
 
 /**
  * Declaration needed to make sure all decorator functions are called in time
@@ -406,10 +402,6 @@ const COMPONENTS = [
   SearchFacetRangeOptionComponent,
   SearchSwitchConfigurationComponent,
   SearchAuthorityFilterComponent,
-  GCSearchLabelsComponent, //FOSRC addition
-  GCSearchLabelComponent, //FOSRC addition
-  GCFiltersComponent, //FOSRC addition
-  GCFilterComponent, //FOSRC addition
   PageSizeSelectorComponent,
   ListableObjectComponentLoaderComponent,
   CollectionListElementComponent,

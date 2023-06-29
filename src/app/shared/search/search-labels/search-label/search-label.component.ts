@@ -21,6 +21,7 @@ export class SearchLabelComponent implements OnInit {
   @Input() value: string;
   @Input() inPlaceSearch: boolean;
   @Input() appliedFilters: Observable<Params>;
+  @Input() useGcWeb = false;
   searchLink: string;
   removeParameters: Observable<Params>;
 

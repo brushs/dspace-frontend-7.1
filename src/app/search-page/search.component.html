@@ -2,16 +2,24 @@
 <div class="container">
     <div gcweb class="row">
         <div class="col-md-12">
-            <h1 property="name" id="wb-cont">{{'search.form.search' | translate}}</h1>
+            <h1 *ngIf="!adminSearch" property="name" id="wb-cont">{{'search.form.search' | translate}}</h1>
+            <h1 *ngIf="adminSearch" property="name" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
         </div>
     
         <!-- <ng-container [ngTemplateOutlet]="searchFilters"></ng-container> -->
-        <div gc-search-filters class="col-md-4 pull-left"></div>
+        <div class="col-md-4 pull-left" ds-search-sidebar id="search-sidebar"
+        [resultCount]="(resultsRD$ | async)?.payload?.totalElements"
+        [useGcWeb]="true"
+        [searchOptions]="(searchOptions$ | async)"
+        [sortOptions]="(sortOptions$ | async)"
+        [inPlaceSearch]="inPlaceSearch"></div>
+
+        <!-- <div gc-search-filters class="col-md-4 pull-left"></div> -->
         <div class="col-md-8 pull-right mrgn-bttm-lg">
             <div class="panel">
                 <div class="panel-body">
                     <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
-                        <gc-search-labels></gc-search-labels>
+                        <ds-search-labels [inPlaceSearch]="inPlaceSearch" [useGcWeb]="true"></ds-search-labels>
                         <div class="col-md-12 p-0 ">
                             <label for="main-searchrepository">{{ 'home.search-form.placeholder' | translate }}</label>
                             <div class="input-group">
@@ -51,9 +59,9 @@
         </div>
     </div>
 </ng-template>
+<!-- 
 
-
-<!-- <section>
+<section>
 <div class="container" *ngIf="(isXsOrSm$ | async)">
     <div class="row">
         <div class="col-12">
@@ -93,9 +101,9 @@
         </div>
     </div>
 </ds-page-with-sidebar>
-</section> -->
+</section>
 
-<!-- <ng-template #sidebarContent>
+<ng-template #sidebarContent>
     <ds-search-sidebar id="search-sidebar" *ngIf="!(isXsOrSm$ | async)"
                        [resultCount]="(resultsRD$ | async)?.payload?.totalElements"
                        [searchOptions]="(searchOptions$ | async)"
@@ -107,9 +115,9 @@
                        [sortOptions]="(sortOptions$ | async)"
                        (toggleSidebar)="closeSidebar()">
     </ds-search-sidebar>
-</ng-template> -->
+</ng-template>
 
-<!-- <ng-template #searchForm>
+<ng-template #searchForm>
     <ds-search-form *ngIf="searchEnabled" id="search-form"
                     [query]="(searchOptions$ | async)?.query"
                     [scope]="(searchOptions$ | async)?.scope"

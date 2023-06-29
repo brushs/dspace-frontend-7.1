@@ -457,6 +457,10 @@
   "header.skiptolinks.main": "Skip to main content.",
   "logout.breadcrumbs": "Sign Out",
   "official.title": "Official Title",
+
+  "search.filters.applied": "Filters Applied:",
+  "search.filters.remove": "Remove Filter",
+  
   "submission.sections.accesses.form.error.filename": "The name of the file is required",
   "submission.sections.accesses.form.error.translated.filename": "The translated name of the file is required",
   "submission.sections.accesses.form.hint.filedescription": "The File Description",

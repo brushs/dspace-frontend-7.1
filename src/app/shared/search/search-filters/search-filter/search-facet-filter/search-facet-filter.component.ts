@@ -159,7 +159,6 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
       ).subscribe((rd: RemoteData<PaginatedList<FacetValue>[]>) => {
         this.animationState = 'ready';
         this.filterValues$.next(rd);
-
       }));
       this.subs.push(newValues$.pipe(take(1)).subscribe((rd) => {
         this.isLastPage$.next(hasNoValue(rd.payload.next));
