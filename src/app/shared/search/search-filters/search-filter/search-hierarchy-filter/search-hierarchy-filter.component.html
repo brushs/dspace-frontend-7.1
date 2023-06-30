@@ -65,7 +65,7 @@
 [useGcWeb]="true"
 [name]="filterConfig.paramName"
 [(ngModel)]="filter"
-(submitSuggestion)="onSubmit($event)"
+(submitSuggestion)="onSubmit($event, true)"
 (clickSuggestion)="onClick($event)"
 (findSuggestions)="findSuggestions($event)"
 ngDefaultControl></ds-filter-input-suggestions>

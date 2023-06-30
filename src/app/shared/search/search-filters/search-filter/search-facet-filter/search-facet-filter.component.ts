@@ -230,7 +230,7 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
    * Submits a new active custom value to the filter from the input field
    * @param data The string from the input field
    */
-  onSubmit(data: any) {
+  onSubmit(data: any, exactMatch = false) {
     this.selectedValues$.pipe(take(1)).subscribe((selectedValues) => {
         if (isNotEmpty(data)) {
           this.router.navigate(this.getSearchLinkParts(), {
@@ -238,7 +238,7 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
               {
                 [this.filterConfig.paramName]: [
                   ...selectedValues.map((facet) => this.getFacetValue(facet)),
-                  data
+                  data + ( exactMatch ? ',equals' : ''),
                 ]
               },
             queryParamsHandling: 'merge'
