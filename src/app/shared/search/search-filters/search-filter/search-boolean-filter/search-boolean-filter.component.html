@@ -25,12 +25,12 @@
   <ul class="list-unstyled lst-spcd-2">
     <ng-container *ngFor="let value of (selectedValues$ | async)" >
       <li class="checkbox gc-chckbxrdio">
-        <ds-search-facet-selected-option [selectedValue]="value" [filterConfig]="filterConfig" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-selected-option>
+        <ds-search-facet-selected-option [selectedValue]="value" [filterConfig]="filterConfig" [facetTerm]="facetTerm"  [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-selected-option>
       </li>
     </ng-container>
     <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
       <li #el *ngFor="let value of page.page; trackBy: trackUpdate" [@facetLoad]="animationState" class="checkbox gc-chckbxrdio">
-        <ds-search-facet-option [selfRef]="el" [filterConfig]="filterConfig" [filterValue]="value" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
+        <ds-search-facet-option [selfRef]="el" [filterConfig]="filterConfig" [filterValue]="value" [facetTerm]="facetTerm"  [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
       </li>
     </ng-container>
   </ul>

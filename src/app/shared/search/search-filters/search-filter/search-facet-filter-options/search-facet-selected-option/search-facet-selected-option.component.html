@@ -16,10 +16,10 @@
 
 <ng-template #GcWebTemplate>
     <input [checked]="true" (change)="onSelect()" type="checkbox" 
-     [attr.name]="'facet-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})" 
-     [attr.id]="'facet-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})"
+     [attr.name]="'facet-' + facetTerm + '-' +  ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})" 
+     [attr.id]="'facet-' + facetTerm + '-' +  ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})"
      /> 
-    <label [attr.for]="'facet-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})">
+    <label [attr.for]="'facet-' + facetTerm + '-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})">
       {{ 'search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label} }}
     </label>
 </ng-template>

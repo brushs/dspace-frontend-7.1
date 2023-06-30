@@ -41,6 +41,7 @@
        <ds-search-facet-filter-wrapper 
         [filterConfig]="filter"
         [useGcWeb]="true"
+        [facetTerm]="('search.filters.filter.' + filter.name + '.head'| translate)"
         [inPlaceSearch]="inPlaceSearch"></ds-search-facet-filter-wrapper>
    </fieldset>
  </details>

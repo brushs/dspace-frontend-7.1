@@ -47,6 +47,11 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
   @Input() useGcWeb = false;
 
   /**
+   * Name of facet
+   */
+  @Input() facetTerm;
+
+  /**
    * UI parameters when this filter is removed
    */
   removeQueryParams;

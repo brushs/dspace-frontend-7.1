@@ -53,6 +53,11 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
   @Input() selfRef;
 
   /**
+   * Name of facet
+   */
+  @Input() facetTerm;
+
+  /**
    * Emits true when this option should be visible and false when it should be invisible
    */
   isVisible: Observable<boolean>;

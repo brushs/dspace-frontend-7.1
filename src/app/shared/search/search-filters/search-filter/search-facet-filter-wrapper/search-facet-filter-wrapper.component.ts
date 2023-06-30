@@ -2,7 +2,7 @@ import { Component, Injector, Input, OnInit } from '@angular/core';
 import { renderFilterType } from '../search-filter-type-decorator';
 import { FilterType } from '../../../filter-type.model';
 import { SearchFilterConfig } from '../../../search-filter-config.model';
-import { FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB } from '../../../../../core/shared/search/search-filter.service';
+import { FACET_TERM, FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB } from '../../../../../core/shared/search/search-filter.service';
 import { GenericConstructor } from '../../../../../core/shared/generic-constructor';
 import { SearchFacetFilterComponent } from '../search-facet-filter/search-facet-filter.component';
 
@@ -31,6 +31,11 @@ export class SearchFacetFilterWrapperComponent implements OnInit {
   @Input() useGcWeb = false;
 
   /**
+   * Term name (used for ids)
+   */
+  @Input() facetTerm;
+
+  /**
    * The constructor of the search facet filter that should be rendered, based on the filter config's type
    */
   searchFilter: GenericConstructor<SearchFacetFilterComponent>;
@@ -52,6 +57,7 @@ export class SearchFacetFilterWrapperComponent implements OnInit {
         { provide: FILTER_CONFIG, useFactory: () => (this.filterConfig), deps: [] },
         { provide: IN_PLACE_SEARCH, useFactory: () => (this.inPlaceSearch), deps: [] },
         { provide: USE_GC_WEB, useFactory: () => (this.useGcWeb), deps: [] },
+        { provide: FACET_TERM, useFactory: () => (this.facetTerm), deps: [] },
       ],
       parent: this.injector
     });
