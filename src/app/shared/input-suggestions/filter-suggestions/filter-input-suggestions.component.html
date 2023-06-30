@@ -43,6 +43,7 @@
   (keydown.arrowdown)="shiftFocusDown($event)"
   (keydown.arrowup)="shiftFocusUp($event)" (keydown.esc)="close()"
   (dsClickOutside)="close();">
+  <label [for]="'search-input-' + name" class="wb-inv">{{placeholder | translate}}</label>
   <div class="input-group">
     <input [(ngModel)]="value"
     #inputField

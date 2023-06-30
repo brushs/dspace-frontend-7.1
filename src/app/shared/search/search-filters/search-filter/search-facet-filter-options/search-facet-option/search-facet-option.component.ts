@@ -148,4 +148,5 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
   onSelect() {
     this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: this.addQueryParams})
   }
+  
 }
