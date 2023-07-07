@@ -25,7 +25,8 @@ export class HomePageComponent implements OnInit {
     'Health Canada': '/communities/456a6d96-ca50-4ac2-a15c-03dfbf951b30',
     'Public Health Agency of Canada': '/communities/3b4da5fb-1231-4cae-bdca-afbb136bf9b6',
     'Transport Canada': '/communities/41c0de91-fb07-4227-b958-f36a99323651',
-  }
+  };
+  temporaryProductionUrls = ["science-ouverte.canada.ca", "open-science.canada.ca"];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -60,8 +61,8 @@ export class HomePageComponent implements OnInit {
   }
 
   getCommunityHref(name): string {
-    // if base of the url is https://open-science.canada.ca/, then we are in prod and are going to return the temporary href
-    if (document.location.href.includes('open-science.canada.ca')) {
+    // if the base url is in the temporaryProductionUrls, use the temporaryCommunityHrefsForProductionBug
+    if (this.temporaryProductionUrls.some(url => document.location.href.includes(url))) {
       return this.temporaryCommunityHrefsForProductionBug[name]
     }
     // otherwise, use api to get the href
