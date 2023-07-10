@@ -1,3 +1,11 @@
-<div dsDragClick (actualClick)="toggle()" (mouseenter)="hoverExpand()" (mouseleave)="hoverCollapse()">
-    <ng-content></ng-content>
+<div *ngIf="!useShowMore" dsDragClick (actualClick)="toggle()" (mouseenter)="hoverExpand()" (mouseleave)="hoverCollapse()">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
 </div>
+
+<div *ngIf="useShowMore" dsDragClick (actualClick)="toggle()" (mouseenter)="hoverExpand()" (mouseleave)="hoverCollapse()">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+    Show More
+</div>
+
+
+<ng-template #content><ng-content></ng-content></ng-template>

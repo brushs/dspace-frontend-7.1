@@ -47,6 +47,11 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
   @Input() refreshFilters: Observable<any>;
 
   /**
+   * Use gcweb template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * Link to the search page
    */
   searchLink: string;

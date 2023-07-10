@@ -1,5 +1,5 @@
-<div>
-    <div class="filters py-2">
+<div *ngIf="!useGcWeb else GCWebTemplate">
+  <div class="filters py-2">
         <form #form="ngForm" (ngSubmit)="onSubmit()" class="add-filter row"
               [action]="currentUrl">
             <div class="col-6 form-group mb-0">
@@ -48,3 +48,51 @@
         </ng-container>
     </div>
 </div>
+
+
+<ng-template #GCWebTemplate>
+  <div class="row mrgn-tp-md">
+    <div class="form-group col-sm-6 pull-left">
+       <label  for="startdate"><span class="field-name">Start Date</span></label>
+       <input 
+          [(ngModel)]="range[0]" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'" (blur)="onSubmit()"  
+          [placeholder]="'search.filters.filter.' + filterConfig.name + '.min.placeholder' | translate" 
+          [attr.id]="'startdate'" class="form-control" type="date" data-rule-dateISO="true" />
+    </div>
+    <div class="form-group col-sm-6 pull-right">
+       <label for="enddate"><span class="field-name">End Date</span></label>
+       <input 
+        [(ngModel)]="range[1]" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'" (blur)="onSubmit()" 
+        [placeholder]="'search.filters.filter.' + filterConfig.name + '.max.placeholder' | translate" 
+        class="form-control" [attr.id]="'enddate'" name="enddate" type="date" data-rule-dateISO="true" />
+    </div>
+ </div>
+  <ul class="list-unstyled">
+    <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
+      <li *ngFor="let value of page.page; trackBy: trackUpdate">
+        <ds-search-facet-range-option  [filterConfig]="filterConfig" [useGcWeb]="true" [filterValue]="value" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-range-option>
+      </li>
+    </ng-container>
+  </ul>
+</ng-template>
+
+<!-- <details class="gc-chckbxrdio">
+  <summary>Date</summary>
+  <div class="row mrgn-tp-md">
+     <div class="form-group col-sm-6 pull-left">
+        <label for="startdate"><span class="field-name">Start Date</span></label>
+        <input class="form-control" id="startdate" name="startdate" type="date" data-rule-dateISO="true" />
+     </div>
+     <div class="form-group col-sm-6 pull-right">
+        <label for="enddate"><span class="field-name">End Date</span></label>
+        <input class="form-control" id="enddate" name="enddate" type="date" data-rule-dateISO="true" />
+     </div>
+  </div>
+ <ul class="list-unstyled">
+    <li> <a href="#" class="list-group-item">1954 - 1959 <span class="badge">1</span> </a></li>
+     <li> <a href="#" class="list-group-item"> 1960 - 1979 <span class="badge">2</span></a></li>
+     <li> <a href="#" class="list-group-item"> 1980 - 1999 <span class="badge">3</span></a></li>
+     <li> <a href="#" class="list-group-item"> 2000 - 2019 <span class="badge">29</span></a></li>
+     <li> <a href="#" class="list-group-item"> 2020 - 2024 <span class="badge">84</span></a></li>
+ </ul>
+</details> -->

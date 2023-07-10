@@ -740,6 +740,12 @@
   "logout.breadcrumbs": "Se déconnecter",
   // "official.title": "Official Title",
   "official.title": "Titre officiel",
+
+  // "search.filters.applied": "Filters Applied:",
+  "search.filters.applied": "Filtres Appliqués:",
+  // "search.filters.remove": "Remove Filter",
+  "search.filters.remove": "Supprimer le filtre",
+
   //"submission.sections.accesses.form.error.filename": "The name of the file is required",
   "submission.sections.accesses.form.error.filename": "Vous devez entrer un nom pour ce fichier.",
   //"submission.sections.accesses.form.error.translated.filename": "The translated name of the file is required",
@@ -2098,6 +2104,10 @@
   "home.top-home.browser": "Parcourir le répertoire",
   // "home.top-home.head": "Federal Open Science Repository of Canada (FOSRC)",
   "home.top-home.head": "Le Dépôt fédéral de science ouverte du Canada (DFSOC)",
+  //"home.top-home.head.dev": "DEV -- Federal Open Science Repository of Canada (FOSRC)",
+  "home.top-home.head.dev": "DEV -- Le Dépôt fédéral de science ouverte du Canada (DFSOC)",
+  //"home.top-home.head.pre-prod": "Pre-Prod -- Federal Open Science Repository of Canada (FOSRC)",
+  "home.top-home.head.pre-prod": "Pre-Prod -- Le Dépôt fédéral de science ouverte du Canada (DFSOC)",
   // "home.top-level-communities.head": "Communities in FOSRC",
   "home.top-level-communities.head": "Communautés DFSOC",
   // "home.top-level-communities.help": "Select a community to browse its collections.",

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { startWith, switchMap } from 'rxjs/operators';
+import { map, startWith, switchMap, take } from 'rxjs/operators';
 import { PaginatedList } from '../core/data/paginated-list.model';
 import { RemoteData } from '../core/data/remote-data';
 import { DSpaceObject } from '../core/shared/dspace-object.model';
 import { pushInOut } from '../shared/animations/push';
 import { HostWindowService } from '../shared/host-window.service';
 import { SidebarService } from '../shared/sidebar/sidebar.service';
-import { hasValue, isEmpty } from '../shared/empty.util';
+import { hasNoValue, hasValue, isEmpty, isNotEmpty } from '../shared/empty.util';
 import { getFirstSucceededRemoteData } from '../core/shared/operators';
 import { RouteService } from '../core/services/route.service';
 import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
@@ -16,15 +16,19 @@ import { SearchResult } from '../shared/search/search-result.model';
 import { SearchConfigurationService } from '../core/shared/search/search-configuration.service';
 import { SearchService } from '../core/shared/search/search.service';
 import { currentPath } from '../shared/utils/route.utils';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Context } from '../core/shared/context.model';
-import { SortOptions } from '../core/cache/models/sort-options.model';
+import { SortDirection, SortOptions } from '../core/cache/models/sort-options.model';
 import { followLink } from '../shared/utils/follow-link-config.model';
 import { Item } from '../core/shared/item.model';
-
+import { PaginationService } from '../core/pagination/pagination.service';
+import { PaginationComponentOptions } from '../shared/pagination/pagination-component-options.model';
+import { AppInjector } from '../app.injector';
+import { DSONameService } from '../core/breadcrumbs/dso-name.service';
+import { stripOperatorFromFilterValue } from '../shared/search/search.utils';
 @Component({
   selector: 'ds-search',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['../../themes/wetoverlay/styles/static-pages.scss', './search.component.scss', ],
   templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [pushInOut],
@@ -45,6 +49,11 @@ export class SearchComponent implements OnInit {
    */
   resultsRD$: BehaviorSubject<RemoteData<PaginatedList<SearchResult<DSpaceObject>>>> = new BehaviorSubject(null);
 
+  /**
+   * The current available results per page options
+   */
+  paginationOptions$: Observable<PaginationComponentOptions>
+  
   /**
    * The current paginated search options
    */
@@ -111,12 +120,25 @@ export class SearchComponent implements OnInit {
   /* Start FOSRC Changes - 1619 */
   adminSearch: boolean;
   /* End of FOSRC Changes */
+  
+  paginationService: PaginationService;
+  dsoNameService: DSONameService;
+  hasNoValue = hasNoValue;
+  stripOperatorFromFilterValue = stripOperatorFromFilterValue
+  
+  /**
+   * Emits the currently active filters
+   */
+  appliedFilters: Observable<Params>;
+ 
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
               protected routeService: RouteService,
-              protected router: Router) {
+              protected router: Router,
+              protected route: ActivatedRoute,
+              ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
 
@@ -128,6 +150,7 @@ export class SearchComponent implements OnInit {
    * If something changes, update the list of scopes for the dropdown
    */
   ngOnInit(): void {
+    // this.router = AppInjector.get(Router);
     this.isSidebarCollapsed$ = this.isSidebarCollapsed();
     this.searchLink = this.getSearchLink();
     /* Start FOSRC Changes - 1619 */
@@ -157,8 +180,14 @@ export class SearchComponent implements OnInit {
     this.sortOptions$ = this.searchConfigService.getConfigurationSortOptionsObservable(searchConfig$);
     this.searchConfigService.initializeSortOptionsFromConfiguration(searchConfig$);
 
+    this.paginationService = AppInjector.get(PaginationService);
+    this.dsoNameService = AppInjector.get(DSONameService);
+
+    this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
   }
 
+  // this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
+  // this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
   /**
    * Get the current paginated search options
    * @returns {Observable<PaginatedSearchOptions>}
@@ -207,4 +236,25 @@ export class SearchComponent implements OnInit {
       this.sub.unsubscribe();
     }
   }
+
+
+    /**
+   * Method to change the given string by surrounding it by quotes if not already present.
+   */
+    surroundStringWithQuotes(input: string): string {
+      let result = input;
+  
+      if (isNotEmpty(result) && !(result.startsWith('\"') && result.endsWith('\"'))) {
+        result = `"${result}"`;
+      }
+  
+      return result;
+    }
+
+
+    applyQuery(term) {
+      console.log(this.route)
+      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
+    }
+
 }
