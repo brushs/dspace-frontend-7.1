@@ -30,7 +30,9 @@ export class HomePageComponent implements OnInit {
     this.site$ = this.route.data.pipe(
       map((data) => data.site as Site),
     );
-    this.http.get(`${environment.rest.baseUrl}/api/core/communities/search/top?page=0&size=20&sort=dc.title,ASC&embed.size=subcommunities=10&embed=subcommunities`).subscribe(x => {
+    let baseHost = environment.production ? document.location.host : environment.rest.host;
+
+    this.http.get(`${ 'https://'  + baseHost + '/server'}/api/core/communities/search/top?page=0&size=20&sort=dc.title,ASC&embed.size=subcommunities=10&embed=subcommunities`).subscribe(x => {
       if (x['_embedded']?.['communities']) {
         let scienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'))?.['_embedded']?.['subcommunities']
         if (scienceCommunity?.['_embedded']?.['subcommunities']) {
@@ -47,4 +49,9 @@ export class HomePageComponent implements OnInit {
   search(value) {
     this.router.navigate(['/search'], { queryParams: { page: 1, query: value || '', 'spc.sf': 'score', 'spc.sd': 'DESC' } })
   }
+
+  getCommunityHref(name): string {
+    return !this.subcommunities[name] ? null: '/communities/' + this.subcommunities[name]
+  }
+
 }

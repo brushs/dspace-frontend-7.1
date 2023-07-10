@@ -40,3 +40,4 @@ package-lock.json
 
 .env
 /nbproject/
+.vscode/launch.json
