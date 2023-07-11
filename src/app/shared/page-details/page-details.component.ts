@@ -1,9 +1,6 @@
 
-import { DOCUMENT } from '@angular/common';
-import { Component, Renderer2, Inject, ViewChild } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router,  } from '@angular/router';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { filter } from 'rxjs/operators';
 import { initShareBtn } from './initShareButton';
 
 @Component({
