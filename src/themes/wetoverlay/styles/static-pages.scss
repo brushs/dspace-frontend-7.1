@@ -40,7 +40,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Free" !important;
     font-size: 26px;
     line-height: 2.3em;
     margin-left: -1.27em;
@@ -61,30 +61,30 @@
 
 .alert-info::before {
     color: #269abc;
-    content: "\f05a";
+    content: "\f05a" !important;
     font-weight: 900;
 }
 
 
 /*! Placeholders */
 .h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
-    font-weight: 700
+    font-weight: 700 !important
 }
 
 .h1,.h2,h1,h2 {
-    margin-top: 38px
+    margin-top: 38px !important
 }
 
 .h3,h3 {
-    margin-top: 32px
+    margin-top: 32px !important
 }
 
 .h4,h4 {
-    margin-top: 26px
+    margin-top: 26px !important
 }
 
 .h5,h5 {
-    margin-top: 23px
+    margin-top: 23px !important
 }
 
 .h6,h6 {
@@ -92,29 +92,29 @@
 }
 
 h1 {
-    border-bottom: 1px solid #af3c43;
-    margin-bottom: .2em;
+    border-bottom: 1px solid #af3c43 !important;
+    margin-bottom: .2em !important;
     margin-top: 1em;
     padding-bottom: .2em
 }
 
 .h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
-    font-family: Lato,sans-serif;
-    -webkit-font-variant-ligatures: no-common-ligatures;
-    font-variant-ligatures: no-common-ligatures;
+    font-family: Lato,sans-serif !important;
+    -webkit-font-variant-ligatures: no-common-ligatures !important;
+    font-variant-ligatures: no-common-ligatures !important;
     font-weight: 700
 }
 
 .h3,.h4,.h5,.h6 {
-    border: 0
+    border: 0 !important
 }
 
 .h6,h6 {
-    font-weight: 400
+    font-weight: 400 !important
 }
 
 .container {
-    font-size: 20px;
+    font-size: 20px !important;
     line-height: 1.65em;
 }
 
