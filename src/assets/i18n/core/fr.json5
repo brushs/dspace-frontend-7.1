@@ -796,6 +796,10 @@
   // "nav.breadcrumbs.here": "You are here:",
   "nav.breadcrumbs.here": "Vous êtes ici:",
 
+  // "truncate.expand": "Show More",
+  "truncate.expand": "Plus de Résultats",
+  // "truncate.collapse": "Show Less",
+  "truncate.collapse": "Moins de Résultats",
 
   // FOSRC SPECIFIC LABELS END
 
