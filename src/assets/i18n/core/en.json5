@@ -461,6 +461,13 @@
   "search.filters.applied": "Filters Applied:",
   "search.filters.remove": "Remove Filter",
   
+  "sign.in.title": "FOSRC administrator sign in",
+  "sign.in.email": "Email address",
+  "sign.in.password": "Password",
+  "sign.in.required": "(required)",
+  "sign.in.badge": "Sign in is not required to search the repository or download open access materials.",
+  "sign.in.info.text": "Sign in is for administrators only, and is required to deposit materials and perform administrative tasks. Please <a href=\"/contact-us\">contact us</a> with any questions about submitting material to the FOSRC.",
+
   "submission.sections.accesses.form.error.filename": "The name of the file is required",
   "submission.sections.accesses.form.error.translated.filename": "The translated name of the file is required",
   "submission.sections.accesses.form.hint.filedescription": "The File Description",
