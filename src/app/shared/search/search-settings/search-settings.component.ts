@@ -33,9 +33,7 @@ export class SearchSettingsComponent {
    */
   @Input() useGcWeb: boolean = false;
 
-  constructor(private service: SearchService,
-              private route: ActivatedRoute,
-              private router: Router,
+  constructor(
               private paginationService: PaginationService,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigurationService: SearchConfigurationService) {
   }

@@ -489,6 +489,9 @@
 
   "nav.lang.selection": "Language selection",
   "nav.breadcrumbs.here": "You are here:",
+
+  "truncate.expand": "Show More",
+  "truncate.collapse": "Show Less",
   // FOSRC SPECIFIC LABELS END
 
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",

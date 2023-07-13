@@ -34,6 +34,8 @@ export class TruncatableComponent {
    */
   @Input() useShowMore = false;
 
+  isCollapsed$;
+
   public constructor(private service: TruncatableService) {
   }
 
@@ -46,6 +48,7 @@ export class TruncatableComponent {
     } else {
       this.service.collapse(this.id);
     }
+    this.isCollapsed$ = this.service.isCollapsed(this.id);
   }
 
   /**
