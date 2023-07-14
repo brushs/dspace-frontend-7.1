@@ -15,11 +15,15 @@
 
 
 <ng-template #GcWebTemplate>
+  <ng-container 
+    *ngVar="(formatID('facet-' + (facetTerm ? (facetTerm + '-') : '') +  ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label}))) as id">
     <input [checked]="true" (change)="onSelect()" type="checkbox" 
-     [attr.name]="'facet-' + facetTerm + '-' +  ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})" 
-     [attr.id]="'facet-' + facetTerm + '-' +  ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})"
+     [attr.name]="id" 
+     [attr.id]="id"
      /> 
-    <label [attr.for]="'facet-' + facetTerm + '-' + ('search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label})">
+    <label [attr.for]="id">
       {{ 'search.filters.' + filterConfig.name + '.' + selectedValue.value | translate: {default: selectedValue.label} }}
     </label>
+
+  </ng-container>
 </ng-template>
