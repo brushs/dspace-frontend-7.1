@@ -20,12 +20,16 @@
     <ng-container *ngIf="mediaViewer.image">
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
+    <dl>
+      <dt></dt>
+      <dd></dd>
     <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
     <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
     <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
                                      [parentItem]="object"
                                      [itemType]="'Person'"
                                      [metadataFields]="['dc.contributor.author', 'dc.creator']"
+                                     [isDescriptionList]="true"
                                      [label]="'relationships.isAuthorOf' | translate">
     </ds-metadata-representation-list>
     <ds-item-page-sponsorship-field [item]="object"></ds-item-page-sponsorship-field>
@@ -190,7 +194,7 @@
                                   [label]="'fosrc.item.edit.dynamic-field.label.sub-type'" [subheading]="true">
       </ds-generic-item-page-field>
     </div>
-
+</dl>
   </div>
   <div class="col-xs-12 col-md-6">
     <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>

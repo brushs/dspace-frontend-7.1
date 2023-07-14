@@ -5,11 +5,11 @@ import { Component, Input, SimpleChanges } from '@angular/core';
  * The wrapper prints a label before the content (if available)
  */
 @Component({
-  selector: 'ds-metadata-field-wrapper',
-  styleUrls: ['./metadata-field-wrapper.component.scss'],
-  templateUrl: './metadata-field-wrapper.component.html'
+  selector: 'ds-metadata-field-wrapper-dl',
+  styleUrls: ['./metadata-field-wrapper-description-list.component.scss'],
+  templateUrl: './metadata-field-wrapper-description-list.component.html'
 })
-export class MetadataFieldWrapperComponent {
+export class MetadataFieldWrapperDlComponent {
 
   /**
    * The label (title) for the content
@@ -19,8 +19,6 @@ export class MetadataFieldWrapperComponent {
   @Input() subheading: boolean;
 
   @Input() hideIfNoTextContent = true;
-
-  @Input() isDescriptionList = false;
 
   ngOnInit(): void {
   }

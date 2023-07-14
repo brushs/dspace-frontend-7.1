@@ -33,6 +33,8 @@ export class MetadataValuesComponent {
 
   @Input() filterLang: boolean = false;
 
+  @Input() isDescriptionList = false;
+
   constructor(
     public localeService: LocaleService
   ) { }

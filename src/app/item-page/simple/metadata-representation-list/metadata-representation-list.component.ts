@@ -57,6 +57,12 @@ export class MetadataRepresentationListComponent extends AbstractIncrementalList
   @Input() incrementBy = 10;
 
   /**
+   * Whether or not to display this item as part of a description list
+   * Defaults to false
+   */
+  @Input() isDescriptionList = false;
+
+  /**
    * The total amount of metadata values available
    */
   total: number;

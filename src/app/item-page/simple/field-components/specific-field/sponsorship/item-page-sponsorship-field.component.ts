@@ -18,6 +18,12 @@ export class ItemPageSponsorshipFieldComponent extends ItemPageFieldComponent {
     @Input() item: Item;
 
     /**
+     * Whether or not to display this item as part of a description list
+     * Defaults to false
+     */
+    @Input() isDescriptionList = false;
+    
+    /**
      * Separator string between multiple values of the metadata fields defined
      * @type {string}
      */
