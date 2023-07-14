@@ -1900,7 +1900,7 @@
   "search.filters.entityType.OrgUnit": "Organization unit",
   "search.filters.filter.author.head": "Author",
   "search.filters.filter.author.label": "Search author name",
-  "search.filters.filter.author.placeholder": "Author name",
+  "search.filters.filter.author.placeholder": "Search Author name",
   "search.filters.filter.birthDate.head": "Birth date",
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
@@ -1954,7 +1954,7 @@
   "search.filters.filter.discoverable.head": "Private",
   "search.filters.filter.entityType.head": "Item type",
   "search.filters.filter.entityType.label": "Search item type",
-  "search.filters.filter.entityType.placeholder": "Item type",
+  "search.filters.filter.entityType.placeholder": "Search Item type",
   "search.filters.filter.expand": "Expand filter",
 
   // FOSRC start changes
@@ -2015,7 +2015,7 @@
   "search.filters.filter.show-more": "Show more",
   "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.label": "Search subject",
-  "search.filters.filter.subject.placeholder": "Subject",
+  "search.filters.filter.subject.placeholder": "Search Subject",
   "search.filters.filter.submitter.head": "Submitter",
   "search.filters.filter.submitter.label": "Search submitter",
   "search.filters.filter.submitter.placeholder": "Submitter",
