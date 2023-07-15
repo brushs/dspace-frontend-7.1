@@ -32,11 +32,6 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
   fieldIssues: string = 'nrcan.issue';
   fieldDoi: string = 'dc.identifier.doi';
 
-  @Output() valuesAuthors: string;
-  @Output() valueTitle: string;
-  @Output() valuePageRange: string;
-  @Output() valueIssues: string;
-  @Output() valueDoi: string;
   @Output() valueCitation: string;
   /**
    * Label i18n key for the rendered metadata
@@ -58,16 +53,19 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
     var valuePageRange: string;
     var valueIssues: string;
     var valueDoi: string;
+    var valueArray: string[];
 
     this.tralateService.get('item.page.author').subscribe((res: string) => {
       translatedAuthors = res;
     });
 
-    this.valuesAuthors = allAuthors.join(', ');
-    this.valueTitle = this.item.firstMetadataValue(this.fieldsTitle);
-    this.valueIssues = this.item.firstMetadataValue(this.fieldIssues);
-    this.valuePageRange = this.item.firstMetadataValue(this.fieldPageRange);
-    this.valueDoi = this.item.firstMetadataValue(this.fieldDoi);
-    this.valueCitation = [this.valuesAuthors, this.valueTitle, this.valueIssues, this.valuePageRange, this.valueDoi].join(', ');
+    valuesAuthors = allAuthors.join(', ');
+    valueTitle = this.item.firstMetadataValue(this.fieldsTitle);
+    valueIssues = this.item.firstMetadataValue(this.fieldIssues);
+    valuePageRange = this.item.firstMetadataValue(this.fieldPageRange);
+    valueDoi = this.item.firstMetadataValue(this.fieldDoi);
+    valueArray = [valuesAuthors, valueTitle, valueIssues, valuePageRange, valueDoi];
+    valueArray = valueArray.filter(function (el) { return el.trim() != ''; });
+    this.valueCitation = valueArray.join(', ');
   }
 }
