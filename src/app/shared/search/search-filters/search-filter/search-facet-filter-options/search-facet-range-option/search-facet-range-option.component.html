@@ -13,5 +13,5 @@
     <a *ngIf="isVisible | async" 
     [routerLink]="[searchLink]"
     [queryParams]="changeQueryParams" queryParamsHandling="merge"
-    class="list-group-item">{{filterValue.label}} <span class="badge">{{filterValue.count}}</span> </a>
+    class="list-group-item">{{filterValue.label}} <span class="badge badge-pill">{{filterValue.count}}</span> </a>
 </ng-template>
