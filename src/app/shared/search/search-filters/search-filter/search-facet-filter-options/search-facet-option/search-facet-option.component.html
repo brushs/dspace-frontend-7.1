@@ -16,14 +16,18 @@
 </ng-container>
 
 <ng-template #GcWebTemplate>
+  
   <ng-container *ngIf="isVisible | async">
-   <input (change)="onSelect()" type="checkbox" 
-    [attr.name]="'facet-' + facetTerm + '-' +  ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})" 
-    [attr.id]="'facet-' + facetTerm + '-' +  ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})" 
-    /> 
-   <label [attr.for]="'facet-' + facetTerm + '-' + ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value})">
-    {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}<span class="badge mrgn-lft-lg">{{filterValue.count}}</span>
-   </label>
+    <ng-container 
+      *ngVar="(formatID('facet-' + (facetTerm ? (facetTerm + '-') : '') +  ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.label}))) as id">
+      <input (change)="onSelect()" type="checkbox" 
+        [attr.name]="id" 
+        [attr.id]="id" 
+        /> 
+      <label [attr.for]="id">
+        {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}<span class="badge mrgn-lft-lg">{{filterValue.count}}</span>
+      </label>
+   </ng-container>
   </ng-container>
 
 </ng-template>

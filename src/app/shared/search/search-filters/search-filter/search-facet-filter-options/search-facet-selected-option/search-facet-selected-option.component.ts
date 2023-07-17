@@ -128,4 +128,11 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
   onSelect() {
     this.router.navigate([this.searchLink], { queryParams: this.removeQueryParams, queryParamsHandling: 'merge' })
    }
+
+   formatID(value) {
+    return value
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9 ,]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .join('-')
+    .toLowerCase();
+   }
 }
