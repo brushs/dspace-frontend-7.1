@@ -24,8 +24,8 @@
         [attr.name]="id" 
         [attr.id]="id" 
         /> 
-      <label [attr.for]="id">
-        {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}<span class="badge mrgn-lft-lg">{{filterValue.count}}</span>
+      <label class="d-lg-flex filter-value" [attr.for]="id">
+        {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}<span class="clearfix ml-auto"><span class="badge badge-pill">{{filterValue.count}}</span></span>
       </label>
    </ng-container>
   </ng-container>
