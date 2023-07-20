@@ -21,17 +21,7 @@
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
     <dl>
-    <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
-    <ds-item-page-date-field [item]="object" [isDescriptionList]="true"></ds-item-page-date-field>
-    <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
-                                     [parentItem]="object"
-                                     [itemType]="'Person'"
-                                     [metadataFields]="['dc.contributor.author', 'dc.creator']"
-                                     [isDescriptionList]="true"
-                                     [label]="'relationships.isAuthorOf' | translate">
-    </ds-metadata-representation-list>
-    <ds-item-page-sponsorship-field [item]="object" [isDescriptionList]="true"></ds-item-page-sponsorship-field>
-    <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
+      <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
     </dl>
     <h2 *ngIf="hasIdentifiers()">{{'item.page.identifiers' | translate}}</h2>
     <div style="padding-left: 18px">
@@ -44,26 +34,67 @@
       </dl>
     </div>
     <dl>
-    <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object"></ds-item-page-iso-field>
+      
+      <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object"></ds-item-page-iso-field>
+      <ds-item-page-keywords-field [item]="object"></ds-item-page-keywords-field>
+      <ds-item-page-date-field [item]="object" [isDescriptionList]="true"></ds-item-page-date-field>
+      <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
+                                      [parentItem]="object"
+                                      [itemType]="'Person'"
+                                      [metadataFields]="['dc.contributor.author', 'dc.creator']"
+                                      [isDescriptionList]="true"
+                                      [label]="'relationships.isAuthorOf' | translate">
+      </ds-metadata-representation-list>
+      <ds-generic-item-page-field [item]="object" [fields]="['dc.publisher']" [label]="'item.page.publisher'"></ds-generic-item-page-field>
+      <ds-item-page-sponsorship-field [item]="object" [isDescriptionList]="true"></ds-item-page-sponsorship-field>
+    </dl>
 
-    <ds-item-page-keywords-field [item]="object"></ds-item-page-keywords-field>
-    <h5 *ngIf="hasProject()">{{'item.page.heading.project' | translate}}</h5>
-    <div style="padding-left: 18px">
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.title.fosrcprojectname']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.project.name'">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.identifier.fosrcprojectid']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.project.number'">
-      </ds-generic-item-page-field>
-    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
+    <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
     <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.publisher']"
-                                [label]="'item.page.publisher'">
+      [fields]="['dc.description']"
+      [label]="'fosrc.item.edit.dynamic-field.label.summary'">
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field [item]="object"
+    [fields]="['dc.description.fosrcfull']"
+    [label]="'fosrc.item.edit.dynamic-field.label.description'">
     </ds-generic-item-page-field>
     <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
-    <!-- Book -->
+
+    <ds-generic-item-page-field [filterLang]="true" [item]="object"
+      [fields]="['creativework.keywords']"
+      [separator]="','"
+      [label]="'fosrc.item.edit.dynamic-field.label.keywords'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.subject']"
+      [separator]="','"
+      [label]="'item.page.subject'">
+    </ds-generic-item-page-field>
+
+    <h5 *ngIf="hasRights()">{{'item.page.rights' | translate}}</h5>
+    <ds-item-page-rights-field [item]="object"></ds-item-page-rights-field>
+    <ds-generic-item-page-field [item]="object"
+                                [fields]="['local.pagination']"
+                                [label]="'fosrc.item.edit.dynamic-field.label.record.management.pagination'" [subheading]="true">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['local.peerreview']"
+      [separator]="','"
+      [label]="'item.page.local.peerreview'">
+     
+     
+    </ds-generic-item-page-field>
+    
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.rights.openaccesslevel']"
+      [separator]="','"
+      [label]="'item.page.dc.rights.openaccesslevel'">
+    </ds-generic-item-page-field>
+     <!-- Book -->
     <h5 *ngIf="hasBook()">{{ 'fosrc.item.edit.dynamic-field.values.2.publication_type' | translate}}</h5>
     <div style="padding-left: 18px">
       <ds-generic-item-page-field [item]="object"
@@ -104,7 +135,6 @@
                                   [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
       </ds-generic-item-page-field>
     </div>
-
     <h5 *ngIf="hasConference()">{{ 'fosrc.item.edit.dynamic-field.values.4.publication_type' | translate}}</h5>
     <div style="padding-left: 18px">
       <ds-generic-item-page-field [item]="object"
@@ -136,109 +166,78 @@
                                   [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
       </ds-generic-item-page-field>
     </div>
+ <!-- Article -->
+ <h5 *ngIf="hasArticle()">{{ 'fosrc.item.edit.dynamic-field.values.1.publication_type' | translate}}</h5>
+ <div style="padding-left: 18px">
+   <ds-generic-item-page-field [item]="object"
+                               [fields]="['local.article.journaltitle']"
+                               [label]="'fosrc.item.edit.dynamic-field.label.journal.title'" [subheading]="true">
+   </ds-generic-item-page-field>
 
-    <h5 *ngIf="hasReport()">{{ 'fosrc.item.edit.dynamic-field.values.5.publication_type' | translate}}</h5>
+   <ds-generic-item-page-field [item]="object"
+                               [fields]="['local.article.journalvolume']"
+                               [label]="'fosrc.item.edit.dynamic-field.label.journal.volume'" [subheading]="true">
+   </ds-generic-item-page-field>
+   <ds-generic-item-page-field [item]="object"
+                               [fields]="['local.article.journalissue']"
+                               [label]="'fosrc.item.edit.dynamic-field.label.journal.issue'" [subheading]="true">
+   </ds-generic-item-page-field>
+   <ds-generic-item-page-field [item]="object"
+                               [fields]="['local.acceptedmanuscript.articlenum']"
+                               [label]="'fosrc.item.edit.dynamic-field.label.article.number'" [subheading]="true">
+   </ds-generic-item-page-field>
+   <ds-generic-item-page-field [item]="object"
+                               [fields]="['dc.date.accepted']"
+                               [label]="'fosrc.item.edit.dynamic-field.label.accepted.date'" [subheading]="true">
+   </ds-generic-item-page-field>
+   <ds-generic-item-page-field [item]="object"
+                               [fields]="['dc.date.submitted']"
+                               [label]="'fosrc.item.edit.dynamic-field.label.submitted.date'" [subheading]="true">
+   </ds-generic-item-page-field>
+   <ds-generic-item-page-field [item]="object"
+                               [fields]="['local.articletype']"
+                               [label]="'fosrc.item.edit.dynamic-field.label.sub-type'" [subheading]="true">
+   </ds-generic-item-page-field>
+ </div>
+ 
+   <!-- Report -->
+   <h5 *ngIf="hasReport()">{{ 'fosrc.item.edit.dynamic-field.values.5.publication_type' | translate}}</h5>
+   <div style="padding-left: 18px">
+     <ds-generic-item-page-field [item]="object"
+                                 [fields]="['local.report.reportnum']"
+                                 [label]="'fosrc.item.edit.dynamic-field.label.report.no'" [subheading]="true">
+     </ds-generic-item-page-field>
+     <ds-generic-item-page-field [item]="object"
+                                 [fields]="['local.report.series']"
+                                 [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
+     </ds-generic-item-page-field>
+     <ds-generic-item-page-field [item]="object"
+                                 [fields]="['local.report.seriesnum']"
+                                 [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
+     </ds-generic-item-page-field>
+     <ds-generic-item-page-field [item]="object"
+                                 [fields]="['local.report.edition']"
+                                 [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
+     </ds-generic-item-page-field>
+     <ds-generic-item-page-field [item]="object"
+                                 [fields]="['local.reporttype']"
+                                 [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
+     </ds-generic-item-page-field>
+   </div>
+    <!-- PROJECT -->
+    <h5 *ngIf="hasProject()">{{'item.page.heading.project' | translate}}</h5>
     <div style="padding-left: 18px">
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.report.reportnum']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.report.no'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.report.series']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.report.seriesnum']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.report.edition']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.reporttype']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
-      </ds-generic-item-page-field>
+      <dl>
+        <ds-generic-item-page-field [item]="object"
+                                    [fields]="['dc.title.fosrcprojectname']"
+                                    [label]="'fosrc.item.edit.dynamic-field.label.project.name'">
+        </ds-generic-item-page-field>
+        <ds-generic-item-page-field [item]="object"
+                                    [fields]="['dc.identifier.fosrcprojectid']"
+                                    [label]="'fosrc.item.edit.dynamic-field.label.project.number'">
+        </ds-generic-item-page-field>
+      </dl>
     </div>
-
-    <!-- Article -->
-    <h5 *ngIf="hasArticle()">{{ 'fosrc.item.edit.dynamic-field.values.1.publication_type' | translate}}</h5>
-    <div style="padding-left: 18px">
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.article.journaltitle']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.journal.title'" [subheading]="true">
-      </ds-generic-item-page-field>
-
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.article.journalvolume']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.journal.volume'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.article.journalissue']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.journal.issue'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.acceptedmanuscript.articlenum']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.article.number'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.date.accepted']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.accepted.date'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.date.submitted']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.submitted.date'" [subheading]="true">
-      </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['local.articletype']"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.sub-type'" [subheading]="true">
-      </ds-generic-item-page-field>
-    </div>
-</dl>
-  </div>
-  <div class="col-xs-12 col-md-6">
-    <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.description']"
-      [label]="'fosrc.item.edit.dynamic-field.label.summary'">
-    </ds-generic-item-page-field>
-
-    <ds-generic-item-page-field [item]="object"
-    [fields]="['dc.description.fosrcfull']"
-    [label]="'fosrc.item.edit.dynamic-field.label.description'">
-    </ds-generic-item-page-field>
-
-    <ds-generic-item-page-field [filterLang]="true" [item]="object"
-      [fields]="['creativework.keywords']"
-      [separator]="','"
-      [label]="'fosrc.item.edit.dynamic-field.label.keywords'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.subject']"
-      [separator]="','"
-      [label]="'item.page.subject'">
-    </ds-generic-item-page-field>
-
-    <h5 *ngIf="hasRights()">{{'item.page.rights' | translate}}</h5>
-    <ds-item-page-rights-field [item]="object"></ds-item-page-rights-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['local.pagination']"
-                                [label]="'fosrc.item.edit.dynamic-field.label.record.management.pagination'" [subheading]="true">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['local.peerreview']"
-      [separator]="','"
-      [label]="'item.page.local.peerreview'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.rights.openaccesslevel']"
-      [separator]="','"
-      [label]="'item.page.dc.rights.openaccesslevel'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.identifier.citation']"
-      [label]="'item.page.citation'">
-    </ds-generic-item-page-field>
     <!-- Start FOSRC Changes - 1594 -->
     <ds-metadata-field-wrapper *ngIf="hasDcRelationMetaData" [label]="'item.page.relationship' | translate">
       <div style="padding-left: 18px">
@@ -292,6 +291,11 @@
       </div>
     </div>
     </ds-metadata-field-wrapper>
+    
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.identifier.citation']"
+      [label]="'item.page.citation'">
+    </ds-generic-item-page-field>s
     <!-- End of FOSRC Changes  -->
     <ds-item-page-uri-field [item]="object"
       [fields]="['dc.identifier.uri']"
