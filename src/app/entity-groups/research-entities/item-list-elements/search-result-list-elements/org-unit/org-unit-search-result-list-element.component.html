@@ -1,6 +1,6 @@
 <!-- OSPR Changes - Re-structure to ensure semantic correctness and introduce paragraphs where needed -->
 <ds-type-badge *ngIf="showLabel" [useGcWeb]="useGcWeb" [object]="dso"></ds-type-badge>
-<ds-truncatable [id]="dso.id">
+<ds-truncatable [useShowMore]="useGcWeb" [id]="dso.id">
   <p>
     <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
       rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead"

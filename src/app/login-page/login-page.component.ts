@@ -21,7 +21,7 @@ import { isAuthenticated } from '../core/auth/selectors';
  */
 @Component({
   selector: 'ds-login-page',
-  styleUrls: ['./login-page.component.scss'],
+  styleUrls: [ './login-page.component.scss'],
   templateUrl: './login-page.component.html'
 })
 export class LoginPageComponent implements OnDestroy, OnInit {

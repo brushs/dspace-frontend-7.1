@@ -14,7 +14,7 @@
 
 <ng-template #GcWebTemplate>
     <div class="input-group">
-        <label for="pageResults">{{'search.sidebar.settings.rpp' | translate}}</label>
+        <label class="text-nowrap" for="pageResults">{{'search.sidebar.settings.rpp' | translate}}</label>
         <select [attr.id]="'pageResults'" (change)="reloadRPP($event)" class="form-control" id="pageResults" name="pageResults">
             <option 
                 *ngFor="let pageSizeOption of (paginationOptions$ | async)?.pageSizeOptions"
