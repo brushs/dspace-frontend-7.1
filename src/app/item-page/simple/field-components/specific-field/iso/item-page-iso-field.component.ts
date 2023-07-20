@@ -17,7 +17,12 @@ export class ItemPageIsoFieldComponent extends ItemPageFieldComponent {
      * The item to display metadata for
      */
     @Input() item: Item;
-
+    
+    /**
+     *  Whether or not the component is rendered inside a description list
+     */
+    @Input() isDescriptionList: boolean = false;
+    
     /**
      * Separator string between multiple values of the metadata fields defined
      * @type {string}

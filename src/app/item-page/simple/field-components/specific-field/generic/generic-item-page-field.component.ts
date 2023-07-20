@@ -39,4 +39,9 @@ export class GenericItemPageFieldComponent extends ItemPageFieldComponent {
 
   @Input() subheading: boolean = false;
 
+  /**
+   * Whether or not the component is used in a description list
+   */
+  @Input() isDescriptionList: boolean = false;
+
 }
