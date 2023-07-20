@@ -32,16 +32,18 @@
     </ds-metadata-representation-list>
     <ds-item-page-sponsorship-field [item]="object" [isDescriptionList]="true"></ds-item-page-sponsorship-field>
     <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
-
-    <h5 *ngIf="hasIdentifiers()">{{'item.page.identifiers' | translate}}</h5>
+    </dl>
+    <h2 *ngIf="hasIdentifiers()">{{'item.page.identifiers' | translate}}</h2>
     <div style="padding-left: 18px">
-      <ds-item-page-govdoc-field [item]="object"></ds-item-page-govdoc-field>
-      <ds-item-page-isbn-field [item]="object"></ds-item-page-isbn-field>
-      <ds-item-page-issn-field [item]="object"></ds-item-page-issn-field>
-      <ds-item-page-organization-field [item]="object"></ds-item-page-organization-field>
-      <ds-item-page-other-field [item]="object"></ds-item-page-other-field>
+      <dl>
+        <ds-item-page-govdoc-field [item]="object" [isDescriptionList]="true"></ds-item-page-govdoc-field>
+        <ds-item-page-isbn-field [item]="object" [isDescriptionList]="true"></ds-item-page-isbn-field>
+        <ds-item-page-issn-field [item]="object" [isDescriptionList]="true"></ds-item-page-issn-field>
+        <ds-item-page-organization-field [item]="object" [isDescriptionList]="true"></ds-item-page-organization-field>
+        <ds-item-page-other-field [item]="object" [isDescriptionList]="true"></ds-item-page-other-field>
+      </dl>
     </div>
-
+    <dl>
     <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object"></ds-item-page-iso-field>
 
     <ds-item-page-keywords-field [item]="object"></ds-item-page-keywords-field>
