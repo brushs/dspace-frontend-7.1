@@ -37,6 +37,10 @@ export class MetadataUriValuesComponent extends MetadataValuesComponent {
    * The label for this iteration of metadata values
    */
   @Input() label: string;
+  /**
+   * Whether or not the component is rendered inside a description list
+   */
+  @Input() isDescriptionList: boolean = false;
 
   public domainAwareValue (rawValue: string): string {
     const domainList = ['dev.ospr.link','ospr.link','localhost','open-science.canada.ca','science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']

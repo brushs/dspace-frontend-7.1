@@ -21,10 +21,8 @@
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
     <dl>
-      <dt></dt>
-      <dd></dd>
     <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
-    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
+    <ds-item-page-date-field [item]="object" [isDescriptionList]="true"></ds-item-page-date-field>
     <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
                                      [parentItem]="object"
                                      [itemType]="'Person'"
@@ -32,8 +30,8 @@
                                      [isDescriptionList]="true"
                                      [label]="'relationships.isAuthorOf' | translate">
     </ds-metadata-representation-list>
-    <ds-item-page-sponsorship-field [item]="object"></ds-item-page-sponsorship-field>
-    <ds-item-page-uri-field [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
+    <ds-item-page-sponsorship-field [item]="object" [isDescriptionList]="true"></ds-item-page-sponsorship-field>
+    <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
 
     <h5 *ngIf="hasIdentifiers()">{{'item.page.identifiers' | translate}}</h5>
     <div style="padding-left: 18px">

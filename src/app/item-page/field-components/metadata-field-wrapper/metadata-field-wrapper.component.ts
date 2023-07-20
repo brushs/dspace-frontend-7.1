@@ -20,8 +20,6 @@ export class MetadataFieldWrapperComponent {
 
   @Input() hideIfNoTextContent = true;
 
-  @Input() isDescriptionList = false;
-
   ngOnInit(): void {
   }
 }

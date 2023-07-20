@@ -1,4 +1,10 @@
-<ds-metadata-field-wrapper [label]="label | translate">
+<ds-metadata-field-wrapper-dl [label]="label | translate" *ngIf="isDescriptionList">
+    <a *ngFor="let mdValue of mdValues; let last=last;" [href]="domainAwareValue(linktext || mdValue.value)">
+       {{ domainAwareValue(linktext || mdValue.value) }}<span *ngIf="!last" [innerHTML]="separator"></span>
+    </a>
+</ds-metadata-field-wrapper-dl>
+
+<ds-metadata-field-wrapper [label]="label | translate" *ngIf="!isDescriptionList">
     <a *ngFor="let mdValue of mdValues; let last=last;" [href]="domainAwareValue(linktext || mdValue.value)">
        {{ domainAwareValue(linktext || mdValue.value) }}<span *ngIf="!last" [innerHTML]="separator"></span>
     </a>
