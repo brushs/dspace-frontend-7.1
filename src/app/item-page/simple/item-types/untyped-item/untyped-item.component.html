@@ -32,11 +32,13 @@
       
       <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object" [isDescriptionList]="true"></ds-item-page-iso-field>
       <ds-item-page-date-field [item]="object" [isDescriptionList]="true"></ds-item-page-date-field>
+      <!-- AUTHOR(S) -->
       <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
                                       [parentItem]="object"
                                       [itemType]="'Person'"
                                       [metadataFields]="['dc.contributor.author', 'dc.creator']"
                                       [isDescriptionList]="true"
+                                      [addClassToMiddleObjects]="true"
                                       [label]="'relationships.isAuthorOf' | translate">
       </ds-metadata-representation-list>
       <ds-generic-item-page-field [item]="object" [fields]="['dc.publisher']" [label]="'item.page.publisher'" [isDescriptionList]="true"></ds-generic-item-page-field>
