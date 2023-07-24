@@ -35,8 +35,8 @@ export class GeoSearchPageComponent implements OnInit {
   name = 'Dspace';
   home  = 'Home';
   map: any;
-  lat: number = 45.4215;
-  lon: number = -75.6972;
+  lat: number = 59; //45.4215;
+  lon: number = -105; //-75.6972;
   maker: L.Marker<any>;
   dbmaker: L.Marker<any>[];
 
@@ -58,7 +58,7 @@ export class GeoSearchPageComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.map = L.map('map').setView([this.lat, this.lon], 7);
+    this.map = L.map('map').setView([this.lat, this.lon], 4);
     this.data = 'Please draw a rectangle, using solid square icon';
     const baselayers = {
       openstreetmap: L.tileLayer(

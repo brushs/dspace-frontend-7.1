@@ -29,9 +29,10 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
   fieldsAuthor: string[] = ['dc.creator'];
   fieldsTitle: string[] = ['dc.title'];
   fieldPageRange: string = 'nrcan.pagination.pagerange';
+  fieldIssues: string = 'nrcan.issue';
+  fieldDoi: string = 'dc.identifier.doi';
 
-
-  @Output() valuesAuthors: string;
+  @Output() valueCitation: string;
   /**
    * Label i18n key for the rendered metadata
    */
@@ -46,18 +47,25 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
 
   ngOnInit() {
     var allAuthors = this.item.allMetadata(this.fieldsAuthor);
-    var authors: string = '';
     var translatedAuthors: string;
+    var valuesAuthors: string;
+    var valueTitle: string;
+    var valuePageRange: string;
+    var valueIssues: string;
+    var valueDoi: string;
+    var valueArray: string[];
 
     this.tralateService.get('item.page.author').subscribe((res: string) => {
       translatedAuthors = res;
     });
 
-    for (var author in allAuthors) {
-      //this.valuesAuthors = this.valuesAuthors.concat("author" + author);
-      authors =
-        authors + allAuthors[author].value + ',';
-    }
-    this.valuesAuthors = authors;
+    valuesAuthors = allAuthors.join(', ');
+    valueTitle = this.item.firstMetadataValue(this.fieldsTitle);
+    valueIssues = this.item.firstMetadataValue(this.fieldIssues);
+    valuePageRange = this.item.firstMetadataValue(this.fieldPageRange);
+    valueDoi = this.item.firstMetadataValue(this.fieldDoi);
+    valueArray = [valuesAuthors, valueTitle, valueIssues, valuePageRange, valueDoi];
+    valueArray = valueArray.filter(function (el) { return el.trim() != ''; });
+    this.valueCitation = valueArray.join(', ');
   }
 }
