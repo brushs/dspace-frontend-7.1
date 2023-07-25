@@ -1,6 +1,5 @@
   <!-- OSPR Changes remove login dropdown  remove h2-->
-  <div *ngIf="!(isAuthenticated | async)" >
-
+  <div *ngIf="!(isAuthenticated | async) && showButton" >
 		<h2 class="wb-inv">{{ 'nav.login' | translate }}</h2>
     <a class="btn btn-primary" routerLink="/sign-in" routerLinkActive="active" >
       {{ 'nav.login' | translate }} 

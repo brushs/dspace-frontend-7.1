@@ -12,6 +12,7 @@ import { isNotUndefined } from '../empty.util';
 import { isAuthenticated, isAuthenticationLoading } from '../../core/auth/selectors';
 import { EPerson } from '../../core/eperson/models/eperson.model';
 import { AuthService, LOGIN_ROUTE, LOGOUT_ROUTE } from '../../core/auth/auth.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'ds-auth-nav-menu, [ds-auth-nav-menu]',
@@ -40,14 +41,21 @@ export class AuthNavMenuComponent implements OnInit {
 
   public sub: Subscription;
 
+  showButton = true;
+
   constructor(private store: Store<AppState>,
               private windowService: HostWindowService,
-              private authService: AuthService
+              private authService: AuthService,
+              private router: Router
   ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
 
   ngOnInit(): void {
+    this.setShowButton()
+    this.router.events.pipe(filter( event => event instanceof NavigationEnd)).subscribe(x => {
+      this.setShowButton()
+    })
     // set isAuthenticated
     this.isAuthenticated = this.store.pipe(select(isAuthenticated));
 
@@ -63,5 +71,9 @@ export class AuthNavMenuComponent implements OnInit {
         && !router.state.url.startsWith(LOGOUT_ROUTE))
       )
     );
+  }
+
+  setShowButton() {
+    this.showButton = !this.router.url.includes('/sign-in');
   }
 }
