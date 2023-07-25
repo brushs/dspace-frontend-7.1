@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 /**
  * This component represents the contact us page
@@ -10,6 +11,13 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ContactUsPageComponent {
 
-  constructor(public translate: TranslateService) {}
-
+  constructor(public translate: TranslateService,
+    private router: Router
+  ) {
+    if (this.translate.currentLang === 'en' && this.router.url.includes('contactez-nous')) {
+      this.router.navigate(['/contact-us'])
+    } else if (this.translate.currentLang === 'fr' && this.router.url.includes('contact-us')) {
+      this.router.navigate(['/contactez-nous'])
+    }
+  }
 }
