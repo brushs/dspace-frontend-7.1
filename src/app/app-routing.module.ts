@@ -90,7 +90,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
-            path: 'liste-des-communautés',
+            path: 'liste-des-communautes',
             loadChildren: () => import('./community-list-page/community-list-page.module')
               .then((m) => m.CommunityListPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
