@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { combineLatest as observableCombineLatest, Subscription } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
@@ -15,6 +15,7 @@ import {
 import { hasValue, isNotEmpty } from '../shared/empty.util';
 import { AuthTokenInfo } from '../core/auth/models/auth-token-info.model';
 import { isAuthenticated } from '../core/auth/selectors';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * This component represents the login page
@@ -39,7 +40,15 @@ export class LoginPageComponent implements OnDestroy, OnInit {
    * @param {Store<AppState>} store
    */
   constructor(private route: ActivatedRoute,
-              private store: Store<AppState>) {}
+              private translate: TranslateService,
+              private router: Router,
+              private store: Store<AppState>) {
+                if (this.translate.currentLang === 'en' && this.router.url.includes('se-connecter')) {
+                  this.router.navigate(['/sign-in'])
+                } else if (this.translate.currentLang === 'fr' && this.router.url.includes('sign-in')) {
+                  this.router.navigate(['/se-connecter'])
+                }
+              }
 
   /**
    * Initialize instance variables
