@@ -23,7 +23,11 @@ export class HomePageComponent implements OnInit {
     private http: HttpClient,
     private cdr: ChangeDetectorRef
   ) {
-
+    if (this.translate.currentLang === 'en' && this.router.url.includes('accueil')) {
+      this.router.navigate(['/home'])
+    } else if (this.translate.currentLang === 'fr' && this.router.url.includes('home')) {
+      this.router.navigate(['/accueil'])
+    }
   }
 
   ngOnInit(): void {

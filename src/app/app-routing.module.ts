@@ -47,6 +47,13 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
+            path: 'accueil',
+            loadChildren: () => import('./home-page/home-page.module')
+              .then((m) => m.HomePageModule),
+            data: { showBreadcrumbs: false },
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
             path: 'about-us',
             loadChildren: () => import('./about-us-page/about-us-page.module')
               .then((m) => m.AboutUsPageModule),
@@ -191,6 +198,11 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
           },
           {
             path: 'sign-in',
+            loadChildren: () => import('./login-page/login-page.module')
+              .then((m) => m.LoginPageModule),
+          },
+          {
+            path: 'se-connecter',
             loadChildren: () => import('./login-page/login-page.module')
               .then((m) => m.LoginPageModule),
           },
