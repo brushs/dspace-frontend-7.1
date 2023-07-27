@@ -107,7 +107,6 @@ export class TruncatablePartComponent implements AfterViewInit, OnInit, OnDestro
 
   ngAfterViewInit() {
     const resizeObserver = new ResizeObserver((a) => {
-      console.log('size change', a)
       this.truncateElement()
     });
     resizeObserver.observe(this.content.nativeElement)
