@@ -75,6 +75,7 @@ export class AuthNavMenuComponent implements OnInit {
 
   setShowButton() {
     let { url } = this.router;
-    this.showButton = !(url.includes('/sign-in') || url.includes('sign-out'));
+    this.showButton = !(url.includes('/sign-in') || url.includes('sign-out') || url.includes('se-connecter') || url.includes('de-connecter'));
+
   }
 }
