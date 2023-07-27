@@ -1,6 +1,7 @@
 <dt *ngIf="getLanguageValue() && isDescriptionList">{{ label | translate }}</dt>
-<dd *ngIf="getLanguageValue() && isDescriptionList" [attr.lang]="getLanguageValue()?.language" 
-[innerHTML]="(getLanguageValue()?.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></dd>
+<dd *ngIf="getLanguageValue() && isDescriptionList">
+  {{ getLanguageValue()?.value | translate }}
+</dd>
 <div class="item-page-field" *ngIf="getLanguageValue() && !isDescriptionList">
   <!-- <ds-metadata-values [mdValues]="item?.allMetadata(fields)" [separator]="separator" [label]="label"></ds-metadata-values> -->
   <!-- <ds-metadata-values [subheading]="false" [mdValues]="getLanguageValue()" [separator]="separator" [label]="label"></ds-metadata-values> -->
