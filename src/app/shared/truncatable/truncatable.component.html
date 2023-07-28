@@ -4,7 +4,6 @@
 
 <div *ngIf="useShowMore">
     <ng-container *ngTemplateOutlet="content"></ng-container>
-    <a href="javascript:(void);" class="show-results-btn" role="button" (click)="$event.preventDefault();toggle()">{{ ('truncate.' + ((isCollapsed$ | async)  ? 'expand' : 'collapse')) | translate }}</a>
 </div>
 
 
