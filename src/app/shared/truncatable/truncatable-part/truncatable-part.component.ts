@@ -62,7 +62,7 @@ export class TruncatablePartComponent implements AfterViewInit, OnInit, OnDestro
     expandable = false;
 
    
-    observer: ResizeObserver;
+    observer: any;
 
   /**
      * A boolean representing if to show or not the show/collapse toggle.
@@ -106,7 +106,8 @@ export class TruncatablePartComponent implements AfterViewInit, OnInit, OnDestro
   }
 
   ngAfterViewInit() {
-    const resizeObserver = new ResizeObserver((a) => {
+    const resizeObserver = new (window as any
+      ).ResizeObserver((a) => {
       this.truncateElement()
     });
     resizeObserver.observe(this.content.nativeElement)
