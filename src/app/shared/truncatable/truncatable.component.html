@@ -2,10 +2,20 @@
     <ng-container *ngTemplateOutlet="content"></ng-container>
 </div>
 
-<div *ngIf="useShowMore">
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-    <a href="javascript:(void);" class="show-results-btn" role="button" (click)="$event.preventDefault();toggle()">{{ ('truncate.' + ((isCollapsed$ | async)  ? 'expand' : 'collapse')) | translate }}</a>
-</div>
+<ng-container *ngIf="useShowMore">
+    <div #innerContent>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+
+        <ng-container *ngIf="truncatable">
+            <button *ngIf="(isCollapsed$ | async)" class="btn btn-link p-0 expandButton" dsDragClick (keydown.space)="toggle()" (keydown.enter)="toggle()" (actualClick)="toggle()">
+                <span aria-hidden="true" class="fas fa-angle-down mr-1"></span><span>{{ 'truncate.expand' | translate }}</span>
+              </button>
+              <button *ngIf="!(isCollapsed$ | async)" class="btn btn-link p-0 collapseButton" dsDragClick (keydown.space)="toggle()" (keydown.enter)="toggle()" (actualClick)="toggle()">
+                <span aria-hidden="true" class="fas fa-angle-up mr-1"></span><span>{{ 'truncate.collapse' | translate }}</span>
+              </button>
+        </ng-container>
+    </div>
+</ng-container>
 
 
 <ng-template #content><ng-content></ng-content></ng-template>
