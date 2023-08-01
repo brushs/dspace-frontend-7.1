@@ -2,9 +2,17 @@
     <ng-container *ngTemplateOutlet="content"></ng-container>
 </div>
 
-<div *ngIf="useShowMore">
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-</div>
+<ng-container *ngIf="useShowMore">
+    <div #innerContent>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+
+        <ng-container *ngIf="truncatable">
+            <button class="btn btn-link p-0" dsDragClick (keydown.space)="toggle()" (keydown.enter)="toggle()" (actualClick)="toggle()">
+                <span aria-hidden="true" class="fas fa-angle-down mr-1"></span><span *ngIf="(isCollapsed$ | async)">{{ 'truncate.expand' | translate }}</span><span *ngIf="!(isCollapsed$ | async)">{{ 'truncate.collapse' | translate }}</span>
+              </button>
+        </ng-container>
+    </div>
+</ng-container>
 
 
 <ng-template #content><ng-content></ng-content></ng-template>

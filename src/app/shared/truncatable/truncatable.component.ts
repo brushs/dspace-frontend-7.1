@@ -1,6 +1,4 @@
-import {
-  Component, ElementRef, Input
-} from '@angular/core';
+import {  Component, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
 import { TruncatableService } from './truncatable.service';
 
 @Component({
@@ -36,7 +34,15 @@ export class TruncatableComponent {
 
   isCollapsed$;
 
-  public constructor(private service: TruncatableService, private el: ElementRef) {
+  observer;
+
+  toggled = false;
+
+  @ViewChild('innerContent', {static: false}) content: ElementRef;
+
+  truncatable = true;
+
+  public constructor(private service: TruncatableService) {
   }
 
   /**
@@ -50,6 +56,46 @@ export class TruncatableComponent {
     }
     this.isCollapsed$ = this.service.isCollapsed(this.id);
   }
+
+  ngAfterViewInit() {
+    this.observer = new (window as any      
+      ).ResizeObserver((a) => {
+      this.truncateElement()
+    });
+    this.observer.observe(this.content.nativeElement)
+  }
+
+
+  public async truncateElement() {
+    if (this.useShowMore) {
+      if(this.toggled) {
+        this.toggled = true;
+        return;
+      }
+      const entry = this.content.nativeElement;
+        let children = entry.querySelectorAll('div.content');
+        let requiresTruncate = false;
+        for(let entry of children) {
+          if (entry.children.length > 0) {
+            if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
+              requiresTruncate = true;
+              break;
+            }
+          } else {
+            if (entry.innerText.length > 0) {
+              requiresTruncate = true;
+              break;
+            }
+          }
+        }
+        this.truncatable = requiresTruncate;
+        if(!this.truncatable) {
+          this.service.expand(this.id)
+        }
+    }
+  }
+
+
 
   /**
    * If onHover is true, collapses the truncatable
@@ -73,20 +119,14 @@ export class TruncatableComponent {
    * Expands the truncatable when it's collapsed, collapses it when it's expanded
    */
   public toggle() {
+    this.toggled = true;
     this.service.toggle(this.id);
   }
 
-  ngAfterViewChecked() {
-    if (this.useShowMore) {
-      const truncatedElements = this.el.nativeElement.querySelectorAll('.truncated');
-      if (truncatedElements?.length > 0) {
-        const truncateElements = this.el.nativeElement.querySelectorAll('.dont-break-out');
-        for (let i = 0; i < (truncateElements.length - 1); i++) {
-          truncateElements[i].classList.remove('truncated');
-          truncateElements[i].classList.add('notruncatable');
-        }
-        truncateElements[truncateElements.length - 1].classList.add('truncated');
-      }
+  ngOnDestroy() {
+    if(this.observer) {
+      this.observer.unobserve(this.content.nativeElement)
     }
   }
+
 }
