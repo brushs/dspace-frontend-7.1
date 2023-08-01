@@ -2,10 +2,10 @@
 <nav>
     <ul id="wb-tphp">
         <li class="wb-slc">
-            <a class="wb-sl" href="#wb-main">{{ 'header.skiptolinks.main' | translate }}</a>
+            <a class="wb-sl"  href="#wb-main" (keydown.space)="$event.preventDefault();scrollToMain();" (keydown.enter)="$event.preventDefault();scrollToMain();" (click)="$event.preventDefault();scrollToMain();">{{ 'header.skiptolinks.main' | translate }}</a>
         </li>
         <li class="wb-slc">
-            <a class="wb-sl" [routerLink]="'/about-us'">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
+            <a class="wb-sl" href="#wb-info" (keydown.space)="$event.preventDefault();scrollToAbout();" (keydown.enter)="$event.preventDefault();scrollToAbout();" (click)="$event.preventDefault();scrollToAbout();">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
         </li>
     </ul>
 </nav>
