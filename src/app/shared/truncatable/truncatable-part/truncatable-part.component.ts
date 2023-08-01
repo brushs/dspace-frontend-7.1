@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Inject, Input, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { TruncatableService } from '../truncatable.service';
 import { hasValue } from '../../empty.util';
 import { NativeWindowRef, NativeWindowService } from '../../../core/services/window.service';
@@ -14,7 +14,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
  * Component that truncates/clamps a piece of text
  * It needs a TruncatableComponent parent to identify it's current state
  */
-export class TruncatablePartComponent implements AfterViewInit, OnInit, OnDestroy {
+export class TruncatablePartComponent implements AfterViewChecked, OnInit, OnDestroy {
   /**
    * Number of lines shown when the part is collapsed
    */
@@ -61,9 +61,6 @@ export class TruncatablePartComponent implements AfterViewInit, OnInit, OnDestro
      */
     expandable = false;
 
-   
-    observer: any;
-
   /**
      * A boolean representing if to show or not the show/collapse toggle.
      * This value must have the same value as the parent TruncatableComponent
@@ -105,17 +102,16 @@ export class TruncatablePartComponent implements AfterViewInit, OnInit, OnDestro
     });
   }
 
-  ngAfterViewInit() {
-    this.observer = new (window as any
-      ).ResizeObserver((a) => {
-      this.truncateElement()
-    });
-    this.observer.observe(this.content.nativeElement)
+  ngAfterViewChecked() {
+    this.truncateElement();
   }
+
 
   public truncateElement() {
     if (this.showToggle) {
       const entry = this.content.nativeElement;
+      
+      console.log(entry, entry.scrollHeight, entry.offsetHeight, entry.children[entry.children.length - 1].offsetHeight)
       if (entry.scrollHeight > entry.offsetHeight) {
         if (entry.children.length > 0) {
           if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
@@ -156,6 +152,5 @@ export class TruncatablePartComponent implements AfterViewInit, OnInit, OnDestro
     if (hasValue(this.sub)) {
       this.sub.unsubscribe();
     }
-    this.observer.unobserve(this.content.nativeElement)
   }
 }
