@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, Input
+  Component, Input
 } from '@angular/core';
 import { TruncatableService } from './truncatable.service';
 
@@ -36,7 +36,7 @@ export class TruncatableComponent {
 
   isCollapsed$;
 
-  public constructor(private service: TruncatableService, private el: ElementRef) {
+  public constructor(private service: TruncatableService) {
   }
 
   /**
@@ -76,17 +76,4 @@ export class TruncatableComponent {
     this.service.toggle(this.id);
   }
 
-  ngAfterViewChecked() {
-    if (this.useShowMore) {
-      const truncatedElements = this.el.nativeElement.querySelectorAll('.truncated');
-      if (truncatedElements?.length > 0) {
-        const truncateElements = this.el.nativeElement.querySelectorAll('.dont-break-out');
-        for (let i = 0; i < (truncateElements.length - 1); i++) {
-          truncateElements[i].classList.remove('truncated');
-          truncateElements[i].classList.add('notruncatable');
-        }
-        truncateElements[truncateElements.length - 1].classList.add('truncated');
-      }
-    }
-  }
 }

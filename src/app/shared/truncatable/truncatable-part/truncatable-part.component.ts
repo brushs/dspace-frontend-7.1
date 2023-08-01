@@ -1,8 +1,6 @@
-import { AfterViewChecked, Component, ElementRef, Inject, Input, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TruncatableService } from '../truncatable.service';
 import { hasValue } from '../../empty.util';
-import { NativeWindowRef, NativeWindowService } from '../../../core/services/window.service';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'ds-truncatable-part',
@@ -14,7 +12,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
  * Component that truncates/clamps a piece of text
  * It needs a TruncatableComponent parent to identify it's current state
  */
-export class TruncatablePartComponent implements AfterViewChecked, OnInit, OnDestroy {
+export class TruncatablePartComponent implements OnInit, OnDestroy {
   /**
    * Number of lines shown when the part is collapsed
    */
@@ -52,32 +50,7 @@ export class TruncatablePartComponent implements AfterViewChecked, OnInit, OnDes
    */
   private sub;
 
-    /**
-   * store variable used for local to expand collapse
-   */
-    expand = false;
-    /**
-     * variable to check if expandable
-     */
-    expandable = false;
-
-  /**
-     * A boolean representing if to show or not the show/collapse toggle.
-     * This value must have the same value as the parent TruncatableComponent
-     */
-  @Input() showToggle = true;
-
-  /**
-    * The view on the truncatable part
-    */
-  @ViewChild('content', {static: true}) content: ElementRef;
-
-
-  public constructor(private service: TruncatableService,
-    @Inject(DOCUMENT) private document: any,
-    @Inject(NativeWindowService) private _window: NativeWindowRef,
-    @Inject(PLATFORM_ID) platformId: object
-    ) {
+  public constructor(private service: TruncatableService) {
   }
 
   /**
@@ -94,55 +67,10 @@ export class TruncatablePartComponent implements AfterViewChecked, OnInit, OnDes
     this.sub = this.service.isCollapsed(this.id).subscribe((collapsed: boolean) => {
       if (collapsed) {
         this.lines = this.minLines.toString();
-        this.expand = false;
       } else {
         this.lines = this.maxLines < 0 ? 'none' : this.maxLines.toString();
-        this.expand = true;
       }
     });
-  }
-
-  ngAfterViewChecked() {
-    this.truncateElement();
-  }
-
-
-  public truncateElement() {
-    if (this.showToggle) {
-      const entry = this.content.nativeElement;
-      
-      console.log(entry, entry.scrollHeight, entry.offsetHeight, entry.children[entry.children.length - 1].offsetHeight)
-      if (entry.scrollHeight > entry.offsetHeight) {
-        if (entry.children.length > 0) {
-          if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
-            entry.classList.add('truncated');
-            entry.classList.remove('removeFaded');
-          } else {
-            entry.classList.remove('truncated');
-            entry.classList.add('removeFaded');
-          }
-        } else {
-          if (entry.innerText.length > 0) {
-            entry.classList.add('truncated');
-            entry.classList.remove('removeFaded');
-          } else {
-            entry.classList.remove('truncated');
-            entry.classList.add('removeFaded');
-          }
-        }
-      } else {
-        entry.classList.remove('truncated');
-        entry.classList.add('removeFaded');
-      }
-    }
-  }
-
-  /**
-   * Expands the truncatable when it's collapsed, collapses it when it's expanded
-   */
-  public toggle() {
-    this.service.toggle(this.id);
-    this.expandable = !this.expandable;
   }
 
   /**
