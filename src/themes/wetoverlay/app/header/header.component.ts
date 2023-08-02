@@ -42,9 +42,13 @@ export class HeaderComponent extends BaseComponent {
 
   ngAfterViewInit() {
     this.loadScripts().then(x => {
-      setTimeout(() => {
-        document.querySelector('a.wb-sl[href="?wbdisable=true"]').remove()
-      }, 700)
+      let intId = setInterval(() => {
+        let basicHTMLLink = document.querySelector('a.wb-sl[href="?wbdisable=true"]');
+        if(basicHTMLLink) {
+          basicHTMLLink.remove();
+          clearInterval(intId);
+        }
+      }, 500)
     });
   }
   /** Dynamically append scripts to the DOM. Required here as opposed to angular.json to ensure component renders
