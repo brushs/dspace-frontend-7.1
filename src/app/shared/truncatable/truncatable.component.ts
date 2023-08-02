@@ -62,7 +62,9 @@ export class TruncatableComponent {
       ).ResizeObserver((a) => {
       this.truncateElement()
     });
-    this.observer.observe(this.content.nativeElement)
+    if(this.content?.nativeElement) {
+      this.observer.observe(this.content.nativeElement)
+    }
   }
 
 
@@ -124,7 +126,7 @@ export class TruncatableComponent {
   }
 
   ngOnDestroy() {
-    if(this.observer) {
+    if(this.observer && this.content?.nativeElement) {
       this.observer.unobserve(this.content.nativeElement)
     }
   }

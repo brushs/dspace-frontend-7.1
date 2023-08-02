@@ -1,4 +1,4 @@
-import { filter, map } from 'rxjs/operators';
+import { filter, map, reduce } from 'rxjs/operators';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 
@@ -35,6 +35,8 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
 
   metadata$: Observable<MetadataMap>;
 
+  filteredMetadata$;
+
   /**
    * True when the itemRD has been originated from its workflowitem, false otherwise.
    */
@@ -57,7 +59,7 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
       map((rd: RemoteData<Item>) => rd.payload),
       filter((item: Item) => hasValue(item)),
       map((item: Item) => item.metadata),);
-
+          
     this.subs.push(this.route.data.subscribe((data: Data) => {
         this.fromWfi = hasValue(data.wfi);
       })
