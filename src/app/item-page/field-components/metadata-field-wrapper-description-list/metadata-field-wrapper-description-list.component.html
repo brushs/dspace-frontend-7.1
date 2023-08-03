@@ -1,0 +1,10 @@
+<div class="simple-view-element" [class.d-none]="hideIfNoTextContent && content.textContent.trim().length === 0">
+  <dt>
+   {{ label }}
+  </dt>
+  <div #content class="simple-view-element-body">
+    <dd>
+      <ng-content></ng-content>
+    </dd>
+  </div>
+</div>

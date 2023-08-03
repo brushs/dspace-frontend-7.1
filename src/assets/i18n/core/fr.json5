@@ -62,6 +62,8 @@
   "item.page.other": "Autre",
   // "item.page.iso": "Language of the publication",
   "item.page.iso": "Langue de publication",
+  "en": "Anglais",
+  "fr": "Français",
   // "item.page.subject": "Subject",
   "item.page.subject": "Suject",
   //"item.page.identifiers": "Identifiers",
