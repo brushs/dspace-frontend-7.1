@@ -54,6 +54,11 @@ export class PaginationComponent implements OnDestroy, OnInit {
   @Input() sortOptions: SortOptions;
 
   /**
+   * Use Gc web template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * An event fired when the page is changed.
    * Event's payload equals to the newly selected page.
    */

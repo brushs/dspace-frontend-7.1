@@ -41,7 +41,15 @@ export class HeaderComponent extends BaseComponent {
   }
 
   ngAfterViewInit() {
-    this.loadScripts();
+    this.loadScripts().then(x => {
+      let intId = setInterval(() => {
+        let basicHTMLLink = document.querySelector('a.wb-sl[href="?wbdisable=true"]');
+        if(basicHTMLLink) {
+          basicHTMLLink.remove();
+          clearInterval(intId);
+        }
+      }, 500)
+    });
   }
   /** Dynamically append scripts to the DOM. Required here as opposed to angular.json to ensure component renders
    *  so the menu element is detected when the script performs the check. Even including the script in the index.html with the 
@@ -69,6 +77,25 @@ export class HeaderComponent extends BaseComponent {
     }
     return this.locationPath;
   }
+
+  redirectToAnchor(anchor) {
+    if(window.location.hash === anchor) {
+      window.location.hash = '';
+      setTimeout(()=> {
+        window.location.hash = anchor
+      }, 150)
+    } else {
+      window.location.hash = anchor;
+    }
+}
   // FOSRC code end
+
+  scrollToMain() {
+    this.redirectToAnchor('#wb-main');
+  }
+
+  scrollToAbout() {
+    this.redirectToAnchor('#wb-info');
+  }
   
 }

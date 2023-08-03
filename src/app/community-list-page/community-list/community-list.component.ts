@@ -6,6 +6,8 @@ import { CommunityListService, FlatNode } from '../community-list-service';
 import { CommunityListDatasource } from '../community-list-datasource';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { isEmpty } from '../../shared/empty.util';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 /**
  * A tree-structured list of nodes representing the communities, their subCommunities and collections.
@@ -32,7 +34,15 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 
   paginationConfig: FindListOptions;
 
-  constructor(private communityListService: CommunityListService) {
+  constructor(private communityListService: CommunityListService,
+    private translate: TranslateService,
+    private router: Router
+  ) {
+    if (this.translate.currentLang === 'en' && this.router.url.includes('liste-des-communautes')) {
+      this.router.navigate(['/community-list'])
+    } else if (this.translate.currentLang === 'fr' && this.router.url.includes('community-list')) {
+      this.router.navigate(['/liste-des-communautes'])
+    }
     this.paginationConfig = new FindListOptions();
     this.paginationConfig.elementsPerPage = 2;
     this.paginationConfig.currentPage = 1;

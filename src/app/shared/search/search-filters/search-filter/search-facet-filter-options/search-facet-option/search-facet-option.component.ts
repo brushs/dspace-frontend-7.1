@@ -1,6 +1,6 @@
 import { combineLatest as observableCombineLatest, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacetValue } from '../../../../facet-value.model';
 import { SearchFilterConfig } from '../../../../search-filter-config.model';
@@ -43,6 +43,21 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
   @Input() inPlaceSearch;
 
   /**
+   * Use GC Web Template
+   */
+  @Input() useGcWeb = false;
+
+  /**
+   * Use GC Web Template
+   */
+  @Input() selfRef;
+
+  /**
+   * Name of facet
+   */
+  @Input() facetTerm;
+
+  /**
    * Emits true when this option should be visible and false when it should be invisible
    */
   isVisible: Observable<boolean>;
@@ -78,6 +93,11 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
     this.paginationId = this.searchConfigService.paginationID;
     this.searchLink = this.getSearchLink();
     this.isVisible = this.isChecked().pipe(map((checked: boolean) => !checked));
+    this.isVisible.subscribe(x => {
+      if(!x && this.selfRef) {
+        (<HTMLElement>this.selfRef).remove();
+      }
+    })
     this.sub = observableCombineLatest(this.selectedValues$, this.searchConfigService.searchOptions)
       .subscribe(([selectedValues, searchOptions]) => {
         this.updateAddParams(selectedValues);
@@ -129,4 +149,16 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
+
+  onSelect() {
+    this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: this.addQueryParams})
+  }
+
+  formatID(value) {
+    return value
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9 ,]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .join('-')
+    .toLowerCase();
+   }
+  
 }

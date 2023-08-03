@@ -459,6 +459,17 @@
   "header.skiptolinks.main": "Skip to main content.",
   "logout.breadcrumbs": "Sign Out",
   "official.title": "Official Title",
+
+  "search.filters.applied": "Filters Applied:",
+  "search.filters.remove": "Remove Filter",
+  
+  "sign.in.title": "FOSRC administrator sign in",
+  "sign.in.email": "Email address",
+  "sign.in.password": "Password",
+  "sign.in.required": "(required)",
+  "sign.in.badge": "Sign in is not required to search the repository or download open access materials.",
+  "sign.in.info.text": "Sign in is for administrators only, and is required to deposit materials and perform administrative tasks. Please <a href=\"/contact-us\">contact us</a> with any questions about submitting material to the FOSRC.",
+
   "submission.sections.accesses.form.error.filename": "The name of the file is required",
   "submission.sections.accesses.form.error.translated.filename": "The translated name of the file is required",
   "submission.sections.accesses.form.hint.filedescription": "The File Description",
@@ -469,7 +480,7 @@
   "submission.sections.accesses.form.label.filename": "Filename (required)",
   "submission.sections.accesses.form.label.translated.filedescription": "Translation of File Description  (required)",
   "submission.sections.accesses.form.label.translated.filename": "Translated Filename (required)",
-  "header.skiptolinks.aboutgc": "Skip to about government",
+  "header.skiptolinks.aboutgc": "Skip to \"About government\"",
   "header.skiptolinks.menu": "Skip to section menu",
 
   "input.label.datepicker.year": "Year",
@@ -480,6 +491,9 @@
 
   "nav.lang.selection": "Language selection",
   "nav.breadcrumbs.here": "You are here:",
+
+  "truncate.expand": "Show More",
+  "truncate.collapse": "Show Less",
   // FOSRC SPECIFIC LABELS END
 
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
@@ -1144,6 +1158,8 @@
   "home.title": "Home",
   "home.top-home.browser": "Browse the repository",
   "home.top-home.head": "Federal Open Science Repository of Canada (FOSRC)",
+  "home.top-home.head.dev": "DEV -- Federal Open Science Repository of Canada (FOSRC)",
+  "home.top-home.head.pre-prod": "Pre-Prod -- Federal Open Science Repository of Canada (FOSRC)",
   "home.top-level-communities.head": "Communities in FOSRC",
   "home.top-level-communities.help": "Select a community to browse its collections.",
   "idle-modal.header": "Session will expire soon",
@@ -1886,7 +1902,7 @@
   "search.filters.entityType.OrgUnit": "Organization unit",
   "search.filters.filter.author.head": "Author",
   "search.filters.filter.author.label": "Search author name",
-  "search.filters.filter.author.placeholder": "Author name",
+  "search.filters.filter.author.placeholder": "Search Author name",
   "search.filters.filter.birthDate.head": "Birth date",
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
@@ -1940,7 +1956,7 @@
   "search.filters.filter.discoverable.head": "Private",
   "search.filters.filter.entityType.head": "Item type",
   "search.filters.filter.entityType.label": "Search item type",
-  "search.filters.filter.entityType.placeholder": "Item type",
+  "search.filters.filter.entityType.placeholder": "Search Item type",
   "search.filters.filter.expand": "Expand filter",
 
   // FOSRC start changes
@@ -2001,7 +2017,7 @@
   "search.filters.filter.show-more": "Show more",
   "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.label": "Search subject",
-  "search.filters.filter.subject.placeholder": "Subject",
+  "search.filters.filter.subject.placeholder": "Search Subject",
   "search.filters.filter.submitter.head": "Submitter",
   "search.filters.filter.submitter.label": "Search submitter",
   "search.filters.filter.submitter.placeholder": "Submitter",

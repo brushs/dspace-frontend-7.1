@@ -2,10 +2,10 @@
 <nav>
     <ul id="wb-tphp">
         <li class="wb-slc">
-            <a class="wb-sl" href="#wb-main">{{ 'header.skiptolinks.main' | translate }}</a>
+            <a class="wb-sl"  href="#wb-main" (keydown.space)="$event.preventDefault();scrollToMain();" (keydown.enter)="$event.preventDefault();scrollToMain();" (click)="$event.preventDefault();scrollToMain();">{{ 'header.skiptolinks.main' | translate }}</a>
         </li>
         <li class="wb-slc">
-            <a class="wb-sl" [routerLink]="'/about-us'">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
+            <a class="wb-sl" href="#wb-info" (keydown.space)="$event.preventDefault();scrollToAbout();" (keydown.enter)="$event.preventDefault();scrollToAbout();" (click)="$event.preventDefault();scrollToAbout();">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
         </li>
     </ul>
 </nav>
@@ -143,7 +143,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="col-xs-5 col-xs-offset-7 col-md-offset-0 col-md-4">
+                <div class="pr-md-0 col-xs-offset-6 col-xs-6 col-sm-7 col-md-offset-0 col-md-6 col-lg-offset-0 col-lg-4">
                     <section id="wb-so" ds-auth-nav-menu></section>
                 </div>
 
@@ -203,7 +203,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="col-xs-5 col-xs-offset-7 col-md-offset-0 col-md-4">
+                <div class="pr-md-0 col-xs-offset-6 col-xs-6 col-sm-7 col-md-offset-0 col-md-6 col-lg-offset-0 col-lg-4">
                     <section ds-auth-nav-menu id="wb-so"></section>
                 </div>
             </div>

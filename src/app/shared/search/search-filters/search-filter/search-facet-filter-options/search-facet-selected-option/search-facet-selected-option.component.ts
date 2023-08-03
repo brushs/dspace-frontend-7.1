@@ -42,6 +42,16 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
   @Input() inPlaceSearch;
 
   /**
+   * Use GC Web Template
+   */
+  @Input() useGcWeb = false;
+
+  /**
+   * Name of facet
+   */
+  @Input() facetTerm;
+
+  /**
    * UI parameters when this filter is removed
    */
   removeQueryParams;
@@ -114,4 +124,15 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
+
+  onSelect() {
+    this.router.navigate([this.searchLink], { queryParams: this.removeQueryParams, queryParamsHandling: 'merge' })
+   }
+
+   formatID(value) {
+    return value
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9 ,]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .join('-')
+    .toLowerCase();
+   }
 }

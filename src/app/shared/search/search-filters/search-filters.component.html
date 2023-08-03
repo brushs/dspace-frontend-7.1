@@ -1,13 +1,34 @@
-<h2>{{"search.filters.head" | translate}}</h2>
-<div *ngIf="(filters | async)?.hasSucceeded">
-  <div *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate">
-    <ds-search-filter [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
+<ng-container *ngIf="!useGcWeb else GcWebTemplate">
+  <h2>{{"search.filters.head" | translate}}</h2>
+  <div *ngIf="(filters | async)?.hasSucceeded">
+    <div *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate">
+      <ds-search-filter [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
+    </div>
   </div>
-</div>
-<a class="btn btn-primary" [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge"
-  role="button">
-  <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
-  <!-- <i class="fas fa-undo"></i> {{"search.filters.reset" | translate}} -->
-  <span class="fas fa-undo"></span> {{"search.filters.reset" | translate}}
-  <!-- End OSPR Changes -->
-</a>
+  <a class="btn btn-primary" [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge"
+    role="button">
+    <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+    <!-- <i class="fas fa-undo"></i> {{"search.filters.reset" | translate}} -->
+    <span class="fas fa-undo"></span> {{"search.filters.reset" | translate}}
+    <!-- End OSPR Changes -->
+  </a>
+</ng-container>
+
+<ng-template #GcWebTemplate>
+  <form action="#" method="get" id="searchForm" class="wb-tables-filter" >
+    <section *ngIf="(filters | async)?.hasSucceeded" class="panel panel-default">
+       <header class="panel-heading">
+          <h2 class="panel-title h4">{{"search.filters.head" | translate}}</h2>
+       </header>
+       <div class="panel-body">
+          <section id="details-elements">
+            <ng-container *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate; let first = first;">
+              <ds-search-filter [useGcWeb]="true" [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
+            </ng-container>
+          </section>
+      </div>
+      <footer class="panel-footer">
+          <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-primary" type="submit"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button></footer>
+      </section>
+  </form>
+</ng-template>
