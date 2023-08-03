@@ -729,7 +729,7 @@
   // "header.skiptolinks.main": "Skip to main content.",
   "header.skiptolinks.main": "Passer au contenu principal",
   //"header.skiptolinks.aboutgc": "Skip to about government",
-  "header.skiptolinks.aboutgc": "Passer à À propos du gouvernement",
+  "header.skiptolinks.aboutgc": "Passer à \"À propos du gouvernement\"",
   //"header.skiptolinks.menu": "Skip to section menu",
   "header.skiptolinks.menu": "Passer au menu de la section",
   // "home.breadcrumbs": "Home",

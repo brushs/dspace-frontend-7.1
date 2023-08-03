@@ -478,7 +478,7 @@
   "submission.sections.accesses.form.label.filename": "Filename (required)",
   "submission.sections.accesses.form.label.translated.filedescription": "Translation of File Description  (required)",
   "submission.sections.accesses.form.label.translated.filename": "Translated Filename (required)",
-  "header.skiptolinks.aboutgc": "Skip to about government",
+  "header.skiptolinks.aboutgc": "Skip to \"About government\"",
   "header.skiptolinks.menu": "Skip to section menu",
 
   "input.label.datepicker.year": "Year",
