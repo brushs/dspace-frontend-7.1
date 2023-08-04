@@ -76,12 +76,7 @@
       <ul class="horizontal-list">
         <li *ngFor="let subject of object.findMetadataSortedByPlace(['dc.subject'])">{{subject.value}}</li>
       </ul>
-      <ds-generic-item-page-field [item]="object"
-        [fields]="['dc.subject']"
-        [separator]="','"
-        [label]="'item.page.subject'">
-      </ds-generic-item-page-field>
-
+     
       <!-- KEYWORDS -->
       <ds-generic-item-page-field [filterLang]="true" [item]="object"
         [fields]="['creativework.keywords']"
