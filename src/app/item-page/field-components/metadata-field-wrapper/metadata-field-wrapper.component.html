@@ -1,7 +1,7 @@
 <div class="simple-view-element" [class.d-none]="hideIfNoTextContent && content.textContent.trim().length === 0">
-  <h2 class="simple-view-element-header" *ngIf="label && !subheading">{{ label }}</h2>
-  <h3 class="simple-view-element-header" *ngIf="label && subheading">{{ label }}</h3>
-  <div #content class="simple-view-element-body">
+  <h2 class="simple-view-element-header" class="h3" *ngIf="label && !subheading">{{ label }}</h2>
+  <h3 class="simple-view-element-header" class="h4" *ngIf="label && subheading">{{ label }}</h3>
+  <p #content class="simple-view-element-body">
     <ng-content></ng-content>
-  </div>
+  </p>
 </div>

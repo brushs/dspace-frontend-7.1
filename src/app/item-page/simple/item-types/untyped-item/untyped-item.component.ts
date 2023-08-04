@@ -3,6 +3,7 @@ import { Item } from '../../../../core/shared/item.model';
 import { ItemComponent } from '../shared/item.component';
 import { ViewMode } from '../../../../core/shared/view-mode.model';
 import { listableObjectComponent } from '../../../../shared/object-collection/shared/listable-object/listable-object.decorator';
+import { MetadataValue } from 'src/app/core/shared/metadata.models';
 
 /**
  * Component that represents a publication Item page
@@ -11,7 +12,7 @@ import { listableObjectComponent } from '../../../../shared/object-collection/sh
 @listableObjectComponent(Item, ViewMode.StandalonePage)
 @Component({
   selector: 'ds-untyped-item',
-  styleUrls: ['./untyped-item.component.scss'],
+  styleUrls: ['../../../../../themes/wetoverlay/styles/static-pages.scss'],
   templateUrl: './untyped-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -26,6 +27,7 @@ export class UntypedItemComponent extends ItemComponent {
   hasDcRelationMetaData_isrequiredby: boolean = false;
   hasDcRelationMetaData_istranslationof: boolean = false;
   hasDcRelationMetaData_isversionof: boolean = false;
+  authors: MetadataValue[];
   checkRelationMetaData (): void {
     if (this.object.metadata['dc.relation.isformatof'] ||
     this.object.metadata['dc.relation.ispartof'] ||
@@ -65,6 +67,7 @@ export class UntypedItemComponent extends ItemComponent {
   ngOnInit(): void {
     super.ngOnInit();
     this.checkRelationMetaData ();
+    this.authors = this.object.findMetadataSortedByPlace(['dc.contributor.author', 'dc.creator']);
   }
 
   public hasIdentifiers(): boolean {
