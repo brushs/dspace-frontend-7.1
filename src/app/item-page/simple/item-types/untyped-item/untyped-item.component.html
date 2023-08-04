@@ -3,15 +3,13 @@
     <ds-dso-page-edit-button [pageRoute]="itemPageRoute" [dso]="object" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
   </div>
   <h1 id="wb-cont" property="name">
-    {{'official.title' | translate}} {{this.dsoOfficialTitle[0].value}}
+    {{this.dsoOfficialTitle[0].value}}
   </h1>
   <!--FOSRC change start-->
 
 
   <div class="row">
     <div class="col-xs-12 col-md-4 pull-left">
-      <!-- TODO: Translate -->
-      <p><a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">Download files</a></p>
 
       <!-- THUMBNAIL -->
       <ng-container *ngIf="!mediaViewer.image">
@@ -23,6 +21,9 @@
       <ng-container *ngIf="mediaViewer.image">
         <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
       </ng-container>
+
+      <!-- TODO: Translate -->
+      <p><a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">Download files</a></p>
 
       <!-- DOI -->
       <dl>
@@ -46,8 +47,6 @@
         <!-- PUBLISHER -->
         <ds-generic-item-page-field [item]="object" [fields]="['dc.publisher']" [label]="'item.page.publisher'" [isDescriptionList]="true"></ds-generic-item-page-field>
         
-        <!-- SPONSORSHIP -->
-        <ds-item-page-sponsorship-field [item]="object" [isDescriptionList]="true"></ds-item-page-sponsorship-field>
       </dl>
 
     </div>
@@ -277,9 +276,14 @@
         </dl>
       </div>
 
+      <!-- SPONSORSHIP -->
+      <ds-item-page-sponsorship-field [item]="object"></ds-item-page-sponsorship-field>
+
       <!-- Start FOSRC Changes - 1594 -->
       <!-- RELATIONSHIPS -->
-      <ds-metadata-field-wrapper *ngIf="hasDcRelationMetaData" [label]="'item.page.relationship' | translate">
+      <div *ngIf="hasDcRelationMetaData">
+        <h2 class="h3">{{'item.page.relationship' | translate}}</h2>
+  
         <dl style="padding-left: 18px">
         <div *ngIf="hasDcRelationMetaData_isformatof">
         <dt>{{'item.page.1.relationship_identifiers' | translate}}: </dt>
@@ -330,7 +334,7 @@
           </a></dd>
         </div>
       </dl>
-      </ds-metadata-field-wrapper>
+    </div>
       
       <!-- CITATION -->
       <ds-generic-item-page-field [item]="object"
@@ -352,9 +356,12 @@
       <!-- COLLECTIONS -->
       <ds-item-page-collections [item]="object"></ds-item-page-collections>
       <div>
-        <a class="btn btn-outline-primary" [routerLink]="[itemPageRoute + '/full']" role="button">
+
+      <p class="h4">
+        <a class="btn btn-default" [routerLink]="[itemPageRoute + '/full']" role="button">
           <span aria-hidden="true" class="fas fa-info-circle"></span> {{"item.page.link.full" | translate}}
         </a>
+      </p>
       </div>
 
     </div>
