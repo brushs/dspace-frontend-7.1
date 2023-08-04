@@ -5,6 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-title-field',
+    styleUrls: ['./item-page-title-field.component.scss'],
     templateUrl: './item-page-title-field.component.html'
 })
 /**

@@ -149,6 +149,10 @@
 
   // start FOSRC - community form
 
+
+  // "item.page.filesection.download-file": "Download File",
+  "item.page.filesection.download-file": "Télécharger le Fichier",
+
   // "community.breadcrumbs": "Community List",
   "community.breadcrumbs": "Liste des communautés",
   //"community.form.title": "Community name (required)",

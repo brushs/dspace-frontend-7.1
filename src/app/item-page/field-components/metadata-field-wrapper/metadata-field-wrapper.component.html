@@ -1,7 +1,24 @@
-<div class="simple-view-element" [class.d-none]="hideIfNoTextContent && content.textContent.trim().length === 0">
+<div *ngIf="!useGcWeb else GcWebTemplate" class="simple-view-element" [class.d-none]="hideIfNoTextContent && content.textContent.trim().length === 0">
   <h2 class="simple-view-element-header" *ngIf="label && !subheading">{{ label }}</h2>
   <h3 class="simple-view-element-header" *ngIf="label && subheading">{{ label }}</h3>
   <div #content class="simple-view-element-body">
-    <ng-content></ng-content>
+    <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
   </div>
 </div>
+
+<ng-template #GcWebTemplate>
+  <ng-container>
+    <div [class.d-none]="hideIfNoTextContent && GcContent.textContent.trim().length === 0">
+      <h2 class="h3">{{label}}</h2>
+      <div #GcContent>
+        <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+
+
+<ng-template #projectedContent>
+    <ng-content></ng-content>
+</ng-template>

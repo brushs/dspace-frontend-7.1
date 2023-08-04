@@ -1,8 +1,16 @@
 <!--FOSRC change start-->
-<h1 class="item-page-title-field">
+<!-- <h1 class="item-page-title-field">
   <div *ngIf="item.firstMetadataValue('dspace.entity.type') as type">
     {{ type.toLowerCase() + '.page.titleprefix' | translate }}
   </div>
   <ds-metadata-values [mdValues]="item?.allMetadata(fields)"></ds-metadata-values>
-</h1>
+</h1> -->
 <!--FOSRC change end (h2 is converted to h1)-->
+
+
+<h1 class="pb-0" [style.line-height]="'inherit'" property="name" id="wb-cont">
+  <ng-container *ngIf="item.firstMetadataValue('dspace.entity.type') as type">
+    {{ type.toLowerCase() + '.page.titleprefix' | translate }}
+  </ng-container>
+  <ds-metadata-values [mdValues]="item?.allMetadata(fields)"></ds-metadata-values>
+</h1>
