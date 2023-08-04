@@ -10,12 +10,17 @@
 
   <div class="row">
     <div class="col-xs-12 col-md-4 pull-left">
+      <!-- IMAGE -->
       <ng-container *ngIf="mediaViewer.image">
         <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
       </ng-container>
+
+      <!-- DOI -->
       <dl>
         <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
       </dl>
+
+      <!-- IDENTIFIER(S) -->
       <h2 *ngIf="hasIdentifiers()">{{'item.page.identifiers' | translate}}</h2>
       <div style="padding-left: 18px">
         <dl>
@@ -26,65 +31,87 @@
           <ds-item-page-other-field [item]="object" [isDescriptionList]="true"></ds-item-page-other-field>
         </dl>
       </div>
+
       <dl>
-        
+        <!-- LANGUAGE -->
         <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object" [isDescriptionList]="true"></ds-item-page-iso-field>
+
+        <!-- DATE -->
         <ds-item-page-date-field [item]="object" [isDescriptionList]="true"></ds-item-page-date-field>
+
         <!-- AUTHOR(S) -->
         <dt>{{'relationships.isAuthorOf' | translate}}</dt>
         <dd *ngFor="let author of authors; let authorIndex = index" 
         [ngClass]="{ 'mrgn-bttm-0': authorIndex < (authors.length - 1), 'margin-top-none': true }">{{author.value}}</dd>
        
+        <!-- PUBLISHER -->
         <ds-generic-item-page-field [item]="object" [fields]="['dc.publisher']" [label]="'item.page.publisher'" [isDescriptionList]="true"></ds-generic-item-page-field>
+        
+        <!-- SPONSORSHIP -->
         <ds-item-page-sponsorship-field [item]="object" [isDescriptionList]="true"></ds-item-page-sponsorship-field>
       </dl>
 
     </div>
     <div class="col-xs-12 col-md-8 pull-right">
+
+      <!--Alternative Title Field-->
       <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
+      <!-- ABSTRACT -->
       <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+
+      <!-- Plain Language Summary -->
       <ds-generic-item-page-field [item]="object"
         [fields]="['dc.description']"
         [label]="'fosrc.item.edit.dynamic-field.label.summary'">
       </ds-generic-item-page-field>
 
+      <!-- DESCRIPTION -->
       <ds-generic-item-page-field [item]="object"
       [fields]="['dc.description.fosrcfull']"
       [label]="'fosrc.item.edit.dynamic-field.label.description'">
       </ds-generic-item-page-field>
+
+      <!-- DOWNLOADS -->
       <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
 
+      <!-- KEYWORDS -->
       <ds-generic-item-page-field [filterLang]="true" [item]="object"
         [fields]="['creativework.keywords']"
         [separator]="','"
         [label]="'fosrc.item.edit.dynamic-field.label.keywords'">
       </ds-generic-item-page-field>
+
+      <!-- SUBJECTS -->
       <ds-generic-item-page-field [item]="object"
         [fields]="['dc.subject']"
         [separator]="','"
         [label]="'item.page.subject'">
       </ds-generic-item-page-field>
+
       <!-- RIGHTS -->
       <h2 *ngIf="hasRights()">{{'item.page.rights' | translate}}</h2>
       <ds-item-page-rights-field [item]="object"></ds-item-page-rights-field>
+      
       <!-- PAGINATION -->
       <ds-generic-item-page-field [item]="object"
                                   [fields]="['local.pagination']"
                                   [label]="'fosrc.item.edit.dynamic-field.label.record.management.pagination'" [subheading]="false">
       </ds-generic-item-page-field>
+
+      <!-- PEER REVIEW -->
       <ds-generic-item-page-field [item]="object"
         [fields]="['local.peerreview']"
         [separator]="','"
-        [label]="'item.page.local.peerreview'">
-      
-      
+        [label]="'item.page.local.peerreview'">      
       </ds-generic-item-page-field>
       
+      <!-- OPEN ACCESS LEVEL -->
       <ds-generic-item-page-field [item]="object"
         [fields]="['dc.rights.openaccesslevel']"
         [separator]="','"
         [label]="'item.page.dc.rights.openaccesslevel'">
       </ds-generic-item-page-field>
+
       <!-- Book -->
       <h2 *ngIf="hasBook()">{{ 'fosrc.item.edit.dynamic-field.values.2.publication_type' | translate}}</h2>
       <div style="padding-left: 18px">
@@ -132,6 +159,8 @@
           
         </dl>
       </div>
+
+      <!-- Conference -->
       <h2 *ngIf="hasConference()">{{ 'fosrc.item.edit.dynamic-field.values.4.publication_type' | translate}}</h2>
       <div style="padding-left: 18px">
         
@@ -166,6 +195,7 @@
           </ds-generic-item-page-field>
         </dl>
       </div>
+
   <!-- Article -->
   <h2 *ngIf="hasArticle()">{{ 'fosrc.item.edit.dynamic-field.values.1.publication_type' | translate}}</h2>
   <div style="padding-left: 18px">
@@ -224,6 +254,7 @@
                                   [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
       </ds-generic-item-page-field>
     </div>
+
       <!-- PROJECT -->
       <h2 *ngIf="hasProject()">{{'item.page.heading.project' | translate}}</h2>
       <div style="padding-left: 18px">
@@ -238,7 +269,9 @@
           </ds-generic-item-page-field>
         </dl>
       </div>
+
       <!-- Start FOSRC Changes - 1594 -->
+      <!-- RELATIONSHIPS -->
       <ds-metadata-field-wrapper *ngIf="hasDcRelationMetaData" [label]="'item.page.relationship' | translate">
         <dl style="padding-left: 18px">
         <div *ngIf="hasDcRelationMetaData_isformatof">
@@ -292,21 +325,27 @@
       </dl>
       </ds-metadata-field-wrapper>
       
+      <!-- CITATION -->
       <ds-generic-item-page-field [item]="object"
         [fields]="['dc.identifier.citation']"
         [label]="'item.page.citation'">
       </ds-generic-item-page-field>
       <!-- End of FOSRC Changes  -->
+
+      <!-- URI -->
       <ds-item-page-uri-field [item]="object"
         [fields]="['dc.identifier.uri']"
         [label]="'item.page.uri'">
       </ds-item-page-uri-field>
+
+      <!-- COLLECTIONS -->
       <ds-item-page-collections [item]="object"></ds-item-page-collections>
       <div>
         <a class="btn btn-outline-primary" [routerLink]="[itemPageRoute + '/full']" role="button">
           <span aria-hidden="true" class="fas fa-info-circle"></span> {{"item.page.link.full" | translate}}
         </a>
       </div>
+
     </div>
   </div>
 </div>
