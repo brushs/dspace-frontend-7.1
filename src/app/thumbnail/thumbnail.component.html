@@ -13,7 +13,12 @@
       </div>
     </ng-container>
     <ng-template #GcWebTemplate>
-      <img [src]="src" alt="" class="img-responsive" />
+      <img *ngIf="src !== null" [src]="src | dsSafeUrl" [alt]="alt | translate" (error)="errorHandler()" class="img-responsive" />
+      <div *ngIf="src === null" class="thumbnail-content outer">
+        <div class="inner">
+          <div class="thumbnail-placeholder w-100 h-100 p-3 lead">{{ placeholder | translate }}</div>
+        </div>
+      </div>
     </ng-template>
   </ng-template>
 </div>

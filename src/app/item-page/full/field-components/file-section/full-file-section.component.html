@@ -12,7 +12,7 @@
 
                 <ng-container *ngFor="let file of originals?.page;">
                     <p class="mrgn-tp-lg" *ngVar="(file.thumbnail | async)?.payload as url">
-                        <ds-thumbnail *ngIf="url" [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
+                        <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
                     </p>
                     <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
                     <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
@@ -35,7 +35,7 @@
 
                     <ng-container *ngFor="let file of licenses?.page;">
                     <p class="mrgn-tp-lg" *ngVar="(file.thumbnail | async)?.payload as url">
-                        <ds-thumbnail *ngIf="url" [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
+                        <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
                     </p>
 
                     <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
