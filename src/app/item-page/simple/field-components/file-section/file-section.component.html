@@ -1,5 +1,5 @@
 <ng-container *ngVar="(bitstreams$ | async) as bitstreams">
-  <ds-metadata-field-wrapper *ngIf="bitstreams?.length > 0" [label]="label | translate">
+  <ds-metadata-field-wrapper *ngIf="bitstreams?.length > 0" [label]="label | translate" [elementID]="elementID">
     <div class="file-section">
       <ul class="download-links">
         <li *ngFor="let file of bitstreams; let last=last;">

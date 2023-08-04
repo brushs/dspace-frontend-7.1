@@ -12,7 +12,7 @@ import { MetadataValue } from 'src/app/core/shared/metadata.models';
 @listableObjectComponent(Item, ViewMode.StandalonePage)
 @Component({
   selector: 'ds-untyped-item',
-  styleUrls: ['../../../../../themes/wetoverlay/styles/static-pages.scss'],
+  styleUrls: ['../../../../../themes/wetoverlay/styles/static-pages.scss', './untyped-item.component.scss'],
   templateUrl: './untyped-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -28,6 +28,7 @@ export class UntypedItemComponent extends ItemComponent {
   hasDcRelationMetaData_istranslationof: boolean = false;
   hasDcRelationMetaData_isversionof: boolean = false;
   authors: MetadataValue[];
+  readonly descriptionElementId: string = 'description-element';
   checkRelationMetaData (): void {
     if (this.object.metadata['dc.relation.isformatof'] ||
     this.object.metadata['dc.relation.ispartof'] ||
@@ -87,6 +88,10 @@ export class UntypedItemComponent extends ItemComponent {
         return true;
     }
     return false;
+  }
+
+  public hasSubjects(): boolean {
+    return this.object.metadata['dc.subject'] ? true : false;
   }
 
   public hasLanguage(): boolean {
@@ -198,6 +203,14 @@ export class UntypedItemComponent extends ItemComponent {
     };
 
     return returnValue;
+  }
+
+  scrollToElement(event: Event, elementId: string): void {
+    event.preventDefault(); // Prevent the default navigation
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
   /* End of FOSRC Changes */
 }

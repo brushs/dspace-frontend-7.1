@@ -20,6 +20,8 @@ export class MetadataFieldWrapperComponent {
 
   @Input() hideIfNoTextContent = true;
 
+  @Input() elementID: string;
+
   ngOnInit(): void {
   }
 }
