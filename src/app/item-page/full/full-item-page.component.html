@@ -20,7 +20,7 @@
         <dl>
           <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
             <ng-container *ngFor="let mdValue of mdEntry.value; let first=first; let last=last;">
-              <dt *ngIf="first" class="text-primary" lang="en">
+              <dt *ngIf="first" lang="en">
                 {{mdEntry.key}}{{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
               </dt>
               <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}">
