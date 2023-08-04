@@ -35,6 +35,8 @@
   "item.page.iso": "Language of the publication",
   "item.page.subject": "Subject",
   "item.page.identifiers": "Identifiers",
+  "en": "English",
+  "fr": "French",
   // Simple item page translation ends  
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
@@ -479,7 +481,7 @@
   "submission.sections.accesses.form.label.filename": "Filename (required)",
   "submission.sections.accesses.form.label.translated.filedescription": "Translation of File Description  (required)",
   "submission.sections.accesses.form.label.translated.filename": "Translated Filename (required)",
-  "header.skiptolinks.aboutgc": "Skip to about government",
+  "header.skiptolinks.aboutgc": "Skip to \"About government\"",
   "header.skiptolinks.menu": "Skip to section menu",
 
   "input.label.datepicker.year": "Year",

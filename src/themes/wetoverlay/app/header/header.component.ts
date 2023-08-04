@@ -78,13 +78,20 @@ export class HeaderComponent extends BaseComponent {
     return this.locationPath;
   }
 
-  redirectToAnchor(anchor) { 
-    window.location.hash = anchor;
+  redirectToAnchor(anchor) {
+    if(window.location.hash === anchor) {
+      window.location.hash = '';
+      setTimeout(()=> {
+        window.location.hash = anchor
+      }, 150)
+    } else {
+      window.location.hash = anchor;
+    }
 }
   // FOSRC code end
 
   scrollToMain() {
-    this.redirectToAnchor('#wb-main')
+    this.redirectToAnchor('#wb-main');
   }
 
   scrollToAbout() {

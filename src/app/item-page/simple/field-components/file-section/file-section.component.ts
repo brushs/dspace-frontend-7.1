@@ -17,7 +17,8 @@ import { getFirstCompletedRemoteData } from '../../../../core/shared/operators';
  */
 @Component({
   selector: 'ds-item-page-file-section',
-  templateUrl: './file-section.component.html'
+  templateUrl: './file-section.component.html',
+  styleUrls: ['./file-section.component.scss'],
 })
 export class FileSectionComponent implements OnInit {
 

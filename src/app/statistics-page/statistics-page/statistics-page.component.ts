@@ -50,6 +50,7 @@ export abstract class StatisticsPageComponent<T extends DSpaceObject> implements
   }
 
   ngOnInit(): void {
+    this.router.navigate(['/'])
     this.scope$ = this.getScope$();
     this.reports$ = this.getReports$();
     this.hasData$ = this.reports$.pipe(

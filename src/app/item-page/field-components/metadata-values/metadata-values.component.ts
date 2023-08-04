@@ -33,6 +33,11 @@ export class MetadataValuesComponent {
 
   @Input() filterLang: boolean = false;
 
+  /**
+   * Whether or not the component is rendered inside a description list
+   */
+  @Input() isDescriptionList: boolean;
+
   constructor(
     public localeService: LocaleService
   ) { }
