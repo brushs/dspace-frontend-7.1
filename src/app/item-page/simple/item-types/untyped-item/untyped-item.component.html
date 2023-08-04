@@ -12,6 +12,13 @@
     <div class="col-xs-12 col-md-4 pull-left">
       <!-- TODO: Translate -->
       <p><a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">Download files</a></p>
+
+      <!-- THUMBNAIL -->
+      <ng-container *ngIf="!mediaViewer.image">
+        <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+          <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+        </ds-metadata-field-wrapper>
+      </ng-container>
       <!-- IMAGE -->
       <ng-container *ngIf="mediaViewer.image">
         <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
