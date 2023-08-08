@@ -24,6 +24,8 @@ export class FileSectionComponent implements OnInit {
 
   @Input() item: Item;
 
+  @Input() elementID: string;
+
   label = 'item.page.files';
 
   separator = '<br/>';
