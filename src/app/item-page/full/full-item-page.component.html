@@ -1,28 +1,29 @@
-<div class="container" *ngVar="(itemRD$ | async) as itemRD">
+<div gcweb class="container" *ngVar="(itemRD$ | async) as itemRD">
   <div class="item-page" *ngIf="itemRD?.hasSucceeded" @fadeInOut>
     <div *ngIf="itemRD?.payload as item">
       <ds-item-alerts [item]="item"></ds-item-alerts>
       <ds-item-versions-notice [item]="item"></ds-item-versions-notice>
       <ds-view-tracker [object]="item"></ds-view-tracker>
-      <div class="d-flex flex-row">
+      <!-- <div class="d-flex flex-row"> -->
+        <div class="row">
+          <div class="col-md-12 pull-left mrgn-bttm-lg">
+
         <ds-item-page-title-field class="mr-auto" [item]="item"></ds-item-page-title-field>
         <div class="pl-2">
           <ds-dso-page-edit-button [pageRoute]="itemPageRoute$ | async" [dso]="item" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
         </div>
-      </div>
-      <div class="simple-view-link my-3" *ngIf="!fromWfi">
-        <a class="btn btn-outline-primary" [routerLink]="[(itemPageRoute$ | async)]">
-          {{"item.page.link.simple" | translate}}
-        </a>
-      </div>
+      <!-- </div> -->
+      <p class="h4" *ngIf="!fromWfi"><a [routerLink]="[(itemPageRoute$ | async)]" class="btn btn-default"><span class="fas fa-info-circle"></span> {{"item.page.link.simple" | translate}} </a>
+
+      <h2 class="h3">Full item details</h2>
       <!-- OSPR changes change table to dl-->
         <dl>
           <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
-            <ng-container *ngFor="let mdValue of mdEntry.value;">
-              <dt class="p-2" lang="en">
+            <ng-container *ngFor="let mdValue of mdEntry.value; let first=first; let last=last;">
+              <dt *ngIf="first" lang="en">
                 {{mdEntry.key}}{{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
               </dt>
-              <dd class="p-2 pl-4" lang="{{mdValue.language ? mdValue.language : 'en'}}">
+              <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}">
                 {{mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate}}
               </dd>
             </ng-container>
@@ -42,4 +43,8 @@
   </div>
   <ds-error *ngIf="itemRD?.hasFailed" message="{{'error.item' | translate}}"></ds-error>
   <ds-loading *ngIf="itemRD?.isLoading" message="{{'loading.item' | translate}}"></ds-loading>
+  </div>
+  </div>
+  <ds-page-details></ds-page-details>
 </div>
+

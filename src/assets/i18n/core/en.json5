@@ -86,6 +86,7 @@
   "collection.form.description-provenance-french": "Provenance",
   // end FOSRC the above can be deleted
 
+  "item.page.filesection.download-file": "Download File",
   //start FOSRC - community form
   "community.breadcrumbs": "Community List",
   "community.form.errors.description-nom.required": "Error: You must enter a community name in french",

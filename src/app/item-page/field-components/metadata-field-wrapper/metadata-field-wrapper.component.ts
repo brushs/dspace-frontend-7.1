@@ -20,6 +20,8 @@ export class MetadataFieldWrapperComponent {
 
   @Input() hideIfNoTextContent = true;
 
+  @Input() useGcWeb = false;
+
   ngOnInit(): void {
   }
 }
