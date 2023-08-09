@@ -45,7 +45,7 @@ export class HeaderComponent extends BaseComponent {
       let intId = setInterval(() => {
         let basicHTMLLink = document.querySelector('a.wb-sl[href="?wbdisable=true"]');
         if(basicHTMLLink) {
-          basicHTMLLink.remove();
+          basicHTMLLink.parentElement.remove();
           clearInterval(intId);
         }
       }, 500)
