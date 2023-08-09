@@ -38,8 +38,10 @@ export class MetadataValuesComponent {
    */
   @Input() isDescriptionList: boolean;
 
+  @Input() useGcWeb: boolean = false;
+
   constructor(
-    public localeService: LocaleService
+    public localeService: LocaleService,
   ) { }
 
   ngOnInit(): void {
