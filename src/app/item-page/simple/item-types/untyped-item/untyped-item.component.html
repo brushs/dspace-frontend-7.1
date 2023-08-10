@@ -22,9 +22,8 @@
         <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
       </ng-container>
 
-      <!-- TODO: Translate -->
       <p *ngIf="showDownloadLinksButton">
-        <a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">Download files</a>
+        <a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">{{'item.page.download.files.link' | translate}}</a>
       </p>
 
       <!-- DOI -->
@@ -96,7 +95,7 @@
       </ds-generic-item-page-field>
 
       <!-- PEER REVIEW -->
-      <ds-generic-item-page-field [item]="object" *ngIf="metadataContainsKey('local.peerreviewed')"
+      <ds-generic-item-page-field [item]="object" *ngIf="metadataContainsKey('local.peerreview')"
         [fields]="['local.peerreview']"
         [separator]="','"
         [label]="'item.page.local.peerreview'">      
