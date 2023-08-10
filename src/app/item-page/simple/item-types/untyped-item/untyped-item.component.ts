@@ -28,6 +28,8 @@ export class UntypedItemComponent extends ItemComponent {
   hasDcRelationMetaData_istranslationof: boolean = false;
   hasDcRelationMetaData_isversionof: boolean = false;
   authors: MetadataValue[];
+  showDownloadLinksButton: boolean = false;
+
   readonly descriptionElementId: string = 'description-element';
   checkRelationMetaData (): void {
     if (this.object.metadata['dc.relation.isformatof'] ||
@@ -150,6 +152,10 @@ export class UntypedItemComponent extends ItemComponent {
     };
 
     return false
+  }
+
+  public setDownloadLinksButtonVisibility(show : boolean): void {
+    this.showDownloadLinksButton = show;
   }
 
   scrollToElement(event: Event, elementId: string): void {

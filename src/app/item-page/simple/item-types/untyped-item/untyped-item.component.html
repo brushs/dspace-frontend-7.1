@@ -23,7 +23,9 @@
       </ng-container>
 
       <!-- TODO: Translate -->
-      <p><a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">Download files</a></p>
+      <p *ngIf="showDownloadLinksButton">
+        <a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">Download files</a>
+      </p>
 
       <!-- DOI -->
       <dl *ngIf="metadataContainsKey('dc.identifier.doi')">
@@ -375,7 +377,10 @@
 
       
       <!-- DOWNLOADS -->
-      <ds-item-page-file-section [item]="object" [elementID]="descriptionElementId"></ds-item-page-file-section>
+      <ds-item-page-file-section [item]="object" (hasBitstreams)="setDownloadLinksButtonVisibility($event)"
+      [elementID]="descriptionElementId">
+
+      </ds-item-page-file-section>
 
       <!-- URI -->
       <ds-item-page-uri-field [item]="object"

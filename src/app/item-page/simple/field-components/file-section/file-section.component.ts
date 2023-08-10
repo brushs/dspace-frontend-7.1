@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BitstreamDataService } from '../../../../core/data/bitstream-data.service';
 
@@ -26,6 +26,8 @@ export class FileSectionComponent implements OnInit {
 
   @Input() elementID: string;
 
+  @Output() hasBitstreams: EventEmitter<boolean> = new EventEmitter();
+
   label = 'item.page.files';
 
   separator = '<br/>';
@@ -49,6 +51,13 @@ export class FileSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNextPage();
+    this.bitstreams$.subscribe(bitstreams => {
+      if (bitstreams && bitstreams.length > 0) {
+        this.hasBitstreams.emit(true);
+      } else {
+        this.hasBitstreams.emit(false);
+      }
+    });
   }
 
   /**
