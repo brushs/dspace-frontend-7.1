@@ -76,4 +76,12 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
   ngOnDestroy() {
     this.subs.filter((sub) => hasValue(sub)).forEach((sub) => sub.unsubscribe());
   }
+
+  isHyperLink(field: string, value: string) {
+    if(field === 'dc.identifier' || field === 'dc.identifier.uri') {
+      let urlRegex = /^(https:|http:|www\.)\S*/gi;
+      return value.match(urlRegex);
+    }
+    return false;
+  }
 }
