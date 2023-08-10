@@ -34,8 +34,8 @@
 </ng-container>
 
 <ng-template #GcWebTemplate>
-  <details [open]="!(collapsed$ | async)" class="gc-chckbxrdio">
-    <summary>{{'search.filters.filter.' + filter.name + '.head'| translate}}</summary>
+  <!-- <details [open]="!(collapsed$ | async)" class="gc-chckbxrdio">
+    <summary>{{'search.filters.filter.' + filter.name + '.head'| translate}}</summary> -->
     <fieldset>
       <legend><span class="field-name wb-inv">{{'search.filters.filter.' + filter.name + '.head'| translate}}</span></legend>
        <ds-search-facet-filter-wrapper 
@@ -44,5 +44,5 @@
         [facetTerm]="('search.filters.filter.' + filter.name + '.head'| translate)"
         [inPlaceSearch]="inPlaceSearch"></ds-search-facet-filter-wrapper>
    </fieldset>
- </details>
+ <!-- </details> -->
 </ng-template>

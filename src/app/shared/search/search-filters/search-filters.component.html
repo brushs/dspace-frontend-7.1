@@ -15,20 +15,24 @@
 </ng-container>
 
 <ng-template #GcWebTemplate>
+  <h2>{{"search.filters.head" | translate}}</h2>
   <form action="#" method="get" id="searchForm" class="wb-tables-filter" >
-    <section *ngIf="(filters | async)?.hasSucceeded" class="panel panel-default">
-       <header class="panel-heading">
-          <h2 class="panel-title h4">{{"search.filters.head" | translate}}</h2>
-       </header>
-       <div class="panel-body">
-          <section id="details-elements">
-            <ng-container *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate; let first = first;">
+    <ds-search-labels [inPlaceSearch]="inPlaceSearch" [useGcWeb]="true"></ds-search-labels>
+    <ng-container *ngIf="(filters | async)?.hasSucceeded">
+      <ng-container *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate; let first = first;">
+        <section class="panel panel-primary mrgn-tp-lg clearfix">
+          <header class="panel-heading">
+            <h3 class="panel-title">
+              <span class="fas fa-filter"></span>
+              {{'search.filters.filter.' + filter.name + '.head'| translate}}
+            </h3>
+          </header>
+            <div class="panel-body">
               <ds-search-filter [useGcWeb]="true" [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
-            </ng-container>
-          </section>
-      </div>
-      <footer class="panel-footer">
-          <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-primary" type="submit"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button></footer>
-      </section>
+            </div>
+        </section>
+      </ng-container>
+    </ng-container>
+    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-primary" type="submit"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button>
   </form>
 </ng-template>
