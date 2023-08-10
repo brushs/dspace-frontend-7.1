@@ -9,7 +9,7 @@
 <ng-template #GcWebTemplate>
   <ng-container>
     <div class="simple-view-element" [class.d-none]="hideIfNoTextContent && noContent">
-      <h2 *ngIf="!(hideIfNoTextContent && noContent)" class="simple-view-element-header h3">{{label}}</h2>
+      <span *ngIf="!((hideIfNoTextContent && noContent)) && label" class="simple-view-element-header h3">{{label}}</span>
       <div #GcContent>
         <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
       </div>
