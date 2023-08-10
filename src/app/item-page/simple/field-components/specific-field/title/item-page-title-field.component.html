@@ -8,9 +8,9 @@
 <!--FOSRC change end (h2 is converted to h1)-->
 
 
-<h1 class="pb-0" [style.line-height]="'inherit'" property="name" id="wb-cont">
+<h1 class="pb-0" property="name" id="wb-cont">
   <ng-container *ngIf="item.firstMetadataValue('dspace.entity.type') as type">
     {{ type.toLowerCase() + '.page.titleprefix' | translate }}
   </ng-container>
-  <ds-metadata-values [mdValues]="item?.allMetadata(fields)"></ds-metadata-values>
+  <ds-metadata-values [useGcWeb]="useGcWeb" [mdValues]="item?.allMetadata(fields)"></ds-metadata-values>
 </h1>

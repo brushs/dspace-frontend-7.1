@@ -17,6 +17,8 @@ export class ItemPageTitleFieldComponent extends ItemPageFieldComponent {
      * The item to display metadata for
      */
     @Input() item: Item;
+    
+    @Input() useGcWeb = false;
 
     /**
      * Separator string between multiple values of the metadata fields defined
@@ -31,6 +33,4 @@ export class ItemPageTitleFieldComponent extends ItemPageFieldComponent {
     fields: string[] = [
         'dc.title'
     ];
-
-
 }
