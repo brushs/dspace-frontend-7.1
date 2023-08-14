@@ -66,7 +66,7 @@
 
       <!-- DESCRIPTION -->
       <ds-generic-item-page-field *ngIf="metadataContainsKey('dc.description.fosrcfull')" [item]="object"
-      [fields]="['dc.description.fosrcfull']"
+      [fields]="['dc.description.fosrcfull','dc.description.fosrcfull-fosrctranslation']"
       [label]="'fosrc.item.edit.dynamic-field.label.description'">
       </ds-generic-item-page-field>
 
@@ -74,7 +74,7 @@
       <h2 class="h3" *ngIf="metadataContainsKey('dc.subject')">{{'item.page.subject' | translate}}</h2>
       <!-- Horizontal unordered list -->
       <ul class="horizontal-list">
-        <li *ngFor="let subject of object.findMetadataSortedByPlace(['dc.subject'])" [attr.lang]="subject.language" >{{subject.value}}</li>
+        <li *ngFor="let subject of object.findMetadataSortedByPlace(['dc.subject'])" [attr.lang]="subject.language">{{subject.value}}</li>
       </ul>
      
       <!-- KEYWORDS -->
