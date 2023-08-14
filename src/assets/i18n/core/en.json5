@@ -488,6 +488,7 @@
   "input.label.datepicker.year": "Year",
   "input.label.datepicker.month": "Month",
   "input.label.datepicker.day": "Day",
+  "pagination.go.to": "Go to Page {{page}}",
   "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
   "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
 
@@ -1909,6 +1910,8 @@
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
+  "search.filters.filter.start": "Start Date",
+  "search.filters.filter.end": "End Date",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",
