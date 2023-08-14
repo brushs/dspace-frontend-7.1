@@ -6,6 +6,7 @@ import { Site } from '../core/shared/site.model';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { ScienceCommunityService } from '../core/science/science-community.service';
 
 @Component({
   selector: 'ds-home-page',
@@ -21,7 +22,8 @@ export class HomePageComponent implements OnInit {
     private router: Router,
     public translate: TranslateService,
     private http: HttpClient,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private scienceCommunityService: ScienceCommunityService,
   ) {
     if (this.translate.currentLang === 'en' && this.router.url.includes('accueil')) {
       this.router.navigate(['/home'])
@@ -38,6 +40,13 @@ export class HomePageComponent implements OnInit {
 
     this.http.get(`${ 'https://'  + baseHost + '/server'}/api/core/communities/search/top?page=0&size=20&sort=dc.title,ASC&embed.size=subcommunities=10&embed=subcommunities`).subscribe(x => {
       if (x['_embedded']?.['communities']) {
+
+        const parentScienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'));
+        if (parentScienceCommunity) {
+          // saving the science id to retrive only science community in community page
+          this.scienceCommunityService.setScienceId(parentScienceCommunity?.id);
+        }
+
         let scienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'))?.['_embedded']?.['subcommunities']
         if (scienceCommunity?.['_embedded']?.['subcommunities']) {
           this.subcommunities = scienceCommunity?.['_embedded']?.['subcommunities'].reduce((prev, curr) => {
