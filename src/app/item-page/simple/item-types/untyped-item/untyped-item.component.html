@@ -74,7 +74,7 @@
       <h2 class="h3" *ngIf="metadataContainsKey('dc.subject')">{{'item.page.subject' | translate}}</h2>
       <!-- Horizontal unordered list -->
       <ul class="horizontal-list">
-        <li *ngFor="let subject of object.findMetadataSortedByPlace(['dc.subject'])">{{subject.value}}</li>
+        <li *ngFor="let subject of object.findMetadataSortedByPlace(['dc.subject'])" [attr.lang]="subject.language" >{{subject.value}}</li>
       </ul>
      
       <!-- KEYWORDS -->
