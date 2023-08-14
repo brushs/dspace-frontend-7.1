@@ -1,6 +1,6 @@
 <ng-container *ngVar="(bitstreams$ | async) as bitstreams">
   <h2 class="h3" *ngIf="bitstreams?.length > 0"  id="{{elementID}}">{{label | translate}}</h2>
-  <div class="file-section">
+  <div class="file-section"  *ngIf="bitstreams?.length > 0" >
     <ul class="download-links">
       <li *ngFor="let file of bitstreams; let last=last;">
         <ds-file-download-link  [bitstream]="file">

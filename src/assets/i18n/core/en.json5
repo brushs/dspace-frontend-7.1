@@ -21,7 +21,8 @@
   // Policies page labels
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
 
-  //Simple item page translations ticket 1587
+  //Simple item page translations ticket 1587  
+  "item.page.download.files.link": "Download files",
   "item.page.heading.project": "Project",
   "alternative.title": "Alternative Title",
   "item.page.keywords": "Keywords",
