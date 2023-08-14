@@ -1,5 +1,7 @@
-@mixin clamp($lines, $bg, $size-factor: 1, $line-height: $line-height-base) {
-  $height: $line-height * $font-size-base * $size-factor;
+// @mixin clamp($lines, $bg, $size-factor: 1, $line-height: $line-height-base) {
+// $height: $line-height * $font-size-base * $size-factor;
+@mixin clamp($lines, $bg, $size-factor: 1, $line-height: 1.65) {
+  $height: $line-height * 20px * $size-factor;
   &.fixedHeight {
     height: $lines * $height;
   }
