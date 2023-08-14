@@ -1,1 +1,3 @@
 environments/
+src/environments
+src/environments/*

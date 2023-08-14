@@ -2,52 +2,22 @@
 <!-- OSPR change - switch to gcweb template -->
 <ul class="list-unstyled">
   <ng-container *ngFor="let node of (dataSource['communityList$'] | async); let i = index; let first = first;">
-      <li [style.padding-left]="(node.level * 40) + 'px'">
-        
-        <!-- Nodes with child nodes/subcommunities/nested content -->
-        <ng-container *ngIf="(node.isExpandable$ | async)">
-        
-            <details class="pb-0" [attr.open]= "node.isExpanded? '': null" >
-              <summary #toggle [attr.aria-label]="'toggle ' + node.name" [attr.id]="'parent-node-' + node.id" class="mb-0" (click)="toggleExpanded(node)" (keydown.enter)="$event.preventDefault();toggle.click()" (keydown.space)="$event.preventDefault();toggle.click()">
-                <a (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" (keydown.space)="$event.stopPropagation()" [routerLink]="node.route" [lang]="(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.language">
-                  {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
-                </a>
-                <div class="row" *ngIf="node?.payload?.shortDescription">
-                  <div class="col">
-                    <sub>{{node.payload.shortDescription}}</sub>
-                  </div>
-                </div>
-              </summary>
-            </details>
+    <li [style.padding-left]="(node.level * 40) + 'px'">
 
-          </ng-container>
+      <!-- Nodes with child nodes/subcommunities/nested content -->
+      <ng-container *ngIf="(node.isExpandable$ | async)">
+        <ng-container *ngTemplateOutlet="expandable; context: { node: node }"></ng-container>
+      </ng-container>
 
-          <!-- Nodes without child nodes/subcommunities/nested content -->
-          <ng-container *ngIf="!(node.isExpandable$ | async)">
-            
-            <div class="well well-sm bg-white leaf-node">
-              <a [routerLink]="node.route" [lang]="(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.language">
-                {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
-              </a>
-              <div class="row" *ngIf="node?.payload?.shortDescription">
-                <div class="col">
-                  <sub>{{node.payload.shortDescription}}</sub>
-                </div>
-              </div>
-            </div>
-          
-          </ng-container>
+      <!-- Nodes without child nodes/subcommunities/nested content -->
+      <ng-container *ngIf="!(node.isExpandable$ | async)">
+        <ng-container *ngTemplateOutlet="nonexpandable; context: { node: node }"></ng-container>
+      </ng-container>
 
-          <!-- Nodes with "show more" content -->
-          <ng-container *ngIf="node.isShowMoreNode">
-
-            <div class="well well-sm bg-white mb-1 leaf-node">
-              <a *ngIf="node!==loadingNode" [routerLink]="" (click)="getNextPage(node)" role="button">
-                <span aria-hidden="true" class="fas fa-angle-down"></span> {{ 'communityList.showMore' | translate }}
-              </a>
-            </div>
-            
-          </ng-container>
+      <!-- Nodes with "show more" content -->
+      <ng-container *ngIf="node.isShowMoreNode">
+        <ng-container *ngTemplateOutlet="showmore; context: { node: node }"></ng-container>
+      </ng-container>
 
     </li>
     <li *ngIf="(node===loadingNode) && (dataSource.loading$ | async)" [style.padding-left]="((node.level+1) * 40) + 'px'">
@@ -55,6 +25,43 @@
     </li>
   </ng-container>
 </ul>
+
+<ng-template #expandable let-node="node">
+  <details class="pb-0" [attr.open]= "node.isExpanded? '': null" >
+    <summary #toggle [attr.aria-label]="'toggle ' + node.name" [attr.id]="'parent-node-' + node.id" class="mb-0" (click)="toggleExpanded(node)" (keydown.enter)="$event.preventDefault();toggle.click()" (keydown.space)="$event.preventDefault();toggle.click()">
+      <a (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" (keydown.space)="$event.stopPropagation()" [routerLink]="node.route" [lang]="(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.language">
+        {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
+      </a>
+      <div class="row" *ngIf="node?.payload?.shortDescription">
+        <div class="col">
+          <sub>{{node.payload.shortDescription}}</sub>
+        </div>
+      </div>
+    </summary>
+  </details>
+</ng-template>
+
+<ng-template #nonexpandable let-node="node">
+  <div class="well well-sm leaf-node">
+    <a [routerLink]="node.route" [lang]="(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.language">
+      {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
+    </a>
+    <div class="row" *ngIf="node?.payload?.shortDescription">
+      <div class="col">
+        <sub>{{node.payload.shortDescription}}</sub>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #showmore let-node="node">
+  <div class="well well-sm bg-white mb-1 leaf-node">
+    <a *ngIf="node!==loadingNode" [routerLink]="" (click)="getNextPage(node)" role="button">
+      <span aria-hidden="true" class="fas fa-angle-down"></span> {{ 'communityList.showMore' | translate }}
+    </a>
+  </div>
+</ng-template>
+
 <!-- OSPR change to gcweb template end -->
 
 <!-- <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl"> -->

@@ -92,6 +92,16 @@ export class UntypedItemComponent extends ItemComponent {
     return this.metadataHasOneOfTheseFields(keys);
   }
 
+  public hasPlainLanguageSummary(): boolean {
+    var keys = ['dc.description', 'dc.description.fosrctranslation'];
+    return this.metadataHasOneOfTheseFields(keys);
+  }
+
+  public hasDescription(): boolean {
+    var keys = ['dc.description.fosrcfull','dc.description.fosrcfull-fosrctranslation'];
+    return this.metadataHasOneOfTheseFields(keys);
+  }
+
   public hasIdentifiers(): boolean {
     var keyList: string[] = ['dc.identifier.govdoc','dc.identifier.issn','dc.identifier.isbn','dc.identifier.other','dc.identifier.organization','dc.identifier.pubmedID']
     return this.metadataHasOneOfTheseFields(keyList);

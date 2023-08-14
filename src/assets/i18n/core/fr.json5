@@ -51,7 +51,7 @@
   "item.page.sponsorship": "Commanditaires",
   // "item.page.doi": "DOI",
   "item.page.doi": "DOI",
-  // "item.page.govdoc": "Government Docucument Number",
+  // "item.page.govdoc": "Government Document Number",
   "item.page.govdoc": "Numéro de document gouvernemental",
   // "item.page.isbn": "ISBN",
   "item.page.isbn": "ISBN",
@@ -505,6 +505,11 @@
   "community.form.error.validation.license.notgranted": "Vous devez accorder cette licence pour compléter votre soumission. Si vous n'êtes pas en mesure d'accorder cette licence pour le moment, vous pouvez économiser votre travail et revenir plus tard ou supprimer la soumission.", // TODO: FOSRC Official translation
   // "community.form.error.validation.filerequired": "The file upload is mandatory.",
   "community.form.error.validation.filerequired": "Le téléchargement de fichiers est obligatoire.", // TODO: FOSRC Official translation
+  // "communityList.expandAll": "Expand all",
+  "communityList.expandAll": "Afficher tout",
+  //"communityList.collapseAll": "Collapse all",
+  "communityList.collapseAll": "Réduire tout",
+
   // Values for selectable dropdown list for item submission form
   // "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Yes",
   "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Oui",
@@ -697,8 +702,8 @@
   "fosrc.item.edit.dynamic-field.values.2.contributor_identifiers": "ROR",
   // "fosrc.item.edit.dynamic-field.values.3.contributor_identifiers": "Other",
   "fosrc.item.edit.dynamic-field.values.3.contributor_identifiers": "Autre",
-  // "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Government Docucument Number",
-  "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Numéro du document gouvernemental",
+  // "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Government Document Number",
+  "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Numéro de document gouvernemental",
   // "fosrc.item.edit.dynamic-field.values.2.common_identifiers": "ISBN",
   "fosrc.item.edit.dynamic-field.values.2.common_identifiers": "ISBN",
   // "fosrc.item.edit.dynamic-field.values.3.common_identifiers": "ISSN",
