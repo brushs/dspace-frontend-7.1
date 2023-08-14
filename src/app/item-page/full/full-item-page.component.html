@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-md-12 pull-left mrgn-bttm-lg">
 
-        <ds-item-page-title-field class="mr-auto" [item]="item"></ds-item-page-title-field>
+        <ds-item-page-title-field class="mr-auto" [item]="item" [useGcWeb]="true"></ds-item-page-title-field>
         <div class="pl-2">
           <ds-dso-page-edit-button [pageRoute]="itemPageRoute$ | async" [dso]="item" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
         </div>
@@ -23,8 +23,11 @@
               <dt *ngIf="first" lang="en">
                 {{mdEntry.key}}{{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
               </dt>
-              <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}">
-                {{mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate}}
+              <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}" *ngVar="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate) as val">
+                <a *ngIf="isHyperLink(mdEntry.key, val); else nonHyperLink" [attr.href]="val">{{val}}</a>
+                <ng-template #nonHyperLink>
+                  {{val}}
+                </ng-template>
               </dd>
             </ng-container>
           </ng-container>

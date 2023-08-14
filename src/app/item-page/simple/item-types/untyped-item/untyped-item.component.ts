@@ -28,6 +28,8 @@ export class UntypedItemComponent extends ItemComponent {
   hasDcRelationMetaData_istranslationof: boolean = false;
   hasDcRelationMetaData_isversionof: boolean = false;
   authors: MetadataValue[];
+  showDownloadLinksButton: boolean = false;
+
   readonly descriptionElementId: string = 'description-element';
   checkRelationMetaData (): void {
     if (this.object.metadata['dc.relation.isformatof'] ||
@@ -71,117 +73,58 @@ export class UntypedItemComponent extends ItemComponent {
     this.authors = this.object.findMetadataSortedByPlace(['dc.contributor.author', 'dc.creator']);
   }
 
-  public hasIdentifiers(): boolean {
-    var keyList: string[] = ['govdoc','issn','isbn','other','organization','pubmedID']
-    var result: boolean = false;
-    for(let item of keyList) {
-      if(this.object.metadata['dc.identifier.' + item]) {
-        result = true;
-        break;
-      }
-    };
-    return result;
-  }
-
-  public hasRights(): boolean {
-    if(this.object.metadata['dc.rights']) {
-        return true;
-    }
-    return false;
-  }
-
-  public hasSubjects(): boolean {
-    return this.object.metadata['dc.subject'] ? true : false;
+  public metadataContainsKey(key: string): boolean {
+    return this.object.metadata[key] ? true : false;
   }
 
   public hasLanguage(): boolean {
     let languageFields: string[] = ['dc.language.iso', 'dc.language', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en']
+    return this.metadataHasOneOfTheseFields(languageFields);
+  }
 
-    let returnValue = false;
-    
-    for(var languageField of languageFields) {
-        if(this.object.metadata[languageField]) {
-          returnValue = true;
-          break;
-        }
-    };
+  public hasAlternativeTitle(): boolean {
+    var keys = ['dc.title.fosrctranslation', 'dc.title.alternative', 'dc.title.alternative-fosrctranslation'];
+    return this.metadataHasOneOfTheseFields(keys);
+  }
 
-    return returnValue;
+  public hasAbstract(): boolean {
+    var keys = ['dc.description.abstract', 'dc.description.abstract-fosrctranslation'];
+    return this.metadataHasOneOfTheseFields(keys);
+  }
+
+  public hasIdentifiers(): boolean {
+    var keyList: string[] = ['dc.identifier.govdoc','dc.identifier.issn','dc.identifier.isbn','dc.identifier.other','dc.identifier.organization','dc.identifier.pubmedID']
+    return this.metadataHasOneOfTheseFields(keyList);
+  } 
+
+  public hasPubMedIDIdentifier(): boolean {
+    return this.object.metadata['dc.identifier.pubmedID'] ? true : false;
   }
 
   public hasBook(): boolean {
     let languageFields: string[] = ['local.book.series', 'local.book.seriesnum', 'local.book.pagination', 'local.book.edition']
-
-    let returnValue = false;
-    
-    for(var languageField of languageFields) {
-        if(this.object.metadata[languageField]) {
-          returnValue = true;
-          break;
-        }
-    };
-
-    return returnValue;
+    return this.metadataHasOneOfTheseFields(languageFields);
   }
 
   public hasBookChapter(): boolean {
     let languageFields: string[] = ['local.chapter.book', 'local.chapter.series', 'local.chapter.seriesnum', 'local.chapter.pagination', 'local.chapter.edition']
-
-    let returnValue = false;
-    
-    for(var languageField of languageFields) {
-        if(this.object.metadata[languageField]) {
-          returnValue = true;
-          break;
-        }
-    };
-
-    return returnValue;
+    return this.metadataHasOneOfTheseFields(languageFields);
   }
 
   public hasProject(): boolean {
     let languageFields: string[] = ['dc.title.fosrcprojectname', 'dc.title.fosrcprojectid']
-
-    let returnValue = false;
-    
-    for(var languageField of languageFields) {
-        if(this.object.metadata[languageField]) {
-          returnValue = true;
-          break;
-        }
-    };
-
-    return returnValue;
+    return this.metadataHasOneOfTheseFields(languageFields);
   }
 
   public hasReport(): boolean {
     let languageFields: string[] = ['local.report.edition', 'local.report.reportnum', 'local.report.series', 'local.report.seriesnum', 'local.reporttype']
-
-    let returnValue = false;
-    
-    for(var languageField of languageFields) {
-        if(this.object.metadata[languageField]) {
-          returnValue = true;
-          break;
-        }
-    };
-
-    return returnValue;
+    return this.metadataHasOneOfTheseFields(languageFields);
   }
 
   public hasArticle(): boolean {
     let languageFields: string[] = ['dc.date.submitted','dc.date.accepted','local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum']
 
-    let returnValue = false;
-    
-    for(var languageField of languageFields) {
-        if(this.object.metadata[languageField]) {
-          returnValue = true;
-          break;
-        }
-    };
-
-    return returnValue;
+    return this.metadataHasOneOfTheseFields(languageFields);
   }
 
   public hasConference(): boolean {
@@ -193,16 +136,26 @@ export class UntypedItemComponent extends ItemComponent {
       'local.conference.edition',
       'local.conferencetype']
 
-    let returnValue = false;
-    
-    for(var languageField of languageFields) {
-        if(this.object.metadata[languageField]) {
-          returnValue = true;
-          break;
+    return this.metadataHasOneOfTheseFields(languageFields);
+  }
+
+  public hasDownloads(): boolean {
+    return this.object.bundles != null;
+  }
+
+  private metadataHasOneOfTheseFields(fields: string[]): boolean {
+
+    for(var field of fields) {
+        if(this.metadataContainsKey(field)) {
+          return true;
         }
     };
 
-    return returnValue;
+    return false
+  }
+
+  public setDownloadLinksButtonVisibility(show : boolean): void {
+    this.showDownloadLinksButton = show;
   }
 
   scrollToElement(event: Event, elementId: string): void {

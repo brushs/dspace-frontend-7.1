@@ -7,7 +7,7 @@ npm-debug.log
 .vs/
 /build/
 /.vs/
-
+/.vscode/
 /src/environments/
 src/environments/
 
