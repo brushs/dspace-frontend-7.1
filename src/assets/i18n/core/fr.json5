@@ -505,6 +505,11 @@
   "community.form.error.validation.license.notgranted": "Vous devez accorder cette licence pour compléter votre soumission. Si vous n'êtes pas en mesure d'accorder cette licence pour le moment, vous pouvez économiser votre travail et revenir plus tard ou supprimer la soumission.", // TODO: FOSRC Official translation
   // "community.form.error.validation.filerequired": "The file upload is mandatory.",
   "community.form.error.validation.filerequired": "Le téléchargement de fichiers est obligatoire.", // TODO: FOSRC Official translation
+  // "communityList.expandAll": "Expand all",
+  "communityList.expandAll": "Afficher tout",
+  //"communityList.collapseAll": "Collapse all",
+  "communityList.collapseAll": "Réduire tout",
+
   // Values for selectable dropdown list for item submission form
   // "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Yes",
   "fosrc.item.edit.dynamic-field.values.1.request_doi_value": "Oui",
