@@ -698,7 +698,7 @@
   // "fosrc.item.edit.dynamic-field.values.3.contributor_identifiers": "Other",
   "fosrc.item.edit.dynamic-field.values.3.contributor_identifiers": "Autre",
   // "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Government Document Number",
-  "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Numéro du document gouvernemental",
+  "fosrc.item.edit.dynamic-field.values.1.common_identifiers": "Numéro de document gouvernemental",
   // "fosrc.item.edit.dynamic-field.values.2.common_identifiers": "ISBN",
   "fosrc.item.edit.dynamic-field.values.2.common_identifiers": "ISBN",
   // "fosrc.item.edit.dynamic-field.values.3.common_identifiers": "ISSN",
