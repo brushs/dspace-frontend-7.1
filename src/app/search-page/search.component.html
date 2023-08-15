@@ -19,7 +19,6 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
-                        <ds-search-labels [inPlaceSearch]="inPlaceSearch" [useGcWeb]="true"></ds-search-labels>
                         <div class="col-md-12 p-0 ">
                             <label for="main-searchrepository">{{ 'home.search-form.placeholder' | translate }}</label>
                             <div class="input-group">
@@ -40,24 +39,17 @@
 
 
 <ng-template #searchResults>
-    <div class="row mrgn-lft-sm mrgn-rght-sm">
-        <div class="panel panel-primary w-100">
-            <header class="panel-heading">
-                <h2 class="panel-title h4" style="margin-top: 0px">{{'search.results.head' | translate}}</h2>
-            </header>
-            <div class="panel-body">
-                <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-md mrgn-rght-md"></div>
+    <h2 class="h4">{{'search.results.head' | translate}}</h2>
 
-                <ds-search-results [searchResults]="resultsRD$ | async"
-                [searchConfig]="searchOptions$ | async"
-                [configuration]="configuration$ | async"
-                [useGcWeb]="true"
-                disableHeader= "true"
-                [context]="context"></ds-search-results>
+    <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-md mrgn-rght-md"></div>
 
-            </div>
-        </div>
-    </div>
+    <ds-search-results [searchResults]="resultsRD$ | async"
+    [searchConfig]="searchOptions$ | async"
+    [configuration]="configuration$ | async"
+    [useGcWeb]="true"
+    disableHeader= "true"
+    [context]="context"></ds-search-results>
+
 </ng-template>
 <!-- 
 

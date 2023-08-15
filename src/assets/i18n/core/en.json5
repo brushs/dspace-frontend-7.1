@@ -155,6 +155,8 @@
   "community.form.error.validation.required": "This field is required.",
   "community.form.error.validation.license.notgranted": "You must grant this license to complete your submission. If you are unable to grant this license at this time, you may save your work and return later or remove the submission.",
   "community.form.error.validation.filerequired": "The file upload is mandatory.",
+  "communityList.expandAll": "Expand all",
+  "communityList.collapseAll": "Collapse all",
 
   //end FOSRC - community Form
   // Start FOSRC - the below should be removed
@@ -488,6 +490,7 @@
   "input.label.datepicker.year": "Year",
   "input.label.datepicker.month": "Month",
   "input.label.datepicker.day": "Day",
+  "pagination.go.to": "Go to Page {{page}}",
   "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
   "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
 
@@ -1890,7 +1893,7 @@
   "search.filters.applied.f.dateSubmitted": "Date submitted",
   "search.filters.applied.f.discoverable": "Private",
   "search.filters.applied.f.entityType": "Item type",
-  "search.filters.applied.f.has_content_in_original_bundle": "Contains files",
+  "search.filters.applied.f.has_content_in_original_bundle": "Content available",
   "search.filters.applied.f.itemtype": "Type",
   "search.filters.applied.f.jobTitle": "Job title",
   "search.filters.applied.f.namedresourcetype": "Status",
@@ -1903,12 +1906,14 @@
   "search.filters.entityType.JournalVolume": "Journal volume",
   "search.filters.entityType.OrgUnit": "Organization unit",
   "search.filters.filter.author.head": "Author",
-  "search.filters.filter.author.label": "Search author name",
-  "search.filters.filter.author.placeholder": "Search Author name",
+  "search.filters.filter.author.label": "Search author last name",
+  "search.filters.filter.author.placeholder": "Search Author Last name",
   "search.filters.filter.birthDate.head": "Birth date",
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
+  "search.filters.filter.start": "Start Date",
+  "search.filters.filter.end": "End Date",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",
@@ -1987,7 +1992,7 @@
   "search.filters.filter.withdrawn.expand": "Expand filter of Withdrawn",
   // FOSRC end changes
 
-  "search.filters.filter.has_content_in_original_bundle.head": "Contains files",
+  "search.filters.filter.has_content_in_original_bundle.head": "Content available",
   "search.filters.filter.itemtype.head": "Type",
   "search.filters.filter.itemtype.label": "Search type",
   "search.filters.filter.itemtype.placeholder": "Type",

@@ -10,9 +10,10 @@
 <ng-container *ngIf="!searchSubmit else searchResultsPage">
   <div class="container">
     <div class="row">
-      <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
+      <!-- commented the search form as per 1761 -->
+      <!-- <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
           <ng-template *ngTemplateOutlet="searchForm"></ng-template>
-      </div>
+      </div> -->
       <div id="search-content" class="col-12">
           <div>
               <!-- OSPR Changes- modifying h2 to h1-->
@@ -83,3 +84,6 @@
       </div>
   </div>
 </ng-template>
+<div class="container">
+  <ds-page-details></ds-page-details>
+</div>

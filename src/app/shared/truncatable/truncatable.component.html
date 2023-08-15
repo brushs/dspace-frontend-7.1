@@ -7,9 +7,10 @@
         <ng-container *ngTemplateOutlet="content"></ng-container>
 
         <ng-container *ngIf="truncatable">
-            <button class="btn btn-link p-0" dsDragClick (keydown.space)="toggle()" (keydown.enter)="toggle()" (actualClick)="toggle()">
-                <span aria-hidden="true" class="fas fa-angle-down mr-1"></span><span *ngIf="(isCollapsed$ | async)">{{ 'truncate.expand' | translate }}</span><span *ngIf="!(isCollapsed$ | async)">{{ 'truncate.collapse' | translate }}</span>
-              </button>
+            <a href="javascript::void(0)" class="btn btn-link p-0" dsDragClick (keydown.space)="toggle()" (keydown.enter)="toggle()" (actualClick)="toggle()">
+                <span *ngIf="(isCollapsed$ | async)">{{ 'truncate.expand' | translate }}</span>
+                <span *ngIf="!(isCollapsed$ | async)">{{ 'truncate.collapse' | translate }}</span>
+            </a>
         </ng-container>
     </div>
 </ng-container>

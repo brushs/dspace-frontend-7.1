@@ -1,4 +1,4 @@
-<div *ngIf="currentPageState == undefined || currentPageState == (currentPage$|async)" [id]="'p-' + id">
+<div #paginator *ngIf="currentPageState == undefined || currentPageState == (currentPage$|async)" [id]="'p-' + id">
   <div *ngIf="(!hidePaginationDetail && collectionSize > 0) || !hideGear" class="pagination-masked clearfix top">
     <div class="row">
       <div *ngIf="!hidePaginationDetail && collectionSize > 0" class="col-auto pagination-info">
@@ -23,7 +23,6 @@
   </div>
   </div>
   <ng-content></ng-content>
-
   <div *ngIf="shouldShowBottomPager |async" class="pagination justify-content-center clearfix bottom">
     <ngb-pagination [boundaryLinks]="paginationOptions.boundaryLinks"
                     [collectionSize]="collectionSize"
@@ -35,8 +34,14 @@
                     [pageSize]="(pageSize$ |async)"
                     [rotate]="paginationOptions.rotate"
                     [size]="(isXs)?'sm':paginationOptions.size">
-        <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}}</ng-template>
-        <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
+                    
+
+                    <ng-template ngbPaginationNumber let-currentPage="currentPage" let-page>
+                          <span class="wb-inv">{{page === currentPage ? '(current)' : ''}} {{ 'pagination.go.to' | translate: { page: page } }}</span>
+                          {{page}}
+                    </ng-template>
+        <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}} </ng-template>
+        <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}} </ng-template>
     </ngb-pagination>
   </div>
 </div>

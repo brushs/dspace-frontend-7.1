@@ -129,7 +129,8 @@ export class DSONameService {
     } else if(fosrcTitleMetadata?.language === currentLang ) {
       return fosrcTitleMetadata;
     } else {
-      return undefined;
+      // FOSRC change - default title to other language if translation is not available
+      return allTitles && allTitles.length > 0 ? allTitles[0] : undefined;
     }
   }
   /* Get the alternate title for the given {@link DSpaceObject}
