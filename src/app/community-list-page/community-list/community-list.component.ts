@@ -125,4 +125,29 @@ export class CommunityListComponent implements OnInit, OnDestroy {
     }
   }
 
+  expandAllNodes() {
+    this.expandedNodes = [];
+    const nodesToExpand = this.dataSource.communityList$.getValue();
+    nodesToExpand.forEach((node) => {
+      this.expandedNodes.push(node);
+      node.isExpanded = true;
+      if (isEmpty(node.currentCollectionPage)) {
+        node.currentCollectionPage = 1;
+      }
+      if (isEmpty(node.currentCommunityPage)) {
+        node.currentCommunityPage = 1;
+      }
+    });
+    this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
+  }
+
+  collapseAllNodes() {
+    const nodesToCollapse = this.dataSource.communityList$.getValue();
+    this.expandedNodes = [];
+    nodesToCollapse.forEach((node) => {
+      node.isExpanded = null;
+    });
+    this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
+  }
+
 }
