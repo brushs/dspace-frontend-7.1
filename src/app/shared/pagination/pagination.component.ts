@@ -2,11 +2,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
   OnInit,
   Output,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -168,6 +170,8 @@ export class PaginationComponent implements OnDestroy, OnInit {
    */
   private subs: Subscription[] = [];
 
+  @ViewChild('paginator', {static: false}) paginationPage: ElementRef;
+
   /**
    * Method provided by Angular. Invoked after the constructor.
    */
@@ -179,6 +183,11 @@ export class PaginationComponent implements OnDestroy, OnInit {
       }));
     this.checkConfig(this.paginationOptions);
     this.initializeConfig();
+  }
+
+  ngAfterViewInit() {
+    (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Previous"]')?.setAttribute('rel', 'prev');
+    (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Next"]')?.setAttribute('rel', 'next');
   }
 
   /**

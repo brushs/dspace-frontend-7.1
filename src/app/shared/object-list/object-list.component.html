@@ -11,8 +11,8 @@
           (sortDirectionChange)="onSortDirectionChange($event)"
           (sortFieldChange)="onSortFieldChange($event)"
           (paginationChange)="onPaginationChange($event)">
-      <ul *ngIf="objects?.hasSucceeded" class="list-unstyled" [ngClass]="{'ml-4': selectable}">
-          <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last" class="mt-4 mb-4 d-flex" [class.border-bottom]="hasBorder && !last">
+      <ul *ngIf="objects?.hasSucceeded"[ngClass]="{'ml-4': selectable && !useGcWeb, 'list-unstyled': useGcWeb}">
+          <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last" class="{{ useGcWeb ? 'brdr-tp' : 'mt-4 mb-4 d-flex'}}" [class.border-bottom]="hasBorder && !last">
             <ds-selectable-list-item-control *ngIf="selectable" [index]="i"
                                              [object]="object"
                                              [selectionConfig]="selectionConfig"
