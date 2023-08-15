@@ -735,6 +735,9 @@
   // "fosrc.item.form.error.panel.license": "License",
   "fosrc.item.form.error.panel.license": "Licence",
 
+  // "full-item.details.title": "Full item details",
+  "full-item.details.title": "Détails complets de l'article",
+
   // "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.about": "Passer à « Au sujet du Dépôt fédéral de science ouverte du Canada (DFSOC)»",
   // "header.skiptolinks.main": "Skip to main content.",
