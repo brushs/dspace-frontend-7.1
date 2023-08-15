@@ -31,7 +31,7 @@
 
 
 <ng-template #expandable let-node="node">
-  <details class="pb-0" [attr.open]= "node.isExpanded? '': null" >
+  <details class="pb-0" [attr.open]= "node.isExpanded? '': null" [attr.id]="'detail-parent-node-' + node.id" >
     <summary #toggle [attr.id]="'parent-node-' + node.id" class="mb-0" (click)="toggleExpanded(node)" (keydown.enter)="$event.preventDefault();toggle.click()" (keydown.space)="$event.preventDefault();toggle.click()">
       <h2 class="h4" *ngIf="node?.level === 0">
         {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
