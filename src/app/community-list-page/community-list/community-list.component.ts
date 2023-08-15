@@ -148,6 +148,16 @@ export class CommunityListComponent implements OnInit, OnDestroy {
       node.isExpanded = null;
     });
     this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
+
+    setTimeout(() => {
+      const nodesOpen = this.dataSource.communityList$.getValue();
+      nodesOpen.forEach((node) => {
+        const element = (document.getElementById(`detail-parent-node-${node.id}`)) as HTMLElement;
+        if (element) {
+          element.removeAttribute('open');
+        }
+      });
+    },0)
   }
 
 }
