@@ -177,13 +177,15 @@ export class CommunityListComponent implements OnInit, OnDestroy {
   getLanguageAttribute(payload: any): string | undefined {
     const translatedTitle = this.getTranslatedValue(payload);
     const language = translatedTitle?.language;
-    return language !== null && language !== undefined && language !== '' ? language : undefined;
+    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
   }
 
   isValidData(payload: any): boolean {
     const translatedTitle = this.getTranslatedValue(payload);
     const value = translatedTitle?.value;
-    return value !== null && value !== undefined && value !== '';
+    const language = translatedTitle?.language;
+    return (value !== undefined && value !== null && value !== '') &&
+    (language !== undefined && language !== null &&  language !== '');
   }
 
 }
