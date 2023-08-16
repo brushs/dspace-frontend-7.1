@@ -798,7 +798,7 @@
   // "input.label.datepicker.day": "Day",
   "input.label.datepicker.day": "Jour",
   // "pagination.go.to": "Go to Page {{page}}",
-  "pagination.go.to": "Aller à la page {{page}}",
+  "pagination.go.to": "Aller à la page ",
   // "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
   "profile.security.form.notifications.error.change-failed": "Une erreur s'est produite lors de la tentative de modification du mot de passe. Veuillez vérifier si le mot de passe actuel est correct.",
   // "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
@@ -809,6 +809,9 @@
   // "nav.breadcrumbs.here": "You are here:",
   "nav.breadcrumbs.here": "Vous êtes ici:",
 
+
+  // "search.badge.result": "Result ",
+  "search.badge.result": "Résultat ",
   // "truncate.expand": "Show More",
   "truncate.expand": "Plus de Résultats",
   // "truncate.collapse": "Show Less",
