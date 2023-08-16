@@ -809,6 +809,10 @@
   // "nav.breadcrumbs.here": "You are here:",
   "nav.breadcrumbs.here": "Vous êtes ici:",
 
+  // "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
+  "search.filters.filter.date.wet.format": "(<abbr title=\"Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour\">AAAA-MM-JJ</abbr>)",
+
+
 
   // "search.badge.result": "Result ",
   "search.badge.result": "Résultat ",
@@ -3635,7 +3639,7 @@
   // "search.filters.filter.start": "Start Date",
   "search.filters.filter.start": "De",
   // "search.filters.filter.end": "End Date",
-  "search.filters.filter.end": "À",
+  "search.filters.filter.end": "à",
 
   // FORSC start changes
   //"search.filters.filter.author.collapse": "Collapse filter of Author",

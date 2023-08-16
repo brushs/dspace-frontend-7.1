@@ -497,6 +497,9 @@
   "nav.lang.selection": "Language selection",
   "nav.breadcrumbs.here": "You are here:",
 
+
+  "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
+
   "search.badge.result": "Result ",
   "truncate.expand": "Show More",
   "truncate.collapse": "Show Less",
