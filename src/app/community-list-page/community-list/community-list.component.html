@@ -9,7 +9,7 @@
   <div class="mrgn-tp-sm  mrgn-rght-sm mrgn-lft-sm">
     <ul class="list-unstyled">
       <ng-container *ngFor="let node of (dataSource['communityList$'] | async); let i = index; let first = first;">
-        <ng-container *ngIf="(node.level === 0)">
+        <ng-container *ngIf="(node.level === 0) && isValidData(node.payload)">
           <li>
              <!-- Nodes with child nodes/subcommunities/nested content. For top level we need to show as expandable even if we don't have subcommunities/nested content -->
             <ng-container *ngTemplateOutlet="expandable; context: { node: node }"></ng-container>
@@ -63,6 +63,7 @@
 </ng-template>
 
 <ng-template #nonexpandable let-node="node">
+
   <a [routerLink]="node.route" [attr.lang]="getLanguageAttribute(node.payload)">
     {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
   </a>
