@@ -4,9 +4,7 @@
         <ng-container *ngSwitchCase="'case1'">
             <h2 class="h3">{{ label | translate }}</h2>
             <ul class="horizontal-list">
-                <li *ngFor="let mdValue of mdValues; let last=last;" [attr.lang]="mdValue.language">
-                    {{ (mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate}}
-                </li>
+                <li *ngFor="let mdValue of mdValues; let last=last;" [attr.lang]="mdValue.language">{{ mdValue.value }}</li>
             </ul>
         </ng-container>
         <ng-container *ngSwitchCase="'case2'">
