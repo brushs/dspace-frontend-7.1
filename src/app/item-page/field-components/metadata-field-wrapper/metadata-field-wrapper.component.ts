@@ -35,21 +35,21 @@ export class MetadataFieldWrapperComponent {
 
   ngAfterViewInit() {
     if(this.GcContentRef?.nativeElement) {
-        this.observer = new (window as any).ResizeObserver(() => {
+        this.observer = new (window as any).MutationObserver(() => {
           this.checkForContent()
         })
-      this.observer.observe(this.GcContentRef.nativeElement)
+      this.observer.observe(this.GcContentRef.nativeElement, {childList: true });
     }
   }
 
   checkForContent() {
-    this.noContent = this.GcContentRef.nativeElement.textContent.trim().length === 0;
+    this.noContent = (this.GcContentRef.nativeElement.textContent.trim().length === 0 && this.GcContentRef.nativeElement.innerText.trim().length === 0);
     this.cdr.detectChanges()
   }
 
   ngOnDestroy() {
     if(this.observer) {
-      this.observer.unobserve(this.GcContentRef.nativeElement)
+      this.observer.disconnect();
     }
   }
 }
