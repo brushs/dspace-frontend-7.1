@@ -35,10 +35,10 @@ export class MetadataFieldWrapperComponent {
 
   ngAfterViewInit() {
     if(this.GcContentRef?.nativeElement) {
-        this.observer = new (window as any).MutationObserver(() => {
+        this.observer = new (window as any).ResizeObserver(() => {
           this.checkForContent()
         })
-      this.observer.observe(this.GcContentRef.nativeElement, {childList: true });
+      this.observer.observe(this.GcContentRef.nativeElement);
     }
   }
 
