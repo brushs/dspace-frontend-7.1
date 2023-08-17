@@ -28,16 +28,14 @@
                     [collectionSize]="collectionSize"
                     [disabled]="paginationOptions.disabled"
                     [ellipses]="paginationOptions.ellipses"
-                    [maxSize]="(isXs)?5:paginationOptions.maxSize"
+                    [maxSize]="(isXs || useGcWeb) ? 5:paginationOptions.maxSize"
                     [page]="(currentPage$|async)"
                     (pageChange)="doPageChange($event)"
                     [pageSize]="(pageSize$ |async)"
                     [rotate]="paginationOptions.rotate"
                     [size]="(isXs)?'sm':paginationOptions.size">
-                    
-
                     <ng-template ngbPaginationNumber let-currentPage="currentPage" let-page>
-                          <span class="wb-inv">{{page === currentPage ? '(current)' : ''}} {{ 'pagination.go.to' | translate: { page: page } }}</span>
+                          <span class="wb-inv">{{page === currentPage ? '(current)' : ''}} {{ 'pagination.go.to' | translate }}</span>
                           {{page}}
                     </ng-template>
         <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}} </ng-template>

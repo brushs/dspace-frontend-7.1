@@ -798,7 +798,7 @@
   // "input.label.datepicker.day": "Day",
   "input.label.datepicker.day": "Jour",
   // "pagination.go.to": "Go to Page {{page}}",
-  "pagination.go.to": "Aller à la page {{page}}",
+  "pagination.go.to": "Aller à la page ",
   // "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
   "profile.security.form.notifications.error.change-failed": "Une erreur s'est produite lors de la tentative de modification du mot de passe. Veuillez vérifier si le mot de passe actuel est correct.",
   // "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
@@ -809,6 +809,13 @@
   // "nav.breadcrumbs.here": "You are here:",
   "nav.breadcrumbs.here": "Vous êtes ici:",
 
+  // "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
+  "search.filters.filter.date.wet.format": "(<abbr title=\"Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour\">AAAA-MM-JJ</abbr>)",
+
+
+
+  // "search.badge.result": "Result ",
+  "search.badge.result": "Résultat ",
   // "truncate.expand": "Show More",
   "truncate.expand": "Plus de Résultats",
   // "truncate.collapse": "Show Less",
@@ -3632,7 +3639,7 @@
   // "search.filters.filter.start": "Start Date",
   "search.filters.filter.start": "De",
   // "search.filters.filter.end": "End Date",
-  "search.filters.filter.end": "À",
+  "search.filters.filter.end": "à",
 
   // FORSC start changes
   //"search.filters.filter.author.collapse": "Collapse filter of Author",

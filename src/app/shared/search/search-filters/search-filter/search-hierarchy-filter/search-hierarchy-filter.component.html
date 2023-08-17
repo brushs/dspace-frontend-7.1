@@ -46,16 +46,20 @@
     </ng-container>
   </ul>
 
-  <p class="clearfix toggle-more-filters pb-1">
-    <a class="float-left" *ngIf="!(isLastPage$ | async)"
-       (click)="showMore()" href="javascript:void(0);">
-      {{"search.filters.filter.show-more" | translate}}
-    </a>
-    <a class="float-right" *ngIf="(currentPage | async) > 1"
-       (click)="showFirstPageOnly()" href="javascript:void(0);">
-      {{"search.filters.filter.show-less" | translate}}
-    </a>
-  </p>
+  <div class="row">
+    <p class="col clearfix toggle-more-filters pb-1">
+      <a class="float-left" *ngIf="!(isLastPage$ | async)"
+          (click)="showMore()" href="javascript:void(0);">
+        {{"search.filters.filter.show-more" | translate}}
+      </a>
+    </p>
+    <p class="col clearfix toggle-more-filters pb-1" *ngIf="(currentPage | async) > 1">
+      <a class="float-right" 
+          (click)="showFirstPageOnly()" href="javascript:void(0);">
+        {{"search.filters.filter.show-less" | translate}}
+      </a>
+    </p>
+  </div>
 
 
 <ds-filter-input-suggestions [suggestions]="(filterSearchResults | async)"
