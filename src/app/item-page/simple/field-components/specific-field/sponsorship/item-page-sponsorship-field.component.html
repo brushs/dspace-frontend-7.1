@@ -1,4 +1,1 @@
-<div class="item-page-field">
-  <ng-content></ng-content>
-  <ds-metadata-values [mdValues]="fields | metaTranslate: item" [separator]="separator" [label]="label" [isDescriptionList]="isDescriptionList" [useGcWeb]="true"></ds-metadata-values>
-</div>
+<ds-simple-metadata-section [isDescriptionList]="isDescriptionList" [filterLang]="true" [mdValues]="fields | metaTranslate: item" [separator]="separator" [label]="label"></ds-simple-metadata-section>

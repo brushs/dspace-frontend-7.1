@@ -1,0 +1,15 @@
+<ng-container *ngIf="!isDescriptionList; else descriptionList">
+    <h2 class="h3">{{ label | translate }}</h2>
+    <p *ngFor="let mdValue of mdValues; let last=last;">
+        <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
+        <span *ngIf="!last" [innerHTML]="separator"></span>
+    </p>
+</ng-container>
+
+<ng-template #descriptionList>
+    <dt>{{ label | translate }}</dt>
+    <dd *ngFor="let mdValue of mdValues; let last=last;">
+        <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
+        <span *ngIf="!last" [innerHTML]="separator"></span>
+    </dd>
+</ng-template>

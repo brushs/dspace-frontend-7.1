@@ -43,6 +43,8 @@ import { ItemPageKeywordsFieldComponent } from './simple/field-components/specif
 import { ItemPageOrganizationFieldComponent } from './simple/field-components/specific-field/organization/item-page-organization-field.component';
 import { ItemPageOtherFieldComponent } from './simple/field-components/specific-field/other/item-page-other-field.component';
 import { ItemPageFOSRCProjectIdFieldComponent } from './simple/field-components/specific-field/fosrc-projectid/item-page-fosrc-projectid-field.component';
+import { SimpleMetadataSectionComponent } from './simple/field-components/specific-field/simple-metadata-section/simple-metadata-section.component';
+import { GenericSimpleMetadataSectionComponent } from './simple/field-components/specific-field/generic-simple-metadata-section/generic-simple-metadata-section.component';
 
 
 const ENTRY_COMPONENTS = [
@@ -85,7 +87,9 @@ const DECLARATIONS = [
   AbstractIncrementalListComponent,
   MediaViewerComponent,
   MediaViewerVideoComponent,
-  MediaViewerImageComponent
+  MediaViewerImageComponent,
+  SimpleMetadataSectionComponent,
+  GenericSimpleMetadataSectionComponent
 ];
 
 @NgModule({
