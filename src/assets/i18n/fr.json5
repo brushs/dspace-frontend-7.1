@@ -4441,14 +4441,14 @@
   // "workflow-item.view.breadcrumbs": "Workflow view",
   "workflow-item.view.breadcrumbs": "Vue d'ensemble du Workflow",
 
-  //"fosrc.item.edit.dynamic-field.values.1.consultantreport": "Consultant Report",
-  "fosrc.item.edit.dynamic-field.values.1.consultantreport": "Raport de Consultant",
-  //"fosrc.item.edit.dynamic-field.values.2.deparmentreport": "Department Report",
-  "fosrc.item.edit.dynamic-field.values.2.deparmentreport": "Raport de Department",
-  //"fosrc.item.edit.dynamic-field.values.3.internalreport": "Internal Report",
-  "fosrc.item.edit.dynamic-field.values.3.internalreport": "Raport Interne",
-  //"fosrc.item.edit.dynamic-field.values.4.mapseries": "Map Series",
-  "fosrc.item.edit.dynamic-field.values.4.mapseries": "Serie de Carte",
-  //"fosrc.item.edit.dynamic-field.values.5.whitepaper": "White Paper"
-  "fosrc.item.edit.dynamic-field.values.5.whitepaper": "Papier Blanche"
+  //"fosrc.item.edit.dynamic-field.values.1.consultantreport": "Consultant report",
+  "fosrc.item.edit.dynamic-field.values.1.consultantreport": "Raport de consultant",
+  //"fosrc.item.edit.dynamic-field.values.2.deparmentreport": "Department report",
+  "fosrc.item.edit.dynamic-field.values.2.deparmentreport": "Raport de department",
+  //"fosrc.item.edit.dynamic-field.values.3.internalreport": "Internal report",
+  "fosrc.item.edit.dynamic-field.values.3.internalreport": "Raport interne",
+  //"fosrc.item.edit.dynamic-field.values.4.mapseries": "Map series",
+  "fosrc.item.edit.dynamic-field.values.4.mapseries": "Serie de carte",
+  //"fosrc.item.edit.dynamic-field.values.5.whitepaper": "White paper"
+  "fosrc.item.edit.dynamic-field.values.5.whitepaper": "Papier blanche"
 }
