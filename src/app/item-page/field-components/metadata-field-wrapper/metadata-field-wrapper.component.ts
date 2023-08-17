@@ -49,7 +49,7 @@ export class MetadataFieldWrapperComponent {
 
   ngOnDestroy() {
     if(this.observer) {
-      this.observer.disconnect();
+      this.observer.unobserve(this.GcContentRef.nativeElement);
     }
   }
 }
