@@ -5,7 +5,8 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
   selector: 'ds-item-page-uri-field',
-  templateUrl: './item-page-uri-field.component.html'
+  templateUrl: './item-page-uri-field.component.html',
+  styleUrls: ['./item-page-uri-field.component.scss']
 })
 /**
  * This component can be used to represent any uri on a simple item page.
@@ -35,7 +36,7 @@ export class ItemPageUriFieldComponent extends ItemPageFieldComponent {
   @Input() label: string;
 
   @Input() isDescriptionList: boolean = false;
-  
+
   public domainAwareValue (rawValue: string): string {
     const domainList = ['dev.ospr.link','ospr.link','localhost','open-science.canada.ca','science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']
     if(!domainList.some((x: string) => rawValue.includes(x))) {
