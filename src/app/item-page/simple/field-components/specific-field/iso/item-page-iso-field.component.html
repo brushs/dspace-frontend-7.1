@@ -1,12 +1,14 @@
-<ng-container *ngIf="isDescriptionList; else notDescriptionList">
-    <dt>{{ label | translate }}</dt>
-    <dd>
-      {{ getLanguageValue()?.value | translate }}
-    </dd>
+<ng-container *ngIf="getLanguageValue()">
+    <ng-container *ngIf="isDescriptionList; else notDescriptionList">
+        <dt>{{ label | translate }}</dt>
+        <dd>
+          {{ getLanguageValue()?.value | translate }}
+        </dd>
+    </ng-container>
+    <ng-template #notDescriptionList>
+        <h2 class="h3">{{ label | translate }}</h2>
+        <p>
+            {{ getLanguageValue()?.value | translate }}
+        </p>
+    </ng-template>
 </ng-container>
-<ng-template #notDescriptionList>
-    <h2 class="h3">{{ label | translate }}</h2>
-    <p>
-        {{ getLanguageValue()?.value | translate }}
-    </p>
-</ng-template>
