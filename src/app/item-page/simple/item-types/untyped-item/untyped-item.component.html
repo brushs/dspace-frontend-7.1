@@ -26,7 +26,6 @@
         <a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">{{'item.page.download.files.link' | translate}}</a>
       </p>
 
-      <!-- TODO: FIX -->
       <!-- DOI -->
       <dl *ngIf="metadataContainsKey('dc.identifier.doi')">
         <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
@@ -36,7 +35,7 @@
 
         <!-- DATE -->
         <!-- TODO: FIX -->
-        <ds-item-page-date-field *ngIf="metadataContainsKey('dc.date.issued')" [item]="object"></ds-item-page-date-field>
+        <ds-item-page-date-field *ngIf="metadataContainsKey('dc.date.issued')" [item]="object" [isDescriptionList]="true"></ds-item-page-date-field>
 
         <!-- AUTHOR(S) -->
         <dt>{{'relationships.isAuthorOf' | translate}}</dt>

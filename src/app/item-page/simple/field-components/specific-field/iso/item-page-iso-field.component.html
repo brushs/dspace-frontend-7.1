@@ -1,1 +1,12 @@
-<ds-simple-metadata-section *ngIf="getLanguageValue()" [isDescriptionList]="isDescriptionList" [filterLang]="true" [mdValues]="fields | metaTranslate: item" [separator]="separator" [label]="label"></ds-simple-metadata-section>
+<ng-container *ngIf="isDescriptionList; else notDescriptionList">
+    <dt>{{ label | translate }}</dt>
+    <dd>
+      {{ getLanguageValue()?.value | translate }}
+    </dd>
+</ng-container>
+<ng-template #notDescriptionList>
+    <h2 class="h3">{{ label | translate }}</h2>
+    <p>
+        {{ getLanguageValue()?.value | translate }}
+    </p>
+</ng-template>
