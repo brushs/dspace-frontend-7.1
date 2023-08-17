@@ -13,10 +13,10 @@ export const environment = {
 	},
 	"rest": {
 		"ssl": true,
-                "host": "dev-ospr.g.ent.cloud-nuage.canada.ca",
+		"host": "dev-ospr.g.ent.cloud-nuage.canada.ca",
 		"port": 443,
 		"nameSpace": "/server",
-               "baseUrl": "https://dev-ospr.g.ent.cloud-nuage.canada.ca/server"
+		"baseUrl": "https://dev-ospr.g.ent.cloud-nuage.canada.ca/server"
 	},
 	"cache": {
 		"msToLive": {
