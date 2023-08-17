@@ -39,11 +39,6 @@
       <h3 class="h6" *ngIf="node?.level !== 0">
         {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
       </h3>
-      <div class="row" *ngIf="node?.payload?.shortDescription">
-        <div class="col">
-          <sub>{{node.payload.shortDescription}}</sub>
-        </div>
-      </div>
     </summary>
     <ul class="list-unstyled mrgn-tp-md" *ngIf="node.isExpanded">
       <p class="well-sm bg-darker mrgn-bttm-md" *ngIf="isValidData(node.payload)">
@@ -63,16 +58,9 @@
 </ng-template>
 
 <ng-template #nonexpandable let-node="node">
-
   <a [routerLink]="node.route" [attr.lang]="getLanguageAttribute(node.payload)">
     {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
   </a>
-
-  <div class="row" *ngIf="node?.payload?.shortDescription">
-    <div class="col">
-      <sub>{{node.payload.shortDescription}}</sub>
-    </div>
-  </div>
 </ng-template>
 
 <ng-template #showmore let-node="node">
