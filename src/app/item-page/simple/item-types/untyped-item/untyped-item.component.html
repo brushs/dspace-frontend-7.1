@@ -29,12 +29,8 @@
       <!-- TODO: FIX -->
       <!-- DOI -->
       <dl *ngIf="metadataContainsKey('dc.identifier.doi')">
-        <ds-item-page-uri-field  [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
-      </dl>
+        <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
 
-      
-
-      <dl>
         <!-- LANGUAGE -->
         <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object" [isDescriptionList]="true"></ds-item-page-iso-field>
 

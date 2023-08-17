@@ -33,5 +33,21 @@ export class ItemPageUriFieldComponent extends ItemPageFieldComponent {
    * Label i18n key for the rendered metadata
    */
   @Input() label: string;
+
+  @Input() isDescriptionList: boolean = false;
   
+  public domainAwareValue (rawValue: string): string {
+    const domainList = ['dev.ospr.link','ospr.link','localhost','open-science.canada.ca','science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']
+    if(!domainList.some((x: string) => rawValue.includes(x))) {
+      return rawValue;
+    }
+    //console.log("outside domainAware if statement: " + rawValue)
+    try {
+      const urlObj = new URL(rawValue);
+      const currentHostname = location.hostname;
+      return rawValue.replace(urlObj.hostname, currentHostname);
+    } catch (Error) {
+      return rawValue;
+    }
+  }
 }
