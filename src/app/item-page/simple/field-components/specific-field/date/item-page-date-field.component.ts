@@ -17,7 +17,7 @@ export class ItemPageDateFieldComponent extends ItemPageFieldComponent {
      */
     @Input() item: Item;
 
-    @Input isDescriptionList: boolean = false;
+    @Input() isDescriptionList: boolean = false;
     /**
      * Separator string between multiple values of the metadata fields defined
      * @type {string}
