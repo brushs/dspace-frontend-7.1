@@ -5,7 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-date-field',
-    templateUrl: '../item-page-field.component.html'
+    templateUrl: './item-page-date-field.component.html'
 })
 /**
  * This component is used for displaying the issue date (dc.date.issued) metadata of an item
@@ -16,11 +16,8 @@ export class ItemPageDateFieldComponent extends ItemPageFieldComponent {
      * The item to display metadata for
      */
     @Input() item: Item;
-    /**
-     * Whether or not the component is rendered inside a description list
-     */
-    @Input() isDescriptionList: boolean;
 
+    @Input() isDescriptionList: boolean = false;
     /**
      * Separator string between multiple values of the metadata fields defined
      * @type {string}
