@@ -38,6 +38,8 @@ export class GenericSimpleMetadataSectionComponent  {
   * Whether or not the component is used in a description list
   */
   @Input() isDescriptionList: boolean = false;
+
+  @Input() isList: boolean = false;
  
 }
  

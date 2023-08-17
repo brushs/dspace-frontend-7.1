@@ -27,8 +27,8 @@
       </p>
 
       <!-- DOI -->
-      <dl *ngIf="metadataContainsKey('dc.identifier.doi')">
-        <ds-item-page-uri-field [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
+      <dl>
+        <ds-item-page-uri-field *ngIf="metadataContainsKey('dc.identifier.doi')" [isDescriptionList]="true" [item]="object" [fields]="['dc.identifier.doi']" [separator]="','" [label]="'item.page.doi'"></ds-item-page-uri-field>
 
         <!-- LANGUAGE -->
         <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object" [isDescriptionList]="true"></ds-item-page-iso-field>
@@ -65,18 +65,18 @@
       [fields]="['dc.description.fosrcfull','dc.description.fosrcfull-fosrctranslation']"
       [label]="'fosrc.item.edit.dynamic-field.label.description'">
       </ds-generic-simple-metadata-section>
-
+      
       <!-- SUBJECTS -->
-      <h2 class="h3" *ngIf="metadataContainsKey('dc.subject')">{{'item.page.subject' | translate}}</h2>
-      <!-- Horizontal unordered list -->
-      <ul class="horizontal-list">
-        <li *ngFor="let subject of object.findMetadataSortedByPlace(['dc.subject'])" [attr.lang]="subject.language">{{subject.value}}</li>
-      </ul>
-     
+
+      <ds-generic-simple-metadata-section *ngIf="metadataContainsKey('dc.subject')" [item]="object"
+      [fields]="['dc.subject']" [isList]="true"
+      [label]="'item.page.subject'">
+      </ds-generic-simple-metadata-section>
+
       <!-- KEYWORDS -->
       <ds-generic-simple-metadata-section *ngIf="metadataContainsKey('creativework.keywords')" [filterLang]="true" [item]="object"
         [fields]="['creativework.keywords']"
-        [separator]="','"
+        [separator]="','" [isList]="true"
         [label]="'fosrc.item.edit.dynamic-field.label.keywords'">
       </ds-generic-simple-metadata-section>      
 

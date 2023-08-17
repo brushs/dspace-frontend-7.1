@@ -29,6 +29,8 @@ export class SimpleMetadataSectionComponent implements OnInit {
 
   @Input() isDescriptionList: boolean = false;
 
+  @Input() isList: boolean = false;
+
   constructor(
     public localeService: LocaleService,
   ) { }
@@ -38,5 +40,16 @@ export class SimpleMetadataSectionComponent implements OnInit {
       this.mdValues = this.mdValues.filter(mdValue => mdValue.language === this.localeService.getCurrentLanguageCode());
     }
   }
-
+  getSwitchCase(): string {
+    if (!this.isDescriptionList && this.isList) {
+      return 'case1';
+    } else if (!this.isDescriptionList) {
+      return 'case2';
+    } else if (this.isDescriptionList) {
+      return 'case3';
+    } else {
+      return 'default';
+    }
+  }
+  
 }
