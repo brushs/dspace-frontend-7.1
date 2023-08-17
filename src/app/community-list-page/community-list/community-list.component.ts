@@ -8,6 +8,9 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { isEmpty } from '../../shared/empty.util';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { MetadataTranslatePipe } from '../../shared/utils/metadata-translate.pipe';
+import { DSONameService } from '../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from '../../core/locale/locale.service';
 
 /**
  * A tree-structured list of nodes representing the communities, their subCommunities and collections.
@@ -36,7 +39,9 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 
   constructor(private communityListService: CommunityListService,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private dsoNameService: DSONameService,
+    private localeService: LocaleService
   ) {
     if (this.translate.currentLang === 'en' && this.router.url.includes('liste-des-communautes')) {
       this.router.navigate(['/community-list'])
@@ -158,6 +163,29 @@ export class CommunityListComponent implements OnInit, OnDestroy {
         }
       });
     },0)
+  }
+
+  translateMetadata(keys: string | string[], dso: any) {
+    const pipe = new MetadataTranslatePipe(this.dsoNameService, this.localeService);
+    return pipe.transform(keys, dso);
+  }
+
+  getTranslatedValue(payload: any): any {
+    return this.translateMetadata(['dc.title', 'dc.title.fosrctranslation'], payload)[0];
+  }
+
+  getLanguageAttribute(payload: any): string | undefined {
+    const translatedTitle = this.getTranslatedValue(payload);
+    const language = translatedTitle?.language;
+    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
+  }
+
+  isValidData(payload: any): boolean {
+    const translatedTitle = this.getTranslatedValue(payload);
+    const value = translatedTitle?.value;
+    const language = translatedTitle?.language;
+    return (value !== undefined && value !== null && value !== '') &&
+    (language !== undefined && language !== null &&  language !== '');
   }
 
 }

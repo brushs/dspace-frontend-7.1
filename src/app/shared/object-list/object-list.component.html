@@ -6,13 +6,14 @@
           [hideGear]="hideGear"
           [hidePagerWhenSinglePage]="hidePagerWhenSinglePage"
           [hidePaginationDetail]="hidePaginationDetail"
+          [useGcWeb]="useGcWeb"
           (pageChange)="onPageChange($event)"
           (pageSizeChange)="onPageSizeChange($event)"
           (sortDirectionChange)="onSortDirectionChange($event)"
           (sortFieldChange)="onSortFieldChange($event)"
           (paginationChange)="onPaginationChange($event)">
       <ul *ngIf="objects?.hasSucceeded"[ngClass]="{'ml-4': selectable && !useGcWeb, 'list-unstyled': useGcWeb}">
-          <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last" class="{{ useGcWeb ? 'brdr-tp' : 'mt-4 mb-4 d-flex'}}" [class.border-bottom]="hasBorder && !last">
+          <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last" class="{{ useGcWeb ? 'brdr-tp margin-top-medium' : 'mt-4 mb-4 d-flex'}}" [class.border-bottom]="hasBorder && !last">
             <ds-selectable-list-item-control *ngIf="selectable" [index]="i"
                                              [object]="object"
                                              [selectionConfig]="selectionConfig"
