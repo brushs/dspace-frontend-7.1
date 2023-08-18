@@ -3,7 +3,7 @@ import { Item } from '../../../../core/shared/item.model';
 import { ItemComponent } from '../shared/item.component';
 import { ViewMode } from '../../../../core/shared/view-mode.model';
 import { listableObjectComponent } from '../../../../shared/object-collection/shared/listable-object/listable-object.decorator';
-import { MetadataValue } from 'src/app/core/shared/metadata.models';
+import { MetadataValue } from '../../../../core/shared/metadata.models';
 
 /**
  * Component that represents a publication Item page

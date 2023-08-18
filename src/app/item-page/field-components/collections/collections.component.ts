@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { DSONameService } from '../../../core/breadcrumbs/dso-name.service';
 import { CollectionDataService } from '../../../core/data/collection-data.service';
 import { PaginatedList, buildPaginatedList } from '../../../core/data/paginated-list.model';
 import { RemoteData } from '../../../core/data/remote-data';
+import { LocaleService } from '../../../core/locale/locale.service';
 
 import { Collection } from '../../../core/shared/collection.model';
 import { Item } from '../../../core/shared/item.model';
@@ -29,8 +31,8 @@ export class CollectionsComponent implements OnInit {
 
   collectionsRD$: Observable<RemoteData<PaginatedList<Collection>>>;
 
-  constructor(private cds: CollectionDataService) {
-
+  constructor(public localeService: LocaleService, public dsoNameService: DSONameService, private cds: CollectionDataService) {
+  
   }
 
   ngOnInit(): void {

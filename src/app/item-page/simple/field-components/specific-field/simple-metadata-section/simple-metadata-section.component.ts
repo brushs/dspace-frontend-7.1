@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LocaleService } from 'src/app/core/locale/locale.service';
-import { MetadataValue } from 'src/app/core/shared/metadata.models';
+import { LocaleService } from '../../../../../core/locale/locale.service';
+import { MetadataValue } from '../../../../../core/shared/metadata.models';
 
 
 @Component({

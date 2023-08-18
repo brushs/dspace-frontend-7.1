@@ -459,6 +459,8 @@
   "fosrc.item.form.error.panel.upload": "Upload",
   "fosrc.item.form.error.panel.license": "License",
 
+  "full-item.details.title": "Full item details",
+
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",
   "logout.breadcrumbs": "Sign Out",
@@ -986,7 +988,7 @@
   "community.sub-community-list.head": "Sub-Communities of this community",
   "communityList.breadcrumbs": "Community List",
   "communityList.showMore": "Show more",
-  "communityList.tabTitle": "Community List",
+  "communityList.tabTitle": "Communities",
   "communityList.title": "Community List",
   "confirmation-modal.delete-eperson.cancel": "Cancel",
   "confirmation-modal.delete-eperson.confirm": "Delete",
