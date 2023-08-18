@@ -1,4 +1,4 @@
-<ng-container *ngIf="(this.collectionsRD$ | async)?.hasSucceeded">
+<ng-container *ngIf="showCollections">
     <h2 class="h3">{{label | translate}}</h2>
     <p class="collections">
         <a *ngFor="let collection of (this.collectionsRD$ | async)?.payload?.page; let last=last;" [routerLink]="['/collections', collection.id]">
