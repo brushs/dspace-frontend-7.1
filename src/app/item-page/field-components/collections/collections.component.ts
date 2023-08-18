@@ -66,6 +66,5 @@ export class CollectionsComponent implements OnInit {
         }
       })
     );
-    
   }
 }
