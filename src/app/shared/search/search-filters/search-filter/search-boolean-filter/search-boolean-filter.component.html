@@ -22,27 +22,43 @@
 
 
 <ng-template #GCWebTemplate>
-  <ul class="list-unstyled lst-spcd-2">
-    <ng-container *ngFor="let value of (selectedValues$ | async)" >
-      <li class="checkbox gc-chckbxrdio">
-        <ds-search-facet-selected-option [selectedValue]="value" [filterConfig]="filterConfig" [facetTerm]="facetTerm"  [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-selected-option>
-      </li>
-    </ng-container>
-    <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
-      <li #el *ngFor="let value of page.page; trackBy: trackUpdate" [@facetLoad]="animationState" class="checkbox gc-chckbxrdio">
-        <ds-search-facet-option [selfRef]="el" [filterConfig]="filterConfig" [filterValue]="value" [facetTerm]="facetTerm"  [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
-      </li>
-    </ng-container>
-  </ul>
 
-  <p class="clearfix toggle-more-filters pb-1">
-    <a class="float-left" *ngIf="!(isLastPage$ | async)"
-       (click)="showMore()" href="javascript:void(0);">
-      {{"search.filters.filter.show-more" | translate}}
-    </a>
-    <a class="float-right" *ngIf="(currentPage | async) > 1"
-       (click)="showFirstPageOnly()" href="javascript:void(0);">
-      {{"search.filters.filter.show-less" | translate}}
-    </a>
-  </p>
+  <ng-container *ngVar="(filterValues$ | async)?.payload as unselectedValues">
+    <ng-container *ngVar="(selectedValues$ | async) as selectedValues">
+  
+      <ng-container
+        *ngIf="( selectedValues?.length || (unselectedValues?.length && unselectedValues[0]?.page?.length)) else noResultsTemplate">
+        <ul class="list-unstyled lst-spcd-2">
+          <ng-container *ngFor="let value of (selectedValues$ | async)" >
+            <li class="checkbox gc-chckbxrdio">
+              <ds-search-facet-selected-option [selectedValue]="value" [filterConfig]="filterConfig" [facetTerm]="facetTerm"  [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-selected-option>
+            </li>
+          </ng-container>
+          <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
+            <li #el *ngFor="let value of page.page; trackBy: trackUpdate" [@facetLoad]="animationState" class="checkbox gc-chckbxrdio">
+              <ds-search-facet-option [selfRef]="el" [filterConfig]="filterConfig" [filterValue]="value" [facetTerm]="facetTerm"  [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
+            </li>
+          </ng-container>
+        </ul>
+      
+        <p class="clearfix toggle-more-filters pb-1">
+          <a class="float-left" *ngIf="!(isLastPage$ | async)"
+             (click)="showMore()" href="javascript:void(0);">
+            {{"search.filters.filter.show-more" | translate}}
+          </a>
+          <a class="float-right" *ngIf="(currentPage | async) > 1"
+             (click)="showFirstPageOnly()" href="javascript:void(0);">
+            {{"search.filters.filter.show-less" | translate}}
+          </a>
+        </p>
+      </ng-container>
+
+      <ng-template #noResultsTemplate>
+        <p>
+          {{'search.filters.none' | translate}}
+        </p>
+      </ng-template>
+
+    </ng-container>
+  </ng-container>
 </ng-template>

@@ -33,45 +33,60 @@
 
 
 <ng-template #GCWebTemplate>
-  <ul class="list-unstyled">
-    <ng-container *ngFor="let value of (selectedValues$ | async)" >
-      <li class="checkbox gc-chckbxrdio">
-        <ds-search-facet-selected-option [selectedValue]="value" [filterConfig]="filterConfig" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-selected-option>
-      </li>
+  
+  <ng-container *ngVar="(filterValues$ | async)?.payload as unselectedValues">
+    <ng-container *ngVar="(selectedValues$ | async) as selectedValues">
+
+      <ng-container *ngIf="( selectedValues?.length || (unselectedValues?.length && unselectedValues[0]?.page?.length)) else noResultsTemplate">
+          <ul class="list-unstyled">
+            <ng-container *ngFor="let value of (selectedValues$ | async)" >
+              <li class="checkbox gc-chckbxrdio">
+                <ds-search-facet-selected-option [selectedValue]="value" [filterConfig]="filterConfig" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-selected-option>
+              </li>
+            </ng-container>
+            <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
+              <li #el *ngFor="let value of page.page; trackBy: trackUpdate" class="checkbox gc-chckbxrdio">
+                <ds-search-facet-option [selfRef]="el" [filterConfig]="filterConfig" [filterValue]="value" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
+              </li>
+            </ng-container>
+          </ul>
+
+          <div class="row">
+            <p class="col clearfix toggle-more-filters pb-1">
+              <a class="float-left" *ngIf="!(isLastPage$ | async)"
+                  (click)="showMore()" href="javascript:void(0);">
+                {{"search.filters.filter.show-more" | translate}}
+              </a>
+            </p>
+            <p class="col clearfix toggle-more-filters pb-1" *ngIf="(currentPage | async) > 1">
+              <a class="float-right" 
+                  (click)="showFirstPageOnly()" href="javascript:void(0);">
+                {{"search.filters.filter.show-less" | translate}}
+              </a>
+            </p>
+          </div>
+
+
+        <ds-filter-input-suggestions [suggestions]="(filterSearchResults | async)"
+        [placeholder]="'search.filters.filter.' + filterConfig.name + '.placeholder' | translate"
+        [label]="'search.filters.filter.' + filterConfig.name + '.label' | translate"
+        [action]="currentUrl"
+        [useGcWeb]="true"
+        [name]="filterConfig.paramName"
+        [(ngModel)]="filter"
+        (submitSuggestion)="onSubmit($event, true)"
+        (clickSuggestion)="onClick($event)"
+        (findSuggestions)="findSuggestions($event)"
+        ngDefaultControl></ds-filter-input-suggestions>
+      </ng-container>
+
+      <ng-template #noResultsTemplate>
+        <p>
+          {{'search.filters.none' | translate}}
+        </p>
+      </ng-template>
+      
     </ng-container>
-    <ng-container *ngFor="let page of (filterValues$ | async)?.payload">
-      <li #el *ngFor="let value of page.page; trackBy: trackUpdate" class="checkbox gc-chckbxrdio">
-        <ds-search-facet-option [selfRef]="el" [filterConfig]="filterConfig" [filterValue]="value" [useGcWeb]="useGcWeb" [selectedValues$]="selectedValues$" [inPlaceSearch]="inPlaceSearch"></ds-search-facet-option>
-      </li>
-    </ng-container>
-  </ul>
-
-  <div class="row">
-    <p class="col clearfix toggle-more-filters pb-1">
-      <a class="float-left" *ngIf="!(isLastPage$ | async)"
-          (click)="showMore()" href="javascript:void(0);">
-        {{"search.filters.filter.show-more" | translate}}
-      </a>
-    </p>
-    <p class="col clearfix toggle-more-filters pb-1" *ngIf="(currentPage | async) > 1">
-      <a class="float-right" 
-          (click)="showFirstPageOnly()" href="javascript:void(0);">
-        {{"search.filters.filter.show-less" | translate}}
-      </a>
-    </p>
-  </div>
-
-
-<ds-filter-input-suggestions [suggestions]="(filterSearchResults | async)"
-[placeholder]="'search.filters.filter.' + filterConfig.name + '.placeholder' | translate"
-[label]="'search.filters.filter.' + filterConfig.name + '.label' | translate"
-[action]="currentUrl"
-[useGcWeb]="true"
-[name]="filterConfig.paramName"
-[(ngModel)]="filter"
-(submitSuggestion)="onSubmit($event, true)"
-(clickSuggestion)="onClick($event)"
-(findSuggestions)="findSuggestions($event)"
-ngDefaultControl></ds-filter-input-suggestions>
+  </ng-container>
 
 </ng-template>
