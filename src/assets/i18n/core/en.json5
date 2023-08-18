@@ -463,11 +463,15 @@
 
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",
+
+  "home.search-form.head": "Search the repository",
+
   "logout.breadcrumbs": "Sign Out",
   "official.title": "Official Title",
 
   "search.filters.applied": "Filters Applied:",
   "search.filters.remove": "Remove Filter",
+  "search.filters.none": "No results match this filter",
   
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
@@ -1913,13 +1917,13 @@
   "search.filters.entityType.OrgUnit": "Organization unit",
   "search.filters.filter.author.head": "Author",
   "search.filters.filter.author.label": "Search author last name",
-  "search.filters.filter.author.placeholder": "Search Author Last name",
+  "search.filters.filter.author.placeholder": "Search author last name",
   "search.filters.filter.birthDate.head": "Birth date",
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
-  "search.filters.filter.start": "Start Date",
-  "search.filters.filter.end": "End Date",
+  "search.filters.filter.start": "Start date",
+  "search.filters.filter.end": "End date",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",
@@ -1969,7 +1973,7 @@
   "search.filters.filter.discoverable.head": "Private",
   "search.filters.filter.entityType.head": "Item type",
   "search.filters.filter.entityType.label": "Search item type",
-  "search.filters.filter.entityType.placeholder": "Search Item type",
+  "search.filters.filter.entityType.placeholder": "Search item type",
   "search.filters.filter.expand": "Expand filter",
 
   // FOSRC start changes
@@ -2030,7 +2034,7 @@
   "search.filters.filter.show-more": "Show more",
   "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.label": "Search subject",
-  "search.filters.filter.subject.placeholder": "Search Subject",
+  "search.filters.filter.subject.placeholder": "Search subject",
   "search.filters.filter.submitter.head": "Submitter",
   "search.filters.filter.submitter.label": "Search submitter",
   "search.filters.filter.submitter.placeholder": "Submitter",
@@ -2047,7 +2051,7 @@
   "search.form.search_mydspace": "Search in MyFOSRC",
   "search.results.empty": "Your search returned no results.",
   "search.results.head": "Search results",
-  "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting",
+  "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting quotes around it.",
   "search.results.no-results-link": "Quotes around it",
   "search.results.view-result": "View",
   "search.search-form.placeholder": "Search the repository",
