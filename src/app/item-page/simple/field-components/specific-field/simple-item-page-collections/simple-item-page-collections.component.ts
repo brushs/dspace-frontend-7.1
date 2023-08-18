@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CollectionsComponent } from 'src/app/item-page/field-components/collections/collections.component';
+import { CollectionsComponent } from '../../../../field-components/collections/collections.component';
 
 @Component({
   selector: 'ds-simple-item-page-collections',
