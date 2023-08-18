@@ -11,7 +11,7 @@
 </ng-template>
 
 <ng-template #urlList>
-  <ul class="uri-list" *ngIf="!renderInParagraph; else paragraphRender">
+  <ul class="list-unstyled" *ngIf="!renderInParagraph; else paragraphRender">
     <li *ngFor="let mdValue of item?.allMetadata(fields); let last=last;">
         <a  [href]="domainAwareValue(mdValue.value)">
             {{ domainAwareValue(mdValue.value) }}<span *ngIf="!last" [innerHTML]="separator"></span>
