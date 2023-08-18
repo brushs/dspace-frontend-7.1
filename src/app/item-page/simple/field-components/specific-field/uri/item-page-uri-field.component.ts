@@ -37,6 +37,8 @@ export class ItemPageUriFieldComponent extends ItemPageFieldComponent {
 
   @Input() isDescriptionList: boolean = false;
 
+  @Input() renderInParagraph: boolean = false;
+
   public domainAwareValue (rawValue: string): string {
     const domainList = ['dev.ospr.link','ospr.link','localhost','open-science.canada.ca','science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']
     if(!domainList.some((x: string) => rawValue.includes(x))) {
