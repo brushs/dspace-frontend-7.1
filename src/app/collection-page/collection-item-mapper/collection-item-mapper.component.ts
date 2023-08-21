@@ -29,6 +29,7 @@ import { SearchService } from '../../core/shared/search/search.service';
 import { followLink } from '../../shared/utils/follow-link-config.model';
 import { NoContent } from '../../core/shared/NoContent.model';
 import { FeatureID } from '../../core/data/feature-authorization/feature-id';
+import { LocaleService } from '../../core/locale/locale.service';
 
 @Component({
   selector: 'ds-collection-item-mapper',
@@ -108,7 +109,8 @@ export class CollectionItemMapperComponent implements OnInit {
               private itemDataService: ItemDataService,
               private collectionDataService: CollectionDataService,
               private translateService: TranslateService,
-              private dsoNameService: DSONameService) {
+              private dsoNameService: DSONameService,
+              private localeService: LocaleService) {
   }
 
   ngOnInit(): void {
@@ -119,7 +121,8 @@ export class CollectionItemMapperComponent implements OnInit {
 
     this.collectionName$ = this.collectionRD$.pipe(
       map((rd: RemoteData<Collection>) => {
-        return this.dsoNameService.getName(rd.payload);
+        //return this.dsoNameService.getName(rd.payload);
+        return (this.dsoNameService.getTranslatedName(rd.payload, this.localeService.getCurrentLanguageCode()).value);
       })
     );
     this.searchOptions$ = this.searchConfigService.paginatedSearchOptions;
