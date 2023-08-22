@@ -2584,7 +2584,7 @@
   // "item.edit.withdraw.success": "The item was withdrawn successfully",
   "item.edit.withdraw.success": "L’article a été retiré avec succès",
   // "item.listelement.badge": "Item",
-  "item.listelement.badge": "Item",
+  "item.listelement.badge": "document",
   // Start FOSRC Changes - 1594
   // "item.page.relationship": "Relation",
   "item.page.relationship": "Relation",
@@ -3599,7 +3599,7 @@
   // "search.filters.applied.f.dateIssued.max": "End date",
   "search.filters.applied.f.dateIssued.max": "Date de fin",
   // "search.filters.applied.f.dateIssued.min": "Start date",
-  "search.filters.applied.f.dateIssued.min": "Depuis",
+  "search.filters.applied.f.dateIssued.min": "Date de début",
   // "search.filters.applied.f.dateSubmitted": "Date submitted",
   "search.filters.applied.f.dateSubmitted": "Date de dépôt",
   // "search.filters.applied.f.discoverable": "Private",
@@ -3799,7 +3799,7 @@
   // FORSC end changes
 
   // "search.filters.filter.has_content_in_original_bundle.head": "Contains files",
-  "search.filters.filter.has_content_in_original_bundle.head": "Contentu disponible",
+  "search.filters.filter.has_content_in_original_bundle.head": "Contenu disponible",
   // "search.filters.filter.itemtype.head": "Type",
   "search.filters.filter.itemtype.head": "Type",
   // "search.filters.filter.itemtype.label": "Search type",
