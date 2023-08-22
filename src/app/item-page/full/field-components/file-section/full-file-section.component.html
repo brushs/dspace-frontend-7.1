@@ -1,49 +1,51 @@
-<ds-metadata-field-wrapper [useGcWeb]="true" [label]="label | translate">
-    <div *ngVar="(originals$ | async)?.payload as originals">
-        <div *ngIf="hasValuesInBundle(originals)">
-            <h3 class="h4">{{"item.page.filesection.original.bundle" | translate}}</h3>
-            <ds-pagination *ngIf="originals?.page?.length > 0"
-                           [hideGear]="true"
-                           [hidePagerWhenSinglePage]="true"
-                           [paginationOptions]="originalOptions"
-                           [pageInfoState]="originals"
-                           [collectionSize]="originals?.totalElements"
-                           [retainScrollPosition]="true">
-
-                <ng-container *ngFor="let file of originals?.page;">
-                    <p class="mrgn-tp-lg" *ngVar="(file.thumbnail | async)?.payload as url">
-                        <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
-                    </p>
-                    <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
-                    <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
-                    <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}</p>
-                    <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
-                </ng-container>
-            </ds-pagination>
+<ng-container *ngIf="hasValuesInBundle((originals$ | async)?.payload) || hasValuesInBundle((licenses$ | async)?.payload)"> 
+    <ds-metadata-field-wrapper [useGcWeb]="true" [label]="label | translate">
+        <div *ngVar="(originals$ | async)?.payload as originals">
+            <div *ngIf="hasValuesInBundle(originals)">
+                <h3 class="h4">{{"item.page.filesection.original.bundle" | translate}}</h3>
+                <ds-pagination *ngIf="originals?.page?.length > 0"
+                               [hideGear]="true"
+                               [hidePagerWhenSinglePage]="true"
+                               [paginationOptions]="originalOptions"
+                               [pageInfoState]="originals"
+                               [collectionSize]="originals?.totalElements"
+                               [retainScrollPosition]="true">
+    
+                    <ng-container *ngFor="let file of originals?.page;">
+                        <p class="mrgn-tp-lg" *ngVar="(file.thumbnail | async)?.payload as url">
+                            <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
+                        </p>
+                        <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
+                        <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
+                        <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}</p>
+                        <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
+                    </ng-container>
+                </ds-pagination>
+            </div>
         </div>
-    </div>
-    <div *ngVar="(licenses$ | async)?.payload as licenses">
-        <div *ngIf="hasValuesInBundle(licenses)">
-            <h3 class="h4">{{"item.page.filesection.license.bundle" | translate}}</h3>
-            <ds-pagination *ngIf="licenses?.page?.length > 0"
-                           [hideGear]="true"
-                           [hidePagerWhenSinglePage]="true"
-                           [paginationOptions]="licenseOptions"
-                           [pageInfoState]="licenses"
-                           [collectionSize]="licenses?.totalElements"
-                           [retainScrollPosition]="true">
-
-                    <ng-container *ngFor="let file of licenses?.page;">
-                    <p class="mrgn-tp-lg" *ngVar="(file.thumbnail | async)?.payload as url">
-                        <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
-                    </p>
-
-                    <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
-                    <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
-                    <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}</p>
-                    <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
-                </ng-container>
-            </ds-pagination>
+        <div *ngVar="(licenses$ | async)?.payload as licenses">
+            <div *ngIf="hasValuesInBundle(licenses)">
+                <h3 class="h4">{{"item.page.filesection.license.bundle" | translate}}</h3>
+                <ds-pagination *ngIf="licenses?.page?.length > 0"
+                               [hideGear]="true"
+                               [hidePagerWhenSinglePage]="true"
+                               [paginationOptions]="licenseOptions"
+                               [pageInfoState]="licenses"
+                               [collectionSize]="licenses?.totalElements"
+                               [retainScrollPosition]="true">
+    
+                        <ng-container *ngFor="let file of licenses?.page;">
+                        <p class="mrgn-tp-lg" *ngVar="(file.thumbnail | async)?.payload as url">
+                            <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
+                        </p>
+    
+                        <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
+                        <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
+                        <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}</p>
+                        <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
+                    </ng-container>
+                </ds-pagination>
+            </div>
         </div>
-    </div>
-</ds-metadata-field-wrapper>
+    </ds-metadata-field-wrapper>    
+</ng-container>

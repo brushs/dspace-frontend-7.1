@@ -16,23 +16,20 @@
 
         <!-- <div gc-search-filters class="col-md-4 pull-left"></div> -->
         <div class="col-md-8 pull-right mrgn-bttm-lg">
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
-                        <div class="col-md-12 p-0 ">
-                            <label for="main-searchrepository">{{ 'home.search-form.placeholder' | translate }}</label>
-                            <div class="input-group">
-                                    <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" id="main-searchrepository" />
-                                    <span class="input-group-btn">
-                                        <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button"><span
-                                                class="fa fa-search"></span><span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}</span></button>
-                                    </span>
-                                </div>
+            <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
+                <div class="col-md-12 p-0 ">
+                    <h2>{{ 'home.search-form.head' | translate }}</h2>
+                    <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
+                    <div class="input-group">
+                            <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" id="main-searchrepository" />
+                            <span class="input-group-btn">
+                                <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button"><span
+                                        class="fa fa-search"></span><span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}</span></button>
+                            </span>
                         </div>
-                    </div>
-                    <ng-container [ngTemplateOutlet]="searchResults"></ng-container>
                 </div>
             </div>
+            <ng-container [ngTemplateOutlet]="searchResults"></ng-container>
         </div>
     </div>
 </div>

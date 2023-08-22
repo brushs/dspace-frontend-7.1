@@ -9,6 +9,8 @@ import { getCollectionEditRoute } from '../collection-page-routing-paths';
 import { Item } from '../../core/shared/item.model';
 import { getFirstSucceededRemoteDataPayload } from '../../core/shared/operators';
 import { AlertType } from '../../shared/alert/aletr-type';
+import { DSONameService } from '../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from '../../core/locale/locale.service';
 
 @Component({
   selector: 'ds-edit-item-template-page',
@@ -35,7 +37,7 @@ export class EditItemTemplatePageComponent implements OnInit {
    */
   AlertTypeEnum = AlertType;
 
-  constructor(protected route: ActivatedRoute,
+  constructor(public localeService: LocaleService, public dsoNameService: DSONameService, protected route: ActivatedRoute,
               public itemTemplateService: ItemTemplateDataService) {
   }
 

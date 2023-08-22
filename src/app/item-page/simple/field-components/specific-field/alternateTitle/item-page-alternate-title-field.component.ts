@@ -5,7 +5,6 @@ import { LocaleService } from '../../../../../core/locale/locale.service';
 import { Item } from '../../../../../core/shared/item.model';
 import { MetadataValue } from '../../../../../core/shared/metadata.models';
 import { ItemPageFieldComponent } from '../item-page-field.component';
-import {MetadataFieldWrapperDlComponent} from '../../../../field-components/metadata-field-wrapper-description-list/metadata-field-wrapper-description-list.component'
 
 @Component({
     selector: 'ds-item-page-alternative-title-field',

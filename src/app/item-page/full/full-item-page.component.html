@@ -15,7 +15,7 @@
       <!-- </div> -->
       <p class="h4" *ngIf="!fromWfi"><a [routerLink]="[(itemPageRoute$ | async)]" class="btn btn-default"><span class="fas fa-info-circle"></span> {{"item.page.link.simple" | translate}} </a>
 
-      <h2 class="h3">Full item details</h2>
+      <h2 class="h3">{{'full-item.details.title' | translate}} </h2>
       <!-- OSPR changes change table to dl-->
         <dl>
           <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">

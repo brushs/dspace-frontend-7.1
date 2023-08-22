@@ -8,9 +8,9 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { isEmpty } from '../../shared/empty.util';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { MetadataTranslatePipe } from 'src/app/shared/utils/metadata-translate.pipe';
-import { DSONameService } from 'src/app/core/breadcrumbs/dso-name.service';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { MetadataTranslatePipe } from '../../shared/utils/metadata-translate.pipe';
+import { DSONameService } from '../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from '../../core/locale/locale.service';
 
 /**
  * A tree-structured list of nodes representing the communities, their subCommunities and collections.
@@ -177,13 +177,18 @@ export class CommunityListComponent implements OnInit, OnDestroy {
   getLanguageAttribute(payload: any): string | undefined {
     const translatedTitle = this.getTranslatedValue(payload);
     const language = translatedTitle?.language;
-    return language !== null && language !== undefined && language !== '' ? language : undefined;
+    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
   }
 
   isValidData(payload: any): boolean {
     const translatedTitle = this.getTranslatedValue(payload);
     const value = translatedTitle?.value;
-    return value !== null && value !== undefined && value !== '';
+    const language = translatedTitle?.language;
+
+    const currentlanguage = this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en';
+
+    return (value !== undefined && value !== null && value !== '') &&
+    (language === currentlanguage || language === undefined || language === null || language === '');
   }
 
 }

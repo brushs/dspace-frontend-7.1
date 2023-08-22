@@ -16,12 +16,7 @@ export class ItemPageFieldComponent {
     /**
      * The item to display metadata for
      */
-    @Input() item: Item;
-    /**
-     * Whether or not to display this item as part of a description list
-     * Defaults to false
-     */
-    @Input() isDescriptionList = false;
+    @Input() item: Item;    
     /**
      * Fields (schema.element.qualifier) used to render their values.
      */
