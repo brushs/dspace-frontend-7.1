@@ -57,12 +57,6 @@ export class MetadataRepresentationListComponent extends AbstractIncrementalList
    */
   @Input() incrementBy = 10;
 
-  /**
-   * Whether or not to display this item as part of a description list
-   * Defaults to false
-   */
-  @Input() isDescriptionList = false;
-
   
   /**
    * Whether or not to add the class "mrgn-bttm-0" to the middle objects in the list

@@ -1,11 +1,4 @@
-<ds-metadata-field-wrapper-dl *ngIf="isDescriptionList" [subheading]="subheading" [label]="label | translate">
-    <span *ngFor="let mdValue of mdValues; let last=last;">
-        <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
-        <span *ngIf="!last" [innerHTML]="separator"></span>
-    </span>
-</ds-metadata-field-wrapper-dl>
-
-<ds-metadata-field-wrapper *ngIf="!isDescriptionList" [subheading]="subheading" [useGcWeb]="useGcWeb" [label]="label | translate">
+<ds-metadata-field-wrapper [subheading]="subheading" [useGcWeb]="useGcWeb" [label]="label | translate">
     <span *ngFor="let mdValue of mdValues; let last=last;">
         <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
         <span *ngIf="!last" [innerHTML]="separator"></span>

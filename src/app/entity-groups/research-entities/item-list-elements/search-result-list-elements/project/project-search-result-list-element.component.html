@@ -1,5 +1,5 @@
 <ds-truncatable [useShowMore]="useGcWeb" [id]="dso.id">
-  <ds-type-badge *ngIf="showLabel" [useGcWeb]="useGcWeb" [object]="dso"></ds-type-badge>
+  <!-- <ds-type-badge *ngIf="showLabel" [useGcWeb]="useGcWeb" [object]="dso"></ds-type-badge> -->
   <p>
     <a *ngIf="linkType != linkTypes.None" 
       [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"

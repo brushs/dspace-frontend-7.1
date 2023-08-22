@@ -9,7 +9,7 @@ import { TruncatableService } from '../../truncatable/truncatable.service';
 import { Metadata } from '../../../core/shared/metadata.utils';
 import { DSONameService } from '../../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../../core/locale/locale.service';
-import { MetadataValue } from 'src/app/core/shared/metadata.models';
+import { MetadataValue } from '../../../core/shared/metadata.models';
 
 @Component({
   selector: 'ds-search-result-list-element',

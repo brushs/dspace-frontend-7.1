@@ -186,8 +186,17 @@ export class PaginationComponent implements OnDestroy, OnInit {
   }
 
   ngAfterViewInit() {
-    (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Previous"]')?.setAttribute('rel', 'prev');
-    (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Next"]')?.setAttribute('rel', 'next');
+    // Accessibility implementations
+    if(this.useGcWeb) {
+      (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Previous"]')?.setAttribute('rel', 'prev');
+      (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Next"]')?.setAttribute('rel', 'next');
+      // A disabled button including ellipses gets rendered when displaying the last page number. This ensures the last page item gets rendered while the ellipses gets removed.
+      (<HTMLElement>this.paginationPage?.nativeElement)?.querySelectorAll('.page-item.disabled')?.forEach((el) => {
+        if(el.textContent?.includes('...')) {
+          el.remove()
+        }
+       });
+    }
   }
 
   /**

@@ -459,13 +459,19 @@
   "fosrc.item.form.error.panel.upload": "Upload",
   "fosrc.item.form.error.panel.license": "License",
 
+  "full-item.details.title": "Full item details",
+
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",
+
+  "home.search-form.head": "Search the repository",
+
   "logout.breadcrumbs": "Sign Out",
   "official.title": "Official Title",
 
   "search.filters.applied": "Filters Applied:",
   "search.filters.remove": "Remove Filter",
+  "search.filters.none": "No results match this filter",
   
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
@@ -490,13 +496,17 @@
   "input.label.datepicker.year": "Year",
   "input.label.datepicker.month": "Month",
   "input.label.datepicker.day": "Day",
-  "pagination.go.to": "Go to Page {{page}}",
+  "pagination.go.to": "Go to Page ",
   "profile.security.form.notifications.error.change-failed": "An error occurred while trying to change the password. Please check if the current password is correct.",
   "profile.security.form.notifications.error.general": "Please fill required fields of security form.",
 
   "nav.lang.selection": "Language selection",
   "nav.breadcrumbs.here": "You are here:",
 
+
+  "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
+
+  "search.badge.result": "Result ",
   "truncate.expand": "Show More",
   "truncate.collapse": "Show Less",
   // FOSRC SPECIFIC LABELS END
@@ -982,7 +992,7 @@
   "community.sub-community-list.head": "Sub-Communities of this community",
   "communityList.breadcrumbs": "Community List",
   "communityList.showMore": "Show more",
-  "communityList.tabTitle": "Community List",
+  "communityList.tabTitle": "Communities",
   "communityList.title": "Community List",
   "confirmation-modal.delete-eperson.cancel": "Cancel",
   "confirmation-modal.delete-eperson.confirm": "Delete",
@@ -1907,13 +1917,13 @@
   "search.filters.entityType.OrgUnit": "Organization unit",
   "search.filters.filter.author.head": "Author",
   "search.filters.filter.author.label": "Search author last name",
-  "search.filters.filter.author.placeholder": "Search Author Last name",
+  "search.filters.filter.author.placeholder": "Search author last name",
   "search.filters.filter.birthDate.head": "Birth date",
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
-  "search.filters.filter.start": "Start Date",
-  "search.filters.filter.end": "End Date",
+  "search.filters.filter.start": "Start date",
+  "search.filters.filter.end": "End date",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",
@@ -1963,7 +1973,7 @@
   "search.filters.filter.discoverable.head": "Private",
   "search.filters.filter.entityType.head": "Item type",
   "search.filters.filter.entityType.label": "Search item type",
-  "search.filters.filter.entityType.placeholder": "Search Item type",
+  "search.filters.filter.entityType.placeholder": "Search item type",
   "search.filters.filter.expand": "Expand filter",
 
   // FOSRC start changes
@@ -2024,7 +2034,7 @@
   "search.filters.filter.show-more": "Show more",
   "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.label": "Search subject",
-  "search.filters.filter.subject.placeholder": "Search Subject",
+  "search.filters.filter.subject.placeholder": "Search subject",
   "search.filters.filter.submitter.head": "Submitter",
   "search.filters.filter.submitter.label": "Search submitter",
   "search.filters.filter.submitter.placeholder": "Submitter",
@@ -2060,14 +2070,14 @@
   "search.view-switch.show-list": "Show as list",
   "sorting.ASC": "Ascending",
   "sorting.dc.date.accessioned.ASC": "Accessioned date ascending",
-  "sorting.dc.date.accessioned.DESC": "Access Date – Descending",
-  "sorting.dc.date.issued.ASC": "Date issued – Ascending",
-  "sorting.dc.date.issued.DESC": "Date issued – Descending",
+  "sorting.dc.date.accessioned.DESC": "Accessioned date descending",
+  "sorting.dc.date.issued.ASC": "Date issued ascending",
+  "sorting.dc.date.issued.DESC": "Date issued descending",
   "sorting.dc.title.ASC": "Title ascending",
   "sorting.dc.title.DESC": "Title descending",
   "sorting.DESC": "Descending",
-  "sorting.lastModified.ASC": "Last modified – Ascending",
-  "sorting.lastModified.DESC": "Last modified – descending",
+  "sorting.lastModified.ASC": "Last modified ascending",
+  "sorting.lastModified.DESC": "Last modified descending",
   "sorting.score.ASC": "Least relevant",
   "sorting.score.DESC": "Most relevant",
   "statistics.breadcrumbs": "Statistics",
