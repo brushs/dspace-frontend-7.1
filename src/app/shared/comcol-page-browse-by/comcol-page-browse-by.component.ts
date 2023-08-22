@@ -20,7 +20,10 @@ export interface ComColPageNavOption {
  */
 @Component({
   selector: 'ds-comcol-page-browse-by',
-  styleUrls: ['./comcol-page-browse-by.component.scss'],
+  styleUrls: [
+    '../../../themes/wetoverlay/styles/static-pages.scss',
+    './comcol-page-browse-by.component.scss'
+  ],
   templateUrl: './comcol-page-browse-by.component.html'
 })
 export class ComcolPageBrowseByComponent implements OnInit {
@@ -52,19 +55,19 @@ export class ComcolPageBrowseByComponent implements OnInit {
         params: { scope: this.id }
       }));
 
-    if (this.contentType === 'collection') {
-      this.allOptions = [ {
-        id: this.id,
-        label: 'collection.page.browse.recent.head',
-        routerLink: getCollectionPageRoute(this.id)
-      }, ...this.allOptions ];
-    } else if (this.contentType === 'community') {
-      this.allOptions = [{
-          id: this.id,
-          label: 'community.all-lists.head',
-          routerLink: getCommunityPageRoute(this.id)
-        }, ...this.allOptions ];
-    }
+    // if (this.contentType === 'collection') {
+    //   this.allOptions = [ {
+    //     id: this.id,
+    //     label: 'collection.page.browse.recent.head',
+    //     routerLink: getCollectionPageRoute(this.id)
+    //   }, ...this.allOptions ];
+    // } else if (this.contentType === 'community') {
+    //   this.allOptions = [{
+    //       id: this.id,
+    //       label: 'community.all-lists.head',
+    //       routerLink: getCommunityPageRoute(this.id)
+    //     }, ...this.allOptions ];
+    // }
 
     this.currentOptionId$ = this.route.params.pipe(
       map((params: Params) => params.id)
