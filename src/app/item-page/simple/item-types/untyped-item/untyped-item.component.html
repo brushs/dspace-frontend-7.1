@@ -113,6 +113,7 @@
         <dl>
           <ds-item-page-govdoc-field [item]="object" *ngIf="metadataContainsKey('dc.identifier.govdoc')" [isDescriptionList]="true"></ds-item-page-govdoc-field>
           <ds-item-page-isbn-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.isbn')"></ds-item-page-isbn-field>
+          <ds-item-page-pubmed-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.pubmedID')"></ds-item-page-pubmed-field>
           <ds-item-page-issn-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.issn')"></ds-item-page-issn-field>
           <ds-item-page-organization-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.organization')"></ds-item-page-organization-field>
           <ds-item-page-other-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.other')"></ds-item-page-other-field>
