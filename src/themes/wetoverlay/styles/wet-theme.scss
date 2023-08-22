@@ -4387,9 +4387,11 @@ details {
 	padding-left: 0px;
 	padding-right: 0px; }
 
+// Latest or missing code from gcweb theme.css
 #wb-bc li:before {
-	position: relative;
-	top: -2px; }
+	content: "\e080";
+	padding: 0 4px 0 0;
+	position: relative; }
 
 #wb-bc li:first-child a {
 	padding-left: 0; }
