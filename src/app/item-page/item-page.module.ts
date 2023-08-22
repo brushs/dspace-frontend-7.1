@@ -36,6 +36,7 @@ import { ItemPageSponsorshipFieldComponent } from './simple/field-components/spe
 import { ItemPageDoiFieldComponent } from './simple/field-components/specific-field/doi/item-page-doi-field.component';
 import { ItemPageGovdocFieldComponent } from './simple/field-components/specific-field/govdoc/item-page-govdoc-field.component';
 import { ItemPageIsbnFieldComponent } from './simple/field-components/specific-field/isbn/item-page-isbn-field.component';
+import { ItemPagePubMedFieldComponent } from './simple/field-components/specific-field/pubmed/item-page-pubmed-field.component';
 import { ItemPageIssnFieldComponent } from './simple/field-components/specific-field/issn/item-page-issn-field.component';
 import { ItemPageRightsFieldComponent } from './simple/field-components/specific-field/rights/item-page-rights-field.component';
 import { ItemPageIsoFieldComponent } from './simple/field-components/specific-field/iso/item-page-iso-field.component';
@@ -66,6 +67,7 @@ const DECLARATIONS = [
   ItemPageDoiFieldComponent,
   ItemPageGovdocFieldComponent,
   ItemPageIsbnFieldComponent,
+  ItemPagePubMedFieldComponent,
   ItemPageIssnFieldComponent,
   ItemPageFOSRCProjectIdFieldComponent,
   ItemPageRightsFieldComponent,
