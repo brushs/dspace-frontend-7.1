@@ -152,7 +152,7 @@
 
 
   // "item.page.filesection.download-file": "Download File",
-  "item.page.filesection.download-file": "Télécharger le Fichier",
+  "item.page.filesection.download-file": "Télécharger le fichier",
 
   // "community.breadcrumbs": "Community List",
   "community.breadcrumbs": "Liste des communautés",
@@ -736,7 +736,7 @@
   "fosrc.item.form.error.panel.license": "Licence",
 
   // "full-item.details.title": "Full item details",
-  "full-item.details.title": "Présentation détaillée de l'article",
+  "full-item.details.title": "Notice détaillée",
 
   // "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.about": "Passer à « Au sujet du Dépôt fédéral de science ouverte du Canada (DFSOC)»",
