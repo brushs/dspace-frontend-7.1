@@ -13,6 +13,7 @@
           <ds-dso-page-edit-button [pageRoute]="itemPageRoute$ | async" [dso]="item" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
         </div>
       <!-- </div> -->
+      <h2 class="wb-inv">{{"item.page.link.simple" | translate}}</h2>
       <p class="h4" *ngIf="!fromWfi"><a [routerLink]="[(itemPageRoute$ | async)]" class="btn btn-default"><span class="fas fa-info-circle"></span> {{"item.page.link.simple" | translate}} </a>
 
       <h2 class="h3">{{'full-item.details.title' | translate}} </h2>
