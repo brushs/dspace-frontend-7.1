@@ -4335,7 +4335,7 @@
   // "thumbnail.default.alt": "Thumbnail image",
   "thumbnail.default.alt": "Vignette d’image",
   // "thumbnail.default.placeholder": "No thumbnail available",
-  "thumbnail.default.placeholder": "Pas de vignette d'image disponible",
+  "thumbnail.default.placeholder": "Aucune vignette disponible",
   // "thumbnail.orgunit.alt": "OrgUnit logo",
   "thumbnail.orgunit.alt": "Logo de l'organisme",
   // "thumbnail.orgunit.placeholder": "OrgUnit placeholder image",

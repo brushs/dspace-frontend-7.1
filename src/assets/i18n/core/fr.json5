@@ -40,7 +40,7 @@
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
 
   //Simple item page translations ticket 1587
-  "item.page.download.files.link": "Télécharger des documents",
+  "item.page.download.files.link": "Télécharger les documents",
   //"item.page.heading.project": "Project",
   "item.page.heading.project": "Projet",
   // "alternative.title": "Alternative Title",
@@ -4539,7 +4539,7 @@
   // "thumbnail.default.alt": "Thumbnail image",
   "thumbnail.default.alt": "Vignette d’image",
   // "thumbnail.default.placeholder": "No thumbnail available",
-  "thumbnail.default.placeholder": "Pas de vignette d'image disponible",
+  "thumbnail.default.placeholder": "Aucune vignette disponible",
   // "thumbnail.orgunit.alt": "OrgUnit logo",
   "thumbnail.orgunit.alt": "Logo de l'organisme",
   // "thumbnail.orgunit.placeholder": "OrgUnit placeholder image",
