@@ -38,8 +38,8 @@
                           <span class="wb-inv">{{page === currentPage ? '(current)' : ''}} {{ 'pagination.go.to' | translate }}</span>
                           {{page}}
                     </ng-template>
-        <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}} </ng-template>
-        <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}} </ng-template>
+        <ng-template rel="prev" ngbPaginationPrevious>{{'pagination.button.prev' | translate}}  </ng-template>
+        <ng-template rel="next" ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
     </ngb-pagination>
   </div>
 </div>
