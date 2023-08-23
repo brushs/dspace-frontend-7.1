@@ -29,7 +29,7 @@
             </ng-template>
             <ng-container *ngFor="let mdValue of languageGroup.value; let last=last;">
               <ng-container *ngVar="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate) as val">
-                <ng-container *ngIf="isHyperLink(languageGroup.key, val); else nonHyperLink">
+                <ng-container *ngIf="isHyperLink(metadataGroup.key, val); else nonHyperLink">
                   <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{languageGroup.key}}">
                     <a [attr.href]="val">{{val}}</a>
                   </dd>
