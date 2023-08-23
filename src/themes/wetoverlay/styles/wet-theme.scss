@@ -367,16 +367,10 @@ th {
 	.table-bordered td {
 		border: 1px solid #ddd !important; } }
 
-// .glyphicon {
-// 	position: relative;
-// 	top: 1px;
-// 	display: inline-block;
+// @font-face {
 // 	font-family: "Glyphicons Halflings";
-// 	font-style: normal;
-// 	font-weight: 400;
-// 	line-height: 1;
-// 	-webkit-font-smoothing: antialiased;
-// 	-moz-osx-font-smoothing: grayscale; }
+// 	src: url("../../wet-boew/fonts/glyphicons-halflings-regular.eot");
+// 	src: url("../../wet-boew/fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../../wet-boew/fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../../wet-boew/fonts/glyphicons-halflings-regular.woff") format("woff"), url("../../wet-boew/fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../../wet-boew/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
 
 .glyphicon {
 	position: relative;
