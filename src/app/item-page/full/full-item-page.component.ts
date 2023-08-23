@@ -34,6 +34,7 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
   itemRD$: BehaviorSubject<RemoteData<Item>>;
 
   metadata$: Observable<MetadataMap>;
+  transformedMetadata$: Observable<any>;  // Create a new observable property
 
   filteredMetadata$;
 
@@ -59,7 +60,26 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
       map((rd: RemoteData<Item>) => rd.payload),
       filter((item: Item) => hasValue(item)),
       map((item: Item) => item.metadata),);
-          
+      // Group metadata by language
+    this.transformedMetadata$ = this.metadata$.pipe(
+      map(metadataMap => {
+        const groupedByLang: any = {};
+        Object.keys(metadataMap).forEach(key => {
+          const values = metadataMap[key];
+          values.forEach(value => {
+            const lang = value.language || '';
+            if (!groupedByLang[key]) {
+              groupedByLang[key] = {};
+            }
+            if (!groupedByLang[key][lang]) {
+              groupedByLang[key][lang] = [];
+            }
+            groupedByLang[key][lang].push(value);
+          });
+        });
+        return groupedByLang;
+      })
+    );
     this.subs.push(this.route.data.subscribe((data: Data) => {
         this.fromWfi = hasValue(data.wfi);
       })

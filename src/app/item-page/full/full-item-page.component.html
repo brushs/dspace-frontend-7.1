@@ -17,25 +17,31 @@
 
       <h2 class="h3">{{'full-item.details.title' | translate}} </h2>
       <!-- OSPR changes change table to dl-->
-        <dl>
-          <ng-container *ngFor="let mdEntry of (metadata$ | async) | keyvalue;">
-            <ng-container *ngFor="let mdValue of mdEntry.value; let first=first; let last=last;">
-              <dt *ngIf="first" lang="en">
-                {{mdEntry.key}}{{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
-              </dt>
+      <dl>
+        <ng-container *ngFor="let metadataGroup of (transformedMetadata$ | async) | keyvalue;">
+          <ng-container *ngFor="let languageGroup of metadataGroup.value | keyvalue;">
+            <dt lang="{{languageGroup.key}}">
+              {{metadataGroup.key}}{{languageGroup.key != '' ? ( ' - ' + languageGroup.key ) : ''}} 
+            </dt>
+            <ng-template #nonLanugagedMetadata>
+
+            </ng-template>
+            <ng-container *ngFor="let mdValue of languageGroup.value; let last=last;">
               <ng-container *ngVar="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate) as val">
-                <ng-container *ngIf="isHyperLink(mdEntry.key, val); else nonHyperLink">
-                  <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}">
+                <ng-container *ngIf="isHyperLink(languageGroup.key, val); else nonHyperLink">
+                  <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{languageGroup.key}}">
                     <a [attr.href]="val">{{val}}</a>
                   </dd>
                 </ng-container>
                 <ng-template #nonHyperLink>
-                  <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}" [innerHTML]="val"></dd>
+                  <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{languageGroup.key}}" [innerHTML]="val"></dd>
                 </ng-template>
               </ng-container>
             </ng-container>
           </ng-container>
-        </dl>
+        </ng-container>
+      </dl>
+      
       <!-- OSPR changes end  -->
       <ds-item-page-full-file-section [item]="item"></ds-item-page-full-file-section>
       <ds-item-page-collections [item]="item"></ds-item-page-collections>
