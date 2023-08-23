@@ -28,6 +28,7 @@ import { PaginationService } from '../../../../core/pagination/pagination.servic
 export class FullFileSectionComponent extends FileSectionComponent implements OnInit {
 
   @Input() item: Item;
+  @Input() showLicenses: boolean = true;
 
   label: string;
 
