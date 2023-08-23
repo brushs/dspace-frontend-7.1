@@ -19,7 +19,6 @@
     </ng-container>
 
     <ng-template #GcWebTemplate>
-      <h1>DOES THIS WORK 2</h1>
       <img *ngIf="src !== null" [src]="src | dsSafeUrl" [alt]="alt | translate" (error)="errorHandler()" class="img-responsive" />
       <div *ngIf="src === null" class="thumbnail-content outer">
         <div class="inner">
