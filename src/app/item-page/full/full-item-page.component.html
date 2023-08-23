@@ -23,12 +23,16 @@
               <dt *ngIf="first" lang="en">
                 {{mdEntry.key}}{{mdValue.language ? ( ' - ' + mdValue.language ) : ''}} 
               </dt>
-              <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}" *ngVar="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate) as val">
-                <a *ngIf="isHyperLink(mdEntry.key, val); else nonHyperLink" [attr.href]="val">{{val}}</a>
+              <ng-container *ngVar="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate) as val">
+                <ng-container *ngIf="isHyperLink(mdEntry.key, val); else nonHyperLink">
+                  <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}">
+                    <a [attr.href]="val">{{val}}</a>
+                  </dd>
+                </ng-container>
                 <ng-template #nonHyperLink>
-                  {{val}}
+                  <dd [ngClass]="{'mrgn-bttm-0': !last}" lang="{{mdValue.language ? mdValue.language : 'en'}}" [innerHTML]="val"></dd>
                 </ng-template>
-              </dd>
+              </ng-container>
             </ng-container>
           </ng-container>
         </dl>
