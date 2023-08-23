@@ -1,21 +1,25 @@
-<div class="thumbnail" [class.limit-width]="limitWidth" *ngIf="src !== null">
+<div class="thumbnail" [class.limit-width]="limitWidth">
   <ds-loading *ngIf="isLoading; else showThumbnail" class="thumbnail-content" [showMessage]="false">
     text-content
   </ds-loading>
   <ng-template #showThumbnail>
 
     <ng-container *ngIf="!useGcWeb else GcWebTemplate">
-      <img  class="thumbnail-content img-fluid"
+      <!--SIMPLE ITEM USES THIS -->
+      <img  class="thumbnail-content img-fluid" *ngIf="src !== null"
       [src]="src | dsSafeUrl" [alt]="alt | translate" (error)="errorHandler()">
       <!-- FOSRC remove default thumbnail #1763 -->
-      <!-- <div *ngIf="src === null" class="thumbnail-content outer">
+      <div *ngIf="src === null" class="thumbnail-content outer">
         <div class="inner">
-          <div class="thumbnail-placeholder w-100 h-100 p-3 lead">{{ placeholder | translate }}</div>
+          <div class="thumbnail-placeholder w-100 h-100 p-3 lead">
+            <p>{{ placeholder | translate }}</p>
+            </div>
         </div>
-      </div> -->
+      </div>
     </ng-container>
 
     <ng-template #GcWebTemplate>
+      <h1>DOES THIS WORK 2</h1>
       <img *ngIf="src !== null" [src]="src | dsSafeUrl" [alt]="alt | translate" (error)="errorHandler()" class="img-responsive" />
       <div *ngIf="src === null" class="thumbnail-content outer">
         <div class="inner">
