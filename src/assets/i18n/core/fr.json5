@@ -1,8 +1,6 @@
 {
-  // FOSRC SPECIFIC LABELS START
+  // FOSRC SPECIFIC LABELS Start
 
-  // PDF format override
-  "Adobe Portable Document Format" : "Format de document portable",
   // Contact us page labels
   // "contact-us.breadcrumbs": "Contact Us",
   "contact-us.breadcrumbs": "Communiquer avec un ministère ou un organisme",
@@ -2632,7 +2630,9 @@
   // "item.page.filesection.download": "Download",
   "item.page.filesection.download": "Télécharger",
   // "item.page.filesection.format": "Format:",
-  "item.page.filesection.format": "Format :",
+  "item.page.filesection.format": "Format :",  
+  "item.page.filesection.format.pdf.abbr": "PDF",
+  "item.page.filesection.format.pdf.full": "Format de document portable",
   // "item.page.filesection.license.bundle": "License bundle",
   "item.page.filesection.license.bundle": "Licence",
   // "item.page.filesection.name": "Name:",
