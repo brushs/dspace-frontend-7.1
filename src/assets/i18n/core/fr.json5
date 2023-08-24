@@ -2588,7 +2588,7 @@
   // "item.edit.withdraw.success": "The item was withdrawn successfully",
   "item.edit.withdraw.success": "L’article a été retiré avec succès",
   // "item.listelement.badge": "Item",
-  "item.listelement.badge": "document",
+  "item.listelement.badge": "Document",
   // Start FOSRC Changes - 1594
   // "item.page.relationship": "Relation",
   "item.page.relationship": "Relation",
