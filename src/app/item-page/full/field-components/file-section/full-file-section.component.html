@@ -17,7 +17,14 @@
                         </p>
                         <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
                         <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
-                        <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description | translate}}</p>
+                        <p *ngIf="formatIsPdf(file.format) | async; else nonPdf">
+                            {{"item.page.filesection.format" | translate}} <abbr title="{{'item.page.filesection.format.pdf.full' | translate}}">{{"item.page.filesection.format.pdf.abbr" | translate}}</abbr>
+                        </p>
+                        <ng-template #nonPdf>
+                            <p>
+                                {{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}
+                            </p>
+                        </ng-template>
                         <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
                     </ng-container>
                 </ds-pagination>
@@ -37,12 +44,19 @@
         
                             <ng-container *ngFor="let file of licenses?.page;">
                             <p class="mrgn-tp-lg" *ngVar="(file.thumbnail | async)?.payload as url">
-                                <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
+                                  <ds-thumbnail [thumbnail]="url" [useGcWeb]="true"></ds-thumbnail>
                             </p>
         
                             <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
                             <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
-                            <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description | translate}}</p>
+                            <p *ngIf="formatIsPdf(file.format) | async; else nonPdf">
+                                {{"item.page.filesection.format" | translate}} <abbr title="{{'item.page.filesection.format.pdf.full' | translate}}">{{"item.page.filesection.format.pdf.abbr" | translate}}</abbr>
+                            </p>
+                            <ng-template #nonPdf>
+                                <p>
+                                    {{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}
+                                </p>
+                            </ng-template>                            
                             <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
                         </ng-container>
                     </ds-pagination>

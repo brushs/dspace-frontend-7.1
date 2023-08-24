@@ -9,7 +9,7 @@ import { FileSectionComponent } from '../../../simple/field-components/file-sect
 import { PaginationComponentOptions } from '../../../../shared/pagination/pagination-component-options.model';
 import { PaginatedList } from '../../../../core/data/paginated-list.model';
 import { RemoteData } from '../../../../core/data/remote-data';
-import { switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { NotificationsService } from '../../../../shared/notifications/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 import { hasValue, isEmpty } from '../../../../shared/empty.util';
@@ -30,6 +30,9 @@ export class FullFileSectionComponent extends FileSectionComponent implements On
   @Input() item: Item;
   @Input() showLicenses: boolean = true;
 
+  //FOSRC Change
+  readonly pdfFormatText: string = "Adobe Portable Document Format";
+  
   label: string;
 
   originals$: Observable<RemoteData<PaginatedList<Bitstream>>>;
@@ -100,6 +103,18 @@ export class FullFileSectionComponent extends FileSectionComponent implements On
 
   }
 
+  formatIsPdf(fileFormat$: Observable<any>): Observable<boolean> {
+    return fileFormat$.pipe(
+      map(fileFormat => fileFormat?.payload?.description),
+      map(description => {
+        if (description == this.pdfFormatText) {
+          return true;
+        }
+        return false;
+      })
+    );
+  }
+  
   hasValuesInBundle(bundle: PaginatedList<Bitstream>) {
     return hasValue(bundle) && !isEmpty(bundle.page);
   }

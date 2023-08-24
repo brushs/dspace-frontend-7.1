@@ -1,8 +1,6 @@
 {
   // FOSRC SPECIFIC LABELS START
 
-  // PDF format override
-  "Adobe Portable Document Format" : "Portable Document Format",
   // Contact us page labels
   "contact-us.breadcrumbs": "Contact a department or an agency",
   "contact-us.header": "Contact a department or an agency",
@@ -1416,7 +1414,9 @@
   "item.page.files": "Download(s)",
   "item.page.filesection.description": "Description:",
   "item.page.filesection.download": "Download",
-  "item.page.filesection.format": "Format:",
+  "item.page.filesection.format": "Format:",  
+  "item.page.filesection.format.pdf.abbr": "PDF",
+  "item.page.filesection.format.pdf.full": "Portable Document Format",
   "item.page.filesection.license.bundle": "License bundle",
   "item.page.filesection.name": "Name:",
   "item.page.filesection.original.bundle": "Original bundle",
