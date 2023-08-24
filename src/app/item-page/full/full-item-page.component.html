@@ -24,9 +24,6 @@
             <dt lang="{{languageGroup.key}}">
               {{metadataGroup.key}}{{languageGroup.key != '' ? ( ' - ' + languageGroup.key ) : ''}} 
             </dt>
-            <ng-template #nonLanugagedMetadata>
-
-            </ng-template>
             <ng-container *ngFor="let mdValue of languageGroup.value; let last=last;">
               <ng-container *ngVar="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate) as val">
                 <ng-container *ngIf="isHyperLink(metadataGroup.key, val); else nonHyperLink">
