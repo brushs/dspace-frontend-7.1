@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { Item } from '../../../../core/shared/item.model';
 import { ItemComponent } from '../shared/item.component';
 import { ViewMode } from '../../../../core/shared/view-mode.model';
 import { listableObjectComponent } from '../../../../shared/object-collection/shared/listable-object/listable-object.decorator';
 import { MetadataValue } from '../../../../core/shared/metadata.models';
+import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from '../../../../core/locale/locale.service';
 
 /**
  * Component that represents a publication Item page
@@ -31,6 +33,11 @@ export class UntypedItemComponent extends ItemComponent {
   showDownloadLinksButton: boolean = false;
 
   readonly descriptionElementId: string = 'description-element';
+  constructor(private cdr: ChangeDetectorRef, protected dsoNameService: DSONameService, protected localeService: LocaleService) { 
+    super(dsoNameService, localeService);
+  }
+
+
   checkRelationMetaData (): void {
     if (this.object.metadata['dc.relation.isformatof'] ||
     this.object.metadata['dc.relation.ispartof'] ||
@@ -166,6 +173,7 @@ export class UntypedItemComponent extends ItemComponent {
 
   public setDownloadLinksButtonVisibility(show : boolean): void {
     this.showDownloadLinksButton = show;
+    this.cdr.detectChanges();
   }
 
   scrollToElement(event: Event, elementId: string): void {

@@ -1,5 +1,5 @@
 {
-  // FOSRC SPECIFIC LABELS START
+  // FOSRC SPECIFIC LABELS Start
 
   // Contact us page labels
   // "contact-us.breadcrumbs": "Contact Us",
@@ -716,6 +716,10 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   // "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+  "fosrc.item.edit.dynamic-field.values.request-doi.no": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.yes": "oui",
+  "fosrc.item.edit.dynamic-field.values.request-doi.No": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.Yes": "oui",
 
   // TODO Translate the folllowing labels:
   // "fosrc.item.form.error.panel.dc.type": "Publication Type",
@@ -2630,7 +2634,9 @@
   // "item.page.filesection.download": "Download",
   "item.page.filesection.download": "Télécharger",
   // "item.page.filesection.format": "Format:",
-  "item.page.filesection.format": "Format :",
+  "item.page.filesection.format": "Format :",  
+  "item.page.filesection.format.pdf.abbr": "PDF",
+  "item.page.filesection.format.pdf.full": "Format de document portable",
   // "item.page.filesection.license.bundle": "License bundle",
   "item.page.filesection.license.bundle": "Licence",
   // "item.page.filesection.name": "Name:",
