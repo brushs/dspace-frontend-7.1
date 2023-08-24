@@ -716,6 +716,10 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   // "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+  "fosrc.item.edit.dynamic-field.values.request-doi.no": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.yes": "oui",
+  "fosrc.item.edit.dynamic-field.values.request-doi.No": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.Yes": "oui",
 
   // TODO Translate the folllowing labels:
   // "fosrc.item.form.error.panel.dc.type": "Publication Type",

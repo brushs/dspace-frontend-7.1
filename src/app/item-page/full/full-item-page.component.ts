@@ -15,6 +15,7 @@ import { fadeInOut } from '../../shared/animations/fade';
 import { hasValue } from '../../shared/empty.util';
 import { AuthService } from '../../core/auth/auth.service';
 import { Location } from '@angular/common';
+import { clone } from 'lodash';
 
 
 /**
@@ -73,6 +74,12 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
             }
             if (!groupedByLang[key][lang]) {
               groupedByLang[key][lang] = [];
+            }
+            if (key === "local.requestdoi"){
+              var newValueForTranslation = "fosrc.item.edit.dynamic-field.values.request-doi."+value.value;
+              // value.value is readonly
+              value = clone(value);
+              value.value = newValueForTranslation;
             }
             groupedByLang[key][lang].push(value);
           });
