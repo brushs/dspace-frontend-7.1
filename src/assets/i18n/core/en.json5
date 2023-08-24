@@ -1,6 +1,8 @@
 {
   // FOSRC SPECIFIC LABELS START
 
+  // PDF format override
+  "Adobe Portable Document Format" : "Portable Document Format",
   // Contact us page labels
   "contact-us.breadcrumbs": "Contact a department or an agency",
   "contact-us.header": "Contact a department or an agency",

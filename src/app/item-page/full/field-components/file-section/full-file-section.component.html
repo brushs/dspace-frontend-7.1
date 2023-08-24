@@ -17,7 +17,7 @@
                         </p>
                         <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
                         <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
-                        <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}</p>
+                        <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description | translate}}</p>
                         <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
                     </ng-container>
                 </ds-pagination>
@@ -42,7 +42,7 @@
         
                             <p>{{"item.page.filesection.name" | translate}} {{file.name}}</p>
                             <p>{{"item.page.filesection.size" | translate}} {{(file.sizeBytes) | dsFileSize }}</p>
-                            <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description}}</p>
+                            <p>{{"item.page.filesection.format" | translate}} {{(file.format | async)?.payload?.description | translate}}</p>
                             <p><ds-file-download-link [bitstream]="file">{{"item.page.filesection.download-file" | translate}}</ds-file-download-link></p>
                         </ng-container>
                     </ds-pagination>

@@ -1,6 +1,8 @@
 {
   // FOSRC SPECIFIC LABELS START
 
+  // PDF format override
+  "Adobe Portable Document Format" : "Format de document portable",
   // Contact us page labels
   // "contact-us.breadcrumbs": "Contact Us",
   "contact-us.breadcrumbs": "Communiquer avec un ministère ou un organisme",
