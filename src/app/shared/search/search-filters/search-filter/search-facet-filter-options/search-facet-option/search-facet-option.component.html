@@ -25,7 +25,7 @@
         [attr.id]="id" 
         /> 
       <label class="d-lg-flex filter-value" [attr.for]="id">
-        {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }} {{' '}}<span class="clearfix ml-auto"><span class="badge badge-pill">
+        {{ filterValue.value | translate: {default: filterValue.value} }} {{' '}}<span class="clearfix ml-auto"><span class="badge badge-pill">
           <span class="wb-inv">{{ 'search.badge.result' | translate}}</span> {{filterValue.count}}</span></span>
       </label>
    </ng-container>

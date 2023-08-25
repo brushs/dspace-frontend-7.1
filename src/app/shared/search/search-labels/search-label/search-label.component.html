@@ -7,6 +7,6 @@
 
 <ng-template #GcWebTemplate>
         <a [routerLink]="searchLink" [queryParams]="(removeParameters | async)" queryParamsHandling="merge">
-            {{('search.filters.applied.' + key) | translate}}: {{'search.filters.' + filterName + '.' + value | translate: {default: normalizeFilterValue(value)} }}
+            {{('search.filters.applied.' + key) | translate}}: {{ value | translate: {default: normalizeFilterValue(value)} }}
             <span class="fa fa-times text-danger"> <span class="wb-inv">{{'search.filters.remove' | translate}}</span></span> </a>
 </ng-template>
