@@ -274,53 +274,53 @@ sidebar-section a {
   color: black;
 }
 
-/* Used by comcol-page-browse-by component */
-// .comcol-browse a {
-//   color: black !important;
-//   text-decoration: none !important;
-// }
 
-// // Browse tabs on community pages override purple visited link color with black
-// .comcol-browse a:visited {
-//   color: black !important;
-// }
-// // Browse tabs a links to have bold style with bordered tab
-// .comcol-browse .list-group-item:active  {
-//   border-top-width: 4px;
-//   border-bottom: none;
-//   color: black !important;
-//   font-weight: bold;
-// }
+.comcol-browse a {
+  color: black !important;
+  text-decoration: none !important;
+}
 
-// .comcol-browse .list-group-item:focus {
-//   border-top-width: 4px;
-//   border-bottom: none;
-//   color: black !important;
-//   font-weight: bold;
-// }
+// Browse tabs on community pages override purple visited link color with black
+.comcol-browse a:visited {
+  color: black !important;
+}
+// Browse tabs a links to have bold style with bordered tab
+.comcol-browse .list-group-item:active  {
+  border-top-width: 4px;
+  border-bottom: none;
+  color: black !important;
+  font-weight: bold;
+}
 
-// .comcol-browse .list-group-item:hover {
-//   border-top-width: 4px;
-//   border-bottom: none;
-//   color: black !important;
-//   font-weight: bold;
-// }
+.comcol-browse .list-group-item:focus {
+  border-top-width: 4px;
+  border-bottom: none;
+  color: black !important;
+  font-weight: bold;
+}
 
-// .comcol-browse .list-group-item.active {
-//   border-top-width: 4px !important;
-//   z-index: 2;
-//   background-color: white;
-//   border-color: #{$gray-300};
-//   color: black !important;
-//   font-weight: bold;
-//   border-bottom: none;
-// }
+.comcol-browse .list-group-item:hover {
+  border-top-width: 4px;
+  border-bottom: none;
+  color: black !important;
+  font-weight: bold;
+}
 
-// .comcol-browse .list-group-item {
-//   background-color: #f8f9fa;
-//   color: black;
-//   margin-left:5px; 
-// }
+.comcol-browse .list-group-item.active {
+  border-top-width: 4px !important;
+  z-index: 2;
+  background-color: white;
+  border-color: #{$gray-300};
+  color: black !important;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.comcol-browse .list-group-item {
+  background-color: #f8f9fa;
+  color: black;
+  margin-left:5px; 
+}
 
 .badge:visited {
   color: black;

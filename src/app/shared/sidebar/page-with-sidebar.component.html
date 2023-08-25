@@ -2,16 +2,13 @@
   <div class="row">
     <div class="row-with-sidebar row-offcanvas row-offcanvas-left"
          [@pushInOut]="(isSidebarCollapsed$ | async) ? 'collapsed' : 'expanded'">
-      <div *ngIf="sidebarContent" id="{{id}}-sidebar-content"
+      <div id="{{id}}-sidebar-content"
            class="col-12 col-md-{{sideBarWidth}} sidebar-content {{sidebarClasses | async}}">
         <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
       </div>
-      <div *ngIf="sidebarContent; else noSidebarContent" class="col-12 col-md-{{12 - sideBarWidth}}">
+      <div class="col-12 col-md-{{12 - sideBarWidth}}">
         <ng-content></ng-content>
       </div>
-      <ng-template #noSidebarContent>
-        <ng-content></ng-content>
-      </ng-template>
     </div>
   </div>
 </div>
