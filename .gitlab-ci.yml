@@ -46,8 +46,6 @@ test-dev:
 deploy-dev:
   when: manual
   stage: deploy
-  only:
-    - develop
   environment:
     name: dev
   tags:
@@ -113,8 +111,6 @@ test-preprod:
 deploy-preprod:
   when: manual
   stage: deploy
-  only:
-    - develop
   environment:
     name: preprod
   tags:
@@ -180,8 +176,6 @@ test-prod:
 deploy-prod:
   when: manual
   stage: deploy
-  only:
-    - develop
   environment:
     name: prod
   tags:
