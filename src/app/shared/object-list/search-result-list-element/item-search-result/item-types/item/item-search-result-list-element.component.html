@@ -9,7 +9,7 @@
     <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
   </p>
 
-  <ds-truncatable-part *ngIf="dso.allMetadata(['dc.publisher', 'dc.date.issued', 'publicationvolume.volumeNumber', 
+  <ds-truncatable-part *ngIf="dso.allMetadata(['dc.publisher', 'dc.date.issued', 'publicationvolume.volumeNumber',
     'dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0" [id]="dso.id" [minLines]="1">
     <p class="text-muted">
       <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
@@ -19,7 +19,7 @@
           [innerHTML]="firstMetadataValue('dc.date.issued')"></span>)
       </ng-container>
       <ng-container *ngIf="dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0">
-        <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author', 
+        <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author',
           'dc.creator', 'dc.contributor.*']); let last=last;">
           <span [innerHTML]="author"></span><ng-container *ngIf="!last">; </ng-container>
         </ng-container>
