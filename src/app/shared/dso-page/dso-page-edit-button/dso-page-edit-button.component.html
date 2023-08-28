@@ -1,6 +1,6 @@
-<a *ngIf="isAuthorized$ | async"
+<button *ngIf="isAuthorized$ | async" 
    [routerLink]="[pageRoute, 'edit', 'metadata']"
-   class="edit-button btn btn-dark btn-sm"
+   class="edit-button btn btn-primary btn-sm"
    [ngbTooltip]="tooltipMsg | translate"
    role="button" [title]="tooltipMsg |translate" [attr.aria-label]="tooltipMsg |translate">
 	
@@ -9,5 +9,4 @@
   <span class="wb-inv">{{tooltipMsg |translate}}</span>
   <!-- <i class="fas fa-pencil-alt fa-fw"></i> -->
 <!-- End OSPR Changes -->   
-
-</a>
+</button>

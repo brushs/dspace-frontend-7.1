@@ -1,7 +1,7 @@
 <ds-loading *ngIf="(dataSource.loading$ | async) && !loadingNode" class="ds-loading"></ds-loading>
 <!-- OSPR change - switch to gcweb template -->
 
-<div class="details-elements print-open">
+<div class="details-elements print-open mrgn-tp-md">
   <div class="btn-group mrgn-lft-sm">
     <button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "parent": ".details-elements", "type": "on"}' (click)="expandAllNodes()">{{ 'communityList.expandAll' | translate }}</button>
     <button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": ".details-elements", "type": "off"}' (click)="collapseAllNodes()">{{ 'communityList.collapseAll' | translate }}</button>
@@ -12,7 +12,7 @@
         <ng-container *ngIf="(node.level === 0) && isValidData(node.payload)">
           <li>
              <!-- Nodes with child nodes/subcommunities/nested content. For top level we need to show as expandable even if we don't have subcommunities/nested content -->
-            <ng-container *ngTemplateOutlet="expandable; context: { node: node }"></ng-container>
+            <ng-container *ngTemplateOutlet="expandable; context: { node: node, isFirst: first }"></ng-container>
             <!-- Nodes with "show more" content -->
             <ng-container *ngIf="node.isShowMoreNode">
               <ng-container *ngTemplateOutlet="showmore; context: { node: node }"></ng-container>
@@ -30,8 +30,8 @@
 </div>
 
 
-<ng-template #expandable let-node="node">
-  <details class="pb-0" [attr.open]= "node.isExpanded? '': null" [attr.id]="'detail-parent-node-' + node.id" >
+<ng-template #expandable let-node="node" let-isFirst="isFirst">
+  <details [ngClass]="{'pb-0 mrgn-tp-md': isFirst, 'pb-0': !isFirst}" [attr.open]= "node.isExpanded? '': null" [attr.id]="'detail-parent-node-' + node.id" >
     <summary #toggle [attr.id]="'parent-node-' + node.id" class="mb-0" (click)="toggleExpanded(node)" (keydown.enter)="$event.preventDefault();toggle.click()" (keydown.space)="$event.preventDefault();toggle.click()">
       <h2 class="h4" *ngIf="node?.level === 0">
         {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}

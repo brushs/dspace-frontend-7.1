@@ -392,12 +392,6 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
 
-  "fosrc.item.edit.dynamic-field.values.1.consultantreport": "Consultant report",
-  "fosrc.item.edit.dynamic-field.values.2.deparmentreport": "Department report",
-  "fosrc.item.edit.dynamic-field.values.3.internalreport": "Internal report",
-  "fosrc.item.edit.dynamic-field.values.4.mapseries": "Map series",
-  "fosrc.item.edit.dynamic-field.values.5.whitepaper": "White paper",
-
   "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.main": "Skip to main content.",
   "logout.breadcrumbs": "Sign Out",
