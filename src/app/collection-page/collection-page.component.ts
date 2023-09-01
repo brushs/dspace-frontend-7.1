@@ -259,6 +259,11 @@ export class CollectionPageComponent implements OnInit {
     });
 
     this.initParams();
+
+    // want to log what is in collectionRD$ to the console
+    this.collectionRD$.subscribe((collection) => {
+      console.log("collectionRD$ = " + collection);
+    });
   }
 
   initParams() {
