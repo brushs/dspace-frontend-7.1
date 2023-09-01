@@ -52,19 +52,17 @@
         <!-- Browse-By Links -->
         <ds-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">
         </ds-comcol-page-browse-by>
-
-        <div class="container" *ngIf="(isXsOrSm$ | async)">
+        <!-- FOSRC Remove 17  -->
+        <!-- <div class="container" *ngIf="(isXsOrSm$ | async)">
           <div class="row">
               <div class="col-12">
                   <ng-template *ngTemplateOutlet="searchForm"></ng-template>
                   <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true"></ds-search-settings>
               </div>
           </div>
-        </div>
+        </div> -->
         <div *ngIf="!searchSubmit else searchResultsPage">
-          <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
-            <ng-template *ngTemplateOutlet="searchForm"></ng-template>
-          </div>
+          <ng-template *ngTemplateOutlet="searchForm"></ng-template>
           <ds-community-page-sub-community-list [community]="communityPayload"></ds-community-page-sub-community-list>
           <ds-community-page-sub-collection-list [community]="communityPayload"></ds-community-page-sub-collection-list>
         </div>
@@ -131,6 +129,7 @@
                   [scopes]="(scopeListRD$ | async)"
                   [inPlaceSearch]="inPlaceSearch"
                   [searchPlaceholder]="'search.search-form.placeholder' | translate"
+                  [useGcWeb]="true"
                   (submitSearch)="onSeachSubmit($event)">
   </ds-search-form>
   <div class="row mb-3 mb-md-1">
