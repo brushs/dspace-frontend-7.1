@@ -1,55 +1,54 @@
-<div class="container" *ngVar="(communityRD$ | async) as communityRD">
-  <section>
-  <div class="community-page" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
-    <div *ngIf="communityRD?.payload; let communityPayload">
-      <ds-view-tracker [object]="communityPayload"></ds-view-tracker>
-      <div class="d-flex flex-row border-bottom mb-4 pb-4">
-        <div class="comcol-header mr-auto">
-          <!-- Community name -->
-          <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language"></ds-comcol-page-header>
-          <!-- Community logo -->
-          <ds-comcol-page-logo *ngIf="logoRD$" [logo]="(logoRD$ | async)?.payload" [alternateText]="'Community Logo'">
-          </ds-comcol-page-logo>
-          <!-- Handle -->
-          <ds-comcol-page-handle [content]="communityPayload.handle" [title]="'community.page.handle'">
-          </ds-comcol-page-handle>
-          <!-- Introductory text -->
-          <ds-comcol-page-content [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-         <!-- Alternative Names -->
-          <!-- Start FOSRC Changes - 1568
-          <ds-comcol-page-content [content]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          End of FOSRC changes -->
-          <!-- Identifiers -->
-          <ds-comcol-page-content [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- Main Area of Research -->
-          <!-- Start FOSRC Changes - 1568
-          <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.subject' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          End of FOSRC changes -->
-          <!-- Home Page URL -->
-          <ds-comcol-page-content [content]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- Email -->
-          <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- Description -->
-          <ds-comcol-page-content [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- Contact Address -->
-          <ds-comcol-page-content [content]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- News -->
-          <ds-comcol-page-content [content]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-        </div>
+<div class="container" gcweb>
+  <div class="row" *ngVar="(communityRD$ | async) as communityRD">
+    <div class="col-md-12" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
+      <ng-container *ngIf="communityRD?.payload; let communityPayload">
+        <ds-view-tracker [object]="communityPayload"></ds-view-tracker>
+        
+        <!-- Community name -->
+        <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language"></ds-comcol-page-header>
+        <!-- Community logo -->
+        <ds-comcol-page-logo *ngIf="logoRD$" [logo]="(logoRD$ | async)?.payload" [alternateText]="'Community Logo'">
+        </ds-comcol-page-logo>
+        <!-- Handle -->
+        <ds-comcol-page-handle [content]="communityPayload.handle" [title]="'community.page.handle'" [useHeading]="false">
+        </ds-comcol-page-handle>
+        <!-- Introductory text -->
+        <!-- <ds-comcol-page-content [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content> -->
+      <!-- Alternative Names -->
+        <!-- Start FOSRC Changes - 1568
+        <ds-comcol-page-content [content]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content>
+        End of FOSRC changes -->
+        <!-- Identifiers -->
+        <!-- <ds-comcol-page-content [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content> -->
+        <!-- Main Area of Research -->
+        <!-- Start FOSRC Changes - 1568
+        <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.subject' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content>
+        End of FOSRC changes -->
+        <!-- Home Page URL -->
+        <!-- <ds-comcol-page-content [content]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content> -->
+        <!-- Email -->
+        <!-- <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content> -->
+        <!-- Description -->
+        <!-- FOSRC Changes - only show description - 1756 -->
+        <ds-comcol-page-content [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content>
+        <!-- Contact Address -->
+        <!-- <ds-comcol-page-content [content]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content> -->
+        <!-- News -->
+        <!-- <ds-comcol-page-content [content]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content> -->
+
         <div class="pl-2">
           <ds-dso-page-edit-button *ngIf="isCommunityAdmin$ | async" [pageRoute]="communityPageRoute$ | async" [dso]="communityPayload" [tooltipMsg]="'community.page.edit'"></ds-dso-page-edit-button>
         </div>
-      </div>
-      <section class="comcol-page-browse-section">
+        
         <!-- Browse-By Links -->
         <ds-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">
         </ds-comcol-page-browse-by>
@@ -58,7 +57,7 @@
           <div class="row">
               <div class="col-12">
                   <ng-template *ngTemplateOutlet="searchForm"></ng-template>
-                  <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
+                  <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true"></ds-search-settings>
               </div>
           </div>
         </div>
@@ -69,20 +68,19 @@
           <ds-community-page-sub-community-list [community]="communityPayload"></ds-community-page-sub-community-list>
           <ds-community-page-sub-collection-list [community]="communityPayload"></ds-community-page-sub-collection-list>
         </div>
-      </section>
-      <footer  *ngIf="communityPayload.copyrightText"  class="border-top my-5 pt-4">
-        <!-- Copyright -->
-        <ds-comcol-page-content [content]="('dc.rights' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.rights' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content>
-      </footer>
+
+        <footer  *ngIf="communityPayload.copyrightText"  class="border-top my-5 pt-4">
+          <!-- Copyright -->
+          <ds-comcol-page-content [content]="('dc.rights' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.rights' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+        </footer>
+      </ng-container>
     </div>
+
+    <ds-error *ngIf="communityRD?.hasFailed" message="{{'error.community' | translate}}"></ds-error>
+    <ds-loading *ngIf="communityRD?.isLoading" message="{{'loading.community' | translate}}"></ds-loading>
   </div>
- </section>
-
-  <ds-error *ngIf="communityRD?.hasFailed" message="{{'error.community' | translate}}"></ds-error>
-  <ds-loading *ngIf="communityRD?.isLoading" message="{{'loading.community' | translate}}"></ds-loading>
 </div>
-
 <ng-template #searchResultsPage>
   <ds-page-with-sidebar [id]="'search-page'" [sidebarContent]="sidebarContent">
     <div class="row">

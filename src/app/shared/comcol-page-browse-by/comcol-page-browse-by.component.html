@@ -1,26 +1,21 @@
 
-<h2 class="comcol-browse-label h5">{{'browse.comcol.head' | translate}}</h2>
-<nav class="comcol-browse mb-4" aria-label="Browse Community or Collection">
-  <div class="d-none d-sm-block">
-    <!-- OSPR Change div to list -->
-    <ul class="list-group list-group-horizontal">
-      <li *ngFor="let option of allOptions"class="list-group-item" routerLinkActive="active">
-      <a  [routerLink]="option.routerLink"
-         [queryParams]="option.params"
-         >{{ option.label | translate }}</a>
-        </li>
-    </ul>
-    <!-- End change -->
-  </div>
+<h2 class="h3">{{'browse.comcol.head' | translate}}</h2>
+<ul class="list-inline">
+  <li *ngFor="let option of allOptions" routerLinkActive="active">
+  <a  [routerLink]="option.routerLink"
+      [queryParams]="option.params"
+      class="list-group-item well"
+      >{{ option.label | translate }}</a>
+    </li>
+</ul>
 
-  <div class="d-block d-sm-none">
-    <select name="browse-type"
-            class="form-control"
-            aria-label="Browse Community or Collection"
-            (ngModelChange)="onSelectChange($event)" [ngModel]="currentOptionId$ | async">
-      <option *ngFor="let option of allOptions"
-              [ngValue]="option.id"
-              [attr.selected]="(currentOptionId$ | async) === option.id ? 'selected' : null">{{ option.label | translate }}</option>
-    </select>
-  </div>
-</nav>
+<div class="d-block d-sm-none">
+  <select name="browse-type"
+          class="form-control"
+          aria-label="Browse Community or Collection"
+          (ngModelChange)="onSelectChange($event)" [ngModel]="currentOptionId$ | async">
+    <option *ngFor="let option of allOptions"
+            [ngValue]="option.id"
+            [attr.selected]="(currentOptionId$ | async) === option.id ? 'selected' : null">{{ option.label | translate }}</option>
+  </select>
+</div>
