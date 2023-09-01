@@ -1783,6 +1783,7 @@
   "community.page.edit": "Éditer cette communauté",
   // "community.page.handle": "Permanent URI for this community",
   "community.page.handle": "URI permanent de cette communauté",
+  "community.page.search": "Recherche dans cette communauté et ses collections",
   // "community.page.license": "License",
   "community.page.license": "Licence",
   // "community.page.news": "News",

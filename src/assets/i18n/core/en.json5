@@ -990,6 +990,7 @@
   "community.listelement.badge": "Community",
   "community.page.edit": "Edit this community",
   "community.page.handle": "Permanent URI for this community",
+  "community.page.search": "Search within this community and its collections",
   "community.page.license": "License",
   "community.page.news": "News",
   "community.sub-collection-list.head": "Collections of this community",
