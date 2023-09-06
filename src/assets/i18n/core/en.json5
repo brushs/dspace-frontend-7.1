@@ -18,6 +18,11 @@
 
   // About us page labels
   "about-us.breadcrumbs": "About the FOSRC",
+
+  "browseby.author.head" : "Browsing {{name}} by author",
+  "browseby.dateissued.head" : "Browsing {{name}} by issue date",
+  "browseby.subject.head" : "Browsing {{name}} by subject",
+  "browseby.title.head" : "Browsing {{name}} by title",
   // Policies page labels
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
 
@@ -788,10 +793,10 @@
   "bitstream.edit.notifications.saved.title": "Bitstream saved",
   "bitstream.edit.return": "Back",
   "bitstream.edit.title": "Edit bitstream",
-  "browse.comcol.by.author": "By author",
-  "browse.comcol.by.dateissued": "By issue date",
-  "browse.comcol.by.subject": "By subject",
-  "browse.comcol.by.title": "By title",
+  "browse.comcol.by.author": "Author",
+  "browse.comcol.by.dateissued": "Issue date",
+  "browse.comcol.by.subject": "Subject",
+  "browse.comcol.by.title": "Title",
   "browse.comcol.head": "Browse",
   "browse.empty": "No items to show.",
   "browse.metadata.author": "Author",

@@ -35,6 +35,16 @@
   // "about-us.breadcrumbs": "About the FOSRC",
   "about-us.breadcrumbs": "Le DFSOC",
 
+
+  // "browseby.author.head" : "Browsing {{name}} by issue date",
+  "browseby.author.head" : "Parcourir {{name}} par issue auteur",
+  // "browseby.dateissued.head" : "Browsing {{name}} by issue date",
+  "browseby.dateissued.head" : "Parcourir {{name}} par date de publication",
+  // "browseby.subject.head" : "Browsing {{name}} by issue date",
+  "browseby.dc.subject.head" : "Parcourir {{name}} par issue sujet",
+  // "browseby.title.head" : "Browsing {{name}} by issue date",
+  "browseby.title.head" : "Parcourir {{name}} par titre",
+
   // Policies page labels
   // "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",

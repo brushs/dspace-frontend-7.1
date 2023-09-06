@@ -1,24 +1,48 @@
-<div class="container">
+<div gcweb class="container">
     <ng-container *ngVar="(parent$ | async) as parent">
     <ng-container *ngIf="parent?.payload as parentContext">
-    <header class="comcol-header border-bottom mb-4 pb-4">
+    <!-- <header class="comcol-header border-bottom mb-4 pb-4"> -->
         <!-- Parent Name -->
-        <ds-comcol-page-header [name]="('dc.title' | metaTranslate : parentContext)[0]?.value" [lang]="('dc.title' | metaTranslate : parentContext)[0]?.language">
+        <ds-comcol-page-header
+          [browseField]="browseId" 
+          [name]="(('dc.title' | metaTranslate : parentContext)[0]?.value )" 
+          [lang]="('dc.title' | metaTranslate : parentContext)[0]?.language">
         </ds-comcol-page-header>
         <!-- Handle -->
-        <ds-comcol-page-handle
+        <!-- <ds-comcol-page-handle
             [content]="parentContext.handle"
             [title]="parentContext.type+'.page.handle'" >
-        </ds-comcol-page-handle>
+        </ds-comcol-page-handle> -->
         <!-- Introductory text -->
-        <ds-comcol-page-content [content]="parentContext.introductoryText" [hasInnerHtml]="true">
-        </ds-comcol-page-content>
+        <!-- <ds-comcol-page-content [content]="parentContext.introductoryText" [hasInnerHtml]="true">
+        </ds-comcol-page-content> -->
         <!-- News -->
-        <ds-comcol-page-content [content]="parentContext.sidebarText" [hasInnerHtml]="true" [title]="'community.page.news'">
-        </ds-comcol-page-content>
-      </header>
+        <!-- <ds-comcol-page-content [content]="parentContext.sidebarText" [hasInnerHtml]="true" [title]="'community.page.news'">
+        </ds-comcol-page-content> -->
+      <!-- </header> -->
+
+      <div class="row">
+
+        <div class="col-md-3 col-xs-12 pull-left">
+          <ds-comcol-page-browse-by [id]="parentContext.id" [contentType]="parentContext.type"></ds-comcol-page-browse-by>
+        </div>
+        
+        <section class="col-md-9 pull-right">
+          <label for="btngrp-browse" class="wb-inv">Browse</label>
+          <form action="#" method="get" id="searchForm">
+            <div class="input-group">
+              <input type="text" class="form-control mrgn-tp-md" id="btngrp-browse"
+                placeholder="Enter the Year Or the Year and Month (YYYY or YYYY-MM) and click search" />
+              <span class="input-group-btn">
+                <button class="btn btn-primary mrgn-tp-md" type="button">Search</button>
+              </span>
+            </div>
+          </form>
+        </section>
+        <!-- TODO implement -->
+        <!-- <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings> -->
+      </div>
       <!-- Browse-By Links -->
-      <ds-comcol-page-browse-by [id]="parentContext.id" [contentType]="parentContext.type"></ds-comcol-page-browse-by>
       </ng-container></ng-container>
 
     <section class="comcol-page-browse-section">
@@ -41,7 +65,7 @@
   <ng-container *ngVar="(parent$ | async) as parent">
     <ng-container *ngIf="parent?.payload as parentContext">
   <footer *ngIf="parentContext.copyrightText" class="border-top my-5 pt-4">
-    <div >
+    <div>
 
       <!-- Copyright -->
       <ds-comcol-page-content [content]="parentContext.copyrightText" [hasInnerHtml]="true">
@@ -51,3 +75,125 @@
 </ng-container>
 </ng-container>
 </div>
+
+
+
+<!-- <h1 property="name" id="wb-cont">Browsing {INSERT: Community or collection name} by issue date [French: Parcourir {INSERT: Community or collection name} par date de publication]</h1> -->
+        
+<!-- <div class="row"> -->
+   <!-- <div class="col-md-3 col-xs-12 pull-left">
+      <section class="panel panel-primary mrgn-tp-lg clearfix">
+         <header class="panel-heading">
+            <h2 class="panel-title h3">
+               Browse by
+            </h2>
+         </header>
+         <div class="panel-body">
+            <div class="list-group">
+               <a href="browsebytitle.html" class="list-group-item ">Title</a>
+               <a href="browsebydate.html" class="list-group-item active">Issue date</a>
+               <a href="browsebyauthor.html" class="list-group-item">Author</a>
+               <a href="browsebysubject.html" class="list-group-item">Subject</a>
+            </div>
+         </div>
+      </section>
+   </div> -->
+   <!-- <section class="col-md-9 pull-right">
+   <label for="btngrp-browse" class="wb-inv">Browse</label>
+<form action="#" method="get" id="searchForm">
+   <div class="input-group">
+      <input type="text" class="form-control mrgn-tp-md" id="btngrp-browse" placeholder="Enter the Year Or the Year and Month (YYYY or YYYY-MM) and click search" />
+      <span class="input-group-btn">
+      <button class="btn btn-primary mrgn-tp-md" type="button">Search</button>
+      </span>
+   </div>
+</form>
+   <h2 class="h4">Search results</h2>
+   <div class="row well well-small mrgn-lft-0 mrgn-rght-0"> 
+      <div class=" col-md-8 pull-left">
+         <div class="input-group">
+            <label for="Sortby">Sort by</label>
+            <select class="form-control" id="Sortby" name="Sortby">
+               <option label="Select">Select</option>
+               <option label="Most relevant">Most relevant</option>
+               <option label="Title ascending">Title ascending</option>
+               <option label="Title descending">Title descending</option>
+               <option label="Date issued ascending">Date issued ascending</option>
+               <option label="Date issued descending">Date issued descending</option>
+               <option label="Accessioned date ascending">Accessioned date ascending</option>
+               <option label="Accessioned date descending">Accessioned date descending</option>
+            </select>
+         </div>
+      </div>
+      <div class="col-md-4 pull-right">
+         <div class="input-group">
+            <label for="pageResults">Results per page</label>
+            <select class="form-control" id="pageResults" name="pageResults">
+               <option label="Select"></option>
+               <option value="1">1</option>
+               <option value="5">5</option>
+               <option value="10">10</option>
+               <option value="20">20</option>
+               <option value="40">40</option>
+               <option value="60">60</option>
+               <option value="80">80</option>
+               <option value="100">100</option>
+            </select>
+         </div>
+      </div>
+   </div>
+<hr/>
+   <ul class="list-unstyled">
+      <li class="brdr-tp mrgn-tp-md">
+   <p><strong class="label label-info">Item</strong></p>
+
+         <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
+         <p>(Environment and Climate Change Canada, 1979) McNeely, R.N.; Neimanis, V.P.; Dwyer, L.</p>
+         <p>A broad spectrum of water quality parameters that are frequently encountered in the aquatic environment are discussed in general terms. Seventy parameters ranging from alkalinity to zinc are outlined under the following headings: (a) general information, (b) environmental range, (c) natural and man-made sources, (d) water quality guidelines, and (e) effects on use. A glossary is included to further explain the scientific terminology which is essential to the text. An appendix of "Specific Use Guidelines” draws together and summarizes in a tabular form all the water quality guidelines presented in the text. The sources of the water quality guidelines are cited in the tables and are available in the references to the text. <br />
+            <a href="">Show More</a>
+         </p>
+      </li>
+      <li class="brdr-tp mrgn-tp-md">
+   <p><strong class="label label-info">Item</strong></p>
+
+         <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
+         <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
+            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that experienced by conservation biology over the last 15 years. Restoration ecology and conservation biology share many underlying biodiversity goals, but di er in striking ways. 
+         </p>
+      </li>
+      <li class="brdr-tp mrgn-tp-md">
+   <p><strong class="label label-info">Item</strong></p>
+
+         <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
+         <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
+            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that experienced by conservation biology over the last 15 years. Restoration ecology and conservation biology share many underlying biodiversity goals, but di er in striking ways. 
+         </p>
+      </li>
+      <li class="brdr-tp mrgn-tp-md">
+         <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
+         <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
+            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that experienced by conservation biology over the last 15 years. Restoration ecology and conservation biology share many underlying biodiversity goals, but di er in striking ways. 
+         </p>
+      </li>
+      <li class="brdr-tp mrgn-tp-md">
+         <p><strong><a href="#">Restoration ecology and conservative biology</a></strong></p>
+         <p>(Department of Environmental Horticulture, University of California, 2000-03) Young, Truman P
+            Restoration ecology is undergoing rapid growth as an academic discipline, similar to that experienced by conservation biology over the last 15 years. Restoration ecology and conservation biology share many underlying biodiversity goals, but di er in striking ways.
+         </p>
+      </li>
+   </ul>
+</div>
+<div class="text-center">
+   <ul class="pagination">
+      <li><a href="#" rel="prev">Previous</a></li>
+      <li><a href="#">1 <span class="wb-inv">Go to Page 1</span></a>
+      <li class="active"><a href="#">2 <span class="wb-inv">Go to Page 2</span></a></li>
+      <li><a href="#">3 <span class="wb-inv">Go to Page 3</span></a></li>
+      <li><a href="#">4 <span class="wb-inv">Go to Page 4</span></a></li>
+      <li><a href="#">5 <span class="wb-inv">Go to Page 5</span></a></li>
+      <li><a href="#">6 <span class="wb-inv">Go to Page 6</span></a></li>
+      <li><a href="#" rel="next">Next</a></li>
+   </ul>
+</div>
+</section>
+</div> -->
