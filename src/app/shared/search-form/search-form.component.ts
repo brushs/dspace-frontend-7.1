@@ -71,7 +71,8 @@ export class SearchFormComponent implements OnInit {
    */
   @Output() submitSearch = new EventEmitter<any>();
 
-  constructor(private router: Router, private searchService: SearchService,
+  constructor(private router: Router, 
+              private searchService: SearchService,
               private paginationService: PaginationService,
               private searchConfig: SearchConfigurationService
               ) {
