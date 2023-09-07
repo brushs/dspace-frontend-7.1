@@ -473,7 +473,7 @@
   "logout.breadcrumbs": "Sign Out",
   "official.title": "Official Title",
 
-  "search.filters.applied": "Filters Applied:",
+  "search.filters.applied": "Filters applied:",
   "search.filters.remove": "Remove Filter",
   "search.filters.none": "No results match this filter",
   
@@ -2085,10 +2085,10 @@
   "search.results.empty": "Your search returned no results.",
   "search.results.head": "Search results",
   "search.results.community.head": "Search results",
-  "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting",
+  "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting quotes around it.",
   "search.results.no-results-link": "Quotes around it",
   "search.results.view-result": "View",
-  "search.search-form.placeholder": "Search the repository",
+  "search.search-form.placeholder": "Search the community or collection",
   "search.sidebar.close": "Back to results",
   "search.sidebar.filters.title": "Filters",
   "search.sidebar.open": "Search tools",

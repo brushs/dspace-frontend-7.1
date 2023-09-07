@@ -1,9 +1,3 @@
 <ng-container *ngIf="content">
-    <p *ngIf="!useHeading; else renderWithHeading">
-        {{ title | translate}} <a href="{{getHandle()}}">{{getHandle()}}</a>
-    </p>
-    <ng-template #renderWithHeading>
-        <h2 class="d-inline-block h6" *ngIf="title">{{ title | translate }}</h2>
-        <div class="d-inline-block "><a href="{{getHandle()}}">{{getHandle()}}</a></div>
-    </ng-template>
+    <p *ngIf="title">{{ title | translate }} <a href="{{getHandle()}}">{{getHandle()}}</a></p>
 </ng-container>

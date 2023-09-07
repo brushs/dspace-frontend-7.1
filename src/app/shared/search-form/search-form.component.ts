@@ -23,6 +23,12 @@ import { SearchConfigurationService } from '../../core/shared/search/search-conf
  * Component that represents the search form
  */
 export class SearchFormComponent implements OnInit {
+
+  /**
+   * Status of whether the search form component is on the comcol page.
+   */
+  @Input() onComColPage: boolean;
+
   /**
    * The search query
    */
@@ -98,6 +104,7 @@ export class SearchFormComponent implements OnInit {
    * @param data Values submitted using the form
    */
   onSubmit(data: any) {
+    this.query = this.query.trim();
     this.updateSearch(data);
     this.submitSearch.emit(data);
   }
