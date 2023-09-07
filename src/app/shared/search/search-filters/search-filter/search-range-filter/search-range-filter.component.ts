@@ -74,6 +74,10 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
    */
   keyboardControl: boolean;
 
+  endDateError: boolean;
+
+  startDateError: boolean;
+
   constructor(protected searchService: SearchService,
               protected filterService: SearchFilterService,
               protected router: Router,
@@ -107,6 +111,26 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     ).subscribe((minmax) => this.range = minmax);
   }
 
+  validateAndSubmit() {
+    const newMin = this.range[0] !== this.min ? [this.range[0]] : null;
+    const newMax = this.range[1] !== this.max ? [this.range[1]] : null;
+
+    if(newMin.length == 1 && newMin[0].length == 0) {
+      // add error label on top of start date field
+      this.startDateError = true;
+      return;
+    }
+
+
+    if(newMax.length == 1 && newMax[0].length == 0) {
+      // add error label on top of end date field
+      this.endDateError = true;
+      return;
+    }
+
+    this.onSubmit();
+  }
+
   /**
    * Submits new custom range values to the range filter from the widget
    */
@@ -117,6 +141,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
 
     const newMin = this.range[0] !== this.min ? [this.range[0]] : null;
     const newMax = this.range[1] !== this.max ? [this.range[1]] : null;
+
     this.router.navigate(this.getSearchLinkParts(), {
       queryParams:
         {

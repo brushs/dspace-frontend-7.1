@@ -476,6 +476,7 @@
   "search.filters.applied": "Filters Applied:",
   "search.filters.remove": "Remove Filter",
   "search.filters.none": "No results match this filter",
+  "search.filters.filter.dateInvalid": "Error: Invalid Date",
   
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
