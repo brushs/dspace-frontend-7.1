@@ -39,7 +39,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-community-page',
-  styleUrls: ['./community-page.component.scss'],
+  styleUrls: [
+    '../../themes/wetoverlay/styles/static-pages.scss', 
+    './community-page.component.scss'
+  ],
   templateUrl: './community-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeInOut]
