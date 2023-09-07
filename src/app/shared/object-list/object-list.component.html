@@ -7,27 +7,40 @@
           [hidePagerWhenSinglePage]="hidePagerWhenSinglePage"
           [hidePaginationDetail]="hidePaginationDetail"
           [useGcWeb]="useGcWeb"
+          [useGcWebTop]="useGcPagination"
           (pageChange)="onPageChange($event)"
           (pageSizeChange)="onPageSizeChange($event)"
           (sortDirectionChange)="onSortDirectionChange($event)"
           (sortFieldChange)="onSortFieldChange($event)"
           (paginationChange)="onPaginationChange($event)">
-      <ul *ngIf="objects?.hasSucceeded"[ngClass]="{'ml-4': selectable && !useGcWeb, 'list-unstyled': useGcWeb}">
-          <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last" class="{{ useGcWeb ? 'brdr-tp margin-top-medium' : 'mt-4 mb-4 d-flex'}}" [class.border-bottom]="hasBorder && !last">
-            <ds-selectable-list-item-control *ngIf="selectable" [index]="i"
-                                             [object]="object"
-                                             [selectionConfig]="selectionConfig"
-                                             (deselectObject)="deselectObject.emit($event)"
-                                             (selectObject)="selectObject.emit($event)"></ds-selectable-list-item-control>
-            <ds-importable-list-item-control *ngIf="importable" [object]="object"
-                                             [importConfig]="importConfig"
-                                             (importObject)="importObject.emit($event)"></ds-importable-list-item-control>
-            <ds-listable-object-component-loader [object]="object" [useGcWeb]="useGcWeb" [viewMode]="viewMode" [index]="i" [context]="context" [linkType]="linkType"
-                                                 [listID]="selectionConfig?.listId"
-                                                 [useGcWeb]="useGcWeb"
-                                                 (contentChange)="contentChange.emit()"
-            ></ds-listable-object-component-loader>
-          </li>
-      </ul>
+      <ng-container *ngIf="objects?.hasSucceeded">
+        <ul *ngIf="!useGcPagination; else gcPagination"[ngClass]="{'ml-4': selectable && !useGcWeb, 'list-unstyled': useGcWeb}">
+            <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last" class="{{ useGcWeb ? 'brdr-tp margin-top-medium' : 'mt-4 mb-4 d-flex'}}" [class.border-bottom]="hasBorder && !last">
+              <ds-selectable-list-item-control *ngIf="selectable" [index]="i"
+                                              [object]="object"
+                                              [selectionConfig]="selectionConfig"
+                                              (deselectObject)="deselectObject.emit($event)"
+                                              (selectObject)="selectObject.emit($event)"></ds-selectable-list-item-control>
+              <ds-importable-list-item-control *ngIf="importable" [object]="object"
+                                              [importConfig]="importConfig"
+                                              (importObject)="importObject.emit($event)"></ds-importable-list-item-control>
+              <ds-listable-object-component-loader [object]="object" [useGcWeb]="useGcWeb" [viewMode]="viewMode" [index]="i" [context]="context" [linkType]="linkType"
+                                                  [listID]="selectionConfig?.listId"
+                                                  [useGcWeb]="useGcWeb"
+                                                  (contentChange)="contentChange.emit()"
+              ></ds-listable-object-component-loader>
+            </li>
+        </ul>
+        <ng-template #gcPagination>
+          <div class="col-md-9 pull-left">
+            <ul class="list-unstyled lst-spcd">
+              <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last">
+                <ds-community-list-element [object]="object" [linkType]="linkTypes.Link"></ds-community-list-element>
+              </li>
+
+            </ul>
+          </div>
+        </ng-template>
+      </ng-container>
   </ds-pagination>
 

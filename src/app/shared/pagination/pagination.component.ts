@@ -61,6 +61,12 @@ export class PaginationComponent implements OnDestroy, OnInit {
   @Input() useGcWeb = false;
 
   /**
+   * FOSRC #1762 has different requirements for top bar
+   * This flag is used to switch between the two templates
+   */
+  @Input() useGcWebTop: boolean = false;
+
+  /**
    * An event fired when the page is changed.
    * Event's payload equals to the newly selected page.
    */
