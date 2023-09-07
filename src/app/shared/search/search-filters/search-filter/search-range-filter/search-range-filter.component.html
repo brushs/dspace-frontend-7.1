@@ -58,21 +58,21 @@
         <div class="row mrgn-tp-md">
           <div class="form-group col-sm-6 pull-left">
              <label for="startdate">
-                {{'search.filters.filter.start' | translate}} 
+                {{'search.filters.filter.start' | translate}} <p *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
                 <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input onkeydown="return false;" onfocus="this.showPicker();"
-                [(ngModel)]="range[0]" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'" (blur)="onSubmit()"  
+             <input 
+                [(ngModel)]="range[0]" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'" (blur)="validateAndSubmit()"  
                 [placeholder]="'search.filters.filter.' + filterConfig.name + '.min.placeholder' | translate" 
                 [attr.id]="'startdate'" class="form-control" type="date" data-rule-dateISO="true" />
           </div>
           <div class="form-group col-sm-6 pull-right">
              <label for="enddate">
-              {{'search.filters.filter.end' | translate}}
+              {{'search.filters.filter.end' | translate}} {{ endDateError }} <p *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
               <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input onkeydown="return false;" onfocus="this.showPicker();"
-              [(ngModel)]="range[1]" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'" (blur)="onSubmit()" 
+             <input 
+              [(ngModel)]="range[1]" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'" (blur)="validateAndSubmit()" 
               [placeholder]="'search.filters.filter.' + filterConfig.name + '.max.placeholder' | translate" 
               class="form-control" [attr.id]="'enddate'" name="enddate" type="date" data-rule-dateISO="true" />
           </div>

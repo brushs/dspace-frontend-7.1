@@ -768,6 +768,8 @@
   "search.filters.remove": "Supprimer le filtre",
   // "search.filters.none": "No results match this filter",
   "search.filters.none": "Aucun résultat ne correspond à ce filtre",
+  //"search.filters.filter.dateInvalid": "Error: Invalid date",
+  "search.filters.filter.dateInvalid": "Erreur: Date invalide",
 
   // "sign.in.title": "FOSRC administrator sign in",
   "sign.in.title": "Connexion de l'administrateur au DFSOC",
