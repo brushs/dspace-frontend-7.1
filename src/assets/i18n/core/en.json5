@@ -87,7 +87,7 @@
   "collection.form.description-provenance-french": "Provenance",
   // end FOSRC the above can be deleted
 
-  "item.page.filesection.download-file": "Download File",
+  "item.page.filesection.download-file": "Download file",
   //start FOSRC - community form
   "community.breadcrumbs": "Community List",
   "community.form.errors.description-nom.required": "Error: You must enter a community name in french",
@@ -449,6 +449,10 @@
   "fosrc.item.edit.dynamic-field.values.5.common_identifiers": "Other",
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+  "fosrc.item.edit.dynamic-field.values.request-doi.no": "no",
+  "fosrc.item.edit.dynamic-field.values.request-doi.yes": "yes",
+  "fosrc.item.edit.dynamic-field.values.request-doi.No": "No",
+  "fosrc.item.edit.dynamic-field.values.request-doi.Yes": "Yes",
 
   "fosrc.item.form.error.panel.dc.type": "Publication Type: ",
   "fosrc.item.form.error.panel.dc.language.iso": "Publication Language: ",
@@ -469,7 +473,7 @@
   "logout.breadcrumbs": "Sign Out",
   "official.title": "Official Title",
 
-  "search.filters.applied": "Filters Applied:",
+  "search.filters.applied": "Filters applied:",
   "search.filters.remove": "Remove Filter",
   "search.filters.none": "No results match this filter",
   
@@ -1440,7 +1444,9 @@
   "item.page.files": "Download(s)",
   "item.page.filesection.description": "Description:",
   "item.page.filesection.download": "Download",
-  "item.page.filesection.format": "Format:",
+  "item.page.filesection.format": "Format:",  
+  "item.page.filesection.format.pdf.abbr": "PDF",
+  "item.page.filesection.format.pdf.full": "Portable Document Format",
   "item.page.filesection.license.bundle": "License bundle",
   "item.page.filesection.name": "Name:",
   "item.page.filesection.original.bundle": "Original bundle",
@@ -2078,7 +2084,7 @@
   "search.results.empty": "Your search returned no results.",
   "search.results.head": "Search results",
   "search.results.community.head": "Search results",
-  "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting",
+  "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting quotes around it.",
   "search.results.no-results-link": "Quotes around it",
   "search.results.view-result": "View",
   "search.search-form.placeholder": "Search the community or collection",

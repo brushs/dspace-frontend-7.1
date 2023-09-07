@@ -17,11 +17,18 @@
     <p [ngClass]="{'custom-clamp-2' : (isCollapsed$ | async)}">
       <span>
         <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
-          (<span *ngIf="dso.firstMetadataValue('dc.publisher')" class="item-list-publisher"
-            [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
-          <span *ngIf="dso.firstMetadataValue('dc.date.issued')" class="item-list-date"
-            [innerHTML]="firstMetadataValue('dc.date.issued') "></span>)
+          <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && !dso.firstMetadataValue('dc.date.issued')">
+            (<span class="item-list-publisher" [innerHTML]="firstMetadataValue('dc.publisher')"></span>)
+          </ng-container>
+          <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && dso.firstMetadataValue('dc.date.issued')">
+            (<span class="item-list-publisher" [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
+            <span class="item-list-date" [innerHTML]="firstMetadataValue('dc.date.issued')"></span>)
+          </ng-container>
+          <ng-container *ngIf="dso.firstMetadataValue('dc.date.issued') && !dso.firstMetadataValue('dc.publisher')">
+            (<span class="item-list-date" [innerHTML]="firstMetadataValue('dc.date.issued')"></span>)
+          </ng-container>
         </ng-container>
+
         <ng-container *ngIf="dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0">
           <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author', 
             'dc.creator', 'dc.contributor.*']); let last=last;">

@@ -1,5 +1,5 @@
 {
-  // FOSRC SPECIFIC LABELS START
+  // FOSRC SPECIFIC LABELS Start
 
   // Contact us page labels
   // "contact-us.breadcrumbs": "Contact Us",
@@ -40,7 +40,7 @@
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
 
   //Simple item page translations ticket 1587
-  "item.page.download.files.link": "Télécharger des documents",
+  "item.page.download.files.link": "Télécharger les documents",
   //"item.page.heading.project": "Project",
   "item.page.heading.project": "Projet",
   // "alternative.title": "Alternative Title",
@@ -152,7 +152,7 @@
 
 
   // "item.page.filesection.download-file": "Download File",
-  "item.page.filesection.download-file": "Télécharger le Fichier",
+  "item.page.filesection.download-file": "Télécharger le fichier",
 
   // "community.breadcrumbs": "Community List",
   "community.breadcrumbs": "Liste des communautés",
@@ -716,6 +716,10 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   // "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+  "fosrc.item.edit.dynamic-field.values.request-doi.no": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.yes": "oui",
+  "fosrc.item.edit.dynamic-field.values.request-doi.No": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.Yes": "oui",
 
   // TODO Translate the folllowing labels:
   // "fosrc.item.form.error.panel.dc.type": "Publication Type",
@@ -736,7 +740,7 @@
   "fosrc.item.form.error.panel.license": "Licence",
 
   // "full-item.details.title": "Full item details",
-  "full-item.details.title": "Présentation détaillée de l'article",
+  "full-item.details.title": "Notice détaillée",
 
   // "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.about": "Passer à « Au sujet du Dépôt fédéral de science ouverte du Canada (DFSOC)»",
@@ -758,8 +762,8 @@
   // "official.title": "Official Title",
   "official.title": "Titre officiel",
 
-  // "search.filters.applied": "Filters Applied:",
-  "search.filters.applied": "Filtres Appliqués:",
+  // "search.filters.applied": "Filters applied:",
+  "search.filters.applied": "Filtres appliqués:",
   // "search.filters.remove": "Remove Filter",
   "search.filters.remove": "Supprimer le filtre",
   // "search.filters.none": "No results match this filter",
@@ -1385,8 +1389,8 @@
   "browse.comcol.by.subject": "Sujet",
   // "browse.comcol.by.title": "Title",
   "browse.comcol.by.title": "Titre",
-  // "browse.comcol.head": "Browse By",
-  "browse.comcol.head": "Valider par",
+  // "browse.comcol.head": "Browse",
+  "browse.comcol.head": "Valider",
   // "browse.empty": "No items to show.",
   "browse.empty": "Aucun résultat.",
   // "browse.metadata.author": "Author",
@@ -2632,7 +2636,7 @@
   // "item.edit.withdraw.success": "The item was withdrawn successfully",
   "item.edit.withdraw.success": "L’article a été retiré avec succès",
   // "item.listelement.badge": "Item",
-  "item.listelement.badge": "document",
+  "item.listelement.badge": "Document",
   // Start FOSRC Changes - 1594
   // "item.page.relationship": "Relation",
   "item.page.relationship": "Relation",
@@ -2678,7 +2682,9 @@
   // "item.page.filesection.download": "Download",
   "item.page.filesection.download": "Télécharger",
   // "item.page.filesection.format": "Format:",
-  "item.page.filesection.format": "Format :",
+  "item.page.filesection.format": "Format :",  
+  "item.page.filesection.format.pdf.abbr": "PDF",
+  "item.page.filesection.format.pdf.full": "Format de document portable",
   // "item.page.filesection.license.bundle": "License bundle",
   "item.page.filesection.license.bundle": "Licence",
   // "item.page.filesection.name": "Name:",
@@ -4589,7 +4595,7 @@
   // "thumbnail.default.alt": "Thumbnail image",
   "thumbnail.default.alt": "Vignette d’image",
   // "thumbnail.default.placeholder": "No thumbnail available",
-  "thumbnail.default.placeholder": "Pas de vignette d'image disponible",
+  "thumbnail.default.placeholder": "Aucune vignette disponible",
   // "thumbnail.orgunit.alt": "OrgUnit logo",
   "thumbnail.orgunit.alt": "Logo de l'organisme",
   // "thumbnail.orgunit.placeholder": "OrgUnit placeholder image",

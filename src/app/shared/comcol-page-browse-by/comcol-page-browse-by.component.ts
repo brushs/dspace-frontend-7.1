@@ -20,10 +20,7 @@ export interface ComColPageNavOption {
  */
 @Component({
   selector: 'ds-comcol-page-browse-by',
-  styleUrls: [
-    '../../../themes/wetoverlay/styles/static-pages.scss',
-    './comcol-page-browse-by.component.scss'
-  ],
+  styleUrls: ['./comcol-page-browse-by.component.scss'],
   templateUrl: './comcol-page-browse-by.component.html'
 })
 export class ComcolPageBrowseByComponent implements OnInit {

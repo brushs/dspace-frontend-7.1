@@ -14,16 +14,16 @@
           <!-- <ds-comcol-page-handle [content]="communityPayload.handle" [title]="'community.page.handle'">
           </ds-comcol-page-handle> -->
           <!-- Introductory text -->
-          <!-- <ds-comcol-page-content [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content> -->
+          <ds-comcol-page-content *ngIf="!searchSubmit" [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
          <!-- Alternative Names -->
           <!-- Start FOSRC Changes - 1568
           <ds-comcol-page-content [content]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
           End of FOSRC changes -->
           <!-- Identifiers -->
-          <!-- <ds-comcol-page-content [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content> -->
+          <ds-comcol-page-content *ngIf="!searchSubmit" [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
           <!-- Main Area of Research -->
           <!-- Start FOSRC Changes - 1568
           <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.subject' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
@@ -44,7 +44,6 @@
           <!-- News -->
           <ds-comcol-page-content [content]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
           </ds-comcol-page-content>
-
         </div>
         <div class="pl-2">
           <ds-dso-page-edit-button *ngIf="isCommunityAdmin$ | async" [pageRoute]="communityPageRoute$ | async" [dso]="communityPayload" [tooltipMsg]="'community.page.edit'"></ds-dso-page-edit-button>
@@ -61,6 +60,7 @@
             [scopes]="(scopeListRD$ | async)"
             [inPlaceSearch]="inPlaceSearch"
             [searchPlaceholder]="'search.search-form.placeholder' | translate"
+            [onComColPage]="true"
             (submitSearch)="onSeachSubmit($event)">
           </ds-search-form>
         </div>
@@ -116,7 +116,7 @@
 <ng-template #searchResultsPage>
   <ds-page-with-sidebar [id]="'search-page'">
     <div class="row">
-      <div gcweb class="col-12 pull-left mrgn-tp-md" *ngIf="!(isXsOrSm$ | async)">
+      <div gcweb class="col-12 pull-left" *ngIf="!(isXsOrSm$ | async)">
           <!-- <ng-template *ngTemplateOutlet="searchForm"></ng-template> -->
 
           <h2 class="h3">{{'search.results.community.head' | translate}}</h2>
