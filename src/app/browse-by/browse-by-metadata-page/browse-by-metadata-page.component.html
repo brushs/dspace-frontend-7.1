@@ -28,16 +28,19 @@
         </div>
         
         <section class="col-md-9 pull-right">
-          <label for="btngrp-browse" class="wb-inv">Browse</label>
-          <form action="#" method="get" id="searchForm">
-            <div class="input-group">
-              <input type="text" class="form-control mrgn-tp-md" id="btngrp-browse"
-                placeholder="Enter the Year Or the Year and Month (YYYY or YYYY-MM) and click search" />
-              <span class="input-group-btn">
-                <button class="btn btn-primary mrgn-tp-md" type="button">Search</button>
-              </span>
-            </div>
-          </form>
+         <ds-browse-by *ngIf="startsWithOptions"
+         title="{{'browse.title' | translate:{collection: (parent$ | async)?.payload?.name || '', field: 'browse.metadata.' + browseId | translate, value: (value)? '&quot;' + value + '&quot;': ''} }}"
+         parentname="{{(parent$ | async)?.payload?.name || ''}}"
+         [objects$]="(items$ !== undefined)? items$ : browseEntries$"
+         [paginationConfig]="(currentPagination$ |async)"
+         [sortConfig]="(currentSort$ |async)"
+         [type]="startsWithType"
+         [startsWithOptions]="startsWithOptions"
+         [enableArrows]="true"
+         (prev)="goPrev()"
+         (next)="goNext()">
+       </ds-browse-by>
+       <ds-loading *ngIf="!startsWithOptions" message="{{'loading.browse-by-page' | translate}}"></ds-loading>
         </section>
         <!-- TODO implement -->
         <!-- <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings> -->
@@ -45,7 +48,7 @@
       <!-- Browse-By Links -->
       </ng-container></ng-container>
 
-    <section class="comcol-page-browse-section">
+    <!-- <section class="comcol-page-browse-section">
     <div class="browse-by-metadata w-100">
     <ds-browse-by *ngIf="startsWithOptions" class="col-xs-12 w-100"
       title="{{'browse.title' | translate:{collection: (parent$ | async)?.payload?.name || '', field: 'browse.metadata.' + browseId | translate, value: (value)? '&quot;' + value + '&quot;': ''} }}"
@@ -61,7 +64,7 @@
     </ds-browse-by>
     <ds-loading *ngIf="!startsWithOptions" message="{{'loading.browse-by-page' | translate}}"></ds-loading>
   </div>
-  </section>
+  </section> -->
   <ng-container *ngVar="(parent$ | async) as parent">
     <ng-container *ngIf="parent?.payload as parentContext">
   <footer *ngIf="parentContext.copyrightText" class="border-top my-5 pt-4">
