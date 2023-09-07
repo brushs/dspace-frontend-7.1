@@ -1,1 +1,2 @@
-<h1 property="name" id="wb-cont" *ngIf="name" lang='{{ lang }}'>{{ !browseField ? name : ('browseby.'+ browseField +'.head' | translate : {name: name}) }}</h1>
+<h1 property="name" id="wb-cont" *ngIf="name && browseField" lang='{{ lang }}'>{{ ('browseby.'+ browseField +'.head' | translate : {name: name}) }}</h1>
+<h1 property="name" id="wb-cont" *ngIf="name && !browseField" lang='{{ lang }}'><ng-content></ng-content>{{ name }}</h1>
