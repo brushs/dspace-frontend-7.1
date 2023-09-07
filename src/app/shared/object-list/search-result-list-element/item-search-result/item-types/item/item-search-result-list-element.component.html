@@ -14,20 +14,21 @@
   <ds-truncatable-part *ngIf="dso.allMetadata(['dc.publisher', 'dc.date.issued', 'publicationvolume.volumeNumber', 
     'dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0" [id]="dso.id" [minLines]="2">
 
-    <!-- <p [ngClass]="{'custom-clamp': true, 'custom-clamp-1' : (isCollapsed$ | async)}"> -->
-    <p>
-      <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
-        (<span *ngIf="dso.firstMetadataValue('dc.publisher')" class="item-list-publisher"
-          [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
-        <span *ngIf="dso.firstMetadataValue('dc.date.issued')" class="item-list-date"
-          [innerHTML]="firstMetadataValue('dc.date.issued') "></span>)
-      </ng-container>
-      <ng-container *ngIf="dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0">
-        <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author', 
-          'dc.creator', 'dc.contributor.*']); let last=last;">
-          <span [innerHTML]="author"></span><ng-container *ngIf="!last">; </ng-container>
+    <p [ngClass]="{'custom-clamp-2' : (isCollapsed$ | async)}">
+      <span>
+        <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
+          (<span *ngIf="dso.firstMetadataValue('dc.publisher')" class="item-list-publisher"
+            [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
+          <span *ngIf="dso.firstMetadataValue('dc.date.issued')" class="item-list-date"
+            [innerHTML]="firstMetadataValue('dc.date.issued') "></span>)
         </ng-container>
-      </ng-container>
+        <ng-container *ngIf="dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0">
+          <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author', 
+            'dc.creator', 'dc.contributor.*']); let last=last;">
+            <span [innerHTML]="author"></span><ng-container *ngIf="!last">; </ng-container>
+          </ng-container>
+        </ng-container>
+      </span>
     </p>
 
   </ds-truncatable-part>
@@ -35,39 +36,7 @@
   <ds-truncatable-part [id]="dso.id" [minLines]="3" *ngIf="dso.firstMetadataValue('dc.description.abstract') || dso.firstMetadataValue('dc.description')">
     <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract') else nonAbstractDescription"><span  -->
 
-
-    <!-- <ng-container *ngIf="(isCollapsed$ | async) === true">
-      <p class="custom-clamp custom-clamp-3" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-      
-        <span 
-        [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
-        [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
-        ></span>
-  
-      </p>
-    </ng-container>
-
-    <ng-container *ngIf="(isCollapsed$ | async) === false">
-      <p *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-      
-        <span 
-        [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
-        [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
-        ></span>
-  
-      </p>
-    </ng-container> -->
-
-    <!-- <p [ngClass]="{'custom-clamp': true, 'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-      
-      <span 
-      [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
-      [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
-      ></span>
-
-    </p> -->
-
-    <p *ngIf="dso.firstMetadataValue('dc.description.abstract')">
+    <p [ngClass]="{'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
       
       <span 
       [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
@@ -75,6 +44,15 @@
       ></span>
 
     </p>
+
+    <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract')">
+      
+      <span 
+      [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
+      [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
+      ></span>
+
+    </p> -->
     
       <!-- <ng-template #nonAbstractDescription>
         <p *ngIf="dso.firstMetadataValue('dc.description')"><span 
