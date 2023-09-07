@@ -3,113 +3,46 @@
     <div class="col-md-12" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
       <ng-container *ngIf="communityRD?.payload; let communityPayload">
         <ds-view-tracker [object]="communityPayload"></ds-view-tracker>
-        
-        <!-- Community name -->
         <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language"></ds-comcol-page-header>
-        <!-- Community logo -->
         <ds-comcol-page-logo *ngIf="logoRD$" [logo]="(logoRD$ | async)?.payload" [alternateText]="'Community Logo'">
         </ds-comcol-page-logo>
-        <!-- Handle -->
         <ds-comcol-page-handle [content]="communityPayload.handle" [title]="'community.page.handle'" [useHeading]="false">
         </ds-comcol-page-handle>
-        <!-- Introductory text -->
-        <!-- <ds-comcol-page-content [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content> -->
-      <!-- Alternative Names -->
-        <!-- Start FOSRC Changes - 1568
-        <ds-comcol-page-content [content]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content>
-        End of FOSRC changes -->
-        <!-- Identifiers -->
-        <!-- <ds-comcol-page-content [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content> -->
-        <!-- Main Area of Research -->
-        <!-- Start FOSRC Changes - 1568
-        <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.subject' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content>
-        End of FOSRC changes -->
-        <!-- Home Page URL -->
-        <!-- <ds-comcol-page-content [content]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content> -->
-        <!-- Email -->
-        <!-- <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content> -->
-        <!-- Description -->
-        <!-- FOSRC Changes - only show description - 1756 -->
         <ds-comcol-page-content [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
         </ds-comcol-page-content>
-        <!-- Contact Address -->
-        <!-- <ds-comcol-page-content [content]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content> -->
-        <!-- News -->
-        <!-- <ds-comcol-page-content [content]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content> -->
 
         <div class="pl-2">
           <ds-dso-page-edit-button *ngIf="isCommunityAdmin$ | async" [pageRoute]="communityPageRoute$ | async" [dso]="communityPayload" [tooltipMsg]="'community.page.edit'"></ds-dso-page-edit-button>
         </div>
 
-        <section gcweb>
+        <!-- Browse-By Links -->
+        <ds-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">
+        </ds-comcol-page-browse-by>
 
-        <div>
-          <ds-search-form *ngIf="searchEnabled" id="search-form"
-            [query]="(searchOptions$ | async)?.query"
-            [(scope)]="currentScope"
-            [currentUrl]="searchLink"
-            [scopes]="(scopeListRD$ | async)"
-            [inPlaceSearch]="inPlaceSearch"
-            [searchPlaceholder]="'search.search-form.placeholder' | translate"
-            [onComColPage]="true"
-            (submitSearch)="onSeachSubmit($event)">
-          </ds-search-form>
-        </div>
+        <ds-search-form *ngIf="searchEnabled" id="search-form"
+          [query]="(searchOptions$ | async)?.query"
+          [(scope)]="currentScope"
+          [currentUrl]="searchLink"
+          [scopes]="(scopeListRD$ | async)"
+          [inPlaceSearch]="inPlaceSearch"
+          [searchPlaceholder]="'search.search-form.placeholder' | translate"
+          [onComColPage]="true"
+          (submitSearch)="onSeachSubmit($event)">
+        </ds-search-form>
 
+  
         <ds-comcol-search-filter *ngIf="searchEnabled && (searchOptions$ | async)?.query"
           [query]="(searchOptions$ | async)?.query"
           [(scope)]="currentScope"
           [inPlaceSearch]="inPlaceSearch"
           (submitSearch)="onSeachSubmit($event)">
         </ds-comcol-search-filter>
-
-      </section>
-
-      <section class="comcol-page-browse-section">
-          <div>
-            <ds-search-form *ngIf="searchEnabled" id="search-form"
-              [query]="(searchOptions$ | async)?.query"
-              [(scope)]="currentScope"
-              [currentUrl]="searchLink"
-              [scopes]="(scopeListRD$ | async)"
-              [inPlaceSearch]="inPlaceSearch"
-              [searchPlaceholder]="'search.search-form.placeholder' | translate"
-              (submitSearch)="onSeachSubmit($event)">
-            </ds-search-form>
-          </div>
   
-          <ds-comcol-search-filter *ngIf="searchEnabled && (searchOptions$ | async)?.query"
-            [query]="(searchOptions$ | async)?.query"
-            [(scope)]="currentScope"
-            [inPlaceSearch]="inPlaceSearch"
-            (submitSearch)="onSeachSubmit($event)">
-          </ds-comcol-search-filter>
   
-        </section>
-  
-        <!-- Browse-By Links -->
-        <ds-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">
-        </ds-comcol-page-browse-by>
-        <!-- FOSRC Remove 17  -->
-        <!-- <div class="container" *ngIf="(isXsOrSm$ | async)">
-          <div class="row">
-              <div gcweb class="col-12">
-                  <!-- <ng-template *ngTemplateOutlet="searchForm"></ng-template> -->
-                  <!-- <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings> -->
-
-                  <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-0 mrgn-rght-0"></div>
-
-              </div>
-          </div>
-        </div> -->
+        <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-0 mrgn-rght-0">
+          
+        </div>
+        <hr>
         <div *ngIf="!searchSubmit else searchResultsPage">
           <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
             <!-- <ng-template *ngTemplateOutlet="searchForm"></ng-template> -->
@@ -125,8 +58,6 @@
         </footer>
       </ng-container>
     </div>
-  </div>
- </section>
 
  <ds-page-details></ds-page-details>
 
