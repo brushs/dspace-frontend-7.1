@@ -60,13 +60,12 @@ export class TruncatableComponent {
   ngAfterViewInit() {
     this.observer = new (window as any      
       ).ResizeObserver((a) => {
-      this.truncateElement()
+      this.truncateElement();
     });
     if(this.content?.nativeElement) {
       this.observer.observe(this.content.nativeElement)
     }
   }
-
 
   public async truncateElement() {
     if (this.useShowMore) {
@@ -78,25 +77,19 @@ export class TruncatableComponent {
         let children = entry.querySelectorAll('div.content');
         let requiresTruncate = false;
         for(let entry of children) {
-
-          /*
-           * If the child has an element with the 'custom-clamp'
-           * class, then return from the loop, and do not
-           * expand the truncatable area (i.e. keep showing
-           * the 'show more' button)
-           */
-          // if(entry.querySelector('.custom-clamp')){
-          //   // requiresTruncate = true;
-          //   // break;
-          //   this.truncatable = true;
-          //   this.service.collapse(this.id);
-          //   return;
-          // }
+          
           if (entry.children.length > 0) {
-            if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
+
+            // if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
+            //   requiresTruncate = true;
+            //   break;
+            // }
+
+            if ((entry.children[entry.children.length - 1].firstElementChild.offsetHeight) > entry.offsetHeight) {
               requiresTruncate = true;
               break;
             }
+
           } else {
             if (entry.innerText.length > 0) {
               requiresTruncate = true;
@@ -104,14 +97,13 @@ export class TruncatableComponent {
             }
           }
         }
+
         this.truncatable = requiresTruncate;
         if(!this.truncatable) {
-          this.service.expand(this.id)
+          this.service.expand(this.id);
         }
     }
   }
-
-
 
   /**
    * If onHover is true, collapses the truncatable
