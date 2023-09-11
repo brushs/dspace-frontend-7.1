@@ -8,7 +8,7 @@ import { currentPath } from '../../../utils/route.utils';
 import { PaginationService } from '../../../../core/pagination/pagination.service';
 import { SearchConfigurationService } from '../../../../core/shared/search/search-configuration.service';
 import { stripOperatorFromFilterValue } from '../../search.utils';
-import { SearchFilterService } from 'src/app/core/shared/search/search-filter.service';
+import { SearchFilterService } from '../../../../core/shared/search/search-filter.service';
 
 @Component({
   selector: 'ds-search-label',
