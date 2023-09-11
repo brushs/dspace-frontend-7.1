@@ -39,7 +39,7 @@ export class SearchLabelsComponent {
         const labels = {};
         Object.keys(params)
           .forEach((key) => {
-            labels[key] = [...params[key].map((value) => stripOperatorFromFilterValue(value))];
+            labels[key] = [...params[key].map((value) => value)];
           });
         return labels;
       })

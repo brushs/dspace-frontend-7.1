@@ -511,6 +511,8 @@
 
   "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
 
+  "search.filters.applyFilter": "Apply filters",
+
   "search.badge.result": "Result ",
   "truncate.expand": "Show more",
   "truncate.collapse": "Show less",
@@ -2063,7 +2065,7 @@
   "search.filters.filter.scope.head": "Scope",
   "search.filters.filter.scope.label": "Search scope filter",
   "search.filters.filter.scope.placeholder": "Scope filter",
-  "search.filters.filter.show-less": "Collapse",
+  "search.filters.filter.show-less": "Show less",
   "search.filters.filter.show-more": "Show more",
   "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.label": "Search subject",
