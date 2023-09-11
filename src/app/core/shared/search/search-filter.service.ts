@@ -1,4 +1,4 @@
-import { combineLatest as observableCombineLatest, Observable } from 'rxjs';
+import { combineLatest as observableCombineLatest, Observable, BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Injectable, InjectionToken } from '@angular/core';
 import {
@@ -35,8 +35,14 @@ export const FACET_TERM: InjectionToken<boolean> = new InjectionToken<boolean>('
 @Injectable()
 export class SearchFilterService {
 
+  public selectedFilterOptions$ = new BehaviorSubject<any>(null);
+  private currentFilterOptions!: any;
+
   constructor(private store: Store<SearchFiltersState>,
               private routeService: RouteService) {
+                //FORSC change for 1765
+                this.selectedFilterOptions$.subscribe(filters=> {
+                  this.currentFilterOptions = filters;});
   }
 
   /**
@@ -237,6 +243,19 @@ export class SearchFilterService {
   public resetPage(filterName: string): void {
     this.store.dispatch(new SearchFilterResetPageAction(filterName));
   }
+
+  //FORSC chnages for apply filter button #1765
+
+
+  public setSelectedFilters(filters:any):void{
+    this.selectedFilterOptions$.next(filters);
+  }
+
+  public getSelectedFilters(){
+    return this.currentFilterOptions;
+  }
+
+  // END FORSC changes
 }
 
 function filterByNameSelector(name: string): MemoizedSelector<SearchFiltersState, SearchFilterState> {

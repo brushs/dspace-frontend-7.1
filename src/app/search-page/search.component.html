@@ -21,7 +21,7 @@
                     <h2>{{ 'home.search-form.head' | translate }}</h2>
                     <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
                     <div class="input-group">
-                            <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" id="main-searchrepository" />
+                            <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />
                             <span class="input-group-btn">
                                 <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button"><span
                                         class="fa fa-search"></span><span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}</span></button>

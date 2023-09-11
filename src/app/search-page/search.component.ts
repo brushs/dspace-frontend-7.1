@@ -130,6 +130,7 @@ export class SearchComponent implements OnInit {
    * Emits the currently active filters
    */
   appliedFilters: Observable<Params>;
+  mainSearchValue :string;
  
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
@@ -184,6 +185,10 @@ export class SearchComponent implements OnInit {
     this.dsoNameService = AppInjector.get(DSONameService);
 
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
+
+    this.routeService.getQueryParameterValue("query").subscribe(query =>{
+      this.mainSearchValue = query;
+    });
   }
 
   // this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added

@@ -13,6 +13,7 @@ import { SEARCH_CONFIG_SERVICE } from '../../../my-dspace-page/my-dspace-page.co
 import { currentPath } from '../../utils/route.utils';
 import { Router } from '@angular/router';
 import { hasValue } from '../../empty.util';
+import { RouteService } from '../../../core/services/route.service';
 
 @Component({
   selector: 'ds-search-filters',
@@ -57,6 +58,7 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
   searchLink: string;
 
   subs = [];
+  currentFilterOptions :any;
 
   /**
    * Initialize instance variables
@@ -68,7 +70,8 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private filterService: SearchFilterService,
     private router: Router,
-    @Inject(SEARCH_CONFIG_SERVICE) private searchConfigService: SearchConfigurationService) {
+    @Inject(SEARCH_CONFIG_SERVICE) private searchConfigService: SearchConfigurationService,
+    private routeService :RouteService) {
   }
 
   ngOnInit(): void {
@@ -87,9 +90,30 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
   }
 
   initFilters() {
+    if (this.routeService.checkForReset()) {
+        // FORSC change to apply filter on button click;
+      this.filterService.selectedFilterOptions$.next([]);
+    }
     this.filters = this.searchConfigService.searchOptions.pipe(
       switchMap((options) => this.searchService.getConfig(options.scope, options.configuration).pipe(getFirstSucceededRemoteData())),
     );
+  }
+
+  applyFilter(): void {
+    // FORSC change to apply filter on button click;
+    const allfilters = this.filterService.getSelectedFilters();
+    Object.keys(allfilters).forEach(key => {
+      if (key.indexOf('f.')> -1) {
+        //checking for unique filters
+        allfilters[key] = allfilters[key]?.filter((ele, index) => allfilters[key]?.indexOf(ele) == index );
+      }
+    });
+    this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: allfilters});
+  }
+
+  resetFilter() {
+    // passing empty array to set selected filters empty
+    this.filterService.selectedFilterOptions$.next([]);
   }
 
   /**
