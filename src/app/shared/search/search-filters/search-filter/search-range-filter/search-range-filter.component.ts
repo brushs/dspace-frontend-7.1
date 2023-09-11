@@ -142,14 +142,30 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     const newMin = this.range[0] !== this.min ? [this.range[0]] : null;
     const newMax = this.range[1] !== this.max ? [this.range[1]] : null;
 
-    this.router.navigate(this.getSearchLinkParts(), {
-      queryParams:
-        {
-          [this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX]: newMin,
-          [this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX]: newMax
-        },
-      queryParamsHandling: 'merge'
-    });
+    // this.router.navigate(this.getSearchLinkParts(), {
+    //   queryParams:
+    //     {
+    //       [this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX]: newMin,
+    //       [this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX]: newMax
+    //     },
+    //   queryParamsHandling: 'merge'
+    // });
+
+    // FORSC Changes for apply filter
+    const filterSelections = this.filterService.getSelectedFilters() ?? [];
+
+    const dateFilters = {};
+    if (newMin !== null) {
+      dateFilters[this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX] = newMin;
+    }
+
+    if (newMax !== null) {
+      dateFilters[this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX] = newMax;
+    }
+
+    const modifiedFilters = { ...filterSelections, ...dateFilters };
+    this.filterService.selectedFilterOptions$.next(modifiedFilters);
+
     this.filter = '';
   }
 

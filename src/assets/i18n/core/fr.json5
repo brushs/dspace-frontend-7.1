@@ -826,6 +826,8 @@
   // "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
   "search.filters.filter.date.wet.format": "(<abbr title=\"Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour\">AAAA-MM-JJ</abbr>)",
 
+  // "search.filters.applyFilter": "Apply filters",
+  "search.filters.applyFilter": "Appliquer les filtres",
 
 
   // "search.badge.result": "Result ",
@@ -3910,10 +3912,10 @@
   "search.filters.filter.scope.label": "rechercher filtre de portée",
   // "search.filters.filter.scope.placeholder": "Scope filter",
   "search.filters.filter.scope.placeholder": "Filtre de portée",
-  // "search.filters.filter.show-less": "Collapse",
+  // "search.filters.filter.show-less": "Show less",
   "search.filters.filter.show-less": "Réduire",
   // "search.filters.filter.show-more": "Show more",
-  "search.filters.filter.show-more": "Plus de résultats",
+  "search.filters.filter.show-more": "En savoir plus",
   // "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.head": "Sujet",
   // "search.filters.filter.subject.label": "Search subject",

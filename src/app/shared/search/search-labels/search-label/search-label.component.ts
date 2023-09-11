@@ -7,6 +7,8 @@ import { SearchService } from '../../../../core/shared/search/search.service';
 import { currentPath } from '../../../utils/route.utils';
 import { PaginationService } from '../../../../core/pagination/pagination.service';
 import { SearchConfigurationService } from '../../../../core/shared/search/search-configuration.service';
+import { stripOperatorFromFilterValue } from '../../search.utils';
+import { SearchFilterService } from 'src/app/core/shared/search/search-filter.service';
 
 @Component({
   selector: 'ds-search-label',
@@ -37,7 +39,8 @@ export class SearchLabelComponent implements OnInit {
     private searchService: SearchService,
     private paginationService: PaginationService,
     private searchConfigurationService: SearchConfigurationService,
-    private router: Router) {
+    private router: Router,
+    private searchFilterService: SearchFilterService) {
   }
 
   ngOnInit(): void {
@@ -56,6 +59,7 @@ export class SearchLabelComponent implements OnInit {
         const field: string = Object.keys(filters).find((f) => f === this.key);
         const newValues = hasValue(filters[field]) ? filters[field].filter((v) => v !== this.value) : null;
         const page = this.paginationService.getPageParam(this.searchConfigurationService.paginationID);
+        this.searchFilterService.selectedFilterOptions$.next(filters);
         return {
           [field]: isNotEmpty(newValues) ? newValues : null,
           [page]: 1
@@ -84,7 +88,8 @@ export class SearchLabelComponent implements OnInit {
   normalizeFilterValue(value: string) {
     // const pattern = /,[^,]*$/g;
     const pattern = /,authority*$/g;
-    return value.replace(pattern, '');
+    value = value.replace(pattern, '');
+    return stripOperatorFromFilterValue(value); // Changed as per DSPACE 7.6
   }
 
   private getFilterName(): string {

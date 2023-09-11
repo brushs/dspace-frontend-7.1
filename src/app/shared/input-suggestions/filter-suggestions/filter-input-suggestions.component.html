@@ -54,12 +54,13 @@
     [ngModelOptions]="{standalone: true}"
     (dsClickOutside)="close();" type="text" class="form-control" [attr.id]=" 'search-input-' + name" 
     [placeholder]="placeholder" />
-    <div class="input-group-btn">
+    <!-- Commenting as per DSPACE 7.6 -->
+    <!-- <div class="input-group-btn">
       <button class="btn btn-default" >
         <span class="fa-search fa"></span>
         <span class="wb-inv">{{placeholder | translate}}</span>
       </button>
-    </div>
+    </div> -->
     <div class="autocomplete dropdown-menu" [ngClass]="{'show': (show | async) && isNotEmpty(suggestions)}">
       <div class="dropdown-list">
         <ul>

@@ -42,6 +42,7 @@ export class FilterInputSuggestionsComponent extends InputSuggestionsComponent {
     this.close();
     this.blockReopen = true;
     this.queryInput.nativeElement.focus();
+    this.submitSuggestion.emit(data);
     return false;
   }
 }
