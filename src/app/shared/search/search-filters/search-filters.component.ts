@@ -13,7 +13,7 @@ import { SEARCH_CONFIG_SERVICE } from '../../../my-dspace-page/my-dspace-page.co
 import { currentPath } from '../../utils/route.utils';
 import { Router } from '@angular/router';
 import { hasValue } from '../../empty.util';
-import { RouteService } from 'src/app/core/services/route.service';
+import { RouteService } from '../../../core/services/route.service';
 
 @Component({
   selector: 'ds-search-filters',
