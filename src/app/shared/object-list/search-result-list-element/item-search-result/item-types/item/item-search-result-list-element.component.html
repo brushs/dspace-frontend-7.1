@@ -43,12 +43,21 @@
   <ds-truncatable-part [id]="dso.id" [minLines]="3" *ngIf="dso.firstMetadataValue('dc.description.abstract') || dso.firstMetadataValue('dc.description')">
     <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract') else nonAbstractDescription"><span  -->
 
-    <p [ngClass]="{'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
+    <p [ngClass]="{'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract') || dso.firstMetadataValue('dc.description.abstract-fosrctranslation')">
       
-      <span 
-      [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
-      [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
-      ></span>
+      <span>
+
+        <span 
+        [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
+        [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
+        ></span>
+
+        <span 
+        [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
+        [innerHTML]="('dc.description.abstract-fosrctranslation' | metaTranslate : dso)[0]?.value"
+        ></span>
+
+      </span>
 
     </p>
 
