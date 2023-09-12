@@ -19,12 +19,12 @@ import { hasValue } from '../../../../empty.util';
 /**
  * The suffix for a range filters' minimum in the frontend URL
  */
-export const RANGE_FILTER_MIN_SUFFIX = '.min';
+export const RANGE_FILTER_MIN_SUFFIX = '.min_limit';
 
 /**
  * The suffix for a range filters' maximum in the frontend URL
  */
-export const RANGE_FILTER_MAX_SUFFIX = '.max';
+export const RANGE_FILTER_MAX_SUFFIX = '.max_limit';
 
 /**
  * The date formats that are possible to appear in a date filter
@@ -51,12 +51,12 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
   /**
    * Fallback minimum for the range
    */
-  min = 1950;
+  min_limit = 1950;
 
   /**
    * Fallback maximum for the range
    */
-  max = new Date().getUTCFullYear();
+  max_limit = new Date().getUTCFullYear();
 
   /**
    * The current range of the filter
@@ -93,29 +93,29 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
   }
 
   /**
-   * Initialize with the min and max values as configured in the filter configuration
+   * Initialize with the min_limit and max_limit values as configured in the filter configuration
    * Set the initial values of the range
    */
   ngOnInit(): void {
     super.ngOnInit();
-    this.min = moment(this.filterConfig.minValue, dateFormats).year() || this.min;
-    this.max = moment(this.filterConfig.maxValue, dateFormats).year() || this.max;
+    this.min_limit = moment(this.filterConfig.minValue, dateFormats).year() || this.min_limit;
+    this.max_limit = moment(this.filterConfig.maxValue, dateFormats).year() || this.max_limit;
     const iniMin = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX).pipe(startWith(undefined));
     const iniMax = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX).pipe(startWith(undefined));
     this.sub = observableCombineLatest(iniMin, iniMax).pipe(
-      map(([min, max]) => {
-        const minimum = hasValue(min) ? min : this.min;
-        const maximum = hasValue(max) ? max : this.max;
+      map(([min_limit, max_limit]) => {
+        const minimum = hasValue(min_limit) ? min_limit : this.min_limit;
+        const maximum = hasValue(max_limit) ? max_limit : this.max_limit;
         return [minimum, maximum];
       })
     ).subscribe((minmax) => this.range = minmax);
   }
 
-  validate() {
-    const newMin = this.range[0] !== this.min ? [this.range[0]] : null;
-    const newMax = this.range[1] !== this.max ? [this.range[1]] : null;
+  validateAndSubmit() {
+    const newMin = this.range[0] !== this.min_limit ? [this.range[0]] : null;
+    const newMax = this.range[1] !== this.max_limit ? [this.range[1]] : null;
 
-    if(newMin == null || (newMin != null && newMin.length == 1 && newMin[0].length == 0)) {
+    if((newMin == null && this.range[0] != this.min_limit) || (newMin != null && newMin.length == 1 && newMin[0].length == 0)) {
       // add error label on top of start date field
       this.startDateError = true;
       return;
@@ -124,13 +124,14 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     }
 
 
-    if(newMax == null || (newMax != null && newMax.length == 1 && newMax[0].length == 0)) {
+    if((newMax == null && this.range[1] != this.max_limit) || (newMax != null && newMax.length == 1 && newMax[0].length == 0)) {
       // add error label on top of end date field
       this.endDateError = true;
       return;
     } else {
       this.endDateError = false;
     }
+    this.onSubmit();
   }
 
   /**
@@ -141,8 +142,8 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       return;  // don't submit if a key is being held down
     }
 
-    const newMin = this.range[0] !== this.min ? [this.range[0]] : null;
-    const newMax = this.range[1] !== this.max ? [this.range[1]] : null;
+    const newMin = this.range[0] !== this.min_limit ? [this.range[0]] : null;
+    const newMax = this.range[1] !== this.max_limit ? [this.range[1]] : null;
 
     // this.router.navigate(this.getSearchLinkParts(), {
     //   queryParams:
