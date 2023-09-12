@@ -833,9 +833,9 @@
   // "search.badge.result": "Result ",
   "search.badge.result": "Résultat ",
   // "truncate.expand": "Show more",
-  "truncate.expand": "En savoir plus",
+  "truncate.expand": "Afficher plus",
   // "truncate.collapse": "Show less",
-  "truncate.collapse": "Réduire",
+  "truncate.collapse": "Afficher moins",
 
   // FOSRC SPECIFIC LABELS END
 
@@ -1666,7 +1666,7 @@
   // "comcol.search.filter.heading": "Filters",
   "comcol.search.filter.heading": "Filtres",
   // "comcol.search.filter.instructions": "Use filters to refine the search results.",
-  "comcol.search.filter.instructions": "Utiliser des filtres pour affiner les résultats de recherche.",
+  "comcol.search.filter.instructions": "Utilisez des filtres pour affiner les résultats de la recherche.",
   // "comcol.search.filter.item.select": "Select",
 
   
@@ -1690,14 +1690,14 @@
   // "comcol.search.filter.operator.contains": "Contains",
   "comcol.search.filter.operator.contains": "Contient",
   // "comcol.search.filter.operator.equals": "Equals",
-  "comcol.search.filter.operator.equals": "Est égal à",
+  "comcol.search.filter.operator.equals": "Égale à",
   // "comcol.search.filter.operator.not.contains": "Not contains",
   "comcol.search.filter.operator.not.contains": "Ne contient pas",
   // "comcol.search.filter.operator.not.equals": "Not equals",
-  "comcol.search.filter.operator.not.equals": "N'est pas égal à",
+  "comcol.search.filter.operator.not.equals": "N'égale pas",
   // "comcol.search.filter.button.add": "Add filter",
   "comcol.search.filter.button.add": "Ajouter un filtre",
-  // "comcol.search.filter.button.remove": "Remove",
+  // "comcol.search.filter.button.remove": "Remove filter",
   "comcol.search.filter.button.remove": "Supprimer un filtre",
 
   // "comcol.search.filter.button.apply.filters": "Apply filters",
