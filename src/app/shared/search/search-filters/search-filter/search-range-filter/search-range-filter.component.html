@@ -62,7 +62,7 @@
                 <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
              <input 
-                [(ngModel)]="range[0]" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'" (blur)="validateAndSubmit()"  
+                [(ngModel)]="range[0]" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'" (blur)="validate()"  
                 [placeholder]="'search.filters.filter.' + filterConfig.name + '.min.placeholder' | translate" 
                 [attr.id]="'startdate'" class="form-control" type="date" data-rule-dateISO="true" />
           </div>
@@ -72,7 +72,7 @@
               <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
              <input 
-              [(ngModel)]="range[1]" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'" (blur)="validateAndSubmit()" 
+              [(ngModel)]="range[1]" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'" (blur)="validate()" 
               [placeholder]="'search.filters.filter.' + filterConfig.name + '.max.placeholder' | translate" 
               class="form-control" [attr.id]="'enddate'" name="enddate" type="date" data-rule-dateISO="true" />
           </div>
