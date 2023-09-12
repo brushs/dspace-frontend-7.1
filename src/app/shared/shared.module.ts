@@ -238,6 +238,7 @@ import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-co
 import { SearchNavbarComponent } from '../search-navbar/search-navbar.component';
 import { OSPRTruncatePipe } from './utils/ospr-truncate';
 import { PageDetailsComponent } from './page-details/page-details.component';
+import { ComcolSearchFilterComponent } from './comcol-search-filter/comcol-search-filter.component';
 
 /**
  * Declaration needed to make sure all decorator functions are called in time
@@ -467,7 +468,8 @@ const COMPONENTS = [
   PublicationSidebarSearchListElementComponent,
   CollectionSidebarSearchListElementComponent,
   CommunitySidebarSearchListElementComponent,
-  SearchNavbarComponent
+  SearchNavbarComponent,
+  ComcolSearchFilterComponent
 ];
 
 const ENTRY_COMPONENTS = [
