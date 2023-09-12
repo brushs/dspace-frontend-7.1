@@ -231,31 +231,35 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
    * @param data The string from the input field
    */
   onSubmit(data: any, exactMatch = false) {
-    this.selectedValues$.pipe(take(1)).subscribe((selectedValues) => {
-        if (isNotEmpty(data)) {
-          this.router.navigate(this.getSearchLinkParts(), {
-            queryParams:
-              {
-                [this.filterConfig.paramName]: [
-                  ...selectedValues.map((facet) => this.getFacetValue(facet)),
-                  data + ( exactMatch ? ',equals' : ''),
-                ]
-              },
-            queryParamsHandling: 'merge'
-          });
-          this.filter = '';
-        }
-        this.filterSearchResults = observableOf([]);
-      }
-    );
+   this.applyFilterValue(data, exactMatch);
   }
 
   /**
    * On click, set the input's value to the clicked data
    * @param data The value of the option that was clicked
    */
-  onClick(data: any) {
+  onClick(data: any, exactMatch = false) {
     this.filter = data;
+    this.applyFilterValue(data, exactMatch);
+  }
+
+  applyFilterValue(data: any, exactMatch = false) {
+    this.selectedValues$.pipe(take(1)).subscribe((selectedValues) => {
+      if (isNotEmpty(data)) {
+        this.router.navigate(this.getSearchLinkParts(), {
+          queryParams:
+            {
+              [this.filterConfig.paramName]: [
+                ...selectedValues.map((facet) => this.getFacetValue(facet)),
+                data + ( exactMatch ? ',equals' : ''),
+              ]
+            },
+          queryParamsHandling: 'merge'
+        });
+        this.filter = '';
+      }
+      this.filterSearchResults = observableOf([]);
+    });
   }
 
   /**
