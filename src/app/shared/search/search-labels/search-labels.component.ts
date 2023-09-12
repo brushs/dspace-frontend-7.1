@@ -39,7 +39,9 @@ export class SearchLabelsComponent {
         const labels = {};
         Object.keys(params)
           .forEach((key) => {
-            labels[key] = [...params[key].map((value) => value)];
+            if (params[key]?.length > 0)  {
+             labels[key] = [...params[key].map((value) => value)];
+            }
           });
         return labels;
       })

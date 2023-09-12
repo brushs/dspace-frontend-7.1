@@ -68,7 +68,7 @@
   [name]="filterConfig.paramName"
   [(ngModel)]="filter"
   (submitSuggestion)="onSubmit($event, true)"
-  (clickSuggestion)="onClick($event)"
+  (clickSuggestion)="onClick($event, true)"
   (findSuggestions)="findSuggestions($event)"
   ngDefaultControl></ds-filter-input-suggestions>
 </ng-template>
