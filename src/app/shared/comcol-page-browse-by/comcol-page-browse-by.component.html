@@ -2,8 +2,8 @@
 <h2 class="comcol-browse-label h3">{{'browse.comcol.head' | translate}}</h2>
 <div gcweb>
   <ul class="list-inline">
-    <li *ngFor="let option of allOptions">
-      <a href="#" class="list-group-item well">{{ option.label | translate }}</a>
+    <li *ngFor="let option of allOptions" class="">
+      <a href="#" class="list-group-item well browse-by-link">{{ option.label | translate }}</a>
     </li>
   </ul>
 </div>
