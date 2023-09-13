@@ -4,6 +4,3 @@
 <span *ngIf="linkType == linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" class="lead">
   {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : object)[0]?.value }}
 </span>
-<div *ngIf="object.shortDescription" class="text-muted abstract-text">
-  <span [lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : object)[0]?.language">{{(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : object)[0]?.value }}</span>
-</div>
