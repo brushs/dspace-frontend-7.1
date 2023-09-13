@@ -1698,7 +1698,7 @@
   // "comcol.search.filter.button.add": "Add filter",
   "comcol.search.filter.button.add": "Ajouter un filtre",
   // "comcol.search.filter.button.remove": "Remove filter",
-  "comcol.search.filter.button.remove": "Supprimer un filtre",
+  "comcol.search.filter.button.remove": "Supprimer le filtre",
 
   // "comcol.search.filter.button.apply.filters": "Apply filters",
   "comcol.search.filter.button.apply.filters": "Appliquer les filtres",
