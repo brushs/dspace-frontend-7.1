@@ -185,12 +185,18 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
     const pageParam = this.paginationService.getPageParam(this.searchConfig.paginationID);
     queryParams[pageParam] = 1;
     
-    this.router.navigate(this.getSearchLinkParts(), {
+    return this.router.navigate(this.getSearchLinkParts(), {
       queryParams: queryParams,
       queryParamsHandling: 'merge'
+    })
+    .then(() => {
+      delete queryParams[pageParam];
+      return this.paginationService.updateRouteWithUrl(this.searchConfig.paginationID, this.getSearchLinkParts(), { page: 1 }, queryParams);
+    })
+    .then(() => {
+      this.submitSearch.emit({query: this.query});
     });
-    delete queryParams[pageParam];
-    this.paginationService.updateRouteWithUrl(this.searchConfig.paginationID, this.getSearchLinkParts(), { page: 1 }, queryParams);
+    
   }
 
   removeFilterQueryParamters(){
@@ -203,16 +209,18 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
     queryParametersToRemoveKeys.forEach((queryParamKey) => {
       queryParametersToRemove[queryParamKey] = [];
     });
-
     const queryParams =  Object.assign({}, {"query": this.query, "scope": this.scope, ...generatedQueryParamsKeys, ...queryParametersToRemove});
     const pageParam = this.paginationService.getPageParam(this.searchConfig.paginationID);
     queryParams[pageParam] = 1;
 
-    this.router.navigate(this.getSearchLinkParts(), {
+    return this.router.navigate(this.getSearchLinkParts(), {
       queryParams: queryParams,
       queryParamsHandling: 'merge',
     })
-    this.submitSearch.emit({query: this.query});
+    .then(() => {
+      this.submitSearch.emit({query: this.query});
+    });
+    
   }
 
   /**
@@ -220,10 +228,13 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
    * @param data Values submitted using the form
    */
   onSubmit(data: any) {
-
-    this.updateSearch(this.generateQueryParamsFromSearchFilters());
-    this.submitSearch.emit({query: this.query});
-    // this.submitSearch.emit(data);
+    this.removeFilterQueryParamters()
+    .then(() => {
+      return this.updateSearch(this.generateQueryParamsFromSearchFilters());
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   /**
