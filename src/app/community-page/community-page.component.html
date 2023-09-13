@@ -37,11 +37,6 @@
           [inPlaceSearch]="inPlaceSearch"
           (submitSearch)="onSeachSubmit($event)">
         </ds-comcol-search-filter>
-  
-  
-        <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-0 mrgn-rght-0">
-          
-        </div>
         <hr>
         <div *ngIf="!searchSubmit else searchResultsPage">
           <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
