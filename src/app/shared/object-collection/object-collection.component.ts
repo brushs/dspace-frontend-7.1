@@ -51,6 +51,7 @@ export class ObjectCollectionComponent implements OnInit {
   @Input() selectable = false;
   @Input() selectionConfig: {repeatable: boolean, listId: string};
   @Input() useGcWeb = false;
+  @Input() useGcPagination = false;
   @Output() deselectObject: EventEmitter<ListableObject> = new EventEmitter<ListableObject>();
   @Output() selectObject: EventEmitter<ListableObject> = new EventEmitter<ListableObject>();
 

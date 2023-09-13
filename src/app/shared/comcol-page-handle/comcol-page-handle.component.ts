@@ -19,6 +19,9 @@ export class ComcolPageHandleComponent {
   // The value of "handle"
   @Input() content: string;
 
+  // Whether the title should be displayed as a heading or a paragraph
+  @Input() useHeading: boolean = true;
+
   public getHandle(): string {
     //FOSRC made this function domain aware to fix #1820
     const domainList = ['dev.ospr.link', 'ospr.link', 'localhost', 'open-science.canada.ca', 'science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']

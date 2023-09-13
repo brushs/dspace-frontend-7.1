@@ -1,6 +1,3 @@
-<div *ngIf="content" class="content-with-optional-title mb-2">
-    <!-- <div class="d-inline-block h6" *ngIf="title">{{ title | translate }}</div>
-    <div  class="d-inline-block "><a href="{{getHandle()}}">{{getHandle()}}</a></div> -->
-
+<ng-container *ngIf="content">
     <p *ngIf="title">{{ title | translate }} <a href="{{getHandle()}}">{{getHandle()}}</a></p>
-</div>
+</ng-container>
