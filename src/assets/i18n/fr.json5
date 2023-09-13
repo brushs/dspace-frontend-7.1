@@ -1459,6 +1459,7 @@
   "collection.page.license": "Licence",
   // "collection.page.news": "News",
   "collection.page.news": "Nouvelles",
+  "collection.page.search": "Recherche dans cette collection",
   // "collection.select.confirm": "Confirm selected",
   "collection.select.confirm": "Confirmer sélection",
   // "collection.select.empty": "No collections to show",
