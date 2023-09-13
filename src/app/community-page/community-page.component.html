@@ -54,11 +54,11 @@
       </ng-container>
     </div>
 
- <ds-page-details></ds-page-details>
 
     <ds-error *ngIf="communityRD?.hasFailed" message="{{'error.community' | translate}}"></ds-error>
     <ds-loading *ngIf="communityRD?.isLoading" message="{{'loading.community' | translate}}"></ds-loading>
   </div>
+  <ds-page-details></ds-page-details>
 </div>
 <ng-template #searchResultsPage>
   <ds-page-with-sidebar [id]="'search-page'">
