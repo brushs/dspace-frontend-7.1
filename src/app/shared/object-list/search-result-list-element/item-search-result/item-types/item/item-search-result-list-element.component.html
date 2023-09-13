@@ -46,9 +46,9 @@
     <p [ngClass]="{'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
       
       <span 
-      [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
-      [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
-      ></span>
+        [lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)[0]?.language" 
+        [innerHTML]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)[0]?.value"
+        ></span>
 
     </p>
 
