@@ -53,7 +53,7 @@
                         message="{{'error.recent-submissions' | translate}}"></ds-error>
               <ds-loading *ngIf="!itemRD || itemRD.isLoading"
                         message="{{'loading.recent-submissions' | translate}}"></ds-loading>
-              <div *ngIf="!itemRD?.isLoading && itemRD?.payload?.page.length === 0" class="alert alert-info w-100" role="alert">
+              <div *ngIf="!itemRD?.isLoading && itemRD?.payload?.page.length === 0" class="alert alert-info w-100 empty-collection" role="alert">
                         {{'collection.page.browse.recent.empty' | translate}}
               </div>
             </div>
