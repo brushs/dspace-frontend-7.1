@@ -46,6 +46,11 @@
           <ds-community-page-sub-collection-list [community]="communityPayload"></ds-community-page-sub-collection-list>
         </div>
 
+        <footer  *ngIf="communityPayload.copyrightText"  class="border-top my-5 pt-4">
+          <!-- Copyright -->
+          <ds-comcol-page-content [content]="('dc.rights' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.rights' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+        </footer>
       </ng-container>
     </div>
 
