@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="row" action="/search">
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="row" action="/search" *ngIf="!useGcWeb; else useGcWebView">
 <!--div *ngIf="isNotEmpty(scopes)" class="col-12 col-sm-3">
   <select  name="scope" class="form-control" aria-label="Search scope" (change)="onScopeChange($event.target.value)" tabindex="0">
     <option value>{{'search.form.search_dspace' | translate}}</option>
@@ -43,3 +43,18 @@
   </ng-container>
     
 </form>
+
+<ng-template #useGcWebView>
+  <div class="input-group">
+    <input autocomplete="on" type="text" [(ngModel)]="query" name="query" id="fosrc-search"
+    [placeholder]="searchPlaceholder" class="form-control">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-primary"
+              title="{{'search.form.search' | translate}}">
+          <!-- OSPR Changes: modify to show search text -->
+            {{'search.form.search' | translate}}
+          <!-- End OSPR Changes -->
+      </button>
+    </span>
+  </div>
+</ng-template>

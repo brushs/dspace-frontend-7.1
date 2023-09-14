@@ -1,101 +1,71 @@
-<div class="container">
-  <section> 
-  <div class="collection-page"
-         *ngVar="(collectionRD$ | async) as collectionRD">
-        <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut>
-            <div *ngIf="collectionRD?.payload as collection">
-              <ds-view-tracker [object]="collection"></ds-view-tracker>
-              <div class="d-flex flex-row border-bottom mb-4 pb-4">
-                <div class="comcol-header mr-auto">
-                  <!-- Collection Name -->
-                  <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.language">
-                  </ds-comcol-page-header>
-                  <!-- Collection logo -->
-                  <ds-comcol-page-logo *ngIf="logoRD$"
-                                   [logo]="(logoRD$ | async)?.payload"
-                                   [alternateText]="'Collection Logo'"
-                      [alternateText]="'Collection Logo'">
-                  </ds-comcol-page-logo>
+<div class="container" gcweb>
+  <div class="row" *ngVar="(collectionRD$ | async) as collectionRD">
+    <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut class="col-md-12">
+        <ng-container *ngIf="collectionRD?.payload as collection">
+          <ds-view-tracker [object]="collection"></ds-view-tracker>          
 
-                  <!-- Handle -->
-                  <ds-comcol-page-handle
-                          [content]="collection.handle"
-                          [title]="'collection.page.handle'" >
-                  </ds-comcol-page-handle>
-                  <!-- Subject -->
-                  <!-- Start FOSRC Changes - 1568
-                  <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : collection)[0]?.value" [lang]="('dc.subject' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
-                  </ds-comcol-page-content>
-                  End of FOSRC changes -->
-                  <!-- Introductory text -->
-                  <ds-comcol-page-content [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
-                  </ds-comcol-page-content>
-                  <!-- Email Address -->
-                  <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : collection)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
-                  </ds-comcol-page-content>
-                  <!-- License -->
-                  <ds-comcol-page-content [content]="(['dc.rights.license','dc.rights.license-fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.rights.license','dc.rights.license-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
-                  </ds-comcol-page-content>
-                  <!-- Provenance -->
-                  <ds-comcol-page-content [content]="(['dc.description.provenance', 'dc.description.provenance-fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.description.provenance', 'dc.description.provenance-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
-                  </ds-comcol-page-content>
-                </div>
-                <div class="pl-2">
-                  <ds-dso-page-edit-button *ngIf="isCollectionAdmin$ | async"  [pageRoute]="collectionPageRoute$ | async" [dso]="collection" [tooltipMsg]="'collection.page.edit'"></ds-dso-page-edit-button>
+          <!-- Collection Name -->
+          <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.language">
+          </ds-comcol-page-header>
+
+          <!-- Handle -->
+          <ds-comcol-page-handle  [useHeading]="false"
+                  [content]="collection.handle"
+                  [title]="'collection.page.handle'" >
+          </ds-comcol-page-handle>
+
+          <ds-comcol-page-content [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
+          </ds-comcol-page-content>
+
+          <div class="pl-2">
+            <ds-dso-page-edit-button *ngIf="isCollectionAdmin$ | async"  [pageRoute]="collectionPageRoute$ | async" [dso]="collection" [tooltipMsg]="'collection.page.edit'"></ds-dso-page-edit-button>
+          </div>
+          
+          <!-- Browse-By Links -->
+          <ds-comcol-page-browse-by
+                  [id]="collection.id"
+                  [contentType]="collection.type">
+          </ds-comcol-page-browse-by>
+
+        <ng-container *ngVar="(itemRD$ | async) as itemRD">
+            <div class="container" *ngIf="(isXsOrSm$ | async)">
+              <div class="row">
+                <div class="col-12">
+                  <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+                  <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
                 </div>
               </div>
-              <section class="comcol-page-browse-section">
-              <!-- Browse-By Links -->
-              <ds-comcol-page-browse-by
-                      [id]="collection.id"
-                      [contentType]="collection.type">
-              </ds-comcol-page-browse-by>
-
-            <ng-container *ngVar="(itemRD$ | async) as itemRD">
-                <div class="container" *ngIf="(isXsOrSm$ | async)">
-                  <div class="row">
-                    <div class="col-12">
-                      <ng-template *ngTemplateOutlet="searchForm"></ng-template>
-                      <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
-                    </div>
-                  </div>
-                </div>
-                <div *ngIf="!searchSubmit else searchResultsPage">
-                  <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
-                    <ng-template *ngTemplateOutlet="searchForm"></ng-template>
-                  </div>
-                  <div class="mt-4" *ngIf="itemRD?.hasSucceeded" @fadeIn>
-                      <h3 class="sr-only">{{'collection.page.browse.recent.head' | translate}}</h3>
-                      <ds-viewable-collection
-                              [config]="paginationConfig"
-                              [sortConfig]="sortConfig"
-                              [objects]="itemRD"
-                              [hideGear]="true">
-                      </ds-viewable-collection>
-                  </div>
-                  <ds-error *ngIf="itemRD?.hasFailed"
-                            message="{{'error.recent-submissions' | translate}}"></ds-error>
-                  <ds-loading *ngIf="!itemRD || itemRD.isLoading"
-                            message="{{'loading.recent-submissions' | translate}}"></ds-loading>
-                  <div *ngIf="!itemRD?.isLoading && itemRD?.payload?.page.length === 0" class="alert alert-info w-100" role="alert">
-                            {{'collection.page.browse.recent.empty' | translate}}
-                  </div>
-                </div>
-            </ng-container>
-            </section>
-            <footer *ngIf="collection.copyrightText" class="border-top my-5 pt-4">
-          <!-- Copyright -->
-          <ds-comcol-page-content [content]="('dc.rights' | metaTranslate : collection)[0]?.value" [lang]="('dc.rights' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-        </footer>
-      </div>
+            </div>
+            <div *ngIf="!searchSubmit else searchResultsPage">
+              <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
+                <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+              </div>
+              <div class="mt-4" *ngIf="itemRD?.hasSucceeded" @fadeIn>
+                  <h3 class="sr-only">{{'collection.page.browse.recent.head' | translate}}</h3>
+                  <ds-viewable-collection
+                          [config]="paginationConfig"
+                          [sortConfig]="sortConfig"
+                          [objects]="itemRD"
+                          [hideGear]="true">
+                  </ds-viewable-collection>
+              </div>
+              <ds-error *ngIf="itemRD?.hasFailed"
+                        message="{{'error.recent-submissions' | translate}}"></ds-error>
+              <ds-loading *ngIf="!itemRD || itemRD.isLoading"
+                        message="{{'loading.recent-submissions' | translate}}"></ds-loading>
+              <div *ngIf="!itemRD?.isLoading && itemRD?.payload?.page.length === 0" class="alert alert-info w-100" role="alert">
+                        {{'collection.page.browse.recent.empty' | translate}}
+              </div>
+            </div>
+        </ng-container>
+        </ng-container>
     </div>
-        <ds-error *ngIf="collectionRD?.hasFailed"
-            message="{{'error.collection' | translate}}"></ds-error>
-        <ds-loading *ngIf="collectionRD?.isLoading"
-            message="{{'loading.collection' | translate}}"></ds-loading>
+    <ds-error *ngIf="collectionRD?.hasFailed"
+        message="{{'error.collection' | translate}}"></ds-error>
+    <ds-loading *ngIf="collectionRD?.isLoading"
+        message="{{'loading.collection' | translate}}"></ds-loading>
   </div>
-  </section> 
+  <ds-page-details></ds-page-details>  
 </div>
 
 <ng-template #searchResultsPage>
@@ -105,7 +75,6 @@
           <ng-template *ngTemplateOutlet="searchForm"></ng-template>
           <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
       </div>
-      <div id="search-content" class="col-12">
           <!--FOSRC start changes : ticket 327-->
           <!-- <div class="d-block d-md-none search-controls clearfix">
               <ds-view-mode-switch [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch>
@@ -116,12 +85,12 @@
               </button>
           </div> -->
           <!--FOSRC end changes-->
-          <ds-search-results [searchResults]="resultsRD$ | async"
-                             [searchConfig]="searchOptions$ | async"
-                             [configuration]="configuration$ | async"
-                             [disableHeader]="!searchEnabled"
-                             [context]="context"></ds-search-results>
-      </div>
+        <ds-search-results [searchResults]="resultsRD$ | async"
+                            [searchConfig]="searchOptions$ | async"
+                            [configuration]="configuration$ | async"
+                            [disableHeader]="!searchEnabled"
+                            [useGcWeb]="true"
+                            [context]="context"></ds-search-results>
     </div>
   </ds-page-with-sidebar>
 </ng-template>
@@ -147,7 +116,8 @@
                   [currentUrl]="searchLink"
                   [scopes]="(scopeListRD$ | async)"
                   [inPlaceSearch]="inPlaceSearch"
-                  [searchPlaceholder]="'search.search-form.placeholder' | translate"
+                  [onComColPage]="true"
+                  [searchPlaceholder]="'collection.page.search' | translate"
                   (submitSearch)="onSeachSubmit($event)">
   </ds-search-form>
   <div class="row mb-3 mb-md-1">
