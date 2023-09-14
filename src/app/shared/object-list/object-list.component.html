@@ -32,7 +32,7 @@
             </li>
         </ul>
         <ng-template #gcPagination>
-          <div class="col-md-9 pull-left">
+          <div class="col-md-12 pull-left">
             <ul class="list-unstyled lst-spcd">
               <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last">
                 <ds-community-list-element [object]="object" [linkType]="linkTypes.Link"></ds-community-list-element>
