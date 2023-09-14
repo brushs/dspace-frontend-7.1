@@ -58,11 +58,6 @@
               </div>
             </div>
         </ng-container>
-        <footer *ngIf="collection.copyrightText" class="border-top my-5 pt-4">
-      <!-- Copyright -->
-      <ds-comcol-page-content [content]="('dc.rights' | metaTranslate : collection)[0]?.value" [lang]="('dc.rights' | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
-      </ds-comcol-page-content>
-    </footer>
         </ng-container>
     </div>
     <ds-error *ngIf="collectionRD?.hasFailed"
