@@ -199,7 +199,7 @@ export class PaginationComponent implements OnDestroy, OnInit {
       // A disabled button including ellipses gets rendered when displaying the last page number. This ensures the last page item gets rendered while the ellipses gets removed.
       (<HTMLElement>this.paginationPage?.nativeElement)?.querySelectorAll('.page-item.disabled')?.forEach((el) => {
         if(el.textContent?.includes('...')) {
-          el.remove()
+          el.setAttribute('aria-hidden', 'true');
         }
        });
     }
