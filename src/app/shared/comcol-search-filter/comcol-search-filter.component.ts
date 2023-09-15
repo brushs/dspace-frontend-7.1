@@ -59,39 +59,35 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.searchFilters = [];
 
-    const titleQueryParam: string = this.route.snapshot.queryParamMap.get('f.title');
-    if(titleQueryParam){
-      let filterOperator: any = titleQueryParam.split(",").pop();
-      let filterItemInfo: any = titleQueryParam.split(",").find((filterItemElem) => {
-        return !filterItemElem.startsWith(',');
-      });
+    const titleFilterQueryParam: string = this.route.snapshot.queryParamMap.get('f.title');
+    if(titleFilterQueryParam){
+      let titleFilterQueryParamSegments = titleFilterQueryParam.split(",");
+      let filterItemInfo: any = titleFilterQueryParamSegments[0];
+      let filterOperator: any = titleFilterQueryParamSegments.pop();
       this.searchFilters.push(new SearchFilter("title", filterOperator, filterItemInfo));
     };
 
-    const authorQueryParam: string = this.route.snapshot.queryParamMap.get('f.author');
-    if(authorQueryParam){
-      let filterOperator: any = authorQueryParam.split(",").pop();
-      let filterItemInfo: any = authorQueryParam.split(",").find((filterItemElem) => {
-        return !filterItemElem.startsWith(',');
-      });
+    const authorFilterQueryParam: string = this.route.snapshot.queryParamMap.get('f.author');
+    if(authorFilterQueryParam){
+      let authorFilterQueryParamSegments = authorFilterQueryParam.split(",");
+      let filterItemInfo: any = authorFilterQueryParamSegments[0];
+      let filterOperator: any = authorFilterQueryParamSegments.pop();
       this.searchFilters.push(new SearchFilter("author", filterOperator, filterItemInfo));
     };
 
-    const subjectQueryParam: string = this.route.snapshot.queryParamMap.get('f.subject');
-    if(subjectQueryParam){
-      let filterOperator: any = subjectQueryParam.split(",").pop();
-      let filterItemInfo: any = subjectQueryParam.split(",").find((filterItemElem) => {
-        return !filterItemElem.startsWith(',');
-      });
+    const subjectFilterQueryParam: string = this.route.snapshot.queryParamMap.get('f.subject');
+    if(subjectFilterQueryParam){
+      let subjectFilterQueryParamSegments = subjectFilterQueryParam.split(",");
+      let filterItemInfo: any = subjectFilterQueryParamSegments[0];
+      let filterOperator: any = subjectFilterQueryParamSegments.pop();
       this.searchFilters.push(new SearchFilter("subject", filterOperator, filterItemInfo));
     };
 
-    const dateIssuedQueryParam: string = this.route.snapshot.queryParamMap.get('f.dateIssued');
-    if(dateIssuedQueryParam){
-      let filterOperator: any = dateIssuedQueryParam.split(",").pop();
-      let filterItemInfo: any = dateIssuedQueryParam.split(",").find((filterItemElem) => {
-        return !filterItemElem.startsWith(',');
-      });
+    const dateIssuedFilterQueryParam: string = this.route.snapshot.queryParamMap.get('f.dateIssued');
+    if(dateIssuedFilterQueryParam){
+      let dateIssuedFilterQueryParamSegments = dateIssuedFilterQueryParam.split(",");
+      let filterItemInfo: any = dateIssuedFilterQueryParamSegments[0];
+      let filterOperator: any = dateIssuedFilterQueryParamSegments.pop();
       this.searchFilters.push(new SearchFilter("dateIssued", filterOperator, filterItemInfo));
     };
 
