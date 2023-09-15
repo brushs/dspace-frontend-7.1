@@ -30,25 +30,23 @@
     </ng-template>
   </div>
   <ng-content></ng-content>
-  <div class="text-center col-xs-12">
-      <div class="pagination" *ngIf="shouldShowBottomPager |async">
-        <ngb-pagination [boundaryLinks]="paginationOptions.boundaryLinks"
-                        [collectionSize]="collectionSize"
-                        [disabled]="paginationOptions.disabled"
-                        [ellipses]="paginationOptions.ellipses"
-                        [maxSize]="(isXs || useGcWeb) ? 5:paginationOptions.maxSize"
-                        [page]="(currentPage$|async)"
-                        (pageChange)="doPageChange($event)"
-                        [pageSize]="(pageSize$ |async)"
-                        [rotate]="paginationOptions.rotate"
-                        [size]="(isXs)?'sm':paginationOptions.size">
-                        <ng-template ngbPaginationNumber let-currentPage="currentPage" let-page>
-                              <span class="wb-inv">{{page === currentPage ? '(current)' : ''}} {{ 'pagination.go.to' | translate }}</span>
-                              {{page}}
-                        </ng-template>
-            <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}} </ng-template>
-            <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}} </ng-template>
-        </ngb-pagination>
-      </div>
+  <div *ngIf="shouldShowBottomPager |async" class="pagination justify-content-center clearfix bottom">
+    <ngb-pagination [boundaryLinks]="paginationOptions.boundaryLinks"
+                    [collectionSize]="collectionSize"
+                    [disabled]="paginationOptions.disabled"
+                    [ellipses]="paginationOptions.ellipses"
+                    [maxSize]="(isXs || useGcWeb) ? 5:paginationOptions.maxSize"
+                    [page]="(currentPage$|async)"
+                    (pageChange)="doPageChange($event)"
+                    [pageSize]="(pageSize$ |async)"
+                    [rotate]="paginationOptions.rotate"
+                    [size]="(isXs)?'sm':paginationOptions.size">
+                    <ng-template ngbPaginationNumber let-currentPage="currentPage" let-page>
+                          <span class="wb-inv">{{page === currentPage ? '(current)' : ''}} {{ 'pagination.go.to' | translate }}</span>
+                          {{page}}
+                    </ng-template>
+        <ng-template rel="prev" ngbPaginationPrevious>{{'pagination.button.prev' | translate}} </ng-template>
+        <ng-template rel="next" ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
+    </ngb-pagination>
   </div>
 </div>
