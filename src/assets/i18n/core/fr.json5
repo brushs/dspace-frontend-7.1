@@ -1,5 +1,5 @@
 {
-  // FOSRC SPECIFIC LABELS START
+  // FOSRC SPECIFIC LABELS Start
 
   // Contact us page labels
   // "contact-us.breadcrumbs": "Contact Us",
@@ -40,7 +40,7 @@
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
 
   //Simple item page translations ticket 1587
-  "item.page.download.files.link": "Télécharger des documents",
+  "item.page.download.files.link": "Télécharger les documents",
   //"item.page.heading.project": "Project",
   "item.page.heading.project": "Projet",
   // "alternative.title": "Alternative Title",
@@ -152,7 +152,7 @@
 
 
   // "item.page.filesection.download-file": "Download File",
-  "item.page.filesection.download-file": "Télécharger le Fichier",
+  "item.page.filesection.download-file": "Télécharger le fichier",
 
   // "community.breadcrumbs": "Community List",
   "community.breadcrumbs": "Liste des communautés",
@@ -716,6 +716,10 @@
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   // "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
+  "fosrc.item.edit.dynamic-field.values.request-doi.no": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.yes": "oui",
+  "fosrc.item.edit.dynamic-field.values.request-doi.No": "non",
+  "fosrc.item.edit.dynamic-field.values.request-doi.Yes": "oui",
 
   // TODO Translate the folllowing labels:
   // "fosrc.item.form.error.panel.dc.type": "Publication Type",
@@ -736,7 +740,7 @@
   "fosrc.item.form.error.panel.license": "Licence",
 
   // "full-item.details.title": "Full item details",
-  "full-item.details.title": "Présentation détaillée de l'article",
+  "full-item.details.title": "Notice détaillée",
 
   // "header.skiptolinks.about": "Skip to about the Federal Open Science Repository of Canada(FOSRC)",
   "header.skiptolinks.about": "Passer à « Au sujet du Dépôt fédéral de science ouverte du Canada (DFSOC)»",
@@ -758,12 +762,14 @@
   // "official.title": "Official Title",
   "official.title": "Titre officiel",
 
-  // "search.filters.applied": "Filters Applied:",
-  "search.filters.applied": "Filtres Appliqués:",
+  // "search.filters.applied": "Filters applied:",
+  "search.filters.applied": "Filtres appliqués:",
   // "search.filters.remove": "Remove Filter",
   "search.filters.remove": "Supprimer le filtre",
   // "search.filters.none": "No results match this filter",
   "search.filters.none": "Aucun résultat ne correspond à ce filtre",
+  //"search.filters.filter.dateInvalid": "Error: Invalid date",
+  "search.filters.filter.dateInvalid": "Erreur: Date invalide",
 
   // "sign.in.title": "FOSRC administrator sign in",
   "sign.in.title": "Connexion de l'administrateur au DFSOC",
@@ -820,14 +826,16 @@
   // "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
   "search.filters.filter.date.wet.format": "(<abbr title=\"Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour\">AAAA-MM-JJ</abbr>)",
 
+  // "search.filters.applyFilter": "Apply filters",
+  "search.filters.applyFilter": "Appliquer les filtres",
 
 
   // "search.badge.result": "Result ",
   "search.badge.result": "Résultat ",
-  // "truncate.expand": "Show More",
-  "truncate.expand": "Plus de Résultats",
-  // "truncate.collapse": "Show Less",
-  "truncate.collapse": "Moins de Résultats",
+  // "truncate.expand": "Show more",
+  "truncate.expand": "Afficher plus",
+  // "truncate.collapse": "Show less",
+  "truncate.collapse": "Afficher moins",
 
   // FOSRC SPECIFIC LABELS END
 
@@ -1377,16 +1385,16 @@
   "bitstream.edit.return": "Retour",
   // "bitstream.edit.title": "Edit bitstream",
   "bitstream.edit.title": "Éditer le Bitstream",
-  // "browse.comcol.by.author": "By author",
+  // "browse.comcol.by.author": "Author",
   "browse.comcol.by.author": "Auteur",
-  // "browse.comcol.by.dateissued": "By issue date",
-  "browse.comcol.by.dateissued": "Par date de publication",
-  // "browse.comcol.by.subject": "By subject",
+  // "browse.comcol.by.dateissued": "Issue date",
+  "browse.comcol.by.dateissued": "Date de publication",
+  // "browse.comcol.by.subject": "Subject",
   "browse.comcol.by.subject": "Sujet",
-  // "browse.comcol.by.title": "By title",
+  // "browse.comcol.by.title": "Title",
   "browse.comcol.by.title": "Titre",
   // "browse.comcol.head": "Browse",
-  "browse.comcol.head": "Valider",
+  "browse.comcol.head": "Parcourir par",
   // "browse.empty": "No items to show.",
   "browse.empty": "Aucun résultat.",
   // "browse.metadata.author": "Author",
@@ -1639,6 +1647,7 @@
   "collection.page.license": "Licence",
   // "collection.page.news": "News",
   "collection.page.news": "Nouvelles",
+  "collection.page.search": "Recherche dans cette collection",
   // "collection.select.confirm": "Confirm selected",
   "collection.select.confirm": "Confirmer sélection",
   // "collection.select.empty": "No collections to show",
@@ -1649,6 +1658,54 @@
   "collection.source.update.notifications.error.content": "Les paramètres fournis sont invalides. La connexion n'a pas pu être établie.",
   // "collection.source.update.notifications.error.title": "Server error",
   "collection.source.update.notifications.error.title": "Erreur serveur",
+
+  // "comcol.search.title.search.results.for": "Search results for",
+  "comcol.search.title.search.results.for": "Résultats de la recherche pour",
+
+  // "comcol.search.filter.summary": "Add filters",
+  "comcol.search.filter.summary": "Ajouter des filtres",
+  // "comcol.search.filter.heading": "Filters",
+  "comcol.search.filter.heading": "Filtres",
+  // "comcol.search.filter.instructions": "Use filters to refine the search results.",
+  "comcol.search.filter.instructions": "Utilisez des filtres pour affiner les résultats de la recherche.",
+  // "comcol.search.filter.item.select": "Select",
+
+  
+  // "comcol.search.filter.aria.filter.item": "Select a filter item",
+  "comcol.search.filter.aria.filter.item": "Sélectionnez un élément de filtre",
+  // "comcol.search.filter.aria.filter.operator": "Select a filter operator",
+  "comcol.search.filter.aria.filter.operator": "Sélectionnez un opérateur de filtre",
+  // "comcol.search.filter.aria.filter.item.info": "Enter text for the filter item",
+  "comcol.search.filter.aria.filter.item.info": "Saisissez le texte de l'élément de filtre",
+
+
+  "comcol.search.filter.item.select": "Selectionner",
+  // "comcol.search.filter.item.title": "Title",
+  "comcol.search.filter.item.title": "Titre",
+  // "comcol.search.filter.item.author": "Author",
+  "comcol.search.filter.item.author": "Auteur",
+  // "comcol.search.filter.item.subject": "Subject",
+  "comcol.search.filter.item.subject": "Sujet",
+  // "comcol.search.filter.item.date.issued": "Date issued",
+  "comcol.search.filter.item.date.issued": "Date d'émission",
+  // "comcol.search.filter.operator.contains": "Contains",
+  "comcol.search.filter.operator.contains": "Contient",
+  // "comcol.search.filter.operator.equals": "Equals",
+  "comcol.search.filter.operator.equals": "Égale à",
+  // "comcol.search.filter.operator.not.contains": "Not contains",
+  "comcol.search.filter.operator.not.contains": "Ne contient pas",
+  // "comcol.search.filter.operator.not.equals": "Not equals",
+  "comcol.search.filter.operator.not.equals": "N'égale pas",
+  // "comcol.search.filter.button.add": "Add filter",
+  "comcol.search.filter.button.add": "Ajouter un filtre",
+  // "comcol.search.filter.button.remove": "Remove filter",
+  "comcol.search.filter.button.remove": "Supprimer le filtre",
+
+  // "comcol.search.filter.button.apply.filters": "Apply filters",
+  "comcol.search.filter.button.apply.filters": "Appliquer les filtres",
+  // "comcol.search.filter.button.reset.filters": "Reset filters",
+  "comcol.search.filter.button.reset.filters": "Réinitialiser les filtres",
+
   // "comcol-role.delete.confirm.cancel": "Cancel",
   "comcol-role.delete.confirm.cancel": "Annuler",
   // "comcol-role.delete.confirm.info": "Are you sure you want to delete the role?",
@@ -1779,6 +1836,7 @@
   "community.page.edit": "Éditer cette communauté",
   // "community.page.handle": "Permanent URI for this community",
   "community.page.handle": "URI permanent de cette communauté",
+  "community.page.search": "Recherche dans cette communauté et ses collections",
   // "community.page.license": "License",
   "community.page.license": "Licence",
   // "community.page.news": "News",
@@ -2584,7 +2642,7 @@
   // "item.edit.withdraw.success": "The item was withdrawn successfully",
   "item.edit.withdraw.success": "L’article a été retiré avec succès",
   // "item.listelement.badge": "Item",
-  "item.listelement.badge": "document",
+  "item.listelement.badge": "Document",
   // Start FOSRC Changes - 1594
   // "item.page.relationship": "Relation",
   "item.page.relationship": "Relation",
@@ -2630,7 +2688,9 @@
   // "item.page.filesection.download": "Download",
   "item.page.filesection.download": "Télécharger",
   // "item.page.filesection.format": "Format:",
-  "item.page.filesection.format": "Format :",
+  "item.page.filesection.format": "Format :",  
+  "item.page.filesection.format.pdf.abbr": "PDF",
+  "item.page.filesection.format.pdf.full": "Format de document portable",
   // "item.page.filesection.license.bundle": "License bundle",
   "item.page.filesection.license.bundle": "Licence",
   // "item.page.filesection.name": "Name:",
@@ -3854,10 +3914,10 @@
   "search.filters.filter.scope.label": "rechercher filtre de portée",
   // "search.filters.filter.scope.placeholder": "Scope filter",
   "search.filters.filter.scope.placeholder": "Filtre de portée",
-  // "search.filters.filter.show-less": "Collapse",
+  // "search.filters.filter.show-less": "Show less",
   "search.filters.filter.show-less": "Réduire",
   // "search.filters.filter.show-more": "Show more",
-  "search.filters.filter.show-more": "Plus de résultats",
+  "search.filters.filter.show-more": "En savoir plus",
   // "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.head": "Sujet",
   // "search.filters.filter.subject.label": "Search subject",
@@ -3896,6 +3956,8 @@
   "search.results.empty": "Votre recherche n’a retourné aucun résultat.",
   // "search.results.head": "Search results",
   "search.results.head": "Résultats de la recherche",
+  // "search.results.community.head": "Search Results",
+  "search.results.community.head": "Résultats de la recherche",
   // "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting",
   "search.results.no-results": "Votre recherche n'a retourné aucun résultat. Vous ne trouvez pas ce que vous cherchez ? Essayez de l'entourer de guillemets.",
   // "search.results.no-results-link": "Quotes around it",
@@ -4539,7 +4601,7 @@
   // "thumbnail.default.alt": "Thumbnail image",
   "thumbnail.default.alt": "Vignette d’image",
   // "thumbnail.default.placeholder": "No thumbnail available",
-  "thumbnail.default.placeholder": "Pas de vignette d'image disponible",
+  "thumbnail.default.placeholder": "Aucune vignette disponible",
   // "thumbnail.orgunit.alt": "OrgUnit logo",
   "thumbnail.orgunit.alt": "Logo de l'organisme",
   // "thumbnail.orgunit.placeholder": "OrgUnit placeholder image",

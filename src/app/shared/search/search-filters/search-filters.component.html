@@ -33,6 +33,7 @@
         </section>
       </ng-container>
     </ng-container>
-    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-primary" type="submit"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button>
+    <button class="btn btn-primary mrgn-tp-sm" type="submit" (click)="applyFilter()"> {{"search.filters.applyFilter" | translate}}</button>
+    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-primary mrgn-tp-sm" type="submit" (click)="resetFilter()"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button>
   </form>
 </ng-template>
