@@ -22,7 +22,7 @@ import { SortOptions } from '../../../../../app/core/cache/models/sort-options.m
 import { followLink } from '../../../../../app/shared/utils/follow-link-config.model';
 import { Item } from '../../../../../app/core/shared/item.model';
 import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
-
+import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 
 @Component({
   selector: 'ds-search',
@@ -106,6 +106,7 @@ export class MySearchComponent implements OnInit {
   //gdata: any;
   @ViewChild(GeoSearchPageComponent) geoComponent: GeoSearchPageComponent;
 
+  @ViewChild(DynamicFiltersComponent) dynamicFiltersComponent: DynamicFiltersComponent;
 
   /**
    * Link to the search page
