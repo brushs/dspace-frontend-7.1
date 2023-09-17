@@ -1,0 +1,51 @@
+<form [formGroup]="form">
+  <table>
+    <tbody>
+      <ng-container *ngFor="let row of rows.controls; let i = index" formArrayName="rows">
+        <tr [formGroupName]="i">
+          <td>
+            <select name="filtertype" id="filtertype" class="form-control" aria-label="Filter Type" formControlName="filtertype">
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="subject">Subject</option>
+              <option value="dateIssued">Date Issued</option>
+            </select>
+          </td>
+          <td>
+            <select name="relationoperator" class="form-control" aria-label="Relation Operator" formControlName="relationalOperator">
+              <option value="contains">Contains</option>
+              <option value="equals">Equal</option>
+              <option value="authority">ID</option>
+              <option value="notcontains">No Contains</option>
+              <option value="notequals">Is Not</option>
+              <option value="notauthority">Is Not ID</option>
+            </select>
+          </td>
+          <td>
+            <input type="text" name="filterValue" id="filterValue" aria-label="Filter Value" formControlName="filter">
+          </td>
+          <td>
+            <button type="button" (click)="addRow()" class="btn btn-primary"> + </button>
+          </td>
+          <td>
+            <button type="button" (click)="removeRow(i)" class="btn btn-primary"> - </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <div class="buttons">
+    <button type="button" (click)="addRow()" class="btn btn-primary"> + </button>
+    <button type="button" (click)="resetFilters()" class="btn btn-primary">Reset </button>
+  </div>
+  <div class="buttons">
+    <button type="button" (click)="printFormValues()" class="btn btn-primary search-button">Search</button>
+  </div>
+</form>
+<!-- debug
+<div>
+  <h2>
+  search string: <span class="output" > {{output}}</span>
+  </h2>
+</div>
+-->
