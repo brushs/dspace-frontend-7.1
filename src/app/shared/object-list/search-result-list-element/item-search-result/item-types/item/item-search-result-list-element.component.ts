@@ -50,11 +50,11 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   getDescLanguageAttribute(payload: any): string | undefined {
     const translatedDesc = this.getTranslatedValue(payload);
     const language = translatedDesc?.language;
-    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
+    return this.getLanguageAttribute(language);
   }
+
 
   getLanguageAttribute(language: any): string | undefined {
-    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
+    return (language !== undefined && language !== null && language !== '' && (language.toLowerCase() === 'en' || language.toLowerCase() === 'fr')) ? language : undefined;
   }
-
 }
