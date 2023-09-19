@@ -7,6 +7,8 @@ import { ItemSearchResult } from '../../../../../object-collection/shared/item-s
 import { SearchResultListElementComponent } from '../../../search-result-list-element.component';
 import { Item } from '../../../../../../core/shared/item.model';
 import { getItemPageRoute } from '../../../../../../item-page/item-page-routing-paths';
+import { MetadataTranslatePipe } from '../../../../../utils/metadata-translate.pipe';
+import { supportedLanguages } from '../../../../../../core/locale/locale.service';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -37,4 +39,22 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.isCollapsed$ = this.isCollapsed();
   }
 
+  translateMetadata(keys: string | string[], dso: any) {
+    const pipe = new MetadataTranslatePipe(this.dsoNameService, this.localeService);
+    return pipe.transform(keys, dso);
+  }
+
+  getTranslatedValue(dso: any): any {
+    return this.translateMetadata(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'], dso)[0];
+  }
+
+  getDescLanguageAttribute(payload: any): string | undefined {
+    const translatedDesc = this.getTranslatedValue(payload);
+    const language = translatedDesc?.language;
+    return this.getLanguageAttribute(language);
+  }
+
+  getLanguageAttribute(language: any): string | undefined {
+    return supportedLanguages.includes(language?.toLowerCase()) ? language : undefined;
+  }
 }
