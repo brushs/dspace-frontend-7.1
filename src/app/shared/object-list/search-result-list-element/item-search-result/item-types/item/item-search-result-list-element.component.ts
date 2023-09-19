@@ -7,6 +7,7 @@ import { ItemSearchResult } from '../../../../../object-collection/shared/item-s
 import { SearchResultListElementComponent } from '../../../search-result-list-element.component';
 import { Item } from '../../../../../../core/shared/item.model';
 import { getItemPageRoute } from '../../../../../../item-page/item-page-routing-paths';
+import { MetadataTranslatePipe } from '../../../../../utils/metadata-translate.pipe';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -35,6 +36,25 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     super.ngOnInit();
     this.itemPageRoute = getItemPageRoute(this.dso);
     this.isCollapsed$ = this.isCollapsed();
+  }
+
+  translateMetadata(keys: string | string[], dso: any) {
+    const pipe = new MetadataTranslatePipe(this.dsoNameService, this.localeService);
+    return pipe.transform(keys, dso);
+  }
+
+  getTranslatedValue(dso: any): any {
+    return this.translateMetadata(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'], dso)[0];
+  }
+
+  getDescLanguageAttribute(payload: any): string | undefined {
+    const translatedDesc = this.getTranslatedValue(payload);
+    const language = translatedDesc?.language;
+    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
+  }
+
+  getLanguageAttribute(language: any): string | undefined {
+    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
   }
 
 }
