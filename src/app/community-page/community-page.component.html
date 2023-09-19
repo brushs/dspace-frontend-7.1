@@ -3,7 +3,7 @@
     <div class="col-md-12" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
       <ng-container *ngIf="communityRD?.payload; let communityPayload">
         <ds-view-tracker [object]="communityPayload"></ds-view-tracker>
-        <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language">{{'comcol.search.title.search.results.for' | translate}}&nbsp;</ds-comcol-page-header>
+        <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language"><span *ngIf="searchSubmit">{{'comcol.search.title.search.results.for' | translate}}&nbsp;</span></ds-comcol-page-header>
         <ds-comcol-page-logo *ngIf="logoRD$" [logo]="(logoRD$ | async)?.payload" [alternateText]="'Community Logo'">
         </ds-comcol-page-logo>
         <ds-comcol-page-handle *ngIf="!searchSubmit" [content]="communityPayload.handle" [title]="'community.page.handle'" [useHeading]="false">
