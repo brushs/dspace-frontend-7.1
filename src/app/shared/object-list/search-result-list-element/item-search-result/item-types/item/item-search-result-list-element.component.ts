@@ -8,6 +8,7 @@ import { SearchResultListElementComponent } from '../../../search-result-list-el
 import { Item } from '../../../../../../core/shared/item.model';
 import { getItemPageRoute } from '../../../../../../item-page/item-page-routing-paths';
 import { MetadataTranslatePipe } from '../../../../../utils/metadata-translate.pipe';
+import { supportedLanguages } from '../../../../../../core/locale/locale.service';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -53,8 +54,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     return this.getLanguageAttribute(language);
   }
 
-
   getLanguageAttribute(language: any): string | undefined {
-    return (language !== undefined && language !== null && language !== '' && (language.toLowerCase() === 'en' || language.toLowerCase() === 'fr')) ? language : undefined;
+    return supportedLanguages.includes(language?.toLowerCase()) ? language : undefined;
   }
 }
