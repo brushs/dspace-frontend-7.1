@@ -3,7 +3,7 @@
 
 <form class="mrgn-tp-md" role="form" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
 
-  <div class="d-flex mrgn-bttm-sm" *ngFor="let searchFilter of searchFilters; let i = index">
+  <div class="d-flex flex-wrap mrgn-bttm-sm" *ngFor="let searchFilter of searchFilters; let i = index">
 
     <select id="filter-item-{{i+1}}" name="filter-item-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.item' | translate}}" [(ngModel)]="searchFilter.filterItem" required>
         <option [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>

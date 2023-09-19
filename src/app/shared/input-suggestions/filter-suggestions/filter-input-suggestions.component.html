@@ -43,7 +43,7 @@
   (keydown.arrowdown)="shiftFocusDown($event)"
   (keydown.arrowup)="shiftFocusUp($event)" (keydown.esc)="close()"
   (dsClickOutside)="close();">
-  <label [for]="'search-input-' + name" class="wb-inv">{{placeholder | translate}}</label>
+  <label [for]="'search-input-' + name">{{placeholder | translate}}</label>
   <div class="input-group">
     <input [(ngModel)]="value"
     #inputField
@@ -53,7 +53,7 @@
     [name]="name"
     [ngModelOptions]="{standalone: true}"
     (dsClickOutside)="close();" type="text" class="form-control" [attr.id]=" 'search-input-' + name" 
-    [placeholder]="placeholder" />
+     />
     <!-- Commenting as per DSPACE 7.6 -->
     <!-- <div class="input-group-btn">
       <button class="btn btn-default" >

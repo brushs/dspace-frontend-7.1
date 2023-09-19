@@ -73,6 +73,11 @@ export class SearchFormComponent implements OnInit {
   @Input() searchPlaceholder: string;
 
   /**
+   * Optionally use GCWeb styling
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * Output the search data on submit
    */
   @Output() submitSearch = new EventEmitter<any>();

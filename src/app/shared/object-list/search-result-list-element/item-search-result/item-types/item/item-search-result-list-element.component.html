@@ -5,8 +5,13 @@
     <strong>
       <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
         rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title">
-          <span lang="{{dsoOfficialTitle[0].language}}">{{dsoOfficialTitle[0].value}}</span><br/>
-        <span *ngIf='dsoTranslatedTitle'><span lang="{{dsoTranslatedTitle.language}}">{{ dsoTranslatedTitle.value }}</span></span></a>
+        <span [attr.lang]="dsoOfficialTitle[0].language !== undefined && dsoOfficialTitle[0].language !== null ? dsoOfficialTitle[0].language : null">
+          {{ dsoOfficialTitle[0].value }}
+        </span><br/>
+        <span *ngIf='dsoTranslatedTitle'>
+          <span lang="{{dsoTranslatedTitle.language}}">{{ dsoTranslatedTitle.value }}</span>
+        </span>
+      </a>
       <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
     </strong>
   </p>
