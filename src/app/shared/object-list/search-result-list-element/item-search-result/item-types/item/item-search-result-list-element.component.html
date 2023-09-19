@@ -9,7 +9,7 @@
           {{ dsoOfficialTitle[0].value }}
         </span><br/>
         <span *ngIf='dsoTranslatedTitle'>
-          <span lang="{{dsoTranslatedTitle.language}}">{{ dsoTranslatedTitle.value }}</span>
+          <span [attr.lang]="dsoTranslatedTitle.language">{{ dsoTranslatedTitle.value }}</span>
         </span>
       </a>
       <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
@@ -51,10 +51,9 @@
     <p [ngClass]="{'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
       
       <span 
-        [lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)[0]?.language" 
+        [attr.lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)[0]?.language"
         [innerHTML]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)[0]?.value"
         ></span>
-
     </p>
 
     <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract')">
