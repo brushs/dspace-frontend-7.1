@@ -478,6 +478,8 @@
   "search.filters.none": "No results match this filter",
   "search.filters.filter.dateInvalid": "Error: Invalid date",
   
+  "search.form.search.text": "Search",
+
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
   "sign.in.password": "Password",

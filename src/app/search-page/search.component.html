@@ -2,7 +2,7 @@
 <div class="container">
     <div gcweb class="row">
         <div class="col-md-12">
-            <h1 *ngIf="!adminSearch" property="name" id="wb-cont">{{'search.form.search' | translate}}</h1>
+            <h1 *ngIf="!adminSearch" property="name" id="wb-cont">{{'search.form.search.text' | translate}}</h1>
             <h1 *ngIf="adminSearch" property="name" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
         </div>
     
@@ -23,8 +23,13 @@
                     <div class="input-group">
                             <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />
                             <span class="input-group-btn">
-                                <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button"><span
-                                        class="fa fa-search"></span><span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}</span></button>
+                                <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button">
+                                    <span class="button-text"><i class="fa fa-search mrgn-rght-sm"></i>
+                                         {{ 'search.form.search.text' | translate }}
+                                    </span>
+                                  <!-- <span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}
+                                  </span> -->
+                                </button>
                             </span>
                         </div>
                 </div>
