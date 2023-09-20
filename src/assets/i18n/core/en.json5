@@ -481,6 +481,7 @@
   "search.filters.applied": "Filters applied:",
   "search.filters.remove": "Remove Filter",
   "search.filters.none": "No results match this filter",
+  "search.filters.filter.dateInvalid": "Error: Invalid date",
   
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
@@ -514,6 +515,8 @@
 
 
   "search.filters.filter.date.wet.format": "(<abbr title=\"Four digits year, dash, two digits month, dash, two digits day\">YYYY-MM-DD</abbr>)",
+
+  "search.filters.applyFilter": "Apply filters",
 
   "search.badge.result": "Result ",
   "truncate.expand": "Show more",
@@ -925,6 +928,7 @@
   "collection.page.handle": "Permanent URI for this collection",
   "collection.page.license": "License",
   "collection.page.news": "News",
+  "collection.page.search": "Search within this collection",
   "collection.select.confirm": "Confirm selected",
   "collection.select.empty": "No collections to show",
   "collection.select.table.title": "Title",
@@ -1022,6 +1026,7 @@
   "community.listelement.badge": "Community",
   "community.page.edit": "Edit this community",
   "community.page.handle": "Permanent URI for this community",
+  "community.page.search": "Search within this community and its collections",
   "community.page.license": "License",
   "community.page.news": "News",
   "community.sub-collection-list.head": "Collections of this community",
@@ -2068,7 +2073,7 @@
   "search.filters.filter.scope.head": "Scope",
   "search.filters.filter.scope.label": "Search scope filter",
   "search.filters.filter.scope.placeholder": "Scope filter",
-  "search.filters.filter.show-less": "Collapse",
+  "search.filters.filter.show-less": "Show less",
   "search.filters.filter.show-more": "Show more",
   "search.filters.filter.subject.head": "Subject",
   "search.filters.filter.subject.label": "Search subject",

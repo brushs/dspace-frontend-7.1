@@ -1,26 +1,33 @@
 <div #paginator *ngIf="currentPageState == undefined || currentPageState == (currentPage$|async)" [id]="'p-' + id">
   <div *ngIf="(!hidePaginationDetail && collectionSize > 0) || !hideGear" class="pagination-masked clearfix top">
-    <div class="row">
-      <div *ngIf="!hidePaginationDetail && collectionSize > 0" class="col-auto pagination-info">
-          <span class="align-middle hidden-xs-down">{{ 'pagination.showing.label' | translate }}</span>
-          <span class="align-middle">{{ 'pagination.showing.detail' | translate:(getShowingDetails(collectionSize)|async)}}</span>
-      </div>
-      <div class="col">
-        <div *ngIf="!hideGear" ngbDropdown #paginationControls="ngbDropdown" placement="bottom-right" class="d-inline-block float-right">
-          <button class="btn btn-secondary" id="paginationControls" ngbDropdownToggle [title]="'pagination.options.description' | translate" [attr.aria-label]="'pagination.options.description' | translate">
-            <span class="fas fa-cog" aria-hidden="true"></span>
-          </button>
-          <div id="paginationControlsDropdownMenu" aria-labelledby="paginationControls" ngbDropdownMenu>
-            <h6 class="dropdown-header">{{ 'pagination.results-per-page' | translate}}</h6>
-            <button class="dropdown-item" *ngFor="let item of pageSizeOptions" (click)="doPageSizeChange(item)">
-              <span [ngClass]="{'invisible': item != (pageSize$|async)}" class="fas fa-check" aria-hidden="true"></span> {{item}} </button>
-            <h6 class="dropdown-header">{{ 'pagination.sort-direction' | translate}}</h6>
-            <button class="dropdown-item" *ngFor="let direction of (sortDirections | dsKeys)" (click)="doSortDirectionChange(direction.value)">
-              <span [ngClass]="{'invisible': direction.value !== (sortDirection$ |async)}" class="fas fa-check" aria-hidden="true"></span> {{'sorting.' + direction.key | translate}} </button>
+    <ng-container *ngIf="!useGcWebTop; else gcWebTop">
+      <div class="row">
+        <div *ngIf="!hidePaginationDetail && collectionSize > 0" class="col-auto pagination-info">
+            <span class="align-middle hidden-xs-down">{{ 'pagination.showing.label' | translate }}</span>
+            <span class="align-middle">{{ 'pagination.showing.detail' | translate:(getShowingDetails(collectionSize)|async)}}</span>
+        </div>
+        <div class="col">
+          <div *ngIf="!hideGear" ngbDropdown #paginationControls="ngbDropdown" placement="bottom-right" class="d-inline-block float-right">
+            <button class="btn btn-secondary" id="paginationControls" ngbDropdownToggle [title]="'pagination.options.description' | translate" [attr.aria-label]="'pagination.options.description' | translate">
+              <span class="fas fa-cog" aria-hidden="true"></span>
+            </button>
+            <div id="paginationControlsDropdownMenu" aria-labelledby="paginationControls" ngbDropdownMenu>
+              <h6 class="dropdown-header">{{ 'pagination.results-per-page' | translate}}</h6>
+              <button class="dropdown-item" *ngFor="let item of pageSizeOptions" (click)="doPageSizeChange(item)">
+                <span [ngClass]="{'invisible': item != (pageSize$|async)}" class="fas fa-check" aria-hidden="true"></span> {{item}} </button>
+              <h6 class="dropdown-header">{{ 'pagination.sort-direction' | translate}}</h6>
+              <button class="dropdown-item" *ngFor="let direction of (sortDirections | dsKeys)" (click)="doSortDirectionChange(direction.value)">
+                <span [ngClass]="{'invisible': direction.value !== (sortDirection$ |async)}" class="fas fa-check" aria-hidden="true"></span> {{'sorting.' + direction.key | translate}} </button>
+            </div>
           </div>
         </div>
       </div>
-  </div>
+    </ng-container>
+    <ng-template #gcWebTop>
+      <ng-container *ngIf="!hidePaginationDetail && collectionSize > 10">
+        <p class="mrgn-tp-md">{{ 'pagination.showing.detail' | translate:(getShowingDetails(collectionSize)|async)}}</p>
+      </ng-container>
+    </ng-template>
   </div>
   <ng-content></ng-content>
   <div *ngIf="shouldShowBottomPager |async" class="pagination justify-content-center clearfix bottom">
@@ -38,8 +45,8 @@
                           <span class="wb-inv">{{page === currentPage ? '(current)' : ''}} {{ 'pagination.go.to' | translate }}</span>
                           {{page}}
                     </ng-template>
-        <ng-template ngbPaginationPrevious>{{'pagination.button.prev' | translate}} </ng-template>
-        <ng-template ngbPaginationNext>{{'pagination.button.next' | translate}} </ng-template>
+        <ng-template rel="prev" ngbPaginationPrevious>{{'pagination.button.prev' | translate}} </ng-template>
+        <ng-template rel="next" ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
     </ngb-pagination>
   </div>
 </div>

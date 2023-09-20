@@ -150,8 +150,56 @@ export class SearchFacetOptionComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSelect() {
-    this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: this.addQueryParams})
+  onSelect(event: any, value: any, facetName: string) {
+    const isChecked = event.target.checked;
+    //this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: this.addQueryParams})
+    // FORSC Changes to apply filter on button click
+    const filterSelections = this.filterService.getSelectedFilters() ?? [];
+     // Create a copy of filterSelections
+    const modifiedFilters = { ...filterSelections };
+
+    this.filterConfig.name = facetName;
+    if (isChecked) {
+      //this.updateAddParams([value]);
+      Object.keys(filterSelections).forEach(key =>{
+        if(key.indexOf('f.')> -1)
+        {
+          if (this.addQueryParams[key]) {
+            this.addQueryParams[key] =[... filterSelections[key] , ... this.addQueryParams[key]];
+          }
+          else {
+            if (filterSelections[key]) {
+              this.addQueryParams[key] = [...filterSelections[key]];
+            }
+          }
+        }
+      })
+      this.filterService.selectedFilterOptions$.next(this.addQueryParams);
+    }
+    else {
+      Object.keys(modifiedFilters).forEach(key => {
+        if (key === `f.${facetName}` && key.indexOf('f.') > -1) {
+          modifiedFilters[key] = modifiedFilters[key].filter(item => item !== `${value.value},equals`);
+        }
+      });
+      this.filterService.selectedFilterOptions$.next(modifiedFilters);
+    }
+  }
+
+  isFacetOptionChecked(filterValue: any, facetName: string): boolean {
+    const filterSelections = this.filterService.getSelectedFilters() ?? [];
+    // Constructing the expected filter value format
+    const expectedFilterValue = `${filterValue.value},equals`;
+    let isChecked = false;
+    Object.keys(filterSelections).forEach(key => {
+      if (key === `f.${facetName}` && key.indexOf(facetName)> -1) {
+        const found = filterSelections[key].find(item => item === expectedFilterValue);
+        if (found) {
+          isChecked = true;
+        }
+      }
+    });
+    return isChecked;
   }
 
   formatID(value) {

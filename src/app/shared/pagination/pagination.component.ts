@@ -61,6 +61,12 @@ export class PaginationComponent implements OnDestroy, OnInit {
   @Input() useGcWeb = false;
 
   /**
+   * FOSRC #1762 has different requirements for top bar
+   * This flag is used to switch between the two templates
+   */
+  @Input() useGcWebTop: boolean = false;
+
+  /**
    * An event fired when the page is changed.
    * Event's payload equals to the newly selected page.
    */
@@ -193,7 +199,7 @@ export class PaginationComponent implements OnDestroy, OnInit {
       // A disabled button including ellipses gets rendered when displaying the last page number. This ensures the last page item gets rendered while the ellipses gets removed.
       (<HTMLElement>this.paginationPage?.nativeElement)?.querySelectorAll('.page-item.disabled')?.forEach((el) => {
         if(el.textContent?.includes('...')) {
-          el.remove()
+          el.setAttribute('aria-hidden', 'true');
         }
        });
     }

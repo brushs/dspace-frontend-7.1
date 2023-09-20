@@ -1,95 +1,63 @@
-<div class="container" *ngVar="(communityRD$ | async) as communityRD">
-  <section>
-  <div class="community-page" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
-    <div gcweb *ngIf="communityRD?.payload; let communityPayload">
-      <ds-view-tracker [object]="communityPayload"></ds-view-tracker>
-      <div class="d-flex flex-row mrgn-bttm-md">
-        <div class="comcol-header mr-auto">
-          <!-- Community name -->
-          <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language">{{'comcol.search.title.search.results.for' | translate}}&nbsp;</ds-comcol-page-header>
-          <!-- Community logo -->
-          <!-- <ds-comcol-page-logo *ngIf="logoRD$" [logo]="(logoRD$ | async)?.payload" [alternateText]="'Community Logo'">
-          </ds-comcol-page-logo> -->
-          <!-- Handle -->
-          <!-- <ds-comcol-page-handle [content]="communityPayload.handle" [title]="'community.page.handle'">
-          </ds-comcol-page-handle> -->
-          <!-- Introductory text -->
-          <ds-comcol-page-content *ngIf="!searchSubmit" [content]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.abstract' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-         <!-- Alternative Names -->
-          <!-- Start FOSRC Changes - 1568
-          <ds-comcol-page-content [content]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.title.alternative' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          End of FOSRC changes -->
-          <!-- Identifiers -->
-          <ds-comcol-page-content *ngIf="!searchSubmit" [content]="('dc.identifier' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.identifier' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- Main Area of Research -->
-          <!-- Start FOSRC Changes - 1568
-          <ds-comcol-page-content [content]="('dc.subject' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.subject' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          End of FOSRC changes -->
-          <!-- Home Page URL -->
-          <ds-comcol-page-content [content]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.identifier.uri-home-page', 'dc.identifier.uri-home-page-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- Email -->
-          <ds-comcol-page-content [content]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.email-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- Description -->
-          <!-- <ds-comcol-page-content [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content> -->
-          <!-- Contact Address -->
-          <ds-comcol-page-content [content]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.description.contact-address' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-          <!-- News -->
-          <ds-comcol-page-content [content]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description.tableofcontents', 'dc.description.tableofcontents-fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-          </ds-comcol-page-content>
-        </div>
+<div class="container" gcweb>
+  <div class="row" *ngVar="(communityRD$ | async) as communityRD">
+    <div class="col-md-12" *ngIf="communityRD?.hasSucceeded" @fadeInOut>
+      <ng-container *ngIf="communityRD?.payload; let communityPayload">
+        <ds-view-tracker [object]="communityPayload"></ds-view-tracker>
+        <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language"><span *ngIf="searchSubmit">{{'comcol.search.title.search.results.for' | translate}}&nbsp;</span></ds-comcol-page-header>
+        <ds-comcol-page-logo *ngIf="logoRD$" [logo]="(logoRD$ | async)?.payload" [alternateText]="'Community Logo'">
+        </ds-comcol-page-logo>
+        <ds-comcol-page-handle *ngIf="!searchSubmit" [content]="communityPayload.handle" [title]="'community.page.handle'" [useHeading]="false">
+        </ds-comcol-page-handle>
+        <ds-comcol-page-content *ngIf="!searchSubmit" [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.value" [lang]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
+        </ds-comcol-page-content>
+
         <div class="pl-2">
           <ds-dso-page-edit-button *ngIf="isCommunityAdmin$ | async" [pageRoute]="communityPageRoute$ | async" [dso]="communityPayload" [tooltipMsg]="'community.page.edit'"></ds-dso-page-edit-button>
         </div>
-      </div>
 
-      <section gcweb>
+        <!-- Browse-By Links -->
+        <ds-comcol-page-browse-by *ngIf="!searchSubmit" [id]="communityPayload.id" [contentType]="communityPayload.type">
+        </ds-comcol-page-browse-by>
 
-        <div>
+        <div class="mrgn-tp-md">
+
           <ds-search-form *ngIf="searchEnabled" id="search-form"
             [query]="(searchOptions$ | async)?.query"
             [(scope)]="currentScope"
             [currentUrl]="searchLink"
             [scopes]="(scopeListRD$ | async)"
             [inPlaceSearch]="inPlaceSearch"
-            [searchPlaceholder]="'search.search-form.placeholder' | translate"
+            [searchPlaceholder]="'community.page.search' | translate"
             [onComColPage]="true"
             (submitSearch)="onSeachSubmit($event)">
           </ds-search-form>
-        </div>
 
+        </div>
+  
         <ds-comcol-search-filter *ngIf="searchEnabled && (searchOptions$ | async)?.query"
           [query]="(searchOptions$ | async)?.query"
           [(scope)]="currentScope"
           [inPlaceSearch]="inPlaceSearch"
           (submitSearch)="onSeachSubmit($event)">
         </ds-comcol-search-filter>
+        
+        <hr *ngIf="!searchSubmit">
 
-      </section>
-
-      <section class="comcol-page-browse-section">
         <!-- Browse-By Links -->
-        <ds-comcol-page-browse-by [id]="communityPayload.id" [contentType]="communityPayload.type">
+        <ds-comcol-page-browse-by *ngIf="searchSubmit" [id]="communityPayload.id" [contentType]="communityPayload.type">
         </ds-comcol-page-browse-by>
 
-        <div class="container" *ngIf="(isXsOrSm$ | async)">
+        <!-- <div class="container" *ngIf="(isXsOrSm$ | async)">
           <div class="row">
               <div gcweb class="col-12">
-                  <!-- <ng-template *ngTemplateOutlet="searchForm"></ng-template> -->
-                  <!-- <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings> -->
+                  <ng-template *ngTemplateOutlet="searchForm"></ng-template>
+                  <ds-search-settings *ngIf="searchSubmit" [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
 
                   <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-0 mrgn-rght-0"></div>
 
               </div>
           </div>
-        </div>
+        </div> -->
         <div *ngIf="!searchSubmit else searchResultsPage">
           <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
             <!-- <ng-template *ngTemplateOutlet="searchForm"></ng-template> -->
@@ -97,26 +65,19 @@
           <ds-community-page-sub-community-list [community]="communityPayload"></ds-community-page-sub-community-list>
           <ds-community-page-sub-collection-list [community]="communityPayload"></ds-community-page-sub-collection-list>
         </div>
-      </section>
-      <footer  *ngIf="communityPayload.copyrightText"  class="border-top my-5 pt-4">
-        <!-- Copyright -->
-        <ds-comcol-page-content [content]="('dc.rights' | metaTranslate : communityPayload)[0]?.value" [lang]="('dc.rights' | metaTranslate : communityPayload)[0]?.language" [hasInnerHtml]="true">
-        </ds-comcol-page-content>
-      </footer>
+      </ng-container>
     </div>
+
+
+    <ds-error *ngIf="communityRD?.hasFailed" message="{{'error.community' | translate}}"></ds-error>
+    <ds-loading *ngIf="communityRD?.isLoading" message="{{'loading.community' | translate}}"></ds-loading>
   </div>
- </section>
-
- <ds-page-details></ds-page-details>
-
-  <ds-error *ngIf="communityRD?.hasFailed" message="{{'error.community' | translate}}"></ds-error>
-  <ds-loading *ngIf="communityRD?.isLoading" message="{{'loading.community' | translate}}"></ds-loading>
+  <ds-page-details></ds-page-details>
 </div>
-
 <ng-template #searchResultsPage>
   <ds-page-with-sidebar [id]="'search-page'">
     <div class="row">
-      <div gcweb class="col-12 pull-left" *ngIf="!(isXsOrSm$ | async)">
+      <div gcweb class="col-12 pull-left">
           <!-- <ng-template *ngTemplateOutlet="searchForm"></ng-template> -->
 
           <h2 class="h3">{{'search.results.community.head' | translate}}</h2>
@@ -170,7 +131,8 @@
                   [currentUrl]="searchLink"
                   [scopes]="(scopeListRD$ | async)"
                   [inPlaceSearch]="inPlaceSearch"
-                  [searchPlaceholder]="'search.search-form.placeholder' | translate"
+                  [searchPlaceholder]="'community.page.search' | translate"
+                  [useGcWeb]="true"
                   (submitSearch)="onSeachSubmit($event)">
   </ds-search-form>
   <div class="row mb-3 mb-md-1">

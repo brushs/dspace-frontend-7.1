@@ -5,8 +5,13 @@
     <strong>
       <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
         rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title">
-          <span lang="{{dsoOfficialTitle[0].language}}">{{dsoOfficialTitle[0].value}}</span><br/>
-        <span *ngIf='dsoTranslatedTitle'><span lang="{{dsoTranslatedTitle.language}}">{{ dsoTranslatedTitle.value }}</span></span></a>
+        <span [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
+          {{ dsoOfficialTitle[0].value }}
+        </span><br/>
+        <span *ngIf='dsoTranslatedTitle'>
+          <span [attr.lang]="getLanguageAttribute(dsoTranslatedTitle.language)">{{ dsoTranslatedTitle.value }}</span>
+        </span>
+      </a>
       <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
     </strong>
   </p>
@@ -44,12 +49,10 @@
     <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract') else nonAbstractDescription"><span  -->
 
     <p [ngClass]="{'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-      
       <span 
-      [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
-      [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
-      ></span>
-
+        [attr.lang]="getDescLanguageAttribute(dso)"
+        [innerHTML]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)[0]?.value"
+        ></span>
     </p>
 
     <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract')">
