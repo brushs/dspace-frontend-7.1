@@ -771,6 +771,9 @@
   //"search.filters.filter.dateInvalid": "Error: Invalid date",
   "search.filters.filter.dateInvalid": "Erreur: Date invalide",
 
+    // "search.form.search.text": "Search",
+  "search.form.search.text": "Rechercher",
+
   // "sign.in.title": "FOSRC administrator sign in",
   "sign.in.title": "Connexion de l'administrateur au DFSOC",
   // "sign.in.email": "Email address",
