@@ -61,20 +61,20 @@
                 {{'search.filters.filter.start' | translate}} <p *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
                 <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input [blur]="validateAndSubmit()"
+             <input (blur)="validateAndSubmit()"
                 [(ngModel)]="range[0]" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'"  
                 [placeholder]="'search.filters.filter.' + filterConfig.name + '.min.placeholder' | translate" 
-                [attr.id]="'startdate'" class="form-control" type="date" data-rule-dateISO="true" />
+                [attr.id]="'startdate'" class="form-control" type="text" />
           </div>
           <div class="form-group col-sm-6 pull-right">
              <label for="enddate">
               {{'search.filters.filter.end' | translate}} {{ endDateError }} <p *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
               <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input [blur]="validateAndSubmit()"
+             <input (blur)="validateAndSubmit()"
               [(ngModel)]="range[1]" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'"
               [placeholder]="'search.filters.filter.' + filterConfig.name + '.max.placeholder' | translate" 
-              class="form-control" [attr.id]="'enddate'" name="enddate" type="date" data-rule-dateISO="true" />
+              class="form-control" [attr.id]="'enddate'" name="enddate" type="text" />
           </div>
        </div>
         <ul class="list-unstyled">
