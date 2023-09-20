@@ -3803,8 +3803,11 @@ fieldset[disabled] a.btn {
 
 .btn-primary {
 	color: #fff;
-	background-color: #2572b4;
-	border-color: #143c5f; }
+	// background-color: #2572b4;
+	background-color: var(--ospr-blue-800);
+	border-color: var(--ospr-blue-800);
+	// border-color: #143c5f; 
+	}
 	.btn-primary:focus, .btn-primary.focus {
 		color: #fff;
 		background-color: #1c578a;
