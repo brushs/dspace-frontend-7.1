@@ -6,15 +6,15 @@
   <div class="d-flex flex-wrap mrgn-bttm-sm" *ngFor="let searchFilter of searchFilters; let i = index">
 
     <select id="filter-item-{{i+1}}" name="filter-item-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.item' | translate}}" [(ngModel)]="searchFilter.filterItem" required>
-        <option [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
-        <option [disabled]="filterItemExists('title')" value="title">{{'comcol.search.filter.item.title' | translate}}</option>
-        <option [disabled]="filterItemExists('author')" value="author">{{'comcol.search.filter.item.author' | translate}}</option>
-        <option [disabled]="filterItemExists('subject')" value="subject">{{'comcol.search.filter.item.subject' | translate}}</option>
-        <option [disabled]="filterItemExists('dateIssued')" value="dateIssued">{{'comcol.search.filter.item.date.issued' | translate}}</option>
+        <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
+        <option [attr.aria-disabled]="filterItemExists('title')" [disabled]="filterItemExists('title')" value="title">{{'comcol.search.filter.item.title' | translate}}</option>
+        <option [attr.aria-disabled]="filterItemExists('author')" [disabled]="filterItemExists('author')" value="author">{{'comcol.search.filter.item.author' | translate}}</option>
+        <option [attr.aria-disabled]="filterItemExists('subject')" [disabled]="filterItemExists('subject')" value="subject">{{'comcol.search.filter.item.subject' | translate}}</option>
+        <option [attr.aria-disabled]="filterItemExists('dateIssued')" [disabled]="filterItemExists('dateIssued')" value="dateIssued">{{'comcol.search.filter.item.date.issued' | translate}}</option>
     </select>
 
     <select id="filter-operator-{{i+1}}" name="filter-operator-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.operator' | translate}}" [(ngModel)]="searchFilter.filterOperator" required>
-        <option [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
+        <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
         <option value="contains">{{'comcol.search.filter.operator.contains' | translate}}</option>
         <option value="notcontains">{{'comcol.search.filter.operator.not.contains' | translate}}</option>
         <option  value="equals">{{'comcol.search.filter.operator.equals' | translate}}</option>
@@ -23,13 +23,13 @@
         <!-- <option value="notauthority">Not ID</option> -->
     </select>
 
-    <input class="mrgn-rght-sm" id="filter-item-info-{{i+1}}" name="filter-item-info-{{i+1}}" type="text" attr.aria-label="{{'comcol.search.filter.aria.filter.item.info' | translate}}" [(ngModel)]="searchFilter.filterItemInfo" required>
+    <input class="mrgn-rght-sm form-control flex-grow-1" id="filter-item-info-{{i+1}}" name="filter-item-info-{{i+1}}" type="text" attr.aria-label="{{'comcol.search.filter.aria.filter.item.info' | translate}}" [(ngModel)]="searchFilter.filterItemInfo" required>
 
     <button type="button" class="btn btn-default btn-sm mrgn-rght-sm" (click)="addFilter()">
         <i class="fa fa-plus" aria-hidden="true"></i><span class="wb-inv">{{'comcol.search.filter.button.add' | translate}}</span>
     </button>
 
-    <button type="button" class="btn btn-default btn-sm mrgn-rght-sm" (click)="removeFilter(i)">
+    <button type="button" class="btn btn-default btn-sm" (click)="removeFilter(i)">
         <i class="fa fa-times" aria-hidden="true"></i><span class="wb-inv">{{'comcol.search.filter.button.remove' | translate}}</span>
     </button>
 
@@ -37,7 +37,7 @@
 
   <div class="mrgn-tp-md">
     <button id="apply-filters" name="submit-apply-filters" type="submit" class="btn btn-primary mrgn-rght-md">{{'comcol.search.filter.button.apply.filters' | translate}}</button>
-    <button id="reset-filters" name="reset-filters" type="button" class="btn btn-primary" (click)="resetFilters()">{{'comcol.search.filter.button.reset.filters' | translate}}</button>
+    <button id="reset-filters" name="reset-filters" type="button" class="btn btn-default" (click)="resetFilters()">{{'comcol.search.filter.button.reset.filters' | translate}}</button>
   </div>
   
 </form>
