@@ -1,5 +1,3 @@
-// manual declaration of ResizeObserver to avoid error (once typescript is updated to at least 4.2, this can be removed )
-declare var ResizeObserver: any;  
 
 import { 
   ChangeDetectorRef,
@@ -44,6 +42,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   descriptionParagraphId: string  = 'description-paragraph-';
   descriptionSpanId: string = 'description-span-';
   originalObserver: MutationObserver;
+  // manual declaration of ResizeObserver to avoid error (once typescript is updated to at least 4.2, this can be removed )
+  // @ts-ignore
   resizeObserver: ResizeObserver;
   initialShorteningOccurred: boolean = false;
   overrideTruncation = false;
@@ -77,6 +77,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   }
 
   configureObservers() {
+    // manual declaration of ResizeObserver to avoid error (once typescript is updated to at least 4.2, this can be removed )
+    // @ts-ignore
     this.resizeObserver = new ResizeObserver(_ => {
         if (this.isCollapsedBool){
           this.shortenDescriptionText();
