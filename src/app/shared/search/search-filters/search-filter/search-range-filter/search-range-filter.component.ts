@@ -112,6 +112,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
   }
 
   validateAndSubmit() {
+    /*
     const newMin = this.range[0] !== this.min_limit ? [this.range[0]] : null;
     const newMax = this.range[1] !== this.max_limit ? [this.range[1]] : null;
 
@@ -124,13 +125,15 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     }
 
 
-    if((newMax == null && this.range[1] != this.max_limit) || (newMax != null && newMax.length == 1 && newMax[0].length == 0)) {
+    if((newMax == null && this.range[1] != this.max_limit) || (newMax != null && newMax.length == 1 && newMax[0].length == 0) || 
+    newMax < newMin) {
       // add error label on top of end date field
       this.endDateError = true;
       return;
     } else {
       this.endDateError = false;
     }
+    */
     this.onSubmit();
   }
 
