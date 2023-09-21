@@ -1,6 +1,7 @@
 <!-- OSPR Changes - Re-structure to ensure semantic correctness and introduce paragraphs where needed -->
 <ds-type-badge *ngIf="showLabel" [useGcWeb]="useGcWeb" [object]="dso"></ds-type-badge>
-<ds-truncatable [useShowMore]="useGcWeb" [id]="dso.id" *ngIf="object !== undefined && object !== null">
+
+<ds-truncatable [useShowMore]="useGcWeb" [id]="dso.id" *ngIf="object !== undefined && object !== null" [overrideTruncation]="overrideTruncation">
   <p>
     <strong>
       <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
@@ -48,28 +49,14 @@
   <ds-truncatable-part [id]="dso.id" [minLines]="3" *ngIf="dso.firstMetadataValue('dc.description.abstract') || dso.firstMetadataValue('dc.description')">
     <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract') else nonAbstractDescription"><span  -->
 
-    <p [ngClass]="{'custom-clamp-3' : (isCollapsed$ | async)}" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-      <span 
-        [attr.lang]="getDescLanguageAttribute(dso)"
-        [innerHTML]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)[0]?.value"
-        ></span>
-    </p>
-
-    <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-      
-      <span 
-      [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" 
-      [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"
-      ></span>
-
-    </p> -->
-    
-      <!-- <ng-template #nonAbstractDescription>
-        <p *ngIf="dso.firstMetadataValue('dc.description')"><span 
-        [lang]="('dc.description' | metaTranslate : dso)[0]?.language" 
-        [innerHTML]="('dc.description' | metaTranslate : dso)[0]?.value"
-        ></span></p>
-      </ng-template> -->
+    <div [id]="descriptionParagraphId"  
+    [ngClass]="{'resultItemDescription' : descriptionParagraphId == null || (isCollapsed$ | async)}" 
+    *ngIf="dso.firstMetadataValue('dc.description.abstract')">
+      <p [attr.lang]="getDescLanguageAttribute(dso)"
+        [innerHTML]="descriptionText"
+        [id]="descriptionSpanId"
+        ></p>
+    </div>
 
   </ds-truncatable-part>
 
