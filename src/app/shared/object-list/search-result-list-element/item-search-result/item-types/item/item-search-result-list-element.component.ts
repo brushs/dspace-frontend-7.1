@@ -146,7 +146,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     // NRC Requirement. Do not want text to be truncated in the middle of a word or if there is a trailing comma
     const textElement = document.getElementById(this.descriptionSpanId);
     //Called before textElement rendered?
-    if (!textElement)
+    if (!textElement || this.descriptionText == null)
       return;
     //TODO: update this to translated metadata
     let originalText = this.descriptionText;  
@@ -188,7 +188,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
 
   expandText(): void {
     const textElement = document.getElementById(this.descriptionSpanId);
-    if (textElement)
+    if (textElement && this.descriptionText != null)
       textElement.innerHTML = this.descriptionText;
   }
 
