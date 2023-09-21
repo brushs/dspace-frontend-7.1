@@ -478,6 +478,8 @@
   "search.filters.none": "No results match this filter",
   "search.filters.filter.dateInvalid": "Error: Invalid date",
   
+  "search.form.search.text": "Search",
+
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
   "sign.in.password": "Password",
@@ -943,7 +945,7 @@
   "comcol.search.filter.item.title": "Title",
   "comcol.search.filter.item.author": "Author",
   "comcol.search.filter.item.subject": "Subject",
-  "comcol.search.filter.item.date.issued": "Date issued",
+  "comcol.search.filter.item.date.issued": "Date",
   "comcol.search.filter.operator.contains": "Contains",
   "comcol.search.filter.operator.equals": "Equals",
   "comcol.search.filter.operator.not.contains": "Not contains",
