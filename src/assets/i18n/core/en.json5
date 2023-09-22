@@ -1961,8 +1961,8 @@
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
-  "search.filters.filter.start": "Start date",
-  "search.filters.filter.end": "End date",
+  "search.filters.filter.start": "Start",
+  "search.filters.filter.end": "End",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",

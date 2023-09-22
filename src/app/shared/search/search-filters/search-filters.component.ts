@@ -101,9 +101,8 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
 
   applyFilter(): void {
     // FORSC change to apply filter on button click;
-    const allfilters = this.filterService.getSelectedFilters();
+    const allfilters = this.filterService.getSelectedFilters() ?? [];
 
-    if (allfilters) {
       Object.keys(allfilters).forEach(key => {
         if (key.indexOf('f.')> -1) {
           //checking for unique filters
@@ -111,7 +110,6 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
         }
       });
       this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: allfilters});
-    }
   }
 
   resetFilter() {
