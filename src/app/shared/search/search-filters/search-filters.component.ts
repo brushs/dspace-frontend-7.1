@@ -11,7 +11,7 @@ import { SearchFilterService } from '../../../core/shared/search/search-filter.s
 import { getFirstSucceededRemoteData } from '../../../core/shared/operators';
 import { SEARCH_CONFIG_SERVICE } from '../../../my-dspace-page/my-dspace-page.component';
 import { currentPath } from '../../utils/route.utils';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { hasValue } from '../../empty.util';
 import { RouteService } from '../../../core/services/route.service';
 
@@ -70,6 +70,7 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private filterService: SearchFilterService,
     private router: Router,
+    private route: ActivatedRoute,
     @Inject(SEARCH_CONFIG_SERVICE) private searchConfigService: SearchConfigurationService,
     private routeService :RouteService) {
   }
@@ -101,9 +102,8 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
 
   applyFilter(): void {
     // FORSC change to apply filter on button click;
-    const allfilters = this.filterService.getSelectedFilters();
+    const allfilters = this.filterService.getSelectedFilters() ?? [];
 
-    if (allfilters) {
       Object.keys(allfilters).forEach(key => {
         if (key.indexOf('f.')> -1) {
           //checking for unique filters
@@ -111,7 +111,6 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
         }
       });
       this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: allfilters});
-    }
   }
 
   resetFilter() {

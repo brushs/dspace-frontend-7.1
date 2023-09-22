@@ -3707,10 +3707,10 @@
   "search.filters.filter.birthDate.placeholder": "Date de naissance",
   // "search.filters.filter.collapse": "Collapse filter",
   "search.filters.filter.collapse": "Réduire le filtre",
-  // "search.filters.filter.start": "Start Date",
-  "search.filters.filter.start": "Date de début",
-  // "search.filters.filter.end": "End Date",
-  "search.filters.filter.end": "Date de fin",
+  // "search.filters.filter.start": "Start",
+  "search.filters.filter.start": "Démarrer",
+  // "search.filters.filter.end": "End",
+  "search.filters.filter.end": "Finir",
 
   // FORSC start changes
   //"search.filters.filter.author.collapse": "Collapse filter of Author",
