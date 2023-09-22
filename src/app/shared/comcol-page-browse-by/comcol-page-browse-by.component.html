@@ -3,7 +3,12 @@
 <div gcweb>
   <ul class="list-inline d-flex flex-wrap mrgn-bttm-0">
     <li *ngFor="let option of allOptions" class="col-md-2 text-center">
-      <a href="#" class="btn btn-default list-group-item well h-100">{{ option.label | translate }}</a>
+      <a 
+      (click)="onSelectChange(option.id)" 
+      (keypress.space)="onSelectChange(option.id)" 
+      (keypress.enter)="onSelectChange(option.id)" 
+      href="javascript::void(0)"  
+      class="btn btn-default list-group-item well h-100">{{ option.label | translate }}</a>
     </li>
   </ul>
 </div>
