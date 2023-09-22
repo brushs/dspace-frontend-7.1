@@ -11,7 +11,7 @@ import { SearchFilterService } from '../../../core/shared/search/search-filter.s
 import { getFirstSucceededRemoteData } from '../../../core/shared/operators';
 import { SEARCH_CONFIG_SERVICE } from '../../../my-dspace-page/my-dspace-page.component';
 import { currentPath } from '../../utils/route.utils';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { hasValue } from '../../empty.util';
 import { RouteService } from '../../../core/services/route.service';
 
@@ -70,7 +70,6 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private filterService: SearchFilterService,
     private router: Router,
-    private route: ActivatedRoute,
     @Inject(SEARCH_CONFIG_SERVICE) private searchConfigService: SearchConfigurationService,
     private routeService :RouteService) {
   }
