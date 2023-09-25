@@ -360,7 +360,8 @@
   "fosrc.item.edit.dynamic-field.values.7.creative_commons": "None",
   "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "No License",
 
-
+  "true" : "Yes",
+  "false" : "No",
 
   "Agriculture / Agriculture": "Agriculture",
   "Arts, Music, Literature / Arts, musique, littérature": "Arts, Music, Literature",
@@ -533,6 +534,7 @@
   "search.filters.none": "No results match this filter",
   "search.filters.filter.dateInvalid": "Error: Invalid year (YYYY)",
   "search.filters.filter.dateInvalidRange": "Error: Start date cannot be greater than current year",
+  "search.filters.filter.datePlaceholder": "YYYY",
   
   "search.form.search.text": "Search",
 
@@ -2017,8 +2019,8 @@
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
-  "search.filters.filter.start": "Start",
-  "search.filters.filter.end": "End",
+  "search.filters.filter.start": "Start date",
+  "search.filters.filter.end": "End date",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",
