@@ -17,7 +17,7 @@
 <ng-template #GcWebTemplate>
   <ng-container 
     *ngVar="(formatID('facet-' + (facetTerm ? (facetTerm + '-') : '') +  (selectedValue.value | translate: {default: selectedValue.label}))) as id">
-    <input [checked]="true" (change)="onSelect()" type="checkbox" 
+    <input [checked]="true" (change)="onSelect($event,selectedValue,filterConfig.name)" type="checkbox"
      [attr.name]="id" 
      [attr.id]="id"
      /> 

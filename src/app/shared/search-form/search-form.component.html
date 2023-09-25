@@ -1,24 +1,60 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="row" action="/search">
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="row" action="/search" *ngIf="!useGcWeb; else useGcWebView">
 <!--div *ngIf="isNotEmpty(scopes)" class="col-12 col-sm-3">
   <select  name="scope" class="form-control" aria-label="Search scope" (change)="onScopeChange($event.target.value)" tabindex="0">
     <option value>{{'search.form.search_dspace' | translate}}</option>
     <option *ngFor="let scopeOption of scopes" [selected]="scopeOption.id === scope" [value]="scopeOption.id">{{scopeOption?.name ? scopeOption.name : 'search.form.search_dspace' | translate}}</option>
   </select>
 </div-->
+
+  <ng-container *ngIf="!onComColPage">
+
     <div [ngClass]="{'col-sm-9': isNotEmpty(scopes)}" class="col-12">
-    <div class="form-group input-group">
-      <label class="wb-inv" for="fosrc-search">{{'search.search-form.placeholder' | translate}}</label>    
-      <input autocomplete="on" type="search" [(ngModel)]="query" name="query" id="fosrc-search" class="form-control"
-                [placeholder]="searchPlaceholder">
-        <span class="input-group-append">
-            <button type="submit" class="search-button btn btn-{{brandColor}}"
-                    title="{{'search.form.search' | translate}}">
-                <!-- OSPR Changes: modify to show search text -->
-                  <span class="fas fa-search"></span>
-                  {{'search.form.search' | translate}}
-                <!-- End OSPR Changes -->
-            </button>
-        </span>
+      <div class="form-group input-group">
+        <label class="wb-inv" for="fosrc-search">{{'search.search-form.placeholder' | translate}}</label>    
+        <input autocomplete="on" type="search" [(ngModel)]="query" name="query" id="fosrc-search" class="form-control"
+                  [placeholder]="searchPlaceholder">
+          <span class="input-group-append">
+              <button type="submit" class="search-button btn btn-{{brandColor}}"
+                      title="{{'search.form.search' | translate}}">
+                  <!-- OSPR Changes: modify to show search text -->
+                    <span class="fas fa-search"></span>
+                    {{'search.form.search' | translate}}
+                  <!-- End OSPR Changes -->
+              </button>
+          </span>
+  
+        </div>
+      </div>
+
+  </ng-container>
+    
+  <ng-container *ngIf="onComColPage">
+
+    <div class="col-12">
+      <label for="subcom-search" class="wb-inv">{{'search.search-form.placeholder' | translate}}</label>
+      <div class="input-group">
+          <input type="text" [(ngModel)]="query" name="query" class="form-control" id="subcom-search" [placeholder]="searchPlaceholder" />
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">{{'search.form.search' | translate}}</button>
+          </span>
+      </div>
     </div>
-    </div>
+
+  </ng-container>
+    
 </form>
+
+<ng-template #useGcWebView>
+  <div class="input-group">
+    <input autocomplete="on" type="text" [(ngModel)]="query" name="query" id="fosrc-search"
+    [placeholder]="searchPlaceholder" class="form-control">
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-primary"
+              title="{{'search.form.search' | translate}}">
+          <!-- OSPR Changes: modify to show search text -->
+            {{'search.form.search' | translate}}
+          <!-- End OSPR Changes -->
+      </button>
+    </span>
+  </div>
+</ng-template>

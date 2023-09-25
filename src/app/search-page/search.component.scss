@@ -22,11 +22,11 @@
       border-color: #091c2d;
       border-color: var(--ospr-blue-900);
     }
-
+    // Updated display of pagination from flex to --webkit-box for mobile view
     .pagination {
       font-size: initial;
       line-height: initial;
-      display: flex !important;
+      display: -webkit-box !important;
     }
     .form-control {
       min-height: unset;
@@ -56,4 +56,8 @@
     margin-top: unset;
   }
 
+  .button-text {
+    display: inline-flex;
+    align-items: center;
+  }
 }

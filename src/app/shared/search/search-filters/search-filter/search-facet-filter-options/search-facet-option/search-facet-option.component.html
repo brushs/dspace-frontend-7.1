@@ -20,7 +20,7 @@
   <ng-container *ngIf="isVisible | async">
     <ng-container 
       *ngVar="(formatID('facet-' + (facetTerm ? (facetTerm + '-') : '') +  ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.label}))) as id">
-      <input (change)="onSelect()" type="checkbox" 
+      <input [checked]="isFacetOptionChecked(filterValue,filterConfig.name)" (change)="onSelect($event,filterValue,filterConfig.name)" type="checkbox"
         [attr.name]="id" 
         [attr.id]="id" 
         /> 
