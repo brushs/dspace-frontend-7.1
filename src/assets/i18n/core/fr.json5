@@ -154,8 +154,8 @@
   // "item.page.filesection.download-file": "Download File",
   "item.page.filesection.download-file": "Télécharger le fichier",
 
-  // "community.breadcrumbs": "Community List",
-  "community.breadcrumbs": "Liste des communautés",
+  // "community.breadcrumbs": "Communities",
+  "community.breadcrumbs": "Communautés",
   //"community.form.title": "Community name (required)",
   "community.form.title": "Nom de la communauté (obligatoire)",
   //"community.form.hints.title.hint": "You must enter a name for this community",
@@ -750,8 +750,8 @@
   "header.skiptolinks.aboutgc": "Passer à « À propos du gouvernement »",
   //"header.skiptolinks.menu": "Skip to section menu",
   "header.skiptolinks.menu": "Passer au menu de la section",
-  // "home.breadcrumbs": "Home",
-  "home.breadcrumbs": "Accueil",
+  // "home.breadcrumbs": "Federal Open Science Repository of Canada",
+  "home.breadcrumbs": "Dépôt fédéral de science ouverte du Canada",
   // "home.button.advanced-search": "Advanced search",
   "home.button.advanced-search": "Recherche avancée",
   // "home.search-form.head": "Search the repository",
@@ -839,6 +839,12 @@
   "truncate.expand": "Afficher plus",
   // "truncate.collapse": "Show less",
   "truncate.collapse": "Afficher moins",
+
+  //labels for breadcrumbs
+  // "science.innovation.breadcrumbs": "Science and innovation",
+  "science.innovation.breadcrumbs": "Science et innovation",
+  // "federal.science.libraries.network.breadcrumbs": "Federal Science Libraries Network",
+  "federal.science.libraries.network.breadcrumbs": "Réseau des bibliothèques scientifiques fédérales",
 
   // FOSRC SPECIFIC LABELS END
 

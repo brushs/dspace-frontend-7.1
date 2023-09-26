@@ -89,7 +89,7 @@
 
   "item.page.filesection.download-file": "Download file",
   //start FOSRC - community form
-  "community.breadcrumbs": "Community List",
+  "community.breadcrumbs": "Communities",
   "community.form.errors.description-nom.required": "Error: You must enter a community name in french",
   "community.form.errors.description-topic-subject.required": "Error:  You must enter a subject/topic/research area",
   "community.form.errors.description-topic-subject-french.required": "Error: You must enter the translation of the subject/topic/research area",
@@ -518,6 +518,11 @@
   "search.badge.result": "Result ",
   "truncate.expand": "Show more",
   "truncate.collapse": "Show less",
+
+  //labels for breadcrumbs
+  "science.innovation.breadcrumbs": "Science and innovation",
+  "federal.science.libraries.network.breadcrumbs": "Federal Science Libraries Network",
+
   // FOSRC SPECIFIC LABELS END
 
   "401.help": "You're not authorized to access this page. You can use the button below to get back to the home page.",
@@ -1197,7 +1202,7 @@
   "grant-request-copy.header": "Grant document copy request",
   "grant-request-copy.intro": "This message will be sent to the applicant associated with the request. The requested document(s) will be appended.",
   "grant-request-copy.success": "Granting of item request successful",
-  "home.breadcrumbs": "Home",
+  "home.breadcrumbs": "Federal Open Science Repository of Canada",
   "home.button.advanced-search": "Advanced search",
   "home.button.help": "Help",
   "home.button.tips-for-searching": "Tips for searching",
