@@ -32,6 +32,8 @@ export class TruncatableComponent {
    */
   @Input() useShowMore = false;
 
+  @Input() overrideTruncation = false;
+
   isCollapsed$;
 
   observer;
@@ -98,7 +100,7 @@ export class TruncatableComponent {
           }
         }
 
-        this.truncatable = requiresTruncate;
+        this.truncatable = requiresTruncate || this.overrideTruncation;
         if(!this.truncatable) {
           this.service.expand(this.id);
         }

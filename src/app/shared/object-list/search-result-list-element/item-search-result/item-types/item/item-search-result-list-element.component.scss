@@ -1,1 +1,12 @@
 @import '../../../../../../../styles/variables';
+
+
+.resultItemDescription {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 8px;
+
+    p {
+        height: fit-content;
+    }
+}

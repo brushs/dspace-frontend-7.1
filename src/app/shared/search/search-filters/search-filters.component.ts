@@ -101,19 +101,21 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
 
   applyFilter(): void {
     // FORSC change to apply filter on button click;
-    const allfilters = this.filterService.getSelectedFilters();
-    Object.keys(allfilters).forEach(key => {
-      if (key.indexOf('f.')> -1) {
-        //checking for unique filters
-        allfilters[key] = allfilters[key]?.filter((ele, index) => allfilters[key]?.indexOf(ele) == index );
-      }
-    });
-    this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: allfilters});
+    const allfilters = this.filterService.getSelectedFilters() ?? [];
+
+      Object.keys(allfilters).forEach(key => {
+        if (key.indexOf('f.')> -1) {
+          //checking for unique filters
+          allfilters[key] = allfilters[key]?.filter((ele, index) => allfilters[key]?.indexOf(ele) == index );
+        }
+      });
+      this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: allfilters});
   }
 
   resetFilter() {
     // passing empty array to set selected filters empty
     this.filterService.selectedFilterOptions$.next([]);
+    //this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: []});
   }
 
   /**

@@ -70,7 +70,7 @@ export class SearchFormComponent implements OnInit {
   /**
    * The placeholder of the search input
    */
-  @Input() searchPlaceholder: string;
+  @Input() searchPlaceholder: string = '';
 
   /**
    * Optionally use GCWeb styling
