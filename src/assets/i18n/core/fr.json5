@@ -574,6 +574,11 @@
   "fosrc.item.edit.dynamic-field.values.7.creative_commons": "Aucune",
   "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "Aucune Licence",
 
+  // "true" : "Yes",
+  "true" : "Oui",
+  // "false" : "No",
+  "false" : "Non",
+
   //"Arts, Music, Literature": "Arts, Music, Literature",
   "Arts, Music, Literature": "Arts, musique, littérature",
   "Agriculture": "Agriculture",
@@ -874,6 +879,8 @@
   //"search.filters.filter.dateInvalid": "Error: Invalid year (YYYY)",
   "search.filters.filter.dateInvalid": "Erreur: Anné invalide (AAAA)",
   "search.filters.filter.dateInvalidRange": "Erreur: Anné de debut ne peut pas etre plus d'anné actuel",
+  // "search.filters.filter.datePlaceholder": "YYYY",
+  "search.filters.filter.datePlaceholder": "AAAA",
 
     // "search.form.search.text": "Search",
   "search.form.search.text": "Rechercher",
@@ -3811,10 +3818,10 @@
   "search.filters.filter.birthDate.placeholder": "Date de naissance",
   // "search.filters.filter.collapse": "Collapse filter",
   "search.filters.filter.collapse": "Réduire le filtre",
-  // "search.filters.filter.start": "Start",
-  "search.filters.filter.start": "Démarrer",
-  // "search.filters.filter.end": "End",
-  "search.filters.filter.end": "Finir",
+  // "search.filters.filter.start": "Start Date",
+  "search.filters.filter.start": "Date de début",
+  // "search.filters.filter.end": "End Date",
+  "search.filters.filter.end": "Date de fin",
 
   // FORSC start changes
   //"search.filters.filter.author.collapse": "Collapse filter of Author",
