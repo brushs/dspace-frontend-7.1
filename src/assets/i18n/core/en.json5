@@ -1995,8 +1995,8 @@
   "search.filters.applied.f.author": "Author",
   "search.filters.applied.f.birthDate.max": "End birth date",
   "search.filters.applied.f.birthDate.min": "Start birth date",
-  "search.filters.applied.f.dateIssued.max": "End date",
-  "search.filters.applied.f.dateIssued.min": "Start date",
+  "search.filters.applied.f.dateIssued.max": "End year",
+  "search.filters.applied.f.dateIssued.min": "Start year",
   "search.filters.applied.f.dateSubmitted": "Date submitted",
   "search.filters.applied.f.discoverable": "Private",
   "search.filters.applied.f.entityType": "Item type",
@@ -2019,8 +2019,8 @@
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
-  "search.filters.filter.start": "Start date",
-  "search.filters.filter.end": "End date",
+  "search.filters.filter.start": "Start year (YYYY)",
+  "search.filters.filter.end": "End year (YYYY)",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",
