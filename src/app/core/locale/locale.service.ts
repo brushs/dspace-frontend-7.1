@@ -27,11 +27,15 @@ export enum LANG_ORIGIN {
 export enum Language {
   English = 'en',
   French = 'fr',
+  Bilingual1 = 'fr-en',
+  Bilingual2 = 'en-fr',
 }
 
 export const supportedLanguages = [
   Language.English,
-  Language.French
+  Language.French,
+  Language.Bilingual1,
+  Language.Bilingual2
 ];
 
 // END FORSC
