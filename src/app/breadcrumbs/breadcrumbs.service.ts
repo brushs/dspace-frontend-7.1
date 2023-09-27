@@ -125,7 +125,8 @@ export class BreadcrumbsService {
       {
         addFederalScienceLibrariesNetworkBreadcrumb: false,
         omitHomeBreadcrumb: false,
-        omitBreadcrumbElements: []
+        omitBreadcrumbElements: [],
+        addBreadcrumbElements: []
       }
       );
     this.showBreadcrumbs$.next(true);
