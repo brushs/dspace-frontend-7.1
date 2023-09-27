@@ -26,7 +26,7 @@ export enum LANG_ORIGIN {
 // FORSC Changes
 export enum Language {
   English = 'en',
-  French = 'fr',
+  French = 'fr'
 }
 
 export const supportedLanguages = [
