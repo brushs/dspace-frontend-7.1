@@ -6,13 +6,42 @@
     <strong>
       <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
         rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title">
-        <span [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
+        <p 
+        *ngIf="
+          dsoOfficialTitle
+          && getLanguageAttribute(dsoOfficialTitle[0].language) 
+          && getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang)
+        " 
+        class="m-0" [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
           {{ dsoOfficialTitle[0].value }}
-        </span><br/>
-        <span *ngIf='dsoTranslatedTitle'>
+        </p>
+        
+        <p 
+        *ngIf="
+          (!getLanguageAttribute(dsoOfficialTitle[0].language)
+            || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
+          && dsoTranslatedTitle 
+          && getLanguageAttribute(dsoTranslatedTitle.language) 
+          && getLanguageAttribute(dsoTranslatedTitle.language).includes(translate.currentLang)
+        " 
+        class="m-0">
           <span [attr.lang]="getLanguageAttribute(dsoTranslatedTitle.language)">{{ dsoTranslatedTitle.value }}</span>
-        </span>
+        </p>
+
+        <p *ngIf="
+          dsoOfficialTitle
+          && (!getLanguageAttribute(dsoOfficialTitle[0].language)
+            || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
+          && (!dsoTranslatedTitle
+            || (!getLanguageAttribute(dsoTranslatedTitle.language)
+            || !getLanguageAttribute(dsoTranslatedTitle.language).includes(translate.currentLang)))
+        " 
+        class="m-0" [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
+          {{ dsoOfficialTitle[0].value }}
+        </p>
+
       </a>
+
       <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
     </strong>
   </p>
