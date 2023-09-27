@@ -19,6 +19,11 @@ import { PaginationService } from '../../../core/pagination/pagination.service';
 export class SearchSettingsComponent {
 
   /**
+   * Status of whether the search form component is on the comcol page.
+   */
+  @Input() onComColPage: boolean;
+
+  /**
    * The configuration for the current paginated search results
    */
   @Input() searchOptions: PaginatedSearchOptions;

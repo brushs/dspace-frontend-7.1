@@ -58,22 +58,23 @@
         <div class="row mrgn-tp-md">
           <div class="form-group col-sm-6 pull-left">
              <label for="startdate">
-                {{'search.filters.filter.start' | translate}} <p *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
+                {{'search.filters.filter.start' | translate}} 
+                <p *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
+                <p *ngIf="startDateRangeError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalidRange' | translate }}</span></p> 
                 <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input (blur)="onSubmit()"
-                [(ngModel)]="range[0]" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'"  
-                [placeholder]="'search.filters.filter.' + filterConfig.name + '.min.placeholder' | translate" 
+             <input (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
+                [(ngModel)]="range[0]" pattern="[0-9]{4}" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'"  
                 [attr.id]="'startdate'" class="form-control" type="text" />
           </div>
           <div class="form-group col-sm-6 pull-right">
              <label for="enddate">
-              {{'search.filters.filter.end' | translate}} {{ endDateError }} <p *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
+              {{'search.filters.filter.end' | translate}} 
+              <p *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
               <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input (blur)="onSubmit()"
-              [(ngModel)]="range[1]" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'"
-              [placeholder]="'search.filters.filter.' + filterConfig.name + '.max.placeholder' | translate" 
+             <input (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
+              [(ngModel)]="range[1]" pattern="[0-9]{4}" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'"
               class="form-control" [attr.id]="'enddate'" name="enddate" type="text" />
           </div>
        </div>

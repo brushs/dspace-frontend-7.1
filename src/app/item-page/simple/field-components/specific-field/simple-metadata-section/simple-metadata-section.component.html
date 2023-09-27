@@ -4,22 +4,22 @@
         <ng-container *ngSwitchCase="'case1'">
             <h2 class="h3">{{ label | translate }}</h2>
             <ul class="horizontal-list">
-                <li *ngFor="let mdValue of mdValues; let last=last;" [attr.lang]="mdValue.language">
-                    {{ mdValue.value | translate }}
-                </li>
+              <li *ngFor="let mdValue of mdValues; let last=last;" [attr.lang]="mdValue.language">
+                {{ mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' | translate }}
+              </li>
             </ul>
         </ng-container>
         <ng-container *ngSwitchCase="'case2'">
             <h2 class="h3">{{ label | translate }}</h2>
             <p *ngFor="let mdValue of mdValues; let last=last;">
-                <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
+              <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
                 <span *ngIf="!last" [innerHTML]="separator"></span>
             </p>
         </ng-container>
         <ng-container *ngSwitchCase="'case3'">
             <dt>{{ label | translate }}</dt>
             <dd *ngFor="let mdValue of mdValues; let last=last;">
-                <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
+              <span [attr.lang]="mdValue.language" [innerHTML]="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate"></span>
                 <span *ngIf="!last" [innerHTML]="separator"></span>
             </dd>
         </ng-container>

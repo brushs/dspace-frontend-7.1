@@ -115,6 +115,7 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
   resetFilter() {
     // passing empty array to set selected filters empty
     this.filterService.selectedFilterOptions$.next([]);
+    //this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: []});
   }
 
   /**

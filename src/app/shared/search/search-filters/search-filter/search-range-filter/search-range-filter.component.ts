@@ -15,6 +15,10 @@ import { SEARCH_CONFIG_SERVICE } from '../../../../../my-dspace-page/my-dspace-p
 import { SearchConfigurationService } from '../../../../../core/shared/search/search-configuration.service';
 import { RouteService } from '../../../../../core/services/route.service';
 import { hasValue } from '../../../../empty.util';
+import * as e from 'express';
+import { PaginatedList } from '../../../../../core/data/paginated-list.model';
+import { RemoteData } from '../../../../../core/data/remote-data';
+import { FacetValue } from '../../../facet-value.model';
 
 /**
  * The suffix for a range filters' minimum in the frontend URL
@@ -51,7 +55,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
   /**
    * Fallback minimum for the range
    */
-  min_limit = 1950;
+  min_limit = 1000;
 
   /**
    * Fallback maximum for the range
@@ -78,6 +82,10 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
 
   startDateError: boolean;
 
+  startDateRangeError: boolean;
+
+  yearValues: string[] = []; // To store all the year values from metadata
+
   constructor(protected searchService: SearchService,
               protected filterService: SearchFilterService,
               protected router: Router,
@@ -98,43 +106,84 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
    */
   ngOnInit(): void {
     super.ngOnInit();
+    //this.range[0] = new Number(this.min_limit).toString();
+    //this.range[1] = new Number(this.max_limit).toString();
     this.min_limit = moment(this.filterConfig.minValue, dateFormats).year() || this.min_limit;
     this.max_limit = moment(this.filterConfig.maxValue, dateFormats).year() || this.max_limit;
-    const iniMin = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX).pipe(startWith(undefined));
-    const iniMax = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX).pipe(startWith(undefined));
-    this.sub = observableCombineLatest(iniMin, iniMax).pipe(
-      map(([min_limit, max_limit]) => {
-        const minimum = hasValue(min_limit) ? min_limit : this.min_limit;
-        const maximum = hasValue(max_limit) ? max_limit : this.max_limit;
-        return [minimum, maximum];
-      })
-    ).subscribe((minmax) => this.range = minmax);
+
+    this.filterValues$.subscribe((data: RemoteData<PaginatedList<FacetValue>[]>) => {
+      this.yearValues = [];
+      if (data.hasSucceeded) {
+        data.payload[0].page.forEach(page => {
+          this.yearValues.push(page.value);
+        });
+        this.calculateMinMaxYear();
+      }
+    });
+
+    this.filterService.selectedFilterOptions$.subscribe(data =>{
+      if(data && data.length === 0) {
+        this.startDateError = false;
+        this.startDateRangeError = false;
+        this.endDateError = false;
+      }
+    })
+  }
+
+  calculateMinMaxYear() {
+    if (this.yearValues.length > 0) {
+      // Spliting the year values and converting them to numbers
+      const years = this.yearValues.map(value => {
+        const [min, max] = value.split(' - ');
+        return [parseInt(min, 10), parseInt(max, 10)];
+      });
+
+      // Calculating the minimum and maximum values
+      this.min_limit = Math.min(...years.map(year => year[0]));
+      // this.max_limit = Math.max(...years.map(year => year[1])); if we want to set max year from the returned year range list
+      const iniMin = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX).pipe(startWith(undefined));
+      const iniMax = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX).pipe(startWith(undefined));
+      this.sub = observableCombineLatest(iniMin, iniMax).pipe(
+        map(([min_limit, max_limit]) => {
+          const minimum = hasValue(min_limit) ? min_limit : this.min_limit;
+          const maximum = hasValue(max_limit) ? max_limit : this.max_limit;
+          return [minimum, maximum];
+        })
+      ).subscribe((minmax) => this.range = minmax);
+    }
   }
 
   validateAndSubmit() {
-    /*
-    const newMin = this.range[0] !== this.min_limit ? [this.range[0]] : null;
-    const newMax = this.range[1] !== this.max_limit ? [this.range[1]] : null;
 
-    if((newMin == null && this.range[0] != this.min_limit) || (newMin != null && newMin.length == 1 && newMin[0].length == 0)) {
+    var newMin = new Number(this.range[0] <= this.min_limit ? new Number(this.min_limit) : this.range[0]);
+    //this.range[0] = newMin;
+    var newMax = new Number(this.range[1] >= this.max_limit ? new Number(this.max_limit) : this.range[1]);
+    //this.range[1] = newMax;
+
+    if(isNaN(newMin.valueOf()) || isNaN(this.range[0]) || this.range[0] < this.min_limit) {
       // add error label on top of start date field
       this.startDateError = true;
-      return;
     } else {
       this.startDateError = false;
     }
 
+    if(newMin > this.max_limit) {
+      // add error label on top of start date field
+      this.startDateRangeError = true;
+    } else {
+      this.startDateRangeError = false;
+    }
 
-    if((newMax == null && this.range[1] != this.max_limit) || (newMax != null && newMax.length == 1 && newMax[0].length == 0) || 
-    newMax < newMin) {
+    if(!(this.startDateError || this.startDateRangeError) && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin || this.range[1] > this.max_limit)) {
       // add error label on top of end date field
       this.endDateError = true;
-      return;
     } else {
       this.endDateError = false;
     }
-    */
-    this.onSubmit();
+
+    if(!this.startDateError && !this.startDateRangeError && !this.endDateError) {
+      this.onSubmit();
+    }
   }
 
   /**
@@ -145,8 +194,8 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       return;  // don't submit if a key is being held down
     }
 
-    const newMin = this.range[0] !== this.min_limit ? [this.range[0]] : null;
-    const newMax = this.range[1] !== this.max_limit ? [this.range[1]] : null;
+    var newMin = new Number(this.range[0] <= this.min_limit ? new Number(this.min_limit) : this.range[0]);
+    var newMax = new Number(this.range[1] >= this.max_limit ? new Number(this.max_limit) : this.range[1]);
 
     // this.router.navigate(this.getSearchLinkParts(), {
     //   queryParams:
@@ -162,11 +211,11 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
 
     const dateFilters = {};
     if (newMin !== null) {
-      dateFilters[this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX] = newMin;
+      dateFilters[this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX] = [newMin];
     }
 
     if (newMax !== null) {
-      dateFilters[this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX] = newMax;
+      dateFilters[this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX] = [newMax];
     }
 
     const modifiedFilters = { ...filterSelections, ...dateFilters };
@@ -200,5 +249,6 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     if (hasValue(this.sub)) {
       this.sub.unsubscribe();
     }
+    this.filterValues$.unsubscribe();
   }
 }

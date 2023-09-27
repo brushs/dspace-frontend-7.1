@@ -1,4 +1,4 @@
-<h2 class="h3">{{'comcol.search.filter.heading' | translate}}</h2>
+<h2>{{'comcol.search.filter.heading' | translate}}</h2>
 <p class="mrgn-bttm-0">{{'comcol.search.filter.instructions' | translate}}</p>
 
 <form class="mrgn-tp-md" role="form" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
@@ -26,11 +26,11 @@
     <input class="mrgn-rght-sm form-control flex-grow-1" id="filter-item-info-{{i+1}}" name="filter-item-info-{{i+1}}" type="text" attr.aria-label="{{'comcol.search.filter.aria.filter.item.info' | translate}}" [(ngModel)]="searchFilter.filterItemInfo" required>
 
     <button type="button" class="btn btn-default btn-sm mrgn-rght-sm" (click)="addFilter()">
-        <i class="fa fa-plus" aria-hidden="true"></i><span class="wb-inv">{{'comcol.search.filter.button.add' | translate}}</span>
+        <span class="glyphicon glyphicon-plus"></span><span class="wb-inv">{{'comcol.search.filter.button.add' | translate}}</span>
     </button>
 
     <button type="button" class="btn btn-default btn-sm" (click)="removeFilter(i)">
-        <i class="fa fa-times" aria-hidden="true"></i><span class="wb-inv">{{'comcol.search.filter.button.remove' | translate}}</span>
+      <span class="glyphicon glyphicon-remove"></span><span class="wb-inv">{{'comcol.search.filter.button.remove' | translate}}</span>
     </button>
 
   </div>
