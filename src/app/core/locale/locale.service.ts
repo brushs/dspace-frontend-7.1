@@ -26,16 +26,12 @@ export enum LANG_ORIGIN {
 // FORSC Changes
 export enum Language {
   English = 'en',
-  French = 'fr',
-  Bilingual1 = 'fr-en',
-  Bilingual2 = 'en-fr',
+  French = 'fr'
 }
 
 export const supportedLanguages = [
   Language.English,
-  Language.French,
-  Language.Bilingual1,
-  Language.Bilingual2
+  Language.French
 ];
 
 // END FORSC
