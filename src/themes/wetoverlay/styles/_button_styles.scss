@@ -77,7 +77,7 @@ mouse:hover {
       // filter: alpha(opacity=65);
       filter: opacity(83%);
       // override opacity
-      opacity: 1 !important;
+      opacity: 1;
       -webkit-box-shadow: none;
       box-shadow: none; }
 
@@ -91,9 +91,8 @@ mouse:hover {
     pointer-events: none; }
   
     .btn-default {
-      // Override gcweblink visited style
-      color: var(--btn-default-text-color) !important;
-      background-color: var(--btn-default-bg-color) !important;
+      color: var(--btn-default-text-color);
+      background-color: var(--btn-default-bg-color);
       border-color: #{$gray-200}; }
       .btn-default:focus, .btn-default.focus {
         color: var(--btn-default-text-color);
@@ -127,8 +126,7 @@ mouse:hover {
         background-color: var(--btn-default-text-color); }
         .btn-default.disabled, .btn-default:disabled {
           color: var(--btn-default-text-color);
-          // Override gcweblink visited style
-          background-color: var(--btn-default-bg-color) !important;
+          background-color: var(--btn-default-bg-color);
           border-color: #{$gray-200};
         }
 
@@ -301,7 +299,7 @@ mouse:hover {
       border-color: #574c05; }
     .btn-warning:active, .btn-warning.active,
     .open > .btn-warning.dropdown-toggle {
-      color: #000 !important;
+      color: #000;
       background-color: #c2aa0a;
       background-image: none;
       border-color: #574c05; }
@@ -309,7 +307,7 @@ mouse:hover {
       .open > .btn-warning.dropdown-toggle:hover,
       .open > .btn-warning.dropdown-toggle:focus,
       .open > .btn-warning.dropdown-toggle.focus {
-        color: #000 !important;
+        color: #000;
         background-color: #a08c09;
         border-color: #181501; }
     .btn-warning.disabled:hover, .btn-warning.disabled:focus, .btn-warning.disabled.focus, .btn-warning[disabled]:hover, .btn-warning[disabled]:focus, .btn-warning[disabled].focus,
@@ -720,8 +718,3 @@ input.btn.btn-call-to-action {
         .btn-light .badge {
           color: #f8f9fa;
           background-color: #212529;}
-
-
-          label .btn {
-            min-height: fit-content !important;
-          }
