@@ -35,7 +35,11 @@
       <div class="input-group">
           <input type="text" [(ngModel)]="query" name="query" class="form-control" id="subcom-search" [placeholder]="searchPlaceholder" />
           <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">{{'search.form.search' | translate}}</button>
+            <button class="btn btn-primary" type="submit">
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="fas fa-search"></span>&nbsp;{{'search.form.search' | translate}}
+              </div>
+            </button>
           </span>
       </div>
     </div>
