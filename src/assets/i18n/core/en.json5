@@ -360,8 +360,8 @@
   "fosrc.item.edit.dynamic-field.values.7.creative_commons": "None",
   "fosrc.item.edit.dynamic-field.values.7.creative_commons.link": "No License",
 
-  "true" : "Yes",
-  "false" : "No",
+  "true": "Yes",
+  "false": "No",
 
   "Agriculture / Agriculture": "Agriculture",
   "Arts, Music, Literature / Arts, musique, littérature": "Arts, Music, Literature",
@@ -415,6 +415,34 @@
   "Health": "Health",
   "Land": "Land",
   "Water": "Water",
+
+  "book": "Book",
+  "bookchapter": "Book chapter",
+  "conferencematerial": "Conference material",
+  "report": "Report",
+  "acceptedmanuscript": "Accepted Manuscript (Article)",
+  "submittedmanuscript": "Submitted Manuscript (Article)",
+  "other": "Other",
+  "abstract-ConferenceMaterial": "Abstract (Conference Material)",
+  "poster-ConferenceMaterial": "Poster (Conference Material)",
+  "presentation-ConferenceMaterial": "Presentation (Conference Material)",
+  "proceeding-Paper-ConferenceMaterial": "Proceeding-Paper (Conference Material)",
+  "consultant-Report": "Consultant Report (Report)",
+  "Departmental-Report": "Departmental Report (Report)",
+  "internal-Report": "Internal Report (Report)",
+  "mapSeries-Report": "Map Series (Report)",
+  "whitepaper-Report": "Whitepaper (Report)",
+  "consultantreport": "Consultant Report (Report)",
+  "deparmentreport": "Departmental Report (Report)",
+  "internalreport": "Internal Report (Report)",
+  "mapseries": "Map Series (Report)",
+  "whitepaper": "Whitepaper (Report)",
+  "abstract": "Abstract (Conference Material)",
+  "poster": "Poster (Conference Material)",
+  "presentation": "Presentation (Conference Material)",
+  "proceeding": "Proceeding-Paper (Conference Material)",
+
+
   "fosrc.item.edit.dynamic-field.values.1.subject_list": "Arts, Music, Literature",
   "fosrc.item.edit.dynamic-field.values.2.subject_list": "Agriculture",
   "fosrc.item.edit.dynamic-field.values.3.subject_list": "Economics and Industry",
@@ -535,7 +563,7 @@
   "search.filters.filter.dateInvalid": "Error: Invalid year (YYYY)",
   "search.filters.filter.dateInvalidRange": "Error: Start date cannot be greater than current year",
   "search.filters.filter.datePlaceholder": "YYYY",
-  
+
   "search.form.search.text": "Search",
 
   "sign.in.title": "FOSRC administrator sign in",
