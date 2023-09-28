@@ -1,7 +1,7 @@
 import { combineLatest as observableCombineLatest, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { RemoteDataBuildService } from '../../../../../core/cache/builders/remote-data-build.service';
 import { FilterType } from '../../../filter-type.model';
 import { renderFacetFor } from '../search-filter-type-decorator';
@@ -95,6 +95,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
               @Inject(FILTER_CONFIG) public filterConfig: SearchFilterConfig,
               @Inject(PLATFORM_ID) private platformId: any,
               private route: RouteService,
+              private cdRef: ChangeDetectorRef,
               @Inject(USE_GC_WEB) public useGcWeb: any,
               ) {
     super(searchService, filterService, rdbs, router, searchConfigService, inPlaceSearch, filterConfig);
@@ -108,6 +109,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     super.ngOnInit();
     //this.range[0] = new Number(this.min_limit).toString();
     //this.range[1] = new Number(this.max_limit).toString();
+    this.min_limit = 1000;
     this.min_limit = moment(this.filterConfig.minValue, dateFormats).year() || this.min_limit;
     this.max_limit = moment(this.filterConfig.maxValue, dateFormats).year() || this.max_limit;
 
@@ -126,6 +128,9 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
         this.startDateError = false;
         this.startDateRangeError = false;
         this.endDateError = false;
+        setTimeout( () => {
+          this.calculateMinMaxYear();
+        },0);
       }
     })
   }
@@ -139,17 +144,22 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       });
 
       // Calculating the minimum and maximum values
-      this.min_limit = Math.min(...years.map(year => year[0]));
-      // this.max_limit = Math.max(...years.map(year => year[1])); if we want to set max year from the returned year range list
+      const minYear = Math.min(...years.map(year => year[0]));
+      // const maxYear = Math.max(...years.map(year => year[1])); if we want to set max year from the returned year range list
+      this.range[0] = minYear;
+      this.range[1] = this.max_limit;
+
       const iniMin = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX).pipe(startWith(undefined));
       const iniMax = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX).pipe(startWith(undefined));
       this.sub = observableCombineLatest(iniMin, iniMax).pipe(
         map(([min_limit, max_limit]) => {
-          const minimum = hasValue(min_limit) ? min_limit : this.min_limit;
+          const minimum = hasValue(min_limit) ? min_limit : minYear;
           const maximum = hasValue(max_limit) ? max_limit : this.max_limit;
           return [minimum, maximum];
         })
       ).subscribe((minmax) => this.range = minmax);
+
+      this.cdRef.detectChanges();
     }
   }
 
@@ -174,7 +184,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       this.startDateRangeError = false;
     }
 
-    if(!(this.startDateError || this.startDateRangeError) && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin || this.range[1] > this.max_limit)) {
+    if(!(this.startDateError || this.startDateRangeError) && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
       // add error label on top of end date field
       this.endDateError = true;
     } else {
@@ -195,7 +205,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     }
 
     var newMin = new Number(this.range[0] <= this.min_limit ? new Number(this.min_limit) : this.range[0]);
-    var newMax = new Number(this.range[1] >= this.max_limit ? new Number(this.max_limit) : this.range[1]);
+    var newMax = new Number(this.range[1]);
 
     // this.router.navigate(this.getSearchLinkParts(), {
     //   queryParams:

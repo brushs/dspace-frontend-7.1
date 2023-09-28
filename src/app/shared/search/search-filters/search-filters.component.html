@@ -35,6 +35,6 @@
     </ng-container>
     <!-- Adding $event.preventDefault() as we are getting console error related to datatable when we click the button (Uncaught TypeError: m(...).dataTable is not a function)-->
     <button class="btn btn-primary mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); applyFilter()"> {{"search.filters.applyFilter" | translate}}</button>
-    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-primary mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); resetFilter()"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button>
+    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-default mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); resetFilter()"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button> 
   </form>
 </ng-template>
