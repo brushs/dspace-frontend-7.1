@@ -1,7 +1,7 @@
 
 import { 
   ChangeDetectorRef,
-  Component, OnDestroy, Renderer2, ViewChild
+  Component, OnDestroy
 } from '@angular/core';
 import { listableObjectComponent } from '../../../../../object-collection/shared/listable-object/listable-object.decorator';
 import { ViewMode } from '../../../../../../core/shared/view-mode.model';
