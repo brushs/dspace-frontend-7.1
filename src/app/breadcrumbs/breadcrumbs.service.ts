@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {combineLatest, Observable, of as observableOf, ReplaySubject} from 'rxjs';
 import {Breadcrumb} from './breadcrumb/breadcrumb.model';
-import {BreadcrumbOptions} from './breadcrumb/breadcrumb-options.model';
 import {ActivatedRoute, NavigationEnd, provideRoutes, Router} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {hasNoValue, hasValue, isUndefined} from '../shared/empty.util';
@@ -21,11 +20,6 @@ export class BreadcrumbsService {
    */
   showBreadcrumbs$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  /**
-   * Observable of breadcrumb options object passed as data with route
-   */
-  breadcrumbOptions$: ReplaySubject<BreadcrumbOptions> = new ReplaySubject(1);
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,50 +34,8 @@ export class BreadcrumbsService {
     this.router.events.pipe(
       filter((e): e is NavigationEnd => e instanceof NavigationEnd),
       tap(() => this.reset()),
-      switchMap(() => {
-        return this.resolveBreadcrumbs(this.route.root)
-      }),
-    ).pipe(
-      tap(() => {
-        let breadcrumbOptions = this.getRouteBreadcrumbOptionsDataFromRoute(this.route.root);
-        this.breadcrumbOptions$.next(breadcrumbOptions);
-      }),
-      map((breadcrumbs) => {
-        
-        let breadCrumbOptions = this.getRouteBreadcrumbOptionsDataFromRoute(this.route.root);
-        let breadCrumbsToAdd = breadCrumbOptions?.addBreadcrumbElements;
-        if(breadCrumbsToAdd){
-          breadCrumbsToAdd.forEach(element => {
-            //add breadcrumb at the specified position
-            breadcrumbs.splice(element.position, 0, element.breadcrumb);
-          });
-        }
-        
-        return breadcrumbs;
-      })
+      switchMap(() => this.resolveBreadcrumbs(this.route.root)),
     ).subscribe(this.breadcrumbs$);
-  }
-
-  /**
-   * Method that recursively checks if an ActivatedRoute
-   * or any of its ActivatedRoute children have
-   * 'breadCrumbOptions' data, and the first instance of
-   * the data is returned
-   * @param route An ActivatedRoute object
-   */
-  getRouteBreadcrumbOptionsDataFromRoute(route: ActivatedRoute): BreadcrumbOptions{
-    let breadcrumbOptionsData;
-    const data = route.snapshot.data;
-    if(data.breadcrumbOptions){
-      breadcrumbOptionsData = data.breadcrumbOptions;
-      return breadcrumbOptionsData;
-    }else{
-      if(route.firstChild){
-        return this.getRouteBreadcrumbOptionsDataFromRoute(route.firstChild);
-      }else {
-        return null;
-      }
-    }
   }
 
   /**
@@ -93,6 +45,7 @@ export class BreadcrumbsService {
   private resolveBreadcrumbs(route: ActivatedRoute): Observable<Breadcrumb[]> {
     const data = route.snapshot.data;
     const routeConfig = route.snapshot.routeConfig;
+
     const last: boolean = hasNoValue(route.firstChild);
     if (last) {
       if (hasValue(data.showBreadcrumbs)) {
@@ -121,14 +74,6 @@ export class BreadcrumbsService {
    * Resets the state of the breadcrumbs
    */
   private reset() {
-    this.breadcrumbOptions$.next(
-      {
-        addFederalScienceLibrariesNetworkBreadcrumb: false,
-        omitHomeBreadcrumb: false,
-        omitBreadcrumbElements: [],
-        addBreadcrumbElements: []
-      }
-      );
     this.showBreadcrumbs$.next(true);
   }
 
