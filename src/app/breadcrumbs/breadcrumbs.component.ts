@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Breadcrumb } from './breadcrumb/breadcrumb.model';
-import {BreadcrumbOptions} from './breadcrumb/breadcrumb-options.model';
 import { BreadcrumbsService } from './breadcrumbs.service';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -20,11 +19,6 @@ export class BreadcrumbsComponent {
   breadcrumbs$: Observable<Breadcrumb[]>;
 
   /**
-   * Observable of breadcrumb options object passed as data with route
-   */
-  breadcrumbOptions$: Observable<BreadcrumbOptions>;
-
-  /**
    * Whether or not to show breadcrumbs on this page
    */
   showBreadcrumbs$: Observable<boolean>;
@@ -34,7 +28,6 @@ export class BreadcrumbsComponent {
   ) {
     this.breadcrumbs$ = breadcrumbsService.breadcrumbs$;
     this.showBreadcrumbs$ = breadcrumbsService.showBreadcrumbs$;
-    this.breadcrumbOptions$ = breadcrumbsService.breadcrumbOptions$;
   }
 
   // OSPR code start
