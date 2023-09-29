@@ -33,7 +33,7 @@
         </ul>
         <ng-template #gcPagination>
           <div class="col-md-12 pull-left">
-            <ul class="list-unstyled lst-spcd">
+            <ul class="list-unstyled">
               <li *ngFor="let object of objects?.payload?.page; let i = index; let last = last">
                 <ds-collection-list-element *ngIf="object.type == 'collection'" [object]="object" [linkType]="linkTypes.Link"></ds-collection-list-element>
                 <ds-community-list-element *ngIf="object.type == 'community'" [object]="object" [linkType]="linkTypes.Link"></ds-community-list-element>
