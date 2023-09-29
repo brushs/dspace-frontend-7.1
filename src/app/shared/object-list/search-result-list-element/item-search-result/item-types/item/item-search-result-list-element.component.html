@@ -9,6 +9,7 @@
         <p 
         *ngIf="
           dsoOfficialTitle
+          && dsoOfficialTitle[0]
           && getLanguageAttribute(dsoOfficialTitle[0].language) 
           && getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang)
         " 
@@ -18,7 +19,9 @@
         
         <p 
         *ngIf="
-          (!getLanguageAttribute(dsoOfficialTitle[0].language)
+          (!dsoOfficialTitle
+            || !dsoOfficialTitle[0]
+            || !getLanguageAttribute(dsoOfficialTitle[0].language)
             || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
           && dsoTranslatedTitle 
           && getLanguageAttribute(dsoTranslatedTitle.language) 
@@ -30,6 +33,7 @@
 
         <p *ngIf="
           dsoOfficialTitle
+          && dsoOfficialTitle[0]
           && (!getLanguageAttribute(dsoOfficialTitle[0].language)
             || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
           && (!dsoTranslatedTitle
