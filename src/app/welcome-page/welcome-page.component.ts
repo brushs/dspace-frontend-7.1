@@ -9,11 +9,15 @@ import { LocaleService } from '../core/locale/locale.service';
 })
 export class WelcomePageComponent implements OnInit {
 
+  imageNumber: number;
+
   constructor(private localeService: LocaleService,
     private router: Router
     ) { }
 
   ngOnInit(): void {
+    //12 images are used as background images
+    this.imageNumber = Math.floor(Math.random() * (12)) + 1;
   }
 
   onClickButton(lang: string): void {
