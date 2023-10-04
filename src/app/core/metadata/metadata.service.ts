@@ -105,13 +105,17 @@ export class MetadataService {
   private processRouteChange(routeInfo: any): void {
     this.clearMetaTags();
 
-    if (routeInfo.data.value.title) {
+    if (routeInfo.data.value.title && !routeInfo.data.value.titleOverride) {
       const titlePrefix = this.translate.get('repository.title.prefix');
       const title = this.translate.get(routeInfo.data.value.title, routeInfo.data.value);
       combineLatest([titlePrefix, title]).pipe(take(1)).subscribe(([translatedTitlePrefix, translatedTitle]: [string, string]) => {
         this.addMetaTag('title', translatedTitlePrefix + translatedTitle);
         this.title.setTitle(translatedTitlePrefix + translatedTitle);
       });
+    }
+    if (routeInfo.data.value.titleOverride) {
+      this.addMetaTag('title', routeInfo.data.value.titleOverride);
+      this.title.setTitle(routeInfo.data.value.titleOverride);
     }
     if (routeInfo.data.value.description) {
       this.translate.get(routeInfo.data.value.description).pipe(take(1)).subscribe((translatedDescription: string) => {
