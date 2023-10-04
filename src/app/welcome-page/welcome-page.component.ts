@@ -5,7 +5,7 @@ import { LocaleService } from '../core/locale/locale.service';
 @Component({
   selector: 'ds-welcome-page',
   templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.scss']
+  styleUrls: ['../../themes/wetoverlay/assets/gcweb/css/theme.scss', '../../themes/wetoverlay/assets/wet-boew/css/noscript.scss', '../../themes/wetoverlay/assets/gcweb/css/messages.scss']
 })
 export class WelcomePageComponent implements OnInit {
 
