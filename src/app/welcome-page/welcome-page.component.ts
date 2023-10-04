@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocaleService } from '../core/locale/locale.service';
+// import { LocaleService } from '../../themes/wetoverlay/assets/gcweb/css/theme.css';
 
 @Component({
   selector: 'ds-welcome-page',
   templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.scss']
+  styleUrls: [
+    // './welcome-page.component.scss'
+    '../../themes/wetoverlay/assets/wet-boew/css/noscript.css',
+    '../../themes/wetoverlay/assets/gcweb/css/messages.css',
+    '../../themes/wetoverlay/assets/gcweb/css/theme.css'
+    
+  ]
 })
 export class WelcomePageComponent implements OnInit {
 
