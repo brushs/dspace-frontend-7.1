@@ -18,6 +18,11 @@
 
   // About us page labels
   "about-us.breadcrumbs": "About the FOSRC",
+
+  "browseby.author.head" : "Browsing {{name}} by author",
+  "browseby.dateissued.head" : "Browsing {{name}} by issue date",
+  "browseby.subject.head" : "Browsing {{name}} by subject",
+  "browseby.title.head" : "Browsing {{name}} by title",
   // Policies page labels
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
 
@@ -919,10 +924,11 @@
   "browse.startsWith.months.november": "November",
   "browse.startsWith.months.october": "October",
   "browse.startsWith.months.september": "September",
-  "browse.startsWith.submit": "Browse",
-  "browse.startsWith.type_date": "YYYY or YYYY-MM and click Browse",
+  "browse.startsWith.submit": "Search",
+  "browse.startsWith.label": "Browse",
+  "browse.startsWith.type_date": "Enter the Year Or the Year and Month (YYYY or YYYY-MM) and click search",
   "browse.startsWith.type_date.label": "type in a date (YYYY-MM) and click 'Browse'",
-  "browse.startsWith.type_text": "Type the first few letters and click on the Browse button",
+  "browse.startsWith.type_text": "Type the first few letters and click search",
   "browse.title": "Browse {{ collection }} by {{ field }} {{ value }}",
   "chips.remove": "Remove chip",
   "collection.create.head": "Create a collection",
