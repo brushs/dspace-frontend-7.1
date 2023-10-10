@@ -29,6 +29,7 @@ export class ComcolPageBrowseByComponent implements OnInit {
    */
   @Input() id: string;
   @Input() contentType: string;
+  @Input() browsingbyMetadata: boolean = false;
   /**
    * List of currently active browse configurations
    */

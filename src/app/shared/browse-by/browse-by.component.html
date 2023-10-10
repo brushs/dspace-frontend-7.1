@@ -1,6 +1,6 @@
 <ng-container *ngVar="(objects$ | async) as objects">
   <!-- OSPR Changes- modifying h3 to h1-->
-  <h1 id="wb-cont" [ngClass]="{'sr-only': parentname }" >{{title | translate}}</h1>
+  <!-- <h1 id="wb-cont" [ngClass]="{'sr-only': parentname }" >{{title | translate}}</h1> -->
   <!-- modified h3 to h1-->
   <section>
   <ng-container *ngComponentOutlet="getStartsWithComponent(); injector: objectInjector;"></ng-container>
@@ -13,8 +13,8 @@
       </ds-viewable-collection>
     </div>
     <div *ngIf="enableArrows">
-      <!--DSPR Sprint5 issue 248/249/250/251-->
-      <div class="row">
+      <!-- DSPR Sprint5 issue 248/249/250/251-->
+      <!-- <div class="row">
         <div class="result-order-settings">
           <ds-sidebar-dropdown
                   *ngIf="sortConfig"
@@ -42,7 +42,38 @@
             </option>
           </ds-sidebar-dropdown>
         </div>
+      </div> -->
+
+    <h2 class="h4">{{'search.results.head' | translate}}</h2>
+   <div class="row well well-small mrgn-lft-0 mrgn-rght-0"> 
+      <div class=" col-md-8 pull-left">
+         <div class="input-group">
+            <label for="Sortby">{{'search.sidebar.settings.sort-by' | translate}}</label>
+            <select (change)="reloadOrder($event)" class="form-control" id="Sortby" name="Sortby">
+               <option 
+                  *ngFor="let direction of (sortDirections | dsKeys)" 
+                  [value]="sortConfig.field + ',' + direction.key" 
+                  [selected]="direction.value === (sortConfig.direction)? 'selected': null" 
+                  >
+                {{ 'sorting.' + direction.key | translate }}
+               </option>
+            </select>
+         </div>
       </div>
+      <div class="col-md-4 pull-right">
+         <div class="input-group">
+            <label for="pageResults"> {{'search.sidebar.settings.rpp' | translate}} </label>
+            <select (change)="reloadRPP($event)" class="form-control" id="pageResults" name="pageResults">
+               <option label="Select"></option>
+               <option *ngFor="let pageSizeOption of paginationConfig?.pageSizeOptions" [value]="pageSizeOption"
+                [selected]="pageSizeOption === +(paginationConfig.pageSize) ? 'selected': null" 
+                >
+                {{pageSizeOption}}
+              </option>
+            </select>
+         </div>
+      </div>
+   </div>
 
       <!--DSPR Sprint5 issue 248/249/250/251-->
       <ds-pagination
@@ -58,11 +89,13 @@
           (sortDirectionChange)="onSortDirectionChange($event)"
           (sortFieldChange)="onSortFieldChange($event)"
           (paginationChange)="onPaginationChange($event)">
+          
         <ul class="list-unstyled">
-          <li *ngFor="let object of objects?.payload?.page" class="mt-4 mb-4">
-            <ds-listable-object-component-loader [object]="object"></ds-listable-object-component-loader>
+          <li class="brdr-tp mrgn-tp-md" *ngFor="let object of objects?.payload?.page" >
+            <ds-listable-object-component-loader [useGcWeb]="true" [object]="object"></ds-listable-object-component-loader>
           </li>
         </ul>
+        
       </ds-pagination>
     </div>
   </div>

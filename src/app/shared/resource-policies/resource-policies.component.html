@@ -7,7 +7,16 @@
           <div class="d-flex justify-content-between align-items-center m-0">
             {{ 'resource-policies.table.headers.title.for.' + resourceType | translate }} {{resourceUUID}}
             <div>
-              <!-- OSPR change starts here -->
+              <!-- OSPR change ends here -->
+              <button class="btn btn-success"
+                      [disabled]="(isProcessingDelete() | async)"
+                      [title]="'resource-policies.add.for.' + resourceType | translate"
+                      (click)="redirectToResourcePolicyCreatePage()">
+                <span aria-hidden="true" class='fas fa-plus'></span>
+                {{'resource-policies.add.button' | translate}}
+              </button>
+
+               <!-- OSPR change starts here -->
               <!--[disabled]="(!(canDelete() | async)) || (isProcessingDelete() | async)"-->
               <button class="btn btn-danger float-right ml-1"
                       [disabled]="false"
@@ -20,14 +29,6 @@
                   <span aria-hidden="true" class='fas fa-trash-alt fa-fw'></span>
                   {{'resource-policies.delete.btn' | translate}}
                 </span>
-              </button>
-              <!-- OSPR change ends here -->
-              <button class="btn btn-success float-right"
-                      [disabled]="(isProcessingDelete() | async)"
-                      [title]="'resource-policies.add.for.' + resourceType | translate"
-                      (click)="redirectToResourcePolicyCreatePage()">
-                <span aria-hidden="true" class='fas fa-plus'></span>
-                {{'resource-policies.add.button' | translate}}
               </button>
             </div>
           </div>
