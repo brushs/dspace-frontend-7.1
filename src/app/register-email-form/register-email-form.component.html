@@ -10,19 +10,16 @@
                 <div class="form-group">
                     <label for="email" class="required">
                         {{MESSAGE_PREFIX + '.email' | translate}} <strong class="required">{{'sign.in.required' | translate}}</strong>
-                     </label>
+                        <strong *ngIf="emailIsEmpty" class="required">
+                            {{ MESSAGE_PREFIX + '.email.error.required' | translate }}
+                        </strong>     
+                        <strong *ngIf="emailIsInvalid" class="required">
+                            {{ MESSAGE_PREFIX + '.email.error.pattern' | translate }}
+                        </strong>
+                    </label>
                     <input class="form-control" autocomplete="off" autofocus
                         type="email" id="email" formControlName="email"/>
-                    <p>{{ MESSAGE_PREFIX + '.email.hint'  | translate }}</p>                        
-                    <p *ngIf="email.invalid && (email.dirty || email.touched)"
-                        class="invalid-feedback show-feedback">
-                        <span *ngIf="email.errors && email.errors.required">
-                            {{ MESSAGE_PREFIX + '.email.error.required' | translate }}
-                        </span>     
-                        <span *ngIf="email.errors && email.errors.pattern">
-                            {{ MESSAGE_PREFIX + '.email.error.pattern' | translate }}
-                        </span>
-                    </p>
+                    <p>{{ MESSAGE_PREFIX + '.email.hint'  | translate }}</p> 
                 </div>
 
                 <!-- Start of OSPR change -->
