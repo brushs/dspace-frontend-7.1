@@ -1026,6 +1026,9 @@
   // "truncate.collapse": "Show less",
   "truncate.collapse": "Afficher moins",
 
+  //"search.browse.item-back": "Back to results",
+  "search.browse.item-back": "Retour aux résultats",
+
   //labels for breadcrumbs
   // "science.innovation.breadcrumbs": "Science and innovation",
   "science.innovation.breadcrumbs": "Science et innovation",

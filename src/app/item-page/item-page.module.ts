@@ -48,6 +48,8 @@ import { SimpleMetadataSectionComponent } from './simple/field-components/specif
 import { GenericSimpleMetadataSectionComponent } from './simple/field-components/specific-field/generic-simple-metadata-section/generic-simple-metadata-section.component';
 import { SimpleItemPageCollectionsComponent } from './simple/field-components/specific-field/simple-item-page-collections/simple-item-page-collections.component';
 
+import { ResultsBackButtonModule } from '../shared/results-back-button/results-back-button.module';
+
 
 const ENTRY_COMPONENTS = [
   // put only entry components that use custom decorator
@@ -105,7 +107,8 @@ const DECLARATIONS = [
     StatisticsModule.forRoot(),
     JournalEntitiesModule.withEntryComponents(),
     ResearchEntitiesModule.withEntryComponents(),
-     NgxGalleryModule,
+    NgxGalleryModule,
+    ResultsBackButtonModule,
   ],
   declarations: [
     ...DECLARATIONS
