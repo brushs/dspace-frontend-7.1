@@ -6,7 +6,7 @@
     <label class="mb-0">
       <input type="checkbox" [checked]="true" class="my-1 align-self-stretch"/>
       <span class="filter-value pl-1 text-capitalize">
-          {{ selectedValue.value | translate: {default: selectedValue.label} }}
+        {{ selectedValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' : ',equals' | translate: {default: selectedValue.label} }}
       </span>
     </label>
   </a>
@@ -16,14 +16,14 @@
 
 <ng-template #GcWebTemplate>
   <ng-container 
-    *ngVar="(formatID('facet-' + (facetTerm ? (facetTerm + '-') : '') +  (selectedValue.value | translate: {default: selectedValue.label}))) as id">
+  *ngVar="(formatID('facet-' + (facetTerm ? (facetTerm + '-') : '') +  (selectedValue.label | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' | translate: {default: selectedValue.label}))) as id">
     <input [checked]="true" (change)="onSelect($event,selectedValue,filterConfig.name)" type="checkbox"
      [attr.name]="id" 
      [attr.id]="id"
      /> 
-    <label [attr.for]="id">
-      {{ selectedValue.value | translate: {default: selectedValue.label} }}
+    <label class="d-lg-flex filter-value" [attr.for]="id">
+        {{ selectedValue.label | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' | translate: {default: selectedValue.label} }} {{' '}}<span class="clearfix ml-auto"><span class="badge badge-pill">
+        <span class="wb-inv">{{ 'search.badge.result' | translate}}</span> {{selectedValue.count ? selectedValue.count : 0}}</span></span>
     </label>
-
   </ng-container>
 </ng-template>

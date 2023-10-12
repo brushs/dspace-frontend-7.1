@@ -6,14 +6,49 @@
     <strong>
       <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
         rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title">
-        <span [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
-          {{ dsoOfficialTitle[0].value }}
-        </span><br/>
-        <span *ngIf='dsoTranslatedTitle'>
-          <span [attr.lang]="getLanguageAttribute(dsoTranslatedTitle.language)">{{ dsoTranslatedTitle.value }}</span>
-        </span>
+        <p 
+        *ngIf="
+          dsoOfficialTitle
+          && dsoOfficialTitle[0]
+          && getLanguageAttribute(dsoOfficialTitle[0].language) 
+          && getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang)
+        " 
+        class="m-0" [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
+          {{ (dsoOfficialTitle[0].value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate  }}
+        </p>
+        
+        <p 
+        *ngIf="
+          (!dsoOfficialTitle
+            || !dsoOfficialTitle[0]
+            || !getLanguageAttribute(dsoOfficialTitle[0].language)
+            || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
+          && dsoTranslatedTitle 
+          && getLanguageAttribute(dsoTranslatedTitle.language) 
+          && getLanguageAttribute(dsoTranslatedTitle.language).includes(translate.currentLang)
+        " 
+        class="m-0">
+          <span [attr.lang]="getLanguageAttribute(dsoTranslatedTitle.language)">
+            {{ (dsoTranslatedTitle.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
+          </span>
+        </p>
+
+        <p *ngIf="
+          dsoOfficialTitle
+          && dsoOfficialTitle[0]
+          && (!getLanguageAttribute(dsoOfficialTitle[0].language)
+            || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
+          && (!dsoTranslatedTitle
+            || (!getLanguageAttribute(dsoTranslatedTitle.language)
+            || !getLanguageAttribute(dsoTranslatedTitle.language).includes(translate.currentLang)))
+        " 
+        class="m-0" [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
+          {{ (dsoOfficialTitle[0].value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
+        </p>
+
       </a>
-      <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
+
+      <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="(dsoTitle | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>
     </strong>
   </p>
 
@@ -24,14 +59,14 @@
       <span>
         <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
           <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && !dso.firstMetadataValue('dc.date.issued')">
-            (<span class="item-list-publisher" [innerHTML]="firstMetadataValue('dc.publisher')"></span>)
+            (<span class="item-list-publisher" [innerHTML]=" (firstMetadataValue('dc.publisher') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
           </ng-container>
           <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && dso.firstMetadataValue('dc.date.issued')">
             (<span class="item-list-publisher" [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
-            <span class="item-list-date" [innerHTML]="firstMetadataValue('dc.date.issued')"></span>)
+            <span class="item-list-date" [innerHTML]="(firstMetadataValue('dc.date.issued') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
           </ng-container>
           <ng-container *ngIf="dso.firstMetadataValue('dc.date.issued') && !dso.firstMetadataValue('dc.publisher')">
-            (<span class="item-list-date" [innerHTML]="firstMetadataValue('dc.date.issued')"></span>)
+            (<span class="item-list-date" [innerHTML]="(firstMetadataValue('dc.date.issued') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
           </ng-container>
         </ng-container>
 
@@ -53,7 +88,7 @@
     [ngClass]="{'resultItemDescription' : descriptionParagraphId == null || (isCollapsed$ | async)}" 
     *ngIf="dso.firstMetadataValue('dc.description.abstract')">
       <p [attr.lang]="getDescLanguageAttribute(dso)"
-        [innerHTML]="descriptionText"
+        [innerHTML]="(descriptionText | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "
         [id]="descriptionSpanId"
         ></p>
     </div>

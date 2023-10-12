@@ -1,7 +1,7 @@
 
 import { 
   ChangeDetectorRef,
-  Component, OnDestroy, Renderer2, ViewChild
+  Component, OnDestroy
 } from '@angular/core';
 import { listableObjectComponent } from '../../../../../object-collection/shared/listable-object/listable-object.decorator';
 import { ViewMode } from '../../../../../../core/shared/view-mode.model';
@@ -13,6 +13,8 @@ import { MetadataTranslatePipe } from '../../../../../utils/metadata-translate.p
 import { LocaleService, supportedLanguages } from '../../../../../../core/locale/locale.service';
 import { DSONameService } from '../../../../../../core/breadcrumbs/dso-name.service';
 import { TruncatableService } from '../../../../../truncatable/truncatable.service';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -53,7 +55,13 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
 
   readonly MAX_NUMBER_OF_LINES: number = 3;
 
-  constructor(protected truncatableService: TruncatableService, protected dsoNameService: DSONameService, protected localeService: LocaleService, private changeDetectorRef: ChangeDetectorRef ) {
+  constructor(
+    protected truncatableService: TruncatableService, 
+    protected dsoNameService: DSONameService, 
+    protected localeService: LocaleService, 
+    private changeDetectorRef: ChangeDetectorRef,
+    public translate: TranslateService,
+    ) {
     super(truncatableService, dsoNameService, localeService);
   }
   ngOnDestroy(): void {
