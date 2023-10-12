@@ -1,0 +1,6 @@
+<p class="item-page-field">
+  <a *ngIf="((item.firstMetadataValue('dc.rights') + '.link') | translate).startsWith('https'); else nonAnchorParagraphText" [href]="(item.firstMetadataValue('dc.rights') + '.link') | translate">{{ item.firstMetadataValue('dc.rights') | translate }}</a>
+  <ng-template #nonAnchorParagraphText>
+    <p>{{ item.firstMetadataValue('dc.rights') | translate }}</p>
+  </ng-template>
+</p>

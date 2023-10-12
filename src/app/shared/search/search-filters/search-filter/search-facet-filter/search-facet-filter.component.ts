@@ -18,7 +18,7 @@ import { EmphasizePipe } from '../../../../utils/emphasize.pipe';
 import { FacetValue } from '../../../facet-value.model';
 import { SearchFilterConfig } from '../../../search-filter-config.model';
 import { SearchService } from '../../../../../core/shared/search/search.service';
-import { FILTER_CONFIG, IN_PLACE_SEARCH, SearchFilterService } from '../../../../../core/shared/search/search-filter.service';
+import { FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB, SearchFilterService, FACET_TERM } from '../../../../../core/shared/search/search-filter.service';
 import { SearchConfigurationService } from '../../../../../core/shared/search/search-configuration.service';
 import { getFirstSucceededRemoteData } from '../../../../../core/shared/operators';
 import { InputSuggestion } from '../../../../input-suggestions/input-suggestions.model';
@@ -94,7 +94,10 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
               protected router: Router,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
               @Inject(IN_PLACE_SEARCH) public inPlaceSearch: boolean,
-              @Inject(FILTER_CONFIG) public filterConfig: SearchFilterConfig) {
+              @Inject(FILTER_CONFIG) public filterConfig: SearchFilterConfig,
+              @Inject(USE_GC_WEB) public useGcWeb?: boolean,
+              @Inject(FACET_TERM) public facetTerm?: string
+              ) {
   }
 
   /**
@@ -158,7 +161,6 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
       ).subscribe((rd: RemoteData<PaginatedList<FacetValue>[]>) => {
         this.animationState = 'ready';
         this.filterValues$.next(rd);
-
       }));
       this.subs.push(newValues$.pipe(take(1)).subscribe((rd) => {
         this.isLastPage$.next(hasNoValue(rd.payload.next));
@@ -228,32 +230,36 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
    * Submits a new active custom value to the filter from the input field
    * @param data The string from the input field
    */
-  onSubmit(data: any) {
-    this.selectedValues$.pipe(take(1)).subscribe((selectedValues) => {
-        if (isNotEmpty(data)) {
-          this.router.navigate(this.getSearchLinkParts(), {
-            queryParams:
-              {
-                [this.filterConfig.paramName]: [
-                  ...selectedValues.map((facet) => this.getFacetValue(facet)),
-                  data
-                ]
-              },
-            queryParamsHandling: 'merge'
-          });
-          this.filter = '';
-        }
-        this.filterSearchResults = observableOf([]);
-      }
-    );
+  onSubmit(data: any, exactMatch = false) {
+   this.applyFilterValue(data, exactMatch);
   }
 
   /**
    * On click, set the input's value to the clicked data
    * @param data The value of the option that was clicked
    */
-  onClick(data: any) {
+  onClick(data: any, exactMatch = false) {
     this.filter = data;
+    this.applyFilterValue(data, exactMatch);
+  }
+
+  applyFilterValue(data: any, exactMatch = false) {
+    this.selectedValues$.pipe(take(1)).subscribe((selectedValues) => {
+      if (isNotEmpty(data)) {
+        this.router.navigate(this.getSearchLinkParts(), {
+          queryParams:
+            {
+              [this.filterConfig.paramName]: [
+                ...selectedValues.map((facet) => this.getFacetValue(facet)),
+                data + ( exactMatch ? ',equals' : ''),
+              ]
+            },
+          queryParamsHandling: 'merge'
+        });
+        this.filter = '';
+      }
+      this.filterSearchResults = observableOf([]);
+    });
   }
 
   /**

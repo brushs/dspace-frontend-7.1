@@ -1,4 +1,4 @@
-import { combineLatest as observableCombineLatest, Observable } from 'rxjs';
+import { combineLatest as observableCombineLatest, Observable, BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Injectable, InjectionToken } from '@angular/core';
 import {
@@ -26,6 +26,8 @@ const filterStateSelector = (state: SearchFiltersState) => state.searchFilter;
 
 export const FILTER_CONFIG: InjectionToken<SearchFilterConfig> = new InjectionToken<SearchFilterConfig>('filterConfig');
 export const IN_PLACE_SEARCH: InjectionToken<boolean> = new InjectionToken<boolean>('inPlaceSearch');
+export const USE_GC_WEB: InjectionToken<boolean> = new InjectionToken<boolean>('useGcWeb');
+export const FACET_TERM: InjectionToken<boolean> = new InjectionToken<boolean>('facetTerm');
 
 /**
  * Service that performs all actions that have to do with search filters and facets
@@ -33,8 +35,14 @@ export const IN_PLACE_SEARCH: InjectionToken<boolean> = new InjectionToken<boole
 @Injectable()
 export class SearchFilterService {
 
+  public selectedFilterOptions$ = new BehaviorSubject<any>(null);
+  private currentFilterOptions!: any;
+
   constructor(private store: Store<SearchFiltersState>,
               private routeService: RouteService) {
+                //FORSC change for 1765
+                this.selectedFilterOptions$.subscribe(filters=> {
+                  this.currentFilterOptions = filters;});
   }
 
   /**
@@ -235,6 +243,19 @@ export class SearchFilterService {
   public resetPage(filterName: string): void {
     this.store.dispatch(new SearchFilterResetPageAction(filterName));
   }
+
+  //FORSC chnages for apply filter button #1765
+
+
+  public setSelectedFilters(filters:any):void{
+    this.selectedFilterOptions$.next(filters);
+  }
+
+  public getSelectedFilters(){
+    return this.currentFilterOptions;
+  }
+
+  // END FORSC changes
 }
 
 function filterByNameSelector(name: string): MemoizedSelector<SearchFiltersState, SearchFilterState> {

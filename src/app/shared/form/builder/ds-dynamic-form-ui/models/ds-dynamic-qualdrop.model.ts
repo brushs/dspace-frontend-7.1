@@ -45,6 +45,8 @@ export class DynamicQualdropModel extends DynamicFormGroupModel {
     });
 
     this.hint = config.hint;
+    // FOSRC console loging to be removed
+    // console.log("DsDynamicQualdropModelConfig: ", config);
   }
 
   get value() {

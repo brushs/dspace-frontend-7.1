@@ -48,9 +48,58 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
             data: { showBreadcrumbs: false },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
+          {
+            path: 'accueil',
+            loadChildren: () => import('./home-page/home-page.module')
+              .then((m) => m.HomePageModule),
+            data: { showBreadcrumbs: false },
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'about-us',
+            loadChildren: () => import('./about-us-page/about-us-page.module')
+              .then((m) => m.AboutUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'a-propos',
+            loadChildren: () => import('./about-us-page/about-us-page.module')
+              .then((m) => m.AboutUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'policies-and-standards',
+            loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
+              .then((m) => m.PoliciesAndStandardsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'politiques-et-normes',
+            loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
+              .then((m) => m.PoliciesAndStandardsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'contact-us',
+            loadChildren: () => import('./contact-us-page/contact-us-page.module')
+              .then((m) => m.ContactUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'contactez-nous',
+            loadChildren: () => import('./contact-us-page/contact-us-page.module')
+              .then((m) => m.ContactUsPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
           { path: 'tips-for-searching', pathMatch: 'full', component: SearchTipsPageComponent },
           {
             path: 'community-list',
+            loadChildren: () => import('./community-list-page/community-list-page.module')
+              .then((m) => m.CommunityListPageModule),
+            canActivate: [EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'liste-des-communautes',
             loadChildren: () => import('./community-list-page/community-list-page.module')
               .then((m) => m.CommunityListPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
@@ -154,6 +203,11 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
           },
           {
             path: 'sign-in',
+            loadChildren: () => import('./login-page/login-page.module')
+              .then((m) => m.LoginPageModule),
+          },
+          {
+            path: 'se-connecter',
             loadChildren: () => import('./login-page/login-page.module')
               .then((m) => m.LoginPageModule),
           },

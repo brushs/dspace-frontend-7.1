@@ -3,12 +3,28 @@
     text-content
   </ds-loading>
   <ng-template #showThumbnail>
-    <img *ngIf="src !== null" class="thumbnail-content img-fluid"
-         [src]="src | dsSafeUrl" [alt]="alt | translate" (error)="errorHandler()">
-    <div *ngIf="src === null" class="thumbnail-content outer">
-      <div class="inner">
-        <div class="thumbnail-placeholder w-100 h-100 p-3 lead">{{ placeholder | translate }}</div>
+
+    <ng-container *ngIf="!useGcWeb else GcWebTemplate">
+      <!--SIMPLE ITEM USES THIS -->
+      <img  class="thumbnail-content img-fluid" *ngIf="src !== null"
+      [src]="src | dsSafeUrl" [alt]="alt | translate" (error)="errorHandler()">
+      <!-- FOSRC remove default thumbnail #1763 -->
+      <div *ngIf="src === null" class="thumbnail-content outer">
+        <div class="inner">
+          <div class="thumbnail-placeholder w-100 h-100 p-3 lead">
+            <p>{{ placeholder | translate }}</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </ng-container>
+
+    <ng-template #GcWebTemplate>
+      <img *ngIf="src !== null" [src]="src | dsSafeUrl" [alt]="alt | translate" (error)="errorHandler()" class="img-responsive" />
+      <div *ngIf="src === null" class="thumbnail-content outer">
+        <div class="inner">
+          <div class="thumbnail-placeholder w-100 h-100 p-3 lead">{{ placeholder | translate }}</div>
+        </div>
+      </div>
+    </ng-template>
   </ng-template>
 </div>

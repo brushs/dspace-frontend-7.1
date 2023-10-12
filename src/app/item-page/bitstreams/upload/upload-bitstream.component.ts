@@ -108,6 +108,7 @@ export class UploadBitstreamComponent implements OnInit, OnDestroy {
     this.itemId = this.route.snapshot.params.id;
     this.entityType = this.route.snapshot.params['entity-type'];
     this.itemRD$ = this.route.data.pipe(map((data) => data.dso));
+    //FOSRC ticket 158 :=> Dspace cherry picked code.
     this.bundlesRD$ = this.itemService.getBundles(this.itemId);
     this.selectedBundleId = this.route.snapshot.queryParams.bundle;
     if (isNotEmpty(this.selectedBundleId)) {

@@ -17,6 +17,7 @@ import { MetadatumRepresentation } from '../../../core/shared/metadata-represent
 import { ItemMetadataRepresentation } from '../../../core/shared/metadata-representation/item/item-metadata-representation.model';
 import { followLink } from '../../../shared/utils/follow-link-config.model';
 import { AbstractIncrementalListComponent } from '../abstract-incremental-list/abstract-incremental-list.component';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'ds-metadata-representation-list',
@@ -56,13 +57,26 @@ export class MetadataRepresentationListComponent extends AbstractIncrementalList
    */
   @Input() incrementBy = 10;
 
+  
+  /**
+   * Whether or not to add the class "mrgn-bttm-0" to the middle objects in the list
+   */
+  @Input() addClassToMiddleObjects = false;
+
   /**
    * The total amount of metadata values available
    */
   total: number;
 
+  /** 
+   * Id for a div that wraps the loader, used to dynamically manipulate the children to accommodate item #1763 
+   */
+  loaderWrapperId: string;
+
   constructor(public relationshipService: RelationshipService) {
     super();
+    // randomly generate an id for the loader wrapper
+    this.loaderWrapperId = 'loader-wrapper-' + Math.floor(Math.random() * 1000000);
   }
 
   /**
@@ -72,9 +86,16 @@ export class MetadataRepresentationListComponent extends AbstractIncrementalList
   getPage(page: number): Observable<MetadataRepresentation[]> {
     const metadata = this.parentItem.findMetadataSortedByPlace(this.metadataFields);
     this.total = metadata.length;
-    return this.resolveMetadataRepresentations(metadata, page);
+    var temp = this.resolveMetadataRepresentations(metadata, page);
+    return temp;
   }
 
+
+  getClassName(repIndex: number){
+    if (!this.addClassToMiddleObjects)
+      return "";
+    return repIndex == 0 || repIndex == this.total - 1 ? "" : "mrgn-bttm-0";
+  }
   /**
    * Resolve a list of metadata values to a list of metadata representations
    * @param metadata  The list of all metadata values

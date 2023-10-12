@@ -26,8 +26,12 @@ export class FilterInputSuggestionsComponent extends InputSuggestionsComponent {
    * The suggestions that should be shown
    */
   @Input() suggestions: InputSuggestion[] = [];
+  @Input() useGcWeb: boolean = false;
 
   onSubmit(data) {
+    if(!this.value || this.value === '') {
+      return;
+    }
     this.value = data;
     this.submitSuggestion.emit(data);
   }

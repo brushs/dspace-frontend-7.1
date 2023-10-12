@@ -80,6 +80,11 @@ export class ListableObjectComponentLoaderComponent implements OnInit, OnChanges
   @Input() hideBadges = false;
 
   /**
+   * Use Gcweb template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * Directive hook used to place the dynamic child component
    */
   @ViewChild(ListableObjectDirective, {static: true}) listableObjectDirective: ListableObjectDirective;
@@ -128,6 +133,7 @@ export class ListableObjectComponentLoaderComponent implements OnInit, OnChanges
       'context',
       'viewMode',
       'value',
+      'useGcWeb'
     ];
 
   constructor(

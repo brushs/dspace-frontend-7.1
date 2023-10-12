@@ -6,3 +6,14 @@
         padding-left: 20px;
     }
 }
+// Removed the Glyphicons application below, because the use of Glyphicons for pagination's previous and next buttons are already addressed within wet theme's css file
+// ::ng-deep {
+//     .pagination > li [rel=next]:after {
+//         font-family: "Glyphicons Halflings" !important;
+//         content: "\e092" !important;
+//     }     
+//     .pagination > li:first-child [rel=prev]:before {
+//         font-family: "Glyphicons Halflings" !important;
+//         content: "\e091" !important;
+//     }     
+// }

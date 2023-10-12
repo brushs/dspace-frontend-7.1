@@ -1,14 +1,34 @@
-<a *ngIf="isVisible | async" class="d-flex flex-row"
-   [tabIndex]="-1"
-   [routerLink]="[searchLink]"
-   [queryParams]="addQueryParams" queryParamsHandling="merge">
-  <label class="mb-0">
-    <input type="checkbox" [checked]="false" class="my-1 align-self-stretch"/>
-    <span class="filter-value px-1">
-      {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}
-    </span>
-  </label>
-  <span class="float-right filter-value-count ml-auto">
-                        <span class="badge badge-secondary badge-pill">{{filterValue.count}}</span>
-                    </span>
-</a>
+<ng-container *ngIf="!useGcWeb else GcWebTemplate">
+  <a *ngIf="isVisible | async" class="d-flex flex-row"
+     [tabIndex]="-1"
+     [routerLink]="[searchLink]"
+     [queryParams]="addQueryParams" queryParamsHandling="merge">
+    <label class="mb-0">
+      <input type="checkbox" [checked]="false" class="my-1 align-self-stretch"/>
+      <span class="filter-value px-1">
+        {{ 'search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.value} }}
+      </span>
+    </label>
+    <span class="float-right filter-value-count ml-auto">
+                          <span class="badge badge-secondary badge-pill">{{filterValue.count}}</span>
+                      </span>
+  </a>
+</ng-container>
+
+<ng-template #GcWebTemplate>
+  
+  <ng-container *ngIf="isVisible | async">
+    <ng-container 
+      *ngVar="(formatID('facet-' + (facetTerm ? (facetTerm + '-') : '') +  ('search.filters.' + filterConfig.name + '.' + filterValue.value | translate: {default: filterValue.label}))) as id">
+      <input [checked]="isFacetOptionChecked(filterValue,filterConfig.name)" (change)="onSelect($event,filterValue,filterConfig.name)" type="checkbox"
+        [attr.name]="id" 
+        [attr.id]="id" 
+        /> 
+      <label class="d-lg-flex filter-value" [attr.for]="id">
+        {{ filterValue.value | translate: {default: filterValue.value} }} {{' '}}<span class="clearfix ml-auto"><span class="badge badge-pill">
+          <span class="wb-inv">{{ 'search.badge.result' | translate}}</span> {{filterValue.count}}</span></span>
+      </label>
+   </ng-container>
+  </ng-container>
+
+</ng-template>

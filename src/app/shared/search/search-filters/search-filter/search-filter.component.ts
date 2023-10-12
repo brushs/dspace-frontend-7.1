@@ -34,6 +34,11 @@ export class SearchFilterComponent implements OnInit {
   @Input() inPlaceSearch;
 
   /**
+   * Use gcweb template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * True when the filter is 100% collapsed in the UI
    */
   closed: boolean;

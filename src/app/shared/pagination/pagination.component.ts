@@ -2,11 +2,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
   OnInit,
   Output,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -52,6 +54,17 @@ export class PaginationComponent implements OnDestroy, OnInit {
    * Sort configuration for this component.
    */
   @Input() sortOptions: SortOptions;
+
+  /**
+   * Use Gc web template
+   */
+  @Input() useGcWeb = false;
+
+  /**
+   * FOSRC #1762 has different requirements for top bar
+   * This flag is used to switch between the two templates
+   */
+  @Input() useGcWebTop: boolean = false;
 
   /**
    * An event fired when the page is changed.
@@ -163,6 +176,8 @@ export class PaginationComponent implements OnDestroy, OnInit {
    */
   private subs: Subscription[] = [];
 
+  @ViewChild('paginator', {static: false}) paginationPage: ElementRef;
+
   /**
    * Method provided by Angular. Invoked after the constructor.
    */
@@ -174,6 +189,20 @@ export class PaginationComponent implements OnDestroy, OnInit {
       }));
     this.checkConfig(this.paginationOptions);
     this.initializeConfig();
+  }
+
+  ngAfterViewInit() {
+    // Accessibility implementations
+    if(this.useGcWeb) {
+      (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Previous"]')?.setAttribute('rel', 'prev');
+      (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Next"]')?.setAttribute('rel', 'next');
+      // A disabled button including ellipses gets rendered when displaying the last page number. This ensures the last page item gets rendered while the ellipses gets removed.
+      (<HTMLElement>this.paginationPage?.nativeElement)?.querySelectorAll('.page-item.disabled')?.forEach((el) => {
+        if(el.textContent?.includes('...')) {
+          el.setAttribute('aria-hidden', 'true');
+        }
+       });
+    }
   }
 
   /**

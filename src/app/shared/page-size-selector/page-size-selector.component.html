@@ -1,4 +1,4 @@
-<div class="page-size-settings">
+<div *ngIf="!useGcWeb else GcWebTemplate" class="page-size-settings">
     <ds-sidebar-dropdown
             [id]="'search-sidebar-rpp'"
             [label]="'search.sidebar.settings.rpp'"
@@ -11,3 +11,14 @@
         </option>
     </ds-sidebar-dropdown>
 </div>
+
+<ng-template #GcWebTemplate>
+    <div class="input-group">
+        <label class="text-nowrap" for="pageResults">{{'search.sidebar.settings.rpp' | translate}}</label>
+        <select [attr.id]="'pageResults'" (change)="reloadRPP($event)" class="form-control" id="pageResults" name="pageResults">
+            <option 
+                *ngFor="let pageSizeOption of (paginationOptions$ | async)?.pageSizeOptions"
+                [value]="pageSizeOption" [selected]="pageSizeOption === +((paginationOptions$ | async).pageSize)">{{pageSizeOption}}</option>
+        </select>
+    </div> 
+</ng-template>

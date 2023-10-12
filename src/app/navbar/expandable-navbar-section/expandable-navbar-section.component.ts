@@ -6,7 +6,7 @@ import { slide } from '../../shared/animations/slide';
 import { first } from 'rxjs/operators';
 import { HostWindowService } from '../../shared/host-window.service';
 import { rendersSectionForMenu } from '../../shared/menu/menu-section.decorator';
-import { ThemeActionTypes } from 'src/app/shared/theme-support/theme.actions';
+import { ThemeActionTypes } from '../../shared/theme-support/theme.actions';
 import { Subscription } from 'rxjs';
 
 /**

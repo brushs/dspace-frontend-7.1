@@ -10,8 +10,10 @@ import {
 import { FormGroup } from '@angular/forms';
 import {
   DynamicFormControlModel,
+  DynamicFormLayout,
   DynamicFormService,
-  DynamicInputModel
+  DynamicInputModel,
+  DynamicSelectModel
 } from '@ng-dynamic-forms/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FileUploader } from 'ng2-file-upload';
@@ -34,6 +36,8 @@ import { UploaderComponent } from '../../uploader/uploader.component';
 import { Operation } from 'fast-json-patch';
 import { NoContent } from '../../../core/shared/NoContent.model';
 import { getFirstCompletedRemoteData } from '../../../core/shared/operators';
+import { DynamicRowGroupModel } from '../../form/builder/ds-dynamic-form-ui/models/ds-dynamic-row-group-model';
+import { DynamicRowArrayModel } from '../../form/builder/ds-dynamic-form-ui/models/ds-dynamic-row-array-model';
 
 /**
  * A form for creating and editing Communities or Collections
@@ -79,6 +83,11 @@ export class ComColFormComponent<T extends Collection | Community> implements On
    * The form group of this form
    */
   formGroup: FormGroup;
+  
+  /**
+   * The form group of this form
+   */
+  formLayout: DynamicFormLayout = {};
 
   /**
    * The uploader configuration options
@@ -139,12 +148,36 @@ export class ComColFormComponent<T extends Collection | Community> implements On
   }
 
   ngOnInit(): void {
+    // FOSRC start
+    let i = 0;
     this.formModel.forEach(
-      (fieldModel: DynamicInputModel) => {
+      (fieldModel: DynamicInputModel | DynamicSelectModel<string>) => {
+        i++;
         fieldModel.value = this.dso.firstMetadataValue(fieldModel.name);
-        console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value)
+
+        if(fieldModel.name.includes('-lang')) {
+          let languageValue;
+          let metadataField = fieldModel.name.replace('-lang', '');
+          try {
+            if (languageValue = this.dso.metadata[metadataField]?.[0]?.language) {
+              (fieldModel as DynamicSelectModel<string>).select(languageValue === 'en' ? 0 : 1)
+            }
+          } catch (e){ }
+          this.formLayout[this.formModel[i-1].id] = {      
+            grid: {
+              control: "col-sm-9",
+            }
+          }
+          this.formLayout[fieldModel.id] = {      
+            grid: {
+              control: "col-sm-3",
+            }
+          }
+        }
+        // console.log("fieldModel.name: " + fieldModel.name + " fieldModel.value: " + fieldModel.value)
       }
     );
+    // FOSRC end
     this.formGroup = this.formService.createFormGroup(this.formModel);
 
     this.updateFieldTranslations();
@@ -203,16 +236,24 @@ export class ComColFormComponent<T extends Collection | Community> implements On
     }
 
     const formMetadata = {}  as MetadataMap;
-    this.formModel.forEach((fieldModel: DynamicInputModel) => {
-      const value: MetadataValue = {
-        value: fieldModel.value as string,
-        language: null
-      } as any;
-      if (formMetadata.hasOwnProperty(fieldModel.name)) {
-        formMetadata[fieldModel.name].push(value);
-      } else {
-        formMetadata[fieldModel.name] = [value];
+    this.formModel.forEach((fieldRowModel: DynamicRowGroupModel | DynamicRowArrayModel) => {
+      let groupsToIterate = []
+      if(fieldRowModel instanceof DynamicRowGroupModel) {
+        groupsToIterate = fieldRowModel.group
+      } else if(fieldRowModel instanceof DynamicRowArrayModel) {
+        groupsToIterate = fieldRowModel.groups.map(({group}) => group)
       }
+      groupsToIterate.forEach((fieldModel: DynamicInputModel) => {
+        const value: MetadataValue = {
+          value: fieldModel.value as string,
+          language: fieldModel.value ? fieldModel['language'] : null
+        } as any;
+        if (formMetadata.hasOwnProperty(fieldModel.name)) {
+          formMetadata[fieldModel.name].push(value);
+        } else {
+          formMetadata[fieldModel.name] = [value];
+        }
+      })
     });
 
     const updatedDSO = Object.assign({}, this.dso, {
@@ -220,23 +261,25 @@ export class ComColFormComponent<T extends Collection | Community> implements On
         ...this.dso.metadata,
         ...formMetadata
       },
-      type: Community.type
+      type: this.type
     });
 
     const operations: Operation[] = [];
-    this.formModel.forEach((fieldModel: DynamicInputModel) => {
-      if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name)) {
-        operations.push({
-          op: 'replace',
-          path: `/metadata/${fieldModel.name}`,
-          value: {
-            value: fieldModel.value,
-            language: null,
-          },
-        });
-      }
+    this.formModel.forEach((fieldRowModel: DynamicRowGroupModel) => {
+      fieldRowModel.group?.forEach((fieldModel: DynamicInputModel) => {
+        let languageChanged = (this.dso.firstMetadata(fieldModel.name) && this.dso.firstMetadata(fieldModel.name).language !== fieldModel['language']);
+        if (fieldModel.value !== this.dso.firstMetadataValue(fieldModel.name) || languageChanged) {
+          operations.push({
+            op: 'replace',
+            path: `/metadata/${fieldModel.name}`,
+            value: {
+              value: fieldModel.value,
+              language: fieldModel['language'],
+            },
+          });
+        }
+      })
     });
-
     this.submitForm.emit({
       dso: updatedDSO,
       uploader: hasValue(this.uploaderComponent) ? this.uploaderComponent.uploader : undefined,

@@ -9,7 +9,7 @@ import { TruncatableService } from '../../truncatable/truncatable.service';
 import { Metadata } from '../../../core/shared/metadata.utils';
 import { DSONameService } from '../../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../../core/locale/locale.service';
-import { MetadataValue } from 'src/app/core/shared/metadata.models';
+import { MetadataValue } from '../../../core/shared/metadata.models';
 
 @Component({
   selector: 'ds-search-result-list-element',
@@ -36,17 +36,9 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
       this.dso = this.object.indexableObject;
       this.dsoTitle = this.dsoNameService.getName(this.dso);
       this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
-      this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
-      if (this.dsoOfficialTitle == undefined || this.dsoOfficialTitle == null || this.dsoOfficialTitle.length == 0
-        || this.dsoOfficialTitle[0] == undefined || this.dsoOfficialTitle[0] == null ) {
-        this.dsoOfficialTitle = [
-          Object.assign(new MetadataValue(), {
-            value: this.dsoTitle||'No title',
-            language: undefined,
-          }),
-        ];
-      }
-      //console.log("ngOnInit: " + this.dsoOfficialTitle);
+      this.dsoTranslatedTitle = this.dsoNameService.getAlternateTitle(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
+      // console.log("ngOnInit: official : ", this.dsoOfficialTitle);
+      // console.log("ngOnInit: alt : ", this.dsoTranslatedTitle);
     }
   }
 

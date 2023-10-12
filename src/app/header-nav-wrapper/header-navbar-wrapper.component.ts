@@ -15,25 +15,9 @@ import { MenuID } from '../shared/menu/initial-menus-state';
   templateUrl: 'header-navbar-wrapper.component.html',
 })
 export class HeaderNavbarWrapperComponent implements OnInit, OnDestroy {
-  @HostBinding('class.open') isOpen = false;
-  private sub: Subscription;
-  public isNavBarCollapsed: Observable<boolean>;
-  menuID = MenuID.PUBLIC;
-
-  constructor(
-    private store: Store<AppState>,
-    private menuService: MenuService
-  ) {
-  }
-
   ngOnInit(): void {
-    this.isNavBarCollapsed = this.menuService.isMenuCollapsed(this.menuID);
-    this.sub = this.isNavBarCollapsed.subscribe((isCollapsed) => this.isOpen = !isCollapsed);
   }
-
-  ngOnDestroy() {
-    if (hasValue(this.sub)) {
-      this.sub.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    
   }
 }
