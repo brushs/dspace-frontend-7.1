@@ -6,6 +6,8 @@ import { listableObjectComponent } from '../../../../shared/object-collection/sh
 import { MetadataValue } from '../../../../core/shared/metadata.models';
 import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../../../core/locale/locale.service';
+import { RouteService } from '../../../../core/services/route.service';
+import { Router } from '@angular/router';
 
 /**
  * Component that represents a publication Item page
@@ -33,8 +35,8 @@ export class UntypedItemComponent extends ItemComponent {
   showDownloadLinksButton: boolean = false;
 
   readonly descriptionElementId: string = 'description-element';
-  constructor(private cdr: ChangeDetectorRef, protected dsoNameService: DSONameService, protected localeService: LocaleService) { 
-    super(dsoNameService, localeService);
+  constructor(private cdr: ChangeDetectorRef, protected dsoNameService: DSONameService, protected localeService: LocaleService, protected routeService: RouteService, protected router: Router ) { 
+    super(dsoNameService, localeService,routeService, router);
   }
 
 
