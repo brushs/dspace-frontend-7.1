@@ -35,7 +35,7 @@ export class WelcomePageComponent implements OnInit {
   constructor(private localeService: LocaleService,
     private router: Router,
     private renderer2: Renderer2, 
-    @Inject(DOCUMENT) private document: Document,
+    @Inject(DOCUMENT) private document: any,
     ) { }
 
   ngOnInit(): void {
