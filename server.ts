@@ -51,6 +51,9 @@ const { ServerAppModule, ngExpressEngine } = require('./dist/server/main');
 
 const cookieParser = require('cookie-parser');
 
+//variable that holds the current language setting
+let languageSetting = '';
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
 
@@ -149,6 +152,43 @@ export function app() {
  */
 function ngApp(req, res) {
   if (environment.universal.preboot) {
+
+    if(
+      //'dsLanguage' cookie exists 
+      req.cookies.dsLanguage
+
+      //AND the languageSetting variable is not equal to the
+      // 'dsLanguage' cookie value
+      && languageSetting !== req.cookies.dsLanguage
+
+      //AND 'dsLanguage' cookie is set to "en" OR "fr"
+      && (
+        req.cookies.dsLanguage === "en" 
+        || req.cookies.dsLanguage === "fr"
+      )
+
+      //AND the index.html file exists in the dist/browser folder
+      && existsSync(join(DIST_FOLDER, 'index.html'))
+    ){
+
+      try {
+        //read the index.html file in the dist/browser folder 
+        const indexHtmlData = fs.readFileSync(join(DIST_FOLDER, 'index.html'), 'utf8');
+
+        //copy the index.html file and replace the existing lang attribute
+        let modifiedIndexHtmlData = indexHtmlData.replace(/lang="(en|fr)"/, `lang="${req.cookies.dsLanguage}"`);
+
+        //overwrite the original index.html file
+        fs.writeFileSync(join(DIST_FOLDER, 'index.html'), modifiedIndexHtmlData);
+
+        //set the language setting to the 'dsLanguage' cookie value
+        languageSetting = req.cookies.dsLanguage;
+      } catch (err) {
+        console.error(err);
+      }
+
+    }
+
     res.render(indexHtml, {
       req,
       res,
