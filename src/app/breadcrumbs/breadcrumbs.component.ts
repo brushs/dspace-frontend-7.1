@@ -3,6 +3,7 @@ import { Breadcrumb } from './breadcrumb/breadcrumb.model';
 import {BreadcrumbOptions} from './breadcrumb/breadcrumb-options.model';
 import { BreadcrumbsService } from './breadcrumbs.service';
 import { Observable } from 'rxjs/internal/Observable';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Component representing the breadcrumbs of a page
@@ -29,8 +30,15 @@ export class BreadcrumbsComponent {
    */
   showBreadcrumbs$: Observable<boolean>;
 
+  /**
+   * Regex representation of text containing "gc science"
+   * with case insensitivity
+   */
+  gcScienceRegex = /.*gc science.*/i
+
   constructor(
     private breadcrumbsService: BreadcrumbsService,
+    public translate: TranslateService,
   ) {
     this.breadcrumbs$ = breadcrumbsService.breadcrumbs$;
     this.showBreadcrumbs$ = breadcrumbsService.showBreadcrumbs$;
@@ -46,5 +54,9 @@ export class BreadcrumbsComponent {
     return locationPath;
   }
   // OSPR code end
+
+  public testRegexPattern(regexPattern: RegExp, text){
+    return regexPattern.test(text);
+  }
 
 }
