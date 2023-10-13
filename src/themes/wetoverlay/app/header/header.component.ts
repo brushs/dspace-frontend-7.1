@@ -26,7 +26,7 @@ export class HeaderComponent extends BaseComponent {
     private _renderer2: Renderer2, 
     public translate: TranslateService,
     private zone: NgZone,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: any
   ) {
     super(menuService);
     this.isXs$ = this.windowService.isXs();

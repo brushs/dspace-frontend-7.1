@@ -5,6 +5,11 @@ import { LocaleService } from '../../../../core/locale/locale.service';
 import { Item } from '../../../../core/shared/item.model';
 import { MetadataValue } from '../../../../core/shared/metadata.models';
 import { getItemPageRoute } from '../../../item-page-routing-paths';
+import { Observable } from 'rxjs';
+import { filter, map, take } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { RouteService } from '../../../../core/services/route.service';
+
 
 @Component({
   selector: 'ds-item',
@@ -15,6 +20,17 @@ import { getItemPageRoute } from '../../../item-page-routing-paths';
  */
 export class ItemComponent implements OnInit {
   @Input() object: Item;
+
+  /**
+   * This regex matches previous routes. The button is shown
+   * for matching paths and hidden in other cases.
+   */
+  previousRoute = /^(\/search|\/browse|\/collections|\/admin\/search|\/mydspace)/;
+
+  /**
+   * Used to show or hide the back to results button in the view.
+   */
+  showBackButton: Observable<boolean>;
 
   /**
    * Route to the item page
@@ -37,8 +53,24 @@ export class ItemComponent implements OnInit {
   dsoOther: MetadataValue[]; //FOSRC added
   dsoKeywords: MetadataValue[]; //FOSRC added
 
-  public constructor(protected dsoNameService: DSONameService, protected localeService: LocaleService) {
+  public constructor(protected dsoNameService: DSONameService,
+                     protected localeService: LocaleService,
+                     protected routeService: RouteService,
+                     protected router: Router) {
   }
+
+  /**
+  * The function used to return to list from the item.
+  */
+  public back = () => {
+    this.routeService.getPreviousUrl().pipe(
+          take(1)
+        ).subscribe(
+          (url => {
+            this.router.navigateByUrl(url);
+          })
+        );
+  };
 
   ngOnInit(): void {
     this.itemPageRoute = getItemPageRoute(this.object);
@@ -56,5 +88,11 @@ export class ItemComponent implements OnInit {
     this.dsoOther = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
     this.dsoKeywords = this.dsoNameService.getOfficialName(this.object, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en');
     //console.log("ngInit in Item-Component: AlternateTitlesExist: " + this.dsoAlternativeTitleExists + " AlternateTitles: ", this.dsoAlternateTitles);
+
+    this.showBackButton = this.routeService.getPreviousUrl().pipe(
+      filter(url => this.previousRoute.test(url)),
+      take(1),
+      map(() => true)
+    );
   }
 }

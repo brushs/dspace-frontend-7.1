@@ -26,6 +26,11 @@ export class BrowseByComponent implements OnInit {
    * The i18n message to display as title
    */
   @Input() title: string;
+ 
+  /**
+   * The current field being browsed by
+   */
+  @Input() browseField: string;
 
   /**
    * The parent name
@@ -133,6 +138,7 @@ export class BrowseByComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.title, this.browseField)
     this.objectInjector = Injector.create({
       providers: [
         { provide: 'startsWithOptions', useFactory: () => (this.startsWithOptions), deps:[] },

@@ -1,18 +1,36 @@
-
-<h2 class="comcol-browse-label">{{'browse.comcol.head' | translate}}</h2>
-<div gcweb>
-  <ul class="list-inline d-flex flex-wrap mrgn-bttm-0">
-    <li *ngFor="let option of allOptions" class="col-md-2 text-center">
-      <a 
-      (click)="onSelectChange(option.id)" 
-      (keypress.space)="onSelectChange(option.id)" 
-      (keypress.enter)="onSelectChange(option.id)" 
-      href="javascript::void(0)"  
-      class="btn btn-default list-group-item well h-100">{{ option.label | translate }}</a>
-    </li>
-  </ul>
-</div>
-
+<!-- Community and collection page -->
+<ng-container *ngIf="!browsingbyMetadata">
+  <h2 class="comcol-browse-label h3">{{'browse.comcol.head' | translate}}</h2>
+  <div gcweb>
+    <ul class="list-inline">
+      <li *ngFor="let option of allOptions">
+        <a 
+          (click)="onSelectChange(option.id)" 
+          (keypress.space)="onSelectChange(option.id)" 
+          (keypress.enter)="onSelectChange(option.id)" 
+          href="javascript::void(0)" 
+        class="list-group-item well">{{ option.label | translate }}</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+<!-- Browse by page -->
+<section *ngIf="browsingbyMetadata" class="panel panel-primary mrgn-tp-lg clearfix">
+  <header class="panel-heading">
+     <h2 class="panel-title">
+      {{ 'nav.browse.header' | translate}}
+     </h2>
+  </header>
+  <div class="panel-body">
+     <div class="list-group">
+        <a *ngFor="let option of allOptions" 
+          (click)="onSelectChange(option.id)" 
+          (keypress.space)="onSelectChange(option.id)" 
+          (keypress.enter)="onSelectChange(option.id)" 
+          href="javascript::void(0);" [ngClass]="{active: (currentOptionId$ | async) === option.id}" class="list-group-item">{{ option.label | translate }}</a>
+     </div>
+  </div>
+</section>
 
 <!-- <nav class="comcol-browse mb-4" aria-label="Browse Community or Collection">
   <div gcweb class="d-none d-sm-block">
