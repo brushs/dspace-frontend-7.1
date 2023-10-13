@@ -20,7 +20,7 @@
   "about-us.breadcrumbs": "About the FOSRC",
 
   "browseby.author.head" : "Browsing {{name}} by author",
-  "browseby.dateissued.head" : "Browsing {{name}} by issue date",
+  "browseby.dateissued.head" : "Browsing {{name}} by date",
   "browseby.subject.head" : "Browsing {{name}} by subject",
   "browseby.title.head" : "Browsing {{name}} by title",
   // Policies page labels
