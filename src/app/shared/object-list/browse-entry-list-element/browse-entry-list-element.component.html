@@ -1,10 +1,23 @@
-<div class="d-flex flex-row">
+<div *ngIf="!useGcWeb else GcWebTemplate" class="d-flex flex-row">
     <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="" [queryParams]="{value: object.value, startsWith: undefined}" [queryParamsHandling]="'merge'" class="lead">
-        {{object.value}}
+        {{(object.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
     </a>
     <span *ngIf="linkType == linkTypes.None" class="lead">
-        {{object.value}}
+        {{(object.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
     </span>
     <span class="pr-2">&nbsp;</span>
     <span class="badge badge-pill badge-secondary align-self-center">{{object.count}}</span>
 </div>
+
+<ng-template #GcWebTemplate>
+    <p>
+        <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="" [queryParams]="{value: object.value, startsWith: undefined}" [queryParamsHandling]="'merge'" class="lead">
+            {{(object.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
+        </a>
+        <span *ngIf="linkType == linkTypes.None" class="lead">
+            {{(object.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
+        </span>
+
+        <span class="badge badge-pill badge-secondary mrgn-lft-md">{{object.count}}</span><span class="wb-inv">{{'search.results' | translate}}</span>
+    </p>
+</ng-template>
