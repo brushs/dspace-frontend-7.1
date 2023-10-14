@@ -15,14 +15,14 @@ import { SearchConfigurationService } from '../core/shared/search/search-configu
 import { hasValue } from '../shared/empty.util';
 import { RouteService } from '../core/services/route.service';
 import { SearchService } from '../core/shared/search/search.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**
  * This component renders a search page using a configuration as input.
  */
 @Component({
   selector: 'ds-configuration-search-page',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['../../themes/wetoverlay/styles/static-pages.scss', './search.component.scss'],
   templateUrl: './search.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [pushInOut],
@@ -52,8 +52,10 @@ export class ConfigurationSearchPageComponent extends SearchComponent implements
               protected windowService: HostWindowService,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
               protected routeService: RouteService,
-              protected router: Router) {
-    super(service, sidebarService, windowService, searchConfigService, routeService, router);
+              protected router: Router,
+              protected route: ActivatedRoute,
+              ) {
+    super(service, sidebarService, windowService, searchConfigService, routeService, router, route);
   }
 
   /**

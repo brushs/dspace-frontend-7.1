@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BitstreamDataService } from '../../../../core/data/bitstream-data.service';
 
@@ -17,11 +17,16 @@ import { getFirstCompletedRemoteData } from '../../../../core/shared/operators';
  */
 @Component({
   selector: 'ds-item-page-file-section',
-  templateUrl: './file-section.component.html'
+  templateUrl: './file-section.component.html',
+  styleUrls: ['./file-section.component.scss'],
 })
 export class FileSectionComponent implements OnInit {
 
   @Input() item: Item;
+
+  @Input() elementID: string;
+
+  @Output() hasBitstreams: EventEmitter<boolean> = new EventEmitter();
 
   label = 'item.page.files';
 
@@ -46,6 +51,13 @@ export class FileSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNextPage();
+    this.bitstreams$.subscribe(bitstreams => {
+      if (bitstreams && bitstreams.length > 0) {
+        this.hasBitstreams.emit(true);
+      } else {
+        this.hasBitstreams.emit(false);
+      }
+    });
   }
 
   /**

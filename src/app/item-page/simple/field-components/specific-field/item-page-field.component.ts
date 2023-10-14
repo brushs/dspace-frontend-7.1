@@ -16,8 +16,7 @@ export class ItemPageFieldComponent {
     /**
      * The item to display metadata for
      */
-    @Input() item: Item;
-
+    @Input() item: Item;    
     /**
      * Fields (schema.element.qualifier) used to render their values.
      */

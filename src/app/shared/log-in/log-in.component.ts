@@ -58,6 +58,7 @@ export class LogInComponent implements OnInit {
 
   constructor(private store: Store<CoreState>,
               private authService: AuthService,
+              private translate: AuthService,
               private authorizationService: AuthorizationDataService) {
   }
 

@@ -45,6 +45,8 @@ export class ThumbnailComponent implements OnChanges {
    */
   @Input() limitWidth? = true;
 
+  @Input() useGcWeb = false;
+
   isLoading: boolean;
 
   /**

@@ -1,6 +1,6 @@
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, Injector, NgModule } from '@angular/core'; //FOSRC added so we can inject services
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
@@ -54,6 +54,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
 
 import { UUIDService } from './core/shared/uuid.service';
 import { CookieService } from './core/services/cookie.service';
+import { setAppInjector } from './app.injector'; //FOSRC added so we can inject services
 
 export function getBase() {
   return environment.ui.nameSpace;
@@ -197,5 +198,7 @@ const EXPORTS = [
   ]
 })
 export class AppModule {
-
+  constructor(injector: Injector) { //FOSRC added this constructor so we can inject services
+    setAppInjector(injector);
+  }
 }

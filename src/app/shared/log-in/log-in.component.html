@@ -1,19 +1,35 @@
 <ds-loading *ngIf="(loading | async) || (isAuthenticated | async)" class="m-5"></ds-loading>
-<div *ngIf="!(loading | async) && !(isAuthenticated | async)" class="px-4 py-3 login-container">
+<!-- <div *ngIf="!(loading | async) && !(isAuthenticated | async)" class="px-4 py-3 login-container">
   <ng-container *ngFor="let authMethod of (authMethods | async); let i = index">
-    <div *ngIf="i === 1 && enablePassword" class="text-center mt-2">
+    <div *ngIf="i === 1" class="text-center mt-2">
       <span class="align-middle">{{"login.form.or-divider" | translate}}</span>
     </div>
-    <div *ngIf="i === 1 || enablePassword"> 
-      <ds-log-in-container  [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
-    </div>
+    <ds-log-in-container [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
   </ng-container>
 
-  <div *ngif = "enablePassword" class="dropdown-divider"></div>
-  <!--Start FOSRC Changes- Issue 1396 -->
-  <!--a class="dropdown-item text-wrap" *ngIf="canRegister$ | async" [routerLink]="[getRegisterRoute()]">{{"login.form.new-user" | translate}}</a-->
-  <!-- End of FOSRC changes-->
-  <div *ngif = "enablePassword">
+  <div class="dropdown-divider"></div>
+  Start FOSRC Changes- Issue 1396
+  a class="dropdown-item text-wrap" *ngIf="canRegister$ | async" [routerLink]="[getRegisterRoute()]">{{"login.form.new-user" | translate}}</a
+  End of FOSRC changes
   <a class="dropdown-item text-wrap" [routerLink]="[getForgotRoute()]">{{"login.form.forgot-password" | translate}}</a>
+</div> -->
+
+
+
+<div *ngIf="!(loading | async) && !(isAuthenticated | async)" class="row">
+  <div class="col-md-12 ">
+    <h1 property="name" id="wb-cont">{{'sign.in.title' | translate}}</h1>
+
+    <div class="alert alert-info">
+      <p>{{'sign.in.badge' | translate}}</p>
+    </div>
+
+    <p [innerHTML]="'sign.in.info.text' | translate"></p>
+    <ng-container *ngFor="let authMethod of (authMethods | async); let i = index">
+      <ds-log-in-container [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
+    </ng-container>
+    <p class="margin-top-medium"><a class="text-wrap" [routerLink]="[getForgotRoute()]">{{"login.form.forgot-password" | translate}}</a></p>
   </div>
+
+
 </div>

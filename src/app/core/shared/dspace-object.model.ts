@@ -207,6 +207,10 @@ export class DSpaceObject extends ListableObject implements CacheableObject {
     return [this.constructor as GenericConstructor<ListableObject>];
   }
 
+  //FOSRC added getDSpaceType()
+  public getDSpaceType(): string {
+    return 'DSpaceObject';
+  }
   setMetadata(key: string, language?: string, ...values: string[]) {
     const mdValues: MetadataValue[] = values.map((value: string, index: number) => {
       const md = new MetadataValue();

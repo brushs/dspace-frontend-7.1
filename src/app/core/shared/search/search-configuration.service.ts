@@ -254,7 +254,9 @@ export class SearchConfigurationService implements OnDestroy {
     return searchConfig$.pipe(map((searchConfig) => {
       const sortOptions = [];
       searchConfig.sortOptions.forEach(sortOption => {
-        sortOptions.push(new SortOptions(sortOption.name, SortDirection.ASC));
+        if (sortOption.name !== 'score') {
+          sortOptions.push(new SortOptions(sortOption.name, SortDirection.ASC));
+        }
         sortOptions.push(new SortOptions(sortOption.name, SortDirection.DESC));
       });
       return sortOptions;
