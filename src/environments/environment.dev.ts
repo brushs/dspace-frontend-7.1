@@ -12,11 +12,12 @@ export const environment = {
 		"baseUrl": "http://localhost:4000/"
 	},
 	"rest": {
-		"ssl": true,
-		"host": "dev-ospr.g.ent.cloud-nuage.canada.ca",
-		"port": 443,
+		"ssl": false,
+		"host": "localhost",
+		"port": 8080,
+		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
 		"nameSpace": "/server",
-		"baseUrl": "https://dev-ospr.g.ent.cloud-nuage.canada.ca/server"
+    "baseUrl": "http://localhost:8080/server",
 	},
 	"cache": {
 		"msToLive": {
@@ -38,6 +39,9 @@ export const environment = {
 		},
 		"rest": {
 			"timeLeftBeforeTokenRefresh": 120000
+		},
+		"login": {
+			"enablePassword": true
 		}
 	},
 	"form": {
