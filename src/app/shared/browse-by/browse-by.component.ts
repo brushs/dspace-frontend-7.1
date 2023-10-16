@@ -138,7 +138,6 @@ export class BrowseByComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.title, this.browseField)
     this.objectInjector = Injector.create({
       providers: [
         { provide: 'startsWithOptions', useFactory: () => (this.startsWithOptions), deps:[] },
