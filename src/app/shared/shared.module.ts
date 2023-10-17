@@ -239,6 +239,7 @@ import { SearchNavbarComponent } from '../search-navbar/search-navbar.component'
 import { OSPRTruncatePipe } from './utils/ospr-truncate';
 import { PageDetailsComponent } from './page-details/page-details.component';
 import { ComcolSearchFilterComponent } from './comcol-search-filter/comcol-search-filter.component';
+import { HelperService } from './utils/helper.service';
 
 /**
  * Declaration needed to make sure all decorator functions are called in time
@@ -556,6 +557,7 @@ const SHARED_ITEM_PAGE_COMPONENTS = [
 
 const PROVIDERS = [
   TruncatableService,
+  HelperService,
   MockAdminGuard,
   AbstractTrackableComponent,
   {
