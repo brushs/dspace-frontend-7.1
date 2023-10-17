@@ -51,7 +51,7 @@
   <div *ngIf="((updates$ | async)| dsObjectValues).length == 0">
     <ds-alert [content]="'item.edit.metadata.empty'" [type]="AlertTypeEnum.Info"></ds-alert>
   </div>
-  <div class="button-row bottom">
+  <div class="d-flex justify-content-end">
     <div class="mt-2 float-right">
       <button class="btn btn-warning" *ngIf="isReinstatable() | async"
               (click)="reinstate()">
