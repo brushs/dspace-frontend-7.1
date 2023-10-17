@@ -1,11 +1,63 @@
 @include media-breakpoint-down(md) {
-    .container {
-      width: 100%;
-      max-width: none;
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+::ng-deep .search-controls {
+    margin-bottom: var(--bs-spacer);
+}
+
+[gcweb] {
+  ::ng-deep {
+    .btn-primary {
+      background-color: #26374a;
+      border-color: #26374a;
     }
+    .btn-secondary:hover {
+      color: white;
+      background-color: #1c578a;
+      background-color: var(--ospr-blue-300);
+      border-color: #091c2d;
+      border-color: var(--ospr-blue-900);
+    }
+    // Updated display of pagination from flex to --webkit-box for mobile view
+    .pagination {
+      font-size: initial;
+      line-height: initial;
+      display: -webkit-box !important;
+    }
+    .form-control {
+      min-height: unset;
+    }
+    .input-group-btn {
+      .btn {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+    .dropdown-list > ul {
+     padding: unset !important;
+    }
+    .dropdown-item {
+      &:hover {
+          color: white !important;
+      }
+    }
+    .input-group .input-group-btn button {
+      min-height: unset;
+    }
+    #main-searchrepository {
+      min-height: 45px;
+    }
+   }
+  .h4 {
+    margin-top: unset;
   }
-  
-  ::ng-deep .search-controls {
-      margin-bottom: var(--bs-spacer);
+
+  .button-text {
+    display: inline-flex;
+    align-items: center;
   }
-  
+}
