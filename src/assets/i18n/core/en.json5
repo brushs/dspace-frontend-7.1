@@ -19,10 +19,10 @@
   // About us page labels
   "about-us.breadcrumbs": "About the FOSRC",
 
-  "browseby.author.head" : "Browsing {{name}} by author",
-  "browseby.dateissued.head" : "Browsing {{name}} by date",
-  "browseby.subject.head" : "Browsing {{name}} by subject",
-  "browseby.title.head" : "Browsing {{name}} by title",
+  "browseby.author.head": "Browsing {{name}} by author",
+  "browseby.dateissued.head": "Browsing {{name}} by date",
+  "browseby.subject.head": "Browsing {{name}} by subject",
+  "browseby.title.head": "Browsing {{name}} by title",
   // Policies page labels
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
 
@@ -538,10 +538,11 @@
   "fosrc.item.edit.dynamic-field.values.5.common_identifiers": "Other",
   "fosrc.item.edit.dynamic-field.values.6.common_identifiers": "PubMed ID",
   "fosrc.item.edit.dynamic-field.values.7.common_identifiers": "URL or/ou URI",
-  "fosrc.item.edit.dynamic-field.values.request-doi.no": "no",
-  "fosrc.item.edit.dynamic-field.values.request-doi.yes": "yes",
+  "fosrc.item.edit.dynamic-field.values.request-doi.no": "No",
+  "fosrc.item.edit.dynamic-field.values.request-doi.yes": "Yes",
   "fosrc.item.edit.dynamic-field.values.request-doi.No": "No",
   "fosrc.item.edit.dynamic-field.values.request-doi.Yes": "Yes",
+ 
 
   "fosrc.item.form.error.panel.dc.type": "Publication Type: ",
   "fosrc.item.form.error.panel.dc.language.iso": "Publication Language: ",
@@ -568,6 +569,9 @@
   "search.filters.filter.dateInvalid": "Error: Invalid year (YYYY)",
   "search.filters.filter.dateInvalidRange": "Error: Start date cannot be greater than current year",
   "search.filters.filter.datePlaceholder": "YYYY",
+  "search.filters.filter.peerReview.head": "Peer review",
+  "search.filters.filter.peerReview.placeholder": "Search peer review",
+  "search.filters.applied.f.peerReview": "Peer review",
 
   "search.form.search.text": "Search",
 
