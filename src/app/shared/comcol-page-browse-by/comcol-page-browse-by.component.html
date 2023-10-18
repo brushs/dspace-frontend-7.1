@@ -25,9 +25,9 @@
       <ul class="list-unstyled">
         <li *ngFor="let option of allOptions" >
           <a
-            (click)="$event.preventDefault();onSelectChange(option.id)" 
-            (keypress.space)="$event.preventDefault();onSelectChange(option.id)" 
-            (keypress.enter)="$event.preventDefault();onSelectChange(option.id)" 
+            (click)="$event.preventDefault();onSelectChange(option.id, true)" 
+            (keypress.space)="$event.preventDefault();onSelectChange(option.id, true)" 
+            (keypress.enter)="$event.preventDefault();onSelectChange(option.id, true)" 
             href="javascript::void(0);" [ngClass]="{active: (currentOptionId$ | async) === option.id}" class="list-group-item">{{ option.label | translate }}</a>
         </li>
       </ul>
