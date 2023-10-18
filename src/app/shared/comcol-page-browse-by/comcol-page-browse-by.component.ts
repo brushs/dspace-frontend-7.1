@@ -72,9 +72,9 @@ export class ComcolPageBrowseByComponent implements OnInit {
     );
   }
 
-  onSelectChange(newId: string) {
+  onSelectChange(newId: string, useFragment = false) {
     const selectedOption = this.allOptions
       .find((option: ComColPageNavOption) => option.id === newId);
-    this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params, fragment: 'wb-cont' });
+    this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params, fragment: useFragment ? 'wb-cont' : undefined });
   }
 }
