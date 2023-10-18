@@ -211,10 +211,15 @@
                                       *ngIf="metadataContainsKey('dc.location.fosrcconference')"
                                       [label]="'fosrc.item.edit.dynamic-field.label.conference.location'">
           </ds-generic-simple-metadata-section>
-          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
-                                      [fields]="['local.conferencetype']"
-                                      *ngIf="metadataContainsKey('local.conferencetype')"
-                                      [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="false"
+                                      [fields]="getSubTypeFields('conference')"
+                                      *ngIf="metadataContainsKey('local.conferencetype') 
+                                        || dcTypeIsConferenceMaterialType()"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.sub.type'"
+                                      [subheading]="true"
+                                      [separator]="','"
+                                      [isList]="true"
+                                      >
           </ds-generic-simple-metadata-section>
         </dl>
       </div>
@@ -254,10 +259,15 @@
                                   *ngIf="metadataContainsKey('dc.date.submitted')"
                                   [label]="'fosrc.item.edit.dynamic-field.label.submitted.date'" [subheading]="true">
       </ds-generic-simple-metadata-section>
-      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
-                                  [fields]="['local.articletype']"
-                                  *ngIf="metadataContainsKey('local.articletype')"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.sub-type'" [subheading]="true">
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="false"
+                                  [fields]="getSubTypeFields('article')"
+                                  *ngIf="metadataContainsKey('local.articletype') 
+                                    || dcTypeIsArticleType()"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.sub-type'"
+                                  [subheading]="true"
+                                  [separator]="','"
+                                  [isList]="true"
+                                  >
       </ds-generic-simple-metadata-section>
     </dl>
   </div>
@@ -285,10 +295,15 @@
                                   *ngIf="metadataContainsKey('local.report.edition')"
                                   [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
       </ds-generic-simple-metadata-section>
-      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
-                                  [fields]="['local.reporttype']"
-                                  *ngIf="metadataContainsKey('local.reporttype')"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="false"
+                                  [fields]="getSubTypeFields('report')"
+                                  *ngIf="metadataContainsKey('local.reporttype') 
+                                    || dcTypeIsReportType()"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.sub.type'"
+                                  [subheading]="true"
+                                  [separator]="','"
+                                  [isList]="true"
+                                  >
       </ds-generic-simple-metadata-section>
     </div>
 
