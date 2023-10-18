@@ -8,6 +8,7 @@ import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../../../core/locale/locale.service';
 import { RouteService } from '../../../../core/services/route.service';
 import { Router } from '@angular/router';
+import { MetadataTranslatePipe } from '../../../../shared/utils/metadata-translate.pipe';
 
 /**
  * Component that represents a publication Item page
@@ -35,7 +36,13 @@ export class UntypedItemComponent extends ItemComponent {
   showDownloadLinksButton: boolean = false;
 
   readonly descriptionElementId: string = 'description-element';
-  constructor(private cdr: ChangeDetectorRef, protected dsoNameService: DSONameService, protected localeService: LocaleService, protected routeService: RouteService, protected router: Router ) { 
+  constructor(
+    private cdr: ChangeDetectorRef, 
+    protected dsoNameService: DSONameService, 
+    protected localeService: LocaleService, 
+    protected routeService: RouteService, 
+    protected router: Router 
+  ) { 
     super(dsoNameService, localeService,routeService, router);
   }
 
@@ -162,7 +169,7 @@ export class UntypedItemComponent extends ItemComponent {
     return this.object.bundles != null;
   }
 
-  private metadataHasOneOfTheseFields(fields: string[]): boolean {
+  public metadataHasOneOfTheseFields(fields: string[]): boolean {
 
     for(var field of fields) {
         if(this.metadataContainsKey(field)) {
@@ -186,4 +193,77 @@ export class UntypedItemComponent extends ItemComponent {
     }
   }
   /* End of FOSRC Changes */
+
+  translateMetadata(keys: string | string[], dso: any) {
+    const pipe = new MetadataTranslatePipe(this.dsoNameService, this.localeService);
+    return pipe.transform(keys, dso);
+  }
+
+  getTypeValue(dso: any = this.object): any {
+    return this.translateMetadata(['dc.type'], dso)[0]?.value;
+  }
+
+  dcTypeIsConferenceMaterialType(): boolean{
+    let languageFields: string[] = [
+      'conferencematerial',
+      'abstract-ConferenceMaterial',
+      'poster-ConferenceMaterial',
+      'presentation-ConferenceMaterial',
+      'proceeding-Paper-ConferenceMaterial'
+    ];
+    return languageFields.includes(this.getTypeValue());
+  }
+
+  dcTypeIsArticleType(): boolean{
+    let languageFields: string[] = [
+      'article',
+      'acceptedmanuscript',
+      'submittedmanuscript'
+    ];
+    return languageFields.includes(this.getTypeValue());
+  }
+
+  dcTypeIsReportType(): boolean{
+    let languageFields: string[] = [
+      'report',
+      'consultant-Report',
+      'Departmental-Report',
+      'internal-Report',
+      'mapSeries-Report',
+      'whitepaper-Report',
+      'consultantreport',
+      'deparmentreport',
+      'internalreport',
+      'mapseries',
+      'whitepaper',
+    ];
+    return languageFields.includes(this.getTypeValue());
+  }
+
+  getSubTypeFields(mainType: 'conference' | 'article' | 'report'): string[]{
+    let fieldsArray = [];
+    switch(mainType){
+      case 'conference':
+        if(this.dcTypeIsConferenceMaterialType()){
+          fieldsArray.push('dc.type');
+          fieldsArray.push('local.conferencetype');
+        };
+        break;
+      case 'article':
+        if(this.dcTypeIsArticleType()){
+          fieldsArray.push('dc.type');
+          fieldsArray.push('local.articletype');
+        };
+        break;
+      case 'report':
+        if(this.dcTypeIsReportType()){
+          fieldsArray.push('dc.type');
+          fieldsArray.push('local.reporttype');
+        };
+        break;
+    }
+    return fieldsArray;
+  }
+
+  
 }

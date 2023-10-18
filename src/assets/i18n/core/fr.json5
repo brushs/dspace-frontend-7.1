@@ -701,7 +701,8 @@
   "Water / Eau": "Eau",
 
 
-
+  // "article": "Article",
+  "article": "Article",
   // "book": "Book",
   "book": "Livre",
   // "bookchapter": "Book chapter",
