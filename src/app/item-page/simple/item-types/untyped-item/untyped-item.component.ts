@@ -6,6 +6,9 @@ import { listableObjectComponent } from '../../../../shared/object-collection/sh
 import { MetadataValue } from '../../../../core/shared/metadata.models';
 import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../../../core/locale/locale.service';
+import { RouteService } from '../../../../core/services/route.service';
+import { Router } from '@angular/router';
+import { MetadataTranslatePipe } from '../../../../shared/utils/metadata-translate.pipe';
 
 /**
  * Component that represents a publication Item page
@@ -33,8 +36,14 @@ export class UntypedItemComponent extends ItemComponent {
   showDownloadLinksButton: boolean = false;
 
   readonly descriptionElementId: string = 'description-element';
-  constructor(private cdr: ChangeDetectorRef, protected dsoNameService: DSONameService, protected localeService: LocaleService) { 
-    super(dsoNameService, localeService);
+  constructor(
+    private cdr: ChangeDetectorRef, 
+    protected dsoNameService: DSONameService, 
+    protected localeService: LocaleService, 
+    protected routeService: RouteService, 
+    protected router: Router 
+  ) { 
+    super(dsoNameService, localeService,routeService, router);
   }
 
 
@@ -139,7 +148,7 @@ export class UntypedItemComponent extends ItemComponent {
   }
 
   public hasArticle(): boolean {
-    let languageFields: string[] = ['dc.date.submitted','dc.date.accepted','local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum']
+    let languageFields: string[] = ['dc.date.submitted','dc.date.accepted','local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum', 'local.articletype']
 
     return this.metadataHasOneOfTheseFields(languageFields);
   }
@@ -160,7 +169,7 @@ export class UntypedItemComponent extends ItemComponent {
     return this.object.bundles != null;
   }
 
-  private metadataHasOneOfTheseFields(fields: string[]): boolean {
+  public metadataHasOneOfTheseFields(fields: string[]): boolean {
 
     for(var field of fields) {
         if(this.metadataContainsKey(field)) {
@@ -184,4 +193,80 @@ export class UntypedItemComponent extends ItemComponent {
     }
   }
   /* End of FOSRC Changes */
+
+  translateMetadata(keys: string | string[], dso: any) {
+    const pipe = new MetadataTranslatePipe(this.dsoNameService, this.localeService);
+    return pipe.transform(keys, dso);
+  }
+
+  getTypeValue(dso: any = this.object): any {
+    return this.translateMetadata(['dc.type'], dso)[0]?.value;
+  }
+
+  dcTypeIsConferenceMaterialType(): boolean{
+    let languageFields: string[] = [
+      'conferencematerial',
+      'abstract-ConferenceMaterial',
+      'poster-ConferenceMaterial',
+      'presentation-ConferenceMaterial',
+      'proceeding-Paper-ConferenceMaterial'
+    ];
+    return languageFields.includes(this.getTypeValue());
+  }
+
+  dcTypeIsArticleType(): boolean{
+    let languageFields: string[] = [
+      'article',
+      'acceptedmanuscript',
+      'submittedmanuscript'
+    ];
+    return languageFields.includes(this.getTypeValue());
+  }
+
+  dcTypeIsReportType(): boolean{
+    let languageFields: string[] = [
+      'report',
+      'consultant-Report',
+      'Departmental-Report',
+      'internal-Report',
+      'mapSeries-Report',
+      'whitepaper-Report',
+      'consultantreport',
+      'deparmentreport',
+      'internalreport',
+      'mapseries',
+      'whitepaper',
+    ];
+    return languageFields.includes(this.getTypeValue());
+  }
+
+  getSubTypeFields(mainType: 'conference' | 'article' | 'report'): string[]{
+    let fieldsArray = [];
+    switch(mainType){
+      case 'conference':
+        if(this.dcTypeIsConferenceMaterialType() && !this.metadataContainsKey('local.conferencetype')){
+          fieldsArray.push('dc.type');
+        }else{
+          fieldsArray.push('local.conferencetype');
+        };
+        break;
+      case 'article':
+        if(this.dcTypeIsArticleType() && !this.metadataContainsKey('local.articletype')){
+          fieldsArray.push('dc.type');
+        }else{
+          fieldsArray.push('local.articletype');
+        };
+        break;
+      case 'report':
+        if(this.dcTypeIsReportType() && !this.metadataContainsKey('local.reporttype')){
+          fieldsArray.push('dc.type');
+        }else{
+          fieldsArray.push('local.reporttype');
+        };
+        break;
+    }
+    return fieldsArray;
+  }
+
+  
 }

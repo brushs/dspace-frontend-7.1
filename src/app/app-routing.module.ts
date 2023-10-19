@@ -190,11 +190,6 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             path: COMMUNITY_MODULE_PATH,
             loadChildren: () => import('./community-page/community-page.module')
               .then((m) => m.CommunityPageModule),
-            data: {
-              breadcrumbOptions: {
-                omitBreadcrumbElements: [1]
-              }
-            },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
@@ -208,8 +203,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
                     breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
                     position: 0
                   }
-                ],
-                omitBreadcrumbElements: [1]
+                ]
               }
             },
             canActivate: [EndUserAgreementCurrentUserGuard]
@@ -225,8 +219,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
                     breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
                     position: 0
                   }
-                ],
-                omitBreadcrumbElements: [1]
+                ]
               }
             },
             canActivate: [EndUserAgreementCurrentUserGuard]

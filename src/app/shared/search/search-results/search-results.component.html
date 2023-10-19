@@ -47,9 +47,9 @@
                     >
             </ds-viewable-collection>
         </div>
-        <ds-loading *ngIf="hasNoValue(searchResults) || hasNoValue(searchResults.payload) || searchResults.isLoading"
+        <ds-loading *ngIf="isLoading()"
                 message="{{'loading.search-results' | translate}}"></ds-loading>
-        <ds-error *ngIf="searchResults?.hasFailed && (!searchResults?.errorMessage || searchResults?.statusCode != 400 || searchResults?.statusCode == 422)"
+        <ds-error *ngIf="showError()"
                 message="{{'error.search-results' | translate}}"></ds-error>
         <div *ngIf="searchResults?.payload?.page.length == 0 || searchResults?.statusCode == 400 || searchResults?.statusCode == 422">
                 {{ 'search.results.no-results' | translate }}

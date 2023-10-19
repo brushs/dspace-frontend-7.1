@@ -37,13 +37,13 @@
 
 
   // "browseby.author.head" : "Browsing {{name}} by issue date",
-  "browseby.author.head" : "Parcourir {{name}} par auteur",
+  "browseby.author.head": "Parcourir {{name}} par auteur",
   // "browseby.dateissued.head" : "Browsing {{name}} by issue date",
-  "browseby.dateissued.head" : "Parcourir {{name}} par date",
+  "browseby.dateissued.head": "Parcourir {{name}} par date",
   // "browseby.subject.head" : "Browsing {{name}} by issue date",
-  "browseby.subject.head" : "Parcourir {{name}} par  sujet",
+  "browseby.subject.head": "Parcourir {{name}} par  sujet",
   // "browseby.title.head" : "Browsing {{name}} by issue date",
-  "browseby.title.head" : "Parcourir {{name}} par titre",
+  "browseby.title.head": "Parcourir {{name}} par titre",
 
   // Policies page labels
   // "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
@@ -491,7 +491,7 @@
   // "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Type of Open Access",
   "fosrc.item.edit.dynamic-field.label.record.management.open.access": "Libre accès",
   // "fosrc.item.edit.dynamic-field.label.record.management.peer.review": "Peer Review",
-  "fosrc.item.edit.dynamic-field.label.record.management.peer.review": "Examen par les pairs",
+  "fosrc.item.edit.dynamic-field.label.record.management.peer.review": "Évalué par les pairs",
   // "fosrc.item.edit.dynamic-field.label.record.management.internal.notes": "Internal Notes",
   "fosrc.item.edit.dynamic-field.label.record.management.internal.notes": "Remarques internes",
   // "fosrc.item.edit.dynamic-field.label.record.management.creative.commons": "Rights",
@@ -624,7 +624,6 @@
   "Military": "Histoire et science militaire",
   //"Nature and Environment": "Nature and Environment",
   "Nature and Environment": "Nature et environnement",
-  "Nature and Environment": "Nature et environnement",
   //"Persons": "Persons",
   "Persons": "Personnes",
   //"Processes": "Processes",
@@ -702,7 +701,8 @@
   "Water / Eau": "Eau",
 
 
-
+  // "article": "Article",
+  "article": "Article",
   // "book": "Book",
   "book": "Livre",
   // "bookchapter": "Book chapter",
@@ -956,6 +956,13 @@
   "search.filters.filter.dateInvalidRange": "Erreur: Anné de debut ne peut pas etre plus d'anné actuel",
   // "search.filters.filter.datePlaceholder": "YYYY",
   "search.filters.filter.datePlaceholder": "AAAA",
+  //"search.filters.filter.peerReview.head": "Peer Review",
+  "search.filters.filter.peerReview.head": "Évalué par les pairs",
+  //"search.filters.filter.peerReview.placeholder": "Search peer review",
+  "search.filters.filter.peerReview.placeholder": "Recherche évalué par les pairs",
+  //"search.filters.applied.f.peerReview": "Peer review",
+  "search.filters.applied.f.peerReview": "Évalué par les pairs",
+
 
   // "search.form.search.text": "Search",
   "search.form.search.text": "Rechercher",
@@ -1025,6 +1032,9 @@
   "truncate.expand": "Afficher plus",
   // "truncate.collapse": "Show less",
   "truncate.collapse": "Afficher moins",
+
+  //"search.browse.item-back": "Back to results",
+  "search.browse.item-back": "Retour aux résultats",
 
   //labels for breadcrumbs
   // "science.innovation.breadcrumbs": "Science and innovation",

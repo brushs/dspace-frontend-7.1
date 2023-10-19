@@ -1,7 +1,8 @@
 import { Component, OnInit, Renderer2, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { LocaleService } from '../core/locale/locale.service';
 import { DOCUMENT } from '@angular/common';
+import { filter} from 'rxjs/operators';
 
 @Component({
   selector: 'ds-welcome-page',
@@ -30,15 +31,26 @@ export class WelcomePageComponent implements OnInit {
   /**
    * Count of the number of scripts loaded
    */
-  scriptsLoadedCount: number = 0
+  scriptsLoadedCount: number = 0;
+
+  /**
+   * Requested URL
+   */
+  requestedUrl: string;
 
   constructor(private localeService: LocaleService,
     private router: Router,
     private renderer2: Renderer2, 
-    @Inject(DOCUMENT) private document: Document,
+    @Inject(DOCUMENT) private document: any,
     ) { }
 
   ngOnInit(): void {
+
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: NavigationEnd) => {
+      this.requestedUrl = event.url;
+    });
 
     //load the links
     this.loadLinks();
@@ -51,7 +63,9 @@ export class WelcomePageComponent implements OnInit {
   onClickButton(lang: string): void {
       this.localeService.setCurrentLanguageCode(lang);
       this.localeService.refreshAfterChangeLanguage();
-      this.router.navigate(['/home'])
+
+      //navigating to /home from the welcome page does not work
+      // this.router.navigate(['/home'])
   }
 
   /**

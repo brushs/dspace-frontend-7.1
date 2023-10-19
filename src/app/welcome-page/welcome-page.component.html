@@ -82,13 +82,13 @@
 						<section class="col-xs-6 text-right">
                             <h2 class="wb-inv">Government of Canada</h2>
                             <p>
-								<a href="#" class="btn btn-primary" (click)="onClickButton('en')" [attr.translate]="'no'">English</a>
+								<a [attr.href]="requestedUrl" class="btn btn-primary" (click)="onClickButton('en')" [attr.translate]="'no'">English</a>
 							</p>
                         </section>
                         <section class="col-xs-6" lang="fr">
                             <h2 class="wb-inv">Gouvernement du Canada</h2>
                             <p>
-								<a href="#" class="btn btn-primary" (click)="onClickButton('fr')" [attr.translate]="'no'">Fran&ccedil;ais</a>
+								<a [attr.href]="requestedUrl" class="btn btn-primary" (click)="onClickButton('fr')" [attr.translate]="'no'">Fran&ccedil;ais</a>
 							</p>
                         </section>
 					</div>
