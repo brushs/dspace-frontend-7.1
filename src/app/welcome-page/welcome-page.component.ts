@@ -61,8 +61,8 @@ export class WelcomePageComponent implements OnInit {
   }
 
   onClickButton(lang: string): void {
-      this.localeService.refreshAfterChangeLanguage();
       this.localeService.setCurrentLanguageCode(lang);
+      this.localeService.refreshAfterChangeLanguage();
 
       //navigating to /home from the welcome page does not work
       // this.router.navigate(['/home'])
