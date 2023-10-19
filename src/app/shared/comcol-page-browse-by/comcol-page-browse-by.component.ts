@@ -1,11 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BrowseByTypeConfig } from '../../../config/browse-by-type-config.interface';
 import { environment } from '../../../environments/environment';
-import { getCommunityPageRoute } from '../../community-page/community-page-routing-paths';
-import { getCollectionPageRoute } from '../../collection-page/collection-page-routing-paths';
 
 export interface ComColPageNavOption {
   id: string;
@@ -41,7 +39,8 @@ export class ComcolPageBrowseByComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router, 
+    private zone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -72,9 +71,30 @@ export class ComcolPageBrowseByComponent implements OnInit {
     );
   }
 
-  onSelectChange(newId: string, useFragment = false) {
+  ngAfterViewInit() {
+    this.resetFocus();
+  }
+
+  resetFocus() {
+    this.zone.runOutsideAngular(() => {
+      // Set focus to the "Skip to links"
+      let iId = setInterval(() => {
+        let skipToLinksListEl = document.querySelector('#wb-tphp');
+       if(skipToLinksListEl) {
+         (skipToLinksListEl as HTMLElement).focus();
+         (skipToLinksListEl as HTMLElement).scrollIntoView();
+         clearInterval(iId);
+       }
+      }, 250);
+    })
+  }
+
+  onSelectChange(newId: string, resetFocusToTop = false) {
     const selectedOption = this.allOptions
       .find((option: ComColPageNavOption) => option.id === newId);
-    this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params, fragment: useFragment ? 'wb-cont' : undefined });
+      this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params });
+      if(resetFocusToTop) {
+        this.resetFocus();
+      }
   }
 }
