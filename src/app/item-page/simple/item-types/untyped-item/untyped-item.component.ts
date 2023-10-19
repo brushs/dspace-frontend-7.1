@@ -148,7 +148,7 @@ export class UntypedItemComponent extends ItemComponent {
   }
 
   public hasArticle(): boolean {
-    let languageFields: string[] = ['dc.date.submitted','dc.date.accepted','local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum']
+    let languageFields: string[] = ['dc.date.submitted','dc.date.accepted','local.acceptedmanuscript.journaltitle', 'local.acceptedmanuscript.journalvolume', 'local.acceptedmanuscript.journalissue', 'local.acceptedmanuscript.articlenum', 'local.articletype']
 
     return this.metadataHasOneOfTheseFields(languageFields);
   }
@@ -244,20 +244,23 @@ export class UntypedItemComponent extends ItemComponent {
     let fieldsArray = [];
     switch(mainType){
       case 'conference':
-        if(this.dcTypeIsConferenceMaterialType()){
+        if(this.dcTypeIsConferenceMaterialType() && !this.metadataContainsKey('local.conferencetype')){
           fieldsArray.push('dc.type');
+        }else{
           fieldsArray.push('local.conferencetype');
         };
         break;
       case 'article':
-        if(this.dcTypeIsArticleType()){
+        if(this.dcTypeIsArticleType() && !this.metadataContainsKey('local.articletype')){
           fieldsArray.push('dc.type');
+        }else{
           fieldsArray.push('local.articletype');
         };
         break;
       case 'report':
-        if(this.dcTypeIsReportType()){
+        if(this.dcTypeIsReportType() && !this.metadataContainsKey('local.reporttype')){
           fieldsArray.push('dc.type');
+        }else{
           fieldsArray.push('local.reporttype');
         };
         break;
