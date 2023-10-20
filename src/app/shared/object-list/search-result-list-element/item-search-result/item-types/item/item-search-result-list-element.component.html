@@ -3,9 +3,9 @@
 
 <ds-truncatable [useShowMore]="useGcWeb" [id]="dso.id" *ngIf="object !== undefined && object !== null" [overrideTruncation]="overrideTruncation">
   <p>
-    <strong>
+    <!-- <strong> -->
       <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
-        rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title">
+        rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="item-list-title">
         <span 
         *ngIf="
           dsoOfficialTitle
@@ -48,8 +48,8 @@
 
       </a>
 
-      <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="(dsoTitle | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>
-    </strong>
+      <span *ngIf="linkType == linkTypes.None" class="item-list-title" [innerHTML]="(dsoTitle | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>
+    <!-- </strong> -->
   </p>
 
   <ds-truncatable-part *ngIf="dso.allMetadata(['dc.publisher', 'dc.date.issued', 'publicationvolume.volumeNumber', 
