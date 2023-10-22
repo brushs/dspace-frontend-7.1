@@ -31,6 +31,7 @@ export class ComcolPageContentComponent {
   // ngOnInit() {
   ngOnInit(): void {
     // set shouldRenderAsHtml to true if hasInnerHtml is true or if the content contains html tags
-    this.shouldRenderAsHtml = this.hasInnerHtml && this.content.includes('<');
+    if (this.hasInnerHtml && this.content)
+        this.shouldRenderAsHtml = this.hasInnerHtml && this.content.includes('<');
   }
 }
