@@ -4,14 +4,15 @@ import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
-    selector: 'ds-item-page-doi-field',
-    templateUrl: '../item-page-field.component.html'
+  selector: 'ds-item-page-doi-field',
+  templateUrl: './item-page-doi-field.component.html',
+  //templateUrl: '../item-page-field.component.html',
 })
 /**
- * This component is used for displaying the sponsorship (dc.identifier.doi) of an item
+ * This component can be used to represent any doi on a simple item page.
+ * It expects 4 parameters: The item, a separator, the metadata keys and an i18n key
  */
 export class ItemPageDoiFieldComponent extends ItemPageFieldComponent {
-
     /**
      * The item to display metadata for
      */
@@ -21,19 +22,27 @@ export class ItemPageDoiFieldComponent extends ItemPageFieldComponent {
      * Separator string between multiple values of the metadata fields defined
      * @type {string}
      */
-    separator: string;
+    @Input() separator: string;
 
     /**
      * Fields (schema.element.qualifier) used to render their values.
-     * In this component, we want to display values for metadata 'dc.identifier.doi'
      */
     fields: string[] = [
         'dc.identifier.doi'
     ];
 
+    isHidden = false;
+
     /**
      * Label i18n key for the rendered metadata
      */
-    label = 'item.page.doi';
+    label = 'DOI';
+    //label = 'item.page.doi';
+    ngOnInit() {
+      var doi = this.item.allMetadata(this.fields);
+      if (doi && doi.length == 0) {
+        this.isHidden = true;
+      }
 
+    }
 }
