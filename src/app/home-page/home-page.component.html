@@ -27,6 +27,12 @@
               <h2>Communities</h2>
               <p class="text-justify">Select a community to browse its collections.</p>
               <ul>
+<li>
+                  <a [routerLink]="getCommunityHref('GEOScan')">
+                    GEOScan
+                  </a>
+                </li>
+                <!--
                 <li>
                   <a [routerLink]="getCommunityHref('Agriculture and Agri-Food Canada')">
                     Agriculture and Agri-Food Canada
@@ -45,7 +51,7 @@
                 <li><a [routerLink]="getCommunityHref('Health Canada')">Health Canada</a></li>
                 <li><a [routerLink]="getCommunityHref('Public Health Agency of Canada')">
                   Public Health Agency of Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Transport Canada')">Transport Canada</a></li>
+                <li><a [routerLink]="getCommunityHref('Transport Canada')">Transport Canada</a></li> -->
               </ul>
             </div>
             <div class="col-md-4 pull-right">
@@ -89,7 +95,7 @@
           <h2>Annonce du lancement de la version bêta du DFSOC</h2>
           <p>
             Bienvenue au lancement de la version bêta du DFSOC—offrant un aperçu interne au gouvernement du Canada, avant le lancement public officiel. Au cours de cette phase bêta, nous ajouterons régulièrement de nouveaux articles et de nouvelles publications et nous peaufinerons la navigation et l'affichage du dépôt. Consultez régulièrement cette page afin d’obtenir toutes les mises à jour et <a [routerLink]="'/contactez-nous'">contactez-nous</a> pour signaler tout problème ou question.
-          </p> 
+          </p>
         </section>
         <form (submit)="search(searchRepo.value); $event.stopPropagation();" id="validation-example">
           <h2>Recherche dans le dépôt</h2>

@@ -37,19 +37,25 @@ export class HomePageComponent implements OnInit {
       map((data) => data.site as Site),
     );
     let baseHost = environment.production ? document.location.host : environment.rest.host;
+    let port = environment.production ? '' : ':' + environment.rest.port;
+    let prefix = environment.rest.ssl ? 'https://' : 'http://';
 
-    this.http.get(`${ 'https://'  + baseHost + '/server'}/api/core/communities/search/top?page=0&size=20&sort=dc.title,ASC&embed.size=subcommunities=10&embed=subcommunities`).subscribe(x => {
+    this.http.get(`${ prefix  + baseHost + port + '/server'}/api/core/communities/search/top?page=0&size=20&sort=dc.title,ASC&embed.size=subcommunities=10&embed=subcommunities`).subscribe(x => {
       if (x['_embedded']?.['communities']) {
 
-        const parentScienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'));
+        //const parentScienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'));
+        const parentScienceCommunity = x['_embedded']['communities'];
         if (parentScienceCommunity) {
           // saving the science id to retrive only science community in community page
           this.scienceCommunityService.setScienceId(parentScienceCommunity?.id);
         }
 
-        let scienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'))?.['_embedded']?.['subcommunities']
-        if (scienceCommunity?.['_embedded']?.['subcommunities']) {
-          this.subcommunities = scienceCommunity?.['_embedded']?.['subcommunities'].reduce((prev, curr) => {
+        //let scienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'))?.['_embedded']?.['subcommunities']
+        let scienceCommunity = x['_embedded']['communities'];
+        //if (scienceCommunity?.['_embedded']?.['subcommunities']) {
+        if (scienceCommunity) {
+          //this.subcommunities = scienceCommunity?.['_embedded']?.['subcommunities'].reduce((prev, curr) => {
+          this.subcommunities = scienceCommunity?.reduce((prev, curr) => {
             prev[curr.name] = curr.id;
             return prev;
           }, {})
