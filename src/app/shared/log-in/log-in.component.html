@@ -26,9 +26,11 @@
 
     <p [innerHTML]="'sign.in.info.text' | translate"></p>
     <ng-container *ngFor="let authMethod of (authMethods | async); let i = index">
+      <div *ngIf="i === 1 || enablePassword">
       <ds-log-in-container [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
+      </div>
     </ng-container>
-    <p class="margin-top-medium"><a class="text-wrap" [routerLink]="[getForgotRoute()]">{{"login.form.forgot-password" | translate}}</a></p>
+    <p class="margin-top-medium" [hidden]="!enablePassword"><a class="text-wrap" [routerLink]="[getForgotRoute()]">{{"login.form.forgot-password" | translate}}</a></p>
   </div>
 
 
