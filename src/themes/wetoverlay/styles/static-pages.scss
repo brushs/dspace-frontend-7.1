@@ -1,70 +1,70 @@
 ::ng-deep {
 
-    .alert-danger>:first-child::before,.alert-info>:first-child::before,.alert-success>:first-child::before,.alert-warning>:first-child::before {
-        color: inherit;
-        content: none
-    }
+    // .alert-danger>:first-child::before,.alert-info>:first-child::before,.alert-success>:first-child::before,.alert-warning>:first-child::before {
+    //     color: inherit;
+    //     content: none
+    // }
     
-    .alert {
-        background-clip: content-box;
-        background-color: inherit;
-        border-left: 6px solid #000;
-        margin-bottom: 23px;
-        margin-left: 10px;
-        padding: 0 0 0 15px;
-        display: block !important;
-    }
+    // .alert {
+    //     background-clip: content-box;
+    //     background-color: inherit;
+    //     border-left: 6px solid #000;
+    //     margin-bottom: 23px;
+    //     margin-left: 10px;
+    //     padding: 0 0 0 15px;
+    //     display: block !important;
+    // }
     
-    .alert>ol,.alert>p,.alert>ul {
-        margin-bottom: 0
-    }
+    // .alert>ol,.alert>p,.alert>ul {
+    //     margin-bottom: 0
+    // }
     
-    .alert>* {
-        margin-left: 15px
-    }
+    // .alert>* {
+    //     margin-left: 15px
+    // }
     
-    .alert details {
-        margin-left: .5em;
-        padding-top: 15px
-    }
+    // .alert details {
+    //     margin-left: .5em;
+    //     padding-top: 15px
+    // }
     
-    .alert>:first-child:not(details) {
-        margin-top: auto;
-        padding-top: 15px
-    }
+    // .alert>:first-child:not(details) {
+    //     margin-top: auto;
+    //     padding-top: 15px
+    // }
     
-    .alert>:last-child {
-        padding-bottom: 25px
-    }
+    // .alert>:last-child {
+    //     padding-bottom: 25px
+    // }
     
-    .alert::before {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        font-family: "Font Awesome 5 Free" !important;
-        font-size: 26px;
-        line-height: 2.3em;
-        margin-left: -1.27em;
-        padding: 2px;
-        position: absolute;
+    // .alert::before {
+    //     display: -webkit-box;
+    //     display: -ms-flexbox;
+    //     display: flex;
+    //     font-family: "Font Awesome 5 Free" !important;
+    //     font-size: 26px;
+    //     line-height: 2.3em;
+    //     margin-left: -1.27em;
+    //     padding: 2px;
+    //     position: absolute;
     
-    }
+    // }
     
-    .alert>:first-child {
-        margin-left: 15px
-    }
+    // .alert>:first-child {
+    //     margin-left: 15px
+    // }
     
-    .alert-info {
-        border-color: #269abc;
-        -o-border-image: linear-gradient(to bottom,#269abc 16px,#269abc 16px,transparent 16px,transparent 48px,#269abc 48px,#269abc 48px) 1 100%;
-        border-image: linear-gradient(to bottom,#269abc 16px,#269abc 16px,transparent 16px,transparent 48px,#269abc 48px,#269abc 48px) 1 100%
-    }
+    // .alert-info {
+    //     border-color: #269abc;
+    //     -o-border-image: linear-gradient(to bottom,#269abc 16px,#269abc 16px,transparent 16px,transparent 48px,#269abc 48px,#269abc 48px) 1 100%;
+    //     border-image: linear-gradient(to bottom,#269abc 16px,#269abc 16px,transparent 16px,transparent 48px,#269abc 48px,#269abc 48px) 1 100%
+    // }
     
-    .alert-info::before {
-        color: #269abc;
-        content: "\f05a" !important;
-        font-weight: 900;
-    }
+    // .alert-info::before {
+    //     color: #269abc;
+    //     content: "\f05a" !important;
+    //     font-weight: 900;
+    // }
     
     
     /*! Placeholders */
