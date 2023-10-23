@@ -1,8 +1,7 @@
 .alert {
-  display: inline-block;
-  min-width: var(--bs-modal-sm);
-  text-align: left;
-  background-color: white;
+    display: inline-block;
+    min-width: var(--bs-modal-sm);
+    text-align: left;
 }
 
 .close {
@@ -11,6 +10,10 @@
 
 .notification-icon {
   min-width: 3rem;
+}
+
+.alert-success .notification-icon {
+    color: #278400
 }
 
 .notification-progress-loader {
