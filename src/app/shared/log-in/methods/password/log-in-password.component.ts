@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { select, Store } from '@ngrx/store';
@@ -80,7 +80,8 @@ export class LogInPasswordComponent implements OnInit {
     private authService: AuthService,
     private hardRedirectService: HardRedirectService,
     private formBuilder: FormBuilder,
-    private store: Store<CoreState>
+    private store: Store<CoreState>,
+    private zone: NgZone,
   ) {
     this.authMethod = injectedAuthMethodModel;
   }
@@ -102,6 +103,9 @@ export class LogInPasswordComponent implements OnInit {
       getAuthenticationError),
       map((error) => {
         this.hasError = (isNotEmpty(error));
+        if (this.hasError) {
+          this.resetFocus();
+        }
         return error;
       })
     );
@@ -111,6 +115,9 @@ export class LogInPasswordComponent implements OnInit {
       select(getAuthenticationInfo),
       map((message) => {
         this.hasMessage = (isNotEmpty(message));
+        if (this.hasMessage) {
+          this.resetFocus();
+        }
         return message;
       })
     );
@@ -155,4 +162,22 @@ export class LogInPasswordComponent implements OnInit {
     this.form.reset();
   }
 
+
+  resetFocus() {
+    this.zone.runOutsideAngular(() => {
+      let skipToLinksListEl = document.querySelector('#wb-tphp') as HTMLElement;
+      if (skipToLinksListEl) {
+        // Temporarily set the hash to scroll to the element
+        window.location.hash = '#wb-tphp';
+        // Waiting for a very short delay  to ensure the scroll has started
+        setTimeout(() => {
+          // Scrolling to the element
+          skipToLinksListEl.scrollIntoView({ behavior: 'smooth' });
+          skipToLinksListEl.focus();
+          // Reseting the hash immediately after scrolling
+          window.location.hash = '';
+        }, 10);
+      }
+    });
+  }
 }
