@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, NgZone } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EpersonRegistrationService } from '../core/data/eperson-registration.service';
 import { NotificationsService } from '../shared/notifications/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,8 +38,7 @@ export class RegisterEmailFormComponent implements OnInit {
     private notificationService: NotificationsService,
     private translateService: TranslateService,
     private router: Router,
-    private formBuilder: FormBuilder,
-    private zone: NgZone,
+    private formBuilder: FormBuilder
   ) {
 
   }
@@ -52,21 +51,12 @@ export class RegisterEmailFormComponent implements OnInit {
   }
 
   resetFocus() {
-    this.zone.runOutsideAngular(() => {
-      let skipToLinksListEl = document.querySelector('#wb-tphp') as HTMLElement;
-      if (skipToLinksListEl) {
-        // Temporarily set the hash to scroll to the element
-        window.location.hash = '#wb-tphp';
-        // Waiting for a very short delay  to ensure the scroll has started
-        setTimeout(() => {
-          // Scrolling to the element
-          skipToLinksListEl.scrollIntoView({ behavior: 'smooth' });
-          skipToLinksListEl.focus();
-          // Reseting the hash immediately after scrolling
-          window.location.hash = '';
-        }, 10);
+    setTimeout(() => {
+      const el = document.getElementById('email');
+      if (el) {
+        el.focus();
       }
-    });
+    }, 0);
   }
 
   resetErrors(): void {
