@@ -164,20 +164,11 @@ export class LogInPasswordComponent implements OnInit {
 
 
   resetFocus() {
-    this.zone.runOutsideAngular(() => {
-      let skipToLinksListEl = document.querySelector('#wb-tphp') as HTMLElement;
-      if (skipToLinksListEl) {
-        // Temporarily set the hash to scroll to the element
-        window.location.hash = '#wb-tphp';
-        // Waiting for a very short delay  to ensure the scroll has started
-        setTimeout(() => {
-          // Scrolling to the element
-          skipToLinksListEl.scrollIntoView({ behavior: 'smooth' });
-          skipToLinksListEl.focus();
-          // Reseting the hash immediately after scrolling
-          window.location.hash = '';
-        }, 10);
+    setTimeout(() => {
+      const el = document.getElementById('email');
+      if (el) {
+        el.focus();
       }
-    });
+    }, 0);
   }
 }
