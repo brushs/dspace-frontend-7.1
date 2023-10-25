@@ -44,4 +44,10 @@ export class FilterInputSuggestionsComponent extends InputSuggestionsComponent {
     this.queryInput.nativeElement.focus();
     return false;
   }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  }
 }
