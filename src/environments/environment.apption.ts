@@ -17,7 +17,7 @@ export const environment = {
 		"port": null,
 		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
 		"nameSpace": "/server",
-		"baseUrl": "http://dspacebackendsteve.azurewebsites.net/server",
+		"baseUrl": "https://dspacebackendsteve.azurewebsites.net/server",
 	},
 	"cache": {
 		"msToLive": {
