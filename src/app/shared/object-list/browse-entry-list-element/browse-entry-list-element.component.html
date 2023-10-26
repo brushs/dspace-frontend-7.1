@@ -11,7 +11,7 @@
 
 <ng-template #GcWebTemplate>
     <p>
-        <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="" [queryParams]="{value: object.value, startsWith: undefined}" [queryParamsHandling]="'merge'" class="lead">
+        <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="" [queryParams]="{value: object.value, startsWith: undefined, 'bbm.page': undefined}" [queryParamsHandling]="'merge'" class="lead">
             {{(object.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
         </a>
         <span *ngIf="linkType == linkTypes.None" class="lead">
