@@ -10,11 +10,11 @@ import { environment } from '../../../environments/environment';
 export class RESTURLCombiner extends URLCombiner {
   constructor(...parts: string[]) {
     //FOSRC commnet this out to suport other domains whitelisted domains
-    //super(environment.rest.baseUrl, '/api', ...parts);
-    if (!document?.location?.host?.includes('localhost')) {
-      super('https://' + document.location.host, '/server/api', ...parts);
-    } else {
-      super(environment.rest.baseUrl, '/api', ...parts);
-    }
+    super(environment.rest.baseUrl, '/api', ...parts);
+    //if (!document?.location?.host?.includes('localhost')) {
+    //  super('https://' + document.location.host, '/server/api', ...parts);
+    //} else {
+    //  super(environment.rest.baseUrl, '/api', ...parts);
+    //}
   }
 }
