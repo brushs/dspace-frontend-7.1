@@ -1,5 +1,5 @@
 <div class="alert {{notification.type}} alert-dismissible m-3 shadow" role="alert"
-     [@enterLeave]="animate">
+     [@enterLeave]="animate" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
 
   <div class="notification-progress-loader position-absolute w-100" *ngIf="showProgressBar">
     <span [ngStyle]="{'width': progressWidth + '%'}" class="h-100 float-left"></span>
