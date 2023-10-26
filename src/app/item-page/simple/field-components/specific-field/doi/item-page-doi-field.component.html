@@ -1,8 +1,8 @@
 <div class="item-page-field">
   <!-- <ng-content></ng-content> -->
   <!-- <ds-metadata-values [mdValues]="item?.allMetadata(fields)" [separator]="separator" [label]="label"></ds-metadata-values> -->
-  <div class="simple-view-element" [class.d-none]="isHidden">
-    <h5 class="simple-view-element-header" *ngIf="label">{{ label }}</h5>
+  <div class="simple-view-element form-group" [class.d-none]="isHidden">
+    <span class="simple-view-element-header h3" *ngIf="label">{{ label }}</span>
     <div  class="simple-view-element-body">
           <!--<span [attr.lang]="field.language" [innerHTML]="field.value"></span> -->
           <span><a href="https://doi.org/{{item?.allMetadata(fields)}}">https://doi.org/{{item?.allMetadata(fields)}}</a></span>
