@@ -50,7 +50,8 @@ export class CommunityDataService extends ComColDataService<Community> {
 
   findTop(options: FindListOptions = {}, ...linksToFollow: FollowLinkConfig<Community>[]): Observable<RemoteData<PaginatedList<Community>>> {
     const scienceId = this.scienceCommunityService.getScienceId();
-    this.topLinkPath = scienceId ? `${scienceId}/subcommunities` : 'search/top';
+    //this.topLinkPath = scienceId ? `${scienceId}/subcommunities` : 'search/top';
+    this.topLinkPath = 'search/top';
     const hrefObs = this.getFindAllHref(options, this.topLinkPath);
     return this.findAllByHref(hrefObs, undefined, true, true, ...linksToFollow);
   }
