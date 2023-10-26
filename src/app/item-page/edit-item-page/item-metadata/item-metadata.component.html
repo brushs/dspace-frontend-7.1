@@ -28,7 +28,7 @@
     </button>
     <!--OSPR fix ends here-->
   </div>
-  <table class="table table-responsive table-striped table-bordered" *ngIf="((updates$ | async)| dsObjectValues).length > 0">
+  <table class="table table-responsive table-striped table-bordered item-metadata-table" *ngIf="((updates$ | async)| dsObjectValues).length > 0">
     <tbody>
       <tr>
         <th><span id="fieldName">{{'item.edit.metadata.headers.field' | translate}}</span></th>
