@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isDescriptionList; else descriptionList">
-  <h2 class="h3">{{label | translate}}</h2>
-  <ng-container [ngTemplateOutlet]="urlList"></ng-container>  
+  <span class="simple-view-element-header h3">{{label | translate}}</span>
+  <ng-container [ngTemplateOutlet]="urlList"></ng-container>
 </ng-container>
 
 <ng-template #descriptionList>
