@@ -35,6 +35,11 @@ export class BrowseByComponent implements OnInit {
   @Input() browseField: string;
 
   /**
+   * The current search value
+   */
+  @Input() currentTerm: string;
+
+  /**
    * The parent name
    */
   @Input() parentname: string;

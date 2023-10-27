@@ -36,6 +36,9 @@ export abstract class StartsWithAbstractComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.formData = new FormGroup({
+      startsWith: new FormControl()
+    });
     this.subs.push(
       this.route.queryParams.subscribe((params) => {
         if (hasValue(params.startsWith)) {
@@ -43,9 +46,6 @@ export abstract class StartsWithAbstractComponent implements OnInit, OnDestroy {
         }
       })
     );
-    this.formData = new FormGroup({
-      startsWith: new FormControl()
-    });
   }
 
   /**
@@ -70,6 +70,7 @@ export abstract class StartsWithAbstractComponent implements OnInit, OnDestroy {
    */
   setStartsWith(startsWith: string) {
     this.startsWith = startsWith;
+    this.formData.setValue({startsWith: this.startsWith})
     this.setStartsWithParam();
   }
 
