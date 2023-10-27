@@ -261,4 +261,10 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     }
     this.filterValues$.unsubscribe();
   }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  }
 }

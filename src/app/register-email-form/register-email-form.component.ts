@@ -50,6 +50,15 @@ export class RegisterEmailFormComponent implements OnInit {
 
   }
 
+  resetFocus() {
+    setTimeout(() => {
+      const el = document.getElementById('email');
+      if (el) {
+        el.focus();
+      }
+    }, 0);
+  }
+
   resetErrors(): void {
     this.emailIsEmpty = false;
     this.emailIsInvalid = false;
@@ -65,11 +74,13 @@ export class RegisterEmailFormComponent implements OnInit {
     email.trim();
      if (email.length == 0) {
       this.emailIsEmpty = true;
+      this.resetFocus();
       return;
     }
 
     if (!email.match(this.EMAIL_VALIDATOR)){
       this.emailIsInvalid = true;
+      this.resetFocus();
       return;
     }
 

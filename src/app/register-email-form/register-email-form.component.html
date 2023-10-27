@@ -8,18 +8,18 @@
             <form role="form" method="get" action="#" [formGroup]="form" (ngSubmit)="register()" gcWeb>
 
                 <div class="form-group">
+                    <p>{{ MESSAGE_PREFIX + '.email.hint'  | translate }}</p> 
                     <label for="email" class="required">
                         {{MESSAGE_PREFIX + '.email' | translate}} <strong class="required">{{'sign.in.required' | translate}}</strong>
-                        <strong *ngIf="emailIsEmpty" class="required">
+                        <strong role="alert" *ngIf="emailIsEmpty" class="required">
                             {{ MESSAGE_PREFIX + '.email.error.required' | translate }}
-                        </strong>     
-                        <strong *ngIf="emailIsInvalid" class="required">
+                        </strong>
+                        <strong role="alert" *ngIf="emailIsInvalid" class="required">
                             {{ MESSAGE_PREFIX + '.email.error.pattern' | translate }}
                         </strong>
                     </label>
                     <input class="form-control" autocomplete="off" autofocus
                         type="email" id="email" formControlName="email"/>
-                    <p>{{ MESSAGE_PREFIX + '.email.hint'  | translate }}</p> 
                 </div>
 
                 <!-- Start of OSPR change -->

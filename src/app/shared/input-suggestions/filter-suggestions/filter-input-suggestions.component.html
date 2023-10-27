@@ -19,6 +19,7 @@
              [dsDebounce]="debounceTime" (onDebounce)="find($event)"
              [placeholder]="placeholder"
              [ngModelOptions]="{standalone: true}" autocomplete="off"
+             (keydown)="onKeyDown($event)"
       />
     </ng-template>
     <label class="d-none">
@@ -50,6 +51,7 @@
     [ngModelOptions]="{standalone: true}" autocomplete="off"
     [dsDebounce]="debounceTime" 
     (onDebounce)="find($event)"
+    (keydown)="onKeyDown($event)"
     [name]="name"
     [ngModelOptions]="{standalone: true}"
     (dsClickOutside)="close();" type="text" class="form-control" [attr.id]=" 'search-input-' + name" 
