@@ -4163,6 +4163,8 @@
   "search.results.empty": "Votre recherche n’a retourné aucun résultat.",
   // "search.results.head": "Search results",
   "search.results.head": "Résultats de la recherche",
+  //"search.results.head.term": "Search results for {{term}}",
+  "search.results.head.term": "Résultats de la recherche pour {{term}}",
   // "search.results.community.head": "Search Results",
   "search.results.community.head": "Résultats de la recherche",
   // "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting",

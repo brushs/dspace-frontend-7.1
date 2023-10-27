@@ -2194,6 +2194,7 @@
   "search.form.search_mydspace": "Search in MyFOSRC",
   "search.results.empty": "Your search returned no results.",
   "search.results.head": "Search results",
+  "search.results.head.term": "Search results for {{term}}",
   "search.results.community.head": "Search results",
   "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting quotes around it.",
   "search.results.no-results-link": "Quotes around it",
