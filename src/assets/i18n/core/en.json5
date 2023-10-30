@@ -21,7 +21,7 @@
   // Policies page labels
   "policies-and-standards.breadcrumbs": "FOSRC policies and standards",
 
-  //Simple item page translations ticket 1587  
+  //Simple item page translations ticket 1587
   "item.page.download.files.link": "Download files",
   "item.page.heading.project": "Project",
   "alternative.title": "Alternative title",
@@ -38,7 +38,7 @@
   "item.page.identifiers": "Identifiers",
   "en": "English",
   "fr": "French",
-  // Simple item page translation ends  
+  // Simple item page translation ends
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
   "collection.form.errors.description-topic-subject.required": "Please enter a subject",
@@ -150,7 +150,7 @@
   "community.form.rights-fosrctranslation": "Translated copyright", //"droits d'auteur",
   "community.form.hints.rights-fosrctranslation.hint": "Please provide the translated of the copyright",
   "community.form.rights-fosrctranslation.required": "",
-  //Error Panel mandatory Fields 
+  //Error Panel mandatory Fields
 
   "community.form.error.validation.required": "This field is required.",
   "community.form.error.validation.license.notgranted": "You must grant this license to complete your submission. If you are unable to grant this license at this time, you may save your work and return later or remove the submission.",
@@ -566,12 +566,12 @@
 
   "search.form.search.text": "Search",
 
-  "sign.in.title": "FOSRC administrator sign in",
+  "sign.in.title": "OSTR administrator sign in",
   "sign.in.email": "Email address",
   "sign.in.password": "Password",
   "sign.in.required": "(required)",
   "sign.in.badge": "Sign in is not required to search the repository or download open access materials.",
-  "sign.in.info.text": "Sign in is for administrators only, and is required to deposit materials and perform administrative tasks. Please <a href=\"/contact-us\">contact us</a> with any questions about submitting material to the FOSRC.",
+  "sign.in.info.text": "Sign in is for administrators only, and is required to deposit materials and perform administrative tasks. Please <a href=\"/contact-us\">contact us</a> with any questions about submitting material to the OSTR.",
 
   "submission.sections.accesses.form.error.filename": "The name of the file is required",
   "submission.sections.accesses.form.error.translated.filename": "The translated name of the file is required",
