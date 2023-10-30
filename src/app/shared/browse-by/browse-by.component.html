@@ -92,9 +92,11 @@
           (paginationChange)="onPaginationChange($event)">
           
         <ul class="list-unstyled">
-          <li class="mrgn-tp-md" [ngClass]="{'brdr-tp': !(browseField === 'author' || browseField === 'subject') }" *ngFor="let object of objects?.payload?.page; let first = first;">
-            <ds-listable-object-component-loader [useGcWeb]="true" [object]="object"></ds-listable-object-component-loader>
-          </li>
+          <ng-container *ngFor="let object of objects?.payload?.page; let first = first;">
+            <li *ngIf="!object.valueLang || (object.valueLang === locale.getCurrentLanguageCode())" class="mrgn-tp-md" [ngClass]="{'brdr-tp': !(browseField === 'author' || browseField === 'subject') }" >
+              <ds-listable-object-component-loader [useGcWeb]="true" [object]="object"></ds-listable-object-component-loader>
+            </li>
+          </ng-container>
         </ul>
         
       </ds-pagination>

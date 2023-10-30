@@ -10,6 +10,7 @@ import { ListableObject } from '../object-collection/shared/listable-object.mode
 import { getStartsWithComponent, StartsWithType } from '../starts-with/starts-with-decorator';
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { HelperService } from '../utils/helper.service';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 @Component({
   selector: 'ds-browse-by',
@@ -133,6 +134,7 @@ export class BrowseByComponent implements OnInit {
 
   public constructor(private injector: Injector,
                      protected paginationService: PaginationService,
+                     public locale: LocaleService,
                      private helperService: HelperService
   ) {
 
