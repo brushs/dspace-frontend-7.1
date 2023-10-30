@@ -5,8 +5,8 @@
     li {
         display: inline; // Display items horizontally
 
-        &:not(:last-child)::after {
-        content: ", "; // Add a comma after each item except the last one
-        }
+        // &:not(:last-child)::after {
+        // content: ", "; // Add a comma after each item except the last one
+        // }
     }
 }
