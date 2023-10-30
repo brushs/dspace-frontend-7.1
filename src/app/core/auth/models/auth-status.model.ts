@@ -55,6 +55,12 @@ export class AuthStatus implements CacheableObject {
   authenticated: boolean;
 
   /**
+   * If the request was made from within the IP range of the site
+   */
+  @autoserialize
+  withinIpRange: boolean;
+
+  /**
    * The {@link HALLink}s for this AuthStatus
    */
   @deserialize
