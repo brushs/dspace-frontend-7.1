@@ -37,7 +37,7 @@
          [sortConfig]="(currentSort$ |async)"
          [type]="startsWithType"
          [browseField]="browseId"
-         [currentTerm]="startsWith"
+         [currentTerm]="startsWith || value"
          [startsWithOptions]="startsWithOptions"
          [enableArrows]="true"
          (prev)="goPrev()"
