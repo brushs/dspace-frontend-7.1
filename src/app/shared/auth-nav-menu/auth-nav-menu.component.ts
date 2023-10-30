@@ -9,7 +9,7 @@ import { fadeInOut, fadeOut } from '../animations/fade';
 import { HostWindowService } from '../host-window.service';
 import { AppState, routerStateSelector } from '../../app.reducer';
 import { isNotUndefined } from '../empty.util';
-import { isAuthenticated, isAuthenticationLoading } from '../../core/auth/selectors';
+import { isAuthenticated, isAuthenticationLoading, isWithinIpRange } from '../../core/auth/selectors';
 import { EPerson } from '../../core/eperson/models/eperson.model';
 import { AuthService, LOGIN_ROUTE, LOGOUT_ROUTE } from '../../core/auth/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
@@ -33,9 +33,12 @@ export class AuthNavMenuComponent implements OnInit {
    */
   public loading: Observable<boolean>;
 
+  public isWithinIpRange: Observable<boolean>;
+
   public isXsOrSm$: Observable<boolean>;
 
   public showAuth = observableOf(false);
+  //TODO: Here is the place to control display or not the login button
 
   public user: Observable<EPerson>;
 
@@ -61,6 +64,8 @@ export class AuthNavMenuComponent implements OnInit {
 
     // set loading
     this.loading = this.store.pipe(select(isAuthenticationLoading));
+
+    this.isWithinIpRange = this.store.pipe(select(isWithinIpRange));
 
     this.user = this.authService.getAuthenticatedUserFromStore();
 
