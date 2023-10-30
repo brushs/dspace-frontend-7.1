@@ -44,7 +44,7 @@
         </div>
       </div> -->
 
-    <h2 class="h4">{{'search.results.head' + (currentTerm ? '.term' : '') | translate : {term: (('browse.metadata.' + browseField | translate) | lowercase) + ' ' + currentTerm  } }}</h2>
+    <h2 class="h4">{{('search.results.head' + (currentTerm ? '.term' : '')) | translate : {field: (('browse.metadata.' + browseField | translate)), term: currentTerm  } }}</h2>
    <div class="row well well-small mrgn-lft-0 mrgn-rght-0"> 
       <div class="col-md-8 pull-left">
          <div class="input-group">
