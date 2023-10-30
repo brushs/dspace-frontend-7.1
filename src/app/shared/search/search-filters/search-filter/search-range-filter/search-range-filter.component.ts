@@ -184,7 +184,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       this.startDateRangeError = false;
     }
 
-    if(!(this.startDateError || this.startDateRangeError) && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
+    if((isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
       // add error label on top of end date field
       this.endDateError = true;
     } else {
