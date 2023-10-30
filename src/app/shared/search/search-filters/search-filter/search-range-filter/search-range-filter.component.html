@@ -59,8 +59,8 @@
           <div class="form-group col-sm-6 pull-left">
              <label for="startdate">
                 {{'search.filters.filter.start' | translate}} 
-                <p *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
-                <p *ngIf="startDateRangeError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalidRange' | translate }}</span></p> 
+                <p id="startDateErrorId" *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
+                <p id="startDateRangeErrorId"*ngIf="startDateRangeError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalidRange' | translate }}</span></p> 
                 <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
              <input (keydown)="onKeyDown($event)" (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
@@ -70,7 +70,7 @@
           <div class="form-group col-sm-6 pull-right">
              <label for="enddate">
               {{'search.filters.filter.end' | translate}} 
-              <p *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
+              <p id="endDateErrorId" *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
               <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
              <input (keydown)="onKeyDown($event)" (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
