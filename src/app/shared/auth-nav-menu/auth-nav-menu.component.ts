@@ -78,4 +78,22 @@ export class AuthNavMenuComponent implements OnInit {
     this.showButton = !(url.includes('/sign-in') || url.includes('sign-out') || url.includes('se-connecter') || url.includes('de-connecter'));
 
   }
+
+  /**
+   * Navigate to the /sign-in page
+   * @returns void
+   */
+  navigateToSignInPage(){
+    this.authService.setUrlPathPriorToSignIn(this.router.url);
+    this.router.navigate(['/sign-in']);
+  }
+
+  /**
+   * Navigate to the /sign-out page
+   * @returns void
+   */
+  navigateToSignOutPage(){
+    this.authService.setUrlPathPriorToSignOut(this.router.url);
+    this.router.navigate(['/sign-out']);
+  }
 }
