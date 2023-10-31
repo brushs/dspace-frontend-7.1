@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, NgZone, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RemoteData } from '../../core/data/remote-data';
 import { PaginatedList } from '../../core/data/paginated-list.model';
 import { PaginationComponentOptions } from '../pagination/pagination-component-options.model';
@@ -135,9 +136,10 @@ export class BrowseByComponent implements OnInit {
   public constructor(private injector: Injector,
                      protected paginationService: PaginationService,
                      public locale: LocaleService,
-                     private helperService: HelperService
+                     private helperService: HelperService,
+                     public route: ActivatedRoute,
+                     private zone: NgZone
   ) {
-
   }
 
   /**
@@ -169,6 +171,11 @@ export class BrowseByComponent implements OnInit {
             }
           }, 250)
       }
+    })
+    this.zone.run(()=> {
+      this.route.queryParams.subscribe(params => {
+        this.currentTerm = params.startsWith;
+      }); 
     })
   }
 

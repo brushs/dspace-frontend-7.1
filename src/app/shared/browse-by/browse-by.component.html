@@ -105,7 +105,7 @@
   <ds-loading *ngIf="!objects || objects?.isLoading" message="{{'loading.browse-by' | translate}}"></ds-loading>
   <ds-error *ngIf="objects?.hasFailed" message="{{'error.browse-by' | translate}}"></ds-error>
   <div *ngIf="!objects?.isLoading && objects?.payload?.page.length === 0" class="w-100" role="alert">
-    {{'browse.empty' | translate}}
+    {{(('browse.empty') + (currentTerm ? '.term' : '')) | translate: {field: (('browse.metadata.' + browseField | translate)), term: currentTerm} }}
   </div>
   </section>
-</ng-container>
+</ng-container> 
