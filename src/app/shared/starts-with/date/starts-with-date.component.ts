@@ -59,6 +59,11 @@ export class StartsWithDateComponent extends StartsWithAbstractComponent {
     ];
 
     super.ngOnInit();
+    this.subs.push(
+      this.route.queryParams.subscribe((params)=> {
+        this.setStartsWith(params.startsWith, false)
+      })
+    )
   }
 
   /**
@@ -117,7 +122,7 @@ export class StartsWithDateComponent extends StartsWithAbstractComponent {
    * startsWithMonth will be set depending on the index received after the "-"
    * @param startsWith
    */
-  setStartsWith(startsWith: string) {
+  setStartsWith(startsWith: string, loadParams = true) {
     this.startsWith = startsWith;
     if (hasValue(startsWith) && startsWith.indexOf('-') > -1) {
       const split = startsWith.split('-');
@@ -131,7 +136,11 @@ export class StartsWithDateComponent extends StartsWithAbstractComponent {
     } else {
       this.startsWithYear = +startsWith;
     }
-    this.setStartsWithParam();
+    if(loadParams) {
+      this.setStartsWithParam();
+    } else {
+      this.formData.setValue({startsWith: this.startsWith})
+    }
   }
 
   /**
