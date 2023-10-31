@@ -152,7 +152,8 @@ export class LogInPasswordComponent implements OnInit {
     if (!this.isStandalonePage) {
       this.authService.setRedirectUrl(this.hardRedirectService.getCurrentRoute());
     } else {
-      this.authService.setRedirectUrlIfNotSet('/');
+      // this.authService.setRedirectUrlIfNotSet('/');
+      this.authService.setRedirectUrlIfNotSet(this.authService.getUrlPathPriorToSignIn());
     }
 
     // dispatch AuthenticationAction

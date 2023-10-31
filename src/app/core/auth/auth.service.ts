@@ -461,7 +461,7 @@ export class AuthService {
    * Refresh route navigated
    */
   public refreshAfterLogout() {
-    this.navigateToRedirectUrl(undefined);
+    this.navigateToRedirectUrl(this.getUrlPathPriorToSignOut());
   }
 
   /**
@@ -591,6 +591,23 @@ export class AuthService {
     } else {
       this.store.dispatch(new UnsetUserAsIdleAction());
     }
+  }
+
+  setUrlPathPriorToSignIn(newUrl){
+    localStorage.setItem("urlPathPriorToSignIn", newUrl);
+    
+  }
+
+  getUrlPathPriorToSignIn(){
+    return localStorage.getItem("urlPathPriorToSignIn") ? localStorage.getItem("urlPathPriorToSignIn") : "";
+  }
+
+  setUrlPathPriorToSignOut(newUrl){
+    localStorage.setItem("urlPathPriorToSignOut", newUrl);
+  }
+
+  getUrlPathPriorToSignOut(){
+    return localStorage.getItem("urlPathPriorToSignOut") ? localStorage.getItem("urlPathPriorToSignOut") : "";
   }
 
 }
