@@ -42,7 +42,7 @@
     </summary>
     <ul class="list-unstyled mrgn-tp-md" *ngIf="node.isExpanded">
       <p class="well-sm bg-darker mrgn-bttm-md" *ngIf="isValidData(node.payload)">
-        <a [routerLink]="node.route" [attr.lang]="getLanguageAttribute(node.payload)" class="text-white">
+        <a [routerLink]="node.route" [queryParams]="{ 'spc.sf': 'score', 'spc.sd': 'DESC','scope': node.id,'spc.page':1 }" [attr.lang]="getLanguageAttribute(node.payload)" class="text-white">
           {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
          </a>
       </p>
@@ -58,7 +58,7 @@
 </ng-template>
 
 <ng-template #nonexpandable let-node="node">
-  <a [routerLink]="node.route" [attr.lang]="getLanguageAttribute(node.payload)">
+  <a [routerLink]="node.route" [queryParams]="{ 'spc.sf': 'score', 'spc.sd': 'DESC','scope': node.id,'spc.page':1 }" [attr.lang]="getLanguageAttribute(node.payload)">
     {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
   </a>
 </ng-template>

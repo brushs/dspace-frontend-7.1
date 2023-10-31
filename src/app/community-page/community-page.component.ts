@@ -172,6 +172,9 @@ export class CommunityPageComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log("currentLang: " + this.translate.currentLang);
+    //getting the scope value from route
+    this.currentScope = this.route.snapshot.queryParamMap.get('scope');
+
     this.communityRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Community>),
       redirectOn4xx(this.router, this.authService)
@@ -220,7 +223,7 @@ export class CommunityPageComponent implements OnInit {
       }
     });
 
-    this.initParams();
+    //this.initParams();
   }
 
   initParams() {
