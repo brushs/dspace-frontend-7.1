@@ -905,7 +905,7 @@
   "browse.empty.term": "No items to show: {{field}} = {{term}}",
   "browse.metadata.author": "Author",
   "browse.metadata.author.breadcrumbs": "Browse by author",
-  "browse.metadata.dateissued": "Issue date",
+  "browse.metadata.dateissued": "Date",
   "browse.metadata.dateissued.breadcrumbs": "Browse by Issue Date",
   "browse.metadata.subject": "Subject",
   "browse.metadata.subject.breadcrumbs": "Browse by subject",
