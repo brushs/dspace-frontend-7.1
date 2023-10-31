@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, NgZone, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RemoteData } from '../../core/data/remote-data';
 import { PaginatedList } from '../../core/data/paginated-list.model';
 import { PaginationComponentOptions } from '../pagination/pagination-component-options.model';
@@ -10,7 +11,7 @@ import { ListableObject } from '../object-collection/shared/listable-object.mode
 import { getStartsWithComponent, StartsWithType } from '../starts-with/starts-with-decorator';
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { HelperService } from '../utils/helper.service';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../core/locale/locale.service';
 
 @Component({
   selector: 'ds-browse-by',
@@ -135,9 +136,10 @@ export class BrowseByComponent implements OnInit {
   public constructor(private injector: Injector,
                      protected paginationService: PaginationService,
                      public locale: LocaleService,
-                     private helperService: HelperService
+                     private helperService: HelperService,
+                     public route: ActivatedRoute,
+                     private zone: NgZone
   ) {
-
   }
 
   /**
@@ -169,6 +171,11 @@ export class BrowseByComponent implements OnInit {
             }
           }, 250)
       }
+    })
+    this.zone.run(()=> {
+      this.route.queryParams.subscribe(params => {
+        this.currentTerm = params.startsWith;
+      }); 
     })
   }
 
