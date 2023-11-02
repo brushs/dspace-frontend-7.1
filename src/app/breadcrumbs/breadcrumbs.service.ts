@@ -123,7 +123,7 @@ export class BreadcrumbsService {
   private reset() {
     this.breadcrumbOptions$.next(
       {
-        addFederalScienceLibrariesNetworkBreadcrumb: false,
+        // addFederalScienceLibrariesNetworkBreadcrumb: false,
         omitHomeBreadcrumb: false,
         omitBreadcrumbElements: [],
         addBreadcrumbElements: []
