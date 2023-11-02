@@ -79,10 +79,12 @@ export class ComcolPageBrowseByComponent implements OnInit {
     this.zone.runOutsideAngular(() => {
       // Set focus to the "Skip to links"
       let iId = setInterval(() => {
-        let skipToLinksListEl = document.querySelector('#wb-tphp');
+        let skipToLinksListEl = (document.querySelector('#wb-tphp') as HTMLElement);
        if(skipToLinksListEl) {
-         (skipToLinksListEl as HTMLElement).focus();
-         (skipToLinksListEl as HTMLElement).scrollIntoView();
+            skipToLinksListEl.setAttribute('tabindex', '-1');
+            skipToLinksListEl.focus();
+            skipToLinksListEl.scrollIntoView();
+            skipToLinksListEl.removeAttribute('tabindex');
          clearInterval(iId);
        }
       }, 250);
@@ -92,9 +94,5 @@ export class ComcolPageBrowseByComponent implements OnInit {
   onSelectChange(newId: string, resetFocusToTop = false) {
     const selectedOption = this.allOptions
       .find((option: ComColPageNavOption) => option.id === newId);
-      this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params });
-      if(resetFocusToTop) {
-        this.resetFocus();
-      }
-  }
+      this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params })  }
 }
