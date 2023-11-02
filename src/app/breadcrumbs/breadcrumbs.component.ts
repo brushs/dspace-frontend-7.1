@@ -32,9 +32,9 @@ export class BreadcrumbsComponent {
 
   /**
    * Regex representation of text containing "gc science"
-   * with case insensitivity
+   * or "scientifique du gc" with case insensitivity
    */
-  gcScienceRegex = /.*gc science.*/i
+  gcScienceRegex = /.*(gc science|scientifique du gc).*/i
 
   constructor(
     private breadcrumbsService: BreadcrumbsService,

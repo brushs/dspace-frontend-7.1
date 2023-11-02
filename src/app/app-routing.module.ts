@@ -47,7 +47,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             data: { 
               showBreadcrumbs: false,
               breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
+                // addFederalScienceLibrariesNetworkBreadcrumb: true,
                 omitHomeBreadcrumb: true,
               }
              },
@@ -60,7 +60,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             data: { 
               showBreadcrumbs: false,
               breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
+                // addFederalScienceLibrariesNetworkBreadcrumb: true,
                 omitHomeBreadcrumb: true,
               }
             },
@@ -70,66 +70,66 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             path: 'about-us',
             loadChildren: () => import('./about-us-page/about-us-page.module')
               .then((m) => m.AboutUsPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'a-propos',
             loadChildren: () => import('./about-us-page/about-us-page.module')
               .then((m) => m.AboutUsPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'policies-and-standards',
             loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
               .then((m) => m.PoliciesAndStandardsPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'politiques-et-normes',
             loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
               .then((m) => m.PoliciesAndStandardsPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'contact-us',
             loadChildren: () => import('./contact-us-page/contact-us-page.module')
               .then((m) => m.ContactUsPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'contactez-nous',
             loadChildren: () => import('./contact-us-page/contact-us-page.module')
               .then((m) => m.ContactUsPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           { path: 'tips-for-searching', pathMatch: 'full', component: SearchTipsPageComponent },
@@ -137,22 +137,22 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             path: 'community-list',
             loadChildren: () => import('./community-list-page/community-list-page.module')
               .then((m) => m.CommunityListPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'liste-des-communautes',
             loadChildren: () => import('./community-list-page/community-list-page.module')
               .then((m) => m.CommunityListPageModule),
-            data: {
-              breadcrumbOptions: {
-                addFederalScienceLibrariesNetworkBreadcrumb: true,
-              }
-            },
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
@@ -218,7 +218,11 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
                   {
                     breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
                     position: 0
-                  }
+                  },
+                  // {
+                  //   breadcrumb: new Breadcrumb('search.page.breadcrumbs', '/communities'),
+                  //   position: -1
+                  // }
                 ]
               }
             },
@@ -227,6 +231,20 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
           { path: 'entities/:entity-type',
             loadChildren: () => import('./item-page/item-page.module')
               .then((m) => m.ItemPageModule),
+            data: {
+              breadcrumbOptions: {
+                addBreadcrumbElements: [
+                  {
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    position: 0
+                  },
+                  // {
+                  //   breadcrumb: new Breadcrumb('search.page.breadcrumbs', '/communities'),
+                  //   position: -1
+                  // }
+                ]
+              }
+            },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
