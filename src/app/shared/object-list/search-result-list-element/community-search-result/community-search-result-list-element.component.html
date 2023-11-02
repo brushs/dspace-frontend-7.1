@@ -3,6 +3,7 @@
     <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
         rel="noopener noreferrer" 
         [routerLink]="['/communities/' + dso.id]" 
+        [queryParams]="{ 'spc.sf': 'score', 'spc.sd': 'DESC','scope': dso.id,'spc.page':1 }"
         class="lead" 
         [innerHTML]="dsoTitle"></a>
     <span *ngIf="linkType == linkTypes.None" class="lead" [innerHTML]="dsoTitle"></span>
