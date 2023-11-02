@@ -24,7 +24,8 @@
         <ol class="breadcrumb">
             <li><a [attr.href]="translate.currentLang === 'en' ? 'https://www.canada.ca/en.html' : 'https://www.canada.ca/fr.html'">Canada.ca</a></li>
             <li><a [attr.href]="translate.currentLang === 'en' ? 'https://www.canada.ca/en/services/science.html' : 'https://www.canada.ca/fr/services/science.html'">{{'science.innovation.breadcrumbs' | translate}}</a></li>
-            <li *ngIf="(breadcrumbOptions$ | async)?.addFederalScienceLibrariesNetworkBreadcrumb"><a [attr.href]="translate.currentLang === 'en' ? 'https://science-libraries.canada.ca/eng/home/' : 'https://science-libraries.canada.ca/fra/accueil/'">{{'federal.science.libraries.network.breadcrumbs' | translate}}</a></li>
+            <!-- <li *ngIf="(breadcrumbOptions$ | async)?.addFederalScienceLibrariesNetworkBreadcrumb"><a [attr.href]="translate.currentLang === 'en' ? 'https://science-libraries.canada.ca/eng/home/' : 'https://science-libraries.canada.ca/fra/accueil/'">{{'federal.science.libraries.network.breadcrumbs' | translate}}</a></li> -->
+            <li><a [attr.href]="translate.currentLang === 'en' ? 'https://science-libraries.canada.ca/eng/home/' : 'https://science-libraries.canada.ca/fra/accueil/'">{{'federal.science.libraries.network.breadcrumbs' | translate}}</a></li>
             <ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
 
                 <ng-container *ngVar="(breadcrumbOptions$ | async) as breadcrumbOptions">
@@ -69,6 +70,7 @@
                 </ng-container>
                 
           </ng-container>
+
         </ol>
     </div>
   </nav>
