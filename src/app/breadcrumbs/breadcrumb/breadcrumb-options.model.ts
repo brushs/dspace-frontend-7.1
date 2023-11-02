@@ -8,7 +8,7 @@ export interface BreadcrumbOptions {
     /**
      * The optional addFederalScienceLibrariesNetworkBreadcrumb breadcrumb option value
      */
-    addFederalScienceLibrariesNetworkBreadcrumb?: boolean;
+    // addFederalScienceLibrariesNetworkBreadcrumb?: boolean;
 
     /**
      * The optional omitHomeBreadcrumb breadcrumb option value
