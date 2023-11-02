@@ -112,34 +112,8 @@
         <div class="col-md-12 pull-left">
           <div class="row">
             <div class="col-md-8 pull-left">
-              <h2>Communautés</h2>
-              <p class="text-justify">Sélectionnez une communauté pour parcourir ses collections.</p>
-              <ul>
-                <li>
-                  <a [routerLink]="getCommunityHref('Agriculture and Agri-Food Canada')">
-                    Agriculture
-                    et Agroalimentaire Canada
-                  </a>
-                </li>
-                <li>
-                  <a [routerLink]="getCommunityHref('Canadian Food Inspection Agency')">Agence canadienne d'inspection des aliments</a>
-                </li>
-                <li><a [routerLink]="getCommunityHref('Canadian Space Agency')">Agence spatiale canadienne</a>
-                </li>
-                <li><a
-                    [routerLink]="getCommunityHref('Environment and Climate Change Canada')">Environnement
-                    et Changement climatique Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Fisheries and Oceans Canada')">Pêches
-                    et Océans Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Health Canada')" >Santé Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Public Health Agency of Canada')">Agence
-                    de la santé publique du Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Transport Canada')">Transports
-                    Canada</a></li>
-              </ul>
+              <ds-top-level-community-list>
+              </ds-top-level-community-list>
             </div>
             <div class="col-md-4 pull-right">
               <h2>Contactez-nous</h2>
