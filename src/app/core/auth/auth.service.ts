@@ -461,7 +461,7 @@ export class AuthService {
    * Refresh route navigated
    */
   public refreshAfterLogout() {
-    this.navigateToRedirectUrl(this.getUrlPathPriorToSignOut());
+    this.navigateToRedirectUrl(undefined);
   }
 
   /**
@@ -600,14 +600,6 @@ export class AuthService {
 
   getUrlPathPriorToSignIn(){
     return localStorage.getItem("urlPathPriorToSignIn") ? localStorage.getItem("urlPathPriorToSignIn") : "";
-  }
-
-  setUrlPathPriorToSignOut(newUrl){
-    localStorage.setItem("urlPathPriorToSignOut", newUrl);
-  }
-
-  getUrlPathPriorToSignOut(){
-    return localStorage.getItem("urlPathPriorToSignOut") ? localStorage.getItem("urlPathPriorToSignOut") : "";
   }
 
 }
