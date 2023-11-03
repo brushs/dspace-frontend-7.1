@@ -218,11 +218,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
                   {
                     breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
                     position: 0
-                  },
-                  // {
-                  //   breadcrumb: new Breadcrumb('search.page.breadcrumbs', '/communities'),
-                  //   position: -1
-                  // }
+                  }
                 ]
               }
             },
@@ -238,10 +234,6 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
                     breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
                     position: 0
                   },
-                  // {
-                  //   breadcrumb: new Breadcrumb('search.page.breadcrumbs', '/communities'),
-                  //   position: -1
-                  // }
                 ]
               }
             },
