@@ -14,7 +14,7 @@ import { LocaleService, supportedLanguages } from '../../../../../../core/locale
 import { DSONameService } from '../../../../../../core/breadcrumbs/dso-name.service';
 import { TruncatableService } from '../../../../../truncatable/truncatable.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Router } from '@angular/router';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -61,6 +61,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     protected localeService: LocaleService, 
     private changeDetectorRef: ChangeDetectorRef,
     public translate: TranslateService,
+    private router: Router,
     ) {
     super(truncatableService, dsoNameService, localeService);
   }
@@ -200,6 +201,10 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
       textElement.innerHTML = this.descriptionText;
   }
 
+  storeSearchBreadCrumbUrlPath(event: MouseEvent){
+    if(event.button === 0 || event.button === 1){
+      localStorage.setItem("previousSearchPageUrlPath", this.router.url);
+    }
+  }
 
-  
 }

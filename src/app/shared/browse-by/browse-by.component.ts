@@ -174,7 +174,7 @@ export class BrowseByComponent implements OnInit {
     })
     this.zone.run(()=> {
       this.route.queryParams.subscribe(params => {
-        this.currentTerm = params.startsWith;
+        this.currentTerm = params.startsWith || params.value;
       }); 
     })
   }

@@ -32,9 +32,9 @@ export class BreadcrumbsComponent {
 
   /**
    * Regex representation of text containing "gc science"
-   * with case insensitivity
+   * or "scientifique du gc" with case insensitivity
    */
-  gcScienceRegex = /.*gc science.*/i
+  gcScienceRegex = /.*(gc science|scientifique du gc).*/i
 
   constructor(
     private breadcrumbsService: BreadcrumbsService,
@@ -59,4 +59,37 @@ export class BreadcrumbsComponent {
     return regexPattern.test(text);
   }
 
+  /**
+   * Method to parse the path segment from a url string
+   * @param url The URL string value
+   * @returns The URL path string value
+   */
+  parsePathFromUrl(url){
+    if(url){
+      return url.split("?")[0];
+    }
+    return url;
+  }
+  
+  /**
+   * Method to parse the query parameter segment from a URL string
+   * @param url The URL string value
+   * @returns Query parameters as an object
+   */
+  parseQueryParametersFromUrl(url){
+    if(url){
+      let queryParamsString = url.split("?")[1];
+      if(url.split("?")[1]){
+        let queryParamsStringSegments = queryParamsString.split("&");
+        let queryParamsObject = {};
+        queryParamsStringSegments.forEach((segment) => {
+          let splitSegment = segment.split("=");
+          queryParamsObject[splitSegment[0]] = decodeURIComponent(splitSegment[1]);
+        });
+        return queryParamsObject;
+      }
+    }
+    return {};
+    
+  }
 }

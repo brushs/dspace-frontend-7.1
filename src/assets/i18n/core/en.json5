@@ -620,6 +620,7 @@
   //labels for breadcrumbs
   "science.innovation.breadcrumbs": "Science and innovation",
   "federal.science.libraries.network.breadcrumbs": "Federal Science Libraries Network",
+  "search.page.breadcrumbs": "Search",
 
   // FOSRC SPECIFIC LABELS END
 
@@ -905,7 +906,7 @@
   "browse.empty.term": "No items to show: {{field}} = {{term}}",
   "browse.metadata.author": "Author",
   "browse.metadata.author.breadcrumbs": "Browse by author",
-  "browse.metadata.dateissued": "Issue date",
+  "browse.metadata.dateissued": "Date",
   "browse.metadata.dateissued.breadcrumbs": "Browse by Issue Date",
   "browse.metadata.subject": "Subject",
   "browse.metadata.subject.breadcrumbs": "Browse by subject",

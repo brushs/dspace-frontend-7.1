@@ -3,7 +3,7 @@ import {combineLatest, Observable, of as observableOf, ReplaySubject} from 'rxjs
 import {Breadcrumb} from './breadcrumb/breadcrumb.model';
 import {BreadcrumbOptions} from './breadcrumb/breadcrumb-options.model';
 import {ActivatedRoute, NavigationEnd, provideRoutes, Router} from '@angular/router';
-import {filter, map, switchMap, tap} from 'rxjs/operators';
+import {filter, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {hasNoValue, hasValue, isUndefined} from '../shared/empty.util';
 
 @Injectable({
@@ -48,7 +48,9 @@ export class BreadcrumbsService {
         let breadcrumbOptions = this.getRouteBreadcrumbOptionsDataFromRoute(this.route.root);
         this.breadcrumbOptions$.next(breadcrumbOptions);
       }),
-      map((breadcrumbs) => {
+      //get latest query parameters
+      withLatestFrom(this.route.queryParams),
+      map(([breadcrumbs, queryParameters]) => {
         
         let breadCrumbOptions = this.getRouteBreadcrumbOptionsDataFromRoute(this.route.root);
         let breadCrumbsToAdd = breadCrumbOptions?.addBreadcrumbElements;
@@ -57,6 +59,12 @@ export class BreadcrumbsService {
             //add breadcrumb at the specified position
             breadcrumbs.splice(element.position, 0, element.breadcrumb);
           });
+        }
+
+        //if the "fromSearchPage" query parameter exists
+        if(queryParameters["fromSearchPage"]){
+          //add the search page breadcrumb second from the end
+          breadcrumbs.splice(-1, 0, new Breadcrumb('search.page.breadcrumbs', localStorage.getItem("previousSearchPageUrlPath")));
         }
         
         return breadcrumbs;
@@ -123,7 +131,7 @@ export class BreadcrumbsService {
   private reset() {
     this.breadcrumbOptions$.next(
       {
-        addFederalScienceLibrariesNetworkBreadcrumb: false,
+        // addFederalScienceLibrariesNetworkBreadcrumb: false,
         omitHomeBreadcrumb: false,
         omitBreadcrumbElements: [],
         addBreadcrumbElements: []

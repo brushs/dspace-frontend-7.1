@@ -1041,6 +1041,8 @@
   "science.innovation.breadcrumbs": "Science et innovation",
   // "federal.science.libraries.network.breadcrumbs": "Federal Science Libraries Network",
   "federal.science.libraries.network.breadcrumbs": "Réseau des bibliothèques scientifiques fédérales",
+  // "search.page.breadcrumbs": "Search",
+  "search.page.breadcrumbs": "Recherche",
 
   // FOSRC SPECIFIC LABELS END
 
@@ -1608,8 +1610,8 @@
   "browse.metadata.author": "Auteur",
   // "browse.metadata.author.breadcrumbs": "Browse by author",
   "browse.metadata.author.breadcrumbs": "Parcourir par auteur",
-  // "browse.metadata.dateissued": "Issue date",
-  "browse.metadata.dateissued": "Date de publication",
+  // "browse.metadata.dateissued": "Date",
+  "browse.metadata.dateissued": "Date",
   // "browse.metadata.dateissued.breadcrumbs": "Browse by Issue Date",
   "browse.metadata.dateissued.breadcrumbs": "Parcourir par Date de publication",
   // "browse.metadata.subject": "Subject",
