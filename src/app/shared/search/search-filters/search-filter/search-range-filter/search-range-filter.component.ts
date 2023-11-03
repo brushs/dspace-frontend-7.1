@@ -170,7 +170,8 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     var newMax = new Number(this.range[1] >= this.max_limit ? new Number(this.max_limit) : this.range[1]);
     //this.range[1] = newMax;
 
-    if(isNaN(newMin.valueOf()) || isNaN(this.range[0]) || this.range[0] < this.min_limit) {
+
+    if(this.range[0] !== '' && (isNaN(newMin.valueOf()) || isNaN(this.range[0]) || this.range[0] < this.min_limit)) {
       // add error label on top of start date field
       this.startDateError = true;
     } else {
@@ -184,7 +185,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       this.startDateRangeError = false;
     }
 
-    if((isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
+    if(this.range[1] !== '' && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
       // add error label on top of end date field
       this.endDateError = true;
     } else {
@@ -220,11 +221,11 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     const filterSelections = this.filterService.getSelectedFilters() ?? [];
 
     const dateFilters = {};
-    if (newMin !== null) {
+    if (newMin !== null && this.range[0] !== '') {
       dateFilters[this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX] = [newMin];
     }
 
-    if (newMax !== null) {
+    if (newMax !== null && this.range[1] !== '') {
       dateFilters[this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX] = [newMax];
     }
 
