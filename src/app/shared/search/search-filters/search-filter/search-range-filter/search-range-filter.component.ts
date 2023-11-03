@@ -145,16 +145,16 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
 
       // Calculating the minimum and maximum values
       const minYear = Math.min(...years.map(year => year[0]));
-      // const maxYear = Math.max(...years.map(year => year[1])); if we want to set max year from the returned year range list
+      const maxYear = Math.max(...years.map(year => year[1])); 
       this.range[0] = minYear;
-      this.range[1] = this.max_limit;
+      this.range[1] = maxYear;
 
       const iniMin = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX).pipe(startWith(undefined));
       const iniMax = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX).pipe(startWith(undefined));
       this.sub = observableCombineLatest(iniMin, iniMax).pipe(
         map(([min_limit, max_limit]) => {
           const minimum = hasValue(min_limit) ? min_limit : minYear;
-          const maximum = hasValue(max_limit) ? max_limit : this.max_limit;
+          const maximum = hasValue(max_limit) ? max_limit : maxYear;
           return [minimum, maximum];
         })
       ).subscribe((minmax) => this.range = minmax);
