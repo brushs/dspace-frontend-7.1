@@ -181,6 +181,9 @@ export class CollectionPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     //getting the current scope value from route
+    this.currentScope = this.route.snapshot.queryParamMap.get('scope');
+
     this.collectionRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Collection>),
       redirectOn4xx(this.router, this.authService),
@@ -258,7 +261,7 @@ export class CollectionPageComponent implements OnInit {
       }
     });
 
-    this.initParams();
+    //this.initParams();
 
   }
 
