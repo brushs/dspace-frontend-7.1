@@ -41,20 +41,15 @@
         <div class="col-md-12 pull-left">
           <div class="row">
             <div class="col-md-8 pull-left">
-              <ds-top-level-community-list>
-              </ds-top-level-community-list>
-             <!-- <h2>Communities</h2>
-              <p class="text-justify">Select a community to browse its collections.</p>
-              <a [routerLink]="'community-list'">
-                Communities
+              <h2>Collections</h2>
+              <p class="text-justify">Select a collection.</p>
+              <div *ngFor="let item of collections">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forestry Service'">
+                <a  [routerLink]="['/collections', item.id]">
+                   {{ item.name }}
                 </a>
-              <ul>
-                <li>
-                  <a [routerLink]="getCommunityHref('GEOScan')">
-                    GEOScan
-                  </a>
-                </li>
-              </ul> -->
+                </ng-container>
+              </div>
             </div>
             <div class="col-md-4 pull-right">
               <h2>Contact us</h2>
@@ -112,8 +107,15 @@
         <div class="col-md-12 pull-left">
           <div class="row">
             <div class="col-md-8 pull-left">
-              <ds-top-level-community-list>
-              </ds-top-level-community-list>
+              <h2>Collections</h2>
+              <p class="text-justify">Select a collection.</p>
+              <div *ngFor="let item of collections">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forestry Service'">
+                <a  [routerLink]="['/collections', item.id]">
+                   {{ item.name }}
+                </a>
+                </ng-container>
+              </div>
             </div>
             <div class="col-md-4 pull-right">
               <h2>Contactez-nous</h2>

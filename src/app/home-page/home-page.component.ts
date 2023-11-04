@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
 
   site$: Observable<Site>;
   subcommunities = {};
+  public collections = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,29 +41,17 @@ export class HomePageComponent implements OnInit {
     let port = environment.production ? '' : ':' + environment.rest.port;
     let prefix = environment.rest.ssl ? 'https://' : 'http://';
 
-    this.http.get(`${ prefix  + baseHost + port + '/server'}/api/core/communities/search/top?page=0&size=20&sort=dc.title,ASC&embed.size=subcommunities=10&embed=subcommunities`).subscribe(x => {
-      if (x['_embedded']?.['communities']) {
-
-        //const parentScienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'));
-        const parentScienceCommunity = x['_embedded']['communities'];
-        if (parentScienceCommunity) {
-          // saving the science id to retrive only science community in community page
-          this.scienceCommunityService.setScienceId(parentScienceCommunity?.id);
-        }
-
-        //let scienceCommunity = x['_embedded']['communities'].find(y => y.name.includes('GC Science'))?.['_embedded']?.['subcommunities']
-        let scienceCommunity = x['_embedded']['communities'];
-        //if (scienceCommunity?.['_embedded']?.['subcommunities']) {
-        if (scienceCommunity) {
-          //this.subcommunities = scienceCommunity?.['_embedded']?.['subcommunities'].reduce((prev, curr) => {
-          this.subcommunities = scienceCommunity?.reduce((prev, curr) => {
-            prev[curr.name] = curr.id;
-            return prev;
-          }, {})
-          this.cdr.detectChanges()
-        }
+   this.http.get(`${ prefix  + baseHost + port + '/server'}/api/core/collections`).subscribe( (x) => {
+      if (x['_embedded']?.['collections']) {
+        const collections = x['_embedded']['collections'];
+        collections.forEach((c) => {
+          this.collections.push(c);
+        });
       }
-    })
+      const childLinkObservables: Observable<any>[] = [];
+      this.cdr.detectChanges()
+      //console.log(this.collections);
+   })
   }
 
   search(value) {
