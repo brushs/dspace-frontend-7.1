@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { LocaleService } from '../core/locale/locale.service';
 import { DOCUMENT } from '@angular/common';
 import { filter} from 'rxjs/operators';
+import { MetadataService} from '../core/metadata/metadata.service';
 
 @Component({
   selector: 'ds-welcome-page',
@@ -42,7 +43,11 @@ export class WelcomePageComponent implements OnInit {
     private router: Router,
     private renderer2: Renderer2, 
     @Inject(DOCUMENT) private document: any,
-    ) { }
+    private metadata: MetadataService
+    ) { 
+      //set the splash page title when the splash page appears
+      this.metadata.setSplashPageTitle('Federal Open Science Repository of Canada (FOSRC) / Le Dépôt fédéral de science ouverte du Canada (DFSOC)');
+    }
 
   ngOnInit(): void {
 
@@ -61,11 +66,14 @@ export class WelcomePageComponent implements OnInit {
   }
 
   onClickButton(lang: string): void {
-      this.localeService.setCurrentLanguageCode(lang);
-      this.localeService.refreshAfterChangeLanguage();
 
-      //navigating to /home from the welcome page does not work
-      // this.router.navigate(['/home'])
+    //remove the splash page title when the splash page is closed
+    this.metadata.setSplashPageTitle("");
+    this.localeService.setCurrentLanguageCode(lang);
+    this.localeService.refreshAfterChangeLanguage();
+    
+    //navigating to /home from the welcome page does not work
+    // this.router.navigate(['/home'])
   }
 
   /**

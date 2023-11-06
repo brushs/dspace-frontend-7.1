@@ -14,8 +14,7 @@ import { ThemedHomePageComponent } from './themed-home-page.component';
         component: ThemedHomePageComponent,
         pathMatch: 'full',
         data: {
-          // title: 'home.title',
-          titleOverride: 'Federal Open Science Repository of Canada (FOSRC) / Le Dépôt fédéral de science ouverte du Canada (DFSOC)',
+          title: 'home.title',
           menu: {
             public: [],
           },

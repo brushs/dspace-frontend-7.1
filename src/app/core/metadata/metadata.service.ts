@@ -71,6 +71,11 @@ export class MetadataService {
     'application/epub+zip',                                                     // .epub
   ];
 
+  /**
+   * Title value for the splash page
+   */
+  splashPageTitle: string;
+
   constructor(
     private router: Router,
     private translate: TranslateService,
@@ -105,7 +110,7 @@ export class MetadataService {
   private processRouteChange(routeInfo: any): void {
     this.clearMetaTags();
 
-    if (routeInfo.data.value.title && !routeInfo.data.value.titleOverride) {
+    if (routeInfo.data.value.title && !this.splashPageTitle) {
       const titlePrefix = this.translate.get('repository.title.prefix');
       const title = this.translate.get(routeInfo.data.value.title, routeInfo.data.value);
       combineLatest([titlePrefix, title]).pipe(take(1)).subscribe(([translatedTitlePrefix, translatedTitle]: [string, string]) => {
@@ -113,10 +118,12 @@ export class MetadataService {
         this.title.setTitle(translatedTitlePrefix + translatedTitle);
       });
     }
-    if (routeInfo.data.value.titleOverride) {
-      this.addMetaTag('title', routeInfo.data.value.titleOverride);
-      this.title.setTitle(routeInfo.data.value.titleOverride);
+
+    if (this.splashPageTitle) {
+      this.addMetaTag('title', this.splashPageTitle);
+      this.title.setTitle(this.splashPageTitle);
     }
+    
     if (routeInfo.data.value.description) {
       this.translate.get(routeInfo.data.value.description).pipe(take(1)).subscribe((translatedDescription: string) => {
         this.addMetaTag('description', translatedDescription);
@@ -483,5 +490,8 @@ export class MetadataService {
     });
   }
 
+  public setSplashPageTitle(value){
+    this.splashPageTitle = value;
+  }
 
 }
