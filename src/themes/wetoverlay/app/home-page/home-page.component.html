@@ -44,7 +44,7 @@
               <h2>Collections</h2>
               <p class="text-justify">Select a collection.</p>
               <div *ngFor="let item of collections">
-                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forestry Service'">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
                 <a  [routerLink]="['/collections', item.id]">
                    {{ item.name }}
                 </a>
@@ -110,9 +110,9 @@
               <h2>Collections</h2>
               <p class="text-justify">Select a collection.</p>
               <div *ngFor="let item of collections">
-                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forestry Service'">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
                 <a  [routerLink]="['/collections', item.id]">
-                   {{ item.name }}
+                   {{ frenchName[item.name] }}
                 </a>
                 </ng-container>
               </div>
@@ -123,7 +123,7 @@
                 <a [routerLink]="'/contactez-nous'">Contactez-nous</a>.
               </p>
               <p>Pour des questions d'ordre général, veuillez envoyer un courriel à <a
-                  href="mailto:FOSRC-DFSOC@nrc-cnrc.gc.ca">FOSRC-DFSOC@nrc-cnrc.gc.ca.</a></p>
+                  href="mailto:ostr_support-soutien_dost@nrcan-rncan.gc.ca">ostr_support-soutien_dost@nrcan-rncan.gc.ca</a></p>
             </div>
           </div>
         </div>

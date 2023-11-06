@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit {
   site$: Observable<Site>;
   subcommunities = {};
   public collections = [];
+  public frenchName = {};
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,6 +41,7 @@ export class HomePageComponent implements OnInit {
     let baseHost = environment.rest.host;
     let port = environment.production ? '' : ':' + environment.rest.port;
     let prefix = environment.rest.ssl ? 'https://' : 'http://';
+    this.frenchName = {'GEOSCAN':'GEOSCAN', 'Canadian Forest Service':'Service canadien des forêts'};
 
    this.http.get(`${ prefix  + baseHost + port + '/server'}/api/core/collections`).subscribe( (x) => {
       if (x['_embedded']?.['collections']) {
