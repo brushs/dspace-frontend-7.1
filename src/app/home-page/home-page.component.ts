@@ -37,7 +37,7 @@ export class HomePageComponent implements OnInit {
     this.site$ = this.route.data.pipe(
       map((data) => data.site as Site),
     );
-    let baseHost = environment.production ? document.location.host : environment.rest.host;
+    let baseHost = environment.rest.host;
     let port = environment.production ? '' : ':' + environment.rest.port;
     let prefix = environment.rest.ssl ? 'https://' : 'http://';
 
