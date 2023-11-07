@@ -43,7 +43,7 @@ export class HomePageComponent implements OnInit {
     let prefix = environment.rest.ssl ? 'https://' : 'http://';
     this.frenchName = {'GEOSCAN':'GEOSCAN', 'Canadian Forest Service':'Service canadien des forêts'};
 
-   this.http.get(`${ prefix  + baseHost + port + '/server'}/api/core/collections`).subscribe( (x) => {
+   this.http.get(`${ prefix  + baseHost + port + '/server'}/api/core/collections?size=50`).subscribe( (x) => {
       if (x['_embedded']?.['collections']) {
         const collections = x['_embedded']['collections'];
         collections.forEach((c) => {
