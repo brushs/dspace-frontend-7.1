@@ -34,38 +34,22 @@
             </div>
       </div>
       <section>
+        <div class="col-md-12">
+        </div>
+      </section>
+      <section>
         <div class="col-md-12 pull-left">
           <div class="row">
             <div class="col-md-8 pull-left">
-              <h2>Communities</h2>
-              <p class="text-justify">Select a community to browse its collections.</p>
-              <ul>
-                <li>
-                  <a [routerLink]="getCommunityHref('GEOScan')">
-                    GEOScan
-                  </a>
-                </li>
-                <!--
-                <li>
-                  <a [routerLink]="getCommunityHref('Agriculture and Agri-Food Canada')">
-                    Agriculture and Agri-Food Canada
-                  </a>
-                </li>
-                <li>
-                  <a [routerLink]="getCommunityHref('Canadian Food Inspection Agency')">
-                    Canadian Food Inspection Agency
-                  </a>
-                </li>
-                <li><a [routerLink]="getCommunityHref('Canadian Space Agency')">Canadian Space Agency</a></li>
-                <li><a [routerLink]="getCommunityHref('Environment and Climate Change Canada')">Environment and Climate Change
-                    Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Fisheries and Oceans Canada')">Fisheries and Oceans
-                    Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Health Canada')">Health Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Public Health Agency of Canada')">
-                  Public Health Agency of Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Transport Canada')">Transport Canada</a></li> -->
-              </ul>
+              <h2>Collections</h2>
+              <p class="text-justify">Select a collection.</p>
+              <div *ngFor="let item of collections">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
+                <a  [routerLink]="['/collections', item.id]">
+                   {{ item.name }}
+                </a>
+                </ng-container>
+              </div>
             </div>
             <div class="col-md-4 pull-right">
               <h2>Contact us</h2>
@@ -123,34 +107,15 @@
         <div class="col-md-12 pull-left">
           <div class="row">
             <div class="col-md-8 pull-left">
-              <h2>Communautés</h2>
-              <p class="text-justify">Sélectionnez une communauté pour parcourir ses collections.</p>
-              <ul>
-                <li>
-                  <a [routerLink]="getCommunityHref('Agriculture and Agri-Food Canada')">
-                    Agriculture
-                    et Agroalimentaire Canada
-                  </a>
-                </li>
-                <li>
-                  <a [routerLink]="getCommunityHref('Canadian Food Inspection Agency')">Agence canadienne d'inspection des aliments</a>
-                </li>
-                <li><a [routerLink]="getCommunityHref('Canadian Space Agency')">Agence spatiale canadienne</a>
-                </li>
-                <li><a
-                    [routerLink]="getCommunityHref('Environment and Climate Change Canada')">Environnement
-                    et Changement climatique Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Fisheries and Oceans Canada')">Pêches
-                    et Océans Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Health Canada')" >Santé Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Public Health Agency of Canada')">Agence
-                    de la santé publique du Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Transport Canada')">Transports
-                    Canada</a></li>
-              </ul>
+              <h2>Collections</h2>
+              <p class="text-justify">Select a collection.</p>
+              <div *ngFor="let item of collections">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
+                <a  [routerLink]="['/collections', item.id]">
+                   {{ frenchName[item.name] }}
+                </a>
+                </ng-container>
+              </div>
             </div>
             <div class="col-md-4 pull-right">
               <h2>Contactez-nous</h2>
@@ -158,7 +123,7 @@
                 <a [routerLink]="'/contactez-nous'">Contactez-nous</a>.
               </p>
               <p>Pour des questions d'ordre général, veuillez envoyer un courriel à <a
-                  href="mailto:FOSRC-DFSOC@nrc-cnrc.gc.ca">FOSRC-DFSOC@nrc-cnrc.gc.ca.</a></p>
+                  href="mailto:ostr_support-soutien_dost@nrcan-rncan.gc.ca">ostr_support-soutien_dost@nrcan-rncan.gc.ca</a></p>
             </div>
           </div>
         </div>
