@@ -1,85 +1,410 @@
-<div class="d-flex flex-row">
-  <!--FOSRC change start-->
-  <h1 id="wb-cont" class="item-page-title-field mr-auto">
-    <ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])"></ds-metadata-values>
-    <!--
-    {{'official.title' | translate}}  
-    <ds-metadata-values [mdValues]="dsoOfficialTitle"></ds-metadata-values> -->
-  </h1>
-  <!--FOSRC change end (h2 is converted to h1)-->
+<div gcweb>
   <div class="pl-2">
     <ds-dso-page-edit-button [pageRoute]="itemPageRoute" [dso]="object" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
   </div>
-</div>
-<!--div>
-  <h2-- class="item-page-field" *ngIf="dsoAlternativeTitleExists">
-    {{'alternative.title' | translate}}
-    <ds-metadata-values [mdValues]="'dc.title.alternative' | metaTranslate: object "></ds-metadata-values><br />
-    <ds-metadata-values [mdValues]="'dc.title.fosrctransation' | metaTranslate: object "></!--ds-metadata-values>
-    <ds-metadata-values [mdValues]="dsoAlternateTitles"></ds-metadata-values>
-  </h2>
-</div-->
-<div class="row">
-  <div class="col-xs-12 col-md-4">
-    <ng-container *ngIf="!mediaViewer.image">
-      <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
-        <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
-      </ds-metadata-field-wrapper>
-    </ng-container>
-    <ng-container *ngIf="mediaViewer.image">
-      <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
-    </ng-container>
-    <ds-item-page-alternative-title-field [item]="object"></ds-item-page-alternative-title-field>
-    <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
-    <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
-                                     [parentItem]="object"
-                                     [itemType]="'Person'"
-                                     [metadataFields]="['dc.contributor.author', 'dc.creator']"
-                                     [label]="'relationships.isAuthorOf' | translate">
-    </ds-metadata-representation-list>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['journal.title']"
-                                [label]="'item.page.journal-title'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['journal.identifier.issn']"
-                                [label]="'item.page.journal-issn'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['journalvolume.identifier.name']"
-                                [label]="'item.page.volume-title'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-                                [fields]="['dc.publisher']"
-                                [label]="'item.page.publisher'">
-    </ds-generic-item-page-field>
-    <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
-  </div>
-  <div class="col-xs-12 col-md-6">
-    <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.description']"
-      [label]="'item.page.description'">
-    </ds-generic-item-page-field>
+  <h1 id="wb-cont" property="name" lang="{{this.dsoOfficialTitle[0].language}}">
+    {{this.dsoOfficialTitle[0].value}}
+  </h1>
+  <!--FOSRC change start-->
 
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.subject']"
-      [separator]="','"
+
+  <div class="row">
+    <div class="col-xs-12 col-md-4 pull-left">
+
+      <!-- THUMBNAIL -->
+      <ng-container *ngIf="!mediaViewer.image">
+        <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+          <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+        </ds-metadata-field-wrapper>
+      </ng-container>
+      <!-- IMAGE -->
+      <ng-container *ngIf="mediaViewer.image">
+        <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
+      </ng-container>
+
+      <p *ngIf="showDownloadLinksButton">
+        <a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">{{'item.page.download.files.link' | translate}}</a>
+      </p>
+
+      <!-- DOI -->
+      <dl>
+        <ds-item-page-uri-field *ngIf="metadataContainsKey('dc.identifier.doi')" 
+        [isDescriptionList]="true" [item]="object" 
+        [fields]="['dc.identifier.doi']" [separator]="','" 
+        [label]="'item.page.doi'" [renderInParagraph]="true"></ds-item-page-uri-field>
+
+        <!-- LANGUAGE -->
+        <ds-item-page-iso-field *ngIf="hasLanguage()" [item]="object" [isDescriptionList]="true"></ds-item-page-iso-field>
+
+        <!-- DATE -->
+        <ds-item-page-date-field *ngIf="metadataContainsKey('dc.date.issued')" [item]="object" [isDescriptionList]="true"></ds-item-page-date-field>
+
+        <!-- AUTHOR(S) -->
+        <dt>{{'relationships.isAuthorOf' | translate}}</dt>
+        <dd *ngFor="let author of authors; let authorIndex = index" 
+        [ngClass]="{ 'mrgn-bttm-0': authorIndex < (authors.length - 1), 'margin-top-none': true }">{{author.value}}</dd>
+       
+        <!-- PUBLISHER -->
+        <ds-generic-simple-metadata-section *ngIf="metadataContainsKey('dc.publisher')" [item]="object" [fields]="['dc.publisher']" [label]="'item.page.publisher'" [isDescriptionList]="true"></ds-generic-simple-metadata-section>
+        
+      </dl>
+
+    </div>
+    <div class="col-xs-12 col-md-8 pull-right">
+
+      <!--Alternative Title Field-->
+      <ds-item-page-alternative-title-field *ngIf="hasAlternativeTitle()" [item]="object"></ds-item-page-alternative-title-field>
+      <!-- ABSTRACT -->
+      <ds-item-page-abstract-field *ngIf="hasAbstract()" [item]="object"></ds-item-page-abstract-field>
+
+      <!-- Plain Language Summary -->
+      <ds-generic-simple-metadata-section *ngIf="hasPlainLanguageSummary()" [item]="object"
+        [fields]="['dc.description', 'dc.description.fosrctranslation']"
+        [label]="'fosrc.item.edit.dynamic-field.label.summary'">
+      </ds-generic-simple-metadata-section>
+
+      <!-- DESCRIPTION -->
+      <ds-generic-simple-metadata-section *ngIf="hasDescription()" [item]="object"
+      [fields]="['dc.description.fosrcfull','dc.description.fosrcfull-fosrctranslation']"
+      [label]="'fosrc.item.edit.dynamic-field.label.description'">
+      </ds-generic-simple-metadata-section>
+      
+      <!-- SUBJECTS -->
+
+      <ds-generic-simple-metadata-section *ngIf="metadataContainsKey('dc.subject')" [item]="object"
+      [fields]="['dc.subject']" [isList]="true"
       [label]="'item.page.subject'">
-    </ds-generic-item-page-field>
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.identifier.citation']"
-      [label]="'item.page.citation'">
-    </ds-generic-item-page-field>
-    <ds-item-page-uri-field [item]="object"
-      [fields]="['dc.identifier.uri']"
-      [label]="'item.page.uri'">
-    </ds-item-page-uri-field>
-    <ds-item-page-collections [item]="object"></ds-item-page-collections>
-    <div>
-      <a class="btn btn-outline-primary" [routerLink]="[itemPageRoute + '/full']" role="button">
-        <span aria-hidden="true" class="fas fa-info-circle"></span> {{"item.page.link.full" | translate}}
-      </a>
+      </ds-generic-simple-metadata-section>
+
+      <!-- KEYWORDS -->
+      <ds-generic-simple-metadata-section *ngIf="metadataContainsKey('creativework.keywords')" [filterLang]="true" [item]="object"
+        [fields]="['creativework.keywords']"
+        [separator]="','" [isList]="true"
+        [label]="'fosrc.item.edit.dynamic-field.label.keywords'">
+      </ds-generic-simple-metadata-section>      
+
+      <!-- RIGHTS -->
+      <h2 class="h3" *ngIf="metadataContainsKey('dc.rights')">{{'item.page.rights' | translate}}</h2>
+      <ds-item-page-rights-field *ngIf="metadataContainsKey('dc.rights')" [item]="object"></ds-item-page-rights-field>
+      
+      <!-- PAGINATION -->
+      <ds-generic-simple-metadata-section [item]="object" *ngIf="metadataContainsKey('local.pagination')"
+                                  [fields]="['local.pagination']"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.record.management.pagination'" [subheading]="false">
+      </ds-generic-simple-metadata-section>
+
+      <!-- PEER REVIEW -->
+      <ds-generic-simple-metadata-section [item]="object" *ngIf="metadataContainsKey('local.peerreview')"
+        [fields]="['local.peerreview']"
+        [separator]="','"
+        [label]="'item.page.local.peerreview'">      
+      </ds-generic-simple-metadata-section>
+      
+      <!-- OPEN ACCESS LEVEL -->
+      <ds-generic-simple-metadata-section [item]="object" *ngIf="metadataContainsKey('dc.rights.openaccesslevel')"
+        [fields]="['dc.rights.openaccesslevel']"
+        [separator]="','"
+        [label]="'item.page.dc.rights.openaccesslevel'">
+      </ds-generic-simple-metadata-section>
+
+      <!-- IDENTIFIER(S) -->
+      <h2 *ngIf="hasIdentifiers()" class="h3">{{'item.page.identifiers' | translate}}</h2>
+      <div style="padding-left: 18px" *ngIf="hasIdentifiers()" >
+        <dl>
+          <ds-item-page-govdoc-field [item]="object" *ngIf="metadataContainsKey('dc.identifier.govdoc')" [isDescriptionList]="true"></ds-item-page-govdoc-field>
+          <ds-item-page-isbn-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.isbn')"></ds-item-page-isbn-field>
+          <ds-item-page-pubmed-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.pubmedID')"></ds-item-page-pubmed-field>
+          <ds-item-page-issn-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.issn')"></ds-item-page-issn-field>
+          <ds-item-page-organization-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.organization')"></ds-item-page-organization-field>
+          <ds-item-page-other-field [item]="object" [isDescriptionList]="true" *ngIf="metadataContainsKey('dc.identifier.other')"></ds-item-page-other-field>
+        </dl>
+      </div>
+      <!-- Book -->
+      <h2 *ngIf="hasBook()" class="h3">{{ 'fosrc.item.edit.dynamic-field.values.2.publication_type' | translate}}</h2>
+      <div *ngIf="hasBook()" style="padding-left: 18px">
+        <dl>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.book.volume']"
+                                      *ngIf="metadataContainsKey('local.book.volume')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.series.volume'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.book.series']"
+                                      *ngIf="metadataContainsKey('local.book.series')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.book.seriesnum']"
+                                      *ngIf="metadataContainsKey('local.book.seriesnum')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.book.edition']"
+                                      *ngIf="metadataContainsKey('local.book.edition')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+        </dl>
+      </div>
+
+      <!-- Book Chapter -->
+      <h2 class="h3" *ngIf="hasBookChapter()">{{ 'fosrc.item.edit.dynamic-field.values.3.publication_type' | translate}}</h2>
+      <div *ngIf="hasBookChapter()" style="padding-left: 18px">
+        
+        <dl>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.chapter.book']"
+                                      *ngIf="metadataContainsKey('local.chapter.book')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.book.title'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.chapter.series']"
+                                      *ngIf="metadataContainsKey('local.chapter.series')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.chapter.seriesnum']"
+                                      *ngIf="metadataContainsKey('local.chapter.seriesnum')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.chapter.edition']"
+                                      *ngIf="metadataContainsKey('local.chapter.edition')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          
+        </dl>
+      </div>
+
+      <!-- Conference -->
+      <h2 class="h3" *ngIf="hasConference()">{{ 'fosrc.item.edit.dynamic-field.values.4.publication_type' | translate}}</h2>
+      <div style="padding-left: 18px" *ngIf="hasConference()">
+        
+        <dl>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.conference.name']"
+                                      *ngIf="metadataContainsKey('local.conference.name')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.conference.name'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.conference.series']"
+                                      *ngIf="metadataContainsKey('local.conference.series')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.conference.edition']"
+                                      *ngIf="metadataContainsKey('local.conference.edition')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.conference.startdate']"
+                                      *ngIf="metadataContainsKey('local.conference.startdate')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.conference.start.date'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.conference.enddate']"
+                                      *ngIf="metadataContainsKey('local.conference.enddate')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.conference.end.date'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['dc.location.fosrcconference']"
+                                      *ngIf="metadataContainsKey('dc.location.fosrcconference')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.conference.location'">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['local.conferencetype']"
+                                      *ngIf="metadataContainsKey('local.conferencetype')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
+          </ds-generic-simple-metadata-section>
+        </dl>
+      </div>
+
+  <!-- Article -->
+  <h2 class="h3" *ngIf="hasArticle()">{{ 'fosrc.item.edit.dynamic-field.values.1.publication_type' | translate}}</h2>
+  <div *ngIf="hasArticle()" style="padding-left: 18px">
+    <dl>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.article.journaltitle']"
+                                  *ngIf="metadataContainsKey('local.article.journaltitle')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.journal.title'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.article.journalvolume']"
+                                  *ngIf="metadataContainsKey('local.article.journalvolume')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.journal.volume'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.article.journalissue']"
+                                  *ngIf="metadataContainsKey('local.article.journalissue')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.journal.issue'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.acceptedmanuscript.articlenum']"
+                                  *ngIf="metadataContainsKey('local.acceptedmanuscript.articlenum')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.article.number'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['dc.date.accepted']"
+                                  *ngIf="metadataContainsKey('dc.date.accepted')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.accepted.date'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['dc.date.submitted']"
+                                  *ngIf="metadataContainsKey('dc.date.submitted')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.submitted.date'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.articletype']"
+                                  *ngIf="metadataContainsKey('local.articletype')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.sub-type'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+    </dl>
+  </div>
+  
+    <!-- Report -->
+    <h2 class="h3" *ngIf="hasReport()">{{ 'fosrc.item.edit.dynamic-field.values.5.publication_type' | translate}}</h2>
+    <div *ngIf="hasReport()" style="padding-left: 18px">
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.report.reportnum']"
+                                  *ngIf="metadataContainsKey('local.report.reportnum')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.report.no'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.report.series']"
+                                  *ngIf="metadataContainsKey('local.report.series')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.book.series.title'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.report.seriesnum']"
+                                  *ngIf="metadataContainsKey('local.report.seriesnum')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.series.number'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.report.edition']"
+                                  *ngIf="metadataContainsKey('local.report.edition')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                  [fields]="['local.reporttype']"
+                                  *ngIf="metadataContainsKey('local.reporttype')"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
+      </ds-generic-simple-metadata-section>
+    </div>
+
+      <!-- PROJECT -->
+      <h2 class="h3" *ngIf="hasProject()">{{'item.page.heading.project' | translate}}</h2>
+      <div *ngIf="hasProject()" style="padding-left: 18px">
+        <dl>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['dc.title.fosrcprojectname']"
+                                      *ngIf="metadataContainsKey('dc.title.fosrcprojectname')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.project.name'">
+          </ds-generic-simple-metadata-section>
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
+                                      [fields]="['dc.identifier.fosrcprojectid']"
+                                      *ngIf="metadataContainsKey('dc.identifier.fosrcprojectid')"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.project.number'">
+          </ds-generic-simple-metadata-section>
+        </dl>
+      </div>
+
+      <!-- SPONSORSHIP -->
+      <ds-item-page-sponsorship-field [item]="object" *ngIf="this.metadataContainsKey('dc.description.sponsorship')"></ds-item-page-sponsorship-field>
+
+      <!-- Start FOSRC Changes - 1594 -->
+      <!-- RELATIONSHIPS -->
+      <div *ngIf="hasDcRelationMetaData">
+        <h2 class="h3">{{'item.page.relationship' | translate}}</h2>
+  
+        <dl style="padding-left: 18px">
+        <div *ngIf="hasDcRelationMetaData_isformatof">
+        <dt>{{'item.page.1.relationship_identifiers' | translate}}: </dt>
+        <dd>
+          <a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isformatof']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.isformatof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a>
+        </dd>
+        </div>
+        <div *ngIf="hasDcRelationMetaData_ispartof">
+          <dt>{{'item.page.2.relationship_identifiers' | translate}}: </dt>
+          <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.ispartof']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.ispartof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a></dd>
+        </div>
+        <div *ngIf="hasDcRelationMetaData_isreferencedby">
+          <dt>{{'item.page.3.relationship_identifiers' | translate}}: </dt>
+          <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isreferencedby']; let last=last;" [href]="mdValue.value">
+              {{ this.object.metadata['dc.relation.isreferencedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a></dd>
+        </div>
+        <div *ngIf="hasDcRelationMetaData_isrelatedto">
+          <dt>{{'item.page.4.relationship_identifiers' | translate}}: </dt>
+          <dd> <a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isrelatedto']; let last=last;" [href]="mdValue.value">
+              {{ this.object.metadata['dc.relation.isrelatedto']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a>
+        </div>
+        <div *ngIf="hasDcRelationMetaData_isreplacedby">
+          <dt>{{'item.page.5.relationship_identifiers' | translate}}: </dt>
+          <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isreplacedby']; let last=last;" [href]="mdValue.value">
+              {{ this.object.metadata['dc.relation.isreplacedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a></dd>
+        </div>
+        <div *ngIf="hasDcRelationMetaData_isrequiredby">
+          <dt>{{'item.page.6.relationship_identifiers' | translate}}: </dt>
+          <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isrequiredby']; let last=last;" [href]="mdValue.value">
+              {{ this.object.metadata['dc.relation.isrequiredby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a></dd>
+        </div>
+        <div *ngIf="hasDcRelationMetaData_istranslationof">
+          <dt>{{'item.page.7.relationship_identifiers' | translate}}: </dt>
+          <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.istranslationof']; let last=last;" [href]="mdValue.value">
+            {{ this.object.metadata['dc.relation.istranslationof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a></dd>
+        </div>
+        <div *ngIf="hasDcRelationMetaData_isversionof">
+          <dt>{{'item.page.8.relationship_identifiers' | translate}}: </dt>
+          <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isversionof']; let last=last;" [href]="mdValue.value">
+              {{ this.object.metadata['dc.relation.isversionof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
+          </a></dd>
+        </div>
+      </dl>
+    </div>
+      
+      <!-- CITATION -->
+      <ds-generic-simple-metadata-section [item]="object"
+        [fields]="['dc.identifier.citation']"
+        *ngIf="this.metadataContainsKey('dc.identifier.citation')"
+        [label]="'item.page.citation'">
+      </ds-generic-simple-metadata-section>
+      <!-- End of FOSRC Changes  -->
+
+      
+      <!-- DOWNLOADS -->
+      <ds-item-page-file-section [item]="object" (hasBitstreams)="setDownloadLinksButtonVisibility($event)"
+      [elementID]="descriptionElementId">
+
+      </ds-item-page-file-section>
+
+      <!-- URI -->
+      <ds-item-page-uri-field [item]="object"
+        [fields]="['dc.identifier.uri']"
+        *ngIf="this.metadataContainsKey('dc.identifier.uri')"
+        [label]="'item.page.uri'">
+      </ds-item-page-uri-field>
+
+      <!-- COLLECTIONS -->
+      <ds-simple-item-page-collections [item]="object"></ds-simple-item-page-collections>
+      <div>
+
+      <h2 class="wb-inv">{{"item.page.link.full" | translate}}</h2>
+      <p class="h4">
+        <a class="btn btn-default" [routerLink]="[itemPageRoute + '/full']" role="button">
+          <span aria-hidden="true" class="fas fa-info-circle"></span> {{"item.page.link.full" | translate}}
+        </a>
+      </p>
+      </div>
+
     </div>
   </div>
 </div>
+<ds-page-details></ds-page-details>

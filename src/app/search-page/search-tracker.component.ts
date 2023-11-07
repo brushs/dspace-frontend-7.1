@@ -10,7 +10,7 @@ import { SearchConfigurationService } from '../core/shared/search/search-configu
 import { SearchService } from '../core/shared/search/search.service';
 import { PaginatedSearchOptions } from '../shared/search/paginated-search-options.model';
 import { SearchObjects } from '../shared/search/search-objects.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RemoteData } from '../core/data/remote-data';
 import { DSpaceObject } from '../core/shared/dspace-object.model';
 import { getFirstSucceededRemoteData } from '../core/shared/operators';
@@ -38,9 +38,10 @@ export class SearchTrackerComponent extends SearchComponent implements OnInit {
     @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
     protected routeService: RouteService,
     public angulartics2: Angulartics2,
-    protected router: Router
+    protected router: Router,
+    protected route: ActivatedRoute
   ) {
-    super(service, sidebarService, windowService, searchConfigService, routeService, router);
+    super(service, sidebarService, windowService, searchConfigService, routeService, router, route);
   }
 
   ngOnInit(): void {

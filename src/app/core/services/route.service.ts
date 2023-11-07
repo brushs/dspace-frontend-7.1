@@ -63,6 +63,10 @@ export function parameterSelector(key: string, paramsSelector: (state: CoreState
   providedIn: 'root'
 })
 export class RouteService {
+
+  private currentUrl: string;
+  private previousUrl: string;
+
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<CoreState>) {
     this.saveRouting();
   }
@@ -190,6 +194,15 @@ export class RouteService {
     );
   }
 
+  public checkForReset(){
+    this.getPreviousUrl().subscribe(prev =>{
+      this.previousUrl = prev;
+    });
+    this.getCurrentUrl().subscribe(url =>{
+      this.currentUrl =url;
+    })
+    return this.previousUrl!="" && this.previousUrl != this.currentUrl;
+  }
   /**
    * Add a parameter to the current route
    * @param key   The parameter name

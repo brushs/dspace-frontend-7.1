@@ -13,10 +13,11 @@ export const environment = {
 	},
 	"rest": {
 		"ssl": false,
-		"host": 'localhost',
+		"host": "localhost",
 		"port": 8080,
 		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
-		"nameSpace": '/server',
+		"nameSpace": "/server",
+    "baseUrl": "http://localhost:8080/server",
 	},
 	"cache": {
 		"msToLive": {

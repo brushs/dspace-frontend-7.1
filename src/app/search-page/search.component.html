@@ -1,32 +1,90 @@
+
+<div class="container">
+    <div gcweb class="row">
+        <div class="col-md-12">
+            <h1 *ngIf="!adminSearch" property="name" id="wb-cont">{{'search.form.search' | translate}}</h1>
+            <h1 *ngIf="adminSearch" property="name" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
+        </div>
+    
+        <!-- <ng-container [ngTemplateOutlet]="searchFilters"></ng-container> -->
+        <div class="col-md-4 pull-left" ds-search-sidebar id="search-sidebar"
+        [resultCount]="(resultsRD$ | async)?.payload?.totalElements"
+        [useGcWeb]="true"
+        [searchOptions]="(searchOptions$ | async)"
+        [sortOptions]="(sortOptions$ | async)"
+        [inPlaceSearch]="inPlaceSearch"></div>
+
+        <!-- <div gc-search-filters class="col-md-4 pull-left"></div> -->
+        <div class="col-md-8 pull-right mrgn-bttm-lg">
+            <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
+                <div class="col-md-12 p-0 ">
+                    <h2>{{ 'home.search-form.head' | translate }}</h2>
+                    <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
+                    <div class="input-group">
+                            <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />
+                            <span class="input-group-btn">
+                                <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button">
+                                    <span class="button-text"><i class="fa fa-search mrgn-rght-sm"></i>
+                                         {{ 'search.form.search' | translate }}
+                                    </span>
+                                  <!-- <span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}
+                                  </span> -->
+                                </button>
+                            </span>
+                        </div>
+                </div>
+            </div>
+            <ng-container [ngTemplateOutlet]="searchResults"></ng-container>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #searchResults>
+    <h2 class="h4">{{'search.results.head' | translate}}</h2>
+
+    <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-md mrgn-rght-md"></div>
+
+    <ds-search-results [searchResults]="resultsRD$ | async"
+    [searchConfig]="searchOptions$ | async"
+    [configuration]="configuration$ | async"
+    [useGcWeb]="true"
+    disableHeader= "true"
+    [context]="context"></ds-search-results>
+
+</ng-template>
+<!-- 
+
 <section>
 <div class="container" *ngIf="(isXsOrSm$ | async)">
     <div class="row">
         <div class="col-12">
-            <!-- FOSRC Changes - 1619 -->
+            FOSRC Changes - 1619
             <h1 *ngIf="adminSearch" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
             <h1 *ngIf="!adminSearch" id="wb-cont">{{'search.form.search' | translate}}</h1> 
-            <!-- End of FOSRC Changes-->
+            End of FOSRC Changes
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
             <h2>{{'search.results.head' | translate}}</h2>
             <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
-            <!--FOSRC changes : ticket 327-->
-            <!-- <ds-view-mode-switch [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch> -->
+            FOSRC changes : ticket 327
+            commented <ds-view-mode-switch [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch>
         </div>
     </div>
 </div>
+
 <ds-page-with-sidebar [id]="'search-page'" [sidebarContent]="sidebarContent">
     <div class="row">
         
         <div class="col-12" *ngIf="!(isXsOrSm$ | async)">
-            <!-- FOSRC Changes - 1619 -->
+            FOSRC Changes - 1619
             <h1 *ngIf="adminSearch" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
             <h1 *ngIf="!adminSearch" id="wb-cont">{{'search.form.search' | translate}}</h1> 
-            <!-- End of FOSRC Changes-->
+            End of FOSRC Changes
             <ng-template *ngTemplateOutlet="searchForm"></ng-template>
             <h2>{{'search.results.head' | translate}}</h2>
             <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings>
-            <!--FOSRC changes : ticket 327-->
-            <!-- <ds-view-mode-switch [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch> -->
+            FOSRC changes : ticket 327
+            commented <ds-view-mode-switch [inPlaceSearch]="inPlaceSearch"></ds-view-mode-switch>
         </div>
         <div id="search-content" class="col-12">
             <ds-search-results [searchResults]="resultsRD$ | async"
@@ -67,4 +125,4 @@
             <ds-search-labels *ngIf="searchEnabled" [inPlaceSearch]="inPlaceSearch"></ds-search-labels>
         </div>
     </div>
-</ng-template>
+</ng-template> -->

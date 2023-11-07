@@ -34,7 +34,7 @@ export function escapeRegExp(input: string): string {
  * @param value
  */
 export function stripOperatorFromFilterValue(value: string) {
-  if (value.lastIndexOf(',') > -1) {
+  if (value.match(new RegExp(`.+,(equals|query|authority)$`))) { //Got from DSPACE 7.6
     return value.substring(0, value.lastIndexOf(','));
   }
   return value;

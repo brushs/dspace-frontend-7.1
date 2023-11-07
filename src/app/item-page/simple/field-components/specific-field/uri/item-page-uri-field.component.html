@@ -1,3 +1,29 @@
-<div class="item-page-field">
-  <ds-metadata-uri-values [mdValues]="item?.allMetadata(fields)" [separator]="separator" [label]="label"></ds-metadata-uri-values>
-</div>
+<ng-container *ngIf="!isDescriptionList; else descriptionList">
+  <span class="simple-view-element-header h3">{{label | translate}}</span>
+  <ng-container [ngTemplateOutlet]="urlList"></ng-container>
+</ng-container>
+
+<ng-template #descriptionList>
+  <dt>{{label | translate}}</dt>
+  <dd>
+    <ng-container [ngTemplateOutlet]="urlList"></ng-container>
+  </dd>
+</ng-template>
+
+<ng-template #urlList>
+  <ul class="list-unstyled" *ngIf="!renderInParagraph; else paragraphRender">
+    <li *ngFor="let mdValue of item?.allMetadata(fields); let last=last;">
+        <a  [href]="domainAwareValue(mdValue.value)">
+            {{ domainAwareValue(mdValue.value) }}<span *ngIf="!last" [innerHTML]="separator"></span>
+          </a>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #paragraphRender>
+  <p *ngFor="let mdValue of item?.allMetadata(fields); let last=last;">
+    <a  [href]="domainAwareValue(mdValue.value)">
+      {{ domainAwareValue(mdValue.value) }}<span *ngIf="!last" [innerHTML]="separator"></span>
+    </a>
+  </p>
+</ng-template>

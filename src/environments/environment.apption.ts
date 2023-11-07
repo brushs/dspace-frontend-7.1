@@ -1,48 +1,164 @@
-import { GlobalConfig } from '../config/global-config.interface';
-
-export const environment: Partial<GlobalConfig> = {
-  production: true,
-  // Angular Universal server settings.
-  // NOTE: these must be "synced" with the 'dspace.ui.url' setting in your backend's local.cfg.
-  ui: {
-    ssl: true,
-    host: 'dspaceangularsteve.azurewebsites.net',
-    port: 4000,
-    // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
-    nameSpace: '/',
-    // The rateLimiter settings limit each IP to a "max" of 500 requests per "windowMs" (1 minute).
-    rateLimiter: {
-      windowMs: 1 * 60 * 1000,   // 1 minute
-      max: 500 // limit each IP to 500 requests per windowMs
-    }
-  },
-  // The REST API server settings.
-  // NOTE: these must be "synced" with the 'dspace.server.url' setting in your backend's local.cfg.
-  rest: {
-    ssl: true,
-    host: 'dspacebackendsteve.azurewebsites.net',
-    port: null,
-    // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
-    nameSpace: '/server',
-  },
-  // Authentication settings
-  auth: {
-    // Authentication UI settings
-    ui: {
-      // the amount of time before the idle warning is shown
-      timeUntilIdle: 15 * 60 * 1000, // 15 minutes
-      // the amount of time the user has to react after the idle warning is shown before they are logged out.
-      idleGracePeriod: 5 * 60 * 1000, // 5 minutes
-    },
-    // Authentication REST settings
-    rest: {
-      // If the rest token expires in less than this amount of time, it will be refreshed automatically.
-      // This is independent from the idle warning.
-      timeLeftBeforeTokenRefresh: 2 * 60 * 1000, // 2 minutes
-    },
-    login: {
-      // Whether or not to show the password field on the login page.
-      enablePassword: false
-    }
-  }
+export const environment = {
+	"production": true,
+	"ui": {
+		"ssl": true,
+		"host": "dspaceangularsteve.azurewebsites.net",
+		"port": null,
+		"nameSpace": "/",
+		"rateLimiter": {
+			"windowMs": 60000,
+			"max": 500
+		},
+		"baseUrl": "http://dspaceangularsteve.azurewebsites.net/"
+	},
+	"rest": {
+		"ssl": true,
+		"host": "dspacebackendsteve.azurewebsites.net",
+		"port": null,
+		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
+		"nameSpace": "/server",
+		"baseUrl": "https://dspacebackendsteve.azurewebsites.net/server",
+	},
+	"cache": {
+		"msToLive": {
+			"default": 900000
+		},
+		"control": "max-age=60",
+		"autoSync": {
+			"defaultTime": 0,
+			"maxBufferSize": 100,
+			"timePerMethod": {
+				"PATCH": 3
+			}
+		}
+	},
+	"auth": {
+		"ui": {
+			"timeUntilIdle": 900000,
+			"idleGracePeriod": 300000
+		},
+		"rest": {
+			"timeLeftBeforeTokenRefresh": 120000
+		},
+		"login": {
+			"enablePassword": false
+		}
+	},
+	"form": {
+		"validatorMap": {
+			"required": "required",
+			"regex": "pattern"
+		}
+	},
+	"notifications": {
+		"rtl": false,
+		"position": [
+			"top",
+			"right"
+		],
+		"maxStack": 8,
+		"timeOut": 5000,
+		"clickToClose": true,
+		"animate": "scale"
+	},
+	"submission": {
+		"autosave": {
+			"metadata": [],
+			"timer": 0
+		},
+		"icons": {
+			"metadata": [
+				{
+					"name": "dc.author",
+					"style": "fas fa-user"
+				},
+				{
+					"name": "default",
+					"style": ""
+				}
+			],
+			"authority": {
+				"confidence": [
+					{
+						"value": 600,
+						"style": "text-success"
+					},
+					{
+						"value": 500,
+						"style": "text-info"
+					},
+					{
+						"value": 400,
+						"style": "text-warning"
+					},
+					{
+						"value": "default",
+						"style": "text-muted"
+					}
+				]
+			}
+		}
+	},
+	"universal": {
+		"preboot": true,
+		"async": true,
+		"time": false
+	},
+	"debug": false,
+	"defaultLanguage": "en",
+	"languages": [
+		{
+			"code": "en",
+			"label": "English",
+			"active": true
+		},
+		{
+			"code": "fr",
+			"label": "Français",
+			"active": true
+		}
+	],
+	"browseBy": {
+		"oneYearLimit": 10,
+		"fiveYearLimit": 30,
+		"defaultLowerLimit": 1900,
+		"types": [
+			{
+				"id": "title",
+				"type": "title"
+			},
+			{
+				"id": "dateissued",
+				"type": "date",
+				"metadataField": "dc.date.issued"
+			},
+			{
+				"id": "author",
+				"type": "metadata"
+			},
+			{
+				"id": "subject",
+				"type": "metadata"
+			}
+		]
+	},
+	"item": {
+		"edit": {
+			"undoTimeout": 10000
+		}
+	},
+	"collection": {
+		"edit": {
+			"undoTimeout": 10000
+		}
+	},
+	"themes": [
+		{
+			"name": "wetoverlay"
+		}
+	],
+	"mediaViewer": {
+		"image": false,
+		"video": false
+	}
 }

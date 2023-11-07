@@ -94,6 +94,7 @@ describe('UploadBistreamComponent', () => {
     removeByHrefSubstring: {}
   });
 
+  
   describe('on init', () => {
     beforeEach(waitForAsync(() => {
       createUploadBitstreamTestingModule({
@@ -108,7 +109,9 @@ describe('UploadBistreamComponent', () => {
       getTestScheduler().expectObservable(comp.bundlesRD$).toBe('(a|)', {a: createSuccessfulRemoteDataObject([bundle])});
     });
   });
-
+  
+  
+  
   describe('when a file is uploaded', () => {
     beforeEach(waitForAsync(() => {
       createUploadBitstreamTestingModule({});

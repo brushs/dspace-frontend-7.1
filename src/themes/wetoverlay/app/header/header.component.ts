@@ -1,18 +1,19 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, HostListener, NgZone } from '@angular/core';
 import { HostWindowService } from '../../../../app/shared/host-window.service';
 import { MenuService } from '../../../../app/shared/menu/menu.service';
 import { HeaderComponent as BaseComponent } from '../../../../app/header/header.component';
 import { Observable } from 'rxjs';
 import { Renderer2, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Represents the header with the logo and simple navigation
  */
 @Component({
   selector: 'ds-header',
-  styleUrls: ['../../../../app/header/header.component.scss'],
-  templateUrl: 'header.component.html',
+  styleUrls: ['../../../../app/header/header.component.scss', './header.component.scss'],
+  templateUrl: './header.component.html',
   // templateUrl: '../../../../app/header/header.component.html',
 })
 export class HeaderComponent extends BaseComponent {
@@ -23,6 +24,8 @@ export class HeaderComponent extends BaseComponent {
     protected windowService: HostWindowService,
     menuService: MenuService,
     private _renderer2: Renderer2, 
+    public translate: TranslateService,
+    private zone: NgZone,
     @Inject(DOCUMENT) private _document: Document
   ) {
     super(menuService);
@@ -38,7 +41,15 @@ export class HeaderComponent extends BaseComponent {
   }
 
   ngAfterViewInit() {
-    this.loadScripts();
+    this.loadScripts().then(x => {
+      let intId = setInterval(() => {
+        let basicHTMLLink = document.querySelector('a.wb-sl[href="?wbdisable=true"]');
+        if(basicHTMLLink) {
+          basicHTMLLink.parentElement.remove();
+          clearInterval(intId);
+        }
+      }, 500)
+    });
   }
   /** Dynamically append scripts to the DOM. Required here as opposed to angular.json to ensure component renders
    *  so the menu element is detected when the script performs the check. Even including the script in the index.html with the 
@@ -66,6 +77,25 @@ export class HeaderComponent extends BaseComponent {
     }
     return this.locationPath;
   }
+
+  redirectToAnchor(anchor) {
+    if(window.location.hash === anchor) {
+      window.location.hash = '';
+      setTimeout(()=> {
+        window.location.hash = anchor
+      }, 150)
+    } else {
+      window.location.hash = anchor;
+    }
+}
   // FOSRC code end
+
+  scrollToMain() {
+    this.redirectToAnchor('#wb-main');
+  }
+
+  scrollToAbout() {
+    this.redirectToAnchor('#wb-info');
+  }
   
 }

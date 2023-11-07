@@ -1,5 +1,12 @@
 @import '../../../../../../../styles/variables';
-p{
-    margin: 0;
-    padding: 0;
+
+
+.resultItemDescription {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 8px;
+
+    p {
+        height: fit-content;
+    }
 }

@@ -9,7 +9,7 @@ import { LocaleService } from '../../core/locale/locale.service';
 import { HostWindowService } from '../host-window.service';
 
 @Component({
-  selector: 'ds-lang-switch',
+  selector: 'ds-lang-switch, [ds-lang-switch]',
   styleUrls: ['lang-switch.component.scss'],
   templateUrl: 'lang-switch.component.html',
 })

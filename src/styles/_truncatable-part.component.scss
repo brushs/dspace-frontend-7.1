@@ -1,5 +1,7 @@
-@mixin clamp($lines, $bg, $size-factor: 1, $line-height: $line-height-base) {
-  $height: $line-height * $font-size-base * $size-factor;
+// @mixin clamp($lines, $bg, $size-factor: 1, $line-height: $line-height-base) {
+// $height: $line-height * $font-size-base * $size-factor;
+@mixin clamp($lines, $bg, $size-factor: 1, $line-height: 1.65) {
+  $height: $line-height * 20px * $size-factor;
   &.fixedHeight {
     height: $lines * $height;
   }
@@ -9,21 +11,42 @@
     overflow: hidden;
     line-height: $line-height;
     overflow-wrap: break-word;
-    &:after {
-      content: "";
-      position: absolute;
-      padding-right: 15px;
-      top: ($lines - 1) * $height;
-      right: 0;
-      width: 30%;
-      min-width: 75px;
-      max-width: 150px;
-      height: $height;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0), $bg 70%);
-      pointer-events: none;
-    }
+
+    /*
+    * The following CSS rules create the blur when the
+    * text is trunctated.
+    */
+
+    // &:after {
+    //   content: "";
+    //   position: absolute;
+    //   padding-right: 15px;
+    //   top: ($lines - 1) * $height;
+    //   right: 0;
+    //   width: 30%;
+    //   min-width: 75px;
+    //   max-width: 150px;
+    //   height: $height;
+    //   background: linear-gradient(to right, rgba(255, 255, 255, 0), $bg 70%);
+    //   pointer-events: none;
+    // }
+
   }
 
+}
+
+/*
+* Truncates text within an element after a
+* given number of lines (specified by $i).
+*/
+@for $i from 1 through 15 {
+  .custom-clamp-#{$i} {
+    // width: 300px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: #{$i};
+    overflow: hidden;
+  }
 }
 
 @mixin min($lines, $size-factor: 1, $line-height: $line-height-base) {

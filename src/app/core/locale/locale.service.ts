@@ -23,6 +23,18 @@ export enum LANG_ORIGIN {
   BROWSER
 }
 
+// FORSC Changes
+export enum Language {
+  English = 'en',
+  French = 'fr'
+}
+
+export const supportedLanguages = [
+  Language.English,
+  Language.French
+];
+
+// END FORSC
 /**
  * Service to provide localization handler
  */

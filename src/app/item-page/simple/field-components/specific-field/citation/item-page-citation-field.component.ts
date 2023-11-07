@@ -65,7 +65,10 @@ export class ItemPageCitationFieldComponent extends ItemPageFieldComponent {
     valuePageRange = this.item.firstMetadataValue(this.fieldPageRange);
     valueDoi = this.item.firstMetadataValue(this.fieldDoi);
     valueArray = [valuesAuthors, valueTitle, valueIssues, valuePageRange, valueDoi];
-    valueArray = valueArray.filter(function (el) { return el.trim() != ''; });
+    valueArray = valueArray.filter(function (el) {
+      if (el != null)
+        return el.trim() != '';
+      });
     this.valueCitation = valueArray.join(', ');
   }
 }

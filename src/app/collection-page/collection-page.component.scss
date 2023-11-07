@@ -1,0 +1,7 @@
+// for the class empty collection, ensure there is no content before
+.empty-collection {
+    border-image: none !important;
+    &::before {
+        content: "" !important;
+    }
+}

@@ -20,6 +20,8 @@ export class SearchLabelsComponent {
    * Emits the currently active filters
    */
   appliedFilters: Observable<Params>;
+  
+  @Input() useGcWeb = false;
 
   /**
    * True when the search component should show results on the current page
@@ -37,7 +39,9 @@ export class SearchLabelsComponent {
         const labels = {};
         Object.keys(params)
           .forEach((key) => {
-            labels[key] = [...params[key].map((value) => stripOperatorFromFilterValue(value))];
+            if (params[key]?.length > 0)  {
+             labels[key] = [...params[key].map((value) => value)];
+            }
           });
         return labels;
       })

@@ -42,6 +42,16 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
   @Input() inPlaceSearch;
 
   /**
+   * Use GC Web Template
+   */
+  @Input() useGcWeb = false;
+
+  /**
+   * Name of facet
+   */
+  @Input() facetTerm;
+
+  /**
    * UI parameters when this filter is removed
    */
   removeQueryParams;
@@ -56,9 +66,11 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
    */
   searchLink: string;
 
+  addQueryParams;
+
   constructor(protected searchService: SearchService,
               protected filterService: SearchFilterService,
-              protected searchConfigService: SearchConfigurationService,
+              private searchConfigService: SearchConfigurationService,
               protected router: Router,
               protected paginationService: PaginationService
   ) {
@@ -114,4 +126,64 @@ export class SearchFacetSelectedOptionComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
+
+  // FORSC Changes
+  private generateAddParams(selectedValues: FacetValue): void {
+    const page = this.paginationService.getPageParam(this.searchConfigService.paginationID);
+    this.addQueryParams = {
+      [this.filterConfig.paramName]: [this.getFacetValue(selectedValues)],
+      [page]: 1
+    };
+  }
+
+  onSelect(event: any, facetValue: any, facetName: string) {
+    // this.router.navigate([this.searchLink], { queryParams: this.removeQueryParams, queryParamsHandling: 'merge' })
+
+    // FORSC Changes
+    this.filterConfig.name = facetName;
+    const filterSelections = this.filterService.getSelectedFilters() ?? [];
+    const modifiedFilters = { ...filterSelections };
+    const isChecked = event.target.checked;
+    this.updateRemoveParams([facetValue]);
+    if (isChecked) {
+      this.generateAddParams(facetValue);
+      Object.keys(filterSelections).forEach(key =>{
+        if(key.indexOf('f.')> -1)
+        {
+          if (this.addQueryParams[key]) {
+            this.addQueryParams[key] =[... modifiedFilters[key] , ... this.addQueryParams[key]];
+          }
+          else {
+            if(modifiedFilters[key]) {
+              this.addQueryParams[key] = [...modifiedFilters[key]];
+            }
+          }
+        }
+      })
+      this.filterService.selectedFilterOptions$.next(this.addQueryParams);
+    }
+    else {
+      if (modifiedFilters) {
+        Object.keys(modifiedFilters).forEach(key => {
+          if (key === `f.${facetName}` && key.indexOf('f.') > -1) {
+            modifiedFilters[key] = modifiedFilters[key].filter(item => {
+              if (facetValue.value.includes('equals')) {
+                return !item.includes(facetValue.value);
+              } else {
+                return item !== facetValue.value && !item.includes(`${facetValue.value},equals`);
+              }
+            });
+          }
+        });
+        this.filterService.selectedFilterOptions$.next(modifiedFilters);
+      }
+    }
+  }
+
+   formatID(value) {
+    return value
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9 ,]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .join('-')
+    .toLowerCase();
+   }
 }

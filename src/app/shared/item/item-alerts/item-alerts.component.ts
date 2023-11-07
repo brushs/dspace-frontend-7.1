@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Item } from '../../../core/shared/item.model';
 import { AlertType } from '../../alert/aletr-type';
 
@@ -10,7 +10,8 @@ import { AlertType } from '../../alert/aletr-type';
 /**
  * Component displaying alerts for an item
  */
-export class ItemAlertsComponent {
+export class ItemAlertsComponent implements OnInit{
+
   /**
    * The Item to display alerts for
    */
@@ -21,4 +22,9 @@ export class ItemAlertsComponent {
    * @type {AlertType}
    */
   public AlertTypeEnum = AlertType;
+
+  ngOnInit(): void {
+    let item = this.item;
+    console.log('ItemAlertsComponent ngOnInit()');
+  }
 }

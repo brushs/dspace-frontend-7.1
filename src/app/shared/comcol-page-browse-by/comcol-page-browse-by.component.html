@@ -1,16 +1,36 @@
 
-<h2 class="comcol-browse-label h5">{{'browse.comcol.head' | translate}}</h2>
-<nav class="comcol-browse mb-4" aria-label="Browse Community or Collection">
-  <div class="d-none d-sm-block">
-    <!-- OSPR Change div to list -->
+<h2 class="comcol-browse-label">{{'browse.comcol.head' | translate}}</h2>
+<div gcweb>
+  <ul class="list-inline d-flex flex-wrap mrgn-bttm-0">
+    <li *ngFor="let option of allOptions" class="col-md-2 text-center">
+      <a 
+      (click)="onSelectChange(option.id)" 
+      (keypress.space)="onSelectChange(option.id)" 
+      (keypress.enter)="onSelectChange(option.id)" 
+      href="javascript::void(0)"  
+      class="btn btn-default list-group-item well h-100">{{ option.label | translate }}</a>
+    </li>
+  </ul>
+</div>
+
+
+<!-- <nav class="comcol-browse mb-4" aria-label="Browse Community or Collection">
+  <div gcweb class="d-none d-sm-block">
+    
     <ul class="list-group list-group-horizontal">
-      <li *ngFor="let option of allOptions"class="list-group-item">
+      <li *ngFor="let option of allOptions" class="list-group-item" routerLinkActive="active">
       <a  [routerLink]="option.routerLink"
          [queryParams]="option.params"
-         routerLinkActive="active">{{ option.label | translate }}</a>
+         >{{ option.label | translate }}</a>
         </li>
     </ul>
-    <!-- End change -->
+
+    <ul class="list-inline">
+      <li *ngFor="let option of allOptions" class="list-group-item well">
+        <a href="#" class="disabled">{{ option.label | translate }}</a>
+      </li>
+    </ul>
+
   </div>
 
   <div class="d-block d-sm-none">
@@ -23,4 +43,4 @@
               [attr.selected]="(currentOptionId$ | async) === option.id ? 'selected' : null">{{ option.label | translate }}</option>
     </select>
   </div>
-</nav>
+</nav> -->

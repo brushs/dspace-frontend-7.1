@@ -39,7 +39,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-community-page',
-  styleUrls: ['./community-page.component.scss'],
+  styleUrls: [
+    '../../themes/wetoverlay/styles/static-pages.scss', 
+    './community-page.component.scss'
+  ],
   templateUrl: './community-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeInOut]
@@ -168,7 +171,7 @@ export class CommunityPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("currentLang: " + this.translate.currentLang);
+    // console.log("currentLang: " + this.translate.currentLang);
     this.communityRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Community>),
       redirectOn4xx(this.router, this.authService)

@@ -20,6 +20,7 @@ import { FindListOptions } from './request.models';
 import { RequestService } from './request.service';
 import { BitstreamDataService } from './bitstream-data.service';
 import { FollowLinkConfig } from '../../shared/utils/follow-link-config.model';
+import { ScienceCommunityService } from '../science/science-community.service';
 
 @Injectable()
 @dataService(COMMUNITY)
@@ -37,7 +38,8 @@ export class CommunityDataService extends ComColDataService<Community> {
     protected notificationsService: NotificationsService,
     protected bitstreamDataService: BitstreamDataService,
     protected http: HttpClient,
-    protected comparator: DSOChangeAnalyzer<Community>
+    protected comparator: DSOChangeAnalyzer<Community>,
+    protected scienceCommunityService: ScienceCommunityService,
   ) {
     super();
   }
@@ -47,6 +49,9 @@ export class CommunityDataService extends ComColDataService<Community> {
   }
 
   findTop(options: FindListOptions = {}, ...linksToFollow: FollowLinkConfig<Community>[]): Observable<RemoteData<PaginatedList<Community>>> {
+    const scienceId = this.scienceCommunityService.getScienceId();
+    //this.topLinkPath = scienceId ? `${scienceId}/subcommunities` : 'search/top';
+    this.topLinkPath = 'search/top';
     const hrefObs = this.getFindAllHref(options, this.topLinkPath);
     return this.findAllByHref(hrefObs, undefined, true, true, ...linksToFollow);
   }

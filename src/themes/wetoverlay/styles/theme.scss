@@ -10,6 +10,7 @@
 @import './_theme_css_variable_overrides.scss';
 @import '../../../styles/bootstrap_variables_mapping.scss';
 @import '../../../styles/_truncatable-part.component.scss';
+@import './share-popup.scss';
 @import './wet-theme.scss'; // Imported but wrapped so only the header and footer gets the changes
 @import './_button_styles.scss';
 @import './_alert_styles.scss';
