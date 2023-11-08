@@ -22,8 +22,19 @@
             </select>
           </td>
           <td>
-            <input type="text" name="filterValue" id="filterValue" aria-label="Filter Value" formControlName="filter"
-              class="form-control">
+            <!--input type="text" name="filterValue" id="filterValue" aria-label="Filter Value" formControlName="filter"
+              class="form-control" -->
+            <ng-container [ngSwitch]="row.get('filtertype')?.value">
+              <input *ngSwitchDefault type="text" name="filterValue" id="filterValueT" aria-label="Filter Value" formControlName="filter"
+                class="form-control"/>
+              <select *ngSwitchCase="'subject'" name="filterValue" id="filterValueS" aria-label="Filter Value" formControlName="filter" class="form-control">
+                <option value="Water">Water</option>
+                <option value="Soil">Soil</option>
+                <option value="Atmosphere">Atmosphere</option>
+                <option value="Temperature">Temperature</option>
+                <option value="Forest">Forest</option>
+              </select>
+            </ng-container>
           </td>
           <td>
             <button type="button" (click)="addRow()" class="btn btn-primary"> + </button>
