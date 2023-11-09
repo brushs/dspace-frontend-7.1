@@ -1648,6 +1648,7 @@
   "login.form.new-user": "New user? Click here to register.",
   "login.form.or-divider": "or",
   "login.form.password": "Password (* required)",
+  "login.form.oidc": "Log in with OIDC",
   "login.form.shibboleth": "Sign in with Shibboleth",
   "login.form.submit": "Sign in",
   "login.title": "Sign in",

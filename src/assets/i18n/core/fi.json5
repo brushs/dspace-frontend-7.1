@@ -2906,6 +2906,9 @@
   // "login.form.password": "Password",
   "login.form.password": "Salasana",
 
+  //"login.form.oidc": "Log in with OIDC",
+  "login.form.oidc": "Log in with OIDC",
+
   // "login.form.shibboleth": "Log in with Shibboleth",
   "login.form.shibboleth": "Shibboleth-kirjautuminen",
 
