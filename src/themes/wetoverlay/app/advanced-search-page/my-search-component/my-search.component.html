@@ -1,10 +1,57 @@
 
 <div class="container">
-    <div gcweb class="row">
-        <div class="col-md-12">
-            <h1 *ngIf="!adminSearch" property="name" id="wb-cont">{{'search.form.search' | translate}}</h1>
+    <div class="col-md-12">
+            <!--<h1 *ngIf="!adminSearch" property="name" id="wb-cont">{{'search.form.search' | translate}}</h1> -->
+            <h1 *ngIf="!adminSearch" property="name" id="wb-cont">Advanced Search</h1>
             <h1 *ngIf="adminSearch" property="name" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
+    </div>
+    <div class="col-md-12">
+        <ds-comcol-search-filter
+          (submitSearch)="onSeachSubmit($event)">
+        </ds-comcol-search-filter>
+    </div>
+
+
+    <!-- Geo spatial -->
+    <div class="row">
+        <div class="col-12">
+        <geo-search-page (geoChangeEvent) = "onGeoChanged($event)"></geo-search-page>
         </div>
+
+
+          <div class="col-2 mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
+              <div class="col-md-12 p-0 ">
+                  <!--<h2>{{ 'home.search-form.head' | translate }}</h2> -->
+                  <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
+                  <div class="input-group">
+                          <!-- <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />-->
+                          <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control d-none" [value]="mainSearchValue" id="main-searchrepository" />
+                          <span class="input-group-btn">
+                              <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button">
+                                  <span class="button-text"><i class="fa fa-search mrgn-rght-sm"></i>
+                                       {{ 'search.form.search' | translate }}
+                                  </span>
+                                <!-- <span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}
+                                </span> -->
+                              </button>
+                          </span>
+                      </div>
+              </div>
+          </div>
+    </div>
+
+    <hr class="solid">
+    <br/>
+    <div gcweb class="row">
+
+        <!--
+        <ds-comcol-search-filter *ngIf="searchEnabled && (searchOptions$ | async)?.query"
+          [query]="(searchOptions$ | async)?.query"
+          [(scope)]="currentScope"
+          [inPlaceSearch]="inPlaceSearch"
+          (submitSearch)="onSeachSubmit($event)">
+        </ds-comcol-search-filter>
+        -->
 
         <!-- <ng-container [ngTemplateOutlet]="searchFilters"></ng-container> -->
         <div class="col-md-4 pull-left" ds-search-sidebar id="search-sidebar"
@@ -16,30 +63,7 @@
 
         <!-- <div gc-search-filters class="col-md-4 pull-left"></div> -->
         <div class="col-md-8 pull-right mrgn-bttm-lg">
-            <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
-                <div class="col-md-12 p-0 ">
-                    <h2>{{ 'home.search-form.head' | translate }}</h2>
-                    <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
-                    <div class="input-group">
-                            <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />
-                            <span class="input-group-btn">
-                                <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button">
-                                    <span class="button-text"><i class="fa fa-search mrgn-rght-sm"></i>
-                                         {{ 'search.form.search' | translate }}
-                                    </span>
-                                  <!-- <span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}
-                                  </span> -->
-                                </button>
-                            </span>
-                        </div>
-                </div>
-            </div>
-                <!-- Geo spatial -->
-                <div class="row">
-                    <div class="col-12">
-                    <geo-search-page (geoChangeEvent) = "onGeoChanged($event)"></geo-search-page>
-                    </div>
-                </div>
+
 
             <ng-container [ngTemplateOutlet]="searchResults"></ng-container>
         </div>
