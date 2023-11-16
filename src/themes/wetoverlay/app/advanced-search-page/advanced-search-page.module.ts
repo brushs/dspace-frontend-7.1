@@ -18,6 +18,9 @@ import { AdvancedSearchPageComponent } from './advanced-search-page.component';
 import { MyThemedSearchComponent } from './mythemed-search.component';
 import { MySearchComponent } from './my-search-component/my-search.component';
 import { GeoSearchPageComponent } from '../geo-search-page/geo-search-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { DynamicFiltersComponent } from './dynamic-filters/dynamic-filters.component';
 
 const components = [
   //SearchPageComponent,
@@ -25,7 +28,8 @@ const components = [
   AdvancedSearchPageComponent,
   MyThemedSearchComponent,
   MySearchComponent,
-  GeoSearchPageComponent
+  GeoSearchPageComponent,
+  DynamicFiltersComponent
   //SearchTrackerComponent,
   //ThemedSearchPageComponent
 ];
@@ -35,6 +39,8 @@ const components = [
     CommonModule,
     SharedModule.withEntryComponents(),
     CoreModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
     //StatisticsModule.forRoot(),
     //JournalEntitiesModule.withEntryComponents(),
     //ResearchEntitiesModule.withEntryComponents()
@@ -45,13 +51,12 @@ const components = [
     //SidebarFilterService,
     SearchFilterService,
     ConfigurationSearchPageGuard,
-    SearchConfigurationService
+    SearchConfigurationService,
   ],
-  exports: components
+  exports: components,
 })
 
 /**
  * This module handles all components and pipes that are necessary for the search page
  */
-export class AdvancedSearchPageModule {
-}
+export class AdvancedSearchPageModule {}
