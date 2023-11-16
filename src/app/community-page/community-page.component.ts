@@ -206,9 +206,19 @@ export class CommunityPageComponent implements OnInit {
      * switch display contents from search results to community page.
      */
     this.route.queryParams.subscribe(qparams => {
-      if(typeof qparams === 'undefined' || qparams === null || 
-         typeof qparams['spc.sf'] === 'undefined' || qparams['spc.sf'] === null)
-          this.initParams()
+
+      if(typeof qparams === 'undefined' 
+        || qparams === null 
+        || typeof qparams['spc.sf'] === 'undefined' 
+        || qparams['spc.sf'] === null
+      ){
+        this.initParams();
+      }
+
+      if(typeof qparams['query'] === 'undefined' ){
+        this.searchSubmit = false;
+      }
+          
     });
 
     /*
