@@ -70,8 +70,14 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   private readonly metadataVocabulary: Record<string, string> = {
     'dc.type': 'publication_type',
     'dc.language.iso': 'gc_languages',
+    'dc.rights': 'creative_commons',
+    'dc.subject': 'subject_list',
+    'dc.rights.openaccesslevel': 'access_rights',
     'local.requestdoi': 'request_doi_value',
     'local.peerreview': 'peer_review',
+    'local.reporttype': 'reports_types',
+    'local.conferencetype': 'conference_types',
+    'local.articletype': 'article_subtype',
 };
   
 
@@ -101,6 +107,16 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     this.objectUpdatesService.saveChangeFieldUpdate(this.url, cloneDeep(this.metadata));
     if (hasValue(ngModel)) {
       this.checkValidity(ngModel);
+    }
+
+    //only execute if the ds-validation-suggestions component triggered 
+    // this method call
+    if(ngModel){
+      if(this.metadataVocabulary[this.metadata.key]){
+        this.initializeVocabularyEntries();
+      }else{
+        this.hasControlledVocabulary = false;
+      }
     }
   }
 
@@ -243,7 +259,9 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
         []
         ))
       ),
-      map((list: PaginatedList<VocabularyEntry>) => list.page))
+      map((list: PaginatedList<VocabularyEntry>) => {
+        return list.page
+      }))
     
     //this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe
     //this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(this.metadataVocabulary[this.metadata.key]);
