@@ -26,7 +26,7 @@
 <td class="w-100">
     <div class="value-field">
         <div *ngIf="!(editable | async)">
-            <span lang='{{metadata?.language}}'>{{metadata?.value}}</span>
+            <span lang='{{metadata?.language}}'>{{metadata?.value + "" | translate}}</span>
         </div>
         <div *ngIf="(editable | async)" class="field-container">
             <textarea *ngIf="!hasControlledVocabulary; else dropdown" class="form-control" type="textarea" aria-labelledby="fieldValue" [(ngModel)]="metadata.value" [dsDebounce]
@@ -48,11 +48,12 @@
             <span>{{metadata?.language}}</span>
         </div>
         <div *ngIf="(editable | async)" class="field-container">
-            <select class="form-control" [(ngModel)]="metadata.language" (ngModelChange)="update()">
+            <input class="form-control" type="text" aria-labelledby="fieldLang" [(ngModel)]="metadata.language" [dsDebounce] (onDebounce)="update()"/>
+            <!-- <select class="form-control" [(ngModel)]="metadata.language" (ngModelChange)="update()">
                 <option *ngFor="let vocab of (languageEntries | async)" [value]="vocab.value">
                     {{ vocab.display | translate }}
                 </option>
-            </select>
+            </select> -->
         </div>
     </div>
 </td>
