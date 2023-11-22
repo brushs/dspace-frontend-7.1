@@ -1,13 +1,14 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import {
   metadataFieldsToString,
-  getFirstSucceededRemoteData
+  getFirstSucceededRemoteData,
+  getFirstSucceededRemoteDataPayload
 } from '../../../../core/shared/operators';
 import { hasValue, isNotEmpty } from '../../../../shared/empty.util';
 import { RegistryService } from '../../../../core/registry/registry.service';
 import { cloneDeep } from 'lodash';
 import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { FieldChangeType } from '../../../../core/data/object-updates/object-updates.actions';
 import { FieldUpdate } from '../../../../core/data/object-updates/object-updates.reducer';
 import { ObjectUpdatesService } from '../../../../core/data/object-updates/object-updates.service';
@@ -15,6 +16,11 @@ import { NgModel } from '@angular/forms';
 import { MetadatumViewModel } from '../../../../core/shared/metadata.models';
 import { InputSuggestion } from '../../../../shared/input-suggestions/input-suggestions.model';
 import { followLink } from '../../../../shared/utils/follow-link-config.model';
+import { VocabularyService } from '../../../../core/submission/vocabularies/vocabulary.service';
+import { VocabularyOptions } from '../../../../core/submission/vocabularies/models/vocabulary-options.model';
+import { PageInfo } from '../../../../core/shared/page-info.model';
+import { VocabularyEntry } from '../../../../core/submission/vocabularies/models/vocabulary-entry.model';
+import { PaginatedList, buildPaginatedList } from '../../../../core/data/paginated-list.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -41,6 +47,10 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    */
   @Input() metadata: MetadatumViewModel;
 
+  @Input() languageEntries: Observable<VocabularyEntry[]>;
+
+  @Input() languagesVocabularyKey: string;
+
   /**
    * Emits whether or not this field is currently editable
    */
@@ -56,9 +66,28 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    */
   metadataFieldSuggestions: BehaviorSubject<InputSuggestion[]> = new BehaviorSubject([]);
 
+  // TODO: this should be part of a new API endpoint
+  private readonly metadataVocabulary: Record<string, string> = {
+    'dc.type': 'publication_type',
+    'dc.language.iso': 'gc_languages',
+    'dc.rights': 'creative_commons',
+    'dc.subject': 'subject_list',
+    'dc.rights.openaccesslevel': 'access_rights',
+    'local.requestdoi': 'request_doi_value',
+    'local.peerreview': 'peer_review',
+    'local.reporttype': 'reports_types',
+    'local.conferencetype': 'conference_types',
+    'local.articletype': 'article_subtype',
+};
+  
+
+  vocabularyEntries: Observable<VocabularyEntry[]> = undefined;
+  hasControlledVocabulary: boolean = false;
+
   constructor(
     private registryService: RegistryService,
     private objectUpdatesService: ObjectUpdatesService,
+    private vocabularyService: VocabularyService
   ) {
   }
 
@@ -68,6 +97,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.editable = this.objectUpdatesService.isEditable(this.url, this.metadata.uuid);
     this.valid = this.objectUpdatesService.isValid(this.url, this.metadata.uuid);
+    this.initializeVocabularyEntries();
   }
 
   /**
@@ -77,6 +107,16 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     this.objectUpdatesService.saveChangeFieldUpdate(this.url, cloneDeep(this.metadata));
     if (hasValue(ngModel)) {
       this.checkValidity(ngModel);
+    }
+
+    //only execute if the ds-validation-suggestions component triggered 
+    // this method call
+    if(ngModel){
+      if(this.metadataVocabulary[this.metadata.key]){
+        this.initializeVocabularyEntries();
+      }else{
+        this.hasControlledVocabulary = false;
+      }
     }
   }
 
@@ -198,4 +238,33 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   protected isNotEmpty(value): boolean {
     return isNotEmpty(value);
   }
+
+  initializeVocabularyEntries() {
+    
+    if (!this.metadataVocabulary[this.metadata.key]) 
+      return;
+    this.hasControlledVocabulary = true;
+    if (this.metadataVocabulary[this.metadata.key] == this.languagesVocabularyKey) {
+      // already loaded in the parent component
+      this.vocabularyEntries = this.languageEntries;
+      return;
+    }
+    var vocabOptions = new VocabularyOptions(this.metadataVocabulary[this.metadata.key], true);
+    var pageInfo = new PageInfo();
+    // call getVocabularyEntries and populate this.vocabularyEntries (will require a pipe)
+    this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe(
+      getFirstSucceededRemoteDataPayload(),
+     catchError(() => observableOf(buildPaginatedList(
+        new PageInfo(),
+        []
+        ))
+      ),
+      map((list: PaginatedList<VocabularyEntry>) => {
+        return list.page
+      }))
+    
+    //this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe
+    //this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(this.metadataVocabulary[this.metadata.key]);
+    }
+  
 }

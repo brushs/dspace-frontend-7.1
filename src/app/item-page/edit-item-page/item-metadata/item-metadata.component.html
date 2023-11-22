@@ -38,8 +38,10 @@
       </tr>
       <tr *ngFor="let updateValue of ((updates$ | async)| dsObjectValues); trackBy: trackUpdate"
           ds-edit-in-place-field
-          [fieldUpdate]="updateValue || {}"
+          [fieldUpdate]="updateValue || {}" 
           [url]="url"
+          [languageEntries]="languageEntries$"
+          [languagesVocabularyKey]="languagesVocabularyKey"
           [ngClass]="{
                 'table-warning': updateValue.changeType === 0,
                 'table-danger': updateValue.changeType === 2,
