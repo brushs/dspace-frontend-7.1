@@ -1,4 +1,4 @@
-<div class="container" *ngVar="(itemRD$ | async) as itemRD">
+<div gcweb class="container" *ngVar="(itemRD$ | async) as itemRD">
   <div class="item-page" *ngIf="itemRD?.hasSucceeded" @fadeInOut>
     <div *ngIf="itemRD?.payload as item">
       <ds-item-alerts [item]="item"></ds-item-alerts>
