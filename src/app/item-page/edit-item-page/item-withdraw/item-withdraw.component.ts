@@ -11,7 +11,7 @@ import { ItemDataService } from '../../../core/data/item-data.service';
 import { getFirstCompletedRemoteData } from '../../../core/shared/operators';
 
 @Component({
-  selector: 'ds-item-withdraw',
+  selector: 'ds-item-withdraw[customFosrc]',
   templateUrl: '../simple-item-action/abstract-simple-item-action.component.html'
 })
 /**

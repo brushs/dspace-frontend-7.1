@@ -9,8 +9,7 @@ import { BreadcrumbsComponent as BaseComponent } from '../../../../app/breadcrum
   templateUrl: './breadcrumbs.component.html',
   //templateUrl: '../../../../app/breadcrumbs/breadcrumbs.component.html',
   styleUrls: [
-    '../../../../themes/wetoverlay/styles/static-pages.scss',
-    '../../styles/wet-theme.scss'
+    // '../../../../themes/wetoverlay/styles/static-pages.scss',
   ]
   //styleUrls: ['../../../../app/breadcrumbs/breadcrumbs.component.scss']
 })
