@@ -33,8 +33,8 @@
                       (onDebounce)="update()"></textarea>
             <ng-template #dropdown>
                 <select class="form-control" [(ngModel)]="metadata.value" (ngModelChange)="update();">
-                    <option *ngFor="let vocab of (vocabularyEntries | async)" [value]="getTranslation(vocab.value)">
-                      {{ getTranslation(vocab.value) }}
+                    <option *ngFor="let vocab of (vocabularyEntries | async)" [value]="getTranslation(vocab.value) || vocab.value">
+                        {{ getTranslation(vocab.display) }}
                     </option>
                   </select>
                   
