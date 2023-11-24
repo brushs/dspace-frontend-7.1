@@ -21,7 +21,8 @@ import { VocabularyOptions } from '../../../../core/submission/vocabularies/mode
 import { PageInfo } from '../../../../core/shared/page-info.model';
 import { VocabularyEntry } from '../../../../core/submission/vocabularies/models/vocabulary-entry.model';
 import { PaginatedList, buildPaginatedList } from '../../../../core/data/paginated-list.model';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslationJsonService } from '../../../../core/services/translation-json.service';
+import { supportedLanguages, LocaleService } from '../../../../core/locale/locale.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -89,7 +90,8 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     private registryService: RegistryService,
     private objectUpdatesService: ObjectUpdatesService,
     private vocabularyService: VocabularyService,
-    private translateService: TranslateService,
+    protected jsonService: TranslationJsonService,
+    protected localeService: LocaleService,
   ) {
   }
 
@@ -97,6 +99,11 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    * Sets up an observable that keeps track of the current editable and valid state of this field
    */
   ngOnInit(): void {
+
+    //loading french and english translation files for subject dropdown
+    this.jsonService.loadJson5File('fr');
+    this.jsonService.loadJson5File('en');
+
     this.editable = this.objectUpdatesService.isEditable(this.url, this.metadata.uuid);
     this.valid = this.objectUpdatesService.isValid(this.url, this.metadata.uuid);
     this.initializeVocabularyEntries();
@@ -270,13 +277,88 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   }
 
   /**
+   * Method to check if the language is supported
+   * @returns void
+   */
+  checkIfSupportedLanguage(languageToCheck: string){
+    //check if the language in the metadata is supported by the application
+    return supportedLanguages.some((supportedLang) => {
+      return supportedLang.toString() === languageToCheck.toLowerCase()
+    });
+  }
+
+  /**
    * Method to get the translated value of the translation key based
-   * on the current set language
+   * on the current set language in the metadata
    * @param translationKey The translation key
    * @returns The translated value
    */
   getTranslation(translationKey){
-    return this.translateService.get(translationKey);
+    
+    let languageToFetch;
+
+    //if the metadata language exists and if it is one of the languages supported
+    // by the application
+    if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
+
+      //set the language to fetch to be the metadata language
+      languageToFetch = this.metadata.language;
+
+    }else{
+
+      //set the language to fetch to be the currently set language of the application
+      languageToFetch = this.localeService.getCurrentLanguageCode();
+
+    }
+
+    //fetch the appropriate language value by the translation key
+    return this.jsonService.getValueByKey(translationKey, languageToFetch);
+  }
+
+  /**
+   * Method to get the key of a translate value based
+   * on the current set language in the metadata
+   * @param value The value
+   * @returns The translation key
+   */
+  // getKeyByValue(value: string){
+
+  //   let languageToFetch;
+
+  //   //if the metadata language exists and if it is one of the languages supported
+  //   // by the application
+  //   if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
+
+  //     //set the language to fetch to be the metadata language
+  //     languageToFetch = this.metadata.language;
+
+  //   }else{
+
+  //     //set the language to fetch to be the currently set language of the application
+  //     languageToFetch = this.localeService.getCurrentLanguageCode();
+
+  //   }
+
+  //   //fetch the translation key by the value
+  //   return this.jsonService.getKeyByValue(value, languageToFetch);
+  // }
+
+  /**
+   * Method to change the dropdown language
+   * @returns void
+   */
+  changeDropdownLanguage(){
+
+    //if the language in the metadata is not supported by the application,
+    // then return from the function
+    if(!this.checkIfSupportedLanguage(this.metadata.language)){
+      return;
+    }
+
+    this.hasControlledVocabulary = false;
+
+    //recreate dropdown to match metadata language
+    this.initializeVocabularyEntries();
   }
   
 }
