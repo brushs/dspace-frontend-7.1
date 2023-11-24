@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { EpersonRegistrationService } from '../core/data/eperson-registration.service';
 import { NotificationsService } from '../shared/notifications/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,15 +29,18 @@ export class RegisterEmailFormComponent implements OnInit {
   MESSAGE_PREFIX: string;
 
   emailIsEmpty: boolean = false;
-  emailIsInvalid: boolean = false;
+  emailIsInvalid: boolean = false;  
+  email: string;
+  
+  formSubmitted = false;
+  submissionTitle = null;
+  submissionMessage = null;
 
   private readonly EMAIL_VALIDATOR: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 
   constructor(
     private epersonRegistrationService: EpersonRegistrationService,
-    private notificationService: NotificationsService,
-    private translateService: TranslateService,
-    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
     private formBuilder: FormBuilder
   ) {
 
@@ -69,31 +72,27 @@ export class RegisterEmailFormComponent implements OnInit {
    */
   register() {
     this.resetErrors();
-    const email: string = this.form.get('email').value;
+    this.email = this.form.get('email').value;
     // trim values
-    email.trim();
-     if (email.length == 0) {
+    this.email.trim();
+     if (this.email.length == 0) {
       this.emailIsEmpty = true;
       this.resetFocus();
       return;
     }
 
-    if (!email.match(this.EMAIL_VALIDATOR)){
+    if (!this.email.match(this.EMAIL_VALIDATOR)){
       this.emailIsInvalid = true;
       this.resetFocus();
       return;
-    }
+    } 
 
 
-    this.epersonRegistrationService.registerEmail(email).subscribe((response: RemoteData<Registration>) => {
-      if (response.hasSucceeded) {
-        this.notificationService.success(this.translateService.get(`${this.MESSAGE_PREFIX}.success.head`),
-          this.translateService.get(`${this.MESSAGE_PREFIX}.success.content`, { email: email }));
-        this.router.navigate(['/home']);
-      } else {
-        this.notificationService.error(this.translateService.get(`${this.MESSAGE_PREFIX}.error.head`),
-          this.translateService.get(`${this.MESSAGE_PREFIX}.error.content`, { email: email}));
-      }
+    this.epersonRegistrationService.registerEmail(this.email).subscribe((response: RemoteData<Registration>) => {
+      this.submissionTitle = response.hasSucceeded ? `${this.MESSAGE_PREFIX}.success.head`:`${this.MESSAGE_PREFIX}.error.head`;
+      this.submissionMessage = response.hasSucceeded ? `${this.MESSAGE_PREFIX}.success.content` : `${this.MESSAGE_PREFIX}.error.content`;
+      this.formSubmitted = true;
+      this.changeDetectorRef.detectChanges();
     }
     );
     
