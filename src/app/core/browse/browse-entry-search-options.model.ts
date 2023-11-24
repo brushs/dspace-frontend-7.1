@@ -12,7 +12,7 @@ export class BrowseEntrySearchOptions {
   constructor(public metadataDefinition: string,
               public pagination?: PaginationComponentOptions,
               public sort?: SortOptions,
-              public startsWith?: string,
+              public query?: string,
               public scope?: string) {
   }
 }
