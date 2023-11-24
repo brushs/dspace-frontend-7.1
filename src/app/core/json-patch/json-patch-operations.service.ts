@@ -61,7 +61,7 @@ export abstract class JsonPatchOperationsService<ResponseDefinitionDomain, Patch
         const duplicatedFrenchSubjects = englishSubjects
           .filter(englishSubject =>
             !frenchSubjects.some(subject =>
-              subject.value === englishSubject.value
+              subject.value.toLowerCase() === englishSubject.value.toLowerCase()
             )
           )
           .map(englishSubject => {
@@ -85,36 +85,62 @@ export abstract class JsonPatchOperationsService<ResponseDefinitionDomain, Patch
         const duplicatedEnglishSubjects = frenchSubjects
           .filter(frenchSubject =>
             !englishSubjects.some(subject =>
-              subject.value === frenchSubject.value
+              subject.value.toLowerCase() === frenchSubject.value.toLowerCase()
             )
           )
           .map(frenchSubject => {
-            const subjectValue = this.jsonService.getValueByKey<string>(frenchSubject.value, 'en');
-
+            let subjectValue = this.jsonService.getValueByKey<string>(frenchSubject.value, 'en');
+            if (subjectValue === undefined) {
+              subjectValue = this.jsonService.getKeyByValue<string>(frenchSubject.value, 'fr');
+            }
             return {
               ...frenchSubject,
               language: 'en',
-             // value: subjectValue || frenchSubject.value,
+              value: subjectValue || frenchSubject.value,
             };
           });
 
-        const combinedSubjects = [...lastSubjectEntry.value, ...duplicatedFrenchSubjects, ...duplicatedEnglishSubjects];
+        const translatedSubjectsLastEntry = lastSubjectEntry.value.map(subject => {
+            let subjectValue = subject.value;
+            if(subject.language === 'fr') {
+              subjectValue = this.jsonService.getKeyByValue<string>(subject.value, subject.language);
+            }
+            return {
+              ...subject,
+              value: subjectValue || subject.value,
+            };
+        });
+
+        const combinedSubjects = [...translatedSubjectsLastEntry, ...duplicatedFrenchSubjects, ...duplicatedEnglishSubjects];
 
         const uniqueCombinedSubjects = combinedSubjects.filter((subject, index, self) =>
-            index === self.findIndex(s => s.value === subject.value && s.language === subject.language)
+            index === self.findIndex(s => s.value.toLowerCase() === subject.value.toLowerCase() && s.language === subject.language)
         );
         const translatedSubjects = uniqueCombinedSubjects.map(subject => {
-        const subjectValue = this.jsonService.getValueByKey<string>(subject.value, subject.language);
-
+          let subjectValue = this.jsonService.getValueByKey<string>(subject.value, subject.language);
+          if(subjectValue === undefined && subject.language === 'fr') {
+            subjectValue = this.jsonService.getKeyByValue<string>(subject.value, subject.language);
+          }
           return {
             ...subject,
             value: subjectValue || subject.value,
           };
         });
+
+        // Additional step to filter out duplicates based on both "value" and "language"
+        const filteredTranslatedSubjects = translatedSubjects.filter(
+          (subject, index, self) =>
+            index ===
+            self.findIndex(
+              s =>
+                s.value.toLowerCase() === subject.value.toLowerCase() && s.language === subject.language
+            )
+        );
+
         const duplicateSubjectOperation: JsonPatchOperationModel = {
           op: 'add' as JsonPatchOperationType,
           path: SUBJECT_PATH,
-          value: translatedSubjects,
+          value: filteredTranslatedSubjects,
         };
 
         // Add the new operation to the body
