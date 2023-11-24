@@ -21,6 +21,7 @@ import { VocabularyOptions } from '../../../../core/submission/vocabularies/mode
 import { PageInfo } from '../../../../core/shared/page-info.model';
 import { VocabularyEntry } from '../../../../core/submission/vocabularies/models/vocabulary-entry.model';
 import { PaginatedList, buildPaginatedList } from '../../../../core/data/paginated-list.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -87,7 +88,8 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   constructor(
     private registryService: RegistryService,
     private objectUpdatesService: ObjectUpdatesService,
-    private vocabularyService: VocabularyService
+    private vocabularyService: VocabularyService,
+    private translateService: TranslateService,
   ) {
   }
 
@@ -265,6 +267,16 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     
     //this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe
     //this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(this.metadataVocabulary[this.metadata.key]);
-    }
+  }
+
+  /**
+   * Method to get the translated value of the translation key based
+   * on the current set language
+   * @param translationKey The translation key
+   * @returns The translated value
+   */
+  getTranslation(translationKey){
+    return this.translateService.get(translationKey);
+  }
   
 }
