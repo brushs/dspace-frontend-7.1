@@ -70,7 +70,7 @@
           <div class="form-group col-sm-6 pull-right">
              <label for="enddate">
               {{'search.filters.filter.end' | translate}} 
-              <p id="endDateErrorId" *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
+              <p id="endDateErrorId" *ngIf="endDateError"><span class="text-danger" role="alert">{{  endDateErrorText | translate }}</span></p>
               <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
              <input (keydown)="onKeyDown($event)" (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
