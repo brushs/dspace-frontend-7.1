@@ -20,6 +20,12 @@ export const environment = {
 	  port: 443,
 	  nameSpace: '/server',
   },
+  // Angular Universal settings
+  universal: {
+    preboot: true,
+    async: true,
+    time: false
+  },
   themes: [{
 	name: 'wetoverlay'
   }],
