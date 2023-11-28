@@ -569,6 +569,7 @@
   "search.filters.none": "No results match this filter",
   "search.filters.filter.dateInvalid": "Error: Invalid year (YYYY)",
   "search.filters.filter.dateInvalidRange": "Error: Start date cannot be greater than current year",
+  "search.filters.filter.dateInvalidEndRange":"Error: The start year must be less than or equal to the end year",
   "search.filters.filter.datePlaceholder": "YYYY",
   "search.filters.filter.peerReview.head": "Peer review",
   "search.filters.filter.peerReview.placeholder": "Search peer review",

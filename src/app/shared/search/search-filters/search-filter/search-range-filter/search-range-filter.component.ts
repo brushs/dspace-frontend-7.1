@@ -84,6 +84,8 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
 
   startDateRangeError: boolean;
 
+  endDateErrorText: string = 'search.filters.filter.dateInvalid';
+
   yearValues: string[] = []; // To store all the year values from metadata
 
   constructor(protected searchService: SearchService,
@@ -170,6 +172,7 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     var newMax = new Number(this.range[1] >= this.max_limit ? new Number(this.max_limit) : this.range[1]);
     //this.range[1] = newMax;
 
+    this.endDateErrorText = 'search.filters.filter.dateInvalid';
 
     if(this.range[0] !== '' && (isNaN(newMin.valueOf()) || isNaN(this.range[0]) || this.range[0] < this.min_limit)) {
       // add error label on top of start date field
@@ -188,6 +191,10 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     if(this.range[1] !== '' && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
       // add error label on top of end date field
       this.endDateError = true;
+
+      if ( newMax < newMin) {
+        this.endDateErrorText = 'search.filters.filter.dateInvalidEndRange';
+      }
     } else {
       this.endDateError = false;
     }
