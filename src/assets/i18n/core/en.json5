@@ -2069,6 +2069,8 @@
   "search.filters.filter.collapse": "Collapse filter",
   "search.filters.filter.start": "Start year (YYYY)",
   "search.filters.filter.end": "End year (YYYY)",
+  "search.filters.filter.subjectEn.head": "Subject",
+  "search.filters.filter.sujet.head": "Sujet",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",
