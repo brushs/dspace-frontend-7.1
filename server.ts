@@ -151,6 +151,9 @@ export function app() {
  * The callback function to serve server side angular
  */
 function ngApp(req, res) {
+
+console.log("LOG: ngApp() FUNCTION EXECUTED")
+
   if (environment.universal.preboot) {
 
     if(
@@ -172,6 +175,9 @@ function ngApp(req, res) {
     ){
 
       try {
+
+console.log("LOG: BEFORE READ INDEX.HTML FILE")
+
         //read the index.html file in the dist/browser folder 
         const indexHtmlData = fs.readFileSync(join(DIST_FOLDER, 'index.html'), 'utf8');
 
@@ -181,6 +187,8 @@ function ngApp(req, res) {
         //overwrite the original index.html file
         fs.writeFileSync(join(DIST_FOLDER, 'index.html'), modifiedIndexHtmlData);
 
+console.log("LOG: AFTER WRITE INDEX.HTML FILE")
+
         //set the language setting to the 'dsLanguage' cookie value
         languageSetting = req.cookies.dsLanguage;
       } catch (err) {
@@ -188,6 +196,8 @@ function ngApp(req, res) {
       }
 
     }
+
+console.log("LOG: BEFORE RENDER")
 
     res.render(indexHtml, {
       req,
