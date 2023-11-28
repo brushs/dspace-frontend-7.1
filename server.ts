@@ -151,6 +151,9 @@ export function app() {
  * The callback function to serve server side angular
  */
 function ngApp(req, res) {
+
+console.log("LOG: ngApp() FUNCTION EXECUTED")
+
   if (environment.universal.preboot) {
 
     if(
