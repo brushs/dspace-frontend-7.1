@@ -1,0 +1,17 @@
+{
+    "apps": [
+        {
+            "name": "OSPR-UI",
+            "cwd": "/opt/ospr/OSPR-UI",
+            "script": "yarn",
+            "args": "run serve:ssr",
+            "interpreter": "none",
+            "instances": "max",
+            "exec_mode": "cluster",
+            "env": {
+              "NODE_ENV": "production",
+	      "DSPACE_GCSCIENCE_COMM": "e5d95e6d-96d3-4abb-8e3f-42f579aa614c"
+            }        
+	}
+    ]
+}
