@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { 
+  Component, 
+  Input, 
+  OnChanges, 
+  OnInit, 
+  // ViewChildren, 
+  // ElementRef, 
+  // QueryList 
+} from '@angular/core';
 import {
   metadataFieldsToString,
   getFirstSucceededRemoteData,
@@ -8,7 +16,7 @@ import { hasValue, isNotEmpty } from '../../../../shared/empty.util';
 import { RegistryService } from '../../../../core/registry/registry.service';
 import { cloneDeep } from 'lodash';
 import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { FieldChangeType } from '../../../../core/data/object-updates/object-updates.actions';
 import { FieldUpdate } from '../../../../core/data/object-updates/object-updates.reducer';
 import { ObjectUpdatesService } from '../../../../core/data/object-updates/object-updates.service';
@@ -53,6 +61,10 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
 
   @Input() languagesVocabularyKey: string;
 
+  // @ViewChild('valueFieldDropdown', { static: false }) valueFieldDropdown: ElementRef;
+
+  // @ViewChildren('dropdownItem') dropdownItems: QueryList<any>;
+
   /**
    * Emits whether or not this field is currently editable
    */
@@ -67,6 +79,8 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    * The current suggestions for the metadatafield when editing
    */
   metadataFieldSuggestions: BehaviorSubject<InputSuggestion[]> = new BehaviorSubject([]);
+
+  // lastMetadataValue: string;
 
   // TODO: this should be part of a new API endpoint
   private readonly metadataVocabulary: Record<string, string> = {
@@ -260,17 +274,28 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     }
     var vocabOptions = new VocabularyOptions(this.metadataVocabulary[this.metadata.key], true);
     var pageInfo = new PageInfo();
+    pageInfo.elementsPerPage = 500;
     // call getVocabularyEntries and populate this.vocabularyEntries (will require a pipe)
     this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe(
       getFirstSucceededRemoteDataPayload(),
-     catchError(() => observableOf(buildPaginatedList(
+      catchError(() => observableOf(buildPaginatedList(
         new PageInfo(),
         []
         ))
       ),
       map((list: PaginatedList<VocabularyEntry>) => {
         return list.page
-      }))
+      }),
+      // tap((results)=>{
+        // this.setDropdownSelectedItemToLastItem();
+        // console.log(this.valueFieldDropdown.nativeElement)
+        // this.valueFieldDropdown.nativeElement.options[1].selected = true;
+        // console.log(results)
+// console.log(this.dropdownItems)
+// console.log(this.dropdownItems.toArray())
+// this.dropdownItems.toArray()[1].selected = true
+      // })
+      )
     
     //this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe
     //this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(this.metadataVocabulary[this.metadata.key]);
@@ -316,12 +341,12 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method to get the key of a translate value based
+   * Method to get the keys of a translate value based
    * on the current set language in the metadata
    * @param value The value
    * @returns The translation key
    */
-  // getKeyByValue(value: string){
+  // getKeysByValue(value: string){
 
   //   let languageToFetch;
 
@@ -340,7 +365,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   //   }
 
   //   //fetch the translation key by the value
-  //   return this.jsonService.getKeyByValue(value, languageToFetch);
+  //   return this.jsonService.getKeysByValue(value, languageToFetch);
   // }
 
   /**
@@ -357,8 +382,33 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
 
     this.hasControlledVocabulary = false;
 
+    this.metadata.value = undefined;
+
     //recreate dropdown to match metadata language
     this.initializeVocabularyEntries();
   }
+
+//   setDropdownSelectedItemToLastItem(){
+// console.log(this.lastMetadataValue)
+//     this.valueFieldDropdown.nativeElement.value = this.lastMetadataValue ? this.lastMetadataValue: 'fosrc.item.edit.dynamic-field.values.13.subject_list';
+// console.log(this.valueFieldDropdown)
+// console.log(this.valueFieldDropdown.nativeElement.value)
+//   }
+
+//   compareLastMetadataValueWithVocabValue(vocabValue: string){
+
+//     // getTranslation(vocab.value) === lastMetadataValue || vocab.value === lastMetadataValue
+
+//     let lastMetadataValueKeys = this.getKeysByValue(this.lastMetadataValue);
+// console.log(lastMetadataValueKeys);
+//     let vocabValueMatchesLastMetadataValueKeys = lastMetadataValueKeys.some((key) => {
+//       return key === vocabValue;
+//     });
+// console.log(vocabValueMatchesLastMetadataValueKeys);
+//     if(vocabValueMatchesLastMetadataValueKeys){
+//       return true;
+//     }
+//     return false;
+//   }
   
 }
