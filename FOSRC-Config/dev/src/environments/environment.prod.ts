@@ -1,10 +1,10 @@
 
 
 export const environment = {
-  production: true,
+  production: false,
   ui: {
-    ssl: true,
-    host: 'dev-ospr.g.ent.cloud-nuage.canada.ca', //'0.0.0.0', //'10.153.200.0', //'ospr.g.ent.cloud-nuage.canada.ca',//'10.153.200.0', //'localhost',
+    ssl: false,
+    host: '0.0.0.0', //'dev-ospr.g.ent.cloud-nuage.canada.ca', //'0.0.0.0', //'10.153.200.0', //'ospr.g.ent.cloud-nuage.canada.ca',//'10.153.200.0', //'localhost',
     port: 4000,
     // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
     nameSpace: '/',
