@@ -12,10 +12,14 @@ build-dev:
     - dev
   script:
     - echo "Building UI"
+    - pwd
     - echo $PATH
+    - cat ./src/environments/environment.common.ts
     - cp -f ./FOSRC-Config/dev/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
+    - cat ./src/environments/environment.prod.ts
     - yarn install
     - yarn run build:prod
+    - cat ./src/environments/environment.ts
   artifacts: 
     paths: 
       - dist
@@ -58,8 +62,8 @@ deploy-dev:
     - pwd
     - cp -Rf dist /opt/ospr/OSPR-UI/
     - cp -Rf node_modules /opt/ospr/OSPR-UI/
-    - ~/node_modules/.bin/pm2 restart /opt/ospr/ospr-ui.json
-    - ~/node_modules/.bin/pm2 status /opt/ospr/ospr-ui.json
+    - /usr/bin/pm2 restart /opt/ospr/ospr-ui.json
+    - /usr/bin/pm2 status /opt/ospr/ospr-ui.json
   variables:
     GIT_STRATEGY: none
   #artifacts: 

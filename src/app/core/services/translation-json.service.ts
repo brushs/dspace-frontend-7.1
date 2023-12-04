@@ -60,5 +60,24 @@ export class TranslationJsonService  {
   
     return undefined;
   }
+
+  getKeysByValue<T>(value: T, lang: string): string[] | undefined {
+    let parsedData: any;
+  
+    if (lang === 'en') {
+      parsedData = this.parsedDataEnglish;
+    } else if (lang === 'fr') {
+      parsedData = this.parsedDataFrench;
+    }
+  
+    if (parsedData) {
+      return Object.entries(parsedData).filter(([key, val]) => val === value)
+        .map(([key, val]) => {
+          return key;
+        });
+    }
+  
+    return undefined;
+  }
   
 }

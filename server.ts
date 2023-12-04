@@ -51,8 +51,23 @@ const { ServerAppModule, ngExpressEngine } = require('./dist/server/main');
 
 const cookieParser = require('cookie-parser');
 
-//variable that holds the current language setting
-let languageSetting = '';
+//variable that holds the index file name to render
+let indexHtmlFileToRender;
+
+try {
+
+  //read the index.html file in the dist/browser folder 
+  const indexHtmlData = fs.readFileSync(join(DIST_FOLDER, 'index.html'), 'utf8');
+
+  //copy the index.html file and replace the existing lang attribute
+  let modifiedIndexHtmlData = indexHtmlData.replace(/lang="en"/, `lang="fr"`);
+
+  //overwrite the original index.html file
+  fs.writeFileSync(join(DIST_FOLDER, 'index.fr.html'), modifiedIndexHtmlData)
+
+} catch (err) {
+  console.error(err);
+}
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
@@ -151,45 +166,24 @@ export function app() {
  * The callback function to serve server side angular
  */
 function ngApp(req, res) {
+
+  indexHtmlFileToRender = indexHtml;
+
   if (environment.universal.preboot) {
 
     if(
       //'dsLanguage' cookie exists 
       req.cookies.dsLanguage
 
-      //AND the languageSetting variable is not equal to the
-      // 'dsLanguage' cookie value
-      && languageSetting !== req.cookies.dsLanguage
-
-      //AND 'dsLanguage' cookie is set to "en" OR "fr"
-      && (
-        req.cookies.dsLanguage === "en" 
-        || req.cookies.dsLanguage === "fr"
-      )
-
-      //AND the index.html file exists in the dist/browser folder
-      && existsSync(join(DIST_FOLDER, 'index.html'))
+      //AND 'dsLanguage' cookie is set to "fr"
+      && req.cookies.dsLanguage === "fr"
     ){
 
-      try {
-        //read the index.html file in the dist/browser folder 
-        const indexHtmlData = fs.readFileSync(join(DIST_FOLDER, 'index.html'), 'utf8');
-
-        //copy the index.html file and replace the existing lang attribute
-        let modifiedIndexHtmlData = indexHtmlData.replace(/lang="(en|fr)"/, `lang="${req.cookies.dsLanguage}"`);
-
-        //overwrite the original index.html file
-        fs.writeFileSync(join(DIST_FOLDER, 'index.html'), modifiedIndexHtmlData);
-
-        //set the language setting to the 'dsLanguage' cookie value
-        languageSetting = req.cookies.dsLanguage;
-      } catch (err) {
-        console.error(err);
-      }
+      indexHtmlFileToRender = existsSync(join(DIST_FOLDER, 'index.fr.html')) ? 'index.fr.html' : 'index';
 
     }
 
-    res.render(indexHtml, {
+    res.render(indexHtmlFileToRender, {
       req,
       res,
       preboot: environment.universal.preboot,
@@ -212,13 +206,13 @@ function ngApp(req, res) {
         if (hasValue(err)) {
           console.warn('Error details : ', err);
         }
-        res.sendFile(DIST_FOLDER + '/index.html');
+        res.sendFile(DIST_FOLDER + '/' + indexHtmlFileToRender);
       }
     });
   } else {
     // If preboot is disabled, just serve the client
     console.log('Universal off, serving for direct CSR');
-    res.sendFile(DIST_FOLDER + '/index.html');
+    res.sendFile(DIST_FOLDER + '/' + indexHtmlFileToRender);
   }
 }
 

@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { 
+  Component, 
+  Input, 
+  OnChanges, 
+  OnInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import {
   metadataFieldsToString,
   getFirstSucceededRemoteData,
@@ -8,7 +14,7 @@ import { hasValue, isNotEmpty } from '../../../../shared/empty.util';
 import { RegistryService } from '../../../../core/registry/registry.service';
 import { cloneDeep } from 'lodash';
 import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { FieldChangeType } from '../../../../core/data/object-updates/object-updates.actions';
 import { FieldUpdate } from '../../../../core/data/object-updates/object-updates.reducer';
 import { ObjectUpdatesService } from '../../../../core/data/object-updates/object-updates.service';
@@ -21,7 +27,8 @@ import { VocabularyOptions } from '../../../../core/submission/vocabularies/mode
 import { PageInfo } from '../../../../core/shared/page-info.model';
 import { VocabularyEntry } from '../../../../core/submission/vocabularies/models/vocabulary-entry.model';
 import { PaginatedList, buildPaginatedList } from '../../../../core/data/paginated-list.model';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslationJsonService } from '../../../../core/services/translation-json.service';
+import { supportedLanguages, LocaleService } from '../../../../core/locale/locale.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -67,6 +74,10 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    */
   metadataFieldSuggestions: BehaviorSubject<InputSuggestion[]> = new BehaviorSubject([]);
 
+  lastMetadataValue: string;
+
+  lastMetadataLanguage: string;
+
   // TODO: this should be part of a new API endpoint
   private readonly metadataVocabulary: Record<string, string> = {
     'dc.type': 'publication_type',
@@ -89,7 +100,9 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     private registryService: RegistryService,
     private objectUpdatesService: ObjectUpdatesService,
     private vocabularyService: VocabularyService,
-    private translateService: TranslateService,
+    protected jsonService: TranslationJsonService,
+    protected localeService: LocaleService,
+    protected cdr: ChangeDetectorRef,
   ) {
   }
 
@@ -97,6 +110,11 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    * Sets up an observable that keeps track of the current editable and valid state of this field
    */
   ngOnInit(): void {
+
+    //loading french and english translation files for subject dropdown
+    this.jsonService.loadJson5File('en');
+    this.jsonService.loadJson5File('fr');
+
     this.editable = this.objectUpdatesService.isEditable(this.url, this.metadata.uuid);
     this.valid = this.objectUpdatesService.isValid(this.url, this.metadata.uuid);
     this.initializeVocabularyEntries();
@@ -248,35 +266,142 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     this.hasControlledVocabulary = true;
     if (this.metadataVocabulary[this.metadata.key] == this.languagesVocabularyKey) {
       // already loaded in the parent component
-      this.vocabularyEntries = this.languageEntries;
+      this.vocabularyEntries = this.languageEntries.pipe(
+        tap(()=>{
+          this.setDropdownOptionToEquivalentLastOption();
+        })
+      );
       return;
     }
     var vocabOptions = new VocabularyOptions(this.metadataVocabulary[this.metadata.key], true);
     var pageInfo = new PageInfo();
+    pageInfo.elementsPerPage = 500;
     // call getVocabularyEntries and populate this.vocabularyEntries (will require a pipe)
     this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe(
       getFirstSucceededRemoteDataPayload(),
-     catchError(() => observableOf(buildPaginatedList(
+      catchError(() => observableOf(buildPaginatedList(
         new PageInfo(),
         []
         ))
       ),
       map((list: PaginatedList<VocabularyEntry>) => {
         return list.page
-      }))
+      }),
+      tap(()=>{
+        this.setDropdownOptionToEquivalentLastOption();
+      })
+      )
     
     //this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe
     //this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(this.metadataVocabulary[this.metadata.key]);
   }
 
   /**
+   * Method to check if the language is supported
+   * @returns void
+   */
+  checkIfSupportedLanguage(languageToCheck: string){
+    //check if the language in the metadata is supported by the application
+    return supportedLanguages.some((supportedLang) => {
+      return supportedLang.toString() === languageToCheck.toLowerCase()
+    });
+  }
+
+  /**
    * Method to get the translated value of the translation key based
-   * on the current set language
+   * on the current set language in the metadata
    * @param translationKey The translation key
    * @returns The translated value
    */
-  getTranslation(translationKey){
-    return this.translateService.get(translationKey);
+  getTranslationValueByKey(translationKey): string{
+    
+    let languageToFetch;
+
+    //if the metadata language exists and if it is one of the languages supported
+    // by the application
+    if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
+
+      //set the language to fetch to be the metadata language
+      languageToFetch = this.metadata.language;
+
+    }else{
+
+      //set the language to fetch to be the currently set language of the application
+      languageToFetch = this.localeService.getCurrentLanguageCode();
+
+    }
+
+    //fetch the appropriate language value by the translation key
+    return this.jsonService.getValueByKey(translationKey, languageToFetch);
+  }
+
+  /**
+   * Method to change the dropdown language
+   * @returns void
+   */
+  changeDropdownLanguage(){
+
+    this.hasControlledVocabulary = false;
+
+    this.metadata.value = undefined;
+
+    //recreate dropdown to match metadata language
+    this.initializeVocabularyEntries();
+  }
+
+  /**
+   * Method to set the dropdown selected option to the option that is equivalent
+   * to the last selected dropdown option
+   * @returns void
+   */
+  setDropdownOptionToEquivalentLastOption(){
+
+    setTimeout(() => {
+
+      let languageToFetch;
+
+      //if the last metadata language exists and if it is one of the languages supported
+      // by the application
+      if(this.lastMetadataLanguage && this.checkIfSupportedLanguage(this.lastMetadataLanguage)){
+
+        //set the language to fetch to be the last metadata language
+        languageToFetch = this.lastMetadataLanguage;
+
+      }else{
+
+        //set the language to fetch to be english
+        languageToFetch = "en";
+
+      }
+
+      //fetch the translation key by the value
+      let lastMetadataValueKey = this.jsonService.getKeyByValue(this.lastMetadataValue, languageToFetch);
+
+      //fetch the equivalent translation value (linked to the last metadata value key) 
+      // for the new metadata language
+      let translatedMetadataValueForNewLanguage = this.getTranslationValueByKey(lastMetadataValueKey);
+
+      this.metadata.value = translatedMetadataValueForNewLanguage;
+
+      this.cdr.detectChanges();
+        
+    })
+  }
+
+  /**
+   * Method to set the last metadata value
+   * @returns void
+   */
+  setLastMetadataValue(){
+    this.lastMetadataValue = this.metadata.value;
+  }
+
+  /**
+   * Method to set the last metadata language
+   * @returns void
+   */
+  setLastMetadataLanguage(){
+    this.lastMetadataLanguage = this.metadata.language;
   }
   
 }

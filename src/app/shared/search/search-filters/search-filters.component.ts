@@ -14,6 +14,7 @@ import { currentPath } from '../../utils/route.utils';
 import { Router } from '@angular/router';
 import { hasValue } from '../../empty.util';
 import { RouteService } from '../../../core/services/route.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-search-filters',
@@ -71,7 +72,9 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     private filterService: SearchFilterService,
     private router: Router,
     @Inject(SEARCH_CONFIG_SERVICE) private searchConfigService: SearchConfigurationService,
-    private routeService :RouteService) {
+    private routeService :RouteService,
+    public translate: TranslateService,
+    ) {
   }
 
   ngOnInit(): void {
@@ -95,7 +98,11 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
       this.filterService.selectedFilterOptions$.next([]);
     }
     this.filters = this.searchConfigService.searchOptions.pipe(
-      switchMap((options) => this.searchService.getConfig(options.scope, options.configuration).pipe(getFirstSucceededRemoteData())),
+      switchMap((options) => {
+        return this.searchService.getConfig(options.scope, options.configuration).pipe(
+            getFirstSucceededRemoteData()
+          )
+      }),
     );
   }
 
