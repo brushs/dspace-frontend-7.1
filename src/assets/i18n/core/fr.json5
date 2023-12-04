@@ -589,6 +589,14 @@
   // "false" : "No",
   "false": "Non",
 
+  "yes": "oui",
+  "no": "non",
+
+  "en": "en",
+  "fr": "fr",
+  "fr-en": "fr-en",
+  "other": "other",
+
   //"Arts, Music, Literature": "Arts, Music, Literature",
   "Arts, music, literature": "Arts, musique, littérature",
   "Arts, Music, Literature": "Arts, musique, littérature",
@@ -624,6 +632,7 @@
   "Military": "Histoire et science militaire",
   //"Nature and Environment": "Nature and Environment",
   "Nature and Environment": "Nature et environnement",
+  "Nature and environment": "Nature et environnement",
   //"Persons": "Persons",
   "Persons": "Personnes",
   //"Processes": "Processes",

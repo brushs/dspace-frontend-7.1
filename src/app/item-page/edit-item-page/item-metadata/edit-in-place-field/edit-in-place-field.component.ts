@@ -2,10 +2,8 @@ import {
   Component, 
   Input, 
   OnChanges, 
-  OnInit, 
-  // ViewChildren, 
-  // ElementRef, 
-  // QueryList 
+  OnInit,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   metadataFieldsToString,
@@ -61,10 +59,6 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
 
   @Input() languagesVocabularyKey: string;
 
-  // @ViewChild('valueFieldDropdown', { static: false }) valueFieldDropdown: ElementRef;
-
-  // @ViewChildren('dropdownItem') dropdownItems: QueryList<any>;
-
   /**
    * Emits whether or not this field is currently editable
    */
@@ -80,7 +74,9 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    */
   metadataFieldSuggestions: BehaviorSubject<InputSuggestion[]> = new BehaviorSubject([]);
 
-  // lastMetadataValue: string;
+  lastMetadataValue: string;
+
+  lastMetadataLanguage: string;
 
   // TODO: this should be part of a new API endpoint
   private readonly metadataVocabulary: Record<string, string> = {
@@ -106,6 +102,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     private vocabularyService: VocabularyService,
     protected jsonService: TranslationJsonService,
     protected localeService: LocaleService,
+    protected cdr: ChangeDetectorRef,
   ) {
   }
 
@@ -115,8 +112,8 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   ngOnInit(): void {
 
     //loading french and english translation files for subject dropdown
-    this.jsonService.loadJson5File('fr');
     this.jsonService.loadJson5File('en');
+    this.jsonService.loadJson5File('fr');
 
     this.editable = this.objectUpdatesService.isEditable(this.url, this.metadata.uuid);
     this.valid = this.objectUpdatesService.isValid(this.url, this.metadata.uuid);
@@ -269,7 +266,11 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     this.hasControlledVocabulary = true;
     if (this.metadataVocabulary[this.metadata.key] == this.languagesVocabularyKey) {
       // already loaded in the parent component
-      this.vocabularyEntries = this.languageEntries;
+      this.vocabularyEntries = this.languageEntries.pipe(
+        tap(()=>{
+          this.setDropdownOptionToEquivalentLastOption();
+        })
+      );
       return;
     }
     var vocabOptions = new VocabularyOptions(this.metadataVocabulary[this.metadata.key], true);
@@ -286,15 +287,9 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
       map((list: PaginatedList<VocabularyEntry>) => {
         return list.page
       }),
-      // tap((results)=>{
-        // this.setDropdownSelectedItemToLastItem();
-        // console.log(this.valueFieldDropdown.nativeElement)
-        // this.valueFieldDropdown.nativeElement.options[1].selected = true;
-        // console.log(results)
-// console.log(this.dropdownItems)
-// console.log(this.dropdownItems.toArray())
-// this.dropdownItems.toArray()[1].selected = true
-      // })
+      tap(()=>{
+        this.setDropdownOptionToEquivalentLastOption();
+      })
       )
     
     //this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe
@@ -318,7 +313,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    * @param translationKey The translation key
    * @returns The translated value
    */
-  getTranslation(translationKey){
+  getTranslationValueByKey(translationKey): string{
     
     let languageToFetch;
 
@@ -341,44 +336,10 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method to get the keys of a translate value based
-   * on the current set language in the metadata
-   * @param value The value
-   * @returns The translation key
-   */
-  // getKeysByValue(value: string){
-
-  //   let languageToFetch;
-
-  //   //if the metadata language exists and if it is one of the languages supported
-  //   // by the application
-  //   if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
-
-  //     //set the language to fetch to be the metadata language
-  //     languageToFetch = this.metadata.language;
-
-  //   }else{
-
-  //     //set the language to fetch to be the currently set language of the application
-  //     languageToFetch = this.localeService.getCurrentLanguageCode();
-
-  //   }
-
-  //   //fetch the translation key by the value
-  //   return this.jsonService.getKeysByValue(value, languageToFetch);
-  // }
-
-  /**
    * Method to change the dropdown language
    * @returns void
    */
   changeDropdownLanguage(){
-
-    //if the language in the metadata is not supported by the application,
-    // then return from the function
-    if(!this.checkIfSupportedLanguage(this.metadata.language)){
-      return;
-    }
 
     this.hasControlledVocabulary = false;
 
@@ -388,27 +349,59 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     this.initializeVocabularyEntries();
   }
 
-//   setDropdownSelectedItemToLastItem(){
-// console.log(this.lastMetadataValue)
-//     this.valueFieldDropdown.nativeElement.value = this.lastMetadataValue ? this.lastMetadataValue: 'fosrc.item.edit.dynamic-field.values.13.subject_list';
-// console.log(this.valueFieldDropdown)
-// console.log(this.valueFieldDropdown.nativeElement.value)
-//   }
+  /**
+   * Method to set the dropdown selected option to the option that is equivalent
+   * to the last selected dropdown option
+   * @returns void
+   */
+  setDropdownOptionToEquivalentLastOption(){
 
-//   compareLastMetadataValueWithVocabValue(vocabValue: string){
+    setTimeout(() => {
 
-//     // getTranslation(vocab.value) === lastMetadataValue || vocab.value === lastMetadataValue
+      let languageToFetch;
 
-//     let lastMetadataValueKeys = this.getKeysByValue(this.lastMetadataValue);
-// console.log(lastMetadataValueKeys);
-//     let vocabValueMatchesLastMetadataValueKeys = lastMetadataValueKeys.some((key) => {
-//       return key === vocabValue;
-//     });
-// console.log(vocabValueMatchesLastMetadataValueKeys);
-//     if(vocabValueMatchesLastMetadataValueKeys){
-//       return true;
-//     }
-//     return false;
-//   }
+      //if the last metadata language exists and if it is one of the languages supported
+      // by the application
+      if(this.lastMetadataLanguage && this.checkIfSupportedLanguage(this.lastMetadataLanguage)){
+
+        //set the language to fetch to be the last metadata language
+        languageToFetch = this.lastMetadataLanguage;
+
+      }else{
+
+        //set the language to fetch to be english
+        languageToFetch = "en";
+
+      }
+
+      //fetch the translation key by the value
+      let lastMetadataValueKey = this.jsonService.getKeyByValue(this.lastMetadataValue, languageToFetch);
+
+      //fetch the equivalent translation value (linked to the last metadata value key) 
+      // for the new metadata language
+      let translatedMetadataValueForNewLanguage = this.getTranslationValueByKey(lastMetadataValueKey);
+
+      this.metadata.value = translatedMetadataValueForNewLanguage;
+
+      this.cdr.detectChanges();
+        
+    })
+  }
+
+  /**
+   * Method to set the last metadata value
+   * @returns void
+   */
+  setLastMetadataValue(){
+    this.lastMetadataValue = this.metadata.value;
+  }
+
+  /**
+   * Method to set the last metadata language
+   * @returns void
+   */
+  setLastMetadataLanguage(){
+    this.lastMetadataLanguage = this.metadata.language;
+  }
   
 }
