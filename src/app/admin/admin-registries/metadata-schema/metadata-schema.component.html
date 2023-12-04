@@ -1,4 +1,4 @@
-<div class="container">
+<div customFosrc class="container">
   <div class="metadata-schema row">
     <div class="col-12" *ngVar="(metadataSchema$ | async) as schema">
 
@@ -20,7 +20,7 @@
           [collectionSize]="fields?.totalElements"
           [hideGear]="false"
           [hidePagerWhenSinglePage]="true">
-          <div class="table-responsive">
+          <div customFosrc class="table-responsive">
             <table id="metadata-fields" class="table table-striped table-hover">
               <thead>
               <tr>

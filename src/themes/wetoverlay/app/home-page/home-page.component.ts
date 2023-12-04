@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'ds-home-page',
   // styleUrls: ['./home-page.component.scss'],
-   styleUrls: ['../../../../app/home-page/home-page.component.scss'],
+   styleUrls: ['../../../../themes/wetoverlay/styles/static-pages.scss'],
   // templateUrl: './home-page.component.html'
    templateUrl: '../../../../app/home-page/home-page.component.html'
 })

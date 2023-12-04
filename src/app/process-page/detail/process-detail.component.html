@@ -1,4 +1,4 @@
-<div class="container" *ngVar="(processRD$ | async)?.payload as process">
+<div customFosrc class="container" *ngVar="(processRD$ | async)?.payload as process">
     <div class="d-flex">
       <!-- OSPR Changes- modifying h2 to h1-->  
       <h1 id="wb-cont" class="flex-grow-1">{{'process.detail.title' | translate:{id: process?.processId, name: process?.scriptName} }}</h1>

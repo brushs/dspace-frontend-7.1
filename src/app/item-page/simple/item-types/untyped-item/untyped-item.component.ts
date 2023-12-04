@@ -17,7 +17,7 @@ import { MetadataTranslatePipe } from '../../../../shared/utils/metadata-transla
 @listableObjectComponent(Item, ViewMode.StandalonePage)
 @Component({
   selector: 'ds-untyped-item',
-  styleUrls: ['../../../../../themes/wetoverlay/styles/static-pages.scss', './untyped-item.component.scss'],
+  styleUrls: ['./untyped-item.component.scss'],
   templateUrl: './untyped-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

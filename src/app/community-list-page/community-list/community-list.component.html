@@ -1,7 +1,7 @@
 <ds-loading *ngIf="(dataSource.loading$ | async) && !loadingNode" class="ds-loading"></ds-loading>
 <!-- OSPR change - switch to gcweb template -->
 
-<div class="details-elements print-open mrgn-tp-md">
+<div gcweb class="details-elements print-open mrgn-tp-md">
   <div class="btn-group mrgn-lft-sm">
     <button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "parent": ".details-elements", "type": "on"}' (click)="expandAllNodes()">{{ 'communityList.expandAll' | translate }}</button>
     <button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": ".details-elements", "type": "off"}' (click)="collapseAllNodes()">{{ 'communityList.collapseAll' | translate }}</button>
