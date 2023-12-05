@@ -177,7 +177,7 @@ describe('ItemMetadataComponent', () => {
           { provide: NotificationsService, useValue: notificationsService },
           { provide: RegistryService, useValue: metadataFieldService },
           { provide: ObjectCacheService, useValue: objectCacheService },
-        ], schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+        ], schemas: [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();
       // OSPR fix ends here
     })
