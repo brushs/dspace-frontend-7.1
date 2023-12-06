@@ -6,11 +6,12 @@
         <h1 property="name" id="wb-cont">Federal Open Science Repository of Canada</h1>
         <p>The Federal Open Science Repository of Canada (FOSRC) provides public, web-based access to federally authored
           scientific articles and publications from participating science-based departments and agencies. </p>
-        <section class="alert alert-info">
+          <!-- Beta launch section -->
+        <!-- <section class="alert alert-info">
           <h2>Announcing the beta launch of the FOSRC </h2>
           <p>Welcome to the beta launch of the FOSRC—intended for an internal Government of Canada preview before the official public launch. During this beta phase, new articles and publications will be added regularly and we will be fine-tuning the repository navigation and display. Please check back regularly for updates, and <a [routerLink]="'/contact-us'">contact us</a> to report any problems or issues.
           </p>
-        </section>
+        </section> -->
         <form (submit)="search(repoSearch.value); $event.stopPropagation();">
           <h2>Search the repository </h2>
           <label for="searchRepo" class="wb-inv">Search the Repository</label>
@@ -66,7 +67,7 @@
         <div class="row">
           <div class="col-md-4 mrgn-bttm-md">
             <h3><a [routerLink]="'/about-us'">About</a></h3>
-            <p>Find out more about the FOSRC.</p>
+            <p>Find out more about the Federal Open Science Repository of Canada.</p>
           </div>
           <div class="col-md-4 mrgn-bttm-md">
             <h3><a [routerLink]="'/policies-and-standards'">Policies and standards</a></h3>
@@ -81,16 +82,17 @@
 
     <div class="row profile">
       <div class="col-md-12 pull-left">
-        <h1 property="name" id="wb-cont">Le Dépôt fédéral de science ouverte du Canada (DFSOC)</h1>
+        <h1 property="name" id="wb-cont">Le Dépôt fédéral de science ouverte du Canada</h1>
         <p>Le Dépôt fédéral de science ouverte du Canada (DFSOC) offre un accès public, sur le Web, aux articles et
           publications scientifiques rédigés par le gouvernement fédéral et provenant des ministères et organismes à
           vocation scientifique participants.</p>
-        <section class="alert alert-info">
+          <!-- Beta launch section -->
+        <!-- <section class="alert alert-info">
           <h2>Annonce du lancement de la version bêta du DFSOC</h2>
           <p>
             Bienvenue au lancement de la version bêta du DFSOC—offrant un aperçu interne au gouvernement du Canada, avant le lancement public officiel. Au cours de cette phase bêta, nous ajouterons régulièrement de nouveaux articles et de nouvelles publications et nous peaufinerons la navigation et l'affichage du dépôt. Consultez régulièrement cette page afin d’obtenir toutes les mises à jour et <a [routerLink]="'/contactez-nous'">contactez-nous</a> pour signaler tout problème ou question.
           </p> 
-        </section>
+        </section> -->
         <form (submit)="search(searchRepo.value); $event.stopPropagation();" id="validation-example">
           <h2>Recherche dans le dépôt</h2>
           <label for="searchRepo" class="wb-inv">Recherche dans le dépôt</label>
@@ -108,29 +110,45 @@
               <p class="text-justify">Sélectionnez une communauté pour parcourir ses collections.</p>
               <ul>
                 <li>
-                  <a [routerLink]="getCommunityHref('Agriculture and Agri-Food Canada')">
-                    Agriculture
-                    et Agroalimentaire Canada
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Agriculture and Agri-Food Canada')">
+                    Agriculture et Agroalimentaire Canada
                   </a>
                 </li>
                 <li>
-                  <a [routerLink]="getCommunityHref('Canadian Food Inspection Agency')">Agence canadienne d'inspection des aliments</a>
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Canadian Food Inspection Agency')">
+                    Agence canadienne d'inspection des aliments
+                  </a>
                 </li>
-                <li><a [routerLink]="getCommunityHref('Canadian Space Agency')">Agence spatiale canadienne</a>
+                <li>
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Canadian Space Agency')">
+                    Agence spatiale canadienne
+                  </a>
                 </li>
-                <li><a
-                    [routerLink]="getCommunityHref('Environment and Climate Change Canada')">Environnement
-                    et Changement climatique Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Fisheries and Oceans Canada')">Pêches
-                    et Océans Canada</a></li>
-                <li><a [routerLink]="getCommunityHref('Health Canada')" >Santé Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Public Health Agency of Canada')">Agence
-                    de la santé publique du Canada</a></li>
-                <li><a
-                    [routerLink]="getCommunityHref('Transport Canada')">Transports
-                    Canada</a></li>
+                <li>
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Environment and Climate Change Canada')">
+                    Environnement et Changement climatique Canada
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Fisheries and Oceans Canada')">
+                    Pêches et Océans Canada
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Health Canada')">
+                    Santé Canada
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Public Health Agency of Canada')">
+                    Agence de la santé publique du Canada
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Transport Canada')">
+                    Transports Canada
+                  </a>
+                  </li>
               </ul>
             </div>
             <div class="col-md-4 pull-right">
@@ -151,7 +169,7 @@
         <div class="row">
           <div class="col-md-4 mrgn-bttm-md">
             <h3><a [routerLink]="'/a-propos'">À propos </a></h3>
-            <p>Pour en savoir plus sur le DFSOC.</p>
+            <p>Pour en savoir plus sur le Dépôt fédéral de science ouverte du Canada.</p>
           </div>
           <div class="col-md-4 mrgn-bttm-md">
             <h3><a [routerLink]="'/politiques-et-normes'">Politiques et normes</a></h3>

@@ -259,6 +259,13 @@ export class DsDynamicFormControlContainerComponent extends DynamicFormControlCo
    * Sets up the necessary variables for when this control can be used to add relationships to the submitted item
    */
   ngOnInit(): void {
+
+    const languageCodesToRemove = ['fr-en', 'other'];
+    if (this.model && this.model.languageCodes) {
+      // Filtering out the bilingual and other language codes
+      this.model.languageCodes = this.model.languageCodes.filter(lang => !languageCodesToRemove.includes(lang.code));
+    }
+
     this.isRelationship = hasValue(this.model.relationship);
     const isWrapperAroundRelationshipList = hasValue(this.model.relationshipConfig);
 
