@@ -258,6 +258,12 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
             canActivate: [AuthenticatedGuard, EndUserAgreementCurrentUserGuard]
           },
           {
+            path: 'mondspace',
+            loadChildren: () => import('./my-dspace-page/my-dspace-page.module')
+              .then((m) => m.MyDSpacePageModule),
+            canActivate: [AuthenticatedGuard, EndUserAgreementCurrentUserGuard]
+          },
+          {
             path: 'search',
             loadChildren: () => import('./search-page/search-page-routing.module')
               .then((m) => m.SearchPageRoutingModule),
