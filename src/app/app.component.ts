@@ -208,6 +208,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         event instanceof NavigationEnd ||
         event instanceof NavigationCancel
       ) {
+
         this.isRouteLoading$.next(false);
 
         //if the event url does not contain a hash fragment
@@ -233,6 +234,22 @@ export class AppComponent implements OnInit, AfterViewInit {
             skipToLinksListEl.removeAttribute('tabindex');
           }
         }
+
+        let queryParams = this.parseQueryParametersFromUrl(event.url);
+
+        //if the 'useLang' query parameter exists
+        if(queryParams["useLang"]){
+          let queryParams = this.parseQueryParametersFromUrl(event.url);
+
+          //remove the 'useLang' query parameter
+          this.router.navigate([this.router.url.split("?")[0]], { queryParams: {...queryParams, useLang: null},
+          queryParamsHandling: 'merge' })
+          .then(() => {
+            this.localeService.setCurrentLanguageCode(queryParams["useLang"]);
+            this.localeService.refreshAfterChangeLanguage();
+          });
+        };
+
       }
     });
 
@@ -304,5 +321,27 @@ export class AppComponent implements OnInit, AfterViewInit {
           }
         }
       });
+  }
+
+  /**
+   * Method to parse the query parameter segment from a URL string
+   * @param url The URL string value
+   * @returns Query parameters as an object
+   */
+  parseQueryParametersFromUrl(url){
+    if(url){
+      let queryParamsString = url.split("?")[1];
+      if(url.split("?")[1]){
+        let queryParamsStringSegments = queryParamsString.split("&");
+        let queryParamsObject = {};
+        queryParamsStringSegments.forEach((segment) => {
+          let splitSegment = segment.split("=");
+          queryParamsObject[splitSegment[0]] = decodeURIComponent(splitSegment[1]);
+        });
+        return queryParamsObject;
+      }
+    }
+    return {};
+    
   }
 }
