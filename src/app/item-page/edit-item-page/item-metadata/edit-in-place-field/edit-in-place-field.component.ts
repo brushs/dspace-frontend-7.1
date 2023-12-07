@@ -369,8 +369,8 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
 
       }else{
 
-        //set the language to fetch to be english
-        languageToFetch = "en";
+        //set the language to fetch to be the currently set language of the application
+        languageToFetch = this.localeService.getCurrentLanguageCode();
 
       }
 
