@@ -235,21 +235,23 @@ export class AppComponent implements OnInit, AfterViewInit {
           }
         }
 
-        let queryParams = this.parseQueryParametersFromUrl(event.url);
-
-        //if the 'useLang' query parameter exists
-        if(queryParams["useLang"]){
+        //if the URL has query parameters
+        if(event.url.includes("?")){
           let queryParams = this.parseQueryParametersFromUrl(event.url);
 
-          //remove the 'useLang' query parameter
-          this.router.navigate([this.router.url.split("?")[0]], { queryParams: {...queryParams, useLang: null},
-          queryParamsHandling: 'merge' })
-          .then(() => {
-            this.localeService.setCurrentLanguageCode(queryParams["useLang"]);
-            this.localeService.refreshAfterChangeLanguage();
-          });
-        };
+          //if the 'useLang' query parameter exists
+          if(queryParams["useLang"]){
+            let queryParams = this.parseQueryParametersFromUrl(event.url);
 
+            //remove the 'useLang' query parameter
+            this.router.navigate([this.router.url.split("?")[0]], { queryParams: {...queryParams, useLang: null},
+            queryParamsHandling: 'merge' })
+            .then(() => {
+              this.localeService.setCurrentLanguageCode(queryParams["useLang"]);
+              this.localeService.refreshAfterChangeLanguage();
+            });
+          };
+        }
       }
     });
 
