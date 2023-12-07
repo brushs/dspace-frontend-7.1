@@ -106,7 +106,6 @@ export class ComcolPageBrowseByComponent implements OnInit {
     ){
       const selectedOption = this.allOptions
       .find((option: ComColPageNavOption) => option.id === newId);
-      console.log(selectedOption.params)
       this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params });
     }
     
