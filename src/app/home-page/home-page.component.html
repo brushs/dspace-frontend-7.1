@@ -28,24 +28,61 @@
               <p class="text-justify">Select a community to browse its collections.</p>
               <ul>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Agriculture and Agri-Food Canada')" >
+                  <a 
+                    [routerLink]="getCommunityHref('Agriculture and Agri-Food Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Agriculture and Agri-Food Canada')">
                     Agriculture and Agri-Food Canada
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Canadian Food Inspection Agency')">
+                  <a 
+                    [routerLink]="getCommunityHref('Canadian Food Inspection Agency')"
+                    [queryParams]="getCommunityHrefQueryParams('Canadian Food Inspection Agency')">
                     Canadian Food Inspection Agency
                   </a>
                 </li>
-                <li><a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Canadian Space Agency')">Canadian Space Agency</a></li>
-                <li><a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Environment and Climate Change Canada')">Environment and Climate Change
-                    Canada</a></li>
-                <li><a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Fisheries and Oceans Canada')">Fisheries and Oceans
-                    Canada</a></li>
-                <li><a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Health Canada')">Health Canada</a></li>
-                <li><a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Public Health Agency of Canada')">
-                  Public Health Agency of Canada</a></li>
-                <li><a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Transport Canada')">Transport Canada</a></li>
+                <li>
+                  <a 
+                    [routerLink]="getCommunityHref('Canadian Space Agency')"
+                    [queryParams]="getCommunityHrefQueryParams('Canadian Space Agency')">
+                    Canadian Space Agency
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    [routerLink]="getCommunityHref('Environment and Climate Change Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Environment and Climate Change Canada')">
+                    Environment and Climate Change Canada
+                  </a>
+                  </li>
+                <li>
+                  <a 
+                    [routerLink]="getCommunityHref('Fisheries and Oceans Canada')" 
+                    [queryParams]="getCommunityHrefQueryParams('Fisheries and Oceans Canada')">
+                    Fisheries and Oceans Canada
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    [routerLink]="getCommunityHref('Health Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Health Canada')">
+                    Health Canada
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    [routerLink]="getCommunityHref('Public Health Agency of Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Public Health Agency of Canada')">
+                    Public Health Agency of Canada
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    [routerLink]="getCommunityHref('Transport Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Transport Canada')">
+                    Transport Canada
+                  </a>
+                </li>
               </ul>
             </div>
             <div class="col-md-4 pull-right">
@@ -108,42 +145,58 @@
               <p class="text-justify">Sélectionnez une communauté pour parcourir ses collections.</p>
               <ul>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Agriculture and Agri-Food Canada')">
+                  <a 
+                    [routerLink]="getCommunityHref('Agriculture and Agri-Food Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Agriculture and Agri-Food Canada')">
                     Agriculture et Agroalimentaire Canada
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Canadian Food Inspection Agency')">
+                  <a 
+                    [routerLink]="getCommunityHref('Canadian Food Inspection Agency')"
+                    [queryParams]="getCommunityHrefQueryParams('Canadian Food Inspection Agency')">
                     Agence canadienne d'inspection des aliments
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Canadian Space Agency')">
+                  <a 
+                    [routerLink]="getCommunityHref('Canadian Space Agency')"
+                    [queryParams]="getCommunityHrefQueryParams('Canadian Space Agency')">
                     Agence spatiale canadienne
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Environment and Climate Change Canada')">
+                  <a 
+                    [routerLink]="getCommunityHref('Environment and Climate Change Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Environment and Climate Change Canada')">
                     Environnement et Changement climatique Canada
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Fisheries and Oceans Canada')">
+                  <a 
+                    [routerLink]="getCommunityHref('Fisheries and Oceans Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Fisheries and Oceans Canada')">
                     Pêches et Océans Canada
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Health Canada')">
+                  <a 
+                    [routerLink]="getCommunityHref('Health Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Health Canada')">
                     Santé Canada
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Public Health Agency of Canada')">
+                  <a 
+                    [routerLink]="getCommunityHref('Public Health Agency of Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Public Health Agency of Canada')">
                     Agence de la santé publique du Canada
                   </a>
                 </li>
                 <li>
-                  <a href="javascript::void(0)" (click)="$event.preventDefault();navigateToCommunities('Transport Canada')">
+                  <a 
+                    [routerLink]="getCommunityHref('Transport Canada')"
+                    [queryParams]="getCommunityHrefQueryParams('Transport Canada')">
                     Transports Canada
                   </a>
                   </li>
