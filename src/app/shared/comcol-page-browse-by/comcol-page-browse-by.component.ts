@@ -91,8 +91,24 @@ export class ComcolPageBrowseByComponent implements OnInit {
     })
   }
 
-  onSelectChange(newId: string, resetFocusToTop = false) {
+  getSelectedOptionById(id: string) {
     const selectedOption = this.allOptions
+      .find((option: ComColPageNavOption) => option.id === id);
+    return selectedOption;
+  }
+
+  onSelectChange(event: MouseEvent, newId: string, resetFocusToTop = false) {
+
+    //if the control key is not pressed AND the left
+    // mouse button is clicked
+    if(
+      !event.ctrlKey && event.button === 0
+    ){
+      const selectedOption = this.allOptions
       .find((option: ComColPageNavOption) => option.id === newId);
-      this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params })  }
+      console.log(selectedOption.params)
+      this.router.navigate([selectedOption.routerLink], { queryParams: selectedOption.params });
+    }
+    
+  }
 }
