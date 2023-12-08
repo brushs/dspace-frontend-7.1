@@ -10,29 +10,33 @@ import { TestScheduler } from 'rxjs/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { cold, getTestScheduler, hot } from 'jasmine-marbles';
 
-import { Bitstream } from '../../core/shared/bitstream.model';
-import { Bundle } from '../../core/shared/bundle.model';
-import { Item } from '../../core/shared/item.model';
-import { LinkService } from '../../core/cache/builders/link.service';
-import { getMockLinkService } from '../mocks/link-service.mock';
-import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } from '../remote-data.utils';
-import { createPaginatedList, createTestComponent } from '../testing/utils.test';
-import { EPersonDataService } from '../../core/eperson/eperson-data.service';
-import { NotificationsService } from '../notifications/notifications.service';
-import { NotificationsServiceStub } from '../testing/notifications-service.stub';
-import { ResourcePolicyService } from '../../core/resource-policy/resource-policy.service';
-import { getMockResourcePolicyService } from '../mocks/mock-resource-policy-service';
-import { GroupDataService } from '../../core/eperson/group-data.service';
-import { RequestService } from '../../core/data/request.service';
-import { getMockRequestService } from '../mocks/request.service.mock';
-import { RouterStub } from '../testing/router.stub';
-import { buildPaginatedList } from '../../core/data/paginated-list.model';
-import { PageInfo } from '../../core/shared/page-info.model';
-import { ResourcePoliciesComponent } from './resource-policies.component';
-import { PolicyType } from '../../core/resource-policy/models/policy-type.model';
-import { ActionType } from '../../core/resource-policy/models/action-type.model';
-import { EPersonMock } from '../testing/eperson.mock';
-import { GroupMock } from '../testing/group-mock';
+
+import { Bitstream } from '../../../../../app/core/shared/bitstream.model';
+import { Bundle } from '../../../../../app/core/shared/bundle.model';
+import { Item } from '../../../../../app/core/shared/item.model';
+import { LinkService } from '../../../../../app/core/cache/builders/link.service';
+import { getMockLinkService } from '../../../../../app/shared/mocks/link-service.mock';
+
+import { createSuccessfulRemoteDataObject,createSuccessfulRemoteDataObject$ } from '../../../../../app/shared/remote-data.utils';
+import { createPaginatedList, createTestComponent } from '../../../../../app/shared/testing/utils.test';
+import { EPersonDataService } from '../../../../../app/core/eperson/eperson-data.service';
+import { NotificationsService } from '../../../../../app/shared/notifications/notifications.service';
+import { NotificationsServiceStub } from '../../../../../app/shared/testing/notifications-service.stub';
+import { ResourcePolicyService } from '../../../../../app/core/resource-policy/resource-policy.service';
+import { getMockResourcePolicyService } from '../../../../../app/shared/mocks/mock-resource-policy-service';
+import { GroupDataService } from '../../../../../app/core/eperson/group-data.service';
+import { RequestService } from '../../../../../app/core/data/request.service';
+import { getMockRequestService } from '../../../../../app/shared/mocks/request.service.mock';
+
+import { RouterStub } from '../../../../../app/shared/testing/router.stub';
+import { buildPaginatedList } from '../../../../../app/core/data/paginated-list.model';
+import { PageInfo } from '../../../../../app/core/shared/page-info.model';
+import { ResourcePoliciesComponent } from '../../../../../app/shared/resource-policies/resource-policies.component';
+import { PolicyType } from '../../../../../app/core/resource-policy/models/policy-type.model';
+import { ActionType } from '../../../../../app/core/resource-policy/models/action-type.model';
+
+import { EPersonMock } from '../../../../../app/shared/testing/eperson.mock';
+import { GroupMock } from '../../../../../app/shared/testing/group-mock';
 
 describe('ResourcePoliciesComponent test suite', () => {
   let comp: ResourcePoliciesComponent;
