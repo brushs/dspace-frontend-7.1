@@ -40,20 +40,22 @@
         {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
       </h3>
     </summary>
-    <ul class="list-unstyled mrgn-tp-md" *ngIf="node.isExpanded">
-      <p class="well-sm bg-darker mrgn-bttm-md" *ngIf="isValidData(node.payload)">
+    <ng-container *ngIf="node.isExpanded">
+      <p class="well-sm bg-darker mrgn-tp-md mrgn-bttm-md" *ngIf="isValidData(node.payload)">
         <a [routerLink]="node.route" [queryParams]="{ 'spc.sf': 'score', 'spc.sd': 'DESC','scope': node.id,'spc.page':1 }" [attr.lang]="getLanguageAttribute(node.payload)" class="text-white">
           {{ (['dc.title','dc.title.fosrctranslation'] | metaTranslate : node.payload)[0]?.value }}
          </a>
       </p>
-      <ng-container *ngFor="let subnode of (dataSource['communityList$'] | async); let j = index; let subnodefirst = first;">
-        <ng-container *ngIf="(subnode?.level === 1)  && (subnode.parent.id === node.id) && isValidData(subnode.payload)">
-          <li class="well well-sm  leaf-node mrgn-bttm-sm " >
-            <ng-container *ngTemplateOutlet="nonexpandable; context: { node: subnode }"></ng-container>
-          </li>
+      <ul class="list-unstyled">
+        <ng-container *ngFor="let subnode of (dataSource['communityList$'] | async); let j = index; let subnodefirst = first;">
+          <ng-container *ngIf="(subnode?.level === 1)  && (subnode.parent.id === node.id) && isValidData(subnode.payload)">
+            <li class="well well-sm  leaf-node mrgn-bttm-sm " >
+              <ng-container *ngTemplateOutlet="nonexpandable; context: { node: subnode }"></ng-container>
+            </li>
+          </ng-container>
         </ng-container>
-      </ng-container>
-    </ul>
+      </ul>
+    </ng-container>
   </details>
 </ng-template>
 
