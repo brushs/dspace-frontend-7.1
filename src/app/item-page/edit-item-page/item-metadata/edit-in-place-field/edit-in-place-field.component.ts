@@ -79,7 +79,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   lastMetadataLanguage: string;
 
   // TODO: this should be part of a new API endpoint
-  private readonly metadataVocabulary: Record<string, string> = {
+  readonly metadataVocabulary: Record<string, string> = {
     'dc.type': 'publication_type',
     'dc.language.iso': 'gc_languages',
     'dc.rights': 'creative_commons',
@@ -101,7 +101,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     private objectUpdatesService: ObjectUpdatesService,
     private vocabularyService: VocabularyService,
     protected jsonService: TranslationJsonService,
-    protected localeService: LocaleService,
+    public localeService: LocaleService,
     protected cdr: ChangeDetectorRef,
   ) {
   }
@@ -311,15 +311,23 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    * Method to get the translated value of the translation key based
    * on the current set language in the metadata
    * @param translationKey The translation key
+   * @param translationLanguage The translation language
    * @returns The translated value
    */
-  getTranslationValueByKey(translationKey): string{
+  getTranslationValueByKey(translationKey, translationLanguage?): string{
     
     let languageToFetch;
 
+    //if the translationLanguage argument exists and if it is one of the languages supported
+    // by the application
+    if(translationLanguage && this.checkIfSupportedLanguage(translationLanguage)){
+
+      //set the language to fetch to be the translationLanguage
+      languageToFetch = translationLanguage;
+
     //if the metadata language exists and if it is one of the languages supported
     // by the application
-    if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
+    }else if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
 
       //set the language to fetch to be the metadata language
       languageToFetch = this.metadata.language;
@@ -386,6 +394,29 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
       this.cdr.detectChanges();
         
     })
+  }
+
+  /**
+   * Method to get alternate language code
+   * @param languageCode The language code
+   * @returns Alternate language code
+   */
+  getAlternateLanguageCode(languageCode: string): string{
+
+    let alternateLanguageCode;
+    if(!languageCode){
+      languageCode = this.localeService.getCurrentLanguageCode();
+    }
+
+    if(languageCode === "en"){
+      alternateLanguageCode = "fr";
+    }else if(languageCode === "fr"){
+      alternateLanguageCode = "en";
+    }else{
+      alternateLanguageCode = "en";
+    }
+
+    return alternateLanguageCode;
   }
 
   /**
