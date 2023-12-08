@@ -2,6 +2,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { DSOBreadcrumbsService } from './dso-breadcrumbs.service';
 import { getMockLinkService } from '../../shared/mocks/link-service.mock';
 import { LinkService } from '../cache/builders/link.service';
+import { LocaleService } from '../locale/locale.service';
 import { Item } from '../shared/item.model';
 import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } from '../../shared/remote-data.utils';
 import { DSpaceObject } from '../shared/dspace-object.model';
@@ -14,6 +15,7 @@ import { DSONameService } from './dso-name.service';
 import { getDSORoute } from '../../app-routing-paths';
 
 describe('DSOBreadcrumbsService', () => {
+
   let service: DSOBreadcrumbsService;
   let linkService: any;
   let testItem;
@@ -29,6 +31,14 @@ describe('DSOBreadcrumbsService', () => {
   let communityUUID;
 
   let dsoNameService;
+
+  let localeService : LocaleService;
+
+  function getMockLocaleService(): LocaleService {
+    return jasmine.createSpyObj('LocaleService', {
+      setCurrentLanguageCode: jasmine.createSpy('setCurrentLanguageCode')
+    });
+  }
 
   function init() {
     itemPath = '/items/';
@@ -93,7 +103,8 @@ describe('DSOBreadcrumbsService', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: LinkService, useValue: getMockLinkService() },
-        { provide: DSONameService, useValue: dsoNameService }
+        { provide: DSONameService, useValue: dsoNameService },
+        { provide: LocaleService, useValue: getMockLocaleService }
       ]
     }).compileComponents();
   }));
@@ -101,7 +112,8 @@ describe('DSOBreadcrumbsService', () => {
   beforeEach(() => {
     linkService = TestBed.inject(LinkService);
     linkService.resolveLink.and.callFake((object, link) => object);
-    service = new DSOBreadcrumbsService(linkService, dsoNameService);
+    localeService = TestBed.inject(LocaleService);
+    service = new DSOBreadcrumbsService(linkService, dsoNameService, localeService);
   });
 
   describe('getBreadcrumbs', () => {
