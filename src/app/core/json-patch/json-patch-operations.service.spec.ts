@@ -24,6 +24,7 @@ import {
 import { RequestEntry } from '../data/request.reducer';
 import { createFailedRemoteDataObject, createSuccessfulRemoteDataObject } from '../../shared/remote-data.utils';
 import { deepClone } from 'fast-json-patch';
+import { TranslationJsonService } from '../services/translation-json.service';
 
 
 class TestService extends JsonPatchOperationsService<SubmitDataResponseDefinitionObject, SubmissionPatchRequest> {
@@ -34,7 +35,8 @@ class TestService extends JsonPatchOperationsService<SubmitDataResponseDefinitio
     protected requestService: RequestService,
     protected store: Store<CoreState>,
     protected halService: HALEndpointService,
-    protected rdbService: RemoteDataBuildService) {
+    protected rdbService: RemoteDataBuildService,
+    protected jsonService: TranslationJsonService) {
 
     super();
   }
@@ -45,6 +47,7 @@ describe('JsonPatchOperationsService test suite', () => {
   let service: TestService;
   let requestService: RequestService;
   let rdbService: RemoteDataBuildService;
+  let jsonService: TranslationJsonService;
   let halService: any;
   let store: any;
 
@@ -96,7 +99,8 @@ describe('JsonPatchOperationsService test suite', () => {
       requestService,
       store,
       halService,
-      rdbService
+      rdbService,
+      jsonService
     );
 
   }

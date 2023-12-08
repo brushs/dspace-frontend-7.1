@@ -3,11 +3,11 @@ import { Component, Input, OnInit, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { SectionsService } from '../../sections/sections.service';
-import { HostWindowService } from '../../../shared/host-window.service';
-import { SubmissionService } from '../../submission.service';
-import { SectionDataObject } from '../../sections/models/section-data.model';
 
+import { SectionsService } from '../../../../../../app/submission/sections/sections.service';
+import { HostWindowService } from '../../../../../../app/shared/host-window.service';
+import { SubmissionService } from '../../../../../../app/submission/submission.service';
+import { SectionDataObject } from '../../../../../../app/submission/sections/models/section-data.model';
 /**
  * This component allow to add any new section to submission form
  */
