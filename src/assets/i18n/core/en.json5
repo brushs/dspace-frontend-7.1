@@ -937,7 +937,7 @@
   "browse.startsWith.label": "Browse",
   "browse.startsWith.type_date": "Filter results by typing the year or year and month (YYYY or YYYY-MM)",
   "browse.startsWith.type_date.label": "type in a date (YYYY-MM) and click 'Browse'",
-  "browse.startsWith.type_text": "Filter results by typing the first few letters",
+  "browse.startsWith.type_text": "Filter results",
   "browse.title": "Browse {{ collection }} by {{ field }} {{ value }}",
   "chips.remove": "Remove chip",
   "collection.create.head": "Create a collection",
