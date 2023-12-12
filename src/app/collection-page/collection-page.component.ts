@@ -256,6 +256,10 @@ export class CollectionPageComponent implements OnInit {
         this.searchSubmit = false;
       }
 
+      if(qparams['query'] || qparams['query'] === ""){
+        this.searchSubmit = true;
+      }
+
     });
 
     /*
@@ -334,7 +338,7 @@ export class CollectionPageComponent implements OnInit {
    * the query field of the search form.
    */
   onSeachSubmit(newSearchEvent : any) {
-    if (isEmpty(newSearchEvent['query'])) {
+    if (newSearchEvent['query'] !== "" && isEmpty(newSearchEvent['query'])) {
       this.searchSubmit = null;
     } else {
       this.searchSubmit = newSearchEvent;
