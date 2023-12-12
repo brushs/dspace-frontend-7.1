@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   BehaviorSubject,
@@ -170,7 +170,8 @@ export class CollectionPageComponent implements OnInit {
     protected sidebarService: SidebarService,
     protected windowService: HostWindowService,
     @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
-    protected routeService: RouteService
+    protected routeService: RouteService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.paginationConfig = new PaginationComponentOptions();
     this.paginationConfig.id = 'cp';
@@ -340,8 +341,10 @@ export class CollectionPageComponent implements OnInit {
   onSeachSubmit(newSearchEvent : any) {
     if (newSearchEvent['query'] !== "" && isEmpty(newSearchEvent['query'])) {
       this.searchSubmit = null;
+      this.changeDetectorRef.detectChanges();
     } else {
       this.searchSubmit = newSearchEvent;
+      this.changeDetectorRef.detectChanges();
     }
   }
 
