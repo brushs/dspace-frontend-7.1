@@ -98,7 +98,9 @@ export class TopLevelCommunityListComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     this.unsubscribe();
-    this.paginationService.clearPagination(this.config.id);
+    if(this.config && this.config.id){
+      this.paginationService.clearPagination(this.config.id);
+    };
   }
 
 }
