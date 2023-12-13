@@ -28,7 +28,6 @@ export class GoogleAnalyticsService {
     this.configService.findByPropertyName('google.analytics.key').pipe(
       getFirstCompletedRemoteData(),
     ).subscribe((remoteData) => {
-      console.log(remoteData)
       // make sure we got a success response from the backend
       if (!remoteData.hasSucceeded) { return; }
 
