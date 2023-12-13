@@ -28,6 +28,7 @@ export class GoogleAnalyticsService {
     this.configService.findByPropertyName('google.analytics.key').pipe(
       getFirstCompletedRemoteData(),
     ).subscribe((remoteData) => {
+      console.log(remoteData)
       // make sure we got a success response from the backend
       if (!remoteData.hasSucceeded) { return; }
 
@@ -36,17 +37,37 @@ export class GoogleAnalyticsService {
       // make sure we received a tracking id
       if (isEmpty(trackingId)) { return; }
 
-      // add trackingId snippet to page
-      const keyScript = this.document.createElement('script');
-      keyScript.innerHTML =   `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-                              ga('create', '${trackingId}', 'auto');`;
-      this.document.body.appendChild(keyScript);
+      if (this.isGTagVersion(trackingId)) {
 
-      // start tracking
-      this.angulartics.startTracking();
+        // add GTag snippet to page
+        const keyScript = this.document.createElement('script');
+        keyScript.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
+        this.document.body.appendChild(keyScript);
+
+        const libScript = this.document.createElement('script');
+        libScript.innerHTML = `window.dataLayer = window.dataLayer || [];function gtag(){window.dataLayer.push(arguments);}
+                             gtag('js', new Date());gtag('config', '${trackingId}');`;
+        this.document.body.appendChild(libScript);
+
+        // start tracking
+        this.angulartics.startTracking();
+      } else {
+        // add trackingId snippet to page
+        const keyScript = this.document.createElement('script');
+        keyScript.innerHTML =   `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+                                ga('create', '${trackingId}', 'auto');`;
+        this.document.body.appendChild(keyScript);
+  
+        // start tracking
+        this.angulartics.startTracking();
+      } 
     });
+  }
+
+  private isGTagVersion(trackingId: string) {
+    return trackingId && trackingId.startsWith('G-');
   }
 }
