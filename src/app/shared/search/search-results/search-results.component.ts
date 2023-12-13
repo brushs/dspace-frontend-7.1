@@ -85,7 +85,7 @@ export class SearchResultsComponent {
   }
 
   showError(): boolean {
-    return (!this.searchResults) || (this.searchResults?.hasFailed && (!this.searchResults?.errorMessage || this.searchResults?.statusCode !== 400));
+    return this.searchResults?.hasFailed && (!this.searchResults?.errorMessage || this.searchResults?.statusCode !== 400);
   }
 
   /**
