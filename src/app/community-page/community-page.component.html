@@ -34,7 +34,7 @@
 
         </div>
   
-        <ds-comcol-search-filter *ngIf="searchEnabled && (searchOptions$ | async)?.query"
+        <ds-comcol-search-filter *ngIf="searchEnabled && searchSubmit"
           [query]="(searchOptions$ | async)?.query"
           [(scope)]="currentScope"
           [inPlaceSearch]="inPlaceSearch"

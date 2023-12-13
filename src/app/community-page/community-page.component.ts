@@ -1,5 +1,5 @@
 import { mergeMap, filter, map } from 'rxjs/operators';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
@@ -164,7 +164,8 @@ export class CommunityPageComponent implements OnInit {
     protected windowService: HostWindowService,
     @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
     protected routeService: RouteService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
 
@@ -217,6 +218,10 @@ export class CommunityPageComponent implements OnInit {
 
       if(typeof qparams['query'] === 'undefined' ){
         this.searchSubmit = false;
+      }
+      
+      if(qparams['query'] || qparams['query'] === ""){
+        this.searchSubmit = true;
       }
           
     });
@@ -296,10 +301,12 @@ export class CommunityPageComponent implements OnInit {
    * the query field of the search form.
    */
   onSeachSubmit(newSearchEvent : any) {
-    if (isEmpty(newSearchEvent['query'])) {
+    if (newSearchEvent['query'] !== "" && isEmpty(newSearchEvent['query'])) {
       this.searchSubmit = null;
+      this.changeDetectorRef.detectChanges();
     } else {
       this.searchSubmit = newSearchEvent;
+      this.changeDetectorRef.detectChanges();
     }
   }
 
