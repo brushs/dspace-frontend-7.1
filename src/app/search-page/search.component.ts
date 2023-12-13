@@ -258,8 +258,10 @@ export class SearchComponent implements OnInit {
 
 
     applyQuery(term) {
-      console.log(this.route)
-      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
+      const queryParams =  {query: term};
+      const pageParam = this.paginationService.getPageParam(this.searchConfigService.paginationID);
+      queryParams[pageParam] = 1;
+      this.router.navigate(['.'], { relativeTo: this.route, queryParams: queryParams, queryParamsHandling: 'merge'});
     }
 
 }
