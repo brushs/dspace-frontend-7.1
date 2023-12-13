@@ -4187,7 +4187,7 @@
   "search.results.head.term": "Résultats de la recherche : {{field}} = {{term}}",
   // "search.results.community.head": "Search Results",
   "search.results.community.head": "Résultats de la recherche",
-  // "search.results.no-results": "Your search produced no results. <br>Having trouble finding what you're looking for? Try putting quotes around it. <br>Try to escape any of the following special characters: <br>~^(){}[]:\\+- <br>using slash as the escape character. <br>For example to escape a colon use \\:<br>For example to escape a ( use \\(<br>For example to escape a + use \\+",
+  // "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting quotes around it.",
   "search.results.no-results": "Votre recherche n'a retourné aucun résultat. Vous ne trouvez pas ce que vous cherchez ? Essayez de l'entourer de guillemets.",
   // "search.results.no-results-link": "Quotes around it",
   "search.results.no-results-link": "des guillemets avant et après les termes recherchés",

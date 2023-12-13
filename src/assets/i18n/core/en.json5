@@ -2223,7 +2223,7 @@
   "search.results.head": "Search results",
   "search.results.head.term": "Search results: {{field}} = {{term}}",
   "search.results.community.head": "Search results",
-  "search.results.no-results": "Your search produced no results. <br>Having trouble finding what you're looking for? Try putting quotes around it. <br>Try to escape any of the following special characters: <br>~^(){}[]:\\+- <br>using slash as the escape character. <br>For example to escape a colon use \\:<br>For example to escape a ( use \\(<br>For example to escape a + use \\+",
+  "search.results.no-results": "Your search produced no results. Having trouble finding what you're looking for? Try putting quotes around it.",
   "search.results.no-results-link": "Quotes around it",
   "search.results.view-result": "View",
   "search.search-form.placeholder": "Search the community or collection",
