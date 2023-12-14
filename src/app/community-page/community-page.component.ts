@@ -14,7 +14,7 @@ import { MetadataService } from '../core/metadata/metadata.service';
 
 import { fadeInOut } from '../shared/animations/fade';
 import { hasValue, isEmpty } from '../shared/empty.util';
-import { getAllSucceededRemoteDataPayload, redirectOn4xx } from '../core/shared/operators';
+import { getAllSucceededRemoteDataPayload, getFirstCompletedRemoteData, redirectOn4xx } from '../core/shared/operators';
 import { AuthService } from '../core/auth/auth.service';
 import { AuthorizationDataService } from '../core/data/feature-authorization/authorization-data.service';
 import { FeatureID } from '../core/data/feature-authorization/feature-id';
@@ -196,7 +196,7 @@ export class CommunityPageComponent implements OnInit {
     this.sub = this.searchOptions$.pipe(
       switchMap((options) => this.service.search(
           options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
-        ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
+        ).pipe(getFirstCompletedRemoteData())
       )
     ).subscribe((results) => {
         this.resultsRD$.next(results);
