@@ -1,28 +1,33 @@
 <form class="mrgn-tp-md" role="form" [formGroup]="form">
-    <ng-container *ngFor="let row of rows.controls; let i = index" formArrayName="rows">
-      <div class="d-flex flex-wrap mrgn-bttm-sm" [formGroupName]="i">
-            <select id="filter-item-{{i+1}}" name="filter-item-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.item' | translate}}"  required>
-              <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
-              <option value="title">{{'comcol.search.filter.item.title' | translate}}</option>
-              <option value="author">{{'comcol.search.filter.item.author' | translate}}</option>
-              <option value="subject">{{'comcol.search.filter.item.subject' | translate}}</option>
-              <option value="dateIssued">{{'comcol.search.filter.item.date.issued' | translate}}</option>
-            </select>
+  <ng-container *ngFor="let row of rows.controls; let i = index" formArrayName="rows">
+    <div class="d-flex flex-wrap mrgn-bttm-sm" [formGroupName]="i">
+      <select id="filter-item-{{i+1}}" name="filter-item-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.item' | translate}}"  required>
+        <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
+        <option value="title">{{'comcol.search.filter.item.title' | translate}}</option>
+        <option value="author">{{'comcol.search.filter.item.author' | translate}}</option>
+        <option value="subject">{{'comcol.search.filter.item.subject' | translate}}</option>
+        <option value="dateIssued">{{'comcol.search.filter.item.date.issued' | translate}}</option>
+      </select>
 
-            <select id="filter-operator-{{i+1}}" name="filter-operator-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.operator' | translate}}"  required>
-              <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
-              <option value="contains">{{'comcol.search.filter.operator.contains' | translate}}</option>
-              <option value="notcontains">{{'comcol.search.filter.operator.not.contains' | translate}}</option>
-              <option  value="equals">{{'comcol.search.filter.operator.equals' | translate}}</option>
-              <option value="notequals">{{'comcol.search.filter.operator.not.equals' | translate}}</option>
-            </select>
-            <input class="mrgn-rght-sm form-control flex-grow-1" id="filter-item-info-{{i+1}}" name="filter-item-info-{{i+1}}" type="text" aria-label="Filter Value" formControlName="filter" >
-            <button type="button" (click)="addRow()" class="btn btn-default btn-sm mrgn-rght-sm" >
-              <span class="glyphicon glyphicon-plus"></span><span class="wb-inv"> + </span></button>
-            <button type="button" (click)="removeRow(i)" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-remove"></span> <span class="wb-inv">remove</span></button>
-      </div>
-    </ng-container>
+      <select id="filter-operator-{{i+1}}" name="filter-operator-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.operator' | translate}}"  required>
+        <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
+        <option value="contains">{{'comcol.search.filter.operator.contains' | translate}}</option>
+        <option value="notcontains">{{'comcol.search.filter.operator.not.contains' | translate}}</option>
+        <option  value="equals">{{'comcol.search.filter.operator.equals' | translate}}</option>
+        <option value="notequals">{{'comcol.search.filter.operator.not.equals' | translate}}</option>
+      </select>
+
+      <input class="mrgn-rght-sm form-control flex-grow-1" id="filter-item-info-{{i+1}}" name="filter-item-info-{{i+1}}" type="text" aria-label="Filter Value" formControlName="filter" >
+
+      <button type="button" (click)="addRow()" class="btn btn-default btn-sm mrgn-rght-sm" >
+        <span class="glyphicon glyphicon-plus"></span><span class="wb-inv"> + </span>
+      </button>
+
+      <button type="button" (click)="removeRow(i)" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-remove"></span> <span class="wb-inv">remove</span></button>
+
+    </div>
+  </ng-container>
   <div class="mrgn-tp-md">
     <button id="apply-filters" name="submit-apply-filters" type="button"  class="btn btn-primary mrgn-rght-md" (click)="addRow()"> + </button>
     <button id="reset-filters" name="reset-filters" type="button" class="btn btn-default" (click)="resetFilters()"><span class="fa fa-undo" aria-hidden="true"></span> Reset Filters </button>
