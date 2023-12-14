@@ -264,4 +264,23 @@ export class SearchComponent implements OnInit {
       this.router.navigate(['.'], { relativeTo: this.route, queryParams: queryParams, queryParamsHandling: 'merge'});
     }
 
+    redirectToAnchor(anchor) {
+      if(window.location.hash === anchor) {
+        window.location.hash = '';
+        setTimeout(()=> {
+          window.location.hash = anchor
+        }, 150)
+      } else {
+        window.location.hash = anchor;
+      }
+    }
+    
+    scrollToSearchRepository() {
+      this.redirectToAnchor('#search-repository');
+    }
+
+    scrollToSearchResults() {
+      this.redirectToAnchor('#search-results');
+    }
+
 }
