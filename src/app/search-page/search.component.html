@@ -5,12 +5,6 @@
             <h1 *ngIf="!adminSearch" property="name" id="wb-cont">{{'search.form.search' | translate}}</h1>
             <h1 *ngIf="adminSearch" property="name" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
         </div>
-    
-        <div class="col-md-12">
-
-            <a class="wb-sl" href="#search-repository" (keydown.space)="$event.preventDefault();scrollToSearchRepository();" (keydown.enter)="$event.preventDefault();scrollToSearchRepository();" (click)="$event.preventDefault();scrollToSearchRepository();">{{'search.form.skiptolinks.repository' | translate}}</a>
-
-        </div>
 
         <!-- <ng-container [ngTemplateOutlet]="searchFilters"></ng-container> -->
         <div class="col-md-4 pull-left" ds-search-sidebar id="search-sidebar"
@@ -25,12 +19,6 @@
             <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
                 <div class="col-md-12 p-0 ">
                     <h2 id="search-repository">{{ 'home.search-form.head' | translate }}</h2>
-
-                    <div>
-
-                        <a class="wb-sl" href="#search-results" (keydown.space)="$event.preventDefault();scrollToSearchResults();" (keydown.enter)="$event.preventDefault();scrollToSearchResults();" (click)="$event.preventDefault();scrollToSearchResults();">{{'search.form.skiptolinks.results' | translate}}</a>
-                
-                    </div>
 
                     <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
                     <div class="input-group">
