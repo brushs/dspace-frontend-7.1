@@ -6,6 +6,12 @@
             <h1 *ngIf="adminSearch" property="name" id="wb-cont">{{'admin.search.breadcrumbs' | translate}}</h1>
         </div>
     
+        <div class="col-md-12">
+
+            <a class="wb-sl" href="#search-repository" (keydown.space)="$event.preventDefault();scrollToSearchRepository();" (keydown.enter)="$event.preventDefault();scrollToSearchRepository();" (click)="$event.preventDefault();scrollToSearchRepository();">{{'search.form.skiptolinks.repository' | translate}}</a>
+
+        </div>
+
         <!-- <ng-container [ngTemplateOutlet]="searchFilters"></ng-container> -->
         <div class="col-md-4 pull-left" ds-search-sidebar id="search-sidebar"
         [resultCount]="(resultsRD$ | async)?.payload?.totalElements"
@@ -18,7 +24,14 @@
         <div class="col-md-8 pull-right mrgn-bttm-lg">
             <div class="row mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
                 <div class="col-md-12 p-0 ">
-                    <h2>{{ 'home.search-form.head' | translate }}</h2>
+                    <h2 id="search-repository">{{ 'home.search-form.head' | translate }}</h2>
+
+                    <div>
+
+                        <a class="wb-sl" href="#search-results" (keydown.space)="$event.preventDefault();scrollToSearchResults();" (keydown.enter)="$event.preventDefault();scrollToSearchResults();" (click)="$event.preventDefault();scrollToSearchResults();">{{'search.form.skiptolinks.results' | translate}}</a>
+                
+                    </div>
+
                     <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
                     <div class="input-group">
                             <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />
@@ -41,7 +54,8 @@
 
 
 <ng-template #searchResults>
-    <h2 class="h4">{{'search.results.head' | translate}}</h2>
+
+    <h2 class="h4" id="search-results">{{'search.results.head' | translate}}</h2>
 
     <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" class="row well well-small mrgn-lft-md mrgn-rght-md"></div>
 
