@@ -978,6 +978,10 @@
 
   // "search.form.search.text": "Search",
   "search.form.search.text": "Rechercher",
+  // "search.form.skiptolinks.repository": "Skip to \"Search the repository\"",
+  "search.form.skiptolinks.repository": "Passer à « Recherche dans le dépôt »",
+  //"search.form.skiptolinks.results": "Skip to \"Search results\"",
+  "search.form.skiptolinks.results": "Passer à « Résultats de la recherche »",
 
   // "sign.in.title": "FOSRC administrator sign in",
   "sign.in.title": "Connexion de l'administrateur au DFSOC",

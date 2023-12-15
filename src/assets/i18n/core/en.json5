@@ -597,6 +597,9 @@
 
   "search.form.search.text": "Search",
 
+  "search.form.skiptolinks.repository": "Skip to \"Search the repository\"",
+  "search.form.skiptolinks.results": "Skip to \"Search results\"",
+
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
   "sign.in.password": "Password",

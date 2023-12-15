@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Renderer2, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 /**
  * Represents the header with the logo and simple navigation
@@ -26,7 +27,8 @@ export class HeaderComponent extends BaseComponent {
     private _renderer2: Renderer2, 
     public translate: TranslateService,
     private zone: NgZone,
-    @Inject(DOCUMENT) private _document: any
+    @Inject(DOCUMENT) private _document: any,
+    public router: Router,
   ) {
     super(menuService);
     this.isXs$ = this.windowService.isXs();
@@ -96,6 +98,21 @@ export class HeaderComponent extends BaseComponent {
 
   scrollToAbout() {
     this.redirectToAnchor('#wb-info');
+  }
+
+  scrollToSearchRepository() {
+    this.redirectToAnchor('#search-repository');
+  }
+
+  scrollToSearchResults() {
+    this.redirectToAnchor('#search-results');
+  }
+
+  checkIfPathInUrlExists(path: string){
+    if(this.router.url.includes(path)){
+      return true;
+    }
+    return false;
   }
   
 }
