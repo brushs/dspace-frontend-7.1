@@ -29,7 +29,7 @@ module.exports = function (config) {
       output: 'autowatch'
     },
     files: [
-        // Excluding  all image files
+        // Excluding  the all image files
         { pattern: 'src/assets/images/**/*.+(svg|png|jpg|jpeg|gif)', watched: false, included: false, served: true },
 
     ],
