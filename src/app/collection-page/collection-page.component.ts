@@ -276,7 +276,7 @@ export class CollectionPageComponent implements OnInit {
       }
     });
 
-    //this.initParams();
+    this.initParams();
 
   }
 
