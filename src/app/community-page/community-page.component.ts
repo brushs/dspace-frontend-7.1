@@ -172,7 +172,6 @@ export class CommunityPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log("currentLang: " + this.translate.currentLang);
     //getting the scope value from route
     this.currentScope = this.route.snapshot.queryParamMap.get('scope');
 
@@ -238,7 +237,7 @@ export class CommunityPageComponent implements OnInit {
       }
     });
 
-    //this.initParams();
+    this.initParams();
   }
 
   initParams() {
