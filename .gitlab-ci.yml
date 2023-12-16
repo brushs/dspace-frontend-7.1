@@ -36,6 +36,7 @@ test-dev:
     - echo "Testing UI..."
     - id
     - echo $PATH
+    - pwd
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
@@ -101,6 +102,7 @@ test-preprod:
     - echo "Testing UI..."
     - id
     - echo $PATH
+    - pwd
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
@@ -147,6 +149,7 @@ build-prod:
   script:
     - echo "Building UI"
     - echo $PATH
+    - pwd    
     - cp -f ./FOSRC-Config/prod/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
     - yarn install
     - yarn run build:prod
@@ -166,6 +169,7 @@ test-prod:
     - echo "Testing UI..."
     - id
     - echo $PATH
+    - pwd    
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
