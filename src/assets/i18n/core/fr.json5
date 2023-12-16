@@ -33,7 +33,7 @@
   // Policies page labels
   // About us page labels
   // "about-us.breadcrumbs": "About the FOSRC",
-  "about-us.breadcrumbs": "Le DFSOC",
+  "about-us.breadcrumbs": "À propos du DFSOC",
 
 
   // "browseby.author.head" : "Browsing {{name}} by issue date",
@@ -3773,6 +3773,8 @@
   "repository.title.prefixDSpace": "Le Dépôt fédéral de science ouverte du Canada (DFSOC) :: ",
   // "repository.title.prefixhome.title": "Federal Open Science Repository of Canada (FOSRC) ::",
   "repository.title.prefixhome.title": "Le Dépôt fédéral de science ouverte du Canada (DFSOC) ::",
+  // "repository.title.suffix": " - Federal Open Science Repository of Canada",
+  "repository.title.suffix": " - Le Dépôt fédéral de science ouverte du Canada",
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Ajouter",
   // "resource-policies.add.for.": "Add a new policy",
@@ -4216,7 +4218,7 @@
   // "search.switch-configuration.title": "Show",
   "search.switch-configuration.title": "Afficher",
   // "search.title": "Search",
-  "search.title": "Rechercher",
+  "search.title": "Recherche",
   //"search.results": "Results",
   "search.results": "Résultats",
   // "search.view-switch.show-detail": "Show details",
