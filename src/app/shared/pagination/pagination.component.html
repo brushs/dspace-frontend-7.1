@@ -30,12 +30,15 @@
     </ng-template>
   </div>
   <ng-content></ng-content>
-  <div *ngIf="shouldShowBottomPager |async" class="pagination justify-content-center clearfix bottom">
+  <!-- Ngb pagination has an issue with the last page, so overriding the last page is necessary  -->
+  <ng-container *ngVar="((currentPage$|async) === ((((collectionSize - (collectionSize % ((pageSize$ | async) || 10) ) ) / ((pageSize$ | async) || 1) )) + 1)) as isLastPageSelected">
+    {{(useGcWeb || isXs) ? ((isLastPageSelected && useGcWeb) ? 10 : 5) : paginationOptions.maxSize}}
+    <div *ngIf="shouldShowBottomPager |async" class="pagination justify-content-center clearfix bottom">
     <ngb-pagination [boundaryLinks]="paginationOptions.boundaryLinks"
                     [collectionSize]="collectionSize"
                     [disabled]="paginationOptions.disabled"
                     [ellipses]="paginationOptions.ellipses"
-                    [maxSize]="(isXs || useGcWeb) ? 5:paginationOptions.maxSize"
+                    [maxSize]="(useGcWeb || isXs) ? ((isLastPageSelected && useGcWeb) ? 10 : 5) : paginationOptions.maxSize"
                     [page]="(currentPage$|async)"
                     (pageChange)="doPageChange($event)"
                     [pageSize]="(pageSize$ |async)"
@@ -49,4 +52,5 @@
         <ng-template rel="next" ngbPaginationNext>{{'pagination.button.next' | translate}}</ng-template>
     </ngb-pagination>
   </div>
+    </ng-container>
 </div>
