@@ -28,7 +28,7 @@ import { AppInjector } from '../../../../../app/app.injector';
 import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.service';
 import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/search.utils';
 import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
-
+import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 
 @Component({
   selector: 'ds-search',
@@ -117,7 +117,7 @@ export class MySearchComponent implements OnInit {
   //gdata: any;
   @ViewChild(GeoSearchPageComponent) geoComponent: GeoSearchPageComponent;
 
-
+  @ViewChild(DynamicFiltersComponent) dynamicFiltersComponent: DynamicFiltersComponent;
   /**
    * Link to the search page
    */
@@ -327,6 +327,7 @@ console.log("this.searchOptions$ = " + this.searchOptions$);
 
 
     applyQuery(term) {
+      this.dynamicFiltersComponent.printFormValues();
       console.log(this.route)
       this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
     }

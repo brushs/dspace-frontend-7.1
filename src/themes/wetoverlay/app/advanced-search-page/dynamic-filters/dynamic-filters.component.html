@@ -1,7 +1,7 @@
 <form class="mrgn-tp-md" role="form" [formGroup]="form">
   <ng-container *ngFor="let row of rows.controls; let i = index" formArrayName="rows">
     <div class="d-flex flex-wrap mrgn-bttm-sm" [formGroupName]="i">
-      <select id="filter-item-{{i+1}}" name="filter-item-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.item' | translate}}"  required>
+      <select id="filter-item-{{i+1}}" name="filter-item-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.item' | translate}}"  formControlName="filtertype" required>
         <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
         <option value="title">{{'comcol.search.filter.item.title' | translate}}</option>
         <option value="author">{{'comcol.search.filter.item.author' | translate}}</option>
@@ -9,7 +9,7 @@
         <option value="dateIssued">{{'comcol.search.filter.item.date.issued' | translate}}</option>
       </select>
 
-      <select id="filter-operator-{{i+1}}" name="filter-operator-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.operator' | translate}}"  required>
+      <select id="filter-operator-{{i+1}}" name="filter-operator-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.operator' | translate}}" formControlName="relationalOperator" required>
         <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
         <option value="contains">{{'comcol.search.filter.operator.contains' | translate}}</option>
         <option value="notcontains">{{'comcol.search.filter.operator.not.contains' | translate}}</option>

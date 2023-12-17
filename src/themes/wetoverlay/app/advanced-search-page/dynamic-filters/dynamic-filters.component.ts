@@ -11,6 +11,9 @@ import {
   selector: 'app-dynamic-filters',
   templateUrl: './dynamic-filters.component.html',
   //styleUrls: ['./dynamic-filters.component.css'],
+  styleUrls:[
+    '../../../styles/static-pages.scss'
+  ]
 })
 export class DynamicFiltersComponent {
   form: FormGroup;
@@ -23,22 +26,9 @@ export class DynamicFiltersComponent {
       rows: this.fb.array([]),
     });
 
-    this.generateMockData(50);
     this.addRow();
   }
 
-  generateMockData(count: number) {
-    for (let i = 1; i <= count; i++) {
-      this.mockData.push({
-        id: i,
-        title: `Book ${i}`,
-        author: `Author ${String.fromCharCode(65 + (i % 26))}`,
-        subject: `Subject ${String.fromCharCode(65 + (i % 26))}`,
-        dateIssued: `2022-01-${String(i).padStart(2, '0')}`,
-      });
-    }
-    this.filteredData =  this.mockData;
-  }
 
   addRow() {
     const newRow = this.fb.group({
