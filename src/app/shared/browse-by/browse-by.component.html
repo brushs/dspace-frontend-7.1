@@ -103,7 +103,7 @@
     </div>
   </div>
   <ds-loading *ngIf="!objects || objects?.isLoading" message="{{'loading.browse-by' | translate}}"></ds-loading>
-  //commeted to not show error message  instead showing generic message
+  <!-- commeted to not show error message  instead showing generic message -->
   <!-- <ds-error *ngIf="objects?.hasFailed" message="{{'error.browse-by' | translate}}"></ds-error> -->
   <div *ngIf="objects?.hasFailed">
         {{ 'search.results.no-results'| translate}}
