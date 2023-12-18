@@ -32,7 +32,6 @@
   <ng-content></ng-content>
   <!-- Ngb pagination has an issue with the last page, so overriding the last page is necessary  -->
   <ng-container *ngVar="((currentPage$|async) === ((((collectionSize - (collectionSize % ((pageSize$ | async) || 10) ) ) / ((pageSize$ | async) || 1) )) + 1)) as isLastPageSelected">
-    {{(useGcWeb || isXs) ? ((isLastPageSelected && useGcWeb) ? 10 : 5) : paginationOptions.maxSize}}
     <div *ngIf="shouldShowBottomPager |async" class="pagination justify-content-center clearfix bottom">
     <ngb-pagination [boundaryLinks]="paginationOptions.boundaryLinks"
                     [collectionSize]="collectionSize"
