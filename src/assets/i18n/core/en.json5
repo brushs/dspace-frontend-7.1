@@ -597,6 +597,9 @@
 
   "search.form.search.text": "Search",
 
+  "search.form.skiptolinks.repository": "Skip to \"Search the repository\"",
+  "search.form.skiptolinks.results": "Skip to \"Search results\"",
+
   "sign.in.title": "FOSRC administrator sign in",
   "sign.in.email": "Email address",
   "sign.in.password": "Password",
@@ -2009,6 +2012,7 @@
   "repository.title.prefix": "Federal Open Science Repository of Canada (FOSRC) :: ",
   "repository.title.prefixDSpace": "Federal Open Science Repository of Canada (FOSRC) ::",
   "repository.title.prefixhome.title": "Federal Open Science Repository of Canada (FOSRC) ::",
+  "repository.title.suffix": " - Federal Open Science Repository of Canada",
   "resource-policies.add.button": "Add",
   "resource-policies.add.for.": "Add a new policy",
   "resource-policies.add.for.bitstream": "Add a new bitstream policy",

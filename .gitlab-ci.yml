@@ -17,6 +17,7 @@ build-dev:
     - cat ./src/environments/environment.common.ts
     - cp -f ./FOSRC-Config/dev/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
     - cat ./src/environments/environment.prod.ts
+    - ls -lth
     - yarn install
     - yarn run build:prod
     - cat ./src/environments/environment.ts
@@ -36,11 +37,13 @@ test-dev:
     - echo "Testing UI..."
     - id
     - echo $PATH
+    - pwd
+    - ls -lth
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
-  variables:
-    GIT_STRATEGY: none
+  #variables:
+  #  GIT_STRATEGY: none
   #artifacts: 
     #paths: 
       #- dist
@@ -60,6 +63,7 @@ deploy-dev:
     - echo $SHELL
     - echo $PATH
     - pwd
+    - ls -lth
     - cp -Rf dist /opt/ospr/OSPR-UI/
     - cp -Rf node_modules /opt/ospr/OSPR-UI/
     - /usr/bin/pm2 restart /opt/ospr/ospr-ui.json
@@ -83,6 +87,7 @@ build-preprod:
     - echo "Building UI"
     - echo $PATH
     - cp -f ./FOSRC-Config/preprod/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
+    - ls -lth
     - yarn install
     - yarn run build:prod
   artifacts: 
@@ -101,11 +106,13 @@ test-preprod:
     - echo "Testing UI..."
     - id
     - echo $PATH
+    - pwd
+    - ls -lth
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
-  variables:
-    GIT_STRATEGY: none
+  #variables:
+  #  GIT_STRATEGY: none
   #artifacts: 
     #paths: 
       #- dist
@@ -125,6 +132,7 @@ deploy-preprod:
     - echo $SHELL
     - echo $PATH
     - pwd
+    - ls -lth
     - cp -Rf dist /opt/ospr/OSPR-UI/
     - cp -Rf node_modules /opt/ospr/OSPR-UI/
     - pm2 restart /opt/ospr/ospr-ui.json
@@ -147,7 +155,9 @@ build-prod:
   script:
     - echo "Building UI"
     - echo $PATH
+    - pwd    
     - cp -f ./FOSRC-Config/prod/src/environments/environment.prod.ts ./src/environments/environment.prod.ts
+    - ls -lth
     - yarn install
     - yarn run build:prod
   artifacts: 
@@ -166,11 +176,13 @@ test-prod:
     - echo "Testing UI..."
     - id
     - echo $PATH
+    - pwd    
+    - ls -lth
     - yarn install
     - yarn run test
     #- cd /opt/ospr/frontend-src/ui-7.1/
-  variables:
-    GIT_STRATEGY: none
+  #variables:
+  #  GIT_STRATEGY: none
   #artifacts: 
     #paths: 
       #- dist
@@ -190,6 +202,7 @@ deploy-prod:
     - echo $SHELL
     - echo $PATH
     - pwd
+    - ls -lth
     - cp -Rf dist /opt/OSPR/OSPR-UI/
     - cp -Rf node_modules /opt/OSPR/OSPR-UI/
     - ~/node_modules/.bin/pm2 restart /opt/OSPR/ospr-ui.json
