@@ -36,7 +36,8 @@ export const AuthActionTypes = {
   RETRIEVE_AUTHENTICATED_EPERSON_ERROR: type('dspace/auth/RETRIEVE_AUTHENTICATED_EPERSON_ERROR'),
   REDIRECT_AFTER_LOGIN_SUCCESS: type('dspace/auth/REDIRECT_AFTER_LOGIN_SUCCESS'),
   SET_USER_AS_IDLE: type('dspace/auth/SET_USER_AS_IDLE'),
-  UNSET_USER_AS_IDLE: type('dspace/auth/UNSET_USER_AS_IDLE')
+  UNSET_USER_AS_IDLE: type('dspace/auth/UNSET_USER_AS_IDLE'),
+  SET_WITHIN_IP_RANGE: type('dspace/auth/SET_WITHIN_IP_RANGE')
 };
 
 /* tslint:disable:max-classes-per-file */
@@ -411,6 +412,10 @@ export class SetUserAsIdleAction implements Action {
 export class UnsetUserAsIdleAction implements Action {
   public type: string = AuthActionTypes.UNSET_USER_AS_IDLE;
 }
+
+export class SetWithinIpRangeAction implements Action {
+  public type: string = AuthActionTypes.SET_WITHIN_IP_RANGE;
+}
 /* tslint:enable:max-classes-per-file */
 
 /**
@@ -443,5 +448,6 @@ export type AuthActions
   | SetRedirectUrlAction
   | RedirectAfterLoginSuccessAction
   | SetUserAsIdleAction
-  | UnsetUserAsIdleAction;
+  | UnsetUserAsIdleAction
+  | SetWithinIpRangeAction;
 
