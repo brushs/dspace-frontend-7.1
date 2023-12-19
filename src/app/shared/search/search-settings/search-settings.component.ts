@@ -8,7 +8,7 @@ import { SEARCH_CONFIG_SERVICE } from '../../../my-dspace-page/my-dspace-page.co
 import { PaginationService } from '../../../core/pagination/pagination.service';
 
 @Component({
-  selector: 'ds-search-settings',
+  selector: 'ds-search-settings, [ds-search-settings]',
   styleUrls: ['./search-settings.component.scss'],
   templateUrl: './search-settings.component.html'
 })
@@ -17,6 +17,11 @@ import { PaginationService } from '../../../core/pagination/pagination.service';
  * This component represents the part of the search sidebar that contains the general search settings.
  */
 export class SearchSettingsComponent {
+
+  /**
+   * Status of whether the search form component is on the comcol page.
+   */
+  @Input() onComColPage: boolean;
 
   /**
    * The configuration for the current paginated search results
@@ -28,9 +33,12 @@ export class SearchSettingsComponent {
    */
   @Input() sortOptions: SortOptions[];
 
-  constructor(private service: SearchService,
-              private route: ActivatedRoute,
-              private router: Router,
+  /**
+   * All sort options that are shown in the settings
+   */
+  @Input() useGcWeb: boolean = false;
+
+  constructor(
               private paginationService: PaginationService,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigurationService: SearchConfigurationService) {
   }

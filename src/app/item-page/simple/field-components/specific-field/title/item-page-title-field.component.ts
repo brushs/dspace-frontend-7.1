@@ -5,6 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
     selector: 'ds-item-page-title-field',
+    styleUrls: ['./item-page-title-field.component.scss'],
     templateUrl: './item-page-title-field.component.html'
 })
 /**
@@ -16,6 +17,8 @@ export class ItemPageTitleFieldComponent extends ItemPageFieldComponent {
      * The item to display metadata for
      */
     @Input() item: Item;
+    
+    @Input() useGcWeb = false;
 
     /**
      * Separator string between multiple values of the metadata fields defined
@@ -30,6 +33,4 @@ export class ItemPageTitleFieldComponent extends ItemPageFieldComponent {
     fields: string[] = [
         'dc.title'
     ];
-
-
 }

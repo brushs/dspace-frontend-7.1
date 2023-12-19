@@ -87,8 +87,8 @@ export class BrowseService {
           args.push(`page=${options.pagination.currentPage - 1}`);
           args.push(`size=${options.pagination.pageSize}`);
         }
-        if (isNotEmpty(options.startsWith)) {
-          args.push(`startsWith=${options.startsWith}`);
+        if (isNotEmpty(options.query)) {
+          args.push(`query=${options.query}`);
         }
         if (isNotEmpty(args)) {
           href = new URLCombiner(href, `?${args.join('&')}`).toString();
@@ -126,8 +126,8 @@ export class BrowseService {
           args.push(`page=${options.pagination.currentPage - 1}`);
           args.push(`size=${options.pagination.pageSize}`);
         }
-        if (isNotEmpty(options.startsWith)) {
-          args.push(`startsWith=${options.startsWith}`);
+        if (isNotEmpty(options.query)) {
+          args.push(`query=${options.query}`);
         }
         if (isNotEmpty(filterValue)) {
           args.push(`filterValue=${encodeURIComponent(filterValue)}`);

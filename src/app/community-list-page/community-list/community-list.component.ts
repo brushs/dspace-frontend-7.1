@@ -6,6 +6,11 @@ import { CommunityListService, FlatNode } from '../community-list-service';
 import { CommunityListDatasource } from '../community-list-datasource';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { isEmpty } from '../../shared/empty.util';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { MetadataTranslatePipe } from '../../shared/utils/metadata-translate.pipe';
+import { DSONameService } from '../../core/breadcrumbs/dso-name.service';
+import { LocaleService } from '../../core/locale/locale.service';
 
 /**
  * A tree-structured list of nodes representing the communities, their subCommunities and collections.
@@ -32,7 +37,17 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 
   paginationConfig: FindListOptions;
 
-  constructor(private communityListService: CommunityListService) {
+  constructor(private communityListService: CommunityListService,
+    private translate: TranslateService,
+    private router: Router,
+    private dsoNameService: DSONameService,
+    private localeService: LocaleService
+  ) {
+    if (this.translate.currentLang === 'en' && this.router.url.includes('liste-des-communautes')) {
+      this.router.navigate(['/community-list'])
+    } else if (this.translate.currentLang === 'fr' && this.router.url.includes('community-list')) {
+      this.router.navigate(['/liste-des-communautes'])
+    }
     this.paginationConfig = new FindListOptions();
     this.paginationConfig.elementsPerPage = 2;
     this.paginationConfig.currentPage = 1;
@@ -70,7 +85,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
    */
   toggleExpanded(node: FlatNode) {
     this.loadingNode = node;
-    console.log(node)
+    //console.log(node)
     if (node.isExpanded) {
       this.expandedNodes = this.expandedNodes.filter((node2) => node2.name !== node.name);
       node.isExpanded = false;
@@ -113,6 +128,67 @@ export class CommunityListComponent implements OnInit, OnDestroy {
       this.paginationConfig.currentPage++;
       this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
     }
+  }
+
+  expandAllNodes() {
+    this.expandedNodes = [];
+    const nodesToExpand = this.dataSource.communityList$.getValue();
+    nodesToExpand.forEach((node) => {
+      this.expandedNodes.push(node);
+      node.isExpanded = true;
+      if (isEmpty(node.currentCollectionPage)) {
+        node.currentCollectionPage = 1;
+      }
+      if (isEmpty(node.currentCommunityPage)) {
+        node.currentCommunityPage = 1;
+      }
+    });
+    this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
+  }
+
+  collapseAllNodes() {
+    const nodesToCollapse = this.dataSource.communityList$.getValue();
+    this.expandedNodes = [];
+    nodesToCollapse.forEach((node) => {
+      node.isExpanded = null;
+    });
+    this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
+
+    setTimeout(() => {
+      const nodesOpen = this.dataSource.communityList$.getValue();
+      nodesOpen.forEach((node) => {
+        const element = (document.getElementById(`detail-parent-node-${node.id}`)) as HTMLElement;
+        if (element) {
+          element.removeAttribute('open');
+        }
+      });
+    },0)
+  }
+
+  translateMetadata(keys: string | string[], dso: any) {
+    const pipe = new MetadataTranslatePipe(this.dsoNameService, this.localeService);
+    return pipe.transform(keys, dso);
+  }
+
+  getTranslatedValue(payload: any): any {
+    return this.translateMetadata(['dc.title', 'dc.title.fosrctranslation'], payload)[0];
+  }
+
+  getLanguageAttribute(payload: any): string | undefined {
+    const translatedTitle = this.getTranslatedValue(payload);
+    const language = translatedTitle?.language;
+    return language !== undefined && language !== null &&  language !== '' ? language : undefined;
+  }
+
+  isValidData(payload: any): boolean {
+    const translatedTitle = this.getTranslatedValue(payload);
+    const value = translatedTitle?.value;
+    const language = translatedTitle?.language;
+
+    const currentlanguage = this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en';
+
+    return (value !== undefined && value !== null && value !== '') &&
+    (language === currentlanguage || language === undefined || language === null || language === '');
   }
 
 }

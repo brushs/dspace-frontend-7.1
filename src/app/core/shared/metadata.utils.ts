@@ -165,6 +165,25 @@ export class Metadata {
       } else if (mdMap.hasOwnProperty(inputKey) && !outputKeys.includes(inputKey)) {
         outputKeys.push(inputKey);
       }
+      /**
+      *
+      * FOSRC this else clause fixes reported problem when metadata is only provided for the translation field 
+      * and no value has been supplied for the official language version of the same field.
+      * i.e. value provided for dc.description.abstract-fosrctranslation but not for dc.description.abstract
+      * fixes: #1824
+      * NOTE: only applies to legacy fields using fosrctranslation 
+      *       (plans to remove this to be better compliant with 3rd party integrations)
+      **/
+      else if (!inputKey.endsWith('fosrctranslation')){      
+        for(let key of [(inputKey + '.fosrctranslation'), (inputKey + '-fosrctranslation')]){
+          /*if(key === 'dc.description.abstract-fosrctranslation' || keylenPre != keylenAft ){
+            //console.log("resolveKeys: key: %s, inputKey: %s", key, inputKey + ", keylenPre: ", keylenPre + ", keylenAft: ", keylenAft );
+          }*/
+          if (mdMap.hasOwnProperty(key) && !outputKeys.includes(inputKey)) {
+            outputKeys.push(key);
+          }
+        }
+      }
     }
     return outputKeys;
   }

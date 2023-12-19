@@ -1,13 +1,22 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { 
+  Component, 
+  Input, 
+  OnChanges, 
+  OnInit, 
+  // ViewChildren, 
+  // ElementRef, 
+  // QueryList 
+} from '@angular/core';
 import {
   metadataFieldsToString,
-  getFirstSucceededRemoteData
+  getFirstSucceededRemoteData,
+  getFirstSucceededRemoteDataPayload
 } from '../../../../core/shared/operators';
 import { hasValue, isNotEmpty } from '../../../../shared/empty.util';
 import { RegistryService } from '../../../../core/registry/registry.service';
 import { cloneDeep } from 'lodash';
 import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { FieldChangeType } from '../../../../core/data/object-updates/object-updates.actions';
 import { FieldUpdate } from '../../../../core/data/object-updates/object-updates.reducer';
 import { ObjectUpdatesService } from '../../../../core/data/object-updates/object-updates.service';
@@ -15,6 +24,13 @@ import { NgModel } from '@angular/forms';
 import { MetadatumViewModel } from '../../../../core/shared/metadata.models';
 import { InputSuggestion } from '../../../../shared/input-suggestions/input-suggestions.model';
 import { followLink } from '../../../../shared/utils/follow-link-config.model';
+import { VocabularyService } from '../../../../core/submission/vocabularies/vocabulary.service';
+import { VocabularyOptions } from '../../../../core/submission/vocabularies/models/vocabulary-options.model';
+import { PageInfo } from '../../../../core/shared/page-info.model';
+import { VocabularyEntry } from '../../../../core/submission/vocabularies/models/vocabulary-entry.model';
+import { PaginatedList, buildPaginatedList } from '../../../../core/data/paginated-list.model';
+import { TranslationJsonService } from '../../../../core/services/translation-json.service';
+import { supportedLanguages, LocaleService } from '../../../../core/locale/locale.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -41,6 +57,14 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    */
   @Input() metadata: MetadatumViewModel;
 
+  @Input() languageEntries: Observable<VocabularyEntry[]>;
+
+  @Input() languagesVocabularyKey: string;
+
+  // @ViewChild('valueFieldDropdown', { static: false }) valueFieldDropdown: ElementRef;
+
+  // @ViewChildren('dropdownItem') dropdownItems: QueryList<any>;
+
   /**
    * Emits whether or not this field is currently editable
    */
@@ -56,9 +80,32 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    */
   metadataFieldSuggestions: BehaviorSubject<InputSuggestion[]> = new BehaviorSubject([]);
 
+  // lastMetadataValue: string;
+
+  // TODO: this should be part of a new API endpoint
+  private readonly metadataVocabulary: Record<string, string> = {
+    'dc.type': 'publication_type',
+    'dc.language.iso': 'gc_languages',
+    'dc.rights': 'creative_commons',
+    'dc.subject': 'subject_list',
+    'dc.rights.openaccesslevel': 'access_rights',
+    'local.requestdoi': 'request_doi_value',
+    'local.peerreview': 'peer_review',
+    'local.reporttype': 'reports_types',
+    'local.conferencetype': 'conference_types',
+    'local.articletype': 'article_subtype',
+};
+  
+
+  vocabularyEntries: Observable<VocabularyEntry[]> = undefined;
+  hasControlledVocabulary: boolean = false;
+
   constructor(
     private registryService: RegistryService,
     private objectUpdatesService: ObjectUpdatesService,
+    private vocabularyService: VocabularyService,
+    protected jsonService: TranslationJsonService,
+    protected localeService: LocaleService,
   ) {
   }
 
@@ -66,8 +113,14 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
    * Sets up an observable that keeps track of the current editable and valid state of this field
    */
   ngOnInit(): void {
+
+    //loading french and english translation files for subject dropdown
+    this.jsonService.loadJson5File('fr');
+    this.jsonService.loadJson5File('en');
+
     this.editable = this.objectUpdatesService.isEditable(this.url, this.metadata.uuid);
     this.valid = this.objectUpdatesService.isValid(this.url, this.metadata.uuid);
+    this.initializeVocabularyEntries();
   }
 
   /**
@@ -77,6 +130,16 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     this.objectUpdatesService.saveChangeFieldUpdate(this.url, cloneDeep(this.metadata));
     if (hasValue(ngModel)) {
       this.checkValidity(ngModel);
+    }
+
+    //only execute if the ds-validation-suggestions component triggered 
+    // this method call
+    if(ngModel){
+      if(this.metadataVocabulary[this.metadata.key]){
+        this.initializeVocabularyEntries();
+      }else{
+        this.hasControlledVocabulary = false;
+      }
     }
   }
 
@@ -198,4 +261,154 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   protected isNotEmpty(value): boolean {
     return isNotEmpty(value);
   }
+
+  initializeVocabularyEntries() {
+    
+    if (!this.metadataVocabulary[this.metadata.key]) 
+      return;
+    this.hasControlledVocabulary = true;
+    if (this.metadataVocabulary[this.metadata.key] == this.languagesVocabularyKey) {
+      // already loaded in the parent component
+      this.vocabularyEntries = this.languageEntries;
+      return;
+    }
+    var vocabOptions = new VocabularyOptions(this.metadataVocabulary[this.metadata.key], true);
+    var pageInfo = new PageInfo();
+    pageInfo.elementsPerPage = 500;
+    // call getVocabularyEntries and populate this.vocabularyEntries (will require a pipe)
+    this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe(
+      getFirstSucceededRemoteDataPayload(),
+      catchError(() => observableOf(buildPaginatedList(
+        new PageInfo(),
+        []
+        ))
+      ),
+      map((list: PaginatedList<VocabularyEntry>) => {
+        return list.page
+      }),
+      // tap((results)=>{
+        // this.setDropdownSelectedItemToLastItem();
+        // console.log(this.valueFieldDropdown.nativeElement)
+        // this.valueFieldDropdown.nativeElement.options[1].selected = true;
+        // console.log(results)
+// console.log(this.dropdownItems)
+// console.log(this.dropdownItems.toArray())
+// this.dropdownItems.toArray()[1].selected = true
+      // })
+      )
+    
+    //this.vocabularyService.getVocabularyEntries(vocabOptions, pageInfo).pipe
+    //this.vocabularyEntries = this.vocabularyService.getVocabularyEntries(this.metadataVocabulary[this.metadata.key]);
+  }
+
+  /**
+   * Method to check if the language is supported
+   * @returns void
+   */
+  checkIfSupportedLanguage(languageToCheck: string){
+    //check if the language in the metadata is supported by the application
+    return supportedLanguages.some((supportedLang) => {
+      return supportedLang.toString() === languageToCheck.toLowerCase()
+    });
+  }
+
+  /**
+   * Method to get the translated value of the translation key based
+   * on the current set language in the metadata
+   * @param translationKey The translation key
+   * @returns The translated value
+   */
+  getTranslation(translationKey){
+    
+    let languageToFetch;
+
+    //if the metadata language exists and if it is one of the languages supported
+    // by the application
+    if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
+
+      //set the language to fetch to be the metadata language
+      languageToFetch = this.metadata.language;
+
+    }else{
+
+      //set the language to fetch to be the currently set language of the application
+      languageToFetch = this.localeService.getCurrentLanguageCode();
+
+    }
+
+    //fetch the appropriate language value by the translation key
+    return this.jsonService.getValueByKey(translationKey, languageToFetch);
+  }
+
+  /**
+   * Method to get the keys of a translate value based
+   * on the current set language in the metadata
+   * @param value The value
+   * @returns The translation key
+   */
+  // getKeysByValue(value: string){
+
+  //   let languageToFetch;
+
+  //   //if the metadata language exists and if it is one of the languages supported
+  //   // by the application
+  //   if(this.metadata.language && this.checkIfSupportedLanguage(this.metadata.language)){
+
+  //     //set the language to fetch to be the metadata language
+  //     languageToFetch = this.metadata.language;
+
+  //   }else{
+
+  //     //set the language to fetch to be the currently set language of the application
+  //     languageToFetch = this.localeService.getCurrentLanguageCode();
+
+  //   }
+
+  //   //fetch the translation key by the value
+  //   return this.jsonService.getKeysByValue(value, languageToFetch);
+  // }
+
+  /**
+   * Method to change the dropdown language
+   * @returns void
+   */
+  changeDropdownLanguage(){
+
+    //if the language in the metadata is not supported by the application,
+    // then return from the function
+    if(!this.checkIfSupportedLanguage(this.metadata.language)){
+      return;
+    }
+
+    this.hasControlledVocabulary = false;
+
+    this.metadata.value = undefined;
+
+    //recreate dropdown to match metadata language
+    this.initializeVocabularyEntries();
+  }
+
+//   setDropdownSelectedItemToLastItem(){
+// console.log(this.lastMetadataValue)
+//     this.valueFieldDropdown.nativeElement.value = this.lastMetadataValue ? this.lastMetadataValue: 'fosrc.item.edit.dynamic-field.values.13.subject_list';
+// console.log(this.valueFieldDropdown)
+// console.log(this.valueFieldDropdown.nativeElement.value)
+//   }
+
+//   compareLastMetadataValueWithVocabValue(vocabValue: string){
+
+//     // getTranslation(vocab.value) === lastMetadataValue || vocab.value === lastMetadataValue
+
+//     let lastMetadataValueKeys = this.getKeysByValue(this.lastMetadataValue);
+// console.log(lastMetadataValueKeys);
+//     let vocabValueMatchesLastMetadataValueKeys = lastMetadataValueKeys.some((key) => {
+//       return key === vocabValue;
+//     });
+// console.log(vocabValueMatchesLastMetadataValueKeys);
+//     if(vocabValueMatchesLastMetadataValueKeys){
+//       return true;
+//     }
+//     return false;
+//   }
+  
 }

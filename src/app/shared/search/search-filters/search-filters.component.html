@@ -1,13 +1,47 @@
-<h2>{{"search.filters.head" | translate}}</h2>
-<div *ngIf="(filters | async)?.hasSucceeded">
-  <div *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate">
-    <ds-search-filter [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
+<ng-container *ngIf="!useGcWeb else GcWebTemplate">
+  <h2>{{"search.filters.head" | translate}}</h2>
+  <div *ngIf="(filters | async)?.hasSucceeded">
+    <div *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate">
+      <ds-search-filter [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
+    </div>
   </div>
-</div>
-<a class="btn btn-primary" [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge"
-  role="button">
-  <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
-  <!-- <i class="fas fa-undo"></i> {{"search.filters.reset" | translate}} -->
-  <span class="fas fa-undo"></span> {{"search.filters.reset" | translate}}
-  <!-- End OSPR Changes -->
-</a>
+  <a class="btn btn-primary" [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge"
+    role="button">
+    <!-- OSPR Changes: modify to visually hidden per WET guidelines -->
+    <!-- <i class="fas fa-undo"></i> {{"search.filters.reset" | translate}} -->
+    <span class="fas fa-undo"></span> {{"search.filters.reset" | translate}}
+    <!-- End OSPR Changes -->
+  </a>
+</ng-container>
+
+<ng-template #GcWebTemplate>
+  <h2>{{"search.filters.head" | translate}}</h2>
+  <form action="#" method="get" id="searchForm" class="wb-tables-filter" >
+    <ds-search-labels [inPlaceSearch]="inPlaceSearch" [useGcWeb]="true"></ds-search-labels>
+    <ng-container *ngIf="(filters | async)?.hasSucceeded">
+      <ng-container *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate; let first = first;">
+        <section 
+          *ngIf="
+            (filter.name === 'subjectEn' && translate.currentLang === 'en')
+            || (filter.name === 'sujet' && translate.currentLang === 'fr')
+            || (filter.name !== 'subjectEn' && filter.name !== 'sujet')
+          " 
+          class="panel panel-primary mrgn-tp-lg clearfix"
+          >
+          <header class="panel-heading">
+            <h3 class="panel-title">
+              <span class="fas fa-filter"></span>
+              {{'search.filters.filter.' + filter.name + '.head'| translate}}
+            </h3>
+          </header>
+            <div class="panel-body">
+              <ds-search-filter [useGcWeb]="true" [filter]="filter" [inPlaceSearch]="inPlaceSearch"></ds-search-filter>
+            </div>
+        </section>
+      </ng-container>
+    </ng-container>
+    <!-- Adding $event.preventDefault() as we are getting console error related to datatable when we click the button (Uncaught TypeError: m(...).dataTable is not a function)-->
+    <button class="btn btn-primary mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); applyFilter()"> {{"search.filters.applyFilter" | translate}}</button>
+    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-default mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); resetFilter()"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button> 
+  </form>
+</ng-template>

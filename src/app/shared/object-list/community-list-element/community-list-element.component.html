@@ -1,9 +1,6 @@
-<a *ngIf="linkType != linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/communities/' + object.id]" class="lead">
-    {{('dc.title' | metaTranslate : object)[0]?.value }}
+<a *ngIf="linkType != linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/communities/' + object.id]" [queryParams]="{ 'spc.sf': 'score', 'spc.sd': 'DESC','scope': object.id,'spc.page':1 }">
+  {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : object)[0]?.value }}
 </a>
 <span *ngIf="linkType == linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" class="lead">
-    {{('dc.title' | metaTranslate : object)[0]?.value }}
+  {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : object)[0]?.value }}
 </span>
-<div *ngIf="object.shortDescription" class="text-muted abstract-text">
-    <span [lang]="('dc.description.abstract' | metaTranslate : object)[0]?.language">{{('dc.description.abstract' | metaTranslate : object)[0]?.value }}</span>
-</div>

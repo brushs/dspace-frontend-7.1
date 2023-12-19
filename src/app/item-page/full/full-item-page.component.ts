@@ -1,4 +1,4 @@
-import { filter, map } from 'rxjs/operators';
+import { filter, map, reduce } from 'rxjs/operators';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 
@@ -15,6 +15,7 @@ import { fadeInOut } from '../../shared/animations/fade';
 import { hasValue } from '../../shared/empty.util';
 import { AuthService } from '../../core/auth/auth.service';
 import { Location } from '@angular/common';
+import { clone } from 'lodash';
 
 
 /**
@@ -34,6 +35,9 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
   itemRD$: BehaviorSubject<RemoteData<Item>>;
 
   metadata$: Observable<MetadataMap>;
+  transformedMetadata$: Observable<any>;  // Create a new observable property
+
+  filteredMetadata$;
 
   /**
    * True when the itemRD has been originated from its workflowitem, false otherwise.
@@ -57,7 +61,32 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
       map((rd: RemoteData<Item>) => rd.payload),
       filter((item: Item) => hasValue(item)),
       map((item: Item) => item.metadata),);
-
+      // Group metadata by language
+    this.transformedMetadata$ = this.metadata$.pipe(
+      map(metadataMap => {
+        const groupedByLang: any = {};
+        Object.keys(metadataMap).forEach(key => {
+          const values = metadataMap[key];
+          values.forEach(value => {
+            const lang = value.language || '';
+            if (!groupedByLang[key]) {
+              groupedByLang[key] = {};
+            }
+            if (!groupedByLang[key][lang]) {
+              groupedByLang[key][lang] = [];
+            }
+            if (key === "local.requestdoi"){
+              var newValueForTranslation = "fosrc.item.edit.dynamic-field.values.request-doi."+value.value;
+              // value.value is readonly
+              value = clone(value);
+              value.value = newValueForTranslation;
+            }
+            groupedByLang[key][lang].push(value);
+          });
+        });
+        return groupedByLang;
+      })
+    );
     this.subs.push(this.route.data.subscribe((data: Data) => {
         this.fromWfi = hasValue(data.wfi);
       })
@@ -73,5 +102,13 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
 
   ngOnDestroy() {
     this.subs.filter((sub) => hasValue(sub)).forEach((sub) => sub.unsubscribe());
+  }
+
+  isHyperLink(field: string, value: string) {
+    if(field === 'dc.identifier' || field === 'dc.identifier.uri') {
+      let urlRegex = /^(https:|http:|www\.)\S*/gi;
+      return value.match(urlRegex);
+    }
+    return false;
   }
 }

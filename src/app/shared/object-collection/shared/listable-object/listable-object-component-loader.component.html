@@ -1,9 +1,11 @@
 <div [ngClass]="{'d-none' : hideBadges}" *ngIf="privateBadge || withdrawnBadge" #badges>
   <div *ngIf="privateBadge" class="private-badge">
-    <span class="badge badge-danger">{{ "item.badge.private" | translate }}</span>
+    <span *ngIf="!useGcWeb" class="badge badge-danger">{{ "item.badge.private" | translate }}</span>
+    <span *ngIf="useGcWeb"class="label label-danger">{{ "item.badge.private" | translate }}</span>
   </div>
   <div *ngIf="withdrawnBadge" class="withdrawn-badge">
-    <span class="badge badge-warning">{{ "item.badge.withdrawn" | translate }}</span>
+    <span *ngIf="!useGcWeb" class="badge badge-warning">{{ "item.badge.withdrawn" | translate }}</span>
+    <span *ngIf="useGcWeb" class="label label-warning">{{ "item.badge.withdrawn" | translate }}</span>
   </div>
 </div>
 <ng-template dsListableObject></ng-template>

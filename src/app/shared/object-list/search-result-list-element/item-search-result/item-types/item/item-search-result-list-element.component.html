@@ -1,35 +1,98 @@
 <!-- OSPR Changes - Re-structure to ensure semantic correctness and introduce paragraphs where needed -->
-<ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
-<ds-truncatable [id]="dso.id" *ngIf="object !== undefined && object !== null">
+<ds-type-badge *ngIf="showLabel" [useGcWeb]="useGcWeb" [object]="dso"></ds-type-badge>
+
+<ds-truncatable [useShowMore]="useGcWeb" [id]="dso.id" *ngIf="object !== undefined && object !== null" [overrideTruncation]="overrideTruncation">
   <p>
-    <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
-      rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="lead item-list-title" lang="{{('dc.title' | metaTranslate: dso)[0]?.language}}">
-      {{'official.title' | translate}}: 
-        <span lang="{{dsoOfficialTitle[0].language}}">{{dsoOfficialTitle[0].value}}</span><br/>
-      <span *ngIf='dsoTranslatedTitle'>{{'alternative.title' | translate}}: <span lang="{{dsoTranslatedTitle.language}}">{{ dsoTranslatedTitle.value }}</span></span></a>
-    <span *ngIf="linkType == linkTypes.None" class="lead item-list-title" [innerHTML]="dsoTitle"></span>
+    <!-- <strong> -->
+      <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'"
+        rel="noopener noreferrer" [routerLink]="[itemPageRoute]" class="item-list-title" [queryParams]="{fromSearchPage: true}" (click)="storeSearchBreadCrumbUrlPath($event)" (auxclick)="storeSearchBreadCrumbUrlPath($event)">
+        <span 
+        *ngIf="
+          dsoOfficialTitle
+          && dsoOfficialTitle[0]
+          && getLanguageAttribute(dsoOfficialTitle[0].language) 
+          && getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang)
+        " 
+        class="m-0" [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
+          {{ (dsoOfficialTitle[0].value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate  }}
+    </span>
+        
+        <span 
+        *ngIf="
+          (!dsoOfficialTitle
+            || !dsoOfficialTitle[0]
+            || !getLanguageAttribute(dsoOfficialTitle[0].language)
+            || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
+          && dsoTranslatedTitle 
+          && getLanguageAttribute(dsoTranslatedTitle.language) 
+          && getLanguageAttribute(dsoTranslatedTitle.language).includes(translate.currentLang)
+        " 
+        class="m-0">
+          <span [attr.lang]="getLanguageAttribute(dsoTranslatedTitle.language)">
+            {{ (dsoTranslatedTitle.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
+          </span>
+        </span>
+
+        <span *ngIf="
+          dsoOfficialTitle
+          && dsoOfficialTitle[0]
+          && (!getLanguageAttribute(dsoOfficialTitle[0].language)
+            || !getLanguageAttribute(dsoOfficialTitle[0].language).includes(translate.currentLang))
+          && (!dsoTranslatedTitle
+            || (!getLanguageAttribute(dsoTranslatedTitle.language)
+            || !getLanguageAttribute(dsoTranslatedTitle.language).includes(translate.currentLang)))
+        " 
+        class="m-0" [attr.lang]="getLanguageAttribute(dsoOfficialTitle[0].language)">
+          {{ (dsoOfficialTitle[0].value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate }}
+      </span>
+
+      </a>
+
+      <span *ngIf="linkType == linkTypes.None" class="item-list-title" [innerHTML]="(dsoTitle | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>
+    <!-- </strong> -->
   </p>
 
   <ds-truncatable-part *ngIf="dso.allMetadata(['dc.publisher', 'dc.date.issued', 'publicationvolume.volumeNumber', 
-    'dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0" [id]="dso.id" [minLines]="1">
-    <p class="text-muted">
-      <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
-        (<span *ngIf="dso.firstMetadataValue('dc.publisher')" class="item-list-publisher"
-          [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
-        <span *ngIf="dso.firstMetadataValue('dc.date.issued')" class="item-list-date"
-          [innerHTML]="firstMetadataValue('dc.date.issued')"></span>)
-      </ng-container>
-      <ng-container *ngIf="dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0">
-        <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author', 
-          'dc.creator', 'dc.contributor.*']); let last=last;">
-          <span [innerHTML]="author"></span><ng-container *ngIf="!last">; </ng-container>
+    'dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0" [id]="dso.id" [minLines]="2">
+
+    <p [ngClass]="{'custom-clamp-2' : (isCollapsed$ | async)}">
+      <span>
+        <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
+          <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && !dso.firstMetadataValue('dc.date.issued')">
+            (<span class="item-list-publisher" [innerHTML]=" (firstMetadataValue('dc.publisher') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
+          </ng-container>
+          <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && dso.firstMetadataValue('dc.date.issued')">
+            (<span class="item-list-publisher" [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
+            <span class="item-list-date" [innerHTML]="(firstMetadataValue('dc.date.issued') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
+          </ng-container>
+          <ng-container *ngIf="dso.firstMetadataValue('dc.date.issued') && !dso.firstMetadataValue('dc.publisher')">
+            (<span class="item-list-date" [innerHTML]="(firstMetadataValue('dc.date.issued') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
+          </ng-container>
         </ng-container>
-      </ng-container>
+
+        <ng-container *ngIf="dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0">
+          <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author', 
+            'dc.creator', 'dc.contributor.*']); let last=last;">
+            <span [innerHTML]="author"></span><ng-container *ngIf="!last">; </ng-container>
+          </ng-container>
+        </ng-container>
+      </span>
     </p>
+
   </ds-truncatable-part>
 
-  <ds-truncatable-part [id]="dso.id" [minLines]="3" *ngIf="dso.firstMetadataValue('dc.description.abstract')">
-    <p><span [lang]="('dc.description.abstract' | metaTranslate : dso)[0]?.language" [innerHTML]="('dc.description.abstract' | metaTranslate : dso)[0]?.value"></span></p>
+  <ds-truncatable-part [id]="dso.id" [minLines]="3" *ngIf="dso.firstMetadataValue('dc.description.abstract') || dso.firstMetadataValue('dc.description')">
+    <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract') else nonAbstractDescription"><span  -->
+
+    <div [id]="descriptionParagraphId"  
+    [ngClass]="{'resultItemDescription' : descriptionParagraphId == null || (isCollapsed$ | async)}" 
+    *ngIf="dso.firstMetadataValue('dc.description.abstract')">
+      <p [attr.lang]="getDescLanguageAttribute(dso)"
+        [innerHTML]="(descriptionText | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "
+        [id]="descriptionSpanId"
+        ></p>
+    </div>
+
   </ds-truncatable-part>
 
 </ds-truncatable>

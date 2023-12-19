@@ -17,3 +17,8 @@
   z-index: var(--ds-submission-footer-z-index);
 }
 
+#submission-form ::ng-deep {
+  .form-control {
+    width: 100% !important;
+  }
+}

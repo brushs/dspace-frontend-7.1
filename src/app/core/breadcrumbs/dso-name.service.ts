@@ -49,18 +49,43 @@ export class DSONameService {
    *
    * @param dso  The {@link DSpaceObject} you want a name for
    */
-  getName(dso: DSpaceObject): string {
+  getName(dso: DSpaceObject, currentLang: string = undefined): string {
+    let originalResult:string;
     const types = dso.getRenderTypes();
     const match = types
       .filter((type) => typeof type === 'string')
       .find((type: string) => Object.keys(this.factories).includes(type)) as string;
     //console.log("This is coming from the get function in the bottom! match: " + match);
     if (hasValue(match)) {
-      return this.factories[match](dso);
+      originalResult = this.factories[match](dso);
     } else {
-      return  this.factories.Default(dso);
+      originalResult =  this.factories.Default(dso);
+    }
+
+    if(!currentLang) {
+      return originalResult;
+    }
+
+    // if: dso.type.value is collection or community
+    // then: getTranslatedName if available else take getOfficialName
+    // else: getOfficialName
+
+    let translatedName:string = undefined;
+    let officialName:string = undefined;
+    let mdValue:MetadataValue = this.getTranslatedName(dso, currentLang);
+    if(mdValue && mdValue.value){ 
+      translatedName = mdValue.value;
+    }
+    officialName = this.getOfficialName(dso, currentLang)[0]?.value;
+    //console.log("DSO-name.service: getName: types count: %s typesArr[0]: %s", (types as []).length, types[0]);
+    let isItem = dso.getDSpaceType() === "Item" ? "Item" : undefined;
+    if(isItem || !(translatedName)) {
+      return officialName
+    }else {
+      return translatedName;
     }
   }
+  // FOSRC End
 
   
   /** OSPR Change start
@@ -69,22 +94,23 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getOfficialName(dso: DSpaceObject, currentLang: string): MetadataValue[] {
-    let officialTitles: MetadataValue[] = []
+    let isItem = dso.getDSpaceType() === "Item" ? "Item" : undefined;
+    let officialTitles: MetadataValue[] = [];
+    let fosrctranslation: MetadataValue;
     if(currentLang !== undefined && currentLang !== null) {
-      let allTitles:MetadataValue[] = dso.allMetadata('dc.title');
-      allTitles.forEach(function (singleTitle) {
-        if(currentLang == singleTitle['language']) {
-          //console.log("Official Title: " + singleTitle.value);
+      let allTitles: MetadataValue[] = dso.allMetadata('dc.title');
+      let allTranslatedTitles: MetadataValue[] = dso.allMetadata('dc.title.fosrctranslation');
+      allTitles?.forEach(function (singleTitle, index) {
+        if(currentLang == singleTitle?.['language']) {
           officialTitles.push(singleTitle);
+        } else if ( (fosrctranslation = allTranslatedTitles?.find(title => title.language === currentLang)) && !isItem ) {
+          officialTitles.push(fosrctranslation);
         }        
       });
-    } else {
-      //console.log("Official Title Else: " + this.getName(dso))
-      return dso.allMetadata('dc.title');
     }
 
     if(officialTitles.length == 0) {
-      return [dso.firstMetadata('dc.title')]
+      return dso.allMetadata('dc.title');
     }
     
     return officialTitles;
@@ -95,8 +121,27 @@ export class DSONameService {
    * @param dso  The {@link DSpaceObject} you want a name for
    */
   getTranslatedName(dso: DSpaceObject, currentLang: string): MetadataValue {
-    if (currentLang == 'fr' && dso.firstMetadataValue('dc.title.fosrctranslation') != undefined && dso.firstMetadataValue('dc.title.fosrctranslation') != null ) {
-      return dso.firstMetadata('dc.title.fosrctranslation');
+    let allTitles: MetadataValue[] = dso.allMetadata('dc.title');
+    let fosrcTitleMetadata = dso.firstMetadata(['dc.title.fosrctranslation', 'dc.title.alternative']);
+    let translation;
+    if(translation = allTitles?.find( title => title?.language == currentLang)) {
+      return translation;
+    } else if(fosrcTitleMetadata?.language === currentLang ) {
+      return fosrcTitleMetadata;
+    } else {
+      // FOSRC change - default title to other language if translation is not available
+      return allTitles && allTitles.length > 0 ? allTitles[0] : undefined;
+    }
+  }
+  /* Get the alternate title for the given {@link DSpaceObject}
+   *
+   * @param dso  The {@link DSpaceObject} you want a name for
+   */
+  getAlternateTitle(dso: DSpaceObject, currentLang: string): MetadataValue {
+    let fosrcTitleMetadata: MetadataValue[] = dso.allMetadata(['dc.title.alternative', 'dc.title.fosrctranslation']);
+    let translation;
+    if (translation = fosrcTitleMetadata?.find(title => title?.language == currentLang)) {
+      return translation;
     } else {
       return undefined;
     }
@@ -110,10 +155,19 @@ export class DSONameService {
     return (this.getMetadataByFieldAndLanguage(dso, ['dc.title.alternative', 'dc.title.alternative-fosrctranslation', 'dc.title.fosrctranslation'], currentLang)).length > 0;
   }
 
-  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string[], currentLang: string): MetadataValue[] {
+  getMetadataByFieldAndLanguage(dso: DSpaceObject, fields: string | string[], currentLang: string, strict: boolean = false): MetadataValue[] {
+    /**
+     * 
+     * FOSRC added new param strict which defaulkt so false which allows this method
+     * to return metadata that has no defined language. strict = true will only return
+     * metadata for which the language is set.
+     * Also updated fields parameter to accept string or string[]
+     * as part of fix for #1824
+     **/
     let result: MetadataValue[] = [];
-    dso.allMetadata(fields).forEach(function (singleItem) {
-      if (singleItem.language === currentLang) {
+    const myFields = (fields instanceof Array) ? fields : [fields]
+    dso.allMetadata(myFields).forEach(function (singleItem) {
+      if (singleItem.language === currentLang || (!strict && (singleItem.language === undefined || singleItem.language === null || singleItem.language === ''))) {
         //console.log("DSO - Name_service: getMetadataByFieldAndLanguage currentLang:" + currentLang + ", itemLang = " + singleItem.language + ", item value:" + singleItem.value);
         result.push(singleItem);
       }

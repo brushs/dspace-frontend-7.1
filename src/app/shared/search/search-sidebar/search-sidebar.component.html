@@ -1,4 +1,5 @@
-<div>
+<div *ngIf="!useGcWeb else GcWebTemplate">
+    <!-- <div> -->
     <div id="sidebar-options" class="d-block d-md-none search-controls clearfix">
         <small class="results">{{resultCount}} {{"search.sidebar.results" | translate}}</small>
         <button (click)="toggleSidebar.emit()"
@@ -17,3 +18,7 @@
         </div>
     </div>
 </div>
+
+<ng-template #GcWebTemplate>
+    <ds-search-filters [useGcWeb]="useGcWeb" [refreshFilters]="refreshFilters" [inPlaceSearch]="inPlaceSearch"></ds-search-filters>
+</ng-template>

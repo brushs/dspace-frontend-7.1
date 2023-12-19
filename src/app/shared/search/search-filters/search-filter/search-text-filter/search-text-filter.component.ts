@@ -27,6 +27,7 @@ import {
  */
 @renderFacetFor(FilterType.text)
 export class SearchTextFilterComponent extends SearchFacetFilterComponent implements OnInit {
+  a = console.log
   /**
    * Submits a new active custom value to the filter from the input field
    * Overwritten method from parent component, adds the "query" operator to the received data before passing it on

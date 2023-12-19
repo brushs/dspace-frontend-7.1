@@ -52,6 +52,11 @@ export class AbstractListableElementComponent<T extends ListableObject> {
   @Input() viewMode: ViewMode;
 
   /**
+   * Use Gcweb template
+   */
+  @Input() useGcWeb = false;
+
+  /**
    * Emit when the object has been reloaded.
    */
   @Output() reloadedObject = new EventEmitter<DSpaceObject>();

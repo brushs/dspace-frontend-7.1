@@ -16,6 +16,8 @@ export class TypeBadgeComponent {
   private _object: DSpaceObject;
   private _typeMessage: string;
 
+  @Input() useGcWeb = false;
+
   /**
    * The component used to retrieve the type from
    */

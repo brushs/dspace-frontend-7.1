@@ -7,7 +7,7 @@ import { CookieService } from '../services/cookie.service';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { combineLatest, Observable, of as observableOf } from 'rxjs';
-import { map, mergeMap, take } from 'rxjs/operators';
+import { map, mergeMap, take, tap } from 'rxjs/operators';
 import { NativeWindowRef, NativeWindowService } from '../services/window.service';
 import { RouteService } from '../services/route.service';
 import { DOCUMENT } from '@angular/common';
@@ -23,6 +23,18 @@ export enum LANG_ORIGIN {
   BROWSER
 }
 
+// FORSC Changes
+export enum Language {
+  English = 'en',
+  French = 'fr'
+}
+
+export const supportedLanguages = [
+  Language.English,
+  Language.French
+];
+
+// END FORSC
 /**
  * Service to provide localization handler
  */
@@ -189,7 +201,12 @@ export class LocaleService {
    * Refresh route navigated
    */
   public refreshAfterChangeLanguage() {
-    this.routeService.getCurrentUrl().pipe(take(1)).subscribe((currentURL) => {
+    this.routeService.getCurrentUrl().pipe(
+      take(1), 
+      tap(() => {
+        window.location.reload();
+      })
+    ).subscribe((currentURL) => {
       // Hard redirect to the reload page with a unique number behind it
       // so that all state is definitely lost
       this._window.nativeWindow.location.href = `/reload/${new Date().getTime()}?redirect=` + encodeURIComponent(currentURL);
