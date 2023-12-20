@@ -14,11 +14,13 @@ import {
   RollbacktPatchOperationsAction,
   StartTransactionPatchOperationsAction
 } from './json-patch-operations.actions';
-import { JsonPatchOperationModel } from './json-patch.model';
+import { JsonPatchOperationModel, JsonPatchOperationType } from './json-patch.model';
 import { getFirstCompletedRemoteData } from '../shared/operators';
 import { RemoteDataBuildService } from '../cache/builders/remote-data-build.service';
 import { RemoteData } from '../data/remote-data';
+import { TranslationJsonService } from '../services/translation-json.service';
 
+const SUBJECT_PATH = "/sections/DescriptiveMetadata/dc.subject";
 /**
  * An abstract class that provides methods to make JSON Patch requests.
  */
@@ -30,6 +32,124 @@ export abstract class JsonPatchOperationsService<ResponseDefinitionDomain, Patch
   protected abstract halService: HALEndpointService;
   protected abstract rdbService: RemoteDataBuildService;
   protected abstract patchRequestConstructor: any;
+  protected abstract jsonService: TranslationJsonService;
+
+  private updateBodyForSubject(body: JsonPatchOperationModel[]): JsonPatchOperationModel[] {
+    const hasSubjectPath = body.some(entry => entry.path === SUBJECT_PATH);
+
+    if (hasSubjectPath) {
+      const lastSubjectEntry = body
+        .filter(entry => entry.path === SUBJECT_PATH)
+        .reduce((_, current) => current);
+
+      const englishSubjects = lastSubjectEntry.value.filter(subject => subject.language === 'en');
+      const frenchSubjects = lastSubjectEntry.value.filter(subject => subject.language === 'fr');
+
+      const hasFrenchEntryForAll = englishSubjects.every(englishSubject =>
+        frenchSubjects.some(subject =>
+          subject.value === englishSubject.value
+        )
+      );
+
+      const hasEnglishEntryForAll = frenchSubjects.every(frenchSubject =>
+        englishSubjects.some(subject =>
+          subject.value === frenchSubject.value
+        )
+      );
+
+      if (!hasFrenchEntryForAll || !hasEnglishEntryForAll) {
+        const duplicatedFrenchSubjects = englishSubjects
+          .filter(englishSubject =>
+            !frenchSubjects.some(subject =>
+              subject.value.toLowerCase() === englishSubject.value.toLowerCase()
+            )
+          )
+          .map(englishSubject => {
+            let englishsubjectValue = this.jsonService.getValueByKey<string>(englishSubject.value,'en');
+
+            if (englishsubjectValue === undefined) {
+              englishsubjectValue = this.jsonService.getValueByKey<string>(englishSubject.value,'fr');
+              if (englishsubjectValue === undefined) {
+                englishsubjectValue = englishSubject.value;
+              }
+            }
+            const subjectValue = this.jsonService.getValueByKey<string>(englishsubjectValue,'fr');
+
+            return {
+              ...englishSubject,
+              language: 'fr',
+              //value: subjectValue || englishSubject.value,
+            };
+          });
+
+        const duplicatedEnglishSubjects = frenchSubjects
+          .filter(frenchSubject =>
+            !englishSubjects.some(subject =>
+              subject.value.toLowerCase() === frenchSubject.value.toLowerCase()
+            )
+          )
+          .map(frenchSubject => {
+            let subjectValue = this.jsonService.getValueByKey<string>(frenchSubject.value, 'en');
+            if (subjectValue === undefined) {
+              subjectValue = this.jsonService.getKeyByValue<string>(frenchSubject.value, 'fr');
+            }
+            return {
+              ...frenchSubject,
+              language: 'en',
+              value: subjectValue || frenchSubject.value,
+            };
+          });
+
+        const translatedSubjectsLastEntry = lastSubjectEntry.value.map(subject => {
+            let subjectValue = subject.value;
+            if(subject.language === 'fr') {
+              subjectValue = this.jsonService.getKeyByValue<string>(subject.value, subject.language);
+            }
+            return {
+              ...subject,
+              value: subjectValue || subject.value,
+            };
+        });
+
+        const combinedSubjects = [...translatedSubjectsLastEntry, ...duplicatedFrenchSubjects, ...duplicatedEnglishSubjects];
+
+        const uniqueCombinedSubjects = combinedSubjects.filter((subject, index, self) =>
+            index === self.findIndex(s => s.value.toLowerCase() === subject.value.toLowerCase() && s.language === subject.language)
+        );
+        const translatedSubjects = uniqueCombinedSubjects.map(subject => {
+          let subjectValue = this.jsonService.getValueByKey<string>(subject.value, subject.language);
+          if(subjectValue === undefined && subject.language === 'fr') {
+            subjectValue = this.jsonService.getKeyByValue<string>(subject.value, subject.language);
+          }
+          return {
+            ...subject,
+            value: subjectValue || subject.value,
+          };
+        });
+
+        // Additional step to filter out duplicates based on both "value" and "language"
+        const filteredTranslatedSubjects = translatedSubjects.filter(
+          (subject, index, self) =>
+            index ===
+            self.findIndex(
+              s =>
+                s.value.toLowerCase() === subject.value.toLowerCase() && s.language === subject.language
+            )
+        );
+
+        const duplicateSubjectOperation: JsonPatchOperationModel = {
+          op: 'add' as JsonPatchOperationType,
+          path: SUBJECT_PATH,
+          value: filteredTranslatedSubjects,
+        };
+
+        // Add the new operation to the body
+        body.push(duplicateSubjectOperation);
+      }
+    }
+
+    return body;
+  }
 
   /**
    * Submit a new JSON Patch request with all operations stored in the state that are ready to be dispatched
@@ -53,7 +173,7 @@ export abstract class JsonPatchOperationsService<ResponseDefinitionDomain, Patch
           filter((operationsList: JsonPatchOperationsResourceEntry) => isUndefined(operationsList) || !(operationsList.commitPending)),
           tap(() => startTransactionTime = new Date().getTime()),
           map((operationsList: JsonPatchOperationsResourceEntry) => {
-            const body: JsonPatchOperationModel[] = [];
+            let body: JsonPatchOperationModel[] = [];
             if (isNotEmpty(operationsList)) {
               if (isNotEmpty(resourceId)) {
                 if (isNotUndefined(operationsList.children[resourceId]) && isNotEmpty(operationsList.children[resourceId].body)) {
@@ -73,6 +193,12 @@ export abstract class JsonPatchOperationsService<ResponseDefinitionDomain, Patch
                   });
               }
             }
+
+            const hasSubjectPath = body.some(entry => entry.path === SUBJECT_PATH);
+            if(hasSubjectPath) {
+              body = this.updateBodyForSubject(body);
+            }
+
             return this.getRequestInstance(requestId, endpointURL, body);
           }));
       })));
@@ -104,7 +230,6 @@ export abstract class JsonPatchOperationsService<ResponseDefinitionDomain, Patch
         }))
     );
   }
-
   /**
    * Dispatch an action to delete all pending JSON patch Operations.
    */

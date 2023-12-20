@@ -1,3 +1,4 @@
+<!-- <ds-themed-results-back-button *ngIf="showBackButton | async" [back]="back"></ds-themed-results-back-button> -->
 <div gcweb>
   <div class="pl-2">
     <ds-dso-page-edit-button [pageRoute]="itemPageRoute" [dso]="object" [tooltipMsg]="'item.page.edit'"></ds-dso-page-edit-button>
@@ -210,10 +211,15 @@
                                       *ngIf="metadataContainsKey('dc.location.fosrcconference')"
                                       [label]="'fosrc.item.edit.dynamic-field.label.conference.location'">
           </ds-generic-simple-metadata-section>
-          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
-                                      [fields]="['local.conferencetype']"
-                                      *ngIf="metadataContainsKey('local.conferencetype')"
-                                      [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
+          <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="false"
+                                      [fields]="getSubTypeFields('conference')"
+                                      *ngIf="metadataContainsKey('local.conferencetype') 
+                                        || dcTypeIsConferenceMaterialType()"
+                                      [label]="'fosrc.item.edit.dynamic-field.label.sub.type'"
+                                      [subheading]="true"
+                                      [separator]="','"
+                                      [isList]="true"
+                                      >
           </ds-generic-simple-metadata-section>
         </dl>
       </div>
@@ -253,10 +259,15 @@
                                   *ngIf="metadataContainsKey('dc.date.submitted')"
                                   [label]="'fosrc.item.edit.dynamic-field.label.submitted.date'" [subheading]="true">
       </ds-generic-simple-metadata-section>
-      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
-                                  [fields]="['local.articletype']"
-                                  *ngIf="metadataContainsKey('local.articletype')"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.sub-type'" [subheading]="true">
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="false"
+                                  [fields]="getSubTypeFields('article')"
+                                  *ngIf="metadataContainsKey('local.articletype') 
+                                    || dcTypeIsArticleType()"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.sub-type'"
+                                  [subheading]="true"
+                                  [separator]="','"
+                                  [isList]="true"
+                                  >
       </ds-generic-simple-metadata-section>
     </dl>
   </div>
@@ -284,10 +295,15 @@
                                   *ngIf="metadataContainsKey('local.report.edition')"
                                   [label]="'fosrc.item.edit.dynamic-field.label.edition'" [subheading]="true">
       </ds-generic-simple-metadata-section>
-      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="true"
-                                  [fields]="['local.reporttype']"
-                                  *ngIf="metadataContainsKey('local.reporttype')"
-                                  [label]="'fosrc.item.edit.dynamic-field.label.sub.type'" [subheading]="true">
+      <ds-generic-simple-metadata-section [item]="object" [isDescriptionList]="false"
+                                  [fields]="getSubTypeFields('report')"
+                                  *ngIf="metadataContainsKey('local.reporttype') 
+                                    || dcTypeIsReportType()"
+                                  [label]="'fosrc.item.edit.dynamic-field.label.sub.type'"
+                                  [subheading]="true"
+                                  [separator]="','"
+                                  [isList]="true"
+                                  >
       </ds-generic-simple-metadata-section>
     </div>
 
@@ -318,7 +334,7 @@
   
         <dl style="padding-left: 18px">
         <div *ngIf="hasDcRelationMetaData_isformatof">
-        <dt>{{'item.page.1.relationship_identifiers' | translate}}: </dt>
+        <dt>{{'item.page.1.relationship_identifiers' | translate}}</dt>
         <dd>
           <a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isformatof']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.isformatof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
@@ -326,43 +342,43 @@
         </dd>
         </div>
         <div *ngIf="hasDcRelationMetaData_ispartof">
-          <dt>{{'item.page.2.relationship_identifiers' | translate}}: </dt>
+          <dt>{{'item.page.2.relationship_identifiers' | translate}}</dt>
           <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.ispartof']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.ispartof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
           </a></dd>
         </div>
         <div *ngIf="hasDcRelationMetaData_isreferencedby">
-          <dt>{{'item.page.3.relationship_identifiers' | translate}}: </dt>
+          <dt>{{'item.page.3.relationship_identifiers' | translate}}</dt>
           <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isreferencedby']; let last=last;" [href]="mdValue.value">
               {{ this.object.metadata['dc.relation.isreferencedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
           </a></dd>
         </div>
         <div *ngIf="hasDcRelationMetaData_isrelatedto">
-          <dt>{{'item.page.4.relationship_identifiers' | translate}}: </dt>
+          <dt>{{'item.page.4.relationship_identifiers' | translate}}</dt>
           <dd> <a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isrelatedto']; let last=last;" [href]="mdValue.value">
               {{ this.object.metadata['dc.relation.isrelatedto']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
           </a>
         </div>
         <div *ngIf="hasDcRelationMetaData_isreplacedby">
-          <dt>{{'item.page.5.relationship_identifiers' | translate}}: </dt>
+          <dt>{{'item.page.5.relationship_identifiers' | translate}}</dt>
           <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isreplacedby']; let last=last;" [href]="mdValue.value">
               {{ this.object.metadata['dc.relation.isreplacedby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
           </a></dd>
         </div>
         <div *ngIf="hasDcRelationMetaData_isrequiredby">
-          <dt>{{'item.page.6.relationship_identifiers' | translate}}: </dt>
+          <dt>{{'item.page.6.relationship_identifiers' | translate}}</dt>
           <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isrequiredby']; let last=last;" [href]="mdValue.value">
               {{ this.object.metadata['dc.relation.isrequiredby']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
           </a></dd>
         </div>
         <div *ngIf="hasDcRelationMetaData_istranslationof">
-          <dt>{{'item.page.7.relationship_identifiers' | translate}}: </dt>
+          <dt>{{'item.page.7.relationship_identifiers' | translate}}</dt>
           <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.istranslationof']; let last=last;" [href]="mdValue.value">
             {{ this.object.metadata['dc.relation.istranslationof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
           </a></dd>
         </div>
         <div *ngIf="hasDcRelationMetaData_isversionof">
-          <dt>{{'item.page.8.relationship_identifiers' | translate}}: </dt>
+          <dt>{{'item.page.8.relationship_identifiers' | translate}}</dt>
           <dd><a style="padding-left: 10px" *ngFor="let mdValue of this.object.metadata['dc.relation.isversionof']; let last=last;" [href]="mdValue.value">
               {{ this.object.metadata['dc.relation.isversionof']['value'] || mdValue.value }}<span *ngIf="!last" [innerHTML]="','"></span>
           </a></dd>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthBlockingGuard } from './core/auth/auth-blocking.guard';
+import { Breadcrumb } from './breadcrumbs/breadcrumb/breadcrumb.model';
 
 import { AuthenticatedGuard } from './core/auth/authenticated.guard';
 import { SiteAdministratorGuard } from './core/data/feature-authorization/feature-authorization-guard/site-administrator.guard';
@@ -45,50 +46,92 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
             path: 'home',
             loadChildren: () => import('./home-page/home-page.module')
               .then((m) => m.HomePageModule),
-            data: { showBreadcrumbs: false },
+            data: { 
+              showBreadcrumbs: false,
+              breadcrumbOptions: {
+                // addFederalScienceLibrariesNetworkBreadcrumb: true,
+                omitHomeBreadcrumb: true,
+              }
+             },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'accueil',
             loadChildren: () => import('./home-page/home-page.module')
               .then((m) => m.HomePageModule),
-            data: { showBreadcrumbs: false },
+            data: { 
+              showBreadcrumbs: false,
+              breadcrumbOptions: {
+                // addFederalScienceLibrariesNetworkBreadcrumb: true,
+                omitHomeBreadcrumb: true,
+              }
+            },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'about-us',
             loadChildren: () => import('./about-us-page/about-us-page.module')
               .then((m) => m.AboutUsPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'a-propos',
             loadChildren: () => import('./about-us-page/about-us-page.module')
               .then((m) => m.AboutUsPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'policies-and-standards',
             loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
               .then((m) => m.PoliciesAndStandardsPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'politiques-et-normes',
             loadChildren: () => import('./policies-and-standards-page/policies-and-standards-page.module')
               .then((m) => m.PoliciesAndStandardsPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'contact-us',
             loadChildren: () => import('./contact-us-page/contact-us-page.module')
               .then((m) => m.ContactUsPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'contactez-nous',
             loadChildren: () => import('./contact-us-page/contact-us-page.module')
               .then((m) => m.ContactUsPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           { path: 'tips-for-searching', pathMatch: 'full', component: SearchTipsPageComponent },
@@ -96,12 +139,22 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
             path: 'community-list',
             loadChildren: () => import('./community-list-page/community-list-page.module')
               .then((m) => m.CommunityListPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: 'liste-des-communautes',
             loadChildren: () => import('./community-list-page/community-list-page.module')
               .then((m) => m.CommunityListPageModule),
+            // data: {
+            //   breadcrumbOptions: {
+            //     addFederalScienceLibrariesNetworkBreadcrumb: true,
+            //   }
+            // },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
@@ -145,17 +198,47 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
             path: COLLECTION_MODULE_PATH,
             loadChildren: () => import('./collection-page/collection-page.module')
               .then((m) => m.CollectionPageModule),
+            data: {
+              breadcrumbOptions: {
+                addBreadcrumbElements: [
+                  {
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    position: 0
+                  }
+                ]
+              }
+            },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {
             path: ITEM_MODULE_PATH,
             loadChildren: () => import('./item-page/item-page.module')
               .then((m) => m.ItemPageModule),
+            data: {
+              breadcrumbOptions: {
+                addBreadcrumbElements: [
+                  {
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    position: 0
+                  }
+                ]
+              }
+            },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           { path: 'entities/:entity-type',
             loadChildren: () => import('./item-page/item-page.module')
               .then((m) => m.ItemPageModule),
+            data: {
+              breadcrumbOptions: {
+                addBreadcrumbElements: [
+                  {
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    position: 0
+                  },
+                ]
+              }
+            },
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
           {

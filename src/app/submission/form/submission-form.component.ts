@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 import { Observable, of as observableOf, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, map, mergeMap, switchMap, take } from 'rxjs/operators';
@@ -18,6 +18,7 @@ import { Item } from '../../core/shared/item.model';
 import { SectionsType } from '../sections/sections-type';
 import { SectionsService } from '../sections/sections.service';
 import { AlertType } from '../../shared/alert/aletr-type';
+import { TranslationJsonService } from '../../core/services/translation-json.service';
 
 /**
  * This component represents the submission form.
@@ -27,7 +28,7 @@ import { AlertType } from '../../shared/alert/aletr-type';
   styleUrls: ['./submission-form.component.scss'],
   templateUrl: './submission-form.component.html',
 })
-export class SubmissionFormComponent implements OnChanges, OnDestroy {
+export class SubmissionFormComponent implements OnChanges, OnDestroy, OnInit {
 
   /**
    * The collection id this submission belonging to
@@ -133,10 +134,17 @@ export class SubmissionFormComponent implements OnChanges, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private halService: HALEndpointService,
     private submissionService: SubmissionService,
-    private sectionsService: SectionsService) {
+    private sectionsService: SectionsService,
+    private jsonService: TranslationJsonService
+    ) {
     this.isActive = true;
   }
 
+  ngOnInit(): void {
+    //loading french and english translation files for subject dropdown
+    this.jsonService.loadJson5File('fr');
+    this.jsonService.loadJson5File('en');
+  }
   /**
    * Initialize all instance variables and retrieve form configuration
    */

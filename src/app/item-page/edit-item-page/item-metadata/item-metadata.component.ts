@@ -4,8 +4,8 @@ import { ItemDataService } from '../../../core/data/item-data.service';
 import { ObjectUpdatesService } from '../../../core/data/object-updates/object-updates.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { cloneDeep } from 'lodash';
-import { first, switchMap } from 'rxjs/operators';
-import { getFirstCompletedRemoteData } from '../../../core/shared/operators';
+import { catchError, first, map, switchMap } from 'rxjs/operators';
+import { getFirstCompletedRemoteData, getFirstSucceededRemoteDataPayload } from '../../../core/shared/operators';
 import { RemoteData } from '../../../core/data/remote-data';
 import { NotificationsService } from '../../../shared/notifications/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +16,12 @@ import { hasNoValue, hasValue } from '../../../shared/empty.util';
 import { AlertType } from '../../../shared/alert/aletr-type';
 import { Operation } from 'fast-json-patch';
 import { MetadataPatchOperationService } from '../../../core/data/object-updates/patch-operation-service/metadata-patch-operation.service';
+import { Observable, of as observableOf } from 'rxjs';
+import { VocabularyEntry } from '../../../core/submission/vocabularies/models/vocabulary-entry.model';
+import { VocabularyService } from '../../../core/submission/vocabularies/vocabulary.service';
+import { PaginatedList, buildPaginatedList } from '../../../core/data/paginated-list.model';
+import { PageInfo } from '../../../core/shared/page-info.model';
+import { VocabularyOptions } from '../../../core/submission/vocabularies/models/vocabulary-options.model';
 
 @Component({
   selector: 'ds-item-metadata',
@@ -39,6 +45,10 @@ export class ItemMetadataComponent extends AbstractItemUpdateComponent {
    */
   @Input() updateService: UpdateDataService<Item>;
 
+  readonly languagesVocabularyKey: string = 'gc_languages'
+
+  languageEntries$: Observable<VocabularyEntry[]> = undefined;
+
   constructor(
     public itemService: ItemDataService,
     public objectUpdatesService: ObjectUpdatesService,
@@ -46,6 +56,7 @@ export class ItemMetadataComponent extends AbstractItemUpdateComponent {
     public notificationsService: NotificationsService,
     public translateService: TranslateService,
     public route: ActivatedRoute,
+    public vocabularyService: VocabularyService,
   ) {
     super(itemService, objectUpdatesService, router, notificationsService, translateService, route);
   }
@@ -58,6 +69,7 @@ export class ItemMetadataComponent extends AbstractItemUpdateComponent {
     if (hasNoValue(this.updateService)) {
       this.updateService = this.itemService;
     }
+    this.initializeLanguageEntries();
   }
 
   /**
@@ -131,5 +143,18 @@ export class ItemMetadataComponent extends AbstractItemUpdateComponent {
       metadata[key] = this.item.metadata[key].map((value) => hasValue(value.uuid) ? value : Object.assign(new MetadataValue(), value));
     });
     this.item.metadata = metadata;
+  }
+
+  initializeLanguageEntries() {
+    this.languageEntries$ = this.vocabularyService
+    .getVocabularyEntries(new VocabularyOptions(this.languagesVocabularyKey, true), new PageInfo())
+    .pipe(
+      getFirstSucceededRemoteDataPayload(),
+     catchError(() => observableOf(buildPaginatedList(
+        new PageInfo(),
+        []
+        ))
+      ),
+      map((list: PaginatedList<VocabularyEntry>) => list.page));
   }
 }

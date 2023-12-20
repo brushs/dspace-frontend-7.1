@@ -122,7 +122,7 @@ export class DSONameService {
    */
   getTranslatedName(dso: DSpaceObject, currentLang: string): MetadataValue {
     let allTitles: MetadataValue[] = dso.allMetadata('dc.title');
-    let fosrcTitleMetadata = dso.firstMetadata(['dc.title.alternative','dc.title.fosrctranslation']);
+    let fosrcTitleMetadata = dso.firstMetadata(['dc.title.fosrctranslation', 'dc.title.alternative']);
     let translation;
     if(translation = allTitles?.find( title => title?.language == currentLang)) {
       return translation;

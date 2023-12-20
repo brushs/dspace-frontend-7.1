@@ -172,6 +172,9 @@ export class CommunityPageComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log("currentLang: " + this.translate.currentLang);
+    //getting the scope value from route
+    this.currentScope = this.route.snapshot.queryParamMap.get('scope');
+
     this.communityRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Community>),
       redirectOn4xx(this.router, this.authService)
@@ -203,9 +206,19 @@ export class CommunityPageComponent implements OnInit {
      * switch display contents from search results to community page.
      */
     this.route.queryParams.subscribe(qparams => {
-      if(typeof qparams === 'undefined' || qparams === null || 
-         typeof qparams['spc.sf'] === 'undefined' || qparams['spc.sf'] === null)
-          this.initParams()
+
+      if(typeof qparams === 'undefined' 
+        || qparams === null 
+        || typeof qparams['spc.sf'] === 'undefined' 
+        || qparams['spc.sf'] === null
+      ){
+        this.initParams();
+      }
+
+      if(typeof qparams['query'] === 'undefined' ){
+        this.searchSubmit = false;
+      }
+          
     });
 
     /*
@@ -220,7 +233,7 @@ export class CommunityPageComponent implements OnInit {
       }
     });
 
-    this.initParams();
+    //this.initParams();
   }
 
   initParams() {

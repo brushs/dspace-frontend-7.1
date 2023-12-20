@@ -181,6 +181,9 @@ export class CollectionPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     //getting the current scope value from route
+    this.currentScope = this.route.snapshot.queryParamMap.get('scope');
+
     this.collectionRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Collection>),
       redirectOn4xx(this.router, this.authService),
@@ -241,9 +244,18 @@ export class CollectionPageComponent implements OnInit {
      * switch display contents from search results to collection page.
      */
     this.route.queryParams.subscribe(qparams => {
-      if(typeof qparams === 'undefined' || qparams === null || 
-         typeof qparams['spc.sf'] === 'undefined' || qparams['spc.sf'] === null)
-          this.initParams()
+      if(typeof qparams === 'undefined' 
+        || qparams === null 
+        || typeof qparams['spc.sf'] === 'undefined' 
+        || qparams['spc.sf'] === null
+      ){
+        this.initParams();
+      }
+          
+      if(typeof qparams['query'] === 'undefined' ){
+        this.searchSubmit = false;
+      }
+
     });
 
     /*
@@ -258,7 +270,7 @@ export class CollectionPageComponent implements OnInit {
       }
     });
 
-    this.initParams();
+    //this.initParams();
 
   }
 

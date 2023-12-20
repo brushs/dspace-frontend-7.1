@@ -158,6 +158,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       console.info(environment);
     }
     this.storeCSSVariables();
+
   }
 
   ngOnInit() {
@@ -200,6 +201,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       // More information on this bug-fix: https://blog.angular-university.io/angular-debugging/
       delay(0)
     ).subscribe((event) => {
+
       if (event instanceof NavigationStart) {
         this.isRouteLoading$.next(true);
       } else if (
@@ -207,8 +209,33 @@ export class AppComponent implements OnInit, AfterViewInit {
         event instanceof NavigationCancel
       ) {
         this.isRouteLoading$.next(false);
+
+        //if the event url does not contain a hash fragment
+        if(!event.url.includes("#")){
+
+          //get the unordered list element containing the skip to links elements in
+          // the DOM
+          let skipToLinksListEl = (document.querySelector('#wb-tphp') as HTMLElement);
+
+          //if the unordered list element exists
+          if(skipToLinksListEl) {
+
+            //set the tab index to -1 to allow for focusability
+            skipToLinksListEl.setAttribute('tabindex', '-1');
+
+            //focus on the element
+            skipToLinksListEl.focus();
+
+            //scroll the element into view
+            skipToLinksListEl.scrollIntoView();
+
+            //remove the tabindex attribute once the focus is set
+            skipToLinksListEl.removeAttribute('tabindex');
+          }
+        }
       }
     });
+
   }
 
   @HostListener('window:resize', ['$event'])

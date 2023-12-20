@@ -32,8 +32,6 @@ morgan.log
 
 yarn-error.log
 
-*.css
-
 package-lock.json
 
 .java-version

@@ -1,13 +1,17 @@
-import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, NgZone, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RemoteData } from '../../core/data/remote-data';
 import { PaginatedList } from '../../core/data/paginated-list.model';
 import { PaginationComponentOptions } from '../pagination/pagination-component-options.model';
 import { SortDirection, SortOptions } from '../../core/cache/models/sort-options.model';
 import { fadeIn, fadeInOut } from '../animations/fade';
 import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { ListableObject } from '../object-collection/shared/listable-object.model';
 import { getStartsWithComponent, StartsWithType } from '../starts-with/starts-with-decorator';
 import { PaginationService } from '../../core/pagination/pagination.service';
+import { HelperService } from '../utils/helper.service';
+import { LocaleService } from '../../core/locale/locale.service';
 
 @Component({
   selector: 'ds-browse-by',
@@ -26,6 +30,16 @@ export class BrowseByComponent implements OnInit {
    * The i18n message to display as title
    */
   @Input() title: string;
+ 
+  /**
+   * The current field being browsed by
+   */
+  @Input() browseField: string;
+
+  /**
+   * The current search value
+   */
+  @Input() currentTerm: string;
 
   /**
    * The parent name
@@ -121,8 +135,11 @@ export class BrowseByComponent implements OnInit {
 
   public constructor(private injector: Injector,
                      protected paginationService: PaginationService,
+                     public locale: LocaleService,
+                     private helperService: HelperService,
+                     public route: ActivatedRoute,
+                     private zone: NgZone
   ) {
-
   }
 
   /**
@@ -140,6 +157,26 @@ export class BrowseByComponent implements OnInit {
       ],
       parent: this.injector
     });
+  }
+
+  ngAfterViewInit(){
+    this.helperService.focusElement$.pipe(first()).subscribe(selector => {
+      if(selector) {
+        this.helperService.setFocusElement(null);
+        let intervalID = setInterval( () => {
+            let el: HTMLElement = document.querySelector(selector);
+            if(el) {
+              el.focus();
+              clearInterval(intervalID)
+            }
+          }, 250)
+      }
+    })
+    this.zone.run(()=> {
+      this.route.queryParams.subscribe(params => {
+        this.currentTerm = params.startsWith || params.value;
+      }); 
+    })
   }
 
   /** DSPR Sprint5 issue 248/249/250/251 **/
@@ -187,6 +224,7 @@ export class BrowseByComponent implements OnInit {
    * @param {Event} event Change event containing the sort direction and sort field
    */
    reloadOrder(event: Event) {
+    this.helperService.setFocusElement('#'+document.activeElement.id)
     const values = (event.target as HTMLInputElement).value.split(',');
     this.paginationService.updateRoute(this.paginationConfig.id, {
       sortField: values[0],
@@ -200,6 +238,7 @@ export class BrowseByComponent implements OnInit {
    * @param {Event} event Change event containing the new page size value
    */
    reloadRPP(event: Event) {
+    this.helperService.setFocusElement('#'+document.activeElement.id)
     const size = (event.target as HTMLInputElement).value;
     this.paginationService.updateRoute(this.paginationConfig.id,{page: 1, pageSize: +size});
   }

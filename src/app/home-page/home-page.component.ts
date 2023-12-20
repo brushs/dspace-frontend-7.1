@@ -64,4 +64,10 @@ export class HomePageComponent implements OnInit {
     return !this.subcommunities[name] ? null: '/communities/' + this.subcommunities[name]
   }
 
+  navigateToCommunities(name) {
+    const url = this.getCommunityHref(name);
+    if(url !== null) {
+      this.router.navigate([url], { queryParams: { page: 1, 'spc.sf': 'score', 'spc.sd': 'DESC','scope': this.subcommunities[name],'spc.page':1 } })
+    }
+  }
 }
