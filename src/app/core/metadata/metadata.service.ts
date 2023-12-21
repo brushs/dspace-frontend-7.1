@@ -192,9 +192,20 @@ export class MetadataService {
    * Add <meta name="title" ... >  to the <head>
    */
   private setTitleTag(): void {
-    const value = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
-    this.addMetaTag('title', value);
-    this.title.setTitle(value);
+
+    // const value = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
+    // this.addMetaTag('title', value);
+    // this.title.setTitle(value);
+
+    const titleSuffix = this.translate.get('repository.title.suffix');
+    titleSuffix.pipe(take(1)).subscribe((translatedtitleSuffix) => {
+
+      const translatedTitle = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
+
+      this.addMetaTag('title', translatedTitle + translatedtitleSuffix);
+      this.title.setTitle(translatedTitle + translatedtitleSuffix);
+    });
+    
   }
 
   /**
