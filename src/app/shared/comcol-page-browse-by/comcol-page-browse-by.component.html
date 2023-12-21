@@ -15,7 +15,6 @@
         <a 
           [routerLink]="getSelectedOptionById(option.id).routerLink"
           [queryParams]="getSelectedOptionById(option.id).params"
-          queryParamsHandling="merge"
           (keypress.space)="$event.preventDefault();onSelectChange($event, option.id)" 
           (keypress.enter)="$event.preventDefault();onSelectChange($event, option.id)"
           class="btn btn-default list-group-item well h-100">
@@ -44,7 +43,6 @@
             <a 
             [routerLink]="getSelectedOptionById(option.id).routerLink"
             [queryParams]="getSelectedOptionById(option.id).params"
-            queryParamsHandling="merge"
             (keypress.space)="$event.preventDefault();onSelectChange($event, option.id, true)" 
             (keypress.enter)="$event.preventDefault();onSelectChange($event, option.id, true)"
             [ngClass]="{active: (currentOptionId$ | async) === option.id}"
