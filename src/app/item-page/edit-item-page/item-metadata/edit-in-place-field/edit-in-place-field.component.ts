@@ -13,7 +13,7 @@ import {
 import { hasValue, isNotEmpty } from '../../../../shared/empty.util';
 import { RegistryService } from '../../../../core/registry/registry.service';
 import { cloneDeep } from 'lodash';
-import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, of as observableOf } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { FieldChangeType } from '../../../../core/data/object-updates/object-updates.actions';
 import { FieldUpdate } from '../../../../core/data/object-updates/object-updates.reducer';
@@ -29,6 +29,7 @@ import { VocabularyEntry } from '../../../../core/submission/vocabularies/models
 import { PaginatedList, buildPaginatedList } from '../../../../core/data/paginated-list.model';
 import { TranslationJsonService } from '../../../../core/services/translation-json.service';
 import { supportedLanguages, LocaleService } from '../../../../core/locale/locale.service';
+import { MetadataVocabulary } from 'src/app/core/submission/vocabularies/models/metadata-vocabulary.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -59,6 +60,10 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
 
   @Input() languagesVocabularyKey: string;
 
+  @Input() metadataVocabularies$ : Observable<MetadataVocabulary[]>;
+  metadataVocabularies : MetadataVocabulary[];
+  metadataVocabulariesSubscription: Subscription;
+
   /**
    * Emits whether or not this field is currently editable
    */
@@ -78,19 +83,20 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
 
   lastMetadataLanguage: string;
 
-  // TODO: this should be part of a new API endpoint
-  readonly metadataVocabulary: Record<string, string> = {
-    'dc.type': 'publication_type',
-    'dc.language.iso': 'gc_languages',
-    'dc.rights': 'creative_commons',
-    'dc.subject': 'subject_list',
-    'dc.rights.openaccesslevel': 'access_rights',
-    'local.requestdoi': 'request_doi_value',
-    'local.peerreview': 'peer_review',
-    'local.reporttype': 'reports_types',
-    'local.conferencetype': 'conference_types',
-    'local.articletype': 'article_subtype',
-};
+//   This has been moved to an API endpoint  
+//   readonly metadataVocabulary: Record<string, string> = {
+//     'dc.type': 'publication_type',
+//     'dc.language.iso': 'gc_languages',
+//     'dc.rights': 'creative_commons',
+//     // TODO: this should be gccore
+//     'dc.subject': 'gccore',
+//     'dc.rights.openaccesslevel': 'access_rights',
+//     'local.requestdoi': 'request_doi_value',
+//     'local.peerreview': 'peer_review',
+//     'local.reporttype': 'reports_types',
+//     'local.conferencetype': 'conference_types',
+//     'local.articletype': 'article_subtype',
+// };
   
 
   vocabularyEntries: Observable<VocabularyEntry[]> = undefined;
@@ -117,7 +123,14 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
 
     this.editable = this.objectUpdatesService.isEditable(this.url, this.metadata.uuid);
     this.valid = this.objectUpdatesService.isValid(this.url, this.metadata.uuid);
-    this.initializeVocabularyEntries();
+    this.metadataVocabulariesSubscription = this.metadataVocabularies$.subscribe((metadataVocabularies) => {
+      this.metadataVocabularies = metadataVocabularies;
+      this.initializeVocabularyEntries();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.metadataVocabulariesSubscription.unsubscribe();
   }
 
   /**
@@ -132,7 +145,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
     //only execute if the ds-validation-suggestions component triggered 
     // this method call
     if(ngModel){
-      if(this.metadataVocabulary[this.metadata.key]){
+      if(this.metadataVocabularies.find(mV => mV.metadataId === this.metadata.key)){
         this.initializeVocabularyEntries();
       }else{
         this.hasControlledVocabulary = false;
@@ -260,11 +273,13 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   }
 
   initializeVocabularyEntries() {
-    
-    if (!this.metadataVocabulary[this.metadata.key]) 
+    if (!this.metadataVocabularies)
+      return;
+    var metadataVocabulary = this.metadataVocabularies.find(mV => mV.metadataId === this.metadata.key)
+    if (!metadataVocabulary) 
       return;
     this.hasControlledVocabulary = true;
-    if (this.metadataVocabulary[this.metadata.key] == this.languagesVocabularyKey) {
+    if (metadataVocabulary.vocabularyName == this.languagesVocabularyKey) {
       // already loaded in the parent component
       this.vocabularyEntries = this.languageEntries.pipe(
         tap(()=>{
@@ -273,7 +288,7 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
       );
       return;
     }
-    var vocabOptions = new VocabularyOptions(this.metadataVocabulary[this.metadata.key], true);
+    var vocabOptions = new VocabularyOptions(metadataVocabulary.vocabularyName, true);
     var pageInfo = new PageInfo();
     pageInfo.elementsPerPage = 500;
     // call getVocabularyEntries and populate this.vocabularyEntries (will require a pipe)

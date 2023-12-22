@@ -51,7 +51,7 @@
         </div>
         <div *ngIf="(editable | async)" class="field-container">
 
-            <input *ngIf="!metadataVocabulary[metadata.key]; else languageDropdown" class="form-control" type="text" aria-labelledby="fieldLang" [(ngModel)]="metadata.language" [dsDebounce] (onDebounce)="update()"/>
+            <input *ngIf="!hasControlledVocabulary; else languageDropdown" class="form-control" type="text" aria-labelledby="fieldLang" [(ngModel)]="metadata.language" [dsDebounce] (onDebounce)="update()"/>
 
             <ng-template #languageDropdown>
 

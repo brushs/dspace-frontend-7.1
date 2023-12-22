@@ -8,5 +8,6 @@ import { ResourceType } from '../../../shared/resource-type';
  */
 
 export const VOCABULARY = new ResourceType('vocabulary');
+export const METADATA_VOCABULARY = new ResourceType('vocabularyMetadata');
 export const VOCABULARY_ENTRY = new ResourceType('vocabularyEntry');
 export const VOCABULARY_ENTRY_DETAIL = new ResourceType('vocabularyEntryDetail');

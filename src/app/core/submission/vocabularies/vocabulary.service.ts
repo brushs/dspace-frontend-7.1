@@ -33,6 +33,7 @@ import { RequestParam } from '../../cache/models/request-param.model';
 import { VocabularyOptions } from './models/vocabulary-options.model';
 import { PageInfo } from '../../shared/page-info.model';
 import { HrefOnlyDataService } from '../../data/href-only-data.service';
+import { MetadataVocabulary } from './models/metadata-vocabulary.model';
 
 /* tslint:disable:max-classes-per-file */
 
@@ -76,6 +77,23 @@ class VocabularyEntryDetailDataServiceImpl extends DataService<VocabularyEntryDe
   }
 
 }
+class VocabularyMetadatasDataServiceImpl extends DataService<MetadataVocabulary> {
+  protected linkPath = 'vocabularyMetadatas';
+
+  constructor(
+    protected requestService: RequestService,
+    protected rdbService: RemoteDataBuildService,
+    protected store: Store<CoreState>,
+    protected objectCache: ObjectCacheService,
+    protected halService: HALEndpointService,
+    protected notificationsService: NotificationsService,
+    protected hrefOnlyDataService: HrefOnlyDataService,
+    protected http: HttpClient,
+    protected comparator: ChangeAnalyzer<MetadataVocabulary>) { 
+    super();
+  }
+
+}
 
 /**
  * A service responsible for fetching/sending data from/to the REST API on the vocabularies endpoint
@@ -86,6 +104,7 @@ export class VocabularyService {
   protected searchTopMethod = 'top';
   private vocabularyDataService: VocabularyDataServiceImpl;
   private vocabularyEntryDetailDataService: VocabularyEntryDetailDataServiceImpl;
+  private vocabularyMetadatasDataService: VocabularyMetadatasDataServiceImpl;
 
   constructor(
     protected requestService: RequestService,
@@ -96,9 +115,11 @@ export class VocabularyService {
     protected hrefOnlyDataService: HrefOnlyDataService,
     protected http: HttpClient,
     protected comparatorVocabulary: DefaultChangeAnalyzer<Vocabulary>,
-    protected comparatorEntry: DefaultChangeAnalyzer<VocabularyEntryDetail>) {
+    protected comparatorEntry: DefaultChangeAnalyzer<VocabularyEntryDetail>,
+    protected comparatorMetadata: DefaultChangeAnalyzer<MetadataVocabulary>) {
     this.vocabularyDataService = new VocabularyDataServiceImpl(requestService, rdbService, null, objectCache, halService, notificationsService, http, comparatorVocabulary);
     this.vocabularyEntryDetailDataService = new VocabularyEntryDetailDataServiceImpl(requestService, rdbService, null, objectCache, halService, notificationsService, hrefOnlyDataService, http, comparatorEntry);
+    this.vocabularyMetadatasDataService = new VocabularyMetadatasDataServiceImpl(requestService, rdbService, null, objectCache, halService, notificationsService, hrefOnlyDataService, http, comparatorMetadata);
   }
 
   /**
@@ -151,6 +172,52 @@ export class VocabularyService {
    */
   findAllVocabularies(options: FindListOptions = {}, useCachedVersionIfAvailable = true, reRequestOnStale = true, ...linksToFollow: FollowLinkConfig<Vocabulary>[]): Observable<RemoteData<PaginatedList<Vocabulary>>> {
     return this.vocabularyDataService.findAll(options, useCachedVersionIfAvailable, reRequestOnStale, ...linksToFollow);
+  }
+
+   /**
+   * Returns an observable of {@link RemoteData} of a {@link Vocabulary}, based on its ID, with a list of {@link FollowLinkConfig},
+   * to automatically resolve {@link HALLink}s of the object
+   * @param metadataId              The name of {@link Vocabulary} we want to retrieve
+   * @param useCachedVersionIfAvailable If this is true, the request will only be sent if there's
+   *                                    no valid cached version. Defaults to true
+   * @param reRequestOnStale            Whether or not the request should automatically be re-
+   *                                    requested after the response becomes stale
+   * @param linksToFollow               List of {@link FollowLinkConfig} that indicate which
+   *                                    {@link HALLink}s should be automatically resolved
+   * @return {Observable<RemoteData<Vocabulary>>}
+   *    Return an observable that emits vocabulary object
+   */
+  // replace above method description with new one 
+    /**
+     * Returns an observable of {@link RemoteData} of a {@link MetadataVocabulary}, based on its ID, with a list of {@link FollowLinkConfig},
+     * @param metadataId            The metdata id of {@link MetadataVocabulary} we want to retrieve
+     * @param useCachedVersionIfAvailable  If this is true, the request will only be sent if there's
+   *                                    no valid cached version. Defaults to true
+     * @param reRequestOnStale    Whether or not the request should automatically be re-requested after the response becomes stale
+     * @param linksToFollow    List of {@link FollowLinkConfig} that indicate which {@link HALLink}s should be automatically resolved
+     * @returns {Observable<RemoteData<MetadataVocabulary>>}
+     */
+  
+   findMetadataVocabularyById(metadataId: string, useCachedVersionIfAvailable = true, reRequestOnStale = true, ...linksToFollow: FollowLinkConfig<MetadataVocabulary>[]): Observable<RemoteData<MetadataVocabulary>> {
+    return this.vocabularyMetadatasDataService.findById(metadataId, useCachedVersionIfAvailable, reRequestOnStale, ...linksToFollow);
+  }
+
+  /**
+   * Returns {@link RemoteData} of all object with a list of {@link FollowLinkConfig}, to indicate which embedded
+   * info should be added to the objects
+   *
+   * @param options           Find list options object
+   * @param useCachedVersionIfAvailable If this is true, the request will only be sent if there's
+   *                                    no valid cached version. Defaults to true
+   * @param reRequestOnStale            Whether or not the request should automatically be re-
+   *                                    requested after the response becomes stale
+   * @param linksToFollow               List of {@link FollowLinkConfig} that indicate which
+   *                                    {@link HALLink}s should be automatically resolved
+   * @return {Observable<RemoteData<PaginatedList<MetadataVocabulary>>>}
+   *    Return an observable that emits object list
+   */
+  findAllMetadataVocabularies(options: FindListOptions = {}, useCachedVersionIfAvailable = true, reRequestOnStale = true, ...linksToFollow: FollowLinkConfig<MetadataVocabulary>[]): Observable<RemoteData<PaginatedList<MetadataVocabulary>>> {
+    return this.vocabularyMetadatasDataService.findAll(options, useCachedVersionIfAvailable, reRequestOnStale, ...linksToFollow);
   }
 
   /**
