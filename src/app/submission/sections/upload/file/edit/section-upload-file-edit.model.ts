@@ -29,7 +29,7 @@ export const BITSTREAM_ACCESS_CONDITION_GROUP_CONFIG: DynamicFormGroupModelConfi
 export const BITSTREAM_ACCESS_CONDITION_GROUP_LAYOUT: DynamicFormControlLayout = {
   element: {
     host: 'form-group flex-fill access-condition-group',
-    container: 'pl-1 pr-1',
+    container: 'pl-1 mr-4',
     control: 'form-row '
   }
 };
