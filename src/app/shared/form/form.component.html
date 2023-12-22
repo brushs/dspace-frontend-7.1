@@ -13,10 +13,12 @@
       (ngbEvent)="onCustomEvent($event)">
       <ng-template modelType="ARRAY" let-group let-index="index" let-context="context">
         <!--Array with repeatable items-->
-        <div *ngIf="(!context.notRepeatable) && !isVirtual(context, index)"
+        <div #removeButtonContainer *ngIf="(!context.notRepeatable) && !isVirtual(context, index)"
              class="col-xs-2 d-flex flex-column justify-content-sm-start align-items-end">
-            <button type="button" class="btn btn-secondary"
+            <button
+                    type="button" class="btn btn-secondary"
                     title="{{'form.remove' | translate}}"
+                    [ngStyle]="{'margin-top' : getComputedOffset(removeButtonContainer, context) }"
                     [attr.aria-label]="'form.remove' | translate"
                     (click)="removeItem($event, context, index)"
                     [disabled]="group.context.groups.length === 1 || isItemReadOnly(context, index)">
