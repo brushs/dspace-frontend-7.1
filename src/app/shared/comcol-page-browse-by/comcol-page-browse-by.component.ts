@@ -99,10 +99,11 @@ export class ComcolPageBrowseByComponent implements OnInit {
 
   onSelectChange(event: MouseEvent, newId: string, resetFocusToTop = false) {
 
-    //if the control key is not pressed AND the left
-    // mouse button is clicked
+    //if the control key is not pressed
+    // AND the shift key is not pressed
+    // AND the left mouse button is clicked
     if(
-      !event.ctrlKey && event.button === 0
+      !event.ctrlKey && !event.shiftKey && event.button === 0
     ){
       const selectedOption = this.allOptions
       .find((option: ComColPageNavOption) => option.id === newId);
