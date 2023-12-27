@@ -141,7 +141,6 @@ export class FormComponent implements OnDestroy, OnInit {
   private getFormGroupValidStatus() {
     return this.getFormGroup().valid;
   }
-
   /**
    * Method provided by Angular. Invoked after the constructor
    */
@@ -361,5 +360,14 @@ export class FormComponent implements OnDestroy, OnInit {
     const model = context.group[0] as DynamicFormControlModel;
     const control = group.controls[index] as FormControl;
     return { $event, context, control, group, model, type };
+  }
+
+  getComputedOffset(removeButtonContainerRef: HTMLElement, context: any) {
+    if(!(context.groupPrototype && context.groupPrototype[0].type === 'DATE')) {
+      return null;
+    }
+    let refToParse = removeButtonContainerRef.previousElementSibling.querySelector('ds-number-picker .btn');
+    let heightOffset= window.getComputedStyle(refToParse).height;
+    return heightOffset;
   }
 }
