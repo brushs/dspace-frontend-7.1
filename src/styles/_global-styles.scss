@@ -17,7 +17,7 @@ body {
   flex: 1 1 auto;
   flex-flow: column nowrap;
   display: flex;
-  min-height: 100vh;
+  max-height: 100vh;
   flex-direction: column;
   width: 100%;
   position: relative;
