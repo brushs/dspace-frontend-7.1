@@ -191,9 +191,7 @@ export class PaginationComponent implements OnDestroy, OnInit {
     this.initializeConfig();
   }
 
-  ngAfterViewInit() {
-    // Accessibility implementations
-    if(this.useGcWeb) {
+  ngAfterViewChecked() {
       (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Previous"]')?.setAttribute('rel', 'prev');
       (<HTMLElement>this.paginationPage?.nativeElement)?.querySelector('[aria-label="Next"]')?.setAttribute('rel', 'next');
       // A disabled button including ellipses gets rendered when displaying the last page number. This ensures the last page item gets rendered while the ellipses gets removed.
@@ -202,7 +200,6 @@ export class PaginationComponent implements OnDestroy, OnInit {
           el.setAttribute('aria-hidden', 'true');
         }
        });
-    }
   }
 
   /**
