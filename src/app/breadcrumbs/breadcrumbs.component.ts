@@ -88,6 +88,17 @@ export class BreadcrumbsComponent {
         });
         return queryParamsObject;
       }
+      else {
+        const queryParamsObject: { [key: string]: string } = {};
+        const scope = url.split('/')[2];
+        if(scope && (url.indexOf('collections') > -1 || url.indexOf('communities') > -1)){
+          queryParamsObject['scope'] =scope;
+          queryParamsObject['spc.sf'] = 'score';
+          queryParamsObject['spc.sd'] = 'DESC';
+          queryParamsObject['spc.page'] = '1';
+        }
+       return queryParamsObject;
+      }
     }
     return {};
     
