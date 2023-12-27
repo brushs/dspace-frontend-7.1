@@ -40,7 +40,7 @@
 		<!-- <link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/messages.min.css"> -->
 	</head>
 
-	<body class="splash" vocab="http://schema.org/" resource="#wb-webpage" typeof="WebPage">
+	<body *ngIf="isLoadingResources === false" class="splash" vocab="http://schema.org/" resource="#wb-webpage" typeof="WebPage">
 
 		<div id="bg" data-wb-randomize='{ "shuffle": true, "selector": "img", "toggle": "hide" }'>
 			<img class="hide" src="assets/images/sp-bg-1.jpg" alt="">
