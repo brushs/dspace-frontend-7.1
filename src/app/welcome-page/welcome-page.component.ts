@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { LocaleService } from '../core/locale/locale.service';
 import { DOCUMENT } from '@angular/common';
@@ -39,17 +39,25 @@ export class WelcomePageComponent implements OnInit {
    */
   requestedUrl: string;
 
+  /**
+   * Status of whether resources are loading
+   */
+  isLoadingResources: boolean;
+
   constructor(private localeService: LocaleService,
     private router: Router,
     private renderer2: Renderer2, 
     @Inject(DOCUMENT) private document: any,
-    private metadata: MetadataService
+    private metadata: MetadataService,
+    private cdr: ChangeDetectorRef
     ) { 
       //set the splash page title when the splash page appears
       this.metadata.setSplashPageTitle('Federal Open Science Repository of Canada (FOSRC) / Le Dépôt fédéral de science ouverte du Canada (DFSOC)');
     }
 
   ngOnInit(): void {
+
+    this.isLoadingResources = true;
 
     this.router.events
     .pipe(filter(event => event instanceof NavigationEnd))
@@ -82,6 +90,8 @@ export class WelcomePageComponent implements OnInit {
    */
   loadNextScript() {
     if (this.scriptsLoadedCount >= this.scriptsToLoad.length) {
+      this.isLoadingResources = false;
+      this.cdr.detectChanges();
       console.log('All scripts loaded.');
       return;
     }
