@@ -74,7 +74,9 @@
   // "item.page.iso": "Language of the publication",
   "item.page.iso": "Langue de publication",
   "en": "Anglais",
+  "English": "Anglais",
   "fr": "Français",
+
   // "item.page.subject": "Subject",
   "item.page.subject": "Suject",
   //"item.page.identifiers": "Identifiers",
@@ -592,8 +594,8 @@
   "yes": "oui",
   "no": "non",
 
-  "en": "en",
-  "fr": "fr",
+  //"en": "en",
+  //"fr": "fr",
   "fr-en": "fr-en",
   "other": "other",
 
@@ -965,7 +967,7 @@
   //"search.filters.filter.dateInvalidRange": "Error: Start date cannot be greater than current year",
   "search.filters.filter.dateInvalidRange": "Erreur: Anné de debut ne peut pas etre plus d'anné actuel",
   //"search.filters.filter.dateInvalidEndRange":"Error: The start year must be less than or equal to the end year",
-  "search.filters.filter.dateInvalidEndRange":"Erreur: L’année du début doit être inférieure ou égale à celle de l’année de la fin",
+  "search.filters.filter.dateInvalidEndRange": "Erreur: L’année du début doit être inférieure ou égale à celle de l’année de la fin",
   // "search.filters.filter.datePlaceholder": "YYYY",
   "search.filters.filter.datePlaceholder": "AAAA",
   //"search.filters.filter.peerReview.head": "Peer Review",

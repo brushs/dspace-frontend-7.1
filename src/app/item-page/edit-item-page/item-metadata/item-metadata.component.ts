@@ -5,7 +5,7 @@ import { ObjectUpdatesService } from '../../../core/data/object-updates/object-u
 import { ActivatedRoute, Router } from '@angular/router';
 import { cloneDeep } from 'lodash';
 import { catchError, first, map, switchMap } from 'rxjs/operators';
-import { getFirstCompletedRemoteData, getFirstSucceededRemoteDataPayload } from '../../../core/shared/operators';
+import { getFirstCompletedRemoteData, getFirstSucceededRemoteDataPayload, getFirstSucceededRemoteDataWithNotEmptyPayload } from '../../../core/shared/operators';
 import { RemoteData } from '../../../core/data/remote-data';
 import { NotificationsService } from '../../../shared/notifications/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,6 +22,8 @@ import { VocabularyService } from '../../../core/submission/vocabularies/vocabul
 import { PaginatedList, buildPaginatedList } from '../../../core/data/paginated-list.model';
 import { PageInfo } from '../../../core/shared/page-info.model';
 import { VocabularyOptions } from '../../../core/submission/vocabularies/models/vocabulary-options.model';
+import { MetadataVocabulary } from 'src/app/core/submission/vocabularies/models/metadata-vocabulary.model';
+import { FieldUpdate } from 'src/app/core/data/object-updates/object-updates.reducer';
 
 @Component({
   selector: 'ds-item-metadata',
@@ -48,6 +50,8 @@ export class ItemMetadataComponent extends AbstractItemUpdateComponent {
   readonly languagesVocabularyKey: string = 'gc_languages'
 
   languageEntries$: Observable<VocabularyEntry[]> = undefined;
+  vocabularyMetadata$: Observable<MetadataVocabulary[]> = undefined;
+
 
   constructor(
     public itemService: ItemDataService,
@@ -70,6 +74,7 @@ export class ItemMetadataComponent extends AbstractItemUpdateComponent {
       this.updateService = this.itemService;
     }
     this.initializeLanguageEntries();
+    this.initalizeVocabularyMetadataEntries();
   }
 
   /**
@@ -157,4 +162,28 @@ export class ItemMetadataComponent extends AbstractItemUpdateComponent {
       ),
       map((list: PaginatedList<VocabularyEntry>) => list.page));
   }
+
+  initalizeVocabularyMetadataEntries() {
+    this.vocabularyMetadata$ = this.vocabularyService
+    .findAllMetadataVocabularies(new PageInfo())
+    .pipe(
+      getFirstSucceededRemoteDataPayload(),
+     catchError(() => observableOf(buildPaginatedList(
+        new PageInfo(),
+        []
+        ))
+      ),
+      map((list: PaginatedList<MetadataVocabulary>) => list.page));
+  }
+
+getVocabulary(fieldUpdate: FieldUpdate): Observable<MetadataVocabulary | null> {
+  var metadataId = fieldUpdate.field as MetadatumViewModel
+  return this.vocabularyMetadata$.pipe(
+    map((vocabularies: MetadataVocabulary[]) =>
+      vocabularies.find(v => v.metadataId === metadataId.key ) || null
+    )
+  );
+}
+
+
 }

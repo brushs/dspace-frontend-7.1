@@ -43,6 +43,10 @@
   "item.page.identifiers": "Identifiers",
   "en": "English",
   "fr": "French",
+  "EN": "English",
+  "Français": "French",
+  "FR": "French",
+
   // Simple item page translation ends  
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
@@ -371,8 +375,8 @@
   "yes": "yes",
   "no": "no",
 
-  "en": "en",
-  "fr": "fr",
+  //"en": "en",
+  //"fr": "fr",
   "fr-en": "fr-en",
   "other": "other",
 
@@ -563,7 +567,7 @@
   "fosrc.item.edit.dynamic-field.values.request-doi.yes": "Yes",
   "fosrc.item.edit.dynamic-field.values.request-doi.No": "No",
   "fosrc.item.edit.dynamic-field.values.request-doi.Yes": "Yes",
- 
+
 
   "fosrc.item.form.error.panel.dc.type": "Publication Type: ",
   "fosrc.item.form.error.panel.dc.language.iso": "Publication Language: ",
@@ -589,7 +593,7 @@
   "search.filters.none": "No results match this filter",
   "search.filters.filter.dateInvalid": "Error: Invalid year (YYYY)",
   "search.filters.filter.dateInvalidRange": "Error: Start date cannot be greater than current year",
-  "search.filters.filter.dateInvalidEndRange":"Error: The start year must be less than or equal to the end year",
+  "search.filters.filter.dateInvalidEndRange": "Error: The start year must be less than or equal to the end year",
   "search.filters.filter.datePlaceholder": "YYYY",
   "search.filters.filter.peerReview.head": "Peer review",
   "search.filters.filter.peerReview.placeholder": "Search peer review",
