@@ -449,5 +449,22 @@ export class EditInPlaceFieldComponent implements OnInit, OnChanges {
   setLastMetadataLanguage(){
     this.lastMetadataLanguage = this.metadata.language;
   }
+
+  /**
+   * Method to check if a string value is a dc.language.iso
+   * metadata value.
+   * @param value The string value to check
+   * @returns boolean
+   */
+  checkDcLanguageIsoValue(value: string){
+    if(value.toLowerCase() === "en"
+      || value.toLowerCase() === "fr"
+      || value.toLowerCase() === "fr-en"
+      || value.toLowerCase() === "other"
+    ){
+      return true;
+    }
+    return false;
+  }
   
 }
