@@ -192,6 +192,10 @@ export class UntypedItemComponent extends ItemComponent {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+  getFullUrl(elementId: string): string {
+   return `${window.location.pathname}#${elementId}`;
+  }
   /* End of FOSRC Changes */
 
   translateMetadata(keys: string | string[], dso: any) {

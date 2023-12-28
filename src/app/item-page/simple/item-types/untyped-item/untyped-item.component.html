@@ -24,7 +24,7 @@
       </ng-container>
 
       <p *ngIf="showDownloadLinksButton">
-        <a href="#{{descriptionElementId}}" (click)="scrollToElement($event, descriptionElementId)">{{'item.page.download.files.link' | translate}}</a>
+        <a href="{{getFullUrl(descriptionElementId)}}" (click)="scrollToElement($event, descriptionElementId)">{{'item.page.download.files.link' | translate}}</a>
       </p>
 
       <!-- DOI -->
