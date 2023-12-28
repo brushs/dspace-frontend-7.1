@@ -78,10 +78,20 @@ export class LangSwitchComponent implements OnInit {
    * @returns {string}
   */
   getCurrentUrl(): string {
-    if (this.router.url.indexOf('?') > -1) {
-      return this.router.url.substring(0, this.router.url.indexOf('?'));
+
+    let currentUrl = this.router.url;
+
+    //remove hash fragment
+    if (currentUrl.indexOf('#') > -1) {
+      currentUrl = currentUrl.substring(0, currentUrl.indexOf('#'));
     }
-    return this.router.url;
+
+    //remove query parameters
+    if (currentUrl.indexOf('?') > -1) {
+      currentUrl = currentUrl.substring(0, currentUrl.indexOf('?'));
+    }
+
+    return currentUrl;
   }
 
 }
