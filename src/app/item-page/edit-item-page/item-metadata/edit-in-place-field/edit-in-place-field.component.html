@@ -35,7 +35,7 @@
             <ng-template #dropdown>
 
                 <select class="form-control" [(ngModel)]="metadata.value" (ngModelChange)="update();setLastMetadataValue();setLastMetadataLanguage()">
-                    <option *ngFor="let vocab of (vocabularyEntries | async)" [value]="getTranslationValueByKey(vocab.value) || vocab.value">
+                    <option *ngFor="let vocab of (vocabularyEntries | async)" [value]="checkDcLanguageIsoValue(vocab.value) ? vocab.value : getTranslationValueByKey(vocab.value)">
                         {{ getTranslationValueByKey(vocab.display) }}<span *ngIf="metadata.language !== localeService.getCurrentLanguageCode()"> - {{ getTranslationValueByKey(vocab.display, getAlternateLanguageCode(metadata.language)) }} </span>
                     </option>
                 </select>
