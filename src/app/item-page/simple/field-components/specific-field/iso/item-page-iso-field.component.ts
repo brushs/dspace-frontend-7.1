@@ -49,11 +49,14 @@ export class ItemPageIsoFieldComponent extends ItemPageFieldComponent {
 
         for(var languageField of languageFields) {
             returnValue = this.item.firstMetadata(languageField);
-            if("enfr".includes(returnValue)) {
+          if ("enfrEnglishFrench".includes(returnValue)) {
                 break;
             }
         };
-
+      switch (returnValue.val) {
+        case 'English': returnValue.val = 'en'
+        case 'French': returnValue.val = 'fr'
+      }
         return returnValue;
     }
 }
