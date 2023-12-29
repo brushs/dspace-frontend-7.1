@@ -864,7 +864,7 @@ describe('SubmissionService test suite', () => {
     }));
   });
 
-  describe('redirectToMyDSpace', () => {
+  describe('redirectToMyFosrc', () => {
     it('should redirect to MyDspace page', () => {
       scheduler = getTestScheduler();
       const spy = spyOn((service as any).routeService, 'getPreviousUrl');
@@ -879,13 +879,13 @@ describe('SubmissionService test suite', () => {
       scheduler.schedule(() => service.redirectToMyDSpace());
       scheduler.flush();
 
-      expect((service as any).router.navigate).toHaveBeenCalledWith(['/mydspace']);
+      expect((service as any).router.navigate).toHaveBeenCalledWith(['/myfosrc']);
 
       spy.and.returnValue(observableOf('/home'));
       scheduler.schedule(() => service.redirectToMyDSpace());
       scheduler.flush();
 
-      expect((service as any).router.navigate).toHaveBeenCalledWith(['/mydspace']);
+      expect((service as any).router.navigate).toHaveBeenCalledWith(['/myfosrc']);
     });
   });
 
