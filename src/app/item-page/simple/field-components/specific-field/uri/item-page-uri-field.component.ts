@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 
 import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
-
+import { ConfigurationDataService } from '../../../../../core/data/configuration-data.service';
+import { getFirstCompletedRemoteData } from '../../../../../core/shared/operators';
 @Component({
   selector: 'ds-item-page-uri-field',
   templateUrl: './item-page-uri-field.component.html',
@@ -39,7 +40,28 @@ export class ItemPageUriFieldComponent extends ItemPageFieldComponent {
 
   @Input() renderInParagraph: boolean = false;
 
+  constructor(
+    private configService: ConfigurationDataService,
+  ) {
+    super();
+  }
+
   public domainAwareValue (rawValue: string): string {
+    this.configService.findByPropertyName("identifier.doi.resolver").pipe(
+      getFirstCompletedRemoteData(),
+    ).subscribe((rd) => {
+      if (!rd.hasSucceeded) {  return this.getDomainUrl(rawValue); }
+        console.log(rd.payload.values[0]);
+        const domain = rd?.payload.values[0];
+        if(rawValue.indexOf('https') == -1) {
+          rawValue = domain + '/' + rawValue;
+          return rawValue;
+        }
+      })
+      return this.getDomainUrl(rawValue);
+  }
+
+  private getDomainUrl(rawValue:string): string{
     const domainList = ['dev.ospr.link','ospr.link','localhost','open-science.canada.ca','science-ouverte.canada.ca', 'ospr.g.ent.cloud-nauge.canada.ca']
     if(!domainList.some((x: string) => rawValue.includes(x))) {
       return rawValue;
