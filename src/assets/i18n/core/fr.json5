@@ -3397,6 +3397,8 @@
   "nav.main.description": "Barre de navigation principale",
   // "nav.mydspace": "MyFOSRC",
   "nav.mydspace": "MonDFSOC",
+  //"nav.myfosrc": "MyFOSRC",
+  "nav.myfosrc": "MyFOSRC",
   // "nav.profile": "Profile",
   "nav.profile": "Profil",
   // "nav.search": "Search",
