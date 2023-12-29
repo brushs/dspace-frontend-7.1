@@ -51,7 +51,6 @@ export class ItemPageUriFieldComponent extends ItemPageFieldComponent {
       getFirstCompletedRemoteData(),
     ).subscribe((rd) => {
       if (!rd.hasSucceeded) {  return this.getDomainUrl(rawValue); }
-        console.log(rd.payload.values[0]);
         const domain = rd?.payload.values[0];
         if(rawValue.indexOf('https') == -1) {
           rawValue = domain + '/' + rawValue;
