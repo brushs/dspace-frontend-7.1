@@ -50,7 +50,7 @@ export class ItemPageUriFieldComponent extends ItemPageFieldComponent {
     this.configService.findByPropertyName("identifier.doi.resolver").pipe(
       getFirstCompletedRemoteData(),
     ).subscribe((rd) => {
-      if (!rd.hasSucceeded) {  return this.getDomainUrl(rawValue); }
+        if (!rd.hasSucceeded) {  return; }
         const domain = rd?.payload.values[0];
         if(rawValue.indexOf('https') == -1) {
           rawValue = domain + '/' + rawValue;
