@@ -596,8 +596,11 @@
 
   //"en": "en",
   //"fr": "fr",
-  "fr-en": "fr-en",
-  "other": "other",
+  // "fr-en": "Bilingual",
+  "fr-en": "Bilingue",
+
+  //"none": "none",
+  "none": "aucune",
 
   //"Arts, Music, Literature": "Arts, Music, Literature",
   "Arts, music, literature": "Arts, musique, littérature",

@@ -49,14 +49,21 @@ export class ItemPageIsoFieldComponent extends ItemPageFieldComponent {
 
         for(var languageField of languageFields) {
             returnValue = this.item.firstMetadata(languageField);
-          if ("enfrEnglishFrench".includes(returnValue)) {
+          if ("enfrEnglishFrenchotherfr-en".includes(returnValue)) {
                 break;
             }
         };
-      switch (returnValue.val) {
-        case 'English': returnValue.val = 'en'
-        case 'French': returnValue.val = 'fr'
-      }
+        if(returnValue) {
+            if(returnValue.value) {
+                switch (returnValue.value) {
+                    case 'English': returnValue.value = 'en'
+                    case 'French': returnValue.value = 'fr'
+                }
+            }
+            else {
+                returnValue.value = 'none';
+            }
+        }
         return returnValue;
     }
 }

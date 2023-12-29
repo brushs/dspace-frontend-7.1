@@ -377,8 +377,10 @@
 
   //"en": "en",
   //"fr": "fr",
-  "fr-en": "fr-en",
-  "other": "other",
+  "fr-en": "Bilingual",
+  "other": "Other",
+
+  "none": "none",
 
   "Arts, music, literature": "Arts, Music, Literature",
   "Arts, Music, Literature": "Arts, Music, Literature",
