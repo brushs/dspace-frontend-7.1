@@ -34,7 +34,7 @@ import { RouteService } from '../core/services/route.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-export const MYDSPACE_ROUTE = '/mydspace';
+export const MYDSPACE_ROUTE = '/myfosrc';
 export const SEARCH_CONFIG_SERVICE: InjectionToken<SearchConfigurationService> = new InjectionToken<SearchConfigurationService>('searchConfigurationService');
 
 /**
@@ -123,10 +123,10 @@ export class MyDSpacePageComponent implements OnInit {
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: MyDSpaceConfigurationService,
               private routeService: RouteService) {
     
-    if (this.translate.currentLang === 'en' && this.router.url.includes('mondspace')) {
-      window.location.pathname = 'mydspace'
-    } else if (this.translate.currentLang === 'fr' && this.router.url.includes('mydspace')) {
-      window.location.pathname = 'mondspace'
+    if (this.translate.currentLang === 'en' && this.router.url.includes('monfosrc')) {
+      window.location.pathname = 'myfosrc'
+    } else if (this.translate.currentLang === 'fr' && this.router.url.includes('myfosrc')) {
+      window.location.pathname = 'monfosrc'
     }
     this.isXsOrSm$ = this.windowService.isXsOrSm();
     this.service.setServiceOptions(MyDSpaceResponseParsingService, MyDSpaceRequest);
