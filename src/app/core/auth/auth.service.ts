@@ -130,7 +130,10 @@ export class AuthService {
     options.headers = headers;
     options.withCredentials = true;
     return this.authRequestService.getRequest('status', options).pipe(
-      map((rd: RemoteData<AuthStatus>) => Object.assign(new AuthStatus(), rd.payload))
+      map((rd: RemoteData<AuthStatus>) => {
+        console.log('**** checkAuthenticationCookie:', rd.payload);
+        return Object.assign(new AuthStatus(), rd.payload);}
+        )
     );
   }
 

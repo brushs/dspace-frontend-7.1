@@ -45,7 +45,8 @@ import {
   RetrieveAuthMethodsErrorAction,
   RetrieveAuthMethodsSuccessAction,
   RetrieveTokenAction,
-  SetUserAsIdleAction
+  SetUserAsIdleAction,
+  SetWithinIpRangeAction
 } from './auth.actions';
 import { hasValue } from '../../shared/empty.util';
 import { environment } from '../../../environments/environment';
@@ -163,7 +164,9 @@ export class AuthEffects {
         map((response: AuthStatus) => {
           if (response.authenticated) {
             return new RetrieveTokenAction();
-          } else {
+          } else if (response.withinIpRange) {
+            return new SetWithinIpRangeAction();
+          }else {
             return new RetrieveAuthMethodsAction(response);
           }
         }),

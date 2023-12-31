@@ -25,6 +25,17 @@ export const getAuthState = (state: any) => state.core.auth;
  */
 const _isAuthenticated = (state: AuthState) => state.authenticated;
 
+
+/**
+ * Returns true if the user is with in IP range.
+ * @function _isWithinIpRange
+ * @param {State} state
+ * @returns {boolean}
+ */
+const _isWithinIpRange = (state: AuthState) => {
+  console.log('state.withinIpRange', state.withinIpRange);
+  return state.withinIpRange;
+}
 /**
  * Returns true if the authenticated has loaded.
  * @function _isAuthenticatedLoaded
@@ -167,6 +178,15 @@ export const getAuthenticationInfo = createSelector(getAuthState, _getAuthentica
  * @return {boolean}
  */
 export const isAuthenticated = createSelector(getAuthState, _isAuthenticated);
+
+/**
+ * Returns true if the user is with in IP range
+ * @function isWithinIpRange
+ * @param {AuthState} state
+ * @param {any} props
+ * @return {boolean}
+ */
+export const isWithinIpRange = createSelector(getAuthState, _isWithinIpRange);
 
 /**
  * Returns true if the user is authenticated

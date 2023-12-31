@@ -1,4 +1,5 @@
 // import actions
+import { RequestActionTypes } from '../data/request.actions';
 import {
   AddAuthenticationMessageAction,
   AuthActions,
@@ -26,6 +27,9 @@ export interface AuthState {
 
   // boolean if user is authenticated
   authenticated: boolean;
+
+  // boolean if user is within IP range
+  withinIpRange: boolean;
 
   // the authentication token
   authToken?: AuthTokenInfo;
@@ -68,6 +72,7 @@ export interface AuthState {
  */
 const initialState: AuthState = {
   authenticated: false,
+  withinIpRange: false,
   loaded: false,
   blocking: true,
   loading: false,
@@ -102,6 +107,7 @@ export function authReducer(state: any = initialState, action: AuthActions): Aut
     case AuthActionTypes.AUTHENTICATED_ERROR:
     case AuthActionTypes.RETRIEVE_AUTHENTICATED_EPERSON_ERROR:
       return Object.assign({}, state, {
+        withinIpRange: false,
         authenticated: false,
         authToken: undefined,
         error: (action as AuthenticationErrorAction).payload.message,
@@ -246,6 +252,20 @@ export function authReducer(state: any = initialState, action: AuthActions): Aut
     case AuthActionTypes.UNSET_USER_AS_IDLE:
       return Object.assign({}, state, {
         idle: false,
+      });
+
+    //case RequestActionTypes.CONFIGURE:
+    //  console.log('AuthAtionType.STATUS, state and action:', state, action);
+
+    case AuthActionTypes.SET_WITHIN_IP_RANGE:
+      console.log('AuthAtionType.SET_WITHIN_IP_RANGE, state and action:', state, action);
+      return Object.assign({}, state, {
+        withinIpRange: true,
+        authenticated: false,
+        authToken: undefined,
+        loaded: true,
+        blocking: false,
+        loading: false
       });
 
     default:
