@@ -82,8 +82,6 @@ export class DynamicFiltersComponent {
     let filterArray:any = [];
     var filterInfo = '';
     for (const filter of filters) {
-      console.log("start of for" + filterInfo);
-      console.log(`${filter.filtertype}:${filter.relationalOperator}:${filter.filter}`)
       switch (filter.relationalOperator) {
         case 'contains':
           filterInfo = `${filter.filtertype}:*${filter.filter}*`;
@@ -91,26 +89,21 @@ export class DynamicFiltersComponent {
         case 'equals':
           filterInfo = `${filter.filtertype}:${filter.filter}`;
           break;
-        case 'authority':
-          filterInfo = `${filter.filtertype}:${filter.filter}`;
-          break;
         case 'notcontains':
-          filterInfo = `${filter.filtertype}:!*${filter.filter}*`;
+          filterInfo = `-${filter.filtertype}:*${filter.filter}*`;
           break;
-        case 'notequal':
-          filterInfo = `${filter.filtertype}:!${filter.filter}`;
+        case 'notequals':
+          filterInfo = `-${filter.filtertype}:${filter.filter}`;
           break;
-        case
-        'notauthority':
-          filterInfo = `${filter.filtertype}:!${filter.filter}`;
+        default:
+          filterInfo = `*:*`;
           break;
       //const filterInfo = `${filter.filtertype}_${filter.relationalOperator}_${filter.filter}`;
       //filterInfoAll += filterInfo + '&&';
       }
       filterArray.push(filterInfo);
-      console.log("end of for" + filterInfo);
     }
-    let filterAll = filterArray.join('&&')
+    let filterAll = filterArray.join(' AND ')
     console.log(filterAll);
     this.filteredData = this.filterData(filters);
     this.output = filterAll;
