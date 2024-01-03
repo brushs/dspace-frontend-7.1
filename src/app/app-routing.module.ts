@@ -200,7 +200,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
               breadcrumbOptions: {
                 addBreadcrumbElements: [
                   {
-                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/community-list'),
                     position: 0
                   }
                 ]
@@ -216,7 +216,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
               breadcrumbOptions: {
                 addBreadcrumbElements: [
                   {
-                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/community-list'),
                     position: 0
                   }
                 ]
@@ -231,7 +231,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
               breadcrumbOptions: {
                 addBreadcrumbElements: [
                   {
-                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/community-list'),
                     position: 0
                   },
                 ]

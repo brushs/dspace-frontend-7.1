@@ -97,6 +97,12 @@ export class BreadcrumbsComponent {
           queryParamsObject['spc.sd'] = 'DESC';
           queryParamsObject['spc.page'] = '1';
         }
+
+        if (url.indexOf('community-list') > -1 ) {
+          queryParamsObject['spc.sf'] = 'score';
+          queryParamsObject['spc.sd'] = 'DESC';
+          queryParamsObject['spc.page'] = '1';
+        }
        return queryParamsObject;
       }
     }
