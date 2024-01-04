@@ -142,6 +142,9 @@ export class MySearchComponent implements OnInit {
   appliedFilters: Observable<Params>;
   mainSearchValue :string;
 
+  isMapVisible: boolean = false; // Initially hidden
+  showHideMapnLabel: string = "Show Map";
+
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
@@ -161,6 +164,7 @@ export class MySearchComponent implements OnInit {
    * If something changes, update the list of scopes for the dropdown
    */
   ngOnInit(): void {
+    console.log("my-search.component.ts: ngOnInit");
     // this.router = AppInjector.get(Router);
     this.isSidebarCollapsed$ = this.isSidebarCollapsed();
     this.searchLink = this.getSearchLink();
@@ -171,7 +175,7 @@ export class MySearchComponent implements OnInit {
     }
     /* End of FOSRC Changes */
     this.searchOptions$ = this.getSearchOptions();
-console.log("this.searchOptions$ = " + this.searchOptions$);
+    console.log("this.searchOptions$ = " + this.searchOptions$);
     var geoquery = '';
     var realSearchTerm = '';
     this.sub = this.searchOptions$.pipe(
@@ -332,4 +336,13 @@ console.log("this.searchOptions$ = " + this.searchOptions$);
       this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
     }
 
+    toggleMapVisibility(): void {
+      this.isMapVisible = !this.isMapVisible;
+      if (this.isMapVisible) {
+        this.showHideMapnLabel = "Hide Map";
+      }else {
+        this.showHideMapnLabel = "Show Map";
+      }
+    }
 }
+

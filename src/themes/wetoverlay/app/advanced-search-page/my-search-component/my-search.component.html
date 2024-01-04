@@ -18,33 +18,34 @@
           <app-dynamic-filters></app-dynamic-filters>
     </div>
 
+    <div class="col-md-12">
+          <h3 (click)="toggleMapVisibility()">{{showHideMapnLabel}}</h3>
+    </div>
     <!-- Geo spatial -->
-    <div class="row">
-        <div class="col-12">
+        <div class="col-md-12" *ngIf="isMapVisible">
         <geo-search-page (geoChangeEvent) = "onGeoChanged($event)"></geo-search-page>
         </div>
 
 
-          <div class="col-2 mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
-              <div class="col-md-12 p-0 ">
-                  <!--<h2>{{ 'home.search-form.head' | translate }}</h2> -->
-                  <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
-                  <div class="input-group">
-                          <!-- <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />-->
-                          <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control d-none" [value]="mainSearchValue" id="main-searchrepository" />
-                          <span class="input-group-btn">
-                              <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button">
-                                  <span class="button-text"><i class="fa fa-search mrgn-rght-sm"></i>
-                                       {{ 'search.form.search' | translate }}
-                                  </span>
-                                <!-- <span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}
-                                </span> -->
-                              </button>
-                          </span>
-                      </div>
-              </div>
-          </div>
-    </div>
+        <div class="col-2 mrgn-bttm-lg mrgn-lft-sm mrgn-rght-sm">
+            <div class="col-md-12 p-0 ">
+                <!--<h2>{{ 'home.search-form.head' | translate }}</h2> -->
+                <label class="wb-inv" for="main-searchrepository">{{ 'home.search-form.head' | translate }}</label>
+                <div class="input-group">
+                        <!-- <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control" [value]="mainSearchValue" id="main-searchrepository" />-->
+                        <input (keydown.enter)="applyQuery(repositorySearch.value)" #repositorySearch type="text" class="form-control d-none" [value]="mainSearchValue" id="main-searchrepository" />
+                        <span class="input-group-btn">
+                            <button (keydown.enter)="applyQuery(repositorySearch.value)" (keydown.space)="applyQuery(repositorySearch.value)" (click)="applyQuery(repositorySearch.value)" class="btn btn-primary" value="submit" type="button">
+                                <span class="button-text"><i class="fa fa-search mrgn-rght-sm"></i>
+                                     {{ 'search.form.search' | translate }}
+                                </span>
+                              <!-- <span class="wb-inv">{{ 'home.search-form.placeholder' | translate }}
+                              </span> -->
+                            </button>
+                        </span>
+                </div>
+            </div>
+        </div>
 
     <hr class="solid">
     <br/>
