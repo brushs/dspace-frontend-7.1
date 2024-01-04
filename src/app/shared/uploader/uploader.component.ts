@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation, } from '@angular/core';
+import { 
+  ChangeDetectionStrategy, 
+  ChangeDetectorRef, 
+  Component, 
+  EventEmitter, 
+  HostListener, 
+  Input, 
+  Output, 
+  ViewEncapsulation, 
+  Renderer2,
+  Inject
+} from '@angular/core';
 
 import { of as observableOf } from 'rxjs';
 import { FileUploader } from 'ng2-file-upload';
@@ -12,6 +23,7 @@ import { UploaderProperties } from './uploader-properties.model';
 import { HttpXsrfTokenExtractor } from '@angular/common/http';
 import { XSRF_COOKIE, XSRF_REQUEST_HEADER, XSRF_RESPONSE_HEADER } from '../../core/xsrf/xsrf.interceptor';
 import { CookieService } from '../../core/services/cookie.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'ds-uploader',
@@ -80,14 +92,42 @@ export class UploaderComponent {
       // Show drop area on the page
       event.preventDefault();
       if ((event.target as any).tagName !== 'HTML') {
+        //setting the z-indexes for several elements so that the upload prompt overlay
+        // appears correctly over the page
+        this.renderer2.setStyle(this.document.querySelector("div.submission-form-header"), "z-index", "2000");
+        this.renderer2.setStyle(this.document.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "0");
+        this.renderer2.setStyle(this.document.querySelector("#wb-info"), "z-index", "0");
+        this.cdr.detectChanges();
         this.isOverDocumentDropZone = observableOf(true);
       }
     }
   }
 
-  constructor(private cdr: ChangeDetectorRef, private scrollToService: ScrollToService,
-    private uploaderService: UploaderService, private tokenExtractor: HttpXsrfTokenExtractor,
-    private cookieService: CookieService) {
+  @HostListener('window:dragleave', ['$event'])
+  onDragLeave(event: any) {
+
+    if (this.enableDragOverDocument && this.uploaderService.isAllowedDragOverPage()) {
+      // Show drop area on the page
+      event.preventDefault();
+      if(event.clientX === 0 && event.clientY === 0){
+        //reset z-indexes for certain elements
+        this.resetZIndexes();
+        this.cdr.detectChanges();
+        this.isOverDocumentDropZone = observableOf(false);
+      }
+
+    }
+  }
+
+  constructor(
+    private cdr: ChangeDetectorRef, 
+    private scrollToService: ScrollToService,
+    private uploaderService: UploaderService, 
+    private tokenExtractor: HttpXsrfTokenExtractor,
+    private cookieService: CookieService,
+    private renderer2: Renderer2,
+    @Inject(DOCUMENT) private document: any,
+    ) {
   }
 
   /**
@@ -132,6 +172,8 @@ export class UploaderComponent {
       // Ensure the current XSRF token is included in every upload request (token may change between items uploaded)
       this.uploader.options.headers = [{ name: XSRF_REQUEST_HEADER, value: this.tokenExtractor.getToken() }];
       this.onBeforeUpload();
+      //reset z-indexes for certain elements
+      this.resetZIndexes();
       this.isOverDocumentDropZone = observableOf(false);
     };
     if (hasValue(this.uploadProperties)) {
@@ -219,6 +261,15 @@ export class UploaderComponent {
     // which we will send back in the X-XSRF-TOKEN header per Angular best practices.
     this.cookieService.remove(XSRF_COOKIE);
     this.cookieService.set(XSRF_COOKIE, token);
+  }
+
+  /**
+   * Method to reset z-index values for several elements
+   */
+  private resetZIndexes(){
+    this.renderer2.setStyle(this.document.querySelector("div.submission-form-header"), "z-index", "auto");
+    this.renderer2.setStyle(this.document.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "10");
+    this.renderer2.setStyle(this.document.querySelector("#wb-info"), "z-index", "5");
   }
 
 }
