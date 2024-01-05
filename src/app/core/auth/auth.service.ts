@@ -132,6 +132,13 @@ export class AuthService {
     return this.authRequestService.getRequest('status', options).pipe(
       map((rd: RemoteData<AuthStatus>) => {
         console.log('**** checkAuthenticationCookie:', rd.payload);
+        // remove duplicated authMethods that the 'authMethodType' field is the same
+        const authMethods = rd.payload.authMethods.filter((authMethod, index, self) =>
+          index === self.findIndex((t) => (
+            t.authMethodType === authMethod.authMethodType
+          ))
+        );
+        rd.payload.authMethods = authMethods;
         return Object.assign(new AuthStatus(), rd.payload);}
         )
     );
