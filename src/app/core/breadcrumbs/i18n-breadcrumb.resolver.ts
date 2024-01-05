@@ -26,7 +26,10 @@ export class I18nBreadcrumbResolver implements Resolve<BreadcrumbConfig<string>>
     if (hasNoValue(key)) {
       throw new Error('You provided an i18nBreadcrumbResolver for url \"' + route.url + '\" but no breadcrumbKey in the route\'s data');
     }
-    const fullPath = currentPathFromSnapshot(route);
+    let fullPath = currentPathFromSnapshot(route);
+    if (fullPath === '/communities') {
+      fullPath = '/community-list';
+   }
     return { provider: this.breadcrumbService, key: key, url: fullPath };
   }
 }
