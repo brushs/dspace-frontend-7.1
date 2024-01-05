@@ -174,10 +174,13 @@ export class MySearchComponent implements OnInit {
       this.adminSearch = true;
     }
     /* End of FOSRC Changes */
+    this.doSearch();
+    this.getQueryParam();
+  }
+
+  private doSearch() {
     this.searchOptions$ = this.getSearchOptions();
     console.log("this.searchOptions$ = " + this.searchOptions$);
-    var geoquery = '';
-    var realSearchTerm = '';
     this.sub = this.searchOptions$.pipe(
       map((options) => {
 
@@ -189,15 +192,16 @@ export class MySearchComponent implements OnInit {
         console.log('retrieve geo data');
         var geoquery = this.getGeoData();
         //if (options.geoQuery != undefined )
-        if (geoquery != '')
-        {
+        if (geoquery != '') {
           var query = options.query;
           if (options.query == '')
             optionsCopy.query = geoquery;
+
           else
-            optionsCopy.query =  geoquery + ' ' + options.query;
+            optionsCopy.query = geoquery + ' ' + options.query;
 
         }
+
         else
           optionsCopy.query = options.query;
         //var [lat1,lng1,lat2,lng2] = geodata.split(',');
@@ -208,13 +212,13 @@ export class MySearchComponent implements OnInit {
 
 
       switchMap((optionsCopy) => this.service.search(
-          //options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
-          optionsCopy, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
-        ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
+        //options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
+        optionsCopy, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
+      ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
       )
     ).subscribe((results) => {
-        this.resultsRD$.next(results);
-      });
+      this.resultsRD$.next(results);
+    });
     this.scopeListRD$ = this.searchConfigService.getCurrentScope('').pipe(
       switchMap((scopeId) => this.service.getScopes(scopeId))
     );
@@ -232,7 +236,13 @@ export class MySearchComponent implements OnInit {
 
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
 
-    this.routeService.getQueryParameterValue("query").subscribe(query =>{
+    //this.getQueryParam();
+  }
+
+  private getQueryParam() {
+    this.routeService.getQueryParameterValue("query").subscribe(query => {
+      if (query === undefined)
+        query = null;
       this.mainSearchValue = query;
     });
   }
@@ -286,7 +296,7 @@ export class MySearchComponent implements OnInit {
     geoquery  = this.getGeoData();
 
     var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
-    // oldValue.geoQuery = geoquery;
+    oldValue.geoQuery = geoquery;
     this.searchConfigService.paginatedSearchOptions.next(oldValue);
 
   }
@@ -333,7 +343,8 @@ export class MySearchComponent implements OnInit {
     applyQuery(term) {
       this.dynamicFiltersComponent.printFormValues();
       console.log(this.route)
-      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
+      this.doSearch();
+      //this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
     }
 
     toggleMapVisibility(): void {
