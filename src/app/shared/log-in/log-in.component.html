@@ -26,7 +26,7 @@
 
     <p [innerHTML]="'sign.in.info.text' | translate"></p>
     <ng-container *ngFor="let authMethod of (authMethods | async); let i = index">
-      <div *ngIf="i === 1 || enablePassword">
+      <div *ngIf="authMethod?.authMethodType != 'password' || enablePassword">
       <ds-log-in-container [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
       </div>
     </ng-container>

@@ -6,9 +6,10 @@ import {
   Observable,
   of as observableOf,
   queueScheduler,
-  timer
+  timer,
+  from
 } from 'rxjs';
-import { catchError, filter, map, observeOn, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, concatMap, filter, map, observeOn, switchMap, take, tap } from 'rxjs/operators';
 // import @ngrx
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, select, Store } from '@ngrx/store';
@@ -161,13 +162,13 @@ export class AuthEffects {
     ofType(AuthActionTypes.CHECK_AUTHENTICATION_TOKEN_COOKIE),
     switchMap(() => {
       return this.authService.checkAuthenticationCookie().pipe(
-        map((response: AuthStatus) => {
+        concatMap((response: AuthStatus) => {
           if (response.authenticated) {
-            return new RetrieveTokenAction();
+            return from([new RetrieveTokenAction()]);
           } else if (response.withinIpRange) {
-            return new SetWithinIpRangeAction();
+            return from([new SetWithinIpRangeAction(), new RetrieveAuthMethodsAction(response)]);
           }else {
-            return new RetrieveAuthMethodsAction(response);
+            return from([new RetrieveAuthMethodsAction(response)]);
           }
         }),
         catchError((error) => observableOf(new AuthenticatedErrorAction(error)))
