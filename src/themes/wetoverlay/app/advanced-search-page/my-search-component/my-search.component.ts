@@ -144,6 +144,7 @@ export class MySearchComponent implements OnInit {
 
   isMapVisible: boolean = false; // Initially hidden
   showHideMapnLabel: string = "Show Map";
+  isResultsVisible: boolean = false; // Initially hidden
 
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
@@ -174,8 +175,8 @@ export class MySearchComponent implements OnInit {
       this.adminSearch = true;
     }
     /* End of FOSRC Changes */
-    this.doSearch();
-    this.getQueryParam();
+    //this.doSearch();
+    //this.getQueryParam();
   }
 
   private doSearch() {
@@ -236,7 +237,8 @@ export class MySearchComponent implements OnInit {
 
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
 
-    //this.getQueryParam();
+    this.getQueryParam();
+    this.isResultsVisible = true;
   }
 
   private getQueryParam() {
