@@ -49,7 +49,7 @@
 
     <hr class="solid">
     <br/>
-    <div gcweb class="row">
+    <div gcweb class="row" *ngIf="isResultsVisible">
 
         <!--
         <ds-comcol-search-filter *ngIf="searchEnabled && (searchOptions$ | async)?.query"
