@@ -40,6 +40,9 @@ export class DynamicFiltersComponent {
   }
 
   removeRow(index: number) {
+    if (this.rows.length === 1) {
+      return;
+    }
     this.rows.removeAt(index);
   }
 
@@ -73,8 +76,11 @@ export class DynamicFiltersComponent {
   }
 
   resetFilters() {
-    this.form.reset();
-    this.filteredData = this.mockData;
+    //this.form.reset();
+    //this.filteredData = this.mockData;
+    for (let i = this.rows.length - 1; i > 0; i--) {
+      this.rows.removeAt(i);
+    }
   }
 
   printFormValues() {
