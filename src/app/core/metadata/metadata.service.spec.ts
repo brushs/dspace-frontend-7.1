@@ -23,6 +23,7 @@ import { DSONameService } from '../breadcrumbs/dso-name.service';
 import { HardRedirectService } from '../services/hard-redirect.service';
 import { getMockStore } from '@ngrx/store/testing';
 import { AddMetaTagAction, ClearMetaTagAction } from './meta-tag.actions';
+import { LocaleService } from '../locale/locale.service';
 
 describe('MetadataService', () => {
   let metadataService: MetadataService;
@@ -38,12 +39,19 @@ describe('MetadataService', () => {
   let rootService: RootDataService;
   let translateService: TranslateService;
   let hardRedirectService: HardRedirectService;
+  let localeService: LocaleService;
 
   let router: Router;
   let store;
 
   const initialState = { 'core': { metaTag: { tagsInUse: ['title', 'description'] }}};
 
+    
+  function getMockLocaleService(): LocaleService {
+    return jasmine.createSpyObj('LocaleService', {
+      setCurrentLanguageCode: jasmine.createSpy('setCurrentLanguageCode')
+    });
+  }
 
   beforeEach(() => {
     rootService = jasmine.createSpyObj({
@@ -77,6 +85,9 @@ describe('MetadataService', () => {
       getCurrentOrigin: 'https://request.org',
     });
 
+    localeService = getMockLocaleService();
+
+
     // @ts-ignore
     store = getMockStore({ initialState });
     spyOn(store, 'dispatch');
@@ -92,7 +103,8 @@ describe('MetadataService', () => {
       undefined,
       rootService,
       store,
-      hardRedirectService
+      hardRedirectService,
+      localeService
     );
   });
 

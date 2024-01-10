@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Input, Output } from '@angular/core';
 import { SearchFilter } from './comcol-search-filter.model';
 import { isNotEmpty } from '../empty.util';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { SearchService } from '../../core/shared/search/search.service';
 import { currentPath } from '../utils/route.utils';
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { SearchConfigurationService } from '../../core/shared/search/search-configuration.service';
+import { filter} from 'rxjs/operators';
+import { hasValue } from '../../shared/empty.util';
 
 @Component({
   selector: 'ds-comcol-search-filter',
@@ -48,6 +50,11 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
    */
   @Output() submitSearch = new EventEmitter<any>();
 
+  /**
+    * Subscription for when a NavigationEnd event occurs
+    */
+  navigationEndSubscription;
+
   constructor(
     private router: Router, 
     private searchService: SearchService,
@@ -57,6 +64,29 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    
+    this.initializeSearchFilters();
+
+    //Fix OSPR issue 264: keep the page in search result when changing language.
+    //if the query is not undefined AND not empty, OR the current URL includes the
+    // "query" parameter
+    if((typeof this.query !== 'undefined' && isNotEmpty(this.query)) || this.router.url.includes("query=")){
+
+      this.submitSearch.emit({query: this.query});
+    }
+    // if(isNotEmpty(this.scope)) {
+    //   this.onScopeChange(this.scope);
+    // }
+
+    this.navigationEndSubscription = this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: NavigationEnd) => {
+      this.initializeSearchFilters();
+    });
+
+  }
+
+  initializeSearchFilters(){
     this.searchFilters = [];
 
     const titleFilterQueryParam: string = this.route.snapshot.queryParamMap.get('f.title');
@@ -94,15 +124,6 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
     if(this.searchFilters.length == 0){
       this.searchFilters.push(new SearchFilter("", "", ""));
     };
-
-    //Fix OSPR issue 264: keep the page in search result when changing language.
-    if(typeof this.query !== 'undefined' && isNotEmpty(this.query)){
-      this.submitSearch.emit({query: this.query});
-    }
-    if(isNotEmpty(this.scope)) {
-      this.onScopeChange(this.scope);
-    }
-
   }
 
   addFilter(){
@@ -205,7 +226,7 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
     queryParametersToRemoveKeys.forEach((queryParamKey) => {
       queryParametersToRemove[queryParamKey] = [];
     });
-    const queryParams =  Object.assign({}, {"query": this.query, "scope": this.scope, ...generatedQueryParamsKeys, ...queryParametersToRemove});
+    const queryParams =  Object.assign({}, {"query": this.query, "scope": this.scope, ...generatedQueryParams, ...queryParametersToRemove});
     const pageParam = this.paginationService.getPageParam(this.searchConfig.paginationID);
     queryParams[pageParam] = 1;
 
@@ -250,6 +271,9 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
    * Unsubscribe from all subscriptions
    */
   ngOnDestroy(): void {
+    if (hasValue(this.navigationEndSubscription)) {
+      this.navigationEndSubscription.unsubscribe();
+    }
   }
 
 }

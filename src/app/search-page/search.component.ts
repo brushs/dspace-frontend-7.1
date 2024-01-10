@@ -8,7 +8,7 @@ import { pushInOut } from '../shared/animations/push';
 import { HostWindowService } from '../shared/host-window.service';
 import { SidebarService } from '../shared/sidebar/sidebar.service';
 import { hasNoValue, hasValue, isEmpty, isNotEmpty } from '../shared/empty.util';
-import { getFirstSucceededRemoteData } from '../core/shared/operators';
+import { getFirstCompletedRemoteData, getFirstSucceededRemoteData } from '../core/shared/operators';
 import { RouteService } from '../core/services/route.service';
 import { SEARCH_CONFIG_SERVICE } from '../my-dspace-page/my-dspace-page.component';
 import { PaginatedSearchOptions } from '../shared/search/paginated-search-options.model';
@@ -164,7 +164,7 @@ export class SearchComponent implements OnInit {
     this.sub = this.searchOptions$.pipe(
       switchMap((options) => this.service.search(
           options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
-        ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
+        ).pipe(getFirstCompletedRemoteData())
       )
     ).subscribe((results) => {
         this.resultsRD$.next(results);
@@ -258,8 +258,10 @@ export class SearchComponent implements OnInit {
 
 
     applyQuery(term) {
-      console.log(this.route)
-      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
+      const queryParams =  {query: term};
+      const pageParam = this.paginationService.getPageParam(this.searchConfigService.paginationID);
+      queryParams[pageParam] = 1;
+      this.router.navigate(['.'], { relativeTo: this.route, queryParams: queryParams, queryParamsHandling: 'merge'});
     }
 
 }

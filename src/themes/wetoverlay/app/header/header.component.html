@@ -7,6 +7,12 @@
         <li class="wb-slc">
             <a class="wb-sl" href="#wb-info" (keydown.space)="$event.preventDefault();scrollToAbout();" (keydown.enter)="$event.preventDefault();scrollToAbout();" (click)="$event.preventDefault();scrollToAbout();">{{ 'header.skiptolinks.aboutgc' | translate }}</a>
         </li>
+        <li *ngIf="checkIfPathInUrlExists('/search')" class="wb-slc">
+            <a class="wb-sl" href="#search-repository" (keydown.space)="$event.preventDefault();scrollToSearchRepository();" (keydown.enter)="$event.preventDefault();scrollToSearchRepository();" (click)="$event.preventDefault();scrollToSearchRepository();">{{'search.form.skiptolinks.repository' | translate}}</a>
+        </li>
+        <li *ngIf="checkIfPathInUrlExists('/search')" class="wb-slc">
+            <a class="wb-sl" href="#search-results" (keydown.space)="$event.preventDefault();scrollToSearchResults();" (keydown.enter)="$event.preventDefault();scrollToSearchResults();" (click)="$event.preventDefault();scrollToSearchResults();">{{'search.form.skiptolinks.results' | translate}}</a>
+        </li>
     </ul>
 </nav>
 <!--Header Start section -->
@@ -14,7 +20,7 @@
     <ng-container *ngIf="translate.currentLang === 'en' ">
         <div id="wb-bnr" class="container gcweb">
             <div class="row gcweb">
-                <section ds-lang-switch id="wb-lng" class="gcweb col-xs-3 col-sm-12 pull-right text-right">
+                <section gcweb ds-lang-switch id="wb-lng" class="gcweb col-xs-3 col-sm-12 pull-right text-right">
                 </section>
                 <div class="gcweb brand col-xs-9 col-sm-5 col-md-4" property="publisher" resource="#wb-publisher"
                     typeof="GovernmentOrganization">
@@ -52,7 +58,7 @@
     <ng-container *ngIf="translate.currentLang === 'fr'">
         <div id="wb-bnr" class="container gcweb">
             <div class="row gcweb">
-                <section ds-lang-switch id="wb-lng" class="gcweb col-xs-3 col-sm-12 pull-right text-right"></section>
+                <section gcweb ds-lang-switch id="wb-lng" class="gcweb col-xs-3 col-sm-12 pull-right text-right"></section>
                 <div class="brand col-xs-9 col-sm-5 col-md-4 gcweb" property="publisher" resource="#wb-publisher"
                     typeof="GovernmentOrganization">
                     <a href="https://www.canada.ca/fr.html" property="url"><img
@@ -90,7 +96,7 @@
     <ng-container *ngIf="translate.currentLang === 'en' ">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <!-- <div class="col-md-8">
                     <nav class="gcweb-menu" typeof="SiteNavigationElement">
                         <h2 class="wb-inv">Menu</h2>
                         <button type="button" aria-haspopup="true" aria-expanded="false"><span class="wb-inv">Main
@@ -142,8 +148,8 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
-                <div class="pr-md-0 col-xs-offset-6 col-xs-6 col-sm-7 col-md-offset-0 col-md-6 col-lg-offset-0 col-lg-4">
+                </div> -->
+                <div class="pr-md-0 col d-flex justify-content-end">
                     <section id="wb-so" ds-auth-nav-menu></section>
                 </div>
 
@@ -153,7 +159,7 @@
     <ng-container *ngIf="translate.currentLang === 'fr' ">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <!-- <div class="col-md-8">
                     <nav class="gcweb-menu" typeof="SiteNavigationElement">
                         <h2 class="wb-inv">Menu</h2>
                         <button type="button" aria-haspopup="true" aria-expanded="false"><span
@@ -202,8 +208,8 @@
                                     href="https://www.canada.ca/fr/services/science.html">Science et innovation</a></li>
                         </ul>
                     </nav>
-                </div>
-                <div class="pr-md-0 col-xs-offset-6 col-xs-6 col-sm-7 col-md-offset-0 col-md-6 col-lg-offset-0 col-lg-4">
+                </div> -->
+                <div class="pr-md-0 col d-flex justify-content-end">
                     <section ds-auth-nav-menu id="wb-so"></section>
                 </div>
             </div>

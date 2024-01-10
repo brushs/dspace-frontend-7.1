@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TranslateLoaderMock } from '../../../../../shared/testing/translate-loader.mock';
 import { MetadataValuesComponent } from '../../../../field-components/metadata-values/metadata-values.component';
 import { mockItemWithMetadataFieldAndValue } from '../item-page-field.component.spec';
-import { ItemPageDateFieldComponent } from './item-page-date-field.component';
+import { ItemPageDateFieldComponent } from '../date/item-page-date-field.component';
 
 let comp: ItemPageDateFieldComponent;
 let fixture: ComponentFixture<ItemPageDateFieldComponent>;

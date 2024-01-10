@@ -15,7 +15,8 @@ module.exports = function (config) {
     ],
     client: {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
-      captureConsole: false
+      captureConsole: false,
+      usePolling: true,
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './coverage/dspace-angular'),
@@ -27,11 +28,16 @@ module.exports = function (config) {
       ignoreSkipped: true,
       output: 'autowatch'
     },
+    files: [
+        // Excluding  the all image files
+        { pattern: 'src/assets/images/**/*.+(svg|png|jpg|jpeg|gif)', watched: false, included: false, served: true },
+
+    ],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     singleRun: false,
     restartOnFileChange: true
   });

@@ -9,6 +9,7 @@ import { SubmissionJsonPatchOperationsService } from './submission-json-patch-op
 import { RequestService } from '../data/request.service';
 import { SubmissionPatchRequest } from '../data/request.models';
 import { RemoteDataBuildService } from '../cache/builders/remote-data-build.service';
+import { TranslationJsonService } from '../services/translation-json.service';
 
 describe('SubmissionJsonPatchOperationsService', () => {
   let scheduler: TestScheduler;
@@ -17,13 +18,15 @@ describe('SubmissionJsonPatchOperationsService', () => {
   const store = {} as Store<CoreState>;
   const rdbService = {} as RemoteDataBuildService;
   const halEndpointService = {} as HALEndpointService;
+  const translationJsonService = {} as TranslationJsonService;
 
   function initTestService() {
     return new SubmissionJsonPatchOperationsService(
       requestService,
       store,
       rdbService,
-      halEndpointService
+      halEndpointService,
+      translationJsonService
     );
   }
 

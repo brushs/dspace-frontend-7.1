@@ -1,9 +1,9 @@
-<div class="container-fluid mb-2" *ngVar="(itemTemplateRD$ | async) as itemTemplateRD">
+<div customFosrc class="container-fluid mb-2" *ngVar="(itemTemplateRD$ | async) as itemTemplateRD">
   <label>{{ 'collection.edit.template.label' | translate}}</label>
   <div class="button-row">
     <button *ngIf="!itemTemplateRD?.payload" class="btn btn-success" (click)="addItemTemplate()">
       <span aria-hidden="true" class="fas fa-plus"></span>
-      <span class="wb-inv">{{"collection.edit.template.add-button" | translate}</span>
+      <span class="wb-inv">{{"collection.edit.template.add-button" | translate}}</span>
       <span class="d-none d-sm-inline">&nbsp;{{"collection.edit.template.add-button" | translate}}</span>
     </button>
     <button *ngIf="itemTemplateRD?.payload" class="btn btn-danger" (click)="deleteItemTemplate()">

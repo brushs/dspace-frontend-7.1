@@ -9,13 +9,14 @@ import { cold, getTestScheduler, hot } from 'jasmine-marbles';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SubmissionServiceStub } from '../../../shared/testing/submission-service.stub';
-import { mockSubmissionId } from '../../../shared/mocks/submission.mock';
-import { SubmissionService } from '../../submission.service';
-import { SubmissionRestServiceStub } from '../../../shared/testing/submission-rest-service.stub';
+import { SubmissionServiceStub } from '../../../../../../app/shared/testing/submission-service.stub';
+import { mockSubmissionId } from '../../../../../../app/shared/mocks/submission.mock';
+
+import { SubmissionService } from '../../../../../../app/submission/submission.service';
+import { SubmissionRestServiceStub } from '../../../../../../app/shared/testing/submission-rest-service.stub';
 import { SubmissionFormFooterComponent } from './submission-form-footer.component';
-import { SubmissionRestService } from '../../../core/submission/submission-rest.service';
-import { createTestComponent } from '../../../shared/testing/utils.test';
+import { SubmissionRestService } from '../../../../../../app/core/submission/submission-rest.service';
+import { createTestComponent } from '../../../../../../app/shared/testing/utils.test';
 
 describe('SubmissionFormFooterComponent Component', () => {
 

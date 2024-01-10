@@ -1,6 +1,6 @@
 <div *ngIf="!useGcWeb else GCWebTemplate">
   <div class="filters py-2">
-        <form #form="ngForm" (ngSubmit)="onSubmit()" class="add-filter row"
+        <form #form="ngForm" (ngSubmit)="validateAndSubmit()" class="add-filter row"
               [action]="currentUrl">
             <div class="col-6 form-group mb-0">
                 <label>
@@ -8,7 +8,7 @@
                     {{'search.filters.filter.' + filterConfig.name + '.min.label' | translate}}
                   </span>
                   <input type="text" [(ngModel)]="range[0]" [name]="filterConfig.paramName + '.min'"
-                         class="form-control" (blur)="onSubmit()"
+                         class="form-control" (blur)="validateAndSubmit()"
                          aria-label="Mininum value"
                          [placeholder]="'search.filters.filter.' + filterConfig.name + '.min.placeholder' | translate"
                   />
@@ -20,7 +20,7 @@
                       {{'search.filters.filter.' + filterConfig.name + '.max.label' | translate}}
                     </span>
                     <input type="text" [(ngModel)]="range[1]" [name]="filterConfig.paramName + '.max'"
-                           class="form-control" (blur)="onSubmit()"
+                           class="form-control" (blur)="validateAndSubmit()"
                            aria-label="Maximum value"
                            [placeholder]="'search.filters.filter.' + filterConfig.name + '.max.placeholder' | translate"
                     />
@@ -59,21 +59,21 @@
           <div class="form-group col-sm-6 pull-left">
              <label for="startdate">
                 {{'search.filters.filter.start' | translate}} 
-                <p *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
-                <p *ngIf="startDateRangeError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalidRange' | translate }}</span></p> 
+                <p id="startDateErrorId" *ngIf="startDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p> 
+                <p id="startDateRangeErrorId"*ngIf="startDateRangeError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalidRange' | translate }}</span></p> 
                 <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
+             <input (keydown)="onKeyDown($event)" (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
                 [(ngModel)]="range[0]" pattern="[0-9]{4}" [max]="range[1] || null" [name]="filterConfig.paramName + '.min'"  
                 [attr.id]="'startdate'" class="form-control" type="text" />
           </div>
           <div class="form-group col-sm-6 pull-right">
              <label for="enddate">
               {{'search.filters.filter.end' | translate}} 
-              <p *ngIf="endDateError"><span class="text-danger" role="alert">{{  'search.filters.filter.dateInvalid' | translate }}</span></p>
+              <p id="endDateErrorId" *ngIf="endDateError"><span class="text-danger" role="alert">{{  endDateErrorText | translate }}</span></p>
               <span class="datepicker-format" [innerHTML]="'search.filters.filter.date.wet.format' | translate"></span>
              </label>
-             <input (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
+             <input (keydown)="onKeyDown($event)" (blur)="validateAndSubmit()" placeholder="{{'search.filters.filter.datePlaceholder' | translate}}"
               [(ngModel)]="range[1]" pattern="[0-9]{4}" [min]="range[0] || null" [name]="filterConfig.paramName + '.max'"
               class="form-control" [attr.id]="'enddate'" name="enddate" type="text" />
           </div>

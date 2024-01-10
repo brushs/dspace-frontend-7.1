@@ -119,7 +119,7 @@ export class SubmissionEditComponent implements OnDestroy, OnInit {
         if (submissionObjectRD.hasSucceeded) {
           if (isEmpty(submissionObjectRD.payload)) {
             this.notificationsService.info(null, this.translate.get('submission.general.cannot_submit'));
-            this.router.navigate(['/mydspace']);
+            this.router.navigate(['/myfosrc']);
           } else {
             const { errors } = submissionObjectRD.payload;
             this.submissionErrors = parseSectionErrors(errors);

@@ -13,7 +13,7 @@
 <ng-template #urlList>
   <ul class="list-unstyled" *ngIf="!renderInParagraph; else paragraphRender">
     <li *ngFor="let mdValue of item?.allMetadata(fields); let last=last;">
-        <a  [href]="domainAwareValue(mdValue.value)">
+        <a class="dont-break-out" [href]="domainAwareValue(mdValue.value)">
             {{ domainAwareValue(mdValue.value) }}<span *ngIf="!last" [innerHTML]="separator"></span>
           </a>
     </li>
@@ -22,7 +22,7 @@
 
 <ng-template #paragraphRender>
   <p *ngFor="let mdValue of item?.allMetadata(fields); let last=last;">
-    <a  [href]="domainAwareValue(mdValue.value)">
+    <a class="dont-break-out"  [href]="domainAwareValue(mdValue.value)">
       {{ domainAwareValue(mdValue.value) }}<span *ngIf="!last" [innerHTML]="separator"></span>
     </a>
   </p>

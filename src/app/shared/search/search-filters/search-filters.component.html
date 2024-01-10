@@ -20,7 +20,14 @@
     <ds-search-labels [inPlaceSearch]="inPlaceSearch" [useGcWeb]="true"></ds-search-labels>
     <ng-container *ngIf="(filters | async)?.hasSucceeded">
       <ng-container *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate; let first = first;">
-        <section class="panel panel-primary mrgn-tp-lg clearfix">
+        <section 
+          *ngIf="
+            (filter.name === 'subjectEn' && translate.currentLang === 'en')
+            || (filter.name === 'sujet' && translate.currentLang === 'fr')
+            || (filter.name !== 'subjectEn' && filter.name !== 'sujet')
+          " 
+          class="panel panel-primary mrgn-tp-lg clearfix"
+          >
           <header class="panel-heading">
             <h3 class="panel-title">
               <span class="fas fa-filter"></span>

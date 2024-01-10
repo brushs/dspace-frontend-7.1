@@ -51,7 +51,7 @@ describe('MyDSpacePageComponent', () => {
   const searchServiceStub = jasmine.createSpyObj('SearchService', {
     search: mockResults,
     getEndpoint: observableOf('discover/search/objects'),
-    getSearchLink: '/mydspace',
+    getSearchLink: '/myfosrc',
     getScopes: observableOf(['test-scope']),
     setServiceOptions: {},
     getSearchConfigurationFor: createSuccessfulRemoteDataObject$({ sortOptions: [sortOption]})

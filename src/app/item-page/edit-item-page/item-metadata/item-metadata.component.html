@@ -1,5 +1,5 @@
 <!--the OSPR changes shown here have been implemented at both the theme and the app level-->
-<div class="item-metadata">
+<div customFosrc class="item-metadata">
   <div class="button-row top d-flex mb-2">
     <button class="mr-auto btn btn-success"
             (click)="add()">
@@ -28,7 +28,7 @@
     </button>
     <!--OSPR fix ends here-->
   </div>
-  <table class="table table-responsive table-striped table-bordered" *ngIf="((updates$ | async)| dsObjectValues).length > 0">
+  <table class="table table-responsive table-striped table-bordered item-metadata-table" *ngIf="((updates$ | async)| dsObjectValues).length > 0">
     <tbody>
       <tr>
         <th><span id="fieldName">{{'item.edit.metadata.headers.field' | translate}}</span></th>
@@ -38,8 +38,11 @@
       </tr>
       <tr *ngFor="let updateValue of ((updates$ | async)| dsObjectValues); trackBy: trackUpdate"
           ds-edit-in-place-field
-          [fieldUpdate]="updateValue || {}"
+          [fieldUpdate]="updateValue || {}" 
           [url]="url"
+          [metadataVocabularies$]="vocabularyMetadata$"
+          [languageEntries]="languageEntries$"
+          [languagesVocabularyKey]="languagesVocabularyKey"
           [ngClass]="{
                 'table-warning': updateValue.changeType === 0,
                 'table-danger': updateValue.changeType === 2,
@@ -51,7 +54,7 @@
   <div *ngIf="((updates$ | async)| dsObjectValues).length == 0">
     <ds-alert [content]="'item.edit.metadata.empty'" [type]="AlertTypeEnum.Info"></ds-alert>
   </div>
-  <div class="button-row bottom">
+  <div class="d-flex justify-content-end">
     <div class="mt-2 float-right">
       <button class="btn btn-warning" *ngIf="isReinstatable() | async"
               (click)="reinstate()">

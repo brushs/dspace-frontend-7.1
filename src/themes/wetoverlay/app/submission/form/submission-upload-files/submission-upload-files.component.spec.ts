@@ -5,7 +5,8 @@ import { of as observableOf } from 'rxjs';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 
-import { SubmissionServiceStub } from '../../../shared/testing/submission-service.stub';
+
+import { SubmissionServiceStub } from '../../../../../../app/shared/testing/submission-service.stub';
 import {
   mockSectionsData,
   mockSubmissionCollectionId,
@@ -14,21 +15,21 @@ import {
   mockUploadResponse1ParsedErrors,
   mockUploadResponse2Errors,
   mockUploadResponse2ParsedErrors
-} from '../../../shared/mocks/submission.mock';
-import { SubmissionService } from '../../submission.service';
+} from '../../../../../../app/shared/mocks/submission.mock';
+import { SubmissionService } from '../../../../../../app/submission/submission.service';
 
-import { SectionsServiceStub } from '../../../shared/testing/sections-service.stub';
-import { SectionsService } from '../../sections/sections.service';
+import { SectionsServiceStub } from '../../../../../../app/shared/testing/sections-service.stub';
+import { SectionsService } from '../../../../../../app/submission/sections/sections.service';
 import { SubmissionUploadFilesComponent } from './submission-upload-files.component';
-import { NotificationsService } from '../../../shared/notifications/notifications.service';
-import { NotificationsServiceStub } from '../../../shared/testing/notifications-service.stub';
-import { getMockTranslateService } from '../../../shared/mocks/translate.service.mock';
+import { NotificationsService } from '../../../../../../app/shared/notifications/notifications.service';
+import { NotificationsServiceStub } from '../../../../../../app/shared/testing/notifications-service.stub';
+import { getMockTranslateService } from '../../../../../../app/shared/mocks/translate.service.mock';
 import { cold, hot } from 'jasmine-marbles';
-import { SubmissionJsonPatchOperationsServiceStub } from '../../../shared/testing/submission-json-patch-operations-service.stub';
-import { SubmissionJsonPatchOperationsService } from '../../../core/submission/submission-json-patch-operations.service';
-import { SharedModule } from '../../../shared/shared.module';
-import { createTestComponent } from '../../../shared/testing/utils.test';
-import { UploaderOptions } from '../../../shared/uploader/uploader-options.model';
+import { SubmissionJsonPatchOperationsServiceStub } from '../../../../../../app/shared/testing/submission-json-patch-operations-service.stub';
+import { SubmissionJsonPatchOperationsService } from '../../../../../../app/core/submission/submission-json-patch-operations.service';
+import { SharedModule } from '../../../../../../app/shared/shared.module';
+import { createTestComponent } from '../../../../../../app/shared/testing/utils.test';
+import { UploaderOptions } from '../../../../../../app/shared/uploader/uploader-options.model';
 
 describe('SubmissionUploadFilesComponent Component', () => {
 

@@ -1,46 +1,55 @@
-
-<h2 class="comcol-browse-label">{{'browse.comcol.head' | translate}}</h2>
-<div gcweb>
-  <ul class="list-inline d-flex flex-wrap mrgn-bttm-0">
-    <li *ngFor="let option of allOptions" class="col-md-2 text-center">
-      <a 
-      (click)="onSelectChange(option.id)" 
-      (keypress.space)="onSelectChange(option.id)" 
-      (keypress.enter)="onSelectChange(option.id)" 
-      href="javascript::void(0)"  
-      class="btn btn-default list-group-item well h-100">{{ option.label | translate }}</a>
-    </li>
-  </ul>
-</div>
-
-
-<!-- <nav class="comcol-browse mb-4" aria-label="Browse Community or Collection">
-  <div gcweb class="d-none d-sm-block">
-    
-    <ul class="list-group list-group-horizontal">
-      <li *ngFor="let option of allOptions" class="list-group-item" routerLinkActive="active">
-      <a  [routerLink]="option.routerLink"
-         [queryParams]="option.params"
-         >{{ option.label | translate }}</a>
-        </li>
-    </ul>
-
-    <ul class="list-inline">
-      <li *ngFor="let option of allOptions" class="list-group-item well">
-        <a href="#" class="disabled">{{ option.label | translate }}</a>
+<!-- Community and collection page -->
+<ng-container *ngIf="!browsingbyMetadata">
+  <h2 class="comcol-browse-label">{{'browse.comcol.head' | translate}}</h2>
+  <div gcweb>
+    <ul class="list-inline d-flex flex-wrap mrgn-bttm-0">
+      <li class="col-md-2 text-center" *ngFor="let option of allOptions">
+        <!-- <a 
+          (click)="$event.preventDefault();onSelectChange(option.id)" 
+          (keypress.space)="$event.preventDefault();onSelectChange(option.id)" 
+          (keypress.enter)="$event.preventDefault();onSelectChange(option.id)" 
+          href="javascript::void(0)" 
+          class="btn btn-default list-group-item well h-100">
+          {{ option.label | translate }}
+        </a> -->
+        <a 
+          [routerLink]="getSelectedOptionById(option.id).routerLink"
+          [queryParams]="getSelectedOptionById(option.id).params"
+          (keypress.space)="$event.preventDefault();onSelectChange($event, option.id)" 
+          (keypress.enter)="$event.preventDefault();onSelectChange($event, option.id)"
+          class="btn btn-default list-group-item well h-100">
+          {{ option.label | translate }}
+        </a>
       </li>
     </ul>
-
   </div>
+</ng-container>
+<!-- Browse by page -->
+<section *ngIf="browsingbyMetadata" class="panel panel-primary mrgn-tp-lg clearfix">
+  <header class="panel-heading">
+     <h2 class="panel-title">
+      {{ 'nav.browse.header' | translate}}
+     </h2>
+  </header>
+  <div class="panel-body">
+      <ul class="list-unstyled">
+        <li *ngFor="let option of allOptions" >
+          <!-- <a
+            (click)="$event.preventDefault();onSelectChange(option.id, true)" 
+            (keypress.space)="$event.preventDefault();onSelectChange(option.id, true)" 
+            (keypress.enter)="$event.preventDefault();onSelectChange(option.id, true)" 
+            href="javascript::void(0);" [ngClass]="{active: (currentOptionId$ | async) === option.id}" class="list-group-item">{{ option.label | translate }}</a> -->
 
-  <div class="d-block d-sm-none">
-    <select name="browse-type"
-            class="form-control"
-            aria-label="Browse Community or Collection"
-            (ngModelChange)="onSelectChange($event)" [ngModel]="currentOptionId$ | async">
-      <option *ngFor="let option of allOptions"
-              [ngValue]="option.id"
-              [attr.selected]="(currentOptionId$ | async) === option.id ? 'selected' : null">{{ option.label | translate }}</option>
-    </select>
+            <a 
+            [routerLink]="getSelectedOptionById(option.id).routerLink"
+            [queryParams]="getSelectedOptionById(option.id).params"
+            (keypress.space)="$event.preventDefault();onSelectChange($event, option.id, true)" 
+            (keypress.enter)="$event.preventDefault();onSelectChange($event, option.id, true)"
+            [ngClass]="{active: (currentOptionId$ | async) === option.id}"
+            class="list-group-item">
+            {{ option.label | translate }}
+          </a>
+        </li>
+      </ul>
   </div>
-</nav> -->
+</section>

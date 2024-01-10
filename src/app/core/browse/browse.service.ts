@@ -127,7 +127,7 @@ export class BrowseService {
           args.push(`size=${options.pagination.pageSize}`);
         }
         if (isNotEmpty(options.startsWith)) {
-          args.push(`startsWith=${options.startsWith}`);
+          args.push(`startsWith=title:${options.startsWith}`);
         }
         if (isNotEmpty(filterValue)) {
           args.push(`filterValue=${encodeURIComponent(filterValue)}`);

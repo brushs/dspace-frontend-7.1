@@ -300,8 +300,12 @@ export class MembersListComponent implements OnInit, OnDestroy {
     for (const key of this.subs.keys()) {
       this.unsubFrom(key);
     }
-    this.paginationService.clearPagination(this.config.id);
-    this.paginationService.clearPagination(this.configSearch.id);
+    if(this.config && this.config.id){
+      this.paginationService.clearPagination(this.config.id);
+    };
+    if(this.configSearch && this.configSearch.id){
+      this.paginationService.clearPagination(this.configSearch.id);
+    };
   }
 
   /**

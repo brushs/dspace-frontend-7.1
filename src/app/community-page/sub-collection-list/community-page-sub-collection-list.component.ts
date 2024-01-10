@@ -77,7 +77,9 @@ export class CommunityPageSubCollectionListComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.paginationService.clearPagination(this.config.id);
+    if(this.config && this.config.id){
+      this.paginationService.clearPagination(this.config.id);
+    }
   }
 
 }

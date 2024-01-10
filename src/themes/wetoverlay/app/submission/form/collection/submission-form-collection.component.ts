@@ -16,19 +16,21 @@ import {
   map, mergeMap
 } from 'rxjs/operators';
 
-import { Collection } from '../../../core/shared/collection.model';
-import { hasValue, isNotEmpty } from '../../../shared/empty.util';
-import { RemoteData } from '../../../core/data/remote-data';
-import { JsonPatchOperationPathCombiner } from '../../../core/json-patch/builder/json-patch-operation-path-combiner';
-import { JsonPatchOperationsBuilder } from '../../../core/json-patch/builder/json-patch-operations-builder';
-import { SubmissionService } from '../../submission.service';
-import { SubmissionObject } from '../../../core/submission/models/submission-object.model';
-import { SubmissionJsonPatchOperationsService } from '../../../core/submission/submission-json-patch-operations.service';
-import { CollectionDataService } from '../../../core/data/collection-data.service';
-import { CollectionDropdownComponent } from '../../../shared/collection-dropdown/collection-dropdown.component';
-import { SectionsService } from '../../sections/sections.service';
-import { getFirstSucceededRemoteDataPayload } from '../../../core/shared/operators';
-import { SectionsType } from '../../sections/sections-type';
+
+import { Collection } from '../../../../../../app/core/shared/collection.model';
+import { hasValue, isNotEmpty } from '../../../../../../app/shared/empty.util';
+import { RemoteData } from '../../../../../../app/core/data/remote-data';
+import { JsonPatchOperationPathCombiner } from '../../../../../../app/core/json-patch/builder/json-patch-operation-path-combiner';
+import { JsonPatchOperationsBuilder } from '../../../../../../app/core/json-patch/builder/json-patch-operations-builder';
+import { SubmissionService } from '../../../../../../app/submission/submission.service';
+import { SubmissionObject } from '../../../../../../app/core/submission/models/submission-object.model';
+import { SubmissionJsonPatchOperationsService } from '../../../../../../app/core/submission/submission-json-patch-operations.service';
+import { CollectionDataService } from '../../..../../../../../../app/core/data/collection-data.service';
+import { CollectionDropdownComponent } from '../../../../../../app/shared/collection-dropdown/collection-dropdown.component';
+import { SectionsService } from '../../../../../../app/submission/sections/sections.service';
+import { getFirstSucceededRemoteDataPayload } from '../../../../../../app/core/shared/operators';
+
+import { SectionsType } from '../../../../../../app/submission/sections/sections-type';
 
 /**
  * This component allows to show the current collection the submission belonging to and to change it.

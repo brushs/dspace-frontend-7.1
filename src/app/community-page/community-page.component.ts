@@ -1,5 +1,5 @@
 import { mergeMap, filter, map } from 'rxjs/operators';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { MetadataService } from '../core/metadata/metadata.service';
 
 import { fadeInOut } from '../shared/animations/fade';
 import { hasValue, isEmpty } from '../shared/empty.util';
-import { getAllSucceededRemoteDataPayload, redirectOn4xx } from '../core/shared/operators';
+import { getAllSucceededRemoteDataPayload, getFirstCompletedRemoteData, redirectOn4xx } from '../core/shared/operators';
 import { AuthService } from '../core/auth/auth.service';
 import { AuthorizationDataService } from '../core/data/feature-authorization/authorization-data.service';
 import { FeatureID } from '../core/data/feature-authorization/feature-id';
@@ -164,14 +164,17 @@ export class CommunityPageComponent implements OnInit {
     protected windowService: HostWindowService,
     @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
     protected routeService: RouteService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
 
   }
 
   ngOnInit(): void {
-    // console.log("currentLang: " + this.translate.currentLang);
+    //getting the scope value from route
+    this.currentScope = this.route.snapshot.queryParamMap.get('scope');
+
     this.communityRD$ = this.route.data.pipe(
       map((data) => data.dso as RemoteData<Community>),
       redirectOn4xx(this.router, this.authService)
@@ -192,7 +195,7 @@ export class CommunityPageComponent implements OnInit {
     this.sub = this.searchOptions$.pipe(
       switchMap((options) => this.service.search(
           options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
-        ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
+        ).pipe(getFirstCompletedRemoteData())
       )
     ).subscribe((results) => {
         this.resultsRD$.next(results);
@@ -203,9 +206,23 @@ export class CommunityPageComponent implements OnInit {
      * switch display contents from search results to community page.
      */
     this.route.queryParams.subscribe(qparams => {
-      if(typeof qparams === 'undefined' || qparams === null || 
-         typeof qparams['spc.sf'] === 'undefined' || qparams['spc.sf'] === null)
-          this.initParams()
+
+      if(typeof qparams === 'undefined' 
+        || qparams === null 
+        || typeof qparams['spc.sf'] === 'undefined' 
+        || qparams['spc.sf'] === null
+      ){
+        this.initParams();
+      }
+
+      if(typeof qparams['query'] === 'undefined' ){
+        this.searchSubmit = false;
+      }
+      
+      if(qparams['query'] || qparams['query'] === ""){
+        this.searchSubmit = true;
+      }
+          
     });
 
     /*
@@ -283,10 +300,12 @@ export class CommunityPageComponent implements OnInit {
    * the query field of the search form.
    */
   onSeachSubmit(newSearchEvent : any) {
-    if (isEmpty(newSearchEvent['query'])) {
+    if (newSearchEvent['query'] !== "" && isEmpty(newSearchEvent['query'])) {
       this.searchSubmit = null;
+      this.changeDetectorRef.detectChanges();
     } else {
       this.searchSubmit = newSearchEvent;
+      this.changeDetectorRef.detectChanges();
     }
   }
 
