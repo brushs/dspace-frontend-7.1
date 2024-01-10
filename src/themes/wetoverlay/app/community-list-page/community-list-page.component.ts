@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { CommunityListPageComponent as BaseComponent } from '../../../../app/community-list-page/community-list-page.component';
 
 @Component({
-  selector: 'ds-community-list-page',
+  selector: 'ds-community-list-page[gcweb]',
   // styleUrls: ['./community-list-page.component.scss'],
+  styleUrls: ['../../../../themes/wetoverlay/styles/static-pages.scss'],
   // templateUrl: './community-list-page.component.html'
   templateUrl: '../../../../app/community-list-page/community-list-page.component.html'
 })

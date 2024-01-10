@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   BehaviorSubject,
@@ -21,6 +21,7 @@ import { DSpaceObjectType } from '../core/shared/dspace-object-type.model';
 import { Item } from '../core/shared/item.model';
 import {
   getAllSucceededRemoteDataPayload,
+  getFirstCompletedRemoteData,
   getFirstSucceededRemoteData,
   redirectOn4xx,
   toDSpaceObjectListRD
@@ -170,7 +171,8 @@ export class CollectionPageComponent implements OnInit {
     protected sidebarService: SidebarService,
     protected windowService: HostWindowService,
     @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
-    protected routeService: RouteService
+    protected routeService: RouteService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.paginationConfig = new PaginationComponentOptions();
     this.paginationConfig.id = 'cp';
@@ -233,7 +235,7 @@ export class CollectionPageComponent implements OnInit {
     this.sub = this.searchOptions$.pipe(
       switchMap((options) => this.service.search(
           options, undefined, true, true, followLink<Item>('thumbnail', { isOptional: true })
-        ).pipe(getFirstSucceededRemoteData(), startWith(undefined))
+        ).pipe(getFirstCompletedRemoteData())
       )
     ).subscribe((results) => {
         this.resultsRD$.next(results);
@@ -256,6 +258,10 @@ export class CollectionPageComponent implements OnInit {
         this.searchSubmit = false;
       }
 
+      if(qparams['query'] || qparams['query'] === ""){
+        this.searchSubmit = true;
+      }
+
     });
 
     /*
@@ -270,7 +276,7 @@ export class CollectionPageComponent implements OnInit {
       }
     });
 
-    //this.initParams();
+    this.initParams();
 
   }
 
@@ -334,10 +340,12 @@ export class CollectionPageComponent implements OnInit {
    * the query field of the search form.
    */
   onSeachSubmit(newSearchEvent : any) {
-    if (isEmpty(newSearchEvent['query'])) {
+    if (newSearchEvent['query'] !== "" && isEmpty(newSearchEvent['query'])) {
       this.searchSubmit = null;
+      this.changeDetectorRef.detectChanges();
     } else {
       this.searchSubmit = newSearchEvent;
+      this.changeDetectorRef.detectChanges();
     }
   }
 

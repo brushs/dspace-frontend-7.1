@@ -102,7 +102,7 @@ export class BrowseByMetadataPageComponent implements OnInit {
   /**
    * The current startsWith option (fetched and updated from query-params)
    */
-  query: string;
+  startsWith: string;
 
   public constructor(protected route: ActivatedRoute,
                      protected browseService: BrowseService,
@@ -124,7 +124,7 @@ export class BrowseByMetadataPageComponent implements OnInit {
       ).subscribe(([params, currentPage, currentSort]: [Params, PaginationComponentOptions, SortOptions]) => {
           this.browseId = params.id || this.defaultBrowseId;
           this.value = +params.value || params.value || '';
-          this.query = +params.startsWith || params.startsWith;
+          this.startsWith = +params.startsWith || params.startsWith;
           const searchOptions = browseParamsToOptions(params, currentPage, currentSort, this.browseId);
           if (isNotEmpty(this.value)) {
             this.updatePageWithItems(searchOptions, this.value);

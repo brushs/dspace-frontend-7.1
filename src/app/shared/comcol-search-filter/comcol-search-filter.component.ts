@@ -68,12 +68,15 @@ export class ComcolSearchFilterComponent implements OnInit, OnDestroy {
     this.initializeSearchFilters();
 
     //Fix OSPR issue 264: keep the page in search result when changing language.
-    if(typeof this.query !== 'undefined' && isNotEmpty(this.query)){
+    //if the query is not undefined AND not empty, OR the current URL includes the
+    // "query" parameter
+    if((typeof this.query !== 'undefined' && isNotEmpty(this.query)) || this.router.url.includes("query=")){
+
       this.submitSearch.emit({query: this.query});
     }
-    if(isNotEmpty(this.scope)) {
-      this.onScopeChange(this.scope);
-    }
+    // if(isNotEmpty(this.scope)) {
+    //   this.onScopeChange(this.scope);
+    // }
 
     this.navigationEndSubscription = this.router.events
     .pipe(filter(event => event instanceof NavigationEnd))

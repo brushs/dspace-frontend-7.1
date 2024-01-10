@@ -202,7 +202,7 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
               breadcrumbOptions: {
                 addBreadcrumbElements: [
                   {
-                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/community-list'),
                     position: 0
                   }
                 ]
@@ -218,7 +218,7 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
               breadcrumbOptions: {
                 addBreadcrumbElements: [
                   {
-                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/community-list'),
                     position: 0
                   }
                 ]
@@ -233,7 +233,7 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
               breadcrumbOptions: {
                 addBreadcrumbElements: [
                   {
-                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/communities'),
+                    breadcrumb: new Breadcrumb('community.breadcrumbs', '/community-list'),
                     position: 0
                   },
                 ]
@@ -257,7 +257,13 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
           { path: 'advanced-search', pathMatch: 'full', component: AdvancedSearchPageComponent
           }, 
           {
-            path: 'mydspace',
+            path: 'myfosrc',
+            loadChildren: () => import('./my-dspace-page/my-dspace-page.module')
+              .then((m) => m.MyDSpacePageModule),
+            canActivate: [AuthenticatedGuard, EndUserAgreementCurrentUserGuard]
+          },
+          {
+            path: 'monfosrc',
             loadChildren: () => import('./my-dspace-page/my-dspace-page.module')
               .then((m) => m.MyDSpacePageModule),
             canActivate: [AuthenticatedGuard, EndUserAgreementCurrentUserGuard]

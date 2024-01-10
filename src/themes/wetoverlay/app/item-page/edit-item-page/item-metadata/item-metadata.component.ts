@@ -1,21 +1,21 @@
 import { Component, Input } from '@angular/core';
-import { Item } from '../../../core/shared/item.model';
-import { ItemDataService } from '../../../core/data/item-data.service';
-import { ObjectUpdatesService } from '../../../core/data/object-updates/object-updates.service';
+import { Item } from '../../../../../../app/core/shared/item.model';
+import { ItemDataService } from '../../../../../../app/core/data/item-data.service';
+import { ObjectUpdatesService } from '../../../../../../app/core/data/object-updates/object-updates.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { cloneDeep } from 'lodash';
 import { first, switchMap } from 'rxjs/operators';
-import { getFirstCompletedRemoteData } from '../../../core/shared/operators';
-import { RemoteData } from '../../../core/data/remote-data';
-import { NotificationsService } from '../../../shared/notifications/notifications.service';
+import { getFirstCompletedRemoteData } from '../../../../../../app/core/shared/operators';
+import { RemoteData } from '../../../../../../app/core/data/remote-data';
+import { NotificationsService } from '../../../../../../app/shared/notifications/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
-import { MetadataValue, MetadatumViewModel } from '../../../core/shared/metadata.models';
-import { AbstractItemUpdateComponent } from '../abstract-item-update/abstract-item-update.component';
-import { UpdateDataService } from '../../../core/data/update-data.service';
-import { hasNoValue, hasValue } from '../../../shared/empty.util';
-import { AlertType } from '../../../shared/alert/aletr-type';
+import { MetadataValue, MetadatumViewModel } from '../../../../../../app/core/shared/metadata.models';
+import { AbstractItemUpdateComponent } from '../../../../../../app/item-page/edit-item-page/abstract-item-update/abstract-item-update.component';
+import { UpdateDataService } from '../../../../../../app/core/data/update-data.service';
+import { hasNoValue, hasValue } from '../../../../../../app/shared/empty.util';
+import { AlertType } from '../../../../../../app/shared/alert/aletr-type';
 import { Operation } from 'fast-json-patch';
-import { MetadataPatchOperationService } from '../../../core/data/object-updates/patch-operation-service/metadata-patch-operation.service';
+import { MetadataPatchOperationService } from '../../../../../../app/core/data/object-updates/patch-operation-service/metadata-patch-operation.service';
 
 @Component({
   selector: 'ds-item-metadata',

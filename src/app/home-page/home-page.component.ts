@@ -57,17 +57,36 @@ export class HomePageComponent implements OnInit {
   }
 
   search(value) {
-    this.router.navigate(['/search'], { queryParams: { page: 1, query: value || '', 'spc.sf': 'score', 'spc.sd': 'DESC' } })
+    this.router.navigate(['/search'], { queryParams: { page: 1, query: value || '', 'spc.sf': 'score', 'spc.sd': 'DESC','spc.page':1 } })
   }
 
   getCommunityHref(name): string {
     return !this.subcommunities[name] ? null: '/communities/' + this.subcommunities[name]
   }
 
-  navigateToCommunities(name) {
-    const url = this.getCommunityHref(name);
-    if(url !== null) {
-      this.router.navigate([url], { queryParams: { page: 1, 'spc.sf': 'score', 'spc.sd': 'DESC','scope': this.subcommunities[name],'spc.page':1 } })
-    }
+  getCommunityHrefQueryParams(communityName: string){
+    if(this.subcommunities[communityName]){
+      return { page: 1, 'spc.sf': 'score', 'spc.sd': 'DESC','scope': this.subcommunities[communityName],'spc.page':1 };
+    };
+    return null;
   }
+
+  /**
+   * Method to navigate to a community page.
+   * @param event Mouse event
+   * @param name Name of the community
+   */
+  // navigateToCommunities(event: MouseEvent, name) {
+
+  //   //if the control key is not pressed AND the left
+  //   // mouse button is clicked
+  //   if(
+  //     !event.ctrlKey && event.button === 0
+  //   ){
+  //     const url = this.getCommunityHref(name);
+  //     if(url !== null) {
+  //       this.router.navigate([url], { queryParams: { page: 1, 'spc.sf': 'score', 'spc.sd': 'DESC','scope': this.subcommunities[name],'spc.page':1 } })
+  //     }
+  //   }
+  // }
 }

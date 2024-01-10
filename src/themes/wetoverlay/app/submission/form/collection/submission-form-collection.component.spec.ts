@@ -9,20 +9,20 @@ import { Store } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 import { of } from 'rxjs';
 
-import { SubmissionServiceStub } from '../../../shared/testing/submission-service.stub';
-import { mockSubmissionId, mockSubmissionRestResponse } from '../../../shared/mocks/submission.mock';
-import { SubmissionService } from '../../submission.service';
+import { SubmissionServiceStub } from '../../../../../../app/shared/testing/submission-service.stub';
+import { mockSubmissionId, mockSubmissionRestResponse } from '../../../../../../app/shared/mocks/submission.mock';
+import { SubmissionService } from '../../../../../../app/submission/submission.service';
 import { SubmissionFormCollectionComponent } from './submission-form-collection.component';
-import { CommunityDataService } from '../../../core/data/community-data.service';
-import { SubmissionJsonPatchOperationsService } from '../../../core/submission/submission-json-patch-operations.service';
-import { SubmissionJsonPatchOperationsServiceStub } from '../../../shared/testing/submission-json-patch-operations-service.stub';
-import { JsonPatchOperationsBuilder } from '../../../core/json-patch/builder/json-patch-operations-builder';
-import { JsonPatchOperationPathCombiner } from '../../../core/json-patch/builder/json-patch-operation-path-combiner';
-import { createTestComponent } from '../../../shared/testing/utils.test';
-import { CollectionDataService } from '../../../core/data/collection-data.service';
-import { SectionsService } from '../../sections/sections.service';
-import { Collection } from '../../../core/shared/collection.model';
-import { createSuccessfulRemoteDataObject$ } from '../../../shared/remote-data.utils';
+import { CommunityDataService } from '../../../../../../app/core/data/community-data.service';
+import { SubmissionJsonPatchOperationsService } from '../../../../../../app/core/submission/submission-json-patch-operations.service';
+import { SubmissionJsonPatchOperationsServiceStub } from '../../../../../../app/shared/testing/submission-json-patch-operations-service.stub';
+import { JsonPatchOperationsBuilder } from '../../../../../../app/core/json-patch/builder/json-patch-operations-builder';
+import { JsonPatchOperationPathCombiner } from '../../../../../../app/core/json-patch/builder/json-patch-operation-path-combiner';
+import { createTestComponent } from '../../../../../../app/shared/testing/utils.test';
+import { CollectionDataService } from '../../../../../../app/core/data/collection-data.service';
+import { SectionsService } from '../../../../../../app/submission/sections/sections.service';
+import { Collection } from '../../../../../../app/core/shared/collection.model';
+import { createSuccessfulRemoteDataObject$ } from '../../../../../../app/shared/remote-data.utils';
 
 describe('SubmissionFormCollectionComponent Component', () => {
 

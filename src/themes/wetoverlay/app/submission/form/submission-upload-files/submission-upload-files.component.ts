@@ -4,16 +4,17 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, of as observableOf, Subscription } from 'rxjs';
 import { first, take } from 'rxjs/operators';
 
-import { SectionsService } from '../../sections/sections.service';
-import { hasValue, isEmpty, isNotEmpty } from '../../../shared/empty.util';
-import { normalizeSectionData } from '../../../core/submission/submission-response-parsing.service';
-import { SubmissionService } from '../../submission.service';
-import { NotificationsService } from '../../../shared/notifications/notifications.service';
-import { UploaderOptions } from '../../../shared/uploader/uploader-options.model';
-import parseSectionErrors from '../../utils/parseSectionErrors';
-import { SubmissionJsonPatchOperationsService } from '../../../core/submission/submission-json-patch-operations.service';
-import { WorkspaceItem } from '../../../core/submission/models/workspaceitem.model';
-import { SectionsType } from '../../sections/sections-type';
+import { SectionsService } from '../../../../../../app/submission/sections/sections.service';
+import { hasValue, isEmpty, isNotEmpty } from '../../../../../../app/shared/empty.util';
+import { normalizeSectionData } from '../../../../../../app/core/submission/submission-response-parsing.service';
+import { SubmissionService } from '../../../../../../app/submission/submission.service';
+import { NotificationsService } from '../../../../../../app/shared/notifications/notifications.service';
+import { UploaderOptions } from '../../../../../../app/shared/uploader/uploader-options.model';
+import parseSectionErrors from '../../../../../../app/submission/utils/parseSectionErrors';
+import { SubmissionJsonPatchOperationsService } from '../../../../../../app/core/submission/submission-json-patch-operations.service';
+import { WorkspaceItem } from '../../../../../../app/core/submission/models/workspaceitem.model';
+import { SectionsType } from '../../../../../../app/submission/sections/sections-type';
+
 
 /**
  * This component represents the drop zone that provides to add files to the submission.

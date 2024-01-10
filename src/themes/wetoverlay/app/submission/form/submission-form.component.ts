@@ -2,21 +2,20 @@ import { ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, SimpleChange
 
 import { Observable, of as observableOf, Subscription } from 'rxjs';
 import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
-import { AuthService } from '../../core/auth/auth.service';
-import { SubmissionDefinitionsModel } from '../../core/config/models/config-submission-definitions.model';
-import { Collection } from '../../core/shared/collection.model';
-import { HALEndpointService } from '../../core/shared/hal-endpoint.service';
-import { SubmissionObject } from '../../core/submission/models/submission-object.model';
-import { WorkspaceitemSectionsObject } from '../../core/submission/models/workspaceitem-sections.model';
-
-import { hasValue, isNotEmpty } from '../../shared/empty.util';
-import { UploaderOptions } from '../../shared/uploader/uploader-options.model';
-import { SubmissionError, SubmissionObjectEntry } from '../objects/submission-objects.reducer';
-import { SectionDataObject } from '../sections/models/section-data.model';
-import { SubmissionService } from '../submission.service';
-import { Item } from '../../core/shared/item.model';
-import { SectionsType } from '../sections/sections-type';
-import { SectionsService } from '../sections/sections.service';
+import { AuthService } from '../../../../../app/core/auth/auth.service';
+import { SubmissionDefinitionsModel } from '../../../../../app/core/config/models/config-submission-definitions.model';
+import { Collection } from '../../../../../app/core/shared/collection.model';
+import { HALEndpointService } from '../../../../../app/core/shared/hal-endpoint.service';
+import { SubmissionObject } from '../../../../../app/core/submission/models/submission-object.model';
+import { WorkspaceitemSectionsObject } from '../../../../../app/core/submission/models/workspaceitem-sections.model';
+import { hasValue, isNotEmpty } from '../../../../../app/shared/empty.util';
+import { UploaderOptions } from '../../../../../app/shared/uploader/uploader-options.model';
+import { SubmissionError, SubmissionObjectEntry } from '../../../../../app/submission/objects/submission-objects.reducer';
+import { SectionDataObject } from '../../../../../app/submission/sections/models/section-data.model';
+import { SubmissionService } from '../../../../../app/submission/submission.service';
+import { Item } from '../../../../../app/core/shared/item.model';
+import { SectionsType } from '../../../../../app/submission/sections/sections-type';
+import { SectionsService } from '../../../../../app/submission/sections/sections.service';
 
 /**
  * This component represents the submission form.

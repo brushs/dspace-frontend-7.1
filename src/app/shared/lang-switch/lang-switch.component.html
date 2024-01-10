@@ -2,10 +2,14 @@
   <h2 class="wb-inv">{{'nav.lang.selection'| translate}}</h2>
   <ul class="list-inline mrgn-bttm-0">
     <li>
-      <a href="#" [attr.hrefLang]="langLabel(getAlternateLanguageCode(this.translate.currentLang))"
+      <a 
+        [routerLink] = "[getCurrentUrl()]"
+        [queryParams] = "{useLang: getAlternateLanguageCode(this.translate.currentLang)}"
+        queryParamsHandling="merge"
+        [attr.hrefLang]="langLabel(getAlternateLanguageCode(this.translate.currentLang))"
         [attr.lang]="'nav.language.attribute' | translate" [attr.aria-label]="'nav.language' | translate"
         [title]="'nav.language' | translate"
-        (click)="useLang(getAlternateLanguageCode(this.translate.currentLang), $event)" tabindex="0">
+        tabindex="0">
         <span class="hidden-xs" [attr.translate]="'no'">
           {{ langLabel(getAlternateLanguageCode(this.translate.currentLang)) }}
         </span>

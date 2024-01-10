@@ -4,12 +4,22 @@
   <div gcweb>
     <ul class="list-inline d-flex flex-wrap mrgn-bttm-0">
       <li class="col-md-2 text-center" *ngFor="let option of allOptions">
-        <a 
+        <!-- <a 
           (click)="$event.preventDefault();onSelectChange(option.id)" 
           (keypress.space)="$event.preventDefault();onSelectChange(option.id)" 
           (keypress.enter)="$event.preventDefault();onSelectChange(option.id)" 
           href="javascript::void(0)" 
-        class="btn btn-default list-group-item well h-100">{{ option.label | translate }}</a>
+          class="btn btn-default list-group-item well h-100">
+          {{ option.label | translate }}
+        </a> -->
+        <a 
+          [routerLink]="getSelectedOptionById(option.id).routerLink"
+          [queryParams]="getSelectedOptionById(option.id).params"
+          (keypress.space)="$event.preventDefault();onSelectChange($event, option.id)" 
+          (keypress.enter)="$event.preventDefault();onSelectChange($event, option.id)"
+          class="btn btn-default list-group-item well h-100">
+          {{ option.label | translate }}
+        </a>
       </li>
     </ul>
   </div>
@@ -24,11 +34,21 @@
   <div class="panel-body">
       <ul class="list-unstyled">
         <li *ngFor="let option of allOptions" >
-          <a
+          <!-- <a
             (click)="$event.preventDefault();onSelectChange(option.id, true)" 
             (keypress.space)="$event.preventDefault();onSelectChange(option.id, true)" 
             (keypress.enter)="$event.preventDefault();onSelectChange(option.id, true)" 
-            href="javascript::void(0);" [ngClass]="{active: (currentOptionId$ | async) === option.id}" class="list-group-item">{{ option.label | translate }}</a>
+            href="javascript::void(0);" [ngClass]="{active: (currentOptionId$ | async) === option.id}" class="list-group-item">{{ option.label | translate }}</a> -->
+
+            <a 
+            [routerLink]="getSelectedOptionById(option.id).routerLink"
+            [queryParams]="getSelectedOptionById(option.id).params"
+            (keypress.space)="$event.preventDefault();onSelectChange($event, option.id, true)" 
+            (keypress.enter)="$event.preventDefault();onSelectChange($event, option.id, true)"
+            [ngClass]="{active: (currentOptionId$ | async) === option.id}"
+            class="list-group-item">
+            {{ option.label | translate }}
+          </a>
         </li>
       </ul>
   </div>

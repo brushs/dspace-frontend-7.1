@@ -3,8 +3,8 @@ import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/t
 
 import { of as observableOf } from 'rxjs';
 import { cold, getTestScheduler } from 'jasmine-marbles';
+import { SubmissionServiceStub } from '../../../../../app/shared/testing/submission-service.stub';
 
-import { SubmissionServiceStub } from '../../shared/testing/submission-service.stub';
 import {
   mockSectionsData,
   mockSectionsList,
@@ -14,17 +14,17 @@ import {
   mockSubmissionObjectNew,
   mockSubmissionSelfUrl,
   mockSubmissionState
-} from '../../shared/mocks/submission.mock';
-import { SubmissionService } from '../submission.service';
+} from '../../../../../app/shared/mocks/submission.mock';
+import { SubmissionService } from '../../../../../app/submission/submission.service';
 import { SubmissionFormComponent } from './submission-form.component';
-import { HALEndpointService } from '../../core/shared/hal-endpoint.service';
-import { AuthServiceStub } from '../../shared/testing/auth-service.stub';
-import { AuthService } from '../../core/auth/auth.service';
-import { HALEndpointServiceStub } from '../../shared/testing/hal-endpoint-service.stub';
-import { createTestComponent } from '../../shared/testing/utils.test';
-import { Item } from '../../core/shared/item.model';
+import { HALEndpointService } from '../../../../../app/core/shared/hal-endpoint.service';
+import { AuthServiceStub } from '../../../../../app/shared/testing/auth-service.stub';
+import { AuthService } from '../../../../../app/core/auth/auth.service';
+import { HALEndpointServiceStub } from '../../../../../app/shared/testing/hal-endpoint-service.stub';
+import { createTestComponent } from '../../../../../app/shared/testing/utils.test';
+import { Item } from '../../../../../app/core/shared/item.model';
 import { TestScheduler } from 'rxjs/testing';
-import { SectionsService } from '../sections/sections.service';
+import { SectionsService } from '../../../../../app/submission/sections/sections.service';
 
 describe('SubmissionFormComponent Component', () => {
 

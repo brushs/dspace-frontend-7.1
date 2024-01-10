@@ -14,7 +14,8 @@ import { ThemedHomePageComponent } from './themed-home-page.component';
         component: ThemedHomePageComponent,
         pathMatch: 'full',
         data: {
-          title: 'home.title',
+          title: 'home.breadcrumbs',
+          removeTitleSuffix: true,
           menu: {
             public: [],
           },

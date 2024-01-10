@@ -24,7 +24,7 @@ export class SubmissionServiceStub {
   isSectionHidden = jasmine.createSpy('isSectionHidden');
   isSubmissionLoading = jasmine.createSpy('isSubmissionLoading');
   notifyNewSection = jasmine.createSpy('notifyNewSection');
-  redirectToMyDSpace = jasmine.createSpy('redirectToMyDSpace');
+  redirectToMyDSpace = jasmine.createSpy('redirectToMyFosrc');
   resetAllSubmissionObjects = jasmine.createSpy('resetAllSubmissionObjects');
   resetSubmissionObject = jasmine.createSpy('resetSubmissionObject');
   retrieveSubmission = jasmine.createSpy('retrieveSubmission');

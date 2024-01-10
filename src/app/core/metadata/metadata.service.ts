@@ -111,11 +111,17 @@ export class MetadataService {
     this.clearMetaTags();
 
     if (routeInfo.data.value.title && !this.splashPageTitle) {
-      const titlePrefix = this.translate.get('repository.title.prefix');
+      // const titlePrefix = this.translate.get('repository.title.prefix');
+      const titleSuffix = this.translate.get('repository.title.suffix');
       const title = this.translate.get(routeInfo.data.value.title, routeInfo.data.value);
-      combineLatest([titlePrefix, title]).pipe(take(1)).subscribe(([translatedTitlePrefix, translatedTitle]: [string, string]) => {
-        this.addMetaTag('title', translatedTitlePrefix + translatedTitle);
-        this.title.setTitle(translatedTitlePrefix + translatedTitle);
+      combineLatest([titleSuffix, title]).pipe(take(1)).subscribe(([translatedtitleSuffix, translatedTitle]: [string, string]) => {
+        if(routeInfo.data.value.removeTitleSuffix){
+          this.addMetaTag('title', translatedTitle);
+          this.title.setTitle(translatedTitle);
+        }else{
+          this.addMetaTag('title', translatedTitle + translatedtitleSuffix);
+          this.title.setTitle(translatedTitle + translatedtitleSuffix);
+        }
       });
     }
 
@@ -186,9 +192,20 @@ export class MetadataService {
    * Add <meta name="title" ... >  to the <head>
    */
   private setTitleTag(): void {
-    const value = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
-    this.addMetaTag('title', value);
-    this.title.setTitle(value);
+
+    // const value = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
+    // this.addMetaTag('title', value);
+    // this.title.setTitle(value);
+
+    const titleSuffix = this.translate.get('repository.title.suffix');
+    titleSuffix.pipe(take(1)).subscribe((translatedtitleSuffix) => {
+
+      const translatedTitle = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
+
+      this.addMetaTag('title', translatedTitle + translatedtitleSuffix);
+      this.title.setTitle(translatedTitle + translatedtitleSuffix);
+    });
+    
   }
 
   /**

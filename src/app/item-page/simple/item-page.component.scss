@@ -1,12 +1,13 @@
-@include media-breakpoint-down(md) {
-  .container {
-    width: 100%;
-    max-width: none;
-  }
-}
+@import '../../../themes/wetoverlay/styles/static-pages.scss';
+// @include media-breakpoint-down(md) {
+//   .container {
+//     width: 100%;
+//     max-width: none;
+//   }
+// }
 
-div {
-  word-break: break-word;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
+// div {
+//   word-break: break-word;
+//   word-wrap: break-word;
+//   overflow-wrap: break-word;
+// }
