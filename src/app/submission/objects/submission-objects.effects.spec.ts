@@ -1012,7 +1012,7 @@ describe('SubmissionObjectEffects test suite', () => {
   });
 
   describe('saveForLaterSubmissionSuccess$', () => {
-    it('should display a new success notification and redirect to mydspace', () => {
+    it('should display a new success notification and redirect to myfosrc', () => {
       actions = hot('--a-', {
         a: {
           type: SubmissionObjectActionTypes.SAVE_FOR_LATER_SUBMISSION_FORM_SUCCESS,
@@ -1031,7 +1031,7 @@ describe('SubmissionObjectEffects test suite', () => {
   });
 
   describe('depositSubmissionSuccess$', () => {
-    it('should display a new success notification and redirect to mydspace', () => {
+    it('should display a new success notification and redirect to myfosrc', () => {
       actions = hot('--a-', {
         a: {
           type: SubmissionObjectActionTypes.DEPOSIT_SUBMISSION_SUCCESS,
@@ -1154,7 +1154,7 @@ describe('SubmissionObjectEffects test suite', () => {
   });
 
   describe('discardSubmissionSuccess$', () => {
-    it('should display a new success notification and redirect to mydspace', () => {
+    it('should display a new success notification and redirect to myfosrc', () => {
       actions = hot('--a-', {
         a: {
           type: SubmissionObjectActionTypes.DISCARD_SUBMISSION_SUCCESS,

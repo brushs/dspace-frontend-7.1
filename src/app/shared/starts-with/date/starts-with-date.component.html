@@ -1,4 +1,4 @@
-<form class="w-100" [formGroup]="formData" (ngSubmit)="submitForm(formData.value)">
+<!-- <form class="w-100" [formGroup]="formData" (ngSubmit)="submitForm(formData.value)">
   <label for="browse-date-field">{{'browse.startsWith.jump' | translate}}</label>
   <div class="form-group input-group col-12 col-md-6 pt-1 pt-md-0 pl-0" title="{{'browse.startsWith.type_date' | translate}}">
     <input autocomplete="on" id="browse-date-field" class="form-control" placeholder="{{'browse.startsWith.type_date' | translate}}"
@@ -8,9 +8,19 @@
         {{'browse.startsWith.submit' | translate}}</button>
     </span>
   </div>
+</form> -->
+
+<label for="btngrp-browse" class="wb-inv">{{'browse.startsWith.type_date' | translate}}</label>
+<form [formGroup]="formData" (ngSubmit)="submitForm(formData.value)" id="searchForm">
+  <div class="input-group">
+    <input id="browse-date-field" name="startsWith" formControlName="startsWith" [value]="getStartsWith() ? getStartsWith() : ''" 
+      type="text" class="form-control mrgn-tp-md" id="btngrp-browse"
+      placeholder="{{'browse.startsWith.type_date' | translate}}" />
+    <span class="input-group-btn">
+      <button class="btn btn-primary mrgn-tp-md" type="submit">{{'browse.startsWith.submit' | translate}}</button>
+    </span>
+  </div>
 </form>
-
-
 
 
 <!-- <form class="w-100" [formGroup]="formData" (ngSubmit)="submitForm(formData.value)">

@@ -121,6 +121,11 @@ export class Item extends DSpaceObject implements ChildHALResource {
     return [entityType, ...super.getRenderTypes()];
   }
 
+  //FOSRC added getDSpaceType()
+  public getDSpaceType(): string {
+    return 'Item';
+  }
+
   getParentLinkKey(): keyof this['_links'] {
     return 'owningCollection';
   }

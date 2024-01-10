@@ -1,3 +1,19 @@
-<div dsDragClick (actualClick)="toggle()" (mouseenter)="hoverExpand()" (mouseleave)="hoverCollapse()">
-    <ng-content></ng-content>
+<div *ngIf="!useShowMore" dsDragClick (actualClick)="toggle()" (mouseenter)="hoverExpand()" (mouseleave)="hoverCollapse()">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
 </div>
+
+<ng-container *ngIf="useShowMore">
+    <div #innerContent>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+
+        <ng-container *ngIf="truncatable">
+            <a href="javascript::void(0)" dsDragClick (keydown.space)="toggle()" (keydown.enter)="toggle()" (actualClick)="toggle()">
+                <span *ngIf="(isCollapsed$ | async)">{{ 'truncate.expand' | translate }}</span>
+                <span *ngIf="!(isCollapsed$ | async)">{{ 'truncate.collapse' | translate }}</span>
+            </a>
+        </ng-container>
+    </div>
+</ng-container>
+
+
+<ng-template #content><ng-content></ng-content></ng-template>

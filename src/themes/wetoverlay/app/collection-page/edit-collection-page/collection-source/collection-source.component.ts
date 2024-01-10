@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractTrackableComponent } from '../../../shared/trackable/abstract-trackable.component';
+import { AbstractTrackableComponent } from '../../../../../../app/shared/trackable/abstract-trackable.component';
 import {
   DynamicFormControlModel,
   DynamicFormGroupModel,
@@ -13,24 +13,25 @@ import {
 } from '@ng-dynamic-forms/core';
 import { Location } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
-import { ObjectUpdatesService } from '../../../core/data/object-updates/object-updates.service';
-import { NotificationsService } from '../../../shared/notifications/notifications.service';
+import { ObjectUpdatesService } from '../../../../../../app/core/data/object-updates/object-updates.service';
+import { NotificationsService } from '../../../../../../app/shared/notifications/notifications.service';
 import { FormGroup } from '@angular/forms';
-import { hasNoValue, hasValue, isNotEmpty } from '../../../shared/empty.util';
-import { ContentSource, ContentSourceHarvestType } from '../../../core/shared/content-source.model';
+import { hasNoValue, hasValue, isNotEmpty } from '../../../../../../app/shared/empty.util';
+import { ContentSource, ContentSourceHarvestType } from '../../../../../../app/core/shared/content-source.model';
 import { Observable, Subscription } from 'rxjs';
-import { RemoteData } from '../../../core/data/remote-data';
-import { Collection } from '../../../core/shared/collection.model';
+import { RemoteData } from '../../../../../../app/core/data/remote-data';
+import { Collection } from '../../../../../../app/core/shared/collection.model';
 import { first, map, switchMap, take } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FieldUpdate, FieldUpdates } from '../../../core/data/object-updates/object-updates.reducer';
+import { FieldUpdate, FieldUpdates } from '../../../../../../app/core/data/object-updates/object-updates.reducer';
 import { cloneDeep } from 'lodash';
-import { CollectionDataService } from '../../../core/data/collection-data.service';
-import { getFirstSucceededRemoteData, getFirstCompletedRemoteData } from '../../../core/shared/operators';
-import { MetadataConfig } from '../../../core/shared/metadata-config.model';
-import { INotification } from '../../../shared/notifications/models/notification.model';
-import { RequestService } from '../../../core/data/request.service';
-import { environment } from '../../../../environments/environment';
+import { CollectionDataService } from '../../../../../../app/core/data/collection-data.service';
+
+import { getFirstSucceededRemoteData, getFirstCompletedRemoteData } from '../../../../../../app/core/shared/operators';
+import { MetadataConfig } from '../../../../../../app/core/shared/metadata-config.model';
+import { INotification } from '../../../../../../app/shared/notifications/models/notification.model';
+import { RequestService } from '../../../../../../app/core/data/request.service';
+import { environment } from '../../../../../../environments/environment';
 
 /**
  * Component for managing the content source of the collection

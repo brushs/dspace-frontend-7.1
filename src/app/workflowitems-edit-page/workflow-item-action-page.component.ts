@@ -70,7 +70,7 @@ export abstract class WorkflowItemActionPageComponent implements OnInit {
     this.routeService.getPreviousUrl().pipe(take(1))
       .subscribe((url) => {
           if (isEmpty(url)) {
-            url = '/mydspace';
+            url = '/myfosrc';
           }
           this.router.navigateByUrl(url);
         }

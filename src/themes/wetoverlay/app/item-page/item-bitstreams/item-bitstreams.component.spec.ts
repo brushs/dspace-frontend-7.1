@@ -1,31 +1,31 @@
 // the OSPR changes shown here have been implemented at both the theme and the app level
-import { Bitstream } from '../../../core/shared/bitstream.model';
+import { Bitstream } from '../../../../../app/core/shared/bitstream.model';
 import { of as observableOf } from 'rxjs';
-import { Item } from '../../../core/shared/item.model';
+import { Item } from '../../../../../app/core/shared/item.model';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ItemBitstreamsComponent } from './item-bitstreams.component';
-import { ItemDataService } from '../../../core/data/item-data.service';
+import { ItemDataService } from '../../../../../app/core/data/item-data.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { ObjectUpdatesService } from '../../../core/data/object-updates/object-updates.service';
+import { ObjectUpdatesService } from '../../../../../app/core/data/object-updates/object-updates.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationsService } from '../../../shared/notifications/notifications.service';
+import { NotificationsService } from '../../../../../app/shared/notifications/notifications.service';
 import { ChangeDetectorRef, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FieldChangeType } from '../../../core/data/object-updates/object-updates.actions';
-import { INotification, Notification } from '../../../shared/notifications/models/notification.model';
-import { NotificationType } from '../../../shared/notifications/models/notification-type';
-import { BitstreamDataService } from '../../../core/data/bitstream-data.service';
-import { ObjectCacheService } from '../../../core/cache/object-cache.service';
-import { RequestService } from '../../../core/data/request.service';
-import { ObjectValuesPipe } from '../../../shared/utils/object-values-pipe';
-import { VarDirective } from '../../../shared/utils/var.directive';
-import { BundleDataService } from '../../../core/data/bundle-data.service';
-import { Bundle } from '../../../core/shared/bundle.model';
-import { RestResponse } from '../../../core/cache/response.models';
-import { SearchConfigurationService } from '../../../core/shared/search/search-configuration.service';
-import { RouterStub } from '../../../shared/testing/router.stub';
-import { getMockRequestService } from '../../../shared/mocks/request.service.mock';
-import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } from '../../../shared/remote-data.utils';
-import { createPaginatedList } from '../../../shared/testing/utils.test';
+import { FieldChangeType } from '../../../../../app/core/data/object-updates/object-updates.actions';
+import { INotification, Notification } from '../../../../../app/shared/notifications/models/notification.model';
+import { NotificationType } from '../../../../../app/shared/notifications/models/notification-type';
+import { BitstreamDataService } from '../../../../../app/core/data/bitstream-data.service';
+import { ObjectCacheService } from '../../../../../app/core/cache/object-cache.service';
+import { RequestService } from '../../../../../app/core/data/request.service';
+import { ObjectValuesPipe } from '../../../../../app/shared/utils/object-values-pipe';
+import { VarDirective } from '../../../../../app/shared/utils/var.directive';
+import { BundleDataService } from '../../../../../app/core/data/bundle-data.service';
+import { Bundle } from '../../../../../app/core/shared/bundle.model';
+import { RestResponse } from '../../../../../app/core/cache/response.models';
+import { SearchConfigurationService } from '../../../../../app/core/shared/search/search-configuration.service';
+import { RouterStub } from '../../../../../app/shared/testing/router.stub';
+import { getMockRequestService } from '../../../../../app/shared/mocks/request.service.mock';
+import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } from '../../../../../app/shared/remote-data.utils';
+import { createPaginatedList } from '../../../../../app/shared/testing/utils.test';
 // OSPR fix begins here
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 // OSPR fix ends here
@@ -168,7 +168,7 @@ describe('ItemBitstreamsComponent', () => {
         { provide: SearchConfigurationService, useValue: searchConfig },
         { provide: BundleDataService, useValue: bundleService },
         ChangeDetectorRef
-      ], schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+      ], schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
     // OSPR fix ends here
   }));
@@ -176,7 +176,7 @@ describe('ItemBitstreamsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ItemBitstreamsComponent);
     comp = fixture.componentInstance;
-    comp.url = url;
+    //comp.url = url;
     fixture.detectChanges();
   });
 

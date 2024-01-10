@@ -25,4 +25,12 @@ export class ComcolPageContentComponent {
   // flag whether the content contains html syntax or not
   @Input() hasInnerHtml: boolean;
 
+  shouldRenderAsHtml: boolean;
+
+
+  // ngOnInit() {
+  ngOnInit(): void {
+    // set shouldRenderAsHtml to true if hasInnerHtml is true or if the content contains html tags
+    this.shouldRenderAsHtml = this.hasInnerHtml && this.content.includes('<');
+  }
 }

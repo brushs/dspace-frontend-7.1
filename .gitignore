@@ -4,10 +4,12 @@
 /typings
 /tsd_typings/
 npm-debug.log
-
+.vs/
 /build/
-
-
+/.vs/
+/.vscode/
+/src/environments/
+src/environments/
 
 /coverage
 
@@ -30,11 +32,11 @@ morgan.log
 
 yarn-error.log
 
-*.css
-
 package-lock.json
 
 .java-version
 
 .env
 /nbproject/
+.vscode/launch.json
+.vscode/launch.json

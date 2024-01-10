@@ -7,15 +7,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 
-import { SubmissionServiceStub } from '../../../shared/testing/submission-service.stub';
-import { mockSubmissionCollectionId, mockSubmissionId } from '../../../shared/mocks/submission.mock';
-import { SubmissionService } from '../../submission.service';
+import { SubmissionServiceStub } from '../../../../../../app/shared/testing/submission-service.stub';
+import { mockSubmissionCollectionId, mockSubmissionId } from '../../../../../../app/shared/mocks/submission.mock';
+import { SubmissionService } from '../../../../../../app/submission/submission.service';
 import { SubmissionFormSectionAddComponent } from './submission-form-section-add.component';
-import { SectionsServiceStub } from '../../../shared/testing/sections-service.stub';
-import { SectionsService } from '../../sections/sections.service';
-import { HostWindowServiceStub } from '../../../shared/testing/host-window-service.stub';
-import { HostWindowService } from '../../../shared/host-window.service';
-import { createTestComponent } from '../../../shared/testing/utils.test';
+import { SectionsServiceStub } from '../../../../../../app/shared/testing/sections-service.stub';
+import { SectionsService } from '../../../../../../app/submission/sections/sections.service';
+import { HostWindowServiceStub } from '../../../../../../app/shared/testing/host-window-service.stub';
+import { HostWindowService } from '../../../../../../app/shared/host-window.service';
+import { createTestComponent } from '../../../../../../app/shared/testing/utils.test';
 
 const mockAvailableSections: any = [
   {

@@ -12,7 +12,7 @@ import { SortOptions } from '../../../core/cache/models/sort-options.model';
  */
 
 @Component({
-  selector: 'ds-search-sidebar',
+  selector: 'ds-search-sidebar, [ds-search-sidebar]',
   styleUrls: ['./search-sidebar.component.scss'],
   templateUrl: './search-sidebar.component.html',
 })
@@ -56,6 +56,11 @@ export class SearchSidebarComponent {
    * All sort options that are shown in the settings
    */
   @Input() sortOptions: SortOptions[];
+  
+  /**
+   * Use Gc Web Template
+   */
+  @Input() useGcWeb = false;
 
   /**
    * Emits when the search filters values may be stale, and so they must be refreshed.

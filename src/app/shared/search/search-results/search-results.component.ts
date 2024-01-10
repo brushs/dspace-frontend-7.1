@@ -74,9 +74,19 @@ export class SearchResultsComponent {
 
   @Input() selectionConfig: {repeatable: boolean, listId: string};
 
+  @Input() useGcWeb = false;
+
   @Output() deselectObject: EventEmitter<ListableObject> = new EventEmitter<ListableObject>();
 
   @Output() selectObject: EventEmitter<ListableObject> = new EventEmitter<ListableObject>();
+
+  isLoading() {
+    return !this.showError() && (hasNoValue(this.searchResults) || hasNoValue(this.searchResults.payload) || this.searchResults.isLoading);
+  }
+
+  showError(): boolean {
+    return this.searchResults?.hasFailed && (!this.searchResults?.errorMessage || this.searchResults?.statusCode !== 400);
+  }
 
   /**
    * Method to change the given string by surrounding it by quotes if not already present.

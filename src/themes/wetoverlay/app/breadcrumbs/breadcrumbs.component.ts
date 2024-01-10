@@ -5,10 +5,12 @@ import { BreadcrumbsComponent as BaseComponent } from '../../../../app/breadcrum
  * Component representing the breadcrumbs of a page
  */
 @Component({
-  selector: 'ds-breadcrumbs',
+  selector: '[ds-breadcrumbs]',
   templateUrl: './breadcrumbs.component.html',
   //templateUrl: '../../../../app/breadcrumbs/breadcrumbs.component.html',
-  styleUrls: ['../../styles/wet-theme.scss']
+  styleUrls: [
+    // '../../../../themes/wetoverlay/styles/static-pages.scss',
+  ]
   //styleUrls: ['../../../../app/breadcrumbs/breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent extends BaseComponent {

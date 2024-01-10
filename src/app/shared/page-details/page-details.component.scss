@@ -1,0 +1,38 @@
+.gcweb.row {
+  display: block;
+  flex-wrap: unset;
+}
+
+@media (min-width: 768px) {
+  .gcweb.col-md-4 {
+    flex: unset;
+    max-width: unset;
+  }
+}
+
+@media (min-width: 576px) {
+  .gcweb.col-sm-5 {
+    flex: unset;
+    max-width: unset;
+  }
+
+  .gcweb.container {
+    max-width: unset;
+  }
+}
+
+#wb-dtmd dd,
+#wb-dtmd dt {
+  display: inline;
+  font-weight: 400;
+  margin-right: 0;
+}
+
+dd,
+dt {
+  line-height: 1.4375;
+}
+
+.pagedetails {
+  font-size: 16px;
+}

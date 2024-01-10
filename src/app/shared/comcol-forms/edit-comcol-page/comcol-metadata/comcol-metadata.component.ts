@@ -50,7 +50,6 @@ export class ComcolMetadataComponent<TDomain extends Community | Collection> imp
    * @param event   The event returned by the community/collection form. Contains the new dso and logo uploader
    */
   onSubmit(event) {
-
     const uploader = event.uploader;
     const deleteLogo = event.deleteLogo;
 
@@ -76,6 +75,8 @@ export class ComcolMetadataComponent<TDomain extends Community | Collection> imp
             this.notificationsService.error(null, this.translate.get(`${this.type.value}.edit.notifications.error`));
           }
         });
+    } else {
+      this.notificationsService.warning(null, this.translate.get(`form.errors.general.no-changes`))
     }
   }
 

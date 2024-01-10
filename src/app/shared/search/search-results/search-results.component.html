@@ -1,4 +1,4 @@
-<section>
+<section  *ngIf="!useGcWeb else GcWebTemplate">
 <div *ngIf="searchResults?.hasSucceeded && !searchResults?.isLoading && searchResults?.payload?.page.length > 0" @fadeIn>
         <ds-viewable-collection
             [config]="searchConfig.pagination"
@@ -18,14 +18,43 @@
         *ngIf="hasNoValue(searchResults) || hasNoValue(searchResults.payload) || searchResults.isLoading"
         message="{{'loading.search-results' | translate}}"></ds-loading>
 <ds-error
-        *ngIf="searchResults?.hasFailed && (!searchResults?.errorMessage || searchResults?.statusCode != 400)"
+        *ngIf="searchResults?.hasFailed && (!searchResults?.errorMessage || searchResults?.statusCode != 400 || searchResults?.statusCode == 422)"
         message="{{'error.search-results' | translate}}"></ds-error>
-<div *ngIf="searchResults?.payload?.page.length == 0 || searchResults?.statusCode == 400">
+<!-- <div *ngIf="searchResults?.payload?.page.length == 0 || searchResults?.statusCode == 400 || searchResults?.statusCode == 422">
     {{ 'search.results.no-results' | translate }}
     <a [routerLink]="['/search']"
        [queryParams]="{ query: surroundStringWithQuotes(searchConfig?.query) }"
        queryParamsHandling="merge">
         {{"search.results.no-results-link" | translate}}
     </a>
-</div>
+</div> -->
 </section>
+
+<ng-template #GcWebTemplate>
+        <div *ngIf="searchResults?.hasSucceeded && !searchResults?.isLoading && searchResults?.payload?.page.length > 0" @fadeIn>
+                <ds-viewable-collection
+                    [config]="searchConfig.pagination"
+                    [sortConfig]="searchConfig.sort"
+                    [objects]="searchResults"
+                    [hideGear]="true"
+                    [selectable]="selectable"
+                    [useGcWeb]="true"
+                    [selectionConfig]="selectionConfig"
+                    [context]="context"
+                    [hidePaginationDetail]="hidePaginationDetail"
+                    (deselectObject)="deselectObject.emit($event)"
+                    (selectObject)="selectObject.emit($event)"
+                    >
+            </ds-viewable-collection>
+        </div>
+        <ds-loading *ngIf="isLoading()"
+                message="{{'loading.search-results' | translate}}"></ds-loading>
+        <!-- <ds-error *ngIf="showError()"
+                message="{{'error.search-results' | translate}}"></ds-error> -->
+        <div *ngIf="searchResults?.payload?.page.length == 0 || searchResults?.statusCode == 400 || searchResults?.statusCode == 422" [innerHTML]="'search.results.no-results' | translate">
+                <!-- <a [routerLink]="['/search']" [queryParams]="{ query: surroundStringWithQuotes(searchConfig?.query) }"
+                        queryParamsHandling="merge">
+                        {{"search.results.no-results-link" | translate}}
+                </a> -->
+        </div>
+</ng-template>

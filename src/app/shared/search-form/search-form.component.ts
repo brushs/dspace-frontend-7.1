@@ -23,6 +23,12 @@ import { SearchConfigurationService } from '../../core/shared/search/search-conf
  * Component that represents the search form
  */
 export class SearchFormComponent implements OnInit {
+
+  /**
+   * Status of whether the search form component is on the comcol page.
+   */
+  @Input() onComColPage: boolean;
+
   /**
    * The search query
    */
@@ -64,27 +70,37 @@ export class SearchFormComponent implements OnInit {
   /**
    * The placeholder of the search input
    */
-  @Input() searchPlaceholder: string;
+  @Input() searchPlaceholder: string = '';
+
+  /**
+   * Optionally use GCWeb styling
+   */
+  @Input() useGcWeb = false;
 
   /**
    * Output the search data on submit
    */
   @Output() submitSearch = new EventEmitter<any>();
 
-  constructor(private router: Router, private searchService: SearchService,
+  constructor(private router: Router, 
+              private searchService: SearchService,
               private paginationService: PaginationService,
               private searchConfig: SearchConfigurationService
               ) {
   }
 
   ngOnInit(): void {
+
     //Fix OSPR issue 264: keep the page in search result when changing language.
-    if(typeof this.query !== 'undefined' && isNotEmpty(this.query)){
+    //if the query is not undefined AND not empty, OR the current URL includes the
+    // "query" parameter
+    if((typeof this.query !== 'undefined' && isNotEmpty(this.query)) || this.router.url.includes("query=")){
+
       this.submitSearch.emit({query: this.query});
     }
-    if(isNotEmpty(this.scope)) {
-      this.onScopeChange(this.scope);
-    }
+    // if(isNotEmpty(this.scope)) {
+    //   this.onScopeChange(this.scope);
+    // }
   }
 
   /**
@@ -92,6 +108,7 @@ export class SearchFormComponent implements OnInit {
    * @param data Values submitted using the form
    */
   onSubmit(data: any) {
+    this.query = this.query.trim();
     this.updateSearch(data);
     this.submitSearch.emit(data);
   }
@@ -115,10 +132,10 @@ export class SearchFormComponent implements OnInit {
       const pageParam = this.paginationService.getPageParam(this.searchConfig.paginationID);
       queryParams[pageParam] = 1;
 
-      this.router.navigate(this.getSearchLinkParts(), {
-      queryParams: queryParams,
-      queryParamsHandling: 'merge'
-    });
+    //   this.router.navigate(this.getSearchLinkParts(), {
+    //   queryParams: queryParams,
+    //   queryParamsHandling: 'merge'
+    // });
     this.paginationService.updateRouteWithUrl(this.searchConfig.paginationID, this.getSearchLinkParts(), { page: 1 }, data);
   }
 

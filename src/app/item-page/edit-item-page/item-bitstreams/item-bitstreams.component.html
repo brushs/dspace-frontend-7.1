@@ -52,7 +52,7 @@
   </div>
   <ds-loading *ngIf="!bundles" message="{{'loading.bitstreams' | translate}}"></ds-loading>
 
-  <div class="button-row bottom">
+  <div class="d-flex justify-content-end">
     <div class="mt-4 float-right">
       <button class="btn btn-warning" *ngIf="isReinstatable() | async"
               (click)="reinstate()">

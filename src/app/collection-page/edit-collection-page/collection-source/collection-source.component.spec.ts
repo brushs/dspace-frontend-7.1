@@ -135,7 +135,7 @@ describe('CollectionSourceComponent', () => {
         { provide: CollectionDataService, useValue: collectionService },
         { provide: RequestService, useValue: requestService }
       ],
-      schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     // OSPR fix ends here
   }));

@@ -63,7 +63,7 @@
          [placeholder]="model.placeholder"
          [readonly]="true"
          [type]="model.inputType"
-         [value]="currentValue?.display"
+         [value]="currentValue?.display | translate"
          (focus)="onFocus($event)"
          (change)="onChange($event)"
          (click)="openTree($event)"

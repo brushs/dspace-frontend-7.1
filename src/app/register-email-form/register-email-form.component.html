@@ -1,39 +1,47 @@
-<div class="container">
-    <h2>{{MESSAGE_PREFIX + '.header'|translate}}</h2>
-    <p>{{MESSAGE_PREFIX + '.info' | translate}}</p>
-
-    <form [class]="'ng-invalid'" [formGroup]="form" (ngSubmit)="register()">
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-12">
-                    <label class="font-weight-bold"
-                           for="email">{{MESSAGE_PREFIX + '.email' | translate}}</label>
-                    <input [className]="(email.invalid) && (email.dirty || email.touched) ? 'form-control is-invalid' :'form-control'"
-                           type="text" id="email" formControlName="email"/>
-                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                         class="invalid-feedback show-feedback">
-                    <span *ngIf="email.errors && email.errors.required">
-                        {{ MESSAGE_PREFIX + '.email.error.required' | translate }}
-                    </span>
-                    <span *ngIf="email.errors && email.errors.pattern">
-                        {{ MESSAGE_PREFIX + '.email.error.pattern' | translate }}
-                    </span>
+<div class="container" gcWeb>
+    <div class="row">        
+        <div class="col-md-12">
+            <ng-container *ngIf="!formSubmitted; else confirmationOfRequest">
+                <h1 property="name" id="wb-cont">{{MESSAGE_PREFIX + '.header'|translate}}</h1>
+            
+                <p>{{MESSAGE_PREFIX + '.info' | translate}}</p>
+                <!-- action="#" method="post" name="cse-search-box" role="search" -->
+                <form  role="form" method="get" action="#" [formGroup]="form" (ngSubmit)="register()" gcWeb>
+    
+                    <div class="form-group">
+                        <p>{{ MESSAGE_PREFIX + '.email.hint'  | translate }}</p> 
+                        <label for="email" class="required">
+                            {{MESSAGE_PREFIX + '.email' | translate}} <strong class="required">{{'sign.in.required' | translate}}</strong>
+                            <strong role="alert" *ngIf="emailIsEmpty" class="required">
+                                {{ MESSAGE_PREFIX + '.email.error.required' | translate }}
+                            </strong>
+                            <strong role="alert" *ngIf="emailIsInvalid" class="required">
+                                {{ MESSAGE_PREFIX + '.email.error.pattern' | translate }}
+                            </strong>
+                        </label>
+                        <input class="form-control" autocomplete="off" autofocus
+                            type="email" id="email" formControlName="email"/>
                     </div>
-                </div>
-                <div class="col-12">
-                    {{MESSAGE_PREFIX + '.email.hint' |translate}}
-                </div>
-
-            </div>
-
+    
+                    <!-- Start of OSPR change -->
+                    <!-- Note: the line [disabled]="form.invalid" was changed to enable the Register button -->
+                    <button class="btn btn-primary"
+                            type="submit"
+                            [disabled]="false">{{MESSAGE_PREFIX + '.submit'| translate}}</button>
+                    <!-- End of OSPR change -->
+                </form>
+            </ng-container>
+           
+            <ng-template #confirmationOfRequest>
+                <h1 property="name" class="mb-4" *ngIf="submissionTitle">
+                    {{ submissionTitle | translate }}
+                </h1>
+                <p *ngIf="submissionMessage">
+                    {{ submissionMessage | translate: {email: email} }}
+                </p>
+            </ng-template>
+    
         </div>
-    </form>
-
-    <!-- Start of OSPR change -->
-    <!-- Note: the line [disabled]="form.invalid" was changed to enable the Register button -->
-    <button class="btn btn-primary"
-            [disabled]="false"
-            (click)="register()">{{MESSAGE_PREFIX + '.submit'| translate}}</button>
-    <!-- End of OSPR change -->
+    </div>
+    <ds-page-details></ds-page-details>
 </div>

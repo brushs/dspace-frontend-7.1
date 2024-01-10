@@ -593,4 +593,13 @@ export class AuthService {
     }
   }
 
+  setUrlPathPriorToSignIn(newUrl){
+    localStorage.setItem("urlPathPriorToSignIn", newUrl);
+    
+  }
+
+  getUrlPathPriorToSignIn(){
+    return localStorage.getItem("urlPathPriorToSignIn") ? localStorage.getItem("urlPathPriorToSignIn") : "";
+  }
+
 }

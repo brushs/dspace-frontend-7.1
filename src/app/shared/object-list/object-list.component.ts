@@ -50,6 +50,8 @@ export class ObjectListComponent {
   @Input() hidePagerWhenSinglePage = true;
   @Input() selectable = false;
   @Input() selectionConfig: { repeatable: boolean, listId: string };
+  @Input() useGcWeb = false;
+  @Input() useGcPagination = false;
 
   /**
    * The link type of the listable elements
@@ -80,7 +82,8 @@ export class ObjectListComponent {
    * Emit when one of the listed object has changed.
    */
   @Output() contentChange = new EventEmitter<any>();
-
+  
+  linkTypes = CollectionElementLinkType;
   /**
    * The current listable objects
    */

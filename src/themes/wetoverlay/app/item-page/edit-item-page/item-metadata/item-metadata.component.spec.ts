@@ -1,33 +1,30 @@
 // the OSPR changes shown here have been implemented at both the theme and the app level
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of as observableOf } from 'rxjs';
 import { getTestScheduler } from 'jasmine-marbles';
 import { ItemMetadataComponent } from './item-metadata.component';
 import { TestScheduler } from 'rxjs/testing';
-import { SharedModule } from '../../../shared/shared.module';
-import { ObjectUpdatesService } from '../../../core/data/object-updates/object-updates.service';
+import { SharedModule } from '../../../../../../app/shared/shared.module';
+import { ObjectUpdatesService } from '../../../../../../app/core/data/object-updates/object-updates.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationsService } from '../../../shared/notifications/notifications.service';
+import { NotificationsService } from '../../../../../../app/shared/notifications/notifications.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { ItemDataService } from '../../../core/data/item-data.service';
+import { ItemDataService } from '../../../../../../app/core/data/item-data.service';
 import { By } from '@angular/platform-browser';
-import { INotification, Notification } from '../../../shared/notifications/models/notification.model';
-import { NotificationType } from '../../../shared/notifications/models/notification-type';
-import { RouterStub } from '../../../shared/testing/router.stub';
-import { Item } from '../../../core/shared/item.model';
-import { FieldChangeType } from '../../../core/data/object-updates/object-updates.actions';
-import { MetadatumViewModel } from '../../../core/shared/metadata.models';
-import { RegistryService } from '../../../core/registry/registry.service';
-import { MetadataSchema } from '../../../core/metadata/metadata-schema.model';
-import { MetadataField } from '../../../core/metadata/metadata-field.model';
-import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } from '../../../shared/remote-data.utils';
-import { ObjectCacheService } from '../../../core/cache/object-cache.service';
-import { DSOSuccessResponse } from '../../../core/cache/response.models';
-import { createPaginatedList } from '../../../shared/testing/utils.test';
-// OSPR fix begins here
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
-// OSPR fix ends here
+import { INotification, Notification } from '../../../../../../app/shared/notifications/models/notification.model';
+import { NotificationType } from '../../../../../../app/shared/notifications/models/notification-type';
+import { RouterStub } from '../../../../../../app/shared/testing/router.stub';
+import { Item } from '../../../../../../app/core/shared/item.model';
+import { FieldChangeType } from '../../../../../../app/core/data/object-updates/object-updates.actions';
+import { MetadatumViewModel } from '../../../../../../app/core/shared/metadata.models';
+import { RegistryService } from '../../../../../../app/core/registry/registry.service';
+import { MetadataSchema } from '../../../../../../app/core/metadata/metadata-schema.model';
+import { MetadataField } from '../../../../../../app/core/metadata/metadata-field.model';
+import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } from '../../../../../../app/shared/remote-data.utils';
+import { ObjectCacheService } from '../../../../../../app/core/cache/object-cache.service';
+import { DSOSuccessResponse } from '../../../../../../app/core/cache/response.models';
+import { createPaginatedList } from '../../../../../../app/shared/testing/utils.test';
 
 let comp: any;
 let fixture: ComponentFixture<ItemMetadataComponent>;
@@ -177,7 +174,7 @@ describe('ItemMetadataComponent', () => {
           { provide: NotificationsService, useValue: notificationsService },
           { provide: RegistryService, useValue: metadataFieldService },
           { provide: ObjectCacheService, useValue: objectCacheService },
-        ], schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+        ], schemas: [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();
       // OSPR fix ends here
     })

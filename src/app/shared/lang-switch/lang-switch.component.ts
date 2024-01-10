@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { LocaleService } from '../../core/locale/locale.service';
 import { HostWindowService } from '../host-window.service';
 
 @Component({
-  selector: 'ds-lang-switch',
+  selector: 'ds-lang-switch, [ds-lang-switch]',
   styleUrls: ['lang-switch.component.scss'],
   templateUrl: 'lang-switch.component.html',
 })
@@ -30,7 +30,8 @@ export class LangSwitchComponent implements OnInit {
   constructor(
     public translate: TranslateService,
     private localeService: LocaleService,
-    protected windowService: HostWindowService
+    protected windowService: HostWindowService,
+    private router: Router,
   ) {
     this.isXsOrSm$ = windowService.isXsOrSm();
   }
@@ -58,18 +59,39 @@ export class LangSwitchComponent implements OnInit {
    * Switch to a language and store it in a cookie
    * @param lang    The language to switch to
    */
-  useLang(lang: string, event: any) {
-    event.preventDefault();
-    // document.querySelector('html').setAttribute('lang', lang)
-    this.localeService.setCurrentLanguageCode(lang);
-    this.localeService.refreshAfterChangeLanguage();
+  // useLang(lang: string, event: any) {
+  //   event.preventDefault();
+  //   // document.querySelector('html').setAttribute('lang', lang)
+  //   this.localeService.setCurrentLanguageCode(lang);
+  //   this.localeService.refreshAfterChangeLanguage();
+  // }
+
+  /**
+  * Gets alternate official language code English/French
+  */
+  getAlternateLanguageCode(langcode: string): string {
+    return langcode === "en" ? "fr" : "en"
   }
 
-    /**
-   * Gets alternate official language code English/French
-   */
-    getAlternateLanguageCode(langcode: string): string {
-      return langcode === "en" ? "fr" : "en"
+  /**
+   * Get current url without parameters
+   * @returns {string}
+  */
+  getCurrentUrl(): string {
+
+    let currentUrl = this.router.url;
+
+    //remove hash fragment
+    if (currentUrl.indexOf('#') > -1) {
+      currentUrl = currentUrl.substring(0, currentUrl.indexOf('#'));
     }
+
+    //remove query parameters
+    if (currentUrl.indexOf('?') > -1) {
+      currentUrl = currentUrl.substring(0, currentUrl.indexOf('?'));
+    }
+
+    return currentUrl;
+  }
 
 }

@@ -32,6 +32,7 @@ import { createSelector, select, Store } from '@ngrx/store';
 import { AddMetaTagAction, ClearMetaTagAction } from './meta-tag.actions';
 import { coreSelector } from '../core.selectors';
 import { CoreState } from '../core.reducers';
+import { LocaleService } from '../locale/locale.service';
 
 /**
  * The base selector function to select the metaTag section in the store
@@ -70,6 +71,11 @@ export class MetadataService {
     'application/epub+zip',                                                     // .epub
   ];
 
+  /**
+   * Title value for the splash page
+   */
+  splashPageTitle: string;
+
   constructor(
     private router: Router,
     private translate: TranslateService,
@@ -82,6 +88,7 @@ export class MetadataService {
     private rootService: RootDataService,
     private store: Store<CoreState>,
     private hardRedirectService: HardRedirectService,
+    private localeService: LocaleService
   ) {
   }
 
@@ -103,14 +110,26 @@ export class MetadataService {
   private processRouteChange(routeInfo: any): void {
     this.clearMetaTags();
 
-    if (routeInfo.data.value.title) {
-      const titlePrefix = this.translate.get('repository.title.prefix');
+    if (routeInfo.data.value.title && !this.splashPageTitle) {
+      // const titlePrefix = this.translate.get('repository.title.prefix');
+      const titleSuffix = this.translate.get('repository.title.suffix');
       const title = this.translate.get(routeInfo.data.value.title, routeInfo.data.value);
-      combineLatest([titlePrefix, title]).pipe(take(1)).subscribe(([translatedTitlePrefix, translatedTitle]: [string, string]) => {
-        this.addMetaTag('title', translatedTitlePrefix + translatedTitle);
-        this.title.setTitle(translatedTitlePrefix + translatedTitle);
+      combineLatest([titleSuffix, title]).pipe(take(1)).subscribe(([translatedtitleSuffix, translatedTitle]: [string, string]) => {
+        if(routeInfo.data.value.removeTitleSuffix){
+          this.addMetaTag('title', translatedTitle);
+          this.title.setTitle(translatedTitle);
+        }else{
+          this.addMetaTag('title', translatedTitle + translatedtitleSuffix);
+          this.title.setTitle(translatedTitle + translatedtitleSuffix);
+        }
       });
     }
+
+    if (this.splashPageTitle) {
+      this.addMetaTag('title', this.splashPageTitle);
+      this.title.setTitle(this.splashPageTitle);
+    }
+    
     if (routeInfo.data.value.description) {
       this.translate.get(routeInfo.data.value.description).pipe(take(1)).subscribe((translatedDescription: string) => {
         this.addMetaTag('description', translatedDescription);
@@ -173,9 +192,20 @@ export class MetadataService {
    * Add <meta name="title" ... >  to the <head>
    */
   private setTitleTag(): void {
-    const value = this.dsoNameService.getName(this.currentObject.getValue());
-    this.addMetaTag('title', value);
-    this.title.setTitle(value);
+
+    // const value = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
+    // this.addMetaTag('title', value);
+    // this.title.setTitle(value);
+
+    const titleSuffix = this.translate.get('repository.title.suffix');
+    titleSuffix.pipe(take(1)).subscribe((translatedtitleSuffix) => {
+
+      const translatedTitle = this.dsoNameService.getTranslatedName(this.currentObject.getValue(), this.localeService.getCurrentLanguageCode())?.value;
+
+      this.addMetaTag('title', translatedTitle + translatedtitleSuffix);
+      this.title.setTitle(translatedTitle + translatedtitleSuffix);
+    });
+    
   }
 
   /**
@@ -477,5 +507,8 @@ export class MetadataService {
     });
   }
 
+  public setSplashPageTitle(value){
+    this.splashPageTitle = value;
+  }
 
 }

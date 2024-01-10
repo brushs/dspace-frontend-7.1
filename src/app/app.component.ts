@@ -158,6 +158,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       console.info(environment);
     }
     this.storeCSSVariables();
+
   }
 
   ngOnInit() {
@@ -200,15 +201,65 @@ export class AppComponent implements OnInit, AfterViewInit {
       // More information on this bug-fix: https://blog.angular-university.io/angular-debugging/
       delay(0)
     ).subscribe((event) => {
+
       if (event instanceof NavigationStart) {
         this.isRouteLoading$.next(true);
       } else if (
         event instanceof NavigationEnd ||
         event instanceof NavigationCancel
       ) {
+
         this.isRouteLoading$.next(false);
+
+        //if the event url does not contain a hash fragment
+        if(!event.url.includes("#")){
+
+          //get the unordered list element containing the skip to links elements in
+          // the DOM
+          let skipToLinksListEl = (document.querySelector('#wb-tphp') as HTMLElement);
+
+          //if the unordered list element exists
+          if(skipToLinksListEl) {
+
+            //set the tab index to -1 to allow for focusability
+            skipToLinksListEl.setAttribute('tabindex', '-1');
+
+            //focus on the element
+            skipToLinksListEl.focus();
+
+            //scroll the element into view
+            skipToLinksListEl.scrollIntoView();
+
+            //remove the tabindex attribute once the focus is set
+            skipToLinksListEl.removeAttribute('tabindex');
+          }
+        }
+
+        //if the URL has query parameters
+        if(event.url.includes("?")){
+          let queryParams = this.parseQueryParametersFromUrl(event.url);
+
+          //if the 'useLang' query parameter exists
+          if(queryParams["useLang"]){
+            let queryParams = this.parseQueryParametersFromUrl(event.url);
+
+            //remove the 'useLang' query parameter
+            this.router.navigate([this.router.url.split("?")[0]], { queryParams: {...queryParams, useLang: null},
+            queryParamsHandling: 'merge' })
+            .then(() => {
+              this.localeService.setCurrentLanguageCode(queryParams["useLang"]);
+              this.localeService.refreshAfterChangeLanguage();
+            });
+          };
+        }
+
+        if(this.translate.currentLang !== this.localeService.getLanguageCodeFromCookie()){
+          this.localeService.setCurrentLanguageCode(this.localeService.getLanguageCodeFromCookie());
+          this.localeService.refreshAfterChangeLanguage();
+        }
       }
     });
+
   }
 
   @HostListener('window:resize', ['$event'])
@@ -277,5 +328,27 @@ export class AppComponent implements OnInit, AfterViewInit {
           }
         }
       });
+  }
+
+  /**
+   * Method to parse the query parameter segment from a URL string
+   * @param url The URL string value
+   * @returns Query parameters as an object
+   */
+  parseQueryParametersFromUrl(url){
+    if(url){
+      let queryParamsString = url.split("?")[1];
+      if(url.split("?")[1]){
+        let queryParamsStringSegments = queryParamsString.split("&");
+        let queryParamsObject = {};
+        queryParamsStringSegments.forEach((segment) => {
+          let splitSegment = segment.split("=");
+          queryParamsObject[splitSegment[0]] = decodeURIComponent(splitSegment[1]);
+        });
+        return queryParamsObject;
+      }
+    }
+    return {};
+    
   }
 }

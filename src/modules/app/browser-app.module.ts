@@ -37,7 +37,10 @@ import { BrowserAuthRequestService } from '../../app/core/auth/browser-auth-requ
 export const REQ_KEY = makeStateKey<string>('req');
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateJson5HttpLoader(http, 'assets/i18n/', '.json5');
+  return new TranslateJson5HttpLoader(http, [
+    { prefix: 'assets/i18n/core/', suffix: '.json5' },
+    { prefix: 'assets/i18n/controlled_vocabulary/', suffix: '.json5' }
+  ]);
 }
 
 export function getRequest(transferState: TransferState): any {

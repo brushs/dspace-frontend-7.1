@@ -1,1 +1,12 @@
-@import '../../../../../styles/variables.scss';
+.horizontal-list {
+    list-style: none; // Remove bullets
+    padding: 0;
+
+    li {
+        display: inline; // Display items horizontally
+
+        &:not(:last-child)::after {
+        content: ", "; // Add a comma after each item except the last one
+        }
+    }
+}

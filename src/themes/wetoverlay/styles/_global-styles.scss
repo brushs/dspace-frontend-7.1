@@ -2,44 +2,55 @@
 
 // imports the base global style
 @import '../../../styles/_global-styles.scss';
+[customFosrc] {
 
-.facet-filter, .setting-option {
-  background-color: var(--bs-light);
-  border-radius: var(--bs-border-radius);
-
-  &.p-3 {
-    // Needs !important because the original bootstrap class uses it
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
+  .facet-filter, .setting-option {
+    background-color: var(--bs-light);
+    border-radius: var(--bs-border-radius);
+  
+    &.p-3 {
+      // Needs !important because the original bootstrap class uses it
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+  
+    .badge-secondary {
+      background-color: #{$ospr-blue-900};
+      color: #{$gray-100};
+    }
+  
+    h5 {
+      font-size: 1.1rem
+    }
   }
-
-  .badge-secondary {
-    background-color: #{$ospr-blue-900};
-    color: #{$gray-100};
+  
+  header {
+    ds-navbar-section > li,
+    ds-expandable-navbar-section > li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
   }
-
-  h5 {
-    font-size: 1.1rem
-  }
+  
+  .lead {
+    margin-bottom: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.4; }
+  
+    @media (min-width: 768px) {
+      .lead {
+        font-size: 24px; } }
+  
+  
+  // Todo: Delete after full transition to gcweb template
+  #wb-rsz {
+    clip: rect(1px, 1px, 1px, 1px);
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    top: -1000px; }
 }
-
-header {
-  ds-navbar-section > li,
-  ds-expandable-navbar-section > li {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-  }
-}
-
-.lead {
-  margin-bottom: 5px;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.4; }
-
-  @media (min-width: 768px) {
-    .lead {
-      font-size: 24px; } }
