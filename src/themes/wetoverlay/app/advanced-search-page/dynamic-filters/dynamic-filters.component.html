@@ -17,7 +17,39 @@
         <option value="notequals">{{'comcol.search.filter.operator.not.equals' | translate}}</option>
       </select>
 
-      <input class="mrgn-rght-sm form-control flex-grow-1" id="filter-item-info-{{i+1}}" name="filter-item-info-{{i+1}}" type="text" aria-label="Filter Value" formControlName="filter" >
+      <!-- input class="mrgn-rght-sm form-control flex-grow-1" id="filter-item-info-{{i+1}}" name="filter-item-info-{{i+1}}" type="text" aria-label="Filter Value" formControlName="filter" -->
+      <ng-container [ngSwitch]="row.get('filtertype')?.value">
+        <input *ngSwitchDefault type="text" name="filterValue" id="filter-item-info-{{i+1}}" aria-label="Filter Value" formControlName="filter"
+          class="mrgn-rght-sm form-control flex-grow-1"/>
+        <select *ngSwitchCase="'subject'" name="filterValue" id="filter-item-infos-{{i+1}}" aria-label="Filter Value" formControlName="filter" class="mrgn-rght-sm form-control flex-grow-1">
+          <option value="Arts, Music, Literature">Arts, Music, Literature</option>
+          <option value="Agriculture">Agriculture</option>
+          <option value="Economics and Industry">Economics and Industry</option>
+          <option value="Education and Training">Education and Training</option>
+          <option value="Form descriptors">Form descriptors</option>
+          <option value="Government and Politics">Government and Politics</option>
+          <option value="Health and Safety">Health and Safety</option>
+          <option value="History and Archaeology">History and Archaeology</option>
+          <option value="Information and Communications">Information and Communications</option>
+          <option value="Labour">Labour</option>
+          <option value="Language and Linguistics ">Language and Linguistics </option>
+          <option value="Law">Law</option>
+          <option value="Military">Military</option>
+          <option value="Nature and Environment">Nature and Environment</option>
+          <option value="Persons">Persons</option>
+          <option value="Processes">Processes</option>
+          <option value="Society and Culture">Society and Culture</option>
+          <option value="Science and Technology">Science and Technology</option>
+          <option value="Transport">Transport</option>
+          <option value="Air">Air</option>
+          <option value="Biodiversity">Biodiversity</option>
+          <option value="Climate">Climate</option>
+          <option value="Economy and industry">Economy and industry</option>
+          <option value="Health">Health</option>
+          <option value="Land">Land</option>
+          <option value="Water">Water</option>
+        </select>
+      </ng-container>
 
       <button type="button" (click)="addRow()" class="btn btn-default btn-sm mrgn-rght-sm" >
         <span class="glyphicon glyphicon-plus"></span><span class="wb-inv"> + </span>
@@ -31,6 +63,7 @@
   <div class="mrgn-tp-md">
     <button id="apply-filters" name="submit-apply-filters" type="button"  class="btn btn-primary mrgn-rght-md" (click)="addRow()"> + </button>
     <button id="reset-filters" name="reset-filters" type="button" class="btn btn-default" (click)="resetFilters()"><span class="fa fa-undo" aria-hidden="true"></span> Reset Filters </button>
+    <button id="debug" name="debug" type="button" class="btn btn-default" (click)="printFormValues()"><span class="fa fa-undo" aria-hidden="true"></span> Debug </button>
   </div>
   <!--
   <div class="buttons">
