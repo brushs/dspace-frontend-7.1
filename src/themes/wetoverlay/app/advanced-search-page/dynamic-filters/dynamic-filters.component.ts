@@ -84,8 +84,14 @@ export class DynamicFiltersComponent {
   }
 
   printFormValues() {
+    var filterAll = this.getQueryString();
+    console.log(filterAll);
+    //console.log(this.filteredData);
+  }
+
+  private getQueryString() {
     const filters = this.rows.controls.map(row => row.value);
-    let filterArray:any = [];
+    let filterArray: any = [];
     var filterInfo = '';
     for (const filter of filters) {
       switch (filter.relationalOperator) {
@@ -104,15 +110,19 @@ export class DynamicFiltersComponent {
         default:
           filterInfo = `*:*`;
           break;
-      //const filterInfo = `${filter.filtertype}_${filter.relationalOperator}_${filter.filter}`;
-      //filterInfoAll += filterInfo + '&&';
+        //const filterInfo = `${filter.filtertype}_${filter.relationalOperator}_${filter.filter}`;
+        //filterInfoAll += filterInfo + '&&';
       }
       filterArray.push(filterInfo);
     }
-    let filterAll = filterArray.join(' AND ')
-    console.log(filterAll);
     this.filteredData = this.filterData(filters);
-    //this.output = filterAll;
-    console.log(this.filteredData);
+    let filterAll = filterArray.join(' AND ');
+    this.output = filterAll;
+    return filterAll;
+  }
+
+  getQuery() {
+    this.getQueryString();
+    return this.output;
   }
 }

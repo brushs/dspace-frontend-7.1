@@ -175,7 +175,7 @@ export class MySearchComponent implements OnInit {
       this.adminSearch = true;
     }
     /* End of FOSRC Changes */
-    //this.doSearch();
+    this.doSearch();
     //this.getQueryParam();
   }
 
@@ -237,14 +237,15 @@ export class MySearchComponent implements OnInit {
 
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
 
-    this.getQueryParam();
-    this.isResultsVisible = true;
+    //this.getQueryParam();
   }
 
   private getQueryParam() {
     this.routeService.getQueryParameterValue("query").subscribe(query => {
-      if (query === undefined)
+      if (query === undefined || query === 'undefined')
         query = null;
+      else
+        query = this.dynamicFiltersComponent.output;
       this.mainSearchValue = query;
     });
   }
@@ -343,10 +344,12 @@ export class MySearchComponent implements OnInit {
 
 
     applyQuery(term) {
-      this.dynamicFiltersComponent.printFormValues();
+      this.isResultsVisible = true;
+      this.dynamicFiltersComponent.getQuery();
+      this.mainSearchValue = this.dynamicFiltersComponent.output;
+      term = this.dynamicFiltersComponent.output;
       console.log(this.route)
-      this.doSearch();
-      //this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
+      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
     }
 
     toggleMapVisibility(): void {
