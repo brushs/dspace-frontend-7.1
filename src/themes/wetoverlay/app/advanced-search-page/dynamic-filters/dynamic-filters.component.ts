@@ -112,6 +112,7 @@ export class DynamicFiltersComponent {
     let filterAll = filterArray.join(' AND ')
     console.log(filterAll);
     this.filteredData = this.filterData(filters);
-    this.output = filterAll;
+    //this.output = filterAll;
+    console.log(this.filteredData);
   }
 }
