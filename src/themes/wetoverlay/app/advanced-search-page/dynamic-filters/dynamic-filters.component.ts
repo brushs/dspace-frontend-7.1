@@ -55,10 +55,8 @@ export class DynamicFiltersComponent {
     const operatorMappings: any = {
       contains: (value:string, filter:string) => value.includes(filter),
       equals: (value:string, filter:string) => value === filter,
-      authority: (value:string, filter:string) => value === filter,
       notcontains: (value:string, filter:string) => !value.includes(filter),
       notequals: (value:string, filter:string) => value !== filter,
-      notauthority: (value:string, filter:string) => value !== filter,
     };
 
     return this.mockData.filter(item => {
