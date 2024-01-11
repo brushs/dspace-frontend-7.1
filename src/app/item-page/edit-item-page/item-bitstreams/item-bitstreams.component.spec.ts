@@ -168,7 +168,7 @@ describe('ItemBitstreamsComponent', () => {
         { provide: SearchConfigurationService, useValue: searchConfig },
         { provide: BundleDataService, useValue: bundleService },
         ChangeDetectorRef
-      ], schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+      ], schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
     // OSPR fix ends here
   }));

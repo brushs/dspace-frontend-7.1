@@ -36,16 +36,14 @@ export abstract class StartsWithAbstractComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subs.push(
-      this.route.queryParams.subscribe((params) => {
-        if (hasValue(params.startsWith)) {
-          this.setStartsWith(params.startsWith);
-        }
-      })
-    );
     this.formData = new FormGroup({
       startsWith: new FormControl()
     });
+    this.subs.push(
+      this.route.queryParams.subscribe((params)=> {
+        this.setStartsWith(params.startsWith)
+      })
+    )
   }
 
   /**
@@ -80,8 +78,11 @@ export abstract class StartsWithAbstractComponent implements OnInit, OnDestroy {
     if (this.startsWith === '-1') {
       this.startsWith = undefined;
     }
+    const queryParams =  { startsWith: this.startsWith };
+    const pageParam = this.paginationService.getPageParam(this.paginationId);
+    queryParams[pageParam] = 1;
     this.router.navigate([], {
-      queryParams: Object.assign({ startsWith: this.startsWith }),
+      queryParams: queryParams,
       queryParamsHandling: 'merge'
     });
   }

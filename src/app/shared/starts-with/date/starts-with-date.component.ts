@@ -131,7 +131,8 @@ export class StartsWithDateComponent extends StartsWithAbstractComponent {
     } else {
       this.startsWithYear = +startsWith;
     }
-    this.setStartsWithParam();
+      // this.setStartsWithParam();
+      this.formData.patchValue({startsWith: this.startsWith})
   }
 
   /**

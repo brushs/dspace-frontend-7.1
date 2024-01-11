@@ -1,6 +1,6 @@
 // the OSPR changes shown here have been implemented at both the theme and the app level
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of as observableOf } from 'rxjs';
 import { getTestScheduler } from 'jasmine-marbles';
 import { ItemMetadataComponent } from './item-metadata.component';
@@ -25,9 +25,7 @@ import { createSuccessfulRemoteDataObject, createSuccessfulRemoteDataObject$ } f
 import { ObjectCacheService } from '../../../core/cache/object-cache.service';
 import { DSOSuccessResponse } from '../../../core/cache/response.models';
 import { createPaginatedList } from '../../../shared/testing/utils.test';
-// OSPR fix begins here
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
-// OSPR fix ends here
+
 
 let comp: any;
 let fixture: ComponentFixture<ItemMetadataComponent>;
@@ -177,7 +175,7 @@ describe('ItemMetadataComponent', () => {
         { provide: NotificationsService, useValue: notificationsService },
         { provide: RegistryService, useValue: metadataFieldService },
         { provide: ObjectCacheService, useValue: objectCacheService },
-      ], schemas: [NO_ERRORS_SCHEMA], [CUSTOM_ELEMENTS_SCHEMA]
+      ], schemas: [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();
     // OSPR fix ends here
   })

@@ -84,6 +84,8 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
 
   startDateRangeError: boolean;
 
+  endDateErrorText: string = 'search.filters.filter.dateInvalid';
+
   yearValues: string[] = []; // To store all the year values from metadata
 
   constructor(protected searchService: SearchService,
@@ -145,16 +147,16 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
 
       // Calculating the minimum and maximum values
       const minYear = Math.min(...years.map(year => year[0]));
-      // const maxYear = Math.max(...years.map(year => year[1])); if we want to set max year from the returned year range list
+      const maxYear = Math.max(...years.map(year => year[1])); 
       this.range[0] = minYear;
-      this.range[1] = this.max_limit;
+      this.range[1] = maxYear;
 
       const iniMin = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX).pipe(startWith(undefined));
       const iniMax = this.route.getQueryParameterValue(this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX).pipe(startWith(undefined));
       this.sub = observableCombineLatest(iniMin, iniMax).pipe(
         map(([min_limit, max_limit]) => {
           const minimum = hasValue(min_limit) ? min_limit : minYear;
-          const maximum = hasValue(max_limit) ? max_limit : this.max_limit;
+          const maximum = hasValue(max_limit) ? max_limit : maxYear;
           return [minimum, maximum];
         })
       ).subscribe((minmax) => this.range = minmax);
@@ -170,7 +172,9 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     var newMax = new Number(this.range[1] >= this.max_limit ? new Number(this.max_limit) : this.range[1]);
     //this.range[1] = newMax;
 
-    if(isNaN(newMin.valueOf()) || isNaN(this.range[0]) || this.range[0] < this.min_limit) {
+    this.endDateErrorText = 'search.filters.filter.dateInvalid';
+
+    if(this.range[0] !== '' && (isNaN(newMin.valueOf()) || isNaN(this.range[0]) || this.range[0] < this.min_limit)) {
       // add error label on top of start date field
       this.startDateError = true;
     } else {
@@ -184,9 +188,13 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       this.startDateRangeError = false;
     }
 
-    if(!(this.startDateError || this.startDateRangeError) && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
+    if(this.range[1] !== '' && (isNaN(newMax.valueOf()) || isNaN(this.range[1]) || newMax < newMin)) {
       // add error label on top of end date field
       this.endDateError = true;
+
+      if ( newMax < newMin) {
+        this.endDateErrorText = 'search.filters.filter.dateInvalidEndRange';
+      }
     } else {
       this.endDateError = false;
     }
@@ -220,11 +228,11 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
     const filterSelections = this.filterService.getSelectedFilters() ?? [];
 
     const dateFilters = {};
-    if (newMin !== null) {
+    if (newMin !== null && this.range[0] !== '') {
       dateFilters[this.filterConfig.paramName + RANGE_FILTER_MIN_SUFFIX] = [newMin];
     }
 
-    if (newMax !== null) {
+    if (newMax !== null && this.range[1] !== '') {
       dateFilters[this.filterConfig.paramName + RANGE_FILTER_MAX_SUFFIX] = [newMax];
     }
 
@@ -260,5 +268,11 @@ export class SearchRangeFilterComponent extends SearchFacetFilterComponent imple
       this.sub.unsubscribe();
     }
     this.filterValues$.unsubscribe();
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
   }
 }

@@ -5,7 +5,7 @@ export function getMockSearchService(): SearchService {
   return jasmine.createSpyObj('searchService', {
     search: '',
     getEndpoint: observableOf('discover/search/objects'),
-    getSearchLink: '/mydspace',
+    getSearchLink: '/myfosrc',
     getScopes: observableOf(['test-scope']),
     setServiceOptions: {}
   });

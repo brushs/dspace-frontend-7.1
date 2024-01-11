@@ -1,7 +1,8 @@
   <!-- OSPR Changes remove login dropdown  remove h2-->
   <div *ngIf="!(isAuthenticated | async) && showButton && (isWithinIpRange |async)">
 		<h2 class="wb-inv">{{ 'nav.login' | translate }}</h2>
-    <a class="btn btn-primary" routerLink="/sign-in" routerLinkActive="active" >
+    <!-- <a class="btn btn-primary" routerLink="/sign-in" routerLinkActive="active" > -->
+    <a class="btn btn-primary" routerLinkActive="active" (click)="navigateToSignInPage($event)" (auxclick)="navigateToSignInPage($event)" routerLink="/sign-in">
       {{ 'nav.login' | translate }}
     </a>
   </div>

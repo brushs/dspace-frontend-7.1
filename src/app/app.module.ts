@@ -55,6 +55,7 @@ import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-pa
 import { UUIDService } from './core/shared/uuid.service';
 import { CookieService } from './core/services/cookie.service';
 import { setAppInjector } from './app.injector'; //FOSRC added so we can inject services
+import { A11yModule } from '@angular/cdk/a11y';
 
 export function getBase() {
   return environment.ui.nameSpace;
@@ -78,6 +79,7 @@ const IMPORTS = [
   StoreModule.forRoot(appReducers, storeModuleConfig),
   StoreRouterConnectingModule.forRoot(),
   ThemedEntryComponentModule.withEntryComponents(),
+  A11yModule
 ];
 
 IMPORTS.push(

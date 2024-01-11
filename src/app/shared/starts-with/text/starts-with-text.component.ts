@@ -14,6 +14,9 @@ import { hasValue } from '../../empty.util';
 @renderStartsWithFor(StartsWithType.text)
 export class StartsWithTextComponent extends StartsWithAbstractComponent {
 
+  ngOnInit(): void {
+    super.ngOnInit();
+  }
   /**
    * Get startsWith as text;
    */
@@ -23,6 +26,11 @@ export class StartsWithTextComponent extends StartsWithAbstractComponent {
     } else {
       return '';
     }
+  }
+
+  setStartsWith(startsWith: string) {
+    this.startsWith = startsWith;
+    this.formData.patchValue({startsWith: this.startsWith})
   }
 
   /**

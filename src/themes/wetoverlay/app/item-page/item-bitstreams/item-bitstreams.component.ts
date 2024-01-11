@@ -1,31 +1,31 @@
 import { ChangeDetectorRef, Component, NgZone, OnDestroy } from '@angular/core';
-import { AbstractItemUpdateComponent } from '../abstract-item-update/abstract-item-update.component';
+import { AbstractItemUpdateComponent } from '../../../../../app/item-page/edit-item-page/abstract-item-update/abstract-item-update.component';
 import { filter, map, switchMap, take } from 'rxjs/operators';
 import { Observable, of as observableOf, Subscription, zip as observableZip } from 'rxjs';
-import { ItemDataService } from '../../../core/data/item-data.service';
-import { ObjectUpdatesService } from '../../../core/data/object-updates/object-updates.service';
+import { ItemDataService } from '../../../../../app/core/data/item-data.service';
+import { ObjectUpdatesService } from '../../../../../app/core/data/object-updates/object-updates.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationsService } from '../../../shared/notifications/notifications.service';
+import { NotificationsService } from '../../../../../app/shared/notifications/notifications.service';
 import { TranslateService } from '@ngx-translate/core';
-import { BitstreamDataService } from '../../../core/data/bitstream-data.service';
-import { hasValue, isNotEmpty } from '../../../shared/empty.util';
-import { ObjectCacheService } from '../../../core/cache/object-cache.service';
-import { RequestService } from '../../../core/data/request.service';
-import { getFirstSucceededRemoteData, getRemoteDataPayload } from '../../../core/shared/operators';
-import { RemoteData } from '../../../core/data/remote-data';
-import { PaginatedList } from '../../../core/data/paginated-list.model';
-import { Bundle } from '../../../core/shared/bundle.model';
+import { BitstreamDataService } from '../../../../../app/core/data/bitstream-data.service';
+import { hasValue, isNotEmpty } from '../../../../../app/shared/empty.util';
+import { ObjectCacheService } from '../../../../../app/core/cache/object-cache.service';
+import { RequestService } from '../../../../../app/core/data/request.service';
+import { getFirstSucceededRemoteData, getRemoteDataPayload } from '../../../../../app/core/shared/operators';
+import { RemoteData } from '../../../../../app/core/data/remote-data';
+import { PaginatedList } from '../../../../../app/core/data/paginated-list.model';
+import { Bundle } from '../../../../../app/core/shared/bundle.model';
 import {
   FieldUpdate,
   FieldUpdates
-} from '../../../core/data/object-updates/object-updates.reducer';
-import { Bitstream } from '../../../core/shared/bitstream.model';
-import { FieldChangeType } from '../../../core/data/object-updates/object-updates.actions';
-import { BundleDataService } from '../../../core/data/bundle-data.service';
-import { PaginatedSearchOptions } from '../../../shared/search/paginated-search-options.model';
-import { ResponsiveColumnSizes } from '../../../shared/responsive-table-sizes/responsive-column-sizes';
-import { ResponsiveTableSizes } from '../../../shared/responsive-table-sizes/responsive-table-sizes';
-import { NoContent } from '../../../core/shared/NoContent.model';
+} from '../../../../../app/core/data/object-updates/object-updates.reducer';
+import { Bitstream } from '../../../../../app/core/shared/bitstream.model';
+import { FieldChangeType } from '../../../../../app/core/data/object-updates/object-updates.actions';
+import { BundleDataService } from '../../../../../app/core/data/bundle-data.service';
+import { PaginatedSearchOptions } from '../../../../../app/shared/search/paginated-search-options.model';
+import { ResponsiveColumnSizes } from '../../../../../app/shared/responsive-table-sizes/responsive-column-sizes';
+import { ResponsiveTableSizes } from '../../../../../app/shared/responsive-table-sizes/responsive-table-sizes';
+import { NoContent } from '../../../../../app/core/shared/NoContent.model';
 import { Operation } from 'fast-json-patch';
 
 @Component({

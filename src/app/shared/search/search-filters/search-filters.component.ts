@@ -14,6 +14,7 @@ import { currentPath } from '../../utils/route.utils';
 import { Router } from '@angular/router';
 import { hasValue } from '../../empty.util';
 import { RouteService } from '../../../core/services/route.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-search-filters',
@@ -71,7 +72,9 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     private filterService: SearchFilterService,
     private router: Router,
     @Inject(SEARCH_CONFIG_SERVICE) private searchConfigService: SearchConfigurationService,
-    private routeService :RouteService) {
+    private routeService :RouteService,
+    public translate: TranslateService,
+    ) {
   }
 
   ngOnInit(): void {
@@ -95,12 +98,20 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
       this.filterService.selectedFilterOptions$.next([]);
     }
     this.filters = this.searchConfigService.searchOptions.pipe(
-      switchMap((options) => this.searchService.getConfig(options.scope, options.configuration).pipe(getFirstSucceededRemoteData())),
+      switchMap((options) => {
+        return this.searchService.getConfig(options.scope, options.configuration).pipe(
+            getFirstSucceededRemoteData()
+          )
+      }),
     );
   }
 
   applyFilter(): void {
     // FORSC change to apply filter on button click;
+
+    if (this.checkforErrors()) {
+      return;
+    }
     const allfilters = this.filterService.getSelectedFilters() ?? [];
 
       Object.keys(allfilters).forEach(key => {
@@ -116,6 +127,24 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
     // passing empty array to set selected filters empty
     this.filterService.selectedFilterOptions$.next([]);
     //this.router.navigate([this.searchLink], {queryParamsHandling : 'merge', queryParams: []});
+  }
+
+  checkforErrors() : boolean {
+    let error = false;
+    const startDateError = document.getElementById("startDateErrorId");
+    const startDateRangeError = document.getElementById("startDateRangeErrorId");
+    const endDateError = document.getElementById("endDateErrorId");
+
+    if (startDateError || startDateRangeError) {
+      this.setFocus('startdate');
+      return true;
+    }
+  
+    if (endDateError) {
+      this.setFocus('enddate');
+      return true;
+    }
+    return error;
   }
 
   /**
@@ -141,5 +170,14 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
         sub.unsubscribe();
       }
     });
+  }
+
+  setFocus(id: string) {
+    setTimeout( () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.focus();
+      }
+    },50)
   }
 }

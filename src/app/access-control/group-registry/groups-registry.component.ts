@@ -262,7 +262,9 @@ export class GroupsRegistryComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     this.cleanupSubscribes();
-    this.paginationService.clearPagination(this.config.id);
+    if(this.config && this.config.id){
+      this.paginationService.clearPagination(this.config.id);
+    };
   }
 
 
@@ -271,7 +273,9 @@ export class GroupsRegistryComponent implements OnInit, OnDestroy {
       this.paginationSub.unsubscribe();
     }
     this.subs.filter((sub) => hasValue(sub)).forEach((sub) => sub.unsubscribe());
-    this.paginationService.clearPagination(this.config.id);
+    if(this.config && this.config.id){
+      this.paginationService.clearPagination(this.config.id);
+    };
   }
 
 }

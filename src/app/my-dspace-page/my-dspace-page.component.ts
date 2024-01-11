@@ -31,8 +31,10 @@ import { SearchResult } from '../shared/search/search-result.model';
 import { Context } from '../core/shared/context.model';
 import { SortOptions } from '../core/cache/models/sort-options.model';
 import { RouteService } from '../core/services/route.service';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
-export const MYDSPACE_ROUTE = '/mydspace';
+export const MYDSPACE_ROUTE = '/myfosrc';
 export const SEARCH_CONFIG_SERVICE: InjectionToken<SearchConfigurationService> = new InjectionToken<SearchConfigurationService>('searchConfigurationService');
 
 /**
@@ -116,10 +118,19 @@ export class MyDSpacePageComponent implements OnInit {
   constructor(private service: SearchService,
               private sidebarService: SidebarService,
               private windowService: HostWindowService,
+              private router: Router,
+              private translate: TranslateService,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: MyDSpaceConfigurationService,
               private routeService: RouteService) {
+    
+    if (this.translate.currentLang === 'en' && this.router.url.includes('monfosrc')) {
+      window.location.pathname = 'myfosrc'
+    } else if (this.translate.currentLang === 'fr' && this.router.url.includes('myfosrc')) {
+      window.location.pathname = 'monfosrc'
+    }
     this.isXsOrSm$ = this.windowService.isXsOrSm();
     this.service.setServiceOptions(MyDSpaceResponseParsingService, MyDSpaceRequest);
+
   }
 
   /**
@@ -135,6 +146,7 @@ export class MyDSpacePageComponent implements OnInit {
    * If something changes, update the current context
    */
   ngOnInit(): void {
+
     this.configurationList$ = this.searchConfigService.getAvailableConfigurationOptions();
     this.searchOptions$ = this.searchConfigService.paginatedSearchOptions;
     this.sub = this.searchOptions$.pipe(
