@@ -1,0 +1,10 @@
+<div class="item-page-field">
+  <div class="simple-view-element form-group">
+    <span class="simple-view-element-header h3" *ngIf="label">{{ label|translate }}</span>
+    <div  class="simple-view-element-body">
+       <a class="dont-break-out" [href]= "value" *ngIf="value !='N/A'" >
+          <span>{{ [value] }} </span></a>
+       <span *ngIf="value =='N/A'">{{ [value] }} </span>
+    </div>
+  </div>
+</div>

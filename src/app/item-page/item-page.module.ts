@@ -49,7 +49,8 @@ import { ItemPageFOSRCProjectIdFieldComponent } from './simple/field-components/
 import { SimpleMetadataSectionComponent } from './simple/field-components/specific-field/simple-metadata-section/simple-metadata-section.component';
 import { GenericSimpleMetadataSectionComponent } from './simple/field-components/specific-field/generic-simple-metadata-section/generic-simple-metadata-section.component';
 import { SimpleItemPageCollectionsComponent } from './simple/field-components/specific-field/simple-item-page-collections/simple-item-page-collections.component';
-
+import { ItemPagePolygonFieldComponent} from './simple/field-components/specific-field/polygon/item-page-polygon-field.component';
+import { ItemPageExternalUrlieldComponent } from './simple/field-components/specific-field/external-url/item-page-externurl-field.component';
 import { ResultsBackButtonModule } from '../shared/results-back-button/results-back-button.module';
 
 
@@ -100,7 +101,9 @@ const DECLARATIONS = [
   MediaViewerImageComponent,
   SimpleMetadataSectionComponent,
   GenericSimpleMetadataSectionComponent,
-  SimpleItemPageCollectionsComponent
+  SimpleItemPageCollectionsComponent,
+  ItemPagePolygonFieldComponent,
+  ItemPageExternalUrlieldComponent
 ];
 
 @NgModule({
