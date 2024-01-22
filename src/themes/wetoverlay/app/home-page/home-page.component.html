@@ -25,7 +25,7 @@
       <div class="col-md-12 pull-left">
             <div class="mrgn-tp-md pull-left">
               <a href="advanced-search">
-                    Advanced Search
+                    {{ "home.button.advanced-search"| translate}}
               </a>
             </div>
       </div>
@@ -49,9 +49,6 @@
             </div>
             <div class="col-md-4 pull-right">
               <h2>Contact us</h2>
-              <p>To contact participating departments and agencies directly, please visit the <a
-                  [routerLink]="'/contact-us'">Contact us</a>
-                page.</p>
               <p>For general enquiries, please email <a
                   href="mailto:ostr_support-soutien_dost@nrcan-rncan.gc.ca">ostr_support-soutien_dost@nrcan-rncan.gc.ca</a>
             </div>
@@ -80,14 +77,12 @@
 
     <div class="row profile">
       <div class="col-md-12 pull-left">
-        <h1 property="name" id="wb-cont">Le Dépôt fédéral de science ouverte du Canada (DFSOC)</h1>
-        <p>Le Dépôt fédéral de science ouverte du Canada (DFSOC) offre un accès public, sur le Web, aux articles et
-          publications scientifiques rédigés par le gouvernement fédéral et provenant des ministères et organismes à
-          vocation scientifique participants.</p>
+        <h1 property="name" id="wb-cont">Dépôt ouvert de la science et de la technologie de RNCan (DOST)</h1>
+        <p>Le Dépôt ouvert S&T de RNCan offre un accès libre et gratuit aux publications, à la science et à la recherche publiées par Ressources naturelles Canada.</p>
         <section class="alert alert-info">
-          <h2>Annonce du lancement de la version bêta du DFSOC</h2>
+          <h2>Annonce du lancement progressif du DOST</h2>
           <p>
-            Bienvenue au lancement de la version bêta du DFSOC—offrant un aperçu interne au gouvernement du Canada, avant le lancement public officiel. Au cours de cette phase bêta, nous ajouterons régulièrement de nouveaux articles et de nouvelles publications et nous peaufinerons la navigation et l'affichage du dépôt. Consultez régulièrement cette page afin d’obtenir toutes les mises à jour et <a [routerLink]="'/contactez-nous'">contactez-nous</a> pour signaler tout problème ou question.
+          Bienvenue au lancement progressif du DOST, destiné à un public interne sélectionné par RNCan. Au cours de cette phase, de nouveaux articles et de nouvelles publications seront ajoutés régulièrement et la navigation et les fonctionnalités d'affichage du dépôt seront affinées. Nous vous invitons à consulter régulièrement les mises à jour et à nous contacter pour nous signaler tout problème.
           </p>
         </section>
         <form (submit)="search(searchRepo.value); $event.stopPropagation();" id="validation-example">
@@ -115,9 +110,6 @@
             </div>
             <div class="col-md-4 pull-right">
               <h2>Contactez-nous</h2>
-              <p>Pour contacter directement les ministères et organismes participants, veuillez consulter la page
-                <a [routerLink]="'/contactez-nous'">Contactez-nous</a>.
-              </p>
               <p>Pour des questions d'ordre général, veuillez envoyer un courriel à <a
                   href="mailto:ostr_support-soutien_dost@nrcan-rncan.gc.ca">ostr_support-soutien_dost@nrcan-rncan.gc.ca</a></p>
             </div>
