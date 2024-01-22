@@ -132,11 +132,8 @@
 
 
     <!-- Polygon -->
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['geospatial.bbox']"
-      [separator]="','"
-      [label]="'Polygon'">
-    </ds-generic-item-page-field>
+    <ds-item-page-polygon-field [item]="object">
+    </ds-item-page-polygon-field>
     <!-- -->
 
     <!-- Language -->
@@ -150,6 +147,10 @@
       [fields]="['dc.identifier.uri']"
       [label]="'item.page.uri'">
     </ds-item-page-uri-field>
+    <ds-item-page-externurl-field [item]="object"
+      [field]="'nrcan.publication.externalurl'"
+      [label]="'External URL'">
+    </ds-item-page-externurl-field>
     <ds-item-page-collections [item]="object"></ds-item-page-collections>
     <div>
       <a class="btn btn-outline-primary" role="button" [routerLink]="[itemPageRoute + '/full']">
