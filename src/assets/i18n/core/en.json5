@@ -47,7 +47,7 @@
   "Français": "French",
   "FR": "French",
 
-  // Simple item page translation ends  
+  // Simple item page translation ends
   // start FOSRC chnages for the collection creation form
   "collection.form.errors.description-nom.required": "Please enter te translation for the collection name",
   "collection.form.errors.description-topic-subject.required": "Please enter a subject",
@@ -651,6 +651,8 @@
   "science.innovation.breadcrumbs": "Science and innovation",
   "federal.science.libraries.network.breadcrumbs": "Federal Science Libraries Network",
   "search.page.breadcrumbs": "Search",
+  "nrcan.breadcrumbs":"Natural Resources Canada",
+  "map.tool.publication.breadcrumbs":"Maps, Tools and Publications",
 
   // FOSRC SPECIFIC LABELS END
 
@@ -1333,7 +1335,7 @@
   "grant-request-copy.header": "Grant document copy request",
   "grant-request-copy.intro": "This message will be sent to the applicant associated with the request. The requested document(s) will be appended.",
   "grant-request-copy.success": "Granting of item request successful",
-  "home.breadcrumbs": "Federal Open Science Repository of Canada",
+  "home.breadcrumbs": "NRCan Open S&T Repository",
   "home.button.advanced-search": "Advanced search",
   "home.button.help": "Help",
   "home.button.tips-for-searching": "Tips for searching",

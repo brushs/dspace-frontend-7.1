@@ -23,9 +23,9 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a [attr.href]="translate.currentLang === 'en' ? 'https://www.canada.ca/en.html' : 'https://www.canada.ca/fr.html'" [attr.lang]="translate.currentLang">Canada.ca</a></li>
-            <li><a [attr.href]="translate.currentLang === 'en' ? 'https://www.canada.ca/en/services/science.html' : 'https://www.canada.ca/fr/services/science.html'" [attr.lang]="translate.currentLang">{{'science.innovation.breadcrumbs' | translate}}</a></li>
+            <li><a [attr.href]="translate.currentLang === 'en' ? 'https://nrcan.gc.ca/home' : 'https://rncan.gc.ca/accueil'" [attr.lang]="translate.currentLang">{{'nrcan.breadcrumbs' | translate}}</a></li>
             <!-- <li *ngIf="(breadcrumbOptions$ | async)?.addFederalScienceLibrariesNetworkBreadcrumb"><a [attr.href]="translate.currentLang === 'en' ? 'https://science-libraries.canada.ca/eng/home/' : 'https://science-libraries.canada.ca/fra/accueil/'">{{'federal.science.libraries.network.breadcrumbs' | translate}}</a></li> -->
-            <li><a [attr.href]="translate.currentLang === 'en' ? 'https://science-libraries.canada.ca/eng/home/' : 'https://science-libraries.canada.ca/fra/accueil/'" [attr.lang]="translate.currentLang">{{'federal.science.libraries.network.breadcrumbs' | translate}}</a></li>
+            <li><a [attr.href]="translate.currentLang === 'en' ? 'https://nrcan.gc.ca/maps-tools-and-publications/21448' : 'https://rncan.gc.ca/cartes-outils-et-publications/21449'" [attr.lang]="translate.currentLang">{{'map.tool.publication.breadcrumbs' | translate}}</a></li>
             <ng-container *ngVar="(breadcrumbs$ | async) as breadcrumbs">
 
                 <ng-container *ngVar="(breadcrumbOptions$ | async) as breadcrumbOptions">
@@ -45,30 +45,30 @@
                     </ng-container> -->
 
                     <ng-container *ngFor="let bc of breadcrumbs; let last = last; let index = index">
-                        <!-- omit last breadcrumb 
+                        <!-- omit last breadcrumb
                             AND breadcrumbs where the index exists in the omitBreadcrumbElements array
                             AND breadcrumbs where the text property contains "gc science"
                         -->
-                        <ng-container 
-                        *ngIf="!last 
+                        <ng-container
+                        *ngIf="!last
                             && !breadcrumbOptions?.omitBreadcrumbElements?.includes(index)
                             && !testRegexPattern(gcScienceRegex, bc.text)"
                         >
                             <ng-container *ngTemplateOutlet="breadcrumb; context: bc"></ng-container>
                         </ng-container>
                     </ng-container>
-            
+
                     <ng-template #breadcrumb let-text="text" let-url="url" let-lang="lang">
                         <li property="itemListElement" class="breadcrumb-item"><a property="item" [attr.lang]="lang ? lang : translate.currentLang" [routerLink]="parsePathFromUrl(url)" [queryParams]="parseQueryParametersFromUrl(url)" >{{text | translate}}</a></li>
                     </ng-template>
-            
+
                     <!-- <ng-template #activeBreadcrumb let-text="text" let-url="url" let-lang="lang" let-isHome="isHome"> -->
                         <!-- FIXME: Didn't remove the getpath call to avoid code breaking, but will need to address later. Routerlink field is best practice -->
                         <!-- <li property="itemListElement" class="breadcrumb-item active" aria-current="page"><a property="item" [routerLink]="isHome ? url: null" [attr.lang]="lang" [attr.href]="isHome ? null : getPath()">{{text | translate}} @{{url}}</a></li>
                     </ng-template> -->
 
                 </ng-container>
-                
+
           </ng-container>
 
         </ol>
