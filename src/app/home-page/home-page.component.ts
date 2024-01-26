@@ -39,7 +39,7 @@ export class HomePageComponent implements OnInit {
       map((data) => data.site as Site),
     );
     let baseHost = environment.rest.host;
-    let port = environment.production ? '' : ':' + environment.rest.port;
+    let port = environment.production ? '' : environment.rest.port == null ? '':':' + environment.rest.port;
     let prefix = environment.rest.ssl ? 'https://' : 'http://';
     this.frenchName = {'GEOSCAN':'GEOSCAN', 'Canadian Forest Service':'Service canadien des forêts'};
 

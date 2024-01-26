@@ -1,10 +1,10 @@
-<div class="container">
+<div gcweb class="container">
   <ng-container *ngIf="translate.currentLang === 'en'">
 
     <div class="row profile">
       <div class="col-md-12 pull-left">
         <h1 property="name" id="wb-cont">NRCan Open S&T Repository (OSTR)</h1>
-        <p class="col-9 px-0">The NRCan Open S&T Repository provides free and open access to publications, science and research published by Natural Resources Canada. </p>
+        <p>The NRCan Open S&T Repository provides free and open access to publications, science and research published by Natural Resources Canada. </p>
         <section class="alert alert-info">
           <h3>Announcing the soft launch of the OSTR</h3>
           <p>Welcome to the soft launch of the OSTR—intended for an internal NRCan select audience.
@@ -57,12 +57,12 @@
       </section>
     </div>
     <div class="row">
-      <section class="gc-srvinfo col-md-12">
+      <section gcweb class="gc-srvinfo col-md-12">
         <h2>Services and information</h2>
         <div class="row">
           <div class="col-md-4 mrgn-bttm-md">
             <h3><a [routerLink]="'/about-us'">About</a></h3>
-            <p>Find out more about the FOSRC.</p>
+            <p>Find out more about the OSTR.</p>
           </div>
           <div class="col-md-4 mrgn-bttm-md">
             <h3><a [routerLink]="'/policies-and-standards'">Policies and standards</a></h3>
@@ -99,7 +99,7 @@
           <div class="row">
             <div class="col-md-8 pull-left">
               <h2>Collections</h2>
-              <p class="text-justify">Select a collection.</p>
+              <p class="text-justify">Sélectionnez une collections.</p>
               <div *ngFor="let item of collections">
                 <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
                 <a  [routerLink]="['/collections', item.id]">
