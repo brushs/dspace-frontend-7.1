@@ -59,14 +59,41 @@ export class GoogleAnalyticsService {
                                 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
                                 ga('create', '${trackingId}', 'auto');`;
         this.document.body.appendChild(keyScript);
-  
         // start tracking
         this.angulartics.startTracking();
-      } 
+      }
     });
   }
 
   private isGTagVersion(trackingId: string) {
     return trackingId && trackingId.startsWith('G-');
+  }
+
+  addTrackingIdToPageOstr(trackingId: string): void {
+      // make sure we received a tracking id
+      if (isEmpty(trackingId)) { return; }
+
+      // add GTag snippet to head
+      const keyScriptHead = this.document.createElement('script');
+      keyScriptHead.innerHTML = `
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${trackingId}');</script>
+        <!-- End Google Tag Manager -->
+        `;
+
+      this.document.head.appendChild(keyScriptHead);
+
+      // add trackingId snippet to body
+      const keyScript = this.document.createElement('script');
+      keyScript.innerHTML =   `
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${trackingId}"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) --> `;
+      this.document.body.appendChild(keyScript);
   }
 }
