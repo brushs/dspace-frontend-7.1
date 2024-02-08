@@ -146,10 +146,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
     // analytics
-    if (hasValue(googleAnalyticsService)) {
-      googleAnalyticsService.addTrackingIdToPage();
-    }
-    angulartics2DSpace.startTracking();
+    //if (hasValue(googleAnalyticsService)) {
+    //  googleAnalyticsService.addTrackingIdToPage();
+    //}
+    //angulartics2DSpace.startTracking();
+    const trackingId = environment.production ? 'GTM-KG9WWH6' : 'GTM-MK9H4CK';
+    googleAnalyticsService.addTrackingIdToPageOstr(trackingId);
 
     metadata.listenForRouteChange();
     breadcrumbsService.listenForRouteChanges();
@@ -166,7 +168,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       distinctUntilChanged()
     );
 
-    /* Start FOSRC Changes - 1620 
+    /* Start FOSRC Changes - 1620
     // disable cookie consent klaro service
     this.isAuthBlocking$
       .pipe(
@@ -349,6 +351,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
     return {};
-    
+
   }
 }
