@@ -150,10 +150,19 @@
       [label]="'External URL'">
     </ds-item-page-externurl-field>
     <ds-item-page-collections [item]="object"></ds-item-page-collections>
+    <!-- Type -->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.type']"
+      [separator]="','"
+      [label]="'Type'">
+    </ds-generic-item-page-field>
+    <!-- -->
+
     <div>
       <a class="btn btn-outline-primary" role="button" [routerLink]="[itemPageRoute + '/full']">
         <span aria-hidden="true" class="fas fa-info-circle"></span> {{"item.page.link.full" | translate}}
       </a>
     </div>
+
   </div>
 </div>
