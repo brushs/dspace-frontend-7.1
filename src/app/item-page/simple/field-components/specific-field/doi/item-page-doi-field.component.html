@@ -5,7 +5,7 @@
     <span class="simple-view-element-header h3" *ngIf="label">{{ label }}</span>
     <div  class="simple-view-element-body">
           <!--<span [attr.lang]="field.language" [innerHTML]="field.value"></span> -->
-          <span><a href="https://doi.org/{{item?.allMetadata(fields)}}">https://doi.org/{{item?.allMetadata(fields)}}</a></span>
+          <span><a href="{{item?.allMetadata(fields)}}">{{item?.allMetadata(fields)}}</a></span>
     </div>
   </div>
 </div>
