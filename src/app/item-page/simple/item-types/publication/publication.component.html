@@ -135,11 +135,8 @@
     <!-- -->
 
     <!-- Language -->
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.language']"
-      [separator]="','"
-      [label]="'item.preview.dc.language.iso'">
-    </ds-generic-item-page-field>
+    <ds-item-page-iso-field [item]="object"></ds-item-page-iso-field>
+
     <!-- -->
     <ds-item-page-uri-field [item]="object"
       [fields]="['dc.identifier.uri']"
