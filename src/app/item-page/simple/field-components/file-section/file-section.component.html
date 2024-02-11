@@ -10,6 +10,12 @@
         </ds-file-download-link>
       </li>
     </ul>
+
+    <ds-generic-item-page-field [item]="item"
+      [fields]="'Part of'"
+      [label]="'dc.relation.ispartof'">
+    </ds-generic-item-page-field>
+
     <ds-loading *ngIf="isLoading" message="{{'loading.default' | translate}}" [showMessage]="false"></ds-loading>
     <div *ngIf="!isLastPage" class="mt-1" id="view-more">
       <a class="bitstream-view-more btn btn-outline-secondary btn-sm" [routerLink]="" (click)="getNextPage()">{{'item.page.bitstreams.view-more' | translate}}</a>
