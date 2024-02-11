@@ -38,6 +38,5 @@ export class ItemPageExternalUrlieldComponent extends ItemPageFieldComponent {
       value = 'N/A';
     }
     this.value = value;
-    console.log('valueLngLat: ' + this.value);
   }
 }
