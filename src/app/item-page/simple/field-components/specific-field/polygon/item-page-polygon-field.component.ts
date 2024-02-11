@@ -26,6 +26,8 @@ export class ItemPagePolygonFieldComponent extends ItemPageFieldComponent {
    */
   label = 'Polygon';
 
+  isHidden = false;
+
   constructor(public tralateService: TranslateService) {
     super();
   }
@@ -38,6 +40,9 @@ export class ItemPagePolygonFieldComponent extends ItemPageFieldComponent {
     // remove the ENVELOPE and the parenthesis
     if (valueBbox === undefined) {
       valueBbox = '';
+    }
+    if (valueBbox.length == 0) {
+      this.isHidden = true;
     }
     valueBbox = valueBbox.replace('ENVELOPE(', '');
     valueBbox = valueBbox.replace(')', '');
