@@ -93,8 +93,14 @@
     </ds-item-page-doi-field>
     <!-- -->
     <!-- Citation -->
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['dc.identifier.citation']"
+      [separator]="','"
+      [label]="'item.page.citation'">
+    </ds-generic-item-page-field>
+    <!--
     <ds-item-page-citation-field [item]="object">
-    </ds-item-page-citation-field>
+    </ds-item-page-citation-field>-->
 
     <!-- Publisher-->
     <ds-generic-item-page-field [item]="object"
