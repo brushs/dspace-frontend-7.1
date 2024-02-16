@@ -60,7 +60,7 @@ export class TruncatableComponent {
   }
 
   ngAfterViewInit() {
-    this.observer = new (window as any      
+    this.observer = new (window as any
       ).ResizeObserver((a) => {
       this.truncateElement();
     });
@@ -79,13 +79,19 @@ export class TruncatableComponent {
         let children = entry.querySelectorAll('div.content');
         let requiresTruncate = false;
         for(let entry of children) {
-          
+
           if (entry.children.length > 0) {
 
             // if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
             //   requiresTruncate = true;
             //   break;
             // }
+            if ((entry.children[entry.children.length - 1].firstElementChild === null)) {
+              if ((entry.children[entry.children.length - 1].offsetHeight) > entry.offsetHeight){
+                requiresTruncate = true;
+              }
+              break;
+            }
 
             if ((entry.children[entry.children.length - 1].firstElementChild.offsetHeight) > entry.offsetHeight) {
               requiresTruncate = true;
