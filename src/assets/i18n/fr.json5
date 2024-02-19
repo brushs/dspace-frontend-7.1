@@ -4441,5 +4441,21 @@
   // "workflow-item.send-back.title": "Send workflow item back to submitter",
   "workflow-item.send-back.title": "Renvoyer l’article au déposant",
   // "workflow-item.view.breadcrumbs": "Workflow view",
-  "workflow-item.view.breadcrumbs": "Vue d'ensemble du Workflow"
+  "workflow-item.view.breadcrumbs": "Vue d'ensemble du Workflow",
+	"publisher.search.results.head": "Résultats de recherche par éditeur",
+	"area.search.results.head": "Résultats de recherche par région",
+	"division.search.results.head": "Résultats de recherche par division",
+	"language.search.results.head": "Résultats de recherche par langue",
+	"serial.search.results.head": "Résultats de recherche par série",
+	"sponsor.search.results.head": "Résultats de recherche par commanditaire",
+	"province.search.results.head": "Résultats de recherche par province",
+	"country.search.results.head": "Résultats de recherche par pays",
+	"publisher.listelement.badge": "Éditeur",
+	"area.listelement.badge": "Région",
+	"division.listelement.badge": "Division",
+	"language.listelement.badge": "Langue",
+	"serial.listelement.badge": "Série",
+	"country.listelement.badge": "Pays",
+	"province.listelement.badge": "Province",
+	"sponsor.listelement.badge": "Commanditaire"
 }
