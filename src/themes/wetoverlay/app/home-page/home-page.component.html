@@ -43,7 +43,7 @@
               <p class="text-justify">Select a collection.</p>
               <div *ngFor="let item of collections">
                 <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
-                <a  [routerLink]="['/collections', item.id]">
+                <a  [routerLink]="['/collections', item.id]" [queryParams]="{ scope: item.id}" >
                    {{ item.name }}
                 </a>
                 </ng-container>
@@ -112,7 +112,7 @@
               <p class="text-justify">Sélectionnez une collections.</p>
               <div *ngFor="let item of collections">
                 <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
-                <a  [routerLink]="['/collections', item.id]">
+                <a  [routerLink]="['/collections', item.id]" [queryParams]="{scope: item.id}" >
                    {{ frenchName[item.name] }}
                 </a>
                 </ng-container>
