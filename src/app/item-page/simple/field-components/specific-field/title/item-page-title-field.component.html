@@ -9,8 +9,8 @@
 
 
 <h1 class="pb-0" property="name" id="wb-cont">
-  <ng-container *ngIf="item.firstMetadataValue('dspace.entity.type') as type">
+  <!-- ng-container *ngIf="item.firstMetadataValue('dspace.entity.type') as type">
     {{ type.toLowerCase() + '.page.titleprefix' | translate }}
-  </ng-container>
+  </ng-container -->
   <ds-metadata-values [useGcWeb]="useGcWeb" [mdValues]="item?.allMetadata(fields)"></ds-metadata-values>
 </h1>

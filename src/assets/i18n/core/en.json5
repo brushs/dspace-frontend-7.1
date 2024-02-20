@@ -2685,6 +2685,13 @@
   "submission.sections.describe.relationship-lookup.selection-tab.title.isProvinceOfPublication": "Provinces",
   "submission.sections.describe.relationship-lookup.selection-tab.title.isAreaOfPublication": "Areas",
   "submission.sections.describe.relationship-lookup.selection-tab.title.isSponsorOfPublication": "Sponsor",
-  "submission.sections.describe.relationship-lookup.selection-tab.title.isDivisionOfPublication": "Organizational Unit"
+  "submission.sections.describe.relationship-lookup.selection-tab.title.isDivisionOfPublication": "Organizational Unit",
 
+  "search.geospatial.showmap": "Show Map",
+  "search.geospatial.hidemap": "Hide Map",
+  "search.geospatial.showmaptip": "Click on Show Map to search by location using the interactive map",
+  "geo-aoi-north": "North",
+	"geo-aoi-east": "East",
+	"geo-aoi-south": "South",
+	"geo-aoi-west": "West"
 }

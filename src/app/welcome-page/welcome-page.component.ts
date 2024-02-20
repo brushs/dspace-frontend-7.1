@@ -13,7 +13,7 @@ import { MetadataService} from '../core/metadata/metadata.service';
     // '../../themes/wetoverlay/assets/wet-boew/css/noscript.css',
     // '../../themes/wetoverlay/assets/gcweb/css/messages.css',
     // '../../themes/wetoverlay/assets/gcweb/css/theme.css'
-    
+
   ]
 })
 export class WelcomePageComponent implements OnInit {
@@ -46,13 +46,13 @@ export class WelcomePageComponent implements OnInit {
 
   constructor(private localeService: LocaleService,
     private router: Router,
-    private renderer2: Renderer2, 
+    private renderer2: Renderer2,
     @Inject(DOCUMENT) private document: any,
     private metadata: MetadataService,
     private cdr: ChangeDetectorRef
-    ) { 
+    ) {
       //set the splash page title when the splash page appears
-      this.metadata.setSplashPageTitle('Federal Open Science Repository of Canada (FOSRC) / Le Dépôt fédéral de science ouverte du Canada (DFSOC)');
+      this.metadata.setSplashPageTitle('NRCan Open S&T Repository (OSTR) / Dépôt ouvert des sciences et technologie (DOST) de RNCan');
     }
 
   ngOnInit(): void {
@@ -79,7 +79,7 @@ export class WelcomePageComponent implements OnInit {
     this.metadata.setSplashPageTitle("");
     this.localeService.setCurrentLanguageCode(lang);
     this.localeService.refreshAfterChangeLanguage();
-    
+
     //navigating to /home from the welcome page does not work
     // this.router.navigate(['/home'])
   }
@@ -112,7 +112,7 @@ export class WelcomePageComponent implements OnInit {
         console.log(this.scriptsToLoad[this.scriptsLoadedCount], 'loaded');
         this.scriptsLoadedCount++;
         this.loadNextScript();
-        
+
       })
       .catch((error) => {
         console.error(this.scriptsToLoad[this.scriptsLoadedCount], 'failed', error);
@@ -128,7 +128,7 @@ export class WelcomePageComponent implements OnInit {
     link1.class = "wb-favicon";
     link1.href = "assets/gcweb/assets/favicon-mobile.png";
     this.renderer2.appendChild(this.document.head, link1);
-      
+
     const link2 = this.renderer2.createElement('link');
     link2.rel = "icon";
     link2.type = "image/x-icon";

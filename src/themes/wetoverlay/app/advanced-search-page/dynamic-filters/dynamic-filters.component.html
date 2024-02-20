@@ -62,7 +62,8 @@
   </ng-container>
   <div class="mrgn-tp-md">
     <button id="apply-filters" name="submit-apply-filters" type="button"  class="btn btn-primary mrgn-rght-md" (click)="addRow()"> + </button>
-    <button id="reset-filters" name="reset-filters" type="button" class="btn btn-default" (click)="resetFilters()"><span class="fa fa-undo" aria-hidden="true"></span> Reset Filters </button>
+    <button id="reset-filters" name="reset-filters" type="button" class="btn btn-default" (click)="resetFilters()">
+      <span class="fa fa-undo" aria-hidden="true"></span> {{'comcol.search.filter.button.reset.filters'|translate}}</button>
   <!--
     <button id="debug" name="debug" type="button" class="btn btn-default" (click)="printFormValues()"><span class="fa fa-undo" aria-hidden="true"></span> Debug </button>
     -->
