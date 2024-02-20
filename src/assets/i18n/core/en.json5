@@ -2689,6 +2689,9 @@
 
   "search.geospatial.showmap": "Show Map",
   "search.geospatial.hidemap": "Hide Map",
-  "search.geospatial.showmaptip": "Click on Show Map to search by location using the interactive map"
-
+  "search.geospatial.showmaptip": "Click on Show Map to search by location using the interactive map",
+  "geo-aoi-north": "North",
+	"geo-aoi-east": "East",
+	"geo-aoi-south": "South",
+	"geo-aoi-west": "West"
 }

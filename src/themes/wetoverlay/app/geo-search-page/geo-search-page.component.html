@@ -13,18 +13,50 @@
   />
 
 <div class="container">
-    <h3 class="col-8 px-0 height">Geospatial</h3>
+    <!--<div class="col-xs-12 col-md-6"> -->
     <div class="row">
-      <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="col-xs-12 col-md-8 d-flex align-items-left justify-content-left">
         <div class="map"  id="map" style="width: 580px; height: 500px;"></div>
 
+      </div>
+
+      <div class="col-sm-12 col-md-4 d-flex flex-column ">
+        <div class="row align-items-center justify-content-start form-control-static">
+          <div class="col-xs-12 col-sm-5">{{'geo-aoi-west'|translate}}:</div>
+          <div class="col-xs-12 col-sm-7">
+            <input class="form-control l form-control-sm" type="text"
+              value="{{ lng1 }}" title="Latitude" placeholder="" />
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-start form-control-static">
+          <div class="col-xs-12 col-sm-5">{{'geo-aoi-east'|translate}}:</div>
+          <div class="col-xs-12 col-sm-7">
+            <input class="form-control l form-control-sm" type="text"
+              value="{{ lng2 }}" title="Latitude" placeholder="" />
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-start form-control-static">
+          <div class="col-xs-12 col-sm-5">{{'geo-aoi-north'|translate}}:</div>
+          <div class="col-xs-12 col-sm-7">
+            <input class="form-control l form-control-sm" type="text"
+              value="{{ lat2 }}" title="Latitude" placeholder="" />
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-start form-control-static">
+          <div class="col-xs-12 col-sm-5">{{'geo-aoi-south'|translate}}:</div>
+          <div class="col-xs-12 col-sm-7">
+            <input class="form-control l form-control-sm" type="text"
+              value="{{ lat1 }}" title="Latitude" placeholder="" />
+          </div>
+        </div>
 
       </div>
     </div>
+    <!-- Old NWES
     <div class="row d-flex align-items-center justify-content-center">
       <div class="mx-0 col-12 ">
         <div class="row"><div class="col-12"> &nbsp;</div></div>
-        <!-- North  -->
+        <!- North  ->
         <div class="row">
           <div class="col-sm-4"></div>
           <div class="col-sm-1 d-flex align-items-center">North:</div>
@@ -35,10 +67,10 @@
               value="{{ lat2 }}"
             />
           </div>
-        </div>
+        </div> -->
         <!-- space row -->
         <div class="row"><div class="col-12"> &nbsp;</div></div>
-        <!-- East and West -->
+        <!-- East and West ->
         <div class="row">
           <div class="col-sm-2"> &nbsp; </div>
           <div class="col-sm-1 d-flex align-items-center">West:</div>
@@ -61,7 +93,7 @@
           </div>
         </div>
         <div class="row"><div class="col-12"> &nbsp;</div></div>
-        <!-- South -->
+        <!- South ->
         <div class="row">
           <div class="col-sm-4"></div>
           <div class="col-sm-1 d-flex align-items-center">South:</div>
@@ -75,11 +107,7 @@
           <div class="col-sm-2"></div>
 
         </div>
-        <!--
-        <p class="text-center">
-          <a routerLink="/home" class="btn btn-primary">{{home}}</a>
-
-        </p>-->
       </div>
     </div>
+    -->
 </div>
