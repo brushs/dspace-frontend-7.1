@@ -131,7 +131,7 @@ export class AuthService {
     options.withCredentials = true;
     return this.authRequestService.getRequest('status', options).pipe(
       map((rd: RemoteData<AuthStatus>) => {
-        console.log('**** checkAuthenticationCookie:', rd.payload);
+        //console.log('**** checkAuthenticationCookie:', rd.payload);
         // remove duplicated authMethods that the 'authMethodType' field is the same
         const authMethods = rd.payload.authMethods.filter((authMethod, index, self) =>
           index === self.findIndex((t) => (
@@ -605,7 +605,7 @@ export class AuthService {
 
   setUrlPathPriorToSignIn(newUrl){
     localStorage.setItem("urlPathPriorToSignIn", newUrl);
-    
+
   }
 
   getUrlPathPriorToSignIn(){

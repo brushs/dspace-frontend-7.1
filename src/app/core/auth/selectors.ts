@@ -33,7 +33,7 @@ const _isAuthenticated = (state: AuthState) => state.authenticated;
  * @returns {boolean}
  */
 const _isWithinIpRange = (state: AuthState) => {
-  console.log('state.withinIpRange', state.withinIpRange);
+  //console.log('state.withinIpRange', state.withinIpRange);
   return state.withinIpRange;
 }
 /**
