@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription,combineLatest as observableCombineLatest } from 'rxjs';
 import { map, startWith, switchMap, take } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model'          //../core/data/paginated-list.model';
 import { RemoteData } from '../../../../../app/core/data/remote-data';
@@ -29,6 +29,7 @@ import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.ser
 import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/search.utils';
 import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-search',
@@ -145,6 +146,8 @@ export class MySearchComponent implements OnInit {
   isMapVisible: boolean = false; // Initially hidden
   showHideMapnLabel: string = "Show Map";
   isResultsVisible: boolean = false; // Initially hidden
+  private labelShow: string;
+  private labelHide: string;
 
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
@@ -153,6 +156,7 @@ export class MySearchComponent implements OnInit {
               protected routeService: RouteService,
               protected router: Router,
               protected route: ActivatedRoute,
+              private translateService: TranslateService,
               ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
@@ -177,6 +181,14 @@ export class MySearchComponent implements OnInit {
     /* End of FOSRC Changes */
     this.doSearch();
     //this.getQueryParam();
+    observableCombineLatest(
+     this.translateService.get('search.geospatial.showmap'),
+     this.translateService.get('search.geospatial.hidemap')
+    ).subscribe(([labelShow,labelHide]) => {
+      this.labelShow = labelShow;
+      this.labelHide = labelHide;
+      this.showHideMapnLabel = labelShow;
+    })
   }
 
   private doSearch() {
@@ -355,9 +367,9 @@ export class MySearchComponent implements OnInit {
     toggleMapVisibility(): void {
       this.isMapVisible = !this.isMapVisible;
       if (this.isMapVisible) {
-        this.showHideMapnLabel = "Hide Map";
+        this.showHideMapnLabel = this.labelHide;
       }else {
-        this.showHideMapnLabel = "Show Map";
+        this.showHideMapnLabel = this.labelShow;
       }
     }
 }

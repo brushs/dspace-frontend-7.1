@@ -5024,5 +5024,6 @@
   "submission.sections.describe.relationship-lookup.selection-tab.title.isSponsorOfPublication":"Commanditaire",
   "submission.sections.describe.relationship-lookup.selection-tab.title.isDivisionOfPublication":"Unité organisationnelle",
   "search.geospatial.showmap": "Montrer la carte",
+  "search.geospatial.hidemap": "Masquer la carte",
   "search.geospatial.showmaptip": "Cliquer sur Montrer la carte pour effectuer une recherche par lieu à l’aide de la carte interactive"
 }
