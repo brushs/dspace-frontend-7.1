@@ -19,7 +19,9 @@
     </div>
 
     <div class="col-md-12">
-          <h3 (click)="toggleMapVisibility()">{{showHideMapnLabel}}</h3>
+          <h3 style ="color: #284162; text-decoration: underline; cursor: pointer;"
+              title="{{'search.geospatial.showmaptip'|translate}}"
+              (click)="toggleMapVisibility()">{{'search.geospatial.showmap'|translate}}</h3>
     </div>
     <!-- Geo spatial -->
         <div class="col-md-12" *ngIf="isMapVisible">
