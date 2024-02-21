@@ -21,8 +21,9 @@
       <dl>
         <ng-container *ngFor="let metadataGroup of (transformedMetadata$ | async) | keyvalue;">
           <ng-container *ngFor="let languageGroup of metadataGroup.value | keyvalue;">
+            <ng-container *ngIf="noHide(metadataGroup.key)"> <!-- decide hide or not -->
             <dt lang="{{languageGroup.key}}">
-              {{metadataGroup.key}}{{languageGroup.key != '' ? ( ' - ' + languageGroup.key ) : ''}} 
+              {{metadataGroup.key}}{{languageGroup.key != '' ? ( ' - ' + languageGroup.key ) : ''}}
             </dt>
             <ng-container *ngFor="let mdValue of languageGroup.value; let last=last;">
               <ng-container *ngVar="(mdValue.value | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::' |  translate) as val">
@@ -36,10 +37,11 @@
                 </ng-template>
               </ng-container>
             </ng-container>
+            </ng-container> <!--end decide hide or not -->
           </ng-container>
         </ng-container>
       </dl>
-      
+
       <!-- OSPR changes end  -->
       <ds-item-page-full-file-section [item]="item" [showLicenses]="false"></ds-item-page-full-file-section>
       <ds-item-page-collections [item]="item"></ds-item-page-collections>

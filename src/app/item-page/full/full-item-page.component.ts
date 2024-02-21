@@ -16,6 +16,7 @@ import { hasValue } from '../../shared/empty.util';
 import { AuthService } from '../../core/auth/auth.service';
 import { Location } from '@angular/common';
 import { clone } from 'lodash';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 
 /**
@@ -50,7 +51,8 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
               router: Router,
               items: ItemDataService,
               authService: AuthService,
-              private _location: Location) {
+              private _location: Location,
+              public localeService: LocaleService) {
     super(route, router, items, authService);
   }
 
@@ -84,6 +86,8 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
             groupedByLang[key][lang].push(value);
           });
         });
+        let lang = this.localeService.getCurrentLanguageCode()
+        console.log('lang', lang);
         return groupedByLang;
       })
     );
@@ -110,5 +114,29 @@ export class FullItemPageComponent extends ItemPageComponent implements OnInit, 
       return value.match(urlRegex);
     }
     return false;
+  }
+  // Hide some fields based on the current language
+  // when return false, the field will be hidden, otherwise , no hide
+  noHide(field: string) {
+    let lang = this.localeService.getCurrentLanguageCode();
+    if (field === 'dc.subject.other') {
+      return false;
+    }
+    // english
+    if (lang === 'en') {
+      if (field ==='dc.subject.broad_fr' || field === 'dc.subject.geoscan_fr' || field === 'dc.subject.gc_fr'
+            || field === 'dc.subject.descriptor_fr' || field === ' dc.subject.cfs_fr'|| field === 'dc.type_fr')
+      {
+        return false; // hide some french fields
+      }
+    }else if (lang === 'fr') {
+      if (field ==='dc.subject.broad_en' || field === 'dc.subject.geoscan_en' || field === 'dc.subject.gc_en'
+            || field === 'dc.subject.descriptor_en' || field === ' dc.subject.cfs_en'|| field === 'dc.type_en')
+      {
+        return false; // hide some english fields
+      }
+
+    }
+    return true;
   }
 }
