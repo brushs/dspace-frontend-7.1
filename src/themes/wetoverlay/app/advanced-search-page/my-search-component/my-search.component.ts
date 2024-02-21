@@ -169,7 +169,6 @@ export class MySearchComponent implements OnInit {
    * If something changes, update the list of scopes for the dropdown
    */
   ngOnInit(): void {
-    console.log("my-search.component.ts: ngOnInit");
     // this.router = AppInjector.get(Router);
     this.isSidebarCollapsed$ = this.isSidebarCollapsed();
     this.searchLink = this.getSearchLink();
@@ -193,7 +192,7 @@ export class MySearchComponent implements OnInit {
 
   private doSearch() {
     this.searchOptions$ = this.getSearchOptions();
-    console.log("this.searchOptions$ = " + this.searchOptions$);
+    //console.log("this.searchOptions$ = " + this.searchOptions$);
     this.sub = this.searchOptions$.pipe(
       map((options) => {
 
@@ -202,7 +201,7 @@ export class MySearchComponent implements OnInit {
           Object.getOwnPropertyDescriptors(options)
         );
 
-        console.log('retrieve geo data');
+        //console.log('retrieve geo data');
         var geoquery = this.getGeoData();
         //if (options.geoQuery != undefined )
         if (geoquery != '') {
@@ -219,7 +218,7 @@ export class MySearchComponent implements OnInit {
           optionsCopy.query = options.query;
         //var [lat1,lng1,lat2,lng2] = geodata.split(',');
         //var newquery = 'nrcan.geospatial.bbox:%5B' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + '%5D';
-        console.log("geoquery = " + geoquery);
+        //console.log("geoquery = " + geoquery);
         return optionsCopy;
       }),
 
