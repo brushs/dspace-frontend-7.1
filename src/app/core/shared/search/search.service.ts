@@ -187,7 +187,6 @@ export class SearchService implements OnDestroy {
       take(1),
       map((href: string) => {
         const args = this.searchDataService.addEmbedParams(href, [], ...linksToFollow);
-        args.push('ostrSearch=1');
         if (isNotEmpty(args)) {
           return new URLCombiner(href, `?${args.join('&')}`).toString();
         } else {
