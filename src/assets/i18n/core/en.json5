@@ -2622,6 +2622,9 @@
   "search.filters.filter.subject_en.head": "Subject",
   "search.filters.filter.subject_en.placeholder": "Search Subjects",
 
+  "search.filters.applied.f.itemtype_en": "Type",
+  "search.filters.applied.f.subject_en": "Subject",
+
   "publisher.search.results.head": "Publisher Search Results",
   "area.search.results.head": "Area Search Results",
   "division.search.results.head": "Division Search Results",
