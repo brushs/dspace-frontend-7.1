@@ -57,7 +57,7 @@ export class HomePageComponent implements OnInit {
   }
 
   search(value) {
-    this.router.navigate(['/search'], { queryParams: { page: 1, query: value || '', 'spc.sf': 'score', 'spc.sd': 'DESC','spc.page':1 } })
+    this.router.navigate(['/search'], { queryParams: { page: 1, query: value || '', 'spc.sf': 'score', 'spc.sd': 'DESC','spc.page':1 ,'ostrSearch':1} })
   }
 
   getCommunityHref(name): string {
