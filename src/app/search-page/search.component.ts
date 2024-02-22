@@ -53,7 +53,7 @@ export class SearchComponent implements OnInit {
    * The current available results per page options
    */
   paginationOptions$: Observable<PaginationComponentOptions>
-  
+
   /**
    * The current paginated search options
    */
@@ -120,18 +120,18 @@ export class SearchComponent implements OnInit {
   /* Start FOSRC Changes - 1619 */
   adminSearch: boolean;
   /* End of FOSRC Changes */
-  
+
   paginationService: PaginationService;
   dsoNameService: DSONameService;
   hasNoValue = hasNoValue;
   stripOperatorFromFilterValue = stripOperatorFromFilterValue
-  
+
   /**
    * Emits the currently active filters
    */
   appliedFilters: Observable<Params>;
   mainSearchValue :string;
- 
+
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
@@ -248,11 +248,11 @@ export class SearchComponent implements OnInit {
    */
     surroundStringWithQuotes(input: string): string {
       let result = input;
-  
+
       if (isNotEmpty(result) && !(result.startsWith('\"') && result.endsWith('\"'))) {
         result = `"${result}"`;
       }
-  
+
       return result;
     }
 
@@ -261,6 +261,7 @@ export class SearchComponent implements OnInit {
       const queryParams =  {query: term};
       const pageParam = this.paginationService.getPageParam(this.searchConfigService.paginationID);
       queryParams[pageParam] = 1;
+      queryParams['ostrSearch'] = 1;
       this.router.navigate(['.'], { relativeTo: this.route, queryParams: queryParams, queryParamsHandling: 'merge'});
     }
 
