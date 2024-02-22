@@ -143,7 +143,7 @@ export class MySearchComponent implements OnInit {
   appliedFilters: Observable<Params>;
   mainSearchValue :string;
 
-  isMapVisible: boolean = false; // Initially hidden
+  isMapVisible: boolean = true; // Initially hidden
   showHideMapnLabel: string = "Show Map";
   isResultsVisible: boolean = false; // Initially hidden
   private labelShow: string;
