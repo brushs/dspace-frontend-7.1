@@ -2906,7 +2906,7 @@
   // "item.page.bitstreams.view-more": "Show more",
   "item.page.bitstreams.view-more": "Plus de résultats",
   // "item.page.citation": "Citation(s)",
-  "item.page.citation": "Référence(s)",
+  "item.page.citation": "Référence",
   // "item.page.collections": "Collection(s)",
   "item.page.collections": "Collection(s)",
   // "item.page.date": "Date",
@@ -2967,6 +2967,11 @@
   "item.page.uri": "URI",
   // "item.page.volume-title": "Volume title",
   "item.page.volume-title": "Titre du volume",
+  //"item.page.externalurl":"External URL"
+  "item.page.externalurl":"URL externe",
+  //"item.page.type":"Publication Type",
+  "item.page.type":"Type de publication",
+
   // "item.preview.dc.contributor.author": "Authors:",
   "item.preview.dc.contributor.author": "Auteurs :",
   // "item.preview.dc.coverage.spatial": "Jurisdiction:",
