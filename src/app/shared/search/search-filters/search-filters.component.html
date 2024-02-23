@@ -16,16 +16,17 @@
 
 <ng-template #GcWebTemplate>
   <h2>{{"search.filters.head" | translate}}</h2>
+  <button class="btn btn-primary mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); applyFilter()"> {{"search.filters.applyFilter" | translate}}</button>
   <form action="#" method="get" id="searchForm" class="wb-tables-filter" >
     <ds-search-labels [inPlaceSearch]="inPlaceSearch" [useGcWeb]="true"></ds-search-labels>
     <ng-container *ngIf="(filters | async)?.hasSucceeded">
       <ng-container *ngFor="let filter of (filters | async)?.payload; trackBy: trackUpdate; let first = first;">
-        <section 
+        <section
           *ngIf="
             (filter.name === 'subjectEn' && translate.currentLang === 'en')
             || (filter.name === 'sujet' && translate.currentLang === 'fr')
             || (filter.name !== 'subjectEn' && filter.name !== 'sujet')
-          " 
+          "
           class="panel panel-primary mrgn-tp-lg clearfix"
           >
           <header class="panel-heading">
@@ -42,6 +43,6 @@
     </ng-container>
     <!-- Adding $event.preventDefault() as we are getting console error related to datatable when we click the button (Uncaught TypeError: m(...).dataTable is not a function)-->
     <button class="btn btn-primary mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); applyFilter()"> {{"search.filters.applyFilter" | translate}}</button>
-    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-default mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); resetFilter()"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button> 
+    <button [routerLink]="[searchLink]" [queryParams]="clearParams | async" queryParamsHandling="merge" class="btn btn-default mrgn-tp-sm" type="submit" (click)="$event.preventDefault(); resetFilter()"><span class="fa fa-undo" aria-hidden="true"></span> {{"search.filters.reset" | translate}}</button>
   </form>
 </ng-template>
