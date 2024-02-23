@@ -1613,6 +1613,9 @@
   "item.page.titleprefix": "Title: ",
   "item.page.uri": "URI",
   "item.page.volume-title": "Volume title",
+  "item.page.externalurl":"External URL",
+  "item.page.type":"Publication Type",
+
   "item.preview.dc.contributor.author": "Authors:",
   "item.preview.dc.coverage.spatial": "Jurisdiction:",
   "item.preview.dc.date.issued": "Published date:",
