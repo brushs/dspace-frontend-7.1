@@ -261,7 +261,6 @@ export class SearchComponent implements OnInit {
       const queryParams =  {query: term};
       const pageParam = this.paginationService.getPageParam(this.searchConfigService.paginationID);
       queryParams[pageParam] = 1;
-      queryParams['ostrSearch'] = 1;
       this.router.navigate(['.'], { relativeTo: this.route, queryParams: queryParams, queryParamsHandling: 'merge'});
     }
 
