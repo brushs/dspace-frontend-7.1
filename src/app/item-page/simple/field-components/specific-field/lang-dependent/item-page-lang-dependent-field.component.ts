@@ -52,7 +52,8 @@ export class ItemPageLangDependentComponent extends ItemPageFieldComponent {
       value = this.item.firstMetadataValue(this.field + '_en');
     }
 
-    if (value === undefined) { // if none of the language specific fields are defined, use the default field
+    // if the value is empty, we will use the value of the field before transformation, like dc.type
+    if (value === undefined) {
       value = this.item.firstMetadataValue(this.field);
     }
     this.value = value;
