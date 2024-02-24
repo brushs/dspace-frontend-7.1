@@ -8,7 +8,8 @@
 
         <ds-truncatable-part [id]="idEx" [minLines]="3" class="item-list-abstract">
           <span [ngClass]="{'text-muted': !item.firstMetadataValue(field)}"
-                [innerHTML]="(item.firstMetadataValue(field)) || ('mydspace.results.no-abstract' | translate)"></span>
+                [innerHTML]="value
+                 || ('mydspace.results.no-abstract' | translate)"></span>
         </ds-truncatable-part>
         <!--
         <span>{{item?.firstMetadata(field)}}</span>
