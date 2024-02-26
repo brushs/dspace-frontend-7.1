@@ -154,11 +154,10 @@
     </ds-item-page-externurl-field>
     <ds-item-page-collections [item]="object"></ds-item-page-collections>
     <!-- Type -->
-    <ds-generic-item-page-field [item]="object"
-      [fields]="['dc.type']"
-      [separator]="','"
+    <ds-item-page-lang-dependent-field [item]="object"
+      [field]="'dc.type'"
       [label]="'item.page.type'">
-    </ds-generic-item-page-field>
+    </ds-item-page-lang-dependent-field>
     <!-- -->
 
     <div>
