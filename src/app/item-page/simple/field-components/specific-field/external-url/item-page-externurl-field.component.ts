@@ -25,6 +25,8 @@ export class ItemPageExternalUrlieldComponent extends ItemPageFieldComponent {
    * Label i18n key for the rendered metadata
    */
   @Input() label: string ;
+  @Input() hideIfEmpty: boolean = false;
+  isHidden: boolean = false;
 
   constructor(public tralateService: TranslateService) {
     super();
@@ -34,8 +36,16 @@ export class ItemPageExternalUrlieldComponent extends ItemPageFieldComponent {
     var value: string;
 
     value = this.item.firstMetadataValue(this.field);
-    if (value === undefined) {
-      value = 'N/A';
+    if (value === undefined)
+    {
+      if (this.hideIfEmpty) {
+        this.isHidden = true;
+        this.value = undefined;
+        return;
+      }
+      else {
+        value = 'N/A';
+      }
     }
     this.value = value;
   }
