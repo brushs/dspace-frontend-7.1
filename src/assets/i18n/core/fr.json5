@@ -2959,6 +2959,8 @@
   "item.page.relationships.isOrgUnitOfPerson": "Auteurs",
   // "item.page.relationships.isOrgUnitOfProject": "Research projects",
   "item.page.relationships.isOrgUnitOfProject": "Projets de recherche",
+  // "item.page.relationships.isPartOf": "Is part of",
+  "item.page.relationships.isPartOf":"Fait partie de",
   // "item.page.return": "Back",
   "item.page.return": "Retour",
   // "item.page.titleprefix": "Title: ",

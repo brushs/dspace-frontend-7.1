@@ -1609,6 +1609,7 @@
   "item.page.relationships.isJournalOfPublication": "Publications",
   "item.page.relationships.isOrgUnitOfPerson": "Authors",
   "item.page.relationships.isOrgUnitOfProject": "Research projects",
+  "item.page.relationships.isPartOf": "Is part of",
   "item.page.return": "Back",
   "item.page.titleprefix": "Title: ",
   "item.page.uri": "URI",
