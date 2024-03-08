@@ -24,7 +24,7 @@ export class ItemPagePolygonFieldComponent extends ItemPageFieldComponent {
   /**
    * Label i18n key for the rendered metadata
    */
-  label = 'Polygon';
+  label = 'Lat/Long';
 
   isHidden = false;
 

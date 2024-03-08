@@ -1,5 +1,5 @@
 <div class="item-page-field">
-  <div class="simple-view-element form-group">
+  <div class="simple-view-element form-group" [class.d-none]="isHidden">
     <span class="simple-view-element-header h3" *ngIf="label">{{ label|translate }}</span>
     <div  class="simple-view-element-body">
        <a class="dont-break-out" [href]= "value" *ngIf="value !='N/A'" >
