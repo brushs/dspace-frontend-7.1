@@ -1,12 +1,12 @@
-import { 
-  ChangeDetectionStrategy, 
-  ChangeDetectorRef, 
-  Component, 
-  EventEmitter, 
-  HostListener, 
-  Input, 
-  Output, 
-  ViewEncapsulation, 
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  ViewEncapsulation,
   Renderer2,
   Inject
 } from '@angular/core';
@@ -92,43 +92,50 @@ export class UploaderComponent {
       // Show drop area on the page
       event.preventDefault();
       if ((event.target as any).tagName !== 'HTML') {
-        //setting the z-indexes for several elements so that the upload prompt overlay
-        // appears correctly over the page
-        this.renderer2.setStyle(this.document.querySelector("div.submission-form-header"), "z-index", "2000");
-        this.renderer2.setStyle(this.document.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "0");
-        this.renderer2.setStyle(this.document.querySelector("#wb-info"), "z-index", "0");
-        this.cdr.detectChanges();
+        //restore old
+        ////setting the z-indexes for several elements so that the upload prompt overlay
+        //// appears correctly over the page
+        //this.renderer2.setStyle(this.document.querySelector("div.submission-form-header"), "z-index", "2000");
+        //this.renderer2.setStyle(this.document.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "0");
+        //this.renderer2.setStyle(this.document.querySelector("#wb-info"), "z-index", "0");
+        //this.cdr.detectChanges();
         this.isOverDocumentDropZone = observableOf(true);
       }
     }
   }
 
-  @HostListener('window:dragleave', ['$event'])
-  onDragLeave(event: any) {
+// restore old
+  //@HostListener('window:dragleave', ['$event'])
+  //onDragLeave(event: any) {
 
-    if (this.enableDragOverDocument && this.uploaderService.isAllowedDragOverPage()) {
-      // Show drop area on the page
-      event.preventDefault();
-      if(event.clientX === 0 && event.clientY === 0){
-        //reset z-indexes for certain elements
-        this.resetZIndexes();
-        this.cdr.detectChanges();
-        this.isOverDocumentDropZone = observableOf(false);
-      }
+  //  if (this.enableDragOverDocument && this.uploaderService.isAllowedDragOverPage()) {
+  //    // Show drop area on the page
+  //    event.preventDefault();
+  //    if(event.clientX === 0 && event.clientY === 0){
+  //      //reset z-indexes for certain elements
+  //      this.resetZIndexes();
+  //      this.cdr.detectChanges();
+  //      this.isOverDocumentDropZone = observableOf(false);
+  //    }
 
+  //  }
+  //}
+
+// restore old
+  //constructor(
+  //  private cdr: ChangeDetectorRef,
+  //  private scrollToService: ScrollToService,
+  //  private uploaderService: UploaderService,
+  //  private tokenExtractor: HttpXsrfTokenExtractor,
+  //  private cookieService: CookieService,
+  //  private renderer2: Renderer2,
+  //  @Inject(DOCUMENT) private document: any,
+  //  ) {
+  //}
+  constructor(private cdr: ChangeDetectorRef, private scrollToService: ScrollToService,
+    private uploaderService: UploaderService, private tokenExtractor: HttpXsrfTokenExtractor,
+    private cookieService: CookieService) {
     }
-  }
-
-  constructor(
-    private cdr: ChangeDetectorRef, 
-    private scrollToService: ScrollToService,
-    private uploaderService: UploaderService, 
-    private tokenExtractor: HttpXsrfTokenExtractor,
-    private cookieService: CookieService,
-    private renderer2: Renderer2,
-    @Inject(DOCUMENT) private document: any,
-    ) {
-  }
 
   /**
    * Method provided by Angular. Invoked after the constructor.
@@ -173,7 +180,7 @@ export class UploaderComponent {
       this.uploader.options.headers = [{ name: XSRF_REQUEST_HEADER, value: this.tokenExtractor.getToken() }];
       this.onBeforeUpload();
       //reset z-indexes for certain elements
-      this.resetZIndexes();
+      //this.resetZIndexes();
       this.isOverDocumentDropZone = observableOf(false);
     };
     if (hasValue(this.uploadProperties)) {
@@ -266,10 +273,10 @@ export class UploaderComponent {
   /**
    * Method to reset z-index values for several elements
    */
-  private resetZIndexes(){
-    this.renderer2.setStyle(this.document.querySelector("div.submission-form-header"), "z-index", "auto");
-    this.renderer2.setStyle(this.document.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "10");
-    this.renderer2.setStyle(this.document.querySelector("#wb-info"), "z-index", "5");
-  }
+  //private resetZIndexes(){
+  //  this.renderer2.setStyle(this.document.querySelector("div.submission-form-header"), "z-index", "auto");
+  //  this.renderer2.setStyle(this.document.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "10");
+  //  this.renderer2.setStyle(this.document.querySelector("#wb-info"), "z-index", "5");
+  //}
 
 }
