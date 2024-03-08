@@ -15,8 +15,8 @@ export const environment = {
     }
   },
   rest: {
-	  ssl: true,	 
-	  host: 'dev-ospr.g.ent.cloud-nuage.canada.ca', 
+	  ssl: true,
+	  host: 'localhost',
 	  port: 443,
 	  nameSpace: '/server',
   },
