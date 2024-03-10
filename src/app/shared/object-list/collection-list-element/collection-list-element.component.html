@@ -1,4 +1,4 @@
-<a *ngIf="linkType != linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/collections/' + object.id]" [queryParams]="{ 'spc.sf': 'score', 'spc.sd': 'DESC','scope': object.id,'spc.page':1 }" >
+<a *ngIf="linkType != linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer" [routerLink]="['/collections/' + object.id]" [queryParams]="{ 'spc.sf': 'dc.date.issue', 'spc.sd': 'DESC','scope': object.id,'spc.page':1 }" >
   {{(['dc.title','dc.title.fosrctranslation'] | metaTranslate : object)[0]?.value }}
 </a>
 <span *ngIf="linkType == linkTypes.None" [lang]="('dc.title' | metaTranslate : object)[0]?.language" class="lead">

@@ -70,7 +70,7 @@ export class BreadcrumbsComponent {
     }
     return url;
   }
-  
+
   /**
    * Method to parse the query parameter segment from a URL string
    * @param url The URL string value
@@ -93,13 +93,13 @@ export class BreadcrumbsComponent {
         const scope = url.split('/')[2];
         if(scope && (url.indexOf('collections') > -1 || url.indexOf('communities') > -1)){
           queryParamsObject['scope'] =scope;
-          queryParamsObject['spc.sf'] = 'score';
+          queryParamsObject['spc.sf'] = 'dc.date.issue';
           queryParamsObject['spc.sd'] = 'DESC';
           queryParamsObject['spc.page'] = '1';
         }
 
         if (url.indexOf('community-list') > -1 ) {
-          queryParamsObject['spc.sf'] = 'score';
+          queryParamsObject['spc.sf'] = 'dc.date.issue';
           queryParamsObject['spc.sd'] = 'DESC';
           queryParamsObject['spc.page'] = '1';
         }
@@ -107,6 +107,6 @@ export class BreadcrumbsComponent {
       }
     }
     return {};
-    
+
   }
 }
