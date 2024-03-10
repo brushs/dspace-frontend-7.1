@@ -258,7 +258,7 @@ export function authReducer(state: any = initialState, action: AuthActions): Aut
     //  console.log('AuthAtionType.STATUS, state and action:', state, action);
 
     case AuthActionTypes.SET_WITHIN_IP_RANGE:
-      console.log('AuthAtionType.SET_WITHIN_IP_RANGE, state and action:', state, action);
+      //console.log('AuthAtionType.SET_WITHIN_IP_RANGE, state and action:', state, action);
       return Object.assign({}, state, {
         withinIpRange: true,
         authenticated: false,

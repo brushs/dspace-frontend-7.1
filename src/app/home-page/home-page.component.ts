@@ -57,7 +57,7 @@ export class HomePageComponent implements OnInit {
   }
 
   search(value) {
-    this.router.navigate(['/search'], { queryParams: { page: 1, query: value || '', 'spc.sf': 'score', 'spc.sd': 'DESC','spc.page':1 } })
+    this.router.navigate(['/search'], { queryParams: { page: 1, query: value || '', 'spc.sf': 'dc.date.issue', 'spc.sd': 'DESC','spc.page':1 } });
   }
 
   getCommunityHref(name): string {
@@ -66,7 +66,7 @@ export class HomePageComponent implements OnInit {
 
   getCommunityHrefQueryParams(communityName: string){
     if(this.subcommunities[communityName]){
-      return { page: 1, 'spc.sf': 'score', 'spc.sd': 'DESC','scope': this.subcommunities[communityName],'spc.page':1 };
+      return { page: 1, 'spc.sf': 'dc.date.issue', 'spc.sd': 'DESC','scope': this.subcommunities[communityName],'spc.page':1 };
     };
     return null;
   }
