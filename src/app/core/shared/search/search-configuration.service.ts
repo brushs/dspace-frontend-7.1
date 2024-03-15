@@ -230,7 +230,11 @@ export class SearchConfigurationService implements OnDestroy {
       of(searchConfig),
       this.paginatedSearchOptions.pipe(take(1))
     ]))).subscribe(([searchConfig, searchOptions]) => {
-      const field = searchConfig.sortOptions[0].name;
+      var field = searchConfig.sortOptions[0].name;
+      // here is where 'score' comes from
+      if (field === 'score') {
+        field = 'dc.date.issued';
+      }
       const direction = searchConfig.sortOptions[0].sortOrder.toLowerCase() === SortDirection.ASC.toLowerCase() ? SortDirection.ASC : SortDirection.DESC;
       const updateValue = Object.assign(new PaginatedSearchOptions({}), searchOptions, {
         sort: new SortOptions(field, direction)
