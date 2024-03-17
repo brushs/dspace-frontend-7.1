@@ -92,6 +92,9 @@ export class DynamicFiltersComponent {
     let filterArray: any = [];
     var filterInfo = '';
     for (const filter of filters) {
+      if (filter.filter === '') {
+        continue;
+      }
       switch (filter.relationalOperator) {
         case 'contains':
           if (filter.filtertype === 'nrcan.nts') {
