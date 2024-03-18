@@ -1924,6 +1924,8 @@
   "comcol.search.filter.item.nts":"SNRC",
   //"comcol.search.filter.item.source.title":"Source Title",
   "comcol.search.filter.item.source.title":"Titre source",
+  //"comcol.search.filter.item.abstdesckw":"Abst./Descr./keyw.",
+  "comcol.search.filter.item.abstdesckw":"Rés./descr./mots-clés",
   // "comcol.search.filter.item.date.issued": "Date",
   "comcol.search.filter.item.date.issued": "Date",
   // "comcol.search.filter.operator.contains": "Contains",

@@ -1085,6 +1085,7 @@
   "comcol.search.filter.item.subject": "Subject",
   "comcol.search.filter.item.nts":"NTS",
   "comcol.search.filter.item.source.title":"Source Title",
+  "comcol.search.filter.item.abstdesckw":"Abst./Descr./keyw.",
   "comcol.search.filter.item.date.issued": "Date",
   "comcol.search.filter.operator.contains": "Contains",
   "comcol.search.filter.operator.equals": "Equals",
