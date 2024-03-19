@@ -33,7 +33,7 @@ export class DynamicFiltersComponent {
   addRow() {
     const newRow = this.fb.group({
       filtertype: ['title'],
-      relationalOperator: ['contains'],
+      relationalOperator: ['equals'],
       filter: [''],
     });
     this.rows.push(newRow);
@@ -92,9 +92,18 @@ export class DynamicFiltersComponent {
     let filterArray: any = [];
     var filterInfo = '';
     for (const filter of filters) {
+      if (filter.filter === '') {
+        continue;
+      }
       switch (filter.relationalOperator) {
         case 'contains':
-          filterInfo = `${filter.filtertype}:*${filter.filter}*`;
+          if (filter.filtertype === 'nrcan.nts') {
+            //make the contains the same as equals for nts
+            filterInfo = `${filter.filtertype}:${filter.filter}`;
+          }
+          else {
+            filterInfo = `${filter.filtertype}:*${filter.filter}*`;
+          }
           break;
         case 'equals':
           filterInfo = `${filter.filtertype}:${filter.filter}`;
