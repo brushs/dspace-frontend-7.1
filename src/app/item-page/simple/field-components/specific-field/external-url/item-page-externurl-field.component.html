@@ -2,9 +2,10 @@
   <div class="simple-view-element form-group" [class.d-none]="isHidden">
     <span class="simple-view-element-header h3" *ngIf="label">{{ label|translate }}</span>
     <div *ngFor="let mdValue of values" class="simple-view-element-body">
-       <a class="dont-break-out" [href]= "value" *ngIf=" mdValue !='N/A'" >
-          <span>{{ [mdValue] }} </span></a>
-       <span *ngIf=" mdValue =='N/A'">{{ [mdValue] }} </span>
+      <!-- for loop -->
+      <a class="dont-break-out" [href]= "value" *ngIf=" mdValue !='N/A'" >
+         <span>{{ [mdValue] }} </span></a>
+      <span *ngIf=" mdValue =='N/A'">{{ [mdValue] }} </span>
     </div>
   </div>
 </div>
