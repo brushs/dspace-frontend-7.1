@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
+<div class="modal-body" gcweb>
     <ds-loading *ngIf="!item || !collection"></ds-loading>
     <ngb-tabset *ngIf="item && collection">
         <ngb-tab [title]="'submission.sections.describe.relationship-lookup.search-tab.tab-title.' + relationshipOptions.relationshipType | translate  : {count: (totalInternal$ | async)}">
