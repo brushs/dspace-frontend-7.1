@@ -21,6 +21,7 @@ export class ItemPageExternalUrlieldComponent extends ItemPageFieldComponent {
 
 
   @Output() value: string;
+  @Output() values: string[];
   /**
    * Label i18n key for the rendered metadata
    */
@@ -34,8 +35,22 @@ export class ItemPageExternalUrlieldComponent extends ItemPageFieldComponent {
 
   ngOnInit() {
     var value: string;
+    var values: string[];
 
     value = this.item.firstMetadataValue(this.field);
+    values = this.item.allMetadataValues(this.field);
+    if (values.length === 0) {
+      this.values = [];
+      if (this.hideIfEmpty) {
+        this.isHidden = true;
+        return;
+      }
+      this.values.push('N/A');
+      return
+    }
+
+    this.values = values;
+
     if (value === undefined)
     {
       if (this.hideIfEmpty) {
