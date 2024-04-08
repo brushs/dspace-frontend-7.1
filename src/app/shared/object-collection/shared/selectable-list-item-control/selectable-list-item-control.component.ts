@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ds-selectable-list-item-control',
-  // styleUrls: ['./selectable-list-item-control.component.scss'],
+  styleUrls: ['./selectable-list-item-control.component.scss'],
   templateUrl: './selectable-list-item-control.component.html'
 })
 /**
