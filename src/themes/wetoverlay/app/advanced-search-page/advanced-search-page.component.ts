@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SEARCH_CONFIG_SERVICE } from '../../../../app/my-dspace-page/my-dspace-page.component';
 import { SearchConfigurationService } from '../../../../app/core/shared/search/search-configuration.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'ds-advanced-search-page',
@@ -19,4 +20,9 @@ import { SearchConfigurationService } from '../../../../app/core/shared/search/s
  * This component represents the whole search page
  * It renders search results depending on the current search options
  */
-export class AdvancedSearchPageComponent {}
+export class AdvancedSearchPageComponent implements OnInit {
+  constructor(private titleService: Title) {}
+  ngOnInit() {
+    this.titleService.setTitle('Advanced Search');
+  }
+}
