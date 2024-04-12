@@ -2664,7 +2664,6 @@
   "relationships.isSponsorOf": "Sponsor",
   "relationships.isLanguageOf": "Languages",
   "relationships.isSerialOf": "Serial",
-  "relationships.isJournalOf": "Journal",
   "relationships.isSecondarySerialOf.Serial": "Secondary Serial",
   "relationships.isPrimaryContactOf.Person": "Primary Contact",
   "relationships.isMonographicAuthorOf.Person": "Monographic Authors",
