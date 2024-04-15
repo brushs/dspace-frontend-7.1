@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filter, map, switchMap, take } from 'rxjs/operators';
+import { filter, map, switchMap, take,tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { hasValue, isNotEmpty } from '../empty.util';
 import { getRemoteDataPayload, redirectOn4xx } from '../../core/shared/operators';
@@ -12,6 +12,7 @@ import { FileService } from '../../core/shared/file.service';
 import { HardRedirectService } from '../../core/services/hard-redirect.service';
 import { getForbiddenRoute } from '../../app-routing-paths';
 import { RemoteData } from '../../core/data/remote-data';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'ds-bitstream-download-page',
@@ -33,6 +34,7 @@ export class BitstreamDownloadPageComponent implements OnInit {
     private auth: AuthService,
     private fileService: FileService,
     private hardRedirectService: HardRedirectService,
+    private titleService: Title
   ) {
 
   }
@@ -44,7 +46,12 @@ export class BitstreamDownloadPageComponent implements OnInit {
 
     this.bitstream$ = this.bitstreamRD$.pipe(
       redirectOn4xx(this.router, this.auth),
-      getRemoteDataPayload()
+      getRemoteDataPayload(),
+      tap((bitstream: Bitstream) => {
+        if (bitstream && bitstream.name) {
+          this.titleService.setTitle(bitstream.name);
+        }
+      })
     );
 
     this.bitstream$.pipe(
