@@ -54,6 +54,11 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
     if (this.value.length == 0) {
       this.value = this.item.firstMetadataValue(this.field)
     }
+    if (this.value ) {
+      const splitedValues = this.value.split('\n');
+      const joinedValues = splitedValues.join('<br><br>');
+      this.value = joinedValues;
+    }
     this.idEx =  this.postfix + this.item.id;
   }
 }
