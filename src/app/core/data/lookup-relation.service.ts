@@ -15,6 +15,7 @@ import { Injectable } from '@angular/core';
 import { ExternalSource } from '../shared/external-source.model';
 import { ExternalSourceEntry } from '../shared/external-source-entry.model';
 import { RequestService } from './request.service';
+import { SortDirection, SortOptions } from '../cache/models/sort-options.model';
 
 /**
  * A service for retrieving local and external entries information during a relation lookup
@@ -51,6 +52,10 @@ export class LookupRelationService {
     );
     if (setSearchConfig) {
       this.searchConfig = newConfig;
+    }
+    if (newConfig.configuration === 'person') {
+      var sortByFamilyName = new SortOptions('person.familyName', SortDirection.ASC);
+      newConfig.sort = sortByFamilyName;
     }
     return this.searchService.search(newConfig).pipe(
       /* Make sure to only listen to the first x results, until loading is finished */
