@@ -48,7 +48,7 @@ export class SearchConfigurationService implements OnDestroy {
   /**
    * Default sort settings
    */
-  protected defaultSort = new SortOptions('dc.date.issue', SortDirection.DESC);
+  protected defaultSort = new SortOptions('score', SortDirection.DESC);
 
   /**
    * Default configuration parameter setting

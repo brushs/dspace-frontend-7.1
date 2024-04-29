@@ -93,13 +93,13 @@ export class BreadcrumbsComponent {
         const scope = url.split('/')[2];
         if(scope && (url.indexOf('collections') > -1 || url.indexOf('communities') > -1)){
           queryParamsObject['scope'] =scope;
-          queryParamsObject['spc.sf'] = 'dc.date.issue';
+          queryParamsObject['spc.sf'] = 'score';
           queryParamsObject['spc.sd'] = 'DESC';
           queryParamsObject['spc.page'] = '1';
         }
 
         if (url.indexOf('community-list') > -1 ) {
-          queryParamsObject['spc.sf'] = 'dc.date.issue';
+          queryParamsObject['spc.sf'] = 'score';
           queryParamsObject['spc.sd'] = 'DESC';
           queryParamsObject['spc.page'] = '1';
         }
