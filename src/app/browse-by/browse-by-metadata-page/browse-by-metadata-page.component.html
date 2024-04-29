@@ -5,8 +5,8 @@
         <!-- Parent Name -->
         <!-- {{'browse.title' | translate:{collection: (parent$ | async)?.payload?.name || '', field: 'browse.metadata.' + browseId | translate, value: (value)? '&quot;' + value + '&quot;': ''} }} -->
         <ds-comcol-page-header
-          [browseField]="browseId" 
-          [name]="(  (['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : parentContext)[0]?.value ) || (parent$ | async)?.payload?.name" 
+          [browseField]="browseId"
+          [name]="(  (['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : parentContext)[0]?.value ) || (parent$ | async)?.payload?.name"
           [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : parentContext)[0]?.language">
         </ds-comcol-page-header>
         <!-- Handle -->
@@ -27,7 +27,7 @@
         <div class="col-md-3 col-xs-12 pull-left">
           <ds-comcol-page-browse-by [browsingbyMetadata]="true" [id]="parentContext.id" [contentType]="parentContext.type"></ds-comcol-page-browse-by>
         </div>
-        
+
         <section class="col-md-9 pull-right">
          <ds-browse-by *ngIf="startsWithOptions"
          title="{{'browse.title' | translate:{collection: (parent$ | async)?.payload?.name || '', field: 'browse.metadata.' + browseId | translate, value: (value)? '&quot;' + value + '&quot;': ''} }}"
@@ -73,9 +73,9 @@
   <footer *ngIf="parentContext.copyrightText" class="border-top my-5 pt-4">
     <div>
 
-      <!-- Copyright -->
+      <!-- Copyright
       <ds-comcol-page-content [content]="parentContext.copyrightText" [hasInnerHtml]="true">
-      </ds-comcol-page-content>
+      </ds-comcol-page-content>-->
     </div>
   </footer>
 </ng-container>
