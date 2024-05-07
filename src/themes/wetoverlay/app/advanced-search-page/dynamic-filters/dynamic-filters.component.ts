@@ -106,7 +106,7 @@ export class DynamicFiltersComponent {
           }
           break;
         case 'equals':
-          filterInfo = `${filter.filtertype}:${filter.filter}`;
+          filterInfo = `${filter.filtertype}:"${filter.filter}"`;
           break;
         case 'notcontains':
           filterInfo = `-${filter.filtertype}:*${filter.filter}*`;

@@ -1945,6 +1945,11 @@
   "comcol.search.filter.button.apply.filters": "Appliquer les filtres",
   // "comcol.search.filter.button.reset.filters": "Reset filters",
   "comcol.search.filter.button.reset.filters": "Réinitialiser les filtres",
+  //"comcol.search.filter.button.clear.search": "Clear search",
+  "comcol.search.filter.button.clear.search": "Recherche claire",
+  //"comcol.search.filter.button.basic.search": "Basic search",
+  "comcol.search.filter.button.basic.search": "Recherche de base",
+
 
   // "comcol-role.delete.confirm.cancel": "Cancel",
   "comcol-role.delete.confirm.cancel": "Annuler",
@@ -5053,7 +5058,7 @@
   "submission.sections.describe.relationship-lookup.selection-tab.title.isAreaOfPublication":"Régions",
   "submission.sections.describe.relationship-lookup.selection-tab.title.isSponsorOfPublication":"Commanditaire",
   "submission.sections.describe.relationship-lookup.selection-tab.title.isDivisionOfPublication":"Unité organisationnelle",
-  
+
   "submission.sections.describe.relationship-lookup.selection-tab.title.Division": "Unité organisationnelle",
   "submission.sections.describe.relationship-lookup.selection-tab.title.Sponsor": "Commanditaire",
   "submission.sections.describe.relationship-lookup.selection-tab.title.Area": "Régions",
