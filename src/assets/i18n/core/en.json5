@@ -1097,6 +1097,7 @@
   "comcol.search.filter.button.apply.filters": "Apply filters",
   "comcol.search.filter.button.reset.filters": "Reset filters",
   "comcol.search.filter.button.clear.search": "Clear search",
+  "comcol.search.filter.button.basic.search": "Basic search",
 
   "comcol-role.delete.confirm.cancel": "Cancel",
   "comcol-role.delete.confirm.info": "Are you sure you want to delete the role?",

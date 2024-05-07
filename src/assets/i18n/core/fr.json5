@@ -1947,6 +1947,9 @@
   "comcol.search.filter.button.reset.filters": "Réinitialiser les filtres",
   //"comcol.search.filter.button.clear.search": "Clear search",
   "comcol.search.filter.button.clear.search": "Recherche claire",
+  //"comcol.search.filter.button.basic.search": "Basic search",
+  "comcol.search.filter.button.basic.search": "Recherche de base",
+
 
   // "comcol-role.delete.confirm.cancel": "Cancel",
   "comcol-role.delete.confirm.cancel": "Annuler",
