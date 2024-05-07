@@ -1096,6 +1096,7 @@
   "comcol.search.filter.button.remove": "Remove filter",
   "comcol.search.filter.button.apply.filters": "Apply filters",
   "comcol.search.filter.button.reset.filters": "Reset filters",
+  "comcol.search.filter.button.clear.search": "Clear search",
 
   "comcol-role.delete.confirm.cancel": "Cancel",
   "comcol-role.delete.confirm.info": "Are you sure you want to delete the role?",
@@ -2711,7 +2712,7 @@
   "submission.sections.describe.relationship-lookup.selection-tab.title.isAreaOfPublication": "Areas",
   "submission.sections.describe.relationship-lookup.selection-tab.title.isSponsorOfPublication": "Sponsor",
   "submission.sections.describe.relationship-lookup.selection-tab.title.isDivisionOfPublication": "Organizational Unit",
-  
+
   "submission.sections.describe.relationship-lookup.selection-tab.title.Division": "Organizational Unit",
   "submission.sections.describe.relationship-lookup.selection-tab.title.Sponsor": "Sponsor",
   "submission.sections.describe.relationship-lookup.selection-tab.title.Area": "Areas",
