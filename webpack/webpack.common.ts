@@ -36,6 +36,10 @@ export const copyWebpackOptions = {
     {
       from: path.join(__dirname, '..', 'src', 'robots.txt'),
       to: 'robots.txt'
+    },
+    {
+      from: path.join(__dirname, '..', 'src', 'google73173fca09414bd9.html'),
+      to: 'google73173fca09414bd9.html'
     }
   ]
 };
