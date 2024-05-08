@@ -79,6 +79,7 @@ export class DynamicFiltersComponent {
     for (let i = this.rows.length - 1; i > 0; i--) {
       this.rows.removeAt(i);
     }
+    this.rows.controls[0].get('filter').setValue('');
   }
 
   printFormValues() {
