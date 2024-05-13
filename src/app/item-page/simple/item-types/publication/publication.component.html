@@ -157,6 +157,28 @@
       [field]="'nrcan.publication.externalurl'"
       [label]="'item.page.externalurl'">
     </ds-item-page-externurl-field>
+    <!-- relationship-->
+    <!-- istranslationof-->
+    <ds-item-page-externurl-field [item]="object"
+      [field]="'dc.relation.istranslationof'"
+      [label]="'item.page.relationships.isTranslationOf'"
+      [hideIfEmpty]="true">
+    </ds-item-page-externurl-field>
+
+    <!-- isrelatedto-->
+    <ds-item-page-externurl-field [item]="object"
+      [field]="'dc.relation.isrelatedto'"
+      [label]="'item.page.relationships.isRelatedTo'"
+      [hideIfEmpty]="true">
+    </ds-item-page-externurl-field>
+
+    <!-- replaces -->
+    <ds-item-page-externurl-field [item]="object"
+      [field]="'dc.relation.replaces'"
+      [label]="'item.page.relationships.replaces'"
+      [hideIfEmpty]="true">
+    </ds-item-page-externurl-field>
+
     <ds-item-page-collections [item]="object"></ds-item-page-collections>
     <!-- Type -->
     <ds-item-page-lang-dependent-field [item]="object"
