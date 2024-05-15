@@ -179,6 +179,13 @@
       [hideIfEmpty]="true">
     </ds-item-page-externurl-field>
 
+    <!-- is replaced by -->
+    <ds-item-page-externurl-field [item]="object"
+      [field]="'dc.relation.isreplacedby'"
+      [label]="'item.page.relationships.isreplacedby'"
+      [hideIfEmpty]="true">
+    </ds-item-page-externurl-field>
+
     <ds-item-page-collections [item]="object"></ds-item-page-collections>
     <!-- Type -->
     <ds-item-page-lang-dependent-field [item]="object"

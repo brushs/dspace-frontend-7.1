@@ -1618,6 +1618,7 @@
   "item.page.relationships.isTranslationOf": "Also available in French",
   "item.page.relationships.isRelatedTo": "Is related to",
   "item.page.relationships.replaces": "Replaces",
+  "item.page.relationships.isreplacedby": "Is replaced by",
   "item.page.return": "Back",
   "item.page.titleprefix": "Title: ",
   "item.page.uri": "URI",

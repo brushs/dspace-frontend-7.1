@@ -2978,6 +2978,8 @@
   "item.page.relationships.isRelatedTo": "Est liée à",
   //"item.page.relationships.replaces": "Replaces",
   "item.page.relationships.replaces": "Remplace",
+  //"item.page.relationships.isreplacedby": "Is replaced by",
+  "item.page.relationships.isreplacedby": "Est remplacée par",
   // "item.page.return": "Back",
   "item.page.return": "Retour",
   // "item.page.titleprefix": "Title: ",
