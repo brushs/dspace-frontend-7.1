@@ -100,7 +100,9 @@ export class DynamicFiltersComponent {
         case 'contains':
           if (filter.filtertype === 'nrcan.nts') {
             //make the contains the same as equals for nts
-            filterInfo = `${filter.filtertype}:${filter.filter}`;
+            var filterText = filter.filter;
+            filterText = filterText.replace(/"/g, '');
+            filterInfo = `${filter.filtertype}:"${filterText}"`;
           }
           else {
             filterInfo = `${filter.filtertype}:*${filter.filter}*`;
