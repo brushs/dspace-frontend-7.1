@@ -12,10 +12,16 @@
           <h3>Announcing the launch of the OSTR</h3>
           <p>Welcome to the official launch of the OSTR—This platform allows you to access all NRCan publications, previously housed in the Canadian
             Forest Services and GEOSCAN databases. Coming soon is the addition of the photos from the NRCan Photo database.
-          </p>
+          <!-- isuue 297 start -->
+          <b>We recommend you use the Search function when searching for something specific, and the Browse when looking at new releases</b>
+          <!-- isuue 297 end -->
+        </p>
         </section>
         <form (submit)="search(repoSearch.value); $event.stopPropagation();">
-          <h2>Search the repository </h2>
+        <!-- isuue 297 start -->
+        <!-- <h2>Search the repository </h2>-->
+        <h2>Search for CFS and GEOSCAN publications in the repository</h2>
+        <!-- isuue 297 end -->
           <label for="searchRepo" class="wb-inv">Search the Repository</label>
           <div class="input-group mrgn-tp-md">
             <input #repoSearch name="text" type="text" class="form-control" id="searchRepo"
@@ -40,8 +46,12 @@
         <div class="col-md-12 pull-left">
           <div class="row">
             <div class="col-md-8 pull-left">
-              <h2>Collections</h2>
-              <p class="text-justify">Select a collection.</p>
+              <!-- isuue 297 start -->
+              <!--h2>Collections</h2>
+              <p class="text-justify">Select a collection.</p-->
+              <h2>Browse our Collections</h2>
+              <p class="text-justify">Browse to see the most recent items in the various collections.              </p>
+              <!-- isuue 297 end -->
               <div *ngFor="let item of collections">
                 <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
                 <a  [routerLink]="['/collections', item.id]" [queryParams]="{ scope: item.id}" >
@@ -81,15 +91,22 @@
     <div class="row profile">
       <div class="col-md-12 pull-left">
         <h1 property="name" id="wb-cont">Dépôt ouvert des sciences et technologie (DOST) de RNCan</h1>
-        <p>Le Dépôt ouvert des sciences et technologie de RNCan offre un accès libre et gratuit aux publications, aux travaux scientifiques et aux recherches réalisés par Ressources naturelles Canada.</p>
+        <p>Le Dépôt ouvert des sciences et technologie de RNCan offre un accès libre et gratuit aux publications, aux travaux scientifiques et aux recherches réalisés par Ressources naturelles Canada.
+        </p>
         <section class="alert alert-info">
-          <h2>Annonce du lancement du DOST</h2>
-          <p>
-          Bienvenue au lancement officiel du DOST – Cette plateforme vous permet d'accéder à toutes les publications de RNCan, auparavant hébergées dans les bases de données du Service canadien des forêts et de GEOSCAN. Les photos de la base de données photographiques de RNCan seront bientôt ajoutées.
+        <!-- isuue 297 start -->
+        <h3>Annonce du lancement du DOST</h3>
+          <p>Bienvenue au lancement officiel du DOST – Cette plateforme vous permet d'accéder à toutes les publications de RNCan, auparavant hébergées dans les bases de données du Service canadien des forêts et de GEOSCAN. Les photos de la base de données photographiques de RNCan seront bientôt ajoutées.
+            <b>Nous vous recommandons d'utiliser la fonction "Recherche" lorsque vous recherchez quelque chose de spécifique, et la fonction "Parcourir" lorsque vous consultez les nouvelles publications diffusées.</b>
           </p>
+        <!-- isuue 297 end -->
         </section>
+        
         <form (submit)="search(searchRepo.value); $event.stopPropagation();" id="validation-example">
-          <h2>Recherche dans le dépôt</h2>
+          <!-- isuue 297 start -->
+          <!-- h2>Recherche dans le dépôt</h2-->
+          <h2>Recherche de publications des bases de données du SCF et de GEOSCAN dans le dépôt</h2>
+          <!-- isuue 297 end -->
           <label for="searchRepo" class="wb-inv">Recherche dans le dépôt</label>
           <div class="input-group mrgn-tp-md">
             <input #searchRepo name="text" type="text" class="form-control" id="searchRepo"
@@ -110,8 +127,10 @@
         <div class="col-md-12 pull-left">
           <div class="row">
             <div class="col-md-8 pull-left">
-              <h2>Collections</h2>
-              <p class="text-justify">Sélectionnez une collections.</p>
+              <!-- isuue 297 start -->
+              <h2>Parcourir les collections</h2>
+              <p class="text-justify">Parcourez les collections pour voir les publications les plus récentes.</p>
+              <!-- isuue 297 end -->
               <div *ngFor="let item of collections">
                 <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
                 <a  [routerLink]="['/collections', item.id]" [queryParams]="{scope: item.id}" >
