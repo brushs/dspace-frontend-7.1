@@ -4987,6 +4987,9 @@
   "search.filters.filter.subject_fr.placeholder":  "Sujets de recherche",
   "search.filters.applied.f.itemtype_en": "Type",
   "search.filters.applied.f.subject_en": "Sujet",
+  "search.filters.filter.collectionName_fr.head": "Collection",
+  "search.filters.filter.collectionName_fr.placeholder": "Collections de recherche",
+  "search.filters.applied.f.collectionName_fr": "Collection",
 
   "publisher.search.results.head":  "Résultats de recherche par éditeur",
   "area.search.results.head":  "Résultats de recherche par region",
