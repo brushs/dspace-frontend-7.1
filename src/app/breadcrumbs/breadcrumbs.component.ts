@@ -70,7 +70,7 @@ export class BreadcrumbsComponent {
     }
     return url;
   }
-  
+
   /**
    * Method to parse the query parameter segment from a URL string
    * @param url The URL string value
@@ -107,6 +107,6 @@ export class BreadcrumbsComponent {
       }
     }
     return {};
-    
+
   }
 }
