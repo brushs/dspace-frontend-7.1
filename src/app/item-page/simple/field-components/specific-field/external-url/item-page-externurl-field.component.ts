@@ -50,6 +50,17 @@ export class ItemPageExternalUrlieldComponent extends ItemPageFieldComponent {
     }
 
     this.values = values;
+    // if 'GID' is found in any element of the list, then remove the values from the array
+    values.forEach((element, index) => {
+      if (element.includes('GID')) {
+        values.splice(index, 1);
+      }
+    });
+    // hide if the length of the array is 0
+    if (values.length === 0) {
+      this.isHidden = true;
+      return;
+    }
 
     if (value === undefined)
     {
