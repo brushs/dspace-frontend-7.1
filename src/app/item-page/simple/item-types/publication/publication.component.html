@@ -172,6 +172,20 @@
       [hideIfEmpty]="true">
     </ds-item-page-externurl-field>
 
+    <!-- is version of -->
+    <ds-item-page-externurl-field [item]="object"
+      [field]="'dc.relation.isversionof'"
+      [label]="'item.page.relationships.isversionof'"
+      [hideIfEmpty]="true">
+    </ds-item-page-externurl-field>
+
+    <!-- has version -->
+    <ds-item-page-externurl-field [item]="object"
+      [field]="'dc.relation.hasversion'"
+      [label]="'item.page.relationships.hasversion'"
+      [hideIfEmpty]="true">
+    </ds-item-page-externurl-field>
+
     <!-- replaces -->
     <ds-item-page-externurl-field [item]="object"
       [field]="'dc.relation.replaces'"
