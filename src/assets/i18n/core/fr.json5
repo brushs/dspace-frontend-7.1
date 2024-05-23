@@ -2995,6 +2995,8 @@
   //"item.page.externalurl":"External URL"
   //"item.page.nondownloadable": "Non downloadable",
   "item.page.nondownloadable": "Non téléchargeable",
+  //"item.page.pricedpublication": "Priced publication",
+  "item.page.pricedpublication": "Publication payante",
   // OSTR issue 255 start
   //"item.page.externalurl":"URL externe",
   "item.page.externalurl":"Liens supplémentaires",

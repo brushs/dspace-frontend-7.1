@@ -1626,6 +1626,7 @@
   "item.page.uri": "URI",
   "item.page.volume-title": "Volume title",
   "item.page.nondownloadable": "Non downloadable",
+  "item.page.pricedpublication": "Priced publication",
   // OSTR issue 255 start
   //"item.page.externalurl":"External URL",
   "item.page.externalurl":"Additional Links",
