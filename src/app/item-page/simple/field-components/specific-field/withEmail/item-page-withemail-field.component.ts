@@ -1,0 +1,73 @@
+import { Component, Input, Output } from '@angular/core';
+import { Item } from '../../../../../core/shared/item.model';
+import { ItemPageFieldComponent } from '../item-page-field.component';
+import { TranslateService } from '@ngx-translate/core';
+
+@Component({
+  selector: 'ds-item-page-withemail-field',
+  templateUrl: './item-page-withemail-field.component.html',
+})
+/**
+ * This component is for values with emails
+ */
+export class ItemPageWithEmailComponent extends ItemPageFieldComponent {
+  /**
+   * The item to display metadata for
+   */
+  @Input() item: Item;
+  @Input() field: string;
+
+
+
+
+  @Output() value: string;
+  @Output() mailtoLink: string;
+  @Output() valuePost: string;
+
+  /**
+   * Label i18n key for the rendered metadata
+   */
+  @Input() label: string ;
+  @Input() hideIfEmpty: boolean = false;
+  isHidden: boolean = false;
+
+  constructor(public tralateService: TranslateService) {
+    super();
+  }
+
+  ngOnInit() {
+    var retrievedValue: string;
+    var segs:string[];
+
+    retrievedValue= this.item.firstMetadataValue(this.field);
+
+    if (retrievedValue === undefined)
+    {
+      if (this.hideIfEmpty) {
+        this.isHidden = true;
+        this.value = undefined;
+      }
+      else {
+        this.value = 'N/A';
+      }
+      return; // exit the function
+    }
+
+    // get the email among the text
+    var email = retrievedValue.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g);
+    if (email) {
+      // contruct a mailto link
+      var mailto = 'mailto:' + email[0];
+      this.mailtoLink = mailto;
+      //segement the text with the email
+      retrievedValue = retrievedValue.replace(email[0], '##')
+      segs = retrievedValue.split('##');
+      // embed the mailto link in the text
+      this.value = segs[0]
+      this.valuePost = segs[1];
+    }
+    else {
+      this.value = retrievedValue;
+    }
+  }
+}
