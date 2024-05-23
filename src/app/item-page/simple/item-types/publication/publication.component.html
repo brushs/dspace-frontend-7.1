@@ -20,6 +20,12 @@
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
     <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+    <!-- for mailto -->
+    <ds-item-page-withemail-field [item]="object"
+      [field]="'nrcan.notdownloadable'"
+      [label]="'CFC email'"
+      [hideIfEmpty]="true">
+    </ds-item-page-withemail-field>
     <ds-item-page-externurl-field [item]="object"
       [field]="'dc.relation.ispartof'"
       [label]="'item.page.relationships.isPartOf'"
