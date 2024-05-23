@@ -2993,6 +2993,8 @@
   // "item.page.volume-title": "Volume title",
   "item.page.volume-title": "Titre du volume",
   //"item.page.externalurl":"External URL"
+  //"item.page.nondownloadable": "Non downloadable",
+  "item.page.nondownloadable": "Non téléchargeable",
   // OSTR issue 255 start
   //"item.page.externalurl":"URL externe",
   "item.page.externalurl":"Liens supplémentaires",
