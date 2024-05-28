@@ -37,6 +37,13 @@
                     {{ "home.button.advanced-search"| translate}}
               </a>
             </div>
+            <!-- add another div next to previous div , with some space in between -->
+            <div class="mrgn-tp-md pull-left ml-3">
+              <a href="{{rssFeed}}" class="d-flex align-items-center">
+                    <img alt="RSS Feeds" class="img-responsive mr-1" src="assets/images/rss_2.jpg">
+                    {{ "home.rssfeed"| translate}}
+              </a>
+            </div>
       </div>
       <section>
         <div class="col-md-12">
@@ -104,7 +111,7 @@
           </p>
         <!-- isuue 297 end -->
         </section>
-        
+
         <form (submit)="search(searchRepo.value); $event.stopPropagation();" id="validation-example">
           <!-- isuue 297 start -->
           <!-- h2>Recherche dans le dépôt</h2-->
@@ -123,6 +130,12 @@
             <div class="mrgn-tp-md pull-left">
               <a href="advanced-search">
                     {{ "home.button.advanced-search"| translate}}
+              </a>
+            </div>
+            <div class="mrgn-tp-md pull-left ml-3">
+              <a href="{{rssFeed}}" class="d-flex align-items-center">
+                    <img alt="RSS Feeds" class="img-responsive mr-1" src="assets/images/rss_2.jpg">
+                    {{ "home.rssfeed"| translate}}
               </a>
             </div>
       </div>

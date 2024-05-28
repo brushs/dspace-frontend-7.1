@@ -1357,6 +1357,7 @@
   "home.top-home.head.pre-prod": "Pre-Prod -- NRCan Open S&T Repository (OSTR)",
   "home.top-level-communities.head": "Communities",
   "home.top-level-communities.help": "Select a community to browse its collections.",
+  "home.rssfeed": "RSS Feed",
   "idle-modal.header": "Session will expire soon",
   "idle-modal.info": "For security reasons, user sessions expire after {{timeToExpire}} minutes of inactivity. Your session will expire soon. Would you like to extend it or sign out?",
   "idle-modal.log-out": "Sign out",
