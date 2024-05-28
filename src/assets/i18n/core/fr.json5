@@ -2995,10 +2995,10 @@
   // "item.page.volume-title": "Volume title",
   "item.page.volume-title": "Titre du volume",
   //"item.page.externalurl":"External URL"
-  //"item.page.nondownloadable": "Non downloadable",
-  "item.page.nondownloadable": "Non téléchargeable",
-  //"item.page.pricedpublication": "Priced publication",
-  "item.page.pricedpublication": "Publication payante",
+  //"item.page.nondownloadable": "Availability",
+  "item.page.nondownloadable": "Disponibilité",
+  //"item.page.pricedpublication": "Availability",
+  "item.page.pricedpublication": "Disponibilité",
   // OSTR issue 255 start
   //"item.page.externalurl":"URL externe",
   "item.page.externalurl":"Liens supplémentaires",
