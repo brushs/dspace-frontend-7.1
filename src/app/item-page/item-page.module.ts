@@ -54,6 +54,7 @@ import { ItemPageExternalUrlieldComponent } from './simple/field-components/spec
 import { ResultsBackButtonModule } from '../shared/results-back-button/results-back-button.module';
 import { ItemPageLangDependentComponent } from './simple/field-components/specific-field/lang-dependent/item-page-lang-dependent-field.component';
 import { ItemPageWithEmailComponent} from './simple/field-components/specific-field/withEmail/item-page-withemail-field.component';
+import { ItemPageLabelLinkComponent } from './simple/field-components/specific-field/label-link/item-page-labellink-field.component';
 
 const ENTRY_COMPONENTS = [
   // put only entry components that use custom decorator
@@ -106,7 +107,8 @@ const DECLARATIONS = [
   ItemPagePolygonFieldComponent,
   ItemPageExternalUrlieldComponent,
   ItemPageLangDependentComponent,
-  ItemPageWithEmailComponent
+  ItemPageWithEmailComponent,
+  ItemPageLabelLinkComponent
 ];
 
 @NgModule({
