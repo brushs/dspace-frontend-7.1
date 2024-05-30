@@ -51,6 +51,8 @@ export class ItemResolver implements Resolve<RemoteData<Item>> {
       getFirstCompletedRemoteData(),
     );
 
+    console.log("Loading item with relationships embedded");
+
     itemRD$.subscribe((itemRD: RemoteData<Item>) => {
       this.store.dispatch(new ResolvedAction(state.url, itemRD.payload));
     });

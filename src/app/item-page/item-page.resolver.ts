@@ -32,6 +32,8 @@ export class ItemPageResolver extends ItemResolver {
    * or an error if something went wrong
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<RemoteData<Item>> {
+    console.log("Loading item");
+    
     return super.resolve(route, state).pipe(
       map((rd: RemoteData<Item>) => {
         if (rd.hasSucceeded && hasValue(rd.payload)) {
