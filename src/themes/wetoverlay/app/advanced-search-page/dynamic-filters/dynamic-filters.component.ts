@@ -105,7 +105,9 @@ export class DynamicFiltersComponent {
             filterInfo = `${filter.filtertype}:"${filterText}"`;
           }
           else {
-            filterInfo = `${filter.filtertype}:*${filter.filter}*`;
+            var filterText = filter.filter;
+            filterText = filterText.replace(/"/g, '');
+            filterInfo = `${filter.filtertype}:*"${filter.filter}"*`;
           }
           break;
         case 'equals':
