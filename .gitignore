@@ -10,6 +10,7 @@ npm-debug.log
 /.vscode/
 /src/environments/
 src/environments/
+/src/robots.txt
 src/robots.txt
 
 /coverage
