@@ -34,13 +34,13 @@ switch (environment) {
     console.log(`Building ${colors.red.bold(`production`)} environment`);
     environmentFilePath = '../src/environments/environment.prod.ts';
     fs.rename(prodFilePath, newFilePath, (err) => {
-        if (err) {
-            console.error('Error renaming file:', err);
-            process.exit(1); // Exit with an error code
-        } else {
-            console.log(`File renamed from ${prodFileName} to ${newFileName}`);
-        }
-      });
+      if (err) {
+          console.error('Error renaming file:', err);
+          process.exit(1); // Exit with an error code
+      } else {
+          console.log(`File renamed from ${prodFileName} to ${newFileName}`);
+      }
+    });
     break;
   case '--test':
     console.log(`Building ${colors.blue.bold(`test`)} environment`);
@@ -49,6 +49,14 @@ switch (environment) {
   case '--sandbox':
     console.log(`Building ${colors.blue.bold(`sandbox`)} environment`);
     environmentFilePath = '../src/environments/environment.sandbox.ts';
+    fs.copyFile(devFilePath, newFilePath, (err) => {
+      if (err) {
+          console.error('Error renaming file:', err);
+          process.exit(1); // Exit with an error code
+      } else {
+          console.log(`File renamed from ${devFileName} to ${newFileName}`);
+      }
+    });
     break;
   case '--dev':
     console.log(`Building ${colors.green.bold(`development`)} environment`);
