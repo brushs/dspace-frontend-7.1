@@ -15,12 +15,32 @@ const environment = process.argv[2];
 let environmentFilePath;
 let production = false;
 
+const fs = require('fs');
+const path = require('path');
+
+const prodFileName = 'robots-prod.txt';
+const devFileName = 'robots-nonprod.txt';
+const newFileName = 'robots.txt'; 
+const buildDirectory = path.join(__dirname, '../src'); // Adjust according to your build output directory
+
+const prodFilePath = path.join(buildDirectory, prodFileName);
+const devFilePath = path.join(buildDirectory, devFileName);
+const newFilePath = path.join(buildDirectory, newFileName);
+
 switch (environment) {
   case '--prod':
   case '--production':
     production = true;
     console.log(`Building ${colors.red.bold(`production`)} environment`);
     environmentFilePath = '../src/environments/environment.prod.ts';
+    fs.rename(prodFilePath, newFilePath, (err) => {
+        if (err) {
+            console.error('Error renaming file:', err);
+            process.exit(1); // Exit with an error code
+        } else {
+            console.log(`File renamed from ${prodFileName} to ${newFileName}`);
+        }
+      });
     break;
   case '--test':
     console.log(`Building ${colors.blue.bold(`test`)} environment`);
@@ -33,6 +53,14 @@ switch (environment) {
   case '--dev':
     console.log(`Building ${colors.green.bold(`development`)} environment`);
     environmentFilePath = '../src/environments/environment.dev.ts';
+    fs.copyFile(devFilePath, newFilePath, (err) => {
+      if (err) {
+          console.error('Error renaming file:', err);
+          process.exit(1); // Exit with an error code
+      } else {
+          console.log(`File renamed from ${devFileName} to ${newFileName}`);
+      }
+    });
     break;
   case '--apption':
     console.log(`Building ${colors.green.bold(`apption`)} environment`);
