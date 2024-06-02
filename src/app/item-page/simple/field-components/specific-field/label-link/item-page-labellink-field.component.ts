@@ -2,6 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Item } from 'src/app/core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -21,8 +22,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
 
 
 
-  @Output() value: string;
-  @Output() link: string;
+  @Output() values: string[][];
 
   /**
    * Label i18n key for the rendered metadata
@@ -36,33 +36,33 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
   }
 
   ngOnInit() {
-    var retrievedValue: string;
-    var segs: string[];
+    var retrievedValues: string[];
+    this.values = [];
 
-    retrievedValue = this.item.firstMetadataValue(this.field);
-
-    if (retrievedValue === undefined) {
+    retrievedValues = this.item.allMetadataValues(this.field);
+    if (retrievedValues.length === 0) {
       if (this.hideIfEmpty) {
         this.isHidden = true;
-        this.value = undefined;
+      }
+      this.values.push(['N/A', 'N/A']);
+      return
+    }
+    retrievedValues.forEach((element, index) => {
+      if (element.includes('GID')) {
+        retrievedValues.splice(index, 1);
+      }
+      var link = element.match(/<a href="([^"]*)">([^<]*)<\/a>/);
+      if (link) {
+        //push the link and the label to the values array
+        this.values.push([link[1], link[2]]);
+        return;
       }
       else {
-        this.value = 'N/A';
+        this.values.push([element, element])
       }
-      return; // exit the function
-    }
 
-    // get the link and label among the value, for example: <a href="http://www.google.com">link label</a>
-    var link = retrievedValue.match(/<a href="([^"]*)">([^<]*)<\/a>/);
-    if (link) {
-      this.link = link[1];
-      this.value = link[2];
-      return;
-    }
-    else {
-      this.value = retrievedValue;
-      this.link = retrievedValue;
-    }
+    });
+
   }
 }
 

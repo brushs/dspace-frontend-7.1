@@ -1,11 +1,16 @@
 <div class="item-page-field">
   <div class="simple-view-element form-group" [class.d-none]="isHidden">
     <span class="simple-view-element-header h3" *ngIf="label">{{ label|translate }}</span>
-    <div  class="simple-view-element-body">
+    <!-- <div  class="simple-view-element-body">
       <span>
         <a href="{{[link]}}" class="dont-break-out" > {{[value]}} </a>
       </span>
-
+    </div>-->
+    <div *ngFor="let mdValue of values" class="simple-view-element-body">
+      <!-- for loop -->
+      <a class="dont-break-out" href= "{{[mdValue[0]]}}" *ngIf=" mdValue[0] !='N/A'" >
+         <span>{{ [mdValue[1]] }} </span></a>
+      <span *ngIf=" mdValue[0] =='N/A'">{{ [mdValue[0]] }} </span>
     </div>
 
   </div>
