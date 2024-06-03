@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Item } from 'src/app/core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 import * as _ from 'lodash';
+import { MetadataValue } from 'src/app/core/shared/metadata.models';
 
 
 @Component({
@@ -36,29 +37,35 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
   }
 
   ngOnInit() {
-    var retrievedValues: string[];
+    var retrievedMetadata: MetadataValue[];
     this.values = [];
+    //get current language
+    var currentLang = this.tralateService.currentLang;
 
-    retrievedValues = this.item.allMetadataValues(this.field);
-    if (retrievedValues.length === 0) {
+    retrievedMetadata = this.item.allMetadata(this.field);
+    if (retrievedMetadata.length === 0) {
       if (this.hideIfEmpty) {
         this.isHidden = true;
       }
       this.values.push(['N/A', 'N/A']);
       return
     }
-    retrievedValues.forEach((element, index) => {
-      if (element.includes('GID')) {
-        retrievedValues.splice(index, 1);
+    retrievedMetadata.forEach((element, index) => {
+      var value = element.value;
+      if (value.includes('GID')) {
+        retrievedMetadata.splice(index, 1);
       }
-      var link = element.match(/<a href="([^"]*)">([^<]*)<\/a>/);
+      if ( element.language.length> 0  && element.language !== currentLang)
+        //skip this value if it is not in the current language
+        return;
+      var link = value.match(/<a href="([^"]*)">([^<]*)<\/a>/);
       if (link) {
         //push the link and the label to the values array
         this.values.push([link[1], link[2]]);
         return;
       }
       else {
-        this.values.push([element, element])
+        this.values.push([value, value])
       }
 
     });
