@@ -88,6 +88,20 @@ export class DynamicFiltersComponent {
     //console.log(this.filteredData);
   }
 
+  private transformEqualFilterInfo(filtertype: string,filterText:string): string {
+    var filterInfo: string = '';
+    if (filtertype === 'nrcan.reportnumber') {
+      // remove the space in the filterText
+      filterText = filterText.replace(/ /g, '');
+      // add 'nrcan.issue','nrcan.volume','nrcan.secserial.number','nrcan.articlenumber' to the filter
+      filterInfo = `${filtertype}:${filterText} OR nrcan.issue:${filterText} OR nrcan.volume:${filterText} OR nrcan.secserial.number:${filterText} OR nrcan.articlenumber:${filterText}`;
+    }
+    else
+      filterInfo = `${filtertype}:"${filterText}"`;
+
+    return filterInfo;
+  }
+
   private getQueryString() {
     const filters = this.rows.controls.map(row => row.value);
     let filterArray: any = [];
@@ -113,7 +127,8 @@ export class DynamicFiltersComponent {
         case 'equals':
           var filterText = filter.filter;
           filterText = filterText.replace(/"/g, '');
-          filterInfo = `${filter.filtertype}:"${filterText}"`;
+          //filterInfo = `${filter.filtertype}:"${filterText}"`;
+          filterInfo = this.transformEqualFilterInfo(filter.filtertype,filterText);
           break;
         case 'notcontains':
           filterInfo = `-${filter.filtertype}:*${filter.filter}*`;

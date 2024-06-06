@@ -1087,6 +1087,7 @@
   "comcol.search.filter.item.source.title":"Source Title",
   "comcol.search.filter.item.abstdesckw":"Abst./Descr./keyw.",
   "comcol.search.filter.item.date.issued": "Date",
+  "comcol.search.filter.item.volrpt.number": "Vol/Rpt. Number",
   "comcol.search.filter.operator.contains": "Contains",
   "comcol.search.filter.operator.equals": "Equals",
   "comcol.search.filter.operator.not.contains": "Not contains",
