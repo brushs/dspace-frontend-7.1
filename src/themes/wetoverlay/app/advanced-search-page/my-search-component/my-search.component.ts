@@ -208,10 +208,10 @@ export class MySearchComponent implements OnInit {
           var query = options.query;
           if (options.query == '')
             optionsCopy.query = geoquery;
-
+            //optionsCopy.query = '*:*&fq=' + geoquery;
           else
             optionsCopy.query = geoquery + ' ' + options.query;
-
+            //optionsCopy.geoQuery = geoquery + '&fq=' + geoquery;
         }
 
         else
@@ -316,18 +316,24 @@ export class MySearchComponent implements OnInit {
   }
 
   private getGeoData() {
+    // {!field f=geospatial.bbox}IsWithin(ENVELOPE(-89.44287, -72.99316, 46.31042, 40.80279))
     var geodata = '';
-    var geoquery = '';
+    //var geoquery = '';
+    var geoquery2 = '';
     if (this.geoComponent != null && this.geoComponent.getGeoData() != null && this.geoComponent.getGeoData() != '') {
       geodata = this.geoComponent.getGeoData();
       var [lat1, lng1, lat2, lng2] = geodata.split(',');
       //var geoquery = 'nrcan.geospatial.bbox:[' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + ']';
-      geoquery = 'geospatial.bbox:[' + lat1 + ',' + lng1 + ' TO ' + lat2 + ',' + lng2 + ']';
+      //geoquery = 'geospatial.bbox:[' + lat1 + ',' + lng1 + ' TO ' + lat2 + ',' + lng2 + ']';
+      // {!field f=geospatial.bbox}IsWithin(ENVELOPE(-89.44287, -72.99316, 46.31042, 40.80279))
+      geoquery2 = `{!field f=geospatial.bbox}IsWithin(ENVELOPE(${lng1}, ${lng2}, ${lat2}, ${lat1}))`;
+      //console.log("geoquery = " + geoquery);
+      console.log("geoquery2 = " + geoquery2);
       if (lat1 == undefined || lng1 == undefined || lat2 == undefined || lng2 == undefined) {
-        geoquery = ''; // reset geoquery
+        geoquery2 = ''; // reset geoquery
       }
     }
-    return geoquery ;
+    return geoquery2 ;
   }
 
   /**
