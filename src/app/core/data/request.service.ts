@@ -330,6 +330,10 @@ export class RequestService {
       if (this.hasByHref(urlWithoutEmbedParams) === true) {
         return false;
       } else {
+        if (request.href.includes("embed=relationships") ) {
+          return true;
+        }
+
         // if it isn't in the request cache, check the object cache
         let inObjCache = false;
         this.objectCache.getByHref(urlWithoutEmbedParams)

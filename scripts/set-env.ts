@@ -73,6 +73,14 @@ switch (environment) {
   case '--apption':
     console.log(`Building ${colors.green.bold(`apption`)} environment`);
     environmentFilePath = '../src/environments/environment.apption.ts';
+    fs.copyFile(devFilePath, newFilePath, (err) => {
+      if (err) {
+          console.error('Error renaming file:', err);
+          process.exit(1); // Exit with an error code
+      } else {
+          console.log(`File renamed from ${devFileName} to ${newFileName}`);
+      }
+    });
     break;
   default:
     console.log(`Building ${colors.green.bold(`local`)} environment`);
