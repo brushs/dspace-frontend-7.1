@@ -4,6 +4,7 @@
 
 trigger:
 - ostr-dev
+- feature/ssr-steve
 
 resources:
 - repo: self
