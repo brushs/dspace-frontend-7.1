@@ -28,6 +28,7 @@
     "build:stats": "ng build --stats-json",
     "build:prod": "yarn run build:ssr",
     "build:ssr": "yarn run build:client-and-server-bundles && yarn run compile:server",
+    "build:ssrdev": "yarn run build && yarn run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run dspace-angular:server:production --bundleDependencies true",
     "test:watch": "npm-run-all --parallel config:test:watch test",
     "test": "ng test --sourceMap=true --watch=true",
