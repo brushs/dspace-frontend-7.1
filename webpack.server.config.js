@@ -40,11 +40,8 @@ module.exports = {
       },
       {
         test: /\.css$/, // Regex to match CSS files
-        use: [
-            'style-loader', 
-            'css-loader'
-        ]
-      }
+        loader: multi('style-loader!css-loader')
+      } 
     ]
   },
   plugins: [
