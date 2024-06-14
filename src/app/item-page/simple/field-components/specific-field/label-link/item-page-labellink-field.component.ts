@@ -1,9 +1,9 @@
 import { Component, Input, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Item } from 'src/app/core/shared/item.model';
+import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 import * as _ from 'lodash';
-import { MetadataValue } from 'src/app/core/shared/metadata.models';
+import { MetadataValue } from '../../../../../core/shared/metadata.models';
 
 
 @Component({

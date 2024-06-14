@@ -16,6 +16,7 @@ RUN yarn run set-env --apption
 ENV NODE_ENV development
 RUN yarn run build:ssrdev
 RUN yarn run build:ssrbundle
+RUN yarn run compile:server
 
 # Use second image to serve output
 # Use official nginx image as the base image
