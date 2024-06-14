@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const multi = require('multi-loader');
 
 module.exports = {
   mode: 'none',
@@ -29,13 +30,21 @@ module.exports = {
         test: /\.ts$/, loader: 'ts-loader',
         options: {
           configFile: "tsconfig.server.json"
-        } },
+        } 
+      },
       {
         // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
         // Removing this will cause deprecation warnings to appear.
         test: /(\\|\/)@angular(\\|\/)core(\\|\/).+\.js$/,
         parser: { system: true },
       },
+      {
+        test: /\.css$/, // Regex to match CSS files
+        use: [
+            'style-loader', 
+            'css-loader'
+        ]
+      }
     ]
   },
   plugins: [
