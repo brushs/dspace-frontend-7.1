@@ -2,14 +2,16 @@
 
 variables:
   # Container registry service connection established during pipeline creation
-  acrLoginServer: $(DOCKER_REG_SERVICE_CONNECTION)
+  acrName: $(CONTAINER_REGISTRY_NAME)
+  acrLoginServer: $(CONTAINER_REGISTRY_URL)
+  serviceConnection: $(DOCKER_REG_SERVICE_CONNECTION)
+  azureSubscription: $(DOCKER_REG_SERVICE_CONNECTION)
+  azureSubscription2: $(AZURE_SUBSCRIPTION)
   imageNameServer: $(IMAGE_REPOSITORY_AUS)
   imageNameNginx: $(IMAGE_REPOSITORY_NGINX)
-  acrName: $(CONTAINER_REGISTRY)
   dockerfilePath: '$(Build.SourcesDirectory)'
   dockerfileName: '$(DOCKERFILE_NAME)'
   tag: '$(Build.BuildId)'
-  azureSubscription: $(AZURE_SUBSCRIPTION)
   appName: $(APP_NAME)
 
   # Agent VM image name
