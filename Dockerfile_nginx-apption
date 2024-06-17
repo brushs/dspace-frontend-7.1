@@ -46,7 +46,7 @@ RUN chmod +x /tmp/ssh_setup.sh \
     && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
 
 # Expose
-EXPOSE 4000 2222
+EXPOSE 80 2222
 
 # On startup, run in DEVELOPMENT mode (this defaults to live reloading enabled, etc).
 # Listen / accept connections from all IP addresses.
