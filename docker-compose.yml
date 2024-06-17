@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  angular_universal_server:
+    image: build_aus:latest
+    build:
+      context: .
+      dockerfile: Dockerfile_aus-apption
+    container_name: angular_universal_server
+    ports:
+      - "4000:4000"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile_nginx-apption
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - angular_universal_server
