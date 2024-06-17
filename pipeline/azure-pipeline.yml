@@ -12,7 +12,8 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)'
   dockerfileName: '$(DOCKERFILE_NAME)'
   tag: '$(Build.BuildId)'
-  appName: $(APP_NAME)
+  appServiceName: $(APP_SERVICE_NAME)
+  resourceGroup: $(RESOURCE_GROUP)
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
