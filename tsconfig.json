@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "buildOnSave": false,
+  "include": ["src/**/*"],
   "atom": {
     "rewriteTsconfig": false
   },

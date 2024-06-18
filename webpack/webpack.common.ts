@@ -102,6 +102,25 @@ export const commonExports = {
           ...SCSS_LOADERS,
         ]
       },
+      {
+        test: /\.css$/,
+        include: [
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules/leaflet-geosearch')
+        ],
+        use: [
+          {
+            loader: 'isomorphic-style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+            },
+          },
+        ],
+      }
     ],
   }
 };

@@ -14,9 +14,7 @@ RUN yarn install --network-timeout 300000
 RUN yarn run set-env --apption
 # Set again to control the type of build to be performed
 ENV NODE_ENV development
-RUN yarn run build:ssrdev
-RUN yarn run build:ssrbundle
-RUN yarn run compile:server
+RUN yarn run build:prod
 
 # Use second image to serve output
 # Use official nginx image as the base image

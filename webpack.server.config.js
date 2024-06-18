@@ -2,7 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const multi = require('multi-loader');
 
 module.exports = {
   mode: 'none',
@@ -39,9 +38,24 @@ module.exports = {
         parser: { system: true },
       },
       {
-        test: /\.css$/, // Regex to match CSS files
-        loader: multi('style-loader!css-loader')
-      } 
+        test: /\.css$/,
+        include: [
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules/leaflet-geosearch')
+        ],
+        use: [
+          {
+            loader: 'isomorphic-style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+            },
+          },
+        ],
+      },
     ]
   },
   plugins: [
