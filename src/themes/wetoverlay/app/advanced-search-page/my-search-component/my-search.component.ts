@@ -30,6 +30,7 @@ import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/s
 import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 import { TranslateService } from '@ngx-translate/core';
+import { SearchFilter } from 'src/app/shared/search/search-filter.model';
 
 @Component({
   selector: 'ds-search',
@@ -206,11 +207,17 @@ export class MySearchComponent implements OnInit {
         //if (options.geoQuery != undefined )
         if (geoquery != '') {
           var query = options.query;
-          if (options.query == '')
-            optionsCopy.query = geoquery;
+          if (options.query == ''){
+            //optionsCopy.query = geoquery;
+            optionsCopy.query = '*:*';
             //optionsCopy.query = '*:*&fq=' + geoquery;
-          else
-            optionsCopy.query = geoquery + ' ' + options.query;
+            //var psudokey = '{!field f';
+            //var psudovalue = 'geospatial.bbox}Contains(ENVELOPE(-76.44287, -72.99316, 46.31042, 44.80279))IsWithin(ENVELOPE';
+            //var filter = new SearchFilter(psudokey, [psudovalue]);
+            //optionsCopy.filter.push(filter);
+            }
+          //else
+          //  optionsCopy.query =  options.query + ' AND ' + geoquery;
             //optionsCopy.geoQuery = geoquery + '&fq=' + geoquery;
         }
 
