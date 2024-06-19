@@ -94,7 +94,7 @@ export class DynamicFiltersComponent {
       // remove the space in the filterText
       filterText = filterText.replace(/ /g, '');
       // add 'nrcan.issue','nrcan.volume','nrcan.secserial.number','nrcan.articlenumber' to the filter
-      filterInfo = `${filtertype}:${filterText} OR nrcan.issue:${filterText} OR nrcan.volume:${filterText} OR nrcan.secserial.number:${filterText} OR nrcan.articlenumber:${filterText}`;
+      filterInfo = `(${filtertype}:${filterText} OR nrcan.issue:${filterText} OR nrcan.volume:${filterText} OR nrcan.secserial.number:${filterText} OR nrcan.articlenumber:${filterText})`;
     }
     else
       filterInfo = `${filtertype}:"${filterText}"`;
@@ -112,18 +112,18 @@ export class DynamicFiltersComponent {
       }
       switch (filter.relationalOperator) {
         case 'contains':
-          if (filter.filtertype === 'nrcan.nts') {
-            //make the contains the same as equals for nts
-            var filterText = filter.filter;
-            filterText = filterText.replace(/"/g, '');
-            filterInfo = `${filter.filtertype}:"${filterText}"`;
-          }
-          else {
-            var filterText = filter.filter;
-            filterText = filterText.replace(/"/g, '');
-            filterInfo = `${filter.filtertype}:*"${filter.filter}"*`;
-          }
-          break;
+          //if (filter.filtertype === 'nrcan.nts') {
+          //  //make the contains the same as equals for nts
+          //  var filterText = filter.filter;
+          //  filterText = filterText.replace(/"/g, '');
+          //  filterInfo = `${filter.filtertype}:"${filterText}"`;
+          //}
+          //else {
+          //  var filterText = filter.filter;
+          //  filterText = filterText.replace(/"/g, '');
+          //  filterInfo = `${filter.filtertype}:*"${filter.filter}"*`;
+          //}
+          //break;
         case 'equals':
           var filterText = filter.filter;
           filterText = filterText.replace(/"/g, '');
@@ -131,10 +131,10 @@ export class DynamicFiltersComponent {
           filterInfo = this.transformEqualFilterInfo(filter.filtertype,filterText);
           break;
         case 'notcontains':
-          filterInfo = `-${filter.filtertype}:*${filter.filter}*`;
-          break;
+          //filterInfo = `-${filter.filtertype}:*${filter.filter}*`;
+          //break;
         case 'notequals':
-          filterInfo = `-${filter.filtertype}:${filter.filter}`;
+          filterInfo = `-${filter.filtertype}:"${filter.filter}"`;
           break;
         default:
           filterInfo = `*:*`;

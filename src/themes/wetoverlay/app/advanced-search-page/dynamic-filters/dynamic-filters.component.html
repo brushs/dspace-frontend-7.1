@@ -16,8 +16,6 @@
 
       <select id="filter-operator-{{i+1}}" name="filter-operator-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.operator' | translate}}" formControlName="relationalOperator" required>
         <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
-        <option  value="equals">{{'comcol.search.filter.operator.equals' | translate}}</option>
-        <option value="notequals">{{'comcol.search.filter.operator.not.equals' | translate}}</option>
         <option value="contains">{{'comcol.search.filter.operator.contains' | translate}}</option>
         <option value="notcontains">{{'comcol.search.filter.operator.not.contains' | translate}}</option>
       </select>
