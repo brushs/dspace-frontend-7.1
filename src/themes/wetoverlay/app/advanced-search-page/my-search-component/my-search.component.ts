@@ -322,7 +322,7 @@ export class MySearchComponent implements OnInit {
 
   }
 
-  private getGeoData() {
+  public getGeoData() {
     // {!field f=geospatial.bbox}IsWithin(ENVELOPE(-89.44287, -72.99316, 46.31042, 40.80279))
     var geodata = '';
     //var geoquery = '';
