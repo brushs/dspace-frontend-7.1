@@ -50,7 +50,10 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   initialShorteningOccurred: boolean = false;
   overrideTruncation = false;
   isCollapsedBool: boolean;
-
+  // issue 247 start 
+  showThumbnails: boolean = false;
+  emptyThumbnails: boolean = false;
+  // issue 247 end 
   
 
   readonly MAX_NUMBER_OF_LINES: number = 3;
@@ -83,6 +86,17 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.descriptionParagraphId = this.descriptionParagraphId + this.dso.id;
     this.descriptionSpanId = this.descriptionSpanId + this.dso.id;
     this.configureObservers();
+    // issue 247 start 
+    if (this.context) {
+      if (this.constructor.name == "ItemSearchResultListElementComponent") {
+        this.emptyThumbnails = true;
+      } else {
+        this.showThumbnails = true;
+      }
+    } else {
+      this.showThumbnails = true;
+    }
+    // issue 247 end 
   }
 
   configureObservers() {
