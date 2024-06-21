@@ -186,7 +186,7 @@ export class MySearchComponent implements OnInit {
     ).subscribe(([labelShow,labelHide]) => {
       this.labelShow = labelShow;
       this.labelHide = labelHide;
-      this.showHideMapnLabel = labelShow;
+      this.showHideMapnLabel = labelHide;
     })
   }
 
