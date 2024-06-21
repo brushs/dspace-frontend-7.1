@@ -55,7 +55,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
       if (value.includes('GID')) {
         retrievedMetadata.splice(index, 1);
       }
-      if ( element.language.length> 0  && element.language !== currentLang)
+      if ( element.language !== null && element.language.length> 0  && element.language !== currentLang)
         //skip this value if it is not in the current language
         return;
       var link = value.match(/<a href="([^"]*)">([^<]*)<\/a>/);
