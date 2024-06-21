@@ -360,7 +360,7 @@ export class MySearchComponent implements OnInit {
       this.mainSearchValue = this.dynamicFiltersComponent.output;
       term = this.dynamicFiltersComponent.output;
       console.log(this.route)
-      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term}, queryParamsHandling: 'merge'})
+      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term, 'spc.sf':'score'}, queryParamsHandling: 'merge'})
     }
 
     toggleMapVisibility(): void {
