@@ -19,7 +19,20 @@
     <ng-container *ngIf="mediaViewer.image">
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
+
+    <!-- conditional show althernative download -->
+    <!--<ng-container *ngIf="displayLarge"> -->
+    <ds-item-page-labellink-field
+      [field]="'nrcan.publication.externaldownloadurl'"
+      [item]="object"
+      [conditional]="true"
+      (shouldHide)="handleShouldHide($event)">
+    </ds-item-page-labellink-field>
+    <!-- </ng-container> -->
+    <!-- conitinoal hide file download -->
+    <ng-container *ngIf="!displayLarge">
     <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+    </ng-container>
     <!-- for mailto -->
     <ds-item-page-withemail-field [item]="object"
       [field]="'nrcan.notdownloadable'"
