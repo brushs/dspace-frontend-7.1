@@ -26,6 +26,7 @@
       [field]="'nrcan.publication.externaldownloadurl'"
       [item]="object"
       [label]="'item.page.files'"
+      [hideIfEmpty]="true"
       [conditional]="true"
       (shouldHide)="handleShouldHide($event)">
     </ds-item-page-labellink-field>

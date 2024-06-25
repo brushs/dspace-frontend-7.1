@@ -48,6 +48,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
     if (retrievedMetadata.length === 0) {
       if (this.hideIfEmpty) {
         this.isHidden = true;
+        this.shouldHide.emit(false); // should not hide the normal file download link
       }
       this.values.push(['N/A', 'N/A']);
       return
