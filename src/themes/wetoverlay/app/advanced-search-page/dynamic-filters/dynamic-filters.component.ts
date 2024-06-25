@@ -33,7 +33,7 @@ export class DynamicFiltersComponent {
   addRow() {
     const newRow = this.fb.group({
       filtertype: ['title'],
-      relationalOperator: ['equals'],
+      relationalOperator: [''],
       filter: [''],
     });
     this.rows.push(newRow);
