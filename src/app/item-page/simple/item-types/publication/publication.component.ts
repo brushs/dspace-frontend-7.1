@@ -21,6 +21,6 @@ export class PublicationComponent extends ItemComponent {
     // shouldHide means should hide the normal file download link
     // also means show the large file download link
     this.displayLarge = shouldHide;
-    console.log('shouldHide:', shouldHide);
+    //console.log('shouldHide:', shouldHide);
   }
 }
