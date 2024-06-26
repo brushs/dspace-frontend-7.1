@@ -15,5 +15,12 @@ import { listableObjectComponent } from '../../../../shared/object-collection/sh
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PublicationComponent extends ItemComponent {
+  displayLarge = false;
 
+  handleShouldHide(shouldHide: boolean) {
+    // shouldHide means should hide the normal file download link
+    // also means show the large file download link
+    this.displayLarge = shouldHide;
+    //console.log('shouldHide:', shouldHide);
+  }
 }

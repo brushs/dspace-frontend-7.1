@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output,EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Item } from 'src/app/core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
@@ -19,7 +19,9 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
    */
   @Input() item: Item;
   @Input() field: string;
-
+  @Input() conditional:boolean = false;
+  // Output property to notify parent component
+  @Output() shouldHide: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
 
@@ -46,6 +48,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
     if (retrievedMetadata.length === 0) {
       if (this.hideIfEmpty) {
         this.isHidden = true;
+        this.shouldHide.emit(false); // should not hide the normal file download link
       }
       this.values.push(['N/A', 'N/A']);
       return
@@ -55,13 +58,23 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
       if (value.includes('GID')) {
         retrievedMetadata.splice(index, 1);
       }
-      if ( element.language.length> 0  && element.language !== currentLang)
+      if ( element.language !== null && element.language.length> 0  && element.language !== currentLang)
         //skip this value if it is not in the current language
         return;
       var link = value.match(/<a href="([^"]*)">([^<]*)<\/a>/);
       if (link) {
         //push the link and the label to the values array
         this.values.push([link[1], link[2]]);
+        if (this.conditional)
+          // check if the value contains a special link "geoscan.nrcan.gc.ca" or  the text contains a
+          // special text "Download - Télécharger" to hide the field
+          if (link[1].includes('geoscan.nrcan.gc.ca') || link[2].includes('Download - Télécharger')) {
+            this.shouldHide.emit(true);
+            this.isHidden = false;
+          }else{
+            this.shouldHide.emit(false);
+            this.isHidden = true;
+          }
         return;
       }
       else {

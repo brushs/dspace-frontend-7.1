@@ -19,7 +19,22 @@
     <ng-container *ngIf="mediaViewer.image">
       <ds-media-viewer [item]="object" [videoOptions]="mediaViewer.video"></ds-media-viewer>
     </ng-container>
+
+    <!-- conditional show althernative download -->
+    <!--<ng-container *ngIf="displayLarge"> -->
+    <ds-item-page-labellink-field
+      [field]="'nrcan.publication.externaldownloadurl'"
+      [item]="object"
+      [label]="'item.page.files'"
+      [hideIfEmpty]="true"
+      [conditional]="true"
+      (shouldHide)="handleShouldHide($event)">
+    </ds-item-page-labellink-field>
+    <!-- </ng-container> -->
+    <!-- conitinoal hide file download -->
+    <ng-container *ngIf="!displayLarge">
     <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+    </ng-container>
     <!-- for mailto -->
     <ds-item-page-withemail-field [item]="object"
       [field]="'nrcan.notdownloadable'"
@@ -173,11 +188,11 @@
     </ds-item-page-externurl-field>
 
     <!-- isrelatedto-->
-    <ds-item-page-externurl-field [item]="object"
+    <ds-item-page-labellink-field [item]="object"
       [field]="'dc.relation.isrelatedto'"
       [label]="'item.page.relationships.isRelatedTo'"
       [hideIfEmpty]="true">
-    </ds-item-page-externurl-field>
+    </ds-item-page-labellink-field>
 
     <!-- is version of -->
     <ds-item-page-externurl-field [item]="object"
