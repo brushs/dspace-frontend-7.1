@@ -21,13 +21,14 @@
       </fieldset>
       <!-- End FOSRC Changes -->
     </button>
-    
+
     <div [@slide]="(collapsed$ | async) ? 'collapsed' : 'expanded'"
          (@slide.start)="startSlide($event)" (@slide.done)="finishSlide($event)"
          class="search-filter-wrapper" [ngClass]="{ 'closed' : closed, 'notab': notab }">
       <ds-search-facet-filter-wrapper
         [filterConfig]="filter"
-        [inPlaceSearch]="inPlaceSearch">
+        [inPlaceSearch]="inPlaceSearch"
+        [geoQuery] ="geoQuery">
       </ds-search-facet-filter-wrapper>
     </div>
   </div>
@@ -38,11 +39,14 @@
     <summary>{{'search.filters.filter.' + filter.name + '.head'| translate}}</summary> -->
     <fieldset>
       <legend><span class="field-name wb-inv">{{'search.filters.filter.' + filter.name + '.head'| translate}}</span></legend>
-       <ds-search-facet-filter-wrapper 
+       <ds-search-facet-filter-wrapper
         [filterConfig]="filter"
         [useGcWeb]="true"
         [facetTerm]="('search.filters.filter.' + filter.name + '.head'| translate)"
-        [inPlaceSearch]="inPlaceSearch"></ds-search-facet-filter-wrapper>
+        [inPlaceSearch]="inPlaceSearch"
+        [geoQuery] ="geoQuery"
+        ></ds-search-facet-filter-wrapper>
+        <!-- [geoQuery]="geoQuery" -->
    </fieldset>
  <!-- </details> -->
 </ng-template>

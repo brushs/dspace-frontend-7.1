@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild,ChangeDetectorRef} from '@angular/core';
 import { BehaviorSubject, Observable, Subscription,combineLatest as observableCombineLatest } from 'rxjs';
 import { map, startWith, switchMap, take } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model'          //../core/data/paginated-list.model';
@@ -150,6 +150,9 @@ export class MySearchComponent implements OnInit {
   private labelShow: string;
   private labelHide: string;
 
+  @Input()
+  currentGeoQuery: string;
+
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
@@ -158,6 +161,7 @@ export class MySearchComponent implements OnInit {
               protected router: Router,
               protected route: ActivatedRoute,
               private translateService: TranslateService,
+              private cdRef: ChangeDetectorRef,
               ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
@@ -315,10 +319,11 @@ export class MySearchComponent implements OnInit {
     console.log("###" + value);
     var geoquery = null;
     geoquery  = this.getGeoData();
+    this.currentGeoQuery = geoquery;
 
-    var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
-    oldValue.geoQuery = geoquery;
-    this.searchConfigService.paginatedSearchOptions.next(oldValue);
+    //var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
+    //oldValue.geoQuery = geoquery;
+    //this.searchConfigService.paginatedSearchOptions.next(oldValue);
 
   }
 
@@ -372,8 +377,18 @@ export class MySearchComponent implements OnInit {
       this.dynamicFiltersComponent.getQuery();
       this.mainSearchValue = this.dynamicFiltersComponent.output;
       term = this.dynamicFiltersComponent.output;
-      console.log(this.route)
-      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term, 'spc.sf':'score'}, queryParamsHandling: 'merge'})
+      //console.log(this.route);
+      //var geoquery = null;
+      this.currentGeoQuery  = this.getGeoData();
+      console.log("# new geoquery = " + this.currentGeoQuery);
+      this.cdRef.detectChanges()
+
+      var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
+      //oldValue.geoQuery = this.currentGeoQuery;
+      oldValue.geoQuery = this.currentGeoQuery;
+      this.searchConfigService.paginatedSearchOptions.next(oldValue);
+
+      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term, 'spc.sf':'score','fq':this.currentGeoQuery}, queryParamsHandling: 'merge'});
     }
 
     toggleMapVisibility(): void {

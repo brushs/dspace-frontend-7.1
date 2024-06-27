@@ -8,7 +8,7 @@ import {
 } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, take, tap } from 'rxjs/operators';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { RemoteDataBuildService } from '../../../../../core/cache/builders/remote-data-build.service';
 import { PaginatedList } from '../../../../../core/data/paginated-list.model';
@@ -83,6 +83,8 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
    */
   searchOptions$: Observable<SearchOptions>;
 
+  @Input() geoQuery: String;
+
   /**
    * The current URL
    */
@@ -107,8 +109,14 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
     this.currentUrl = this.router.url;
     this.filterValues$ = new BehaviorSubject(createPendingRemoteDataObject());
     this.currentPage = this.getCurrentPage().pipe(distinctUntilChanged());
+    console.log(">>>>>>>>>>>>>geoQuery in facet filter: ", this.geoQuery);
 
-    this.searchOptions$ = this.searchConfigService.searchOptions;
+    this.searchOptions$ = this.searchConfigService.searchOptions.pipe(
+        tap((options) => {
+            options.geoQuery = this.geoQuery === undefined? undefined: this.geoQuery.toString(); // set the geoQuery value to the options object
+        })
+    );
+;
     this.subs.push(this.searchOptions$.subscribe(() => this.updateFilterValueList()));
     const facetValues$ = observableCombineLatest(this.searchOptions$, this.currentPage).pipe(
       map(([options, page]) => {
