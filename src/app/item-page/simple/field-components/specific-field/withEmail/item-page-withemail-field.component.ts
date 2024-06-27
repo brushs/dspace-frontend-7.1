@@ -22,6 +22,7 @@ export class ItemPageWithEmailComponent extends ItemPageFieldComponent {
 
   @Output() value: string;
   @Output() mailtoLink: string;
+  @Output() mailtoLabel: string;
   @Output() valuePost: string;
 
   /**
@@ -59,6 +60,7 @@ export class ItemPageWithEmailComponent extends ItemPageFieldComponent {
       // contruct a mailto link
       var mailto = 'mailto:' + email[0];
       this.mailtoLink = mailto;
+      this.mailtoLabel = email[0];
       //segement the text with the email
       retrievedValue = retrievedValue.replace(email[0], '##')
       segs = retrievedValue.split('##');
