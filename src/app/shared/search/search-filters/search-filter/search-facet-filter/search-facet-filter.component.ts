@@ -18,7 +18,7 @@ import { EmphasizePipe } from '../../../../utils/emphasize.pipe';
 import { FacetValue } from '../../../facet-value.model';
 import { SearchFilterConfig } from '../../../search-filter-config.model';
 import { SearchService } from '../../../../../core/shared/search/search.service';
-import { FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB, SearchFilterService, FACET_TERM } from '../../../../../core/shared/search/search-filter.service';
+import { FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB, SearchFilterService, FACET_TERM, GEO_QUERY } from '../../../../../core/shared/search/search-filter.service';
 import { SearchConfigurationService } from '../../../../../core/shared/search/search-configuration.service';
 import { getFirstSucceededRemoteData } from '../../../../../core/shared/operators';
 import { InputSuggestion } from '../../../../input-suggestions/input-suggestions.model';
@@ -98,7 +98,8 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
               @Inject(IN_PLACE_SEARCH) public inPlaceSearch: boolean,
               @Inject(FILTER_CONFIG) public filterConfig: SearchFilterConfig,
               @Inject(USE_GC_WEB) public useGcWeb?: boolean,
-              @Inject(FACET_TERM) public facetTerm?: string
+              @Inject(FACET_TERM) public facetTerm?: string,
+              @Inject(GEO_QUERY) public geqQuery?: string
               ) {
   }
 

@@ -60,7 +60,7 @@ export class SearchFacetFilterWrapperComponent implements OnInit {
         { provide: IN_PLACE_SEARCH, useFactory: () => (this.inPlaceSearch), deps: [] },
         { provide: USE_GC_WEB, useFactory: () => (this.useGcWeb), deps: [] },
         { provide: FACET_TERM, useFactory: () => (this.facetTerm), deps: [] },
-        { provide: GEO_QUERY, useFactory: () => (this.facetTerm), deps: [] },
+        { provide: GEO_QUERY, useFactory: () => (this.geoQuery), deps: [] },
       ],
       parent: this.injector
     });
