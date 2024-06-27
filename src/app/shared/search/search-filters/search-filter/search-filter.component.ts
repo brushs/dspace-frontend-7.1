@@ -33,7 +33,7 @@ export class SearchFilterComponent implements OnInit {
    */
   @Input() inPlaceSearch;
 
-  @Input() geoQuery : String;
+  @Input() geoQuery : string;
 
 
   /**
@@ -91,7 +91,7 @@ export class SearchFilterComponent implements OnInit {
     this.selectedValues$ = this.getSelectedValues();
     this.active$ = this.isActive();
     this.collapsed$ = this.isCollapsed();
-    console.log("#### geoQuery in search-filter.component.ts " + this.geoQuery);
+    //console.log("#### geoQuery in search-filter.component.ts " + this.geoQuery);
     this.initializeFilter();
     this.selectedValues$.pipe(take(1)).subscribe((selectedValues) => {
       if (isNotEmpty(selectedValues)) {

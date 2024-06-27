@@ -83,7 +83,6 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
    */
   searchOptions$: Observable<SearchOptions>;
 
-  @Input() geoQuery: String;
 
   /**
    * The current URL
@@ -99,7 +98,7 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
               @Inject(FILTER_CONFIG) public filterConfig: SearchFilterConfig,
               @Inject(USE_GC_WEB) public useGcWeb?: boolean,
               @Inject(FACET_TERM) public facetTerm?: string,
-              @Inject(GEO_QUERY) public geqQuery?: string
+              @Inject(GEO_QUERY) public geoQuery?: string
               ) {
   }
 
@@ -110,7 +109,7 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
     this.currentUrl = this.router.url;
     this.filterValues$ = new BehaviorSubject(createPendingRemoteDataObject());
     this.currentPage = this.getCurrentPage().pipe(distinctUntilChanged());
-    console.log(">>>>>>>>>>>>>geoQuery in facet filter: ", this.geoQuery);
+    //console.log(">>>>>>>>>>>>>geoQuery in facet filter: ", this.geoQuery);
 
     this.searchOptions$ = this.searchConfigService.searchOptions.pipe(
         tap((options) => {
