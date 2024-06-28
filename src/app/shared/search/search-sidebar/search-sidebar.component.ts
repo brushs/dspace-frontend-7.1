@@ -56,11 +56,13 @@ export class SearchSidebarComponent {
    * All sort options that are shown in the settings
    */
   @Input() sortOptions: SortOptions[];
-  
+
   /**
    * Use Gc Web Template
    */
   @Input() useGcWeb = false;
+
+  @Input() geoQuery: String
 
   /**
    * Emits when the search filters values may be stale, and so they must be refreshed.

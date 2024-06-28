@@ -43,6 +43,8 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
    */
   @Input() inPlaceSearch;
 
+  @Input() geoQuery : String;
+
   /**
    * Emits when the search filters values may be stale, and so they must be refreshed.
    */
@@ -97,9 +99,12 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
         // FORSC change to apply filter on button click;
       this.filterService.selectedFilterOptions$.next([]);
     }
+    var geoQuery = this.geoQuery;
+    console.log('geoQuery in filter', geoQuery);
     this.filters = this.searchConfigService.searchOptions.pipe(
       switchMap((options) => {
-        return this.searchService.getConfig(options.scope, options.configuration).pipe(
+        const newOptions = { ...options, geoQuery: this.geoQuery };
+        return this.searchService.getConfig(newOptions.scope, newOptions.configuration).pipe(
             getFirstSucceededRemoteData()
           )
       }),
@@ -139,7 +144,7 @@ export class SearchFiltersComponent implements OnInit, OnDestroy {
       this.setFocus('startdate');
       return true;
     }
-  
+
     if (endDateError) {
       this.setFocus('enddate');
       return true;

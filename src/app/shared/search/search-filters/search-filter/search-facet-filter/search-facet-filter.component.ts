@@ -8,7 +8,7 @@ import {
 } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, take, tap } from 'rxjs/operators';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { RemoteDataBuildService } from '../../../../../core/cache/builders/remote-data-build.service';
 import { PaginatedList } from '../../../../../core/data/paginated-list.model';
@@ -18,7 +18,7 @@ import { EmphasizePipe } from '../../../../utils/emphasize.pipe';
 import { FacetValue } from '../../../facet-value.model';
 import { SearchFilterConfig } from '../../../search-filter-config.model';
 import { SearchService } from '../../../../../core/shared/search/search.service';
-import { FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB, SearchFilterService, FACET_TERM } from '../../../../../core/shared/search/search-filter.service';
+import { FILTER_CONFIG, IN_PLACE_SEARCH, USE_GC_WEB, SearchFilterService, FACET_TERM, GEO_QUERY } from '../../../../../core/shared/search/search-filter.service';
 import { SearchConfigurationService } from '../../../../../core/shared/search/search-configuration.service';
 import { getFirstSucceededRemoteData } from '../../../../../core/shared/operators';
 import { InputSuggestion } from '../../../../input-suggestions/input-suggestions.model';
@@ -83,6 +83,7 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
    */
   searchOptions$: Observable<SearchOptions>;
 
+
   /**
    * The current URL
    */
@@ -96,7 +97,8 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
               @Inject(IN_PLACE_SEARCH) public inPlaceSearch: boolean,
               @Inject(FILTER_CONFIG) public filterConfig: SearchFilterConfig,
               @Inject(USE_GC_WEB) public useGcWeb?: boolean,
-              @Inject(FACET_TERM) public facetTerm?: string
+              @Inject(FACET_TERM) public facetTerm?: string,
+              @Inject(GEO_QUERY) public geoQuery?: string
               ) {
   }
 
@@ -107,8 +109,14 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
     this.currentUrl = this.router.url;
     this.filterValues$ = new BehaviorSubject(createPendingRemoteDataObject());
     this.currentPage = this.getCurrentPage().pipe(distinctUntilChanged());
+    //console.log(">>>>>>>>>>>>>geoQuery in facet filter: ", this.geoQuery);
 
-    this.searchOptions$ = this.searchConfigService.searchOptions;
+    this.searchOptions$ = this.searchConfigService.searchOptions.pipe(
+        tap((options) => {
+            options.geoQuery = this.geoQuery === undefined? undefined: this.geoQuery.toString(); // set the geoQuery value to the options object
+        })
+    );
+;
     this.subs.push(this.searchOptions$.subscribe(() => this.updateFilterValueList()));
     const facetValues$ = observableCombineLatest(this.searchOptions$, this.currentPage).pipe(
       map(([options, page]) => {
