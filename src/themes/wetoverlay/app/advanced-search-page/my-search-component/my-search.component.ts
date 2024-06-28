@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild,ChangeDetectorRef} from '@angular/core';
 import { BehaviorSubject, Observable, Subscription,combineLatest as observableCombineLatest } from 'rxjs';
 import { map, startWith, switchMap, take } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model'          //../core/data/paginated-list.model';
@@ -30,6 +30,7 @@ import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/s
 import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 import { TranslateService } from '@ngx-translate/core';
+import { SearchFilter } from 'src/app/shared/search/search-filter.model';
 
 @Component({
   selector: 'ds-search',
@@ -149,6 +150,9 @@ export class MySearchComponent implements OnInit {
   private labelShow: string;
   private labelHide: string;
 
+  @Input()
+  currentGeoQuery: string;
+
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
@@ -157,6 +161,7 @@ export class MySearchComponent implements OnInit {
               protected router: Router,
               protected route: ActivatedRoute,
               private translateService: TranslateService,
+              private cdRef: ChangeDetectorRef,
               ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
@@ -206,12 +211,18 @@ export class MySearchComponent implements OnInit {
         //if (options.geoQuery != undefined )
         if (geoquery != '') {
           var query = options.query;
-          if (options.query == '')
-            optionsCopy.query = geoquery;
-
-          else
-            optionsCopy.query = geoquery + ' ' + options.query;
-
+          if (options.query == ''){
+            //optionsCopy.query = geoquery;
+            optionsCopy.query = '*:*';
+            //optionsCopy.query = '*:*&fq=' + geoquery;
+            //var psudokey = '{!field f';
+            //var psudovalue = 'geospatial.bbox}Contains(ENVELOPE(-76.44287, -72.99316, 46.31042, 44.80279))IsWithin(ENVELOPE';
+            //var filter = new SearchFilter(psudokey, [psudovalue]);
+            //optionsCopy.filter.push(filter);
+            }
+          //else
+          //  optionsCopy.query =  options.query + ' AND ' + geoquery;
+            //optionsCopy.geoQuery = geoquery + '&fq=' + geoquery;
         }
 
         else
@@ -308,26 +319,33 @@ export class MySearchComponent implements OnInit {
     console.log("###" + value);
     var geoquery = null;
     geoquery  = this.getGeoData();
+    this.currentGeoQuery = geoquery;
 
-    var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
-    oldValue.geoQuery = geoquery;
-    this.searchConfigService.paginatedSearchOptions.next(oldValue);
+    //var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
+    //oldValue.geoQuery = geoquery;
+    //this.searchConfigService.paginatedSearchOptions.next(oldValue);
 
   }
 
-  private getGeoData() {
+  public getGeoData() {
+    // {!field f=geospatial.bbox}IsWithin(ENVELOPE(-89.44287, -72.99316, 46.31042, 40.80279))
     var geodata = '';
-    var geoquery = '';
+    //var geoquery = '';
+    var geoquery2 = '';
     if (this.geoComponent != null && this.geoComponent.getGeoData() != null && this.geoComponent.getGeoData() != '') {
       geodata = this.geoComponent.getGeoData();
       var [lat1, lng1, lat2, lng2] = geodata.split(',');
       //var geoquery = 'nrcan.geospatial.bbox:[' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + ']';
-      geoquery = 'geospatial.bbox:[' + lat1 + ',' + lng1 + ' TO ' + lat2 + ',' + lng2 + ']';
+      //geoquery = 'geospatial.bbox:[' + lat1 + ',' + lng1 + ' TO ' + lat2 + ',' + lng2 + ']';
+      // {!field f=geospatial.bbox}IsWithin(ENVELOPE(-89.44287, -72.99316, 46.31042, 40.80279))
+      geoquery2 = `{!field f=geospatial.bbox}IsWithin(ENVELOPE(${lng1}, ${lng2}, ${lat2}, ${lat1}))`;
+      //console.log("geoquery = " + geoquery);
+      console.log("geoquery2 = " + geoquery2);
       if (lat1 == undefined || lng1 == undefined || lat2 == undefined || lng2 == undefined) {
-        geoquery = ''; // reset geoquery
+        geoquery2 = ''; // reset geoquery
       }
     }
-    return geoquery ;
+    return geoquery2 ;
   }
 
   /**
@@ -359,8 +377,18 @@ export class MySearchComponent implements OnInit {
       this.dynamicFiltersComponent.getQuery();
       this.mainSearchValue = this.dynamicFiltersComponent.output;
       term = this.dynamicFiltersComponent.output;
-      console.log(this.route)
-      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term, 'spc.sf':'score'}, queryParamsHandling: 'merge'})
+      //console.log(this.route);
+      //var geoquery = null;
+      this.currentGeoQuery  = this.getGeoData();
+      console.log("# new geoquery = " + this.currentGeoQuery);
+      this.cdRef.detectChanges()
+
+      var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
+      //oldValue.geoQuery = this.currentGeoQuery;
+      oldValue.geoQuery = this.currentGeoQuery;
+      this.searchConfigService.paginatedSearchOptions.next(oldValue);
+
+      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term, 'spc.sf':'score','fq':this.currentGeoQuery}, queryParamsHandling: 'merge'});
     }
 
     toggleMapVisibility(): void {

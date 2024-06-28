@@ -64,6 +64,9 @@ export class SearchOptions {
         });
       });
     }
+    if (isNotEmpty(this.geoQuery)) {
+      args.push(`geoQuery=${encodeURIComponent(this.geoQuery)}`);
+    }
     if (isNotEmpty(args)) {
       url = new URLCombiner(url, `?${args.join('&')}`).toString();
     }
