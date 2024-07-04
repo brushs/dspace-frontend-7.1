@@ -2464,6 +2464,8 @@
   "home.top-level-communities.help": "Sélectionner une communauté pour parcourir les collections sous-jacentes.",
   //"home.rssfeed": "RSS Feed"
   "home.rssfeed": "Flux RSS",
+  //"home.basicsearchtutorial": "Basic Search Tutorial"
+  "home.basicsearchtutorial": "Tutoriel de recherche de base",
   // "idle-modal.header": "Session will expire soon",
   "idle-modal.header": "La session expirera bientôt",
   // "idle-modal.info": "For security reasons, user sessions expire after {{timeToExpire}} minutes of inactivity. Your session will expire soon. Would you like to extend it or log out?",
