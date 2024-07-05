@@ -84,8 +84,6 @@ export class DynamicFiltersComponent {
 
   printFormValues() {
     var filterAll = this.getQueryString();
-    console.log(filterAll);
-    //console.log(this.filteredData);
   }
 
   private transformEqualFilterInfo(filtertype: string,filterText:string): string {
@@ -112,35 +110,18 @@ export class DynamicFiltersComponent {
       }
       switch (filter.relationalOperator) {
         case 'contains':
-          //if (filter.filtertype === 'nrcan.nts') {
-          //  //make the contains the same as equals for nts
-          //  var filterText = filter.filter;
-          //  filterText = filterText.replace(/"/g, '');
-          //  filterInfo = `${filter.filtertype}:"${filterText}"`;
-          //}
-          //else {
-          //  var filterText = filter.filter;
-          //  filterText = filterText.replace(/"/g, '');
-          //  filterInfo = `${filter.filtertype}:*"${filter.filter}"*`;
-          //}
-          //break;
         case 'equals':
           var filterText = filter.filter;
           filterText = filterText.replace(/"/g, '');
-          //filterInfo = `${filter.filtertype}:"${filterText}"`;
           filterInfo = this.transformEqualFilterInfo(filter.filtertype,filterText);
           break;
         case 'notcontains':
-          //filterInfo = `-${filter.filtertype}:*${filter.filter}*`;
-          //break;
         case 'notequals':
           filterInfo = `-${filter.filtertype}:"${filter.filter}"`;
           break;
         default:
           filterInfo = `*:*`;
           break;
-        //const filterInfo = `${filter.filtertype}_${filter.relationalOperator}_${filter.filter}`;
-        //filterInfoAll += filterInfo + '&&';
       }
       filterArray.push(filterInfo);
     }

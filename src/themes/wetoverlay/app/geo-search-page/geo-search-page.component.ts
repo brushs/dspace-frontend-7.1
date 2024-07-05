@@ -129,9 +129,6 @@ export class GeoSearchPageComponent implements OnInit {
         console.log(layer.getLatLng());
       } else if (type == 'rectangle') {
         var latLng = layer.getLatLngs()[0];
-        //this.data = latLng.lat;
-        //console.log(layer.getLatLngs());
-        //console.log('should be rect:' + type);
         app.updateData(latLng);
       } else {
         console.log('type, lan/long:' + type + ',' + layer.getLatLngs());

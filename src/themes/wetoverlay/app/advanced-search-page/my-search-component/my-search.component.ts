@@ -197,7 +197,6 @@ export class MySearchComponent implements OnInit {
 
   private doSearch() {
     this.searchOptions$ = this.getSearchOptions();
-    //console.log("this.searchOptions$ = " + this.searchOptions$);
     this.sub = this.searchOptions$.pipe(
       map((options) => {
 
@@ -206,30 +205,16 @@ export class MySearchComponent implements OnInit {
           Object.getOwnPropertyDescriptors(options)
         );
 
-        //console.log('retrieve geo data');
         var geoquery = this.getGeoData();
-        //if (options.geoQuery != undefined )
         if (geoquery != '') {
           var query = options.query;
           if (options.query == ''){
-            //optionsCopy.query = geoquery;
             optionsCopy.query = '*:*';
-            //optionsCopy.query = '*:*&fq=' + geoquery;
-            //var psudokey = '{!field f';
-            //var psudovalue = 'geospatial.bbox}Contains(ENVELOPE(-76.44287, -72.99316, 46.31042, 44.80279))IsWithin(ENVELOPE';
-            //var filter = new SearchFilter(psudokey, [psudovalue]);
-            //optionsCopy.filter.push(filter);
             }
-          //else
-          //  optionsCopy.query =  options.query + ' AND ' + geoquery;
-            //optionsCopy.geoQuery = geoquery + '&fq=' + geoquery;
         }
 
         else
           optionsCopy.query = options.query;
-        //var [lat1,lng1,lat2,lng2] = geodata.split(',');
-        //var newquery = 'nrcan.geospatial.bbox:%5B' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + '%5D';
-        //console.log("geoquery = " + geoquery);
         return optionsCopy;
       }),
 
@@ -316,7 +301,6 @@ export class MySearchComponent implements OnInit {
 
 
   onGeoChanged(value: string) {
-    console.log("###" + value);
     var geoquery = null;
     geoquery  = this.getGeoData();
     this.currentGeoQuery = geoquery;
@@ -328,19 +312,12 @@ export class MySearchComponent implements OnInit {
   }
 
   public getGeoData() {
-    // {!field f=geospatial.bbox}IsWithin(ENVELOPE(-89.44287, -72.99316, 46.31042, 40.80279))
     var geodata = '';
-    //var geoquery = '';
     var geoquery2 = '';
     if (this.geoComponent != null && this.geoComponent.getGeoData() != null && this.geoComponent.getGeoData() != '') {
       geodata = this.geoComponent.getGeoData();
       var [lat1, lng1, lat2, lng2] = geodata.split(',');
-      //var geoquery = 'nrcan.geospatial.bbox:[' + lat1 +','+ lng1 + ' TO '+ lat2+ ','+ lng2 + ']';
-      //geoquery = 'geospatial.bbox:[' + lat1 + ',' + lng1 + ' TO ' + lat2 + ',' + lng2 + ']';
-      // {!field f=geospatial.bbox}IsWithin(ENVELOPE(-89.44287, -72.99316, 46.31042, 40.80279))
       geoquery2 = `{!field f=geospatial.bbox}IsWithin(ENVELOPE(${lng1}, ${lng2}, ${lat2}, ${lat1}))`;
-      //console.log("geoquery = " + geoquery);
-      console.log("geoquery2 = " + geoquery2);
       if (lat1 == undefined || lng1 == undefined || lat2 == undefined || lng2 == undefined) {
         geoquery2 = ''; // reset geoquery
       }
@@ -377,14 +354,10 @@ export class MySearchComponent implements OnInit {
       this.dynamicFiltersComponent.getQuery();
       this.mainSearchValue = this.dynamicFiltersComponent.output;
       term = this.dynamicFiltersComponent.output;
-      //console.log(this.route);
-      //var geoquery = null;
       this.currentGeoQuery  = this.getGeoData();
-      console.log("# new geoquery = " + this.currentGeoQuery);
       this.cdRef.detectChanges()
 
       var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
-      //oldValue.geoQuery = this.currentGeoQuery;
       oldValue.geoQuery = this.currentGeoQuery;
       this.searchConfigService.paginatedSearchOptions.next(oldValue);
 
