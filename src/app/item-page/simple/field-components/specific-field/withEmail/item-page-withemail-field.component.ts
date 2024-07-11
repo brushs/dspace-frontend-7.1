@@ -1,7 +1,8 @@
 import { Component, Input, Output } from '@angular/core';
 import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
-import { TranslateService } from '@ngx-translate/core';
+import { MetadataValue } from 'src/app/core/shared/metadata.models';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 @Component({
   selector: 'ds-item-page-withemail-field',
@@ -32,15 +33,25 @@ export class ItemPageWithEmailComponent extends ItemPageFieldComponent {
   @Input() hideIfEmpty: boolean = false;
   isHidden: boolean = false;
 
-  constructor(public tralateService: TranslateService) {
+  constructor(public  localeService: LocaleService ) {
     super();
   }
 
   ngOnInit() {
     var retrievedValue: string;
+    var allMetaData:MetadataValue[];
     var segs:string[];
+    let currLang = this.localeService.getCurrentLanguageCode();
 
-    retrievedValue= this.item.firstMetadataValue(this.field);
+    allMetaData = this.item.allMetadata(this.field);
+    allMetaData.forEach((element, index) => {
+      if (element.language == currLang) {
+         retrievedValue=  element.value;
+      }
+    });
+
+    if (retrievedValue === undefined)
+      retrievedValue= this.item.firstMetadataValue(this.field);
 
     if (retrievedValue === undefined)
     {
