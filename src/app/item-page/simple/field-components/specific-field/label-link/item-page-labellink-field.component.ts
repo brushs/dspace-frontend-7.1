@@ -5,6 +5,7 @@ import { ItemPageFieldComponent } from '../item-page-field.component';
 import * as _ from 'lodash';
 import { MetadataValue } from 'src/app/core/shared/metadata.models';
 
+const MAX_ITEMS = 5;
 
 @Component({
   selector: 'ds-item-page-labellink-field',
@@ -54,6 +55,9 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
       return
     }
     retrievedMetadata.forEach((element, index) => {
+      if (index >= MAX_ITEMS) {
+        return;
+      }
       var value = element.value;
       if (value.includes('GID')) {
         retrievedMetadata.splice(index, 1);
