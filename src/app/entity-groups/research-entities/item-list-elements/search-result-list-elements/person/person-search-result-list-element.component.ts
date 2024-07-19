@@ -16,12 +16,15 @@ import { uniqueId } from 'lodash';
 export class PersonSearchResultListElementComponent extends ItemSearchResultListElementComponent {
 
   get name() {
-    // issue 348 start
+    // issue 348 and 248 start
+    var display_info : string = this.firstMetadataValue('person.familyName') + ', ' + this.firstMetadataValue('person.givenName');
     if (this.firstMetadataValue('person.identifier.orcid')){
-      return this.firstMetadataValue('person.familyName') + ', ' + this.firstMetadataValue('person.givenName') + ' - ' + this.firstMetadataValue('person.identifier.orcid');
-    } else {
-      return this.firstMetadataValue('person.familyName') + ', ' + this.firstMetadataValue('person.givenName');
+      display_info = display_info + ' - ' + this.firstMetadataValue('person.identifier.orcid');
     }
-    // issue 348 end
+    if (this.firstMetadataValue('dc.identifier.employeeid')){
+      display_info = display_info + '(' + this.firstMetadataValue('dc.identifier.employeeid') + ')';
+    }
+    return display_info;
+    // issue 348 and 248 end
   }
 }
