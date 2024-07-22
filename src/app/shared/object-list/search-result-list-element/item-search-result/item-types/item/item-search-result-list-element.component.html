@@ -66,7 +66,7 @@
           <span *ngIf="linkType == linkTypes.None" class="item-list-title" [innerHTML]="(dsoTitle | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>
         <!-- </strong> -->
       </p>
-      <div class="pb-3">{{citation}}</div>
+      <div class="pb-3"><span [innerHTML]="citation"></span></div>
       <div class="pb-3"><a href="{{doi}}">{{doi}}</a></div>
 
 
