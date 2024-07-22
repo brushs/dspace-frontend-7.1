@@ -513,6 +513,8 @@
   "fosrc.item.edit.dynamic-field.error.empty": "Le champ obligatoire est vide", // TODO: FOSRC Official translation
   // "community.form.error.validation.required": "This field is required.",
   "community.form.error.validation.required": "Ce champ est obligatoire.", // TODO: FOSRC Official translation
+  "community.form.error.validation.singlevalue": "Une seule valeur peut être saisie pour le champ.",
+  "community.form.error.validation.invalidbbox": "Impossible d'analyser la valeur du Bounding Box avec succès.",
   // "community.form.error.validation.license.notgranted": "You must grant this license to complete your submission. If you are unable to grant this license at this time, you may save your work and return later or remove the submission.",
   "community.form.error.validation.license.notgranted": "Vous devez accorder cette licence pour compléter votre soumission. Si vous n'êtes pas en mesure d'accorder cette licence pour le moment, vous pouvez économiser votre travail et revenir plus tard ou supprimer la soumission.", // TODO: FOSRC Official translation
   // "community.form.error.validation.filerequired": "The file upload is mandatory.",
@@ -935,6 +937,7 @@
   "fosrc.item.form.error.panel.upload": "Télécharger ",
   // "fosrc.item.form.error.panel.license": "License",
   "fosrc.item.form.error.panel.license": "Licence",
+  "fosrc.item.form.error.panel.geospatial.bbox": "Boîte englobante: ",
 
   // "full-item.details.title": "Full item details",
   "full-item.details.title": "Notice détaillée",
