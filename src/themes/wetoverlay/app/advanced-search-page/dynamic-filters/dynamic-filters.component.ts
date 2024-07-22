@@ -94,6 +94,14 @@ export class DynamicFiltersComponent {
       // add 'nrcan.issue','nrcan.volume','nrcan.secserial.number','nrcan.articlenumber' to the filter
       filterInfo = `(${filtertype}:${filterText} OR nrcan.issue:${filterText} OR nrcan.volume:${filterText} OR nrcan.secserial.number:${filterText} OR nrcan.articlenumber:${filterText})`;
     }
+    else if (filtertype === 'nrcan.nts') {
+      // check if the number part of the value is less then 3, if yes, then put leading 0. For example, 1A  should be 001A
+      var numberPart = filterText.match(/^\d+/);
+      if (numberPart && numberPart[0].length < 3) {
+        filterText = filterText.replace(/^\d+/, numberPart[0].padStart(3, '0'));
+      }
+      filterInfo = `${filtertype}:"${filterText}"`;
+    }
     else
       filterInfo = `${filtertype}:"${filterText}"`;
 
