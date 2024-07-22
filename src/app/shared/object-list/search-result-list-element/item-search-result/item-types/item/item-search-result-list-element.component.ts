@@ -1,5 +1,5 @@
 
-import { 
+import {
   ChangeDetectorRef,
   Component, OnDestroy
 } from '@angular/core';
@@ -50,18 +50,19 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   initialShorteningOccurred: boolean = false;
   overrideTruncation = false;
   isCollapsedBool: boolean;
-  // issue 247 start 
+  // issue 247 start
   showThumbnails: boolean = false;
   emptyThumbnails: boolean = false;
-  // issue 247 end 
-  
+  // issue 247 end
+  doi: string;
+  citation: string;
 
   readonly MAX_NUMBER_OF_LINES: number = 3;
 
   constructor(
-    protected truncatableService: TruncatableService, 
-    protected dsoNameService: DSONameService, 
-    protected localeService: LocaleService, 
+    protected truncatableService: TruncatableService,
+    protected dsoNameService: DSONameService,
+    protected localeService: LocaleService,
     private changeDetectorRef: ChangeDetectorRef,
     public translate: TranslateService,
     private router: Router,
@@ -85,8 +86,10 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.isCollapsed$ = this.isCollapsed();
     this.descriptionParagraphId = this.descriptionParagraphId + this.dso.id;
     this.descriptionSpanId = this.descriptionSpanId + this.dso.id;
+    this.doi = this.dso.allMetadata('dc.identifier.doi')[0]?.value;
+    this.citation = this.dso.allMetadata('dc.identifier.citation')[0]?.value;
     this.configureObservers();
-    // issue 247 start 
+    // issue 247 start
     if (this.context) {
       if (this.constructor.name == "ItemSearchResultListElementComponent") {
         this.emptyThumbnails = true;
@@ -96,7 +99,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     } else {
       this.showThumbnails = true;
     }
-    // issue 247 end 
+    // issue 247 end
   }
 
   configureObservers() {
@@ -114,26 +117,26 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.originalObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') {
-          
+
           const element = document.getElementById(this.descriptionParagraphId);
           if (element && !this.initialShorteningOccurred) {
             this.initialShorteningOccurred = true;
             this.shortenDescriptionText();
             // disconnect original observer
             this.originalObserver.disconnect();
-        
+
             this.resizeObserver.observe(element);
           }
         }
       });
-      
+
     });
-  
+
     // Start observing the entire body or some specific element
     this.originalObserver.observe(document.body, { childList: true, subtree: true });
-    
+
     this.isCollapsed().subscribe({
-      next: (collapsed: boolean) => { 
+      next: (collapsed: boolean) => {
         this.isCollapsedBool = collapsed;
         if (collapsed)
         {
@@ -172,28 +175,28 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     if (!textElement || this.descriptionText == null)
       return;
     //TODO: update this to translated metadata
-    let originalText = this.descriptionText;  
+    let originalText = this.descriptionText;
     let words = originalText.split(' ');
-  
-    let fittedText = ''; 
+
+    let fittedText = '';
     let lineHeight = 0;
     for (let i = 0; i < words.length; i++) {
-      // updated the actual element to see if it's height is greater than the max height  
+      // updated the actual element to see if it's height is greater than the max height
       textElement.innerHTML = fittedText + words[i] + ' ';
       // get line height
       if (i == 0)
         lineHeight = textElement.offsetHeight;
       if (textElement.offsetHeight >= (this.MAX_NUMBER_OF_LINES + 1) * lineHeight) {
         let lastWord = fittedText.trim().split(" ").pop();
-        fittedText = fittedText.substring(0, fittedText.lastIndexOf(lastWord)).trim();  
-        
+        fittedText = fittedText.substring(0, fittedText.lastIndexOf(lastWord)).trim();
+
         // Ensure the last character isn't a comma before appending the ellipsis
         while (fittedText.trim().endsWith(',')) {
           let lastWord = fittedText.trim().split(" ").pop();
           if (!lastWord) break;  // Safety check in case fittedText becomes empty
           fittedText = fittedText.substring(0, fittedText.lastIndexOf(lastWord)).trim();
         }
-        
+
         fittedText += '...';
         textElement.innerHTML = fittedText;
         this.overrideTruncation = true;
@@ -207,7 +210,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     }
     // if we are here, then the text was not truncated
     this.overrideTruncation = false;
-  } 
+  }
 
   expandText(): void {
     const textElement = document.getElementById(this.descriptionSpanId);
