@@ -2,7 +2,7 @@
   <!--FOSRC change start-->
   <h1 class="item-page-title-field mr-auto">
     <!-- {{'publication.page.titleprefix' | translate}} -->
-    <ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])"></ds-metadata-values>
+    <ds-metadata-values [mdValues]="object?.allMetadata(['dc.title'])" [separator]="'/'"></ds-metadata-values>
   </h1>
   <!--FOSRC change end (h2 is converted to h1)-->
   <div class="pl-2">
