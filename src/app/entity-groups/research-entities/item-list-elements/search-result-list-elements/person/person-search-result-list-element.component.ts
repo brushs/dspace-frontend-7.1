@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { listableObjectComponent } from '../../../../../shared/object-collection/shared/listable-object/listable-object.decorator';
 import { ViewMode } from '../../../../../core/shared/view-mode.model';
 import { ItemSearchResultListElementComponent } from '../../../../../shared/object-list/search-result-list-element/item-search-result/item-types/item/item-search-result-list-element.component';
+import { uniqueId } from 'lodash';
 
 @listableObjectComponent('PersonSearchResult', ViewMode.ListElement)
 @Component({
@@ -15,8 +16,15 @@ import { ItemSearchResultListElementComponent } from '../../../../../shared/obje
 export class PersonSearchResultListElementComponent extends ItemSearchResultListElementComponent {
 
   get name() {
-    return this.value ?
-      this.value :
-      this.firstMetadataValue('person.familyName') + ', ' + this.firstMetadataValue('person.givenName');
+    // issue 348 and 248 start
+    var display_info : string = this.firstMetadataValue('person.familyName') + ', ' + this.firstMetadataValue('person.givenName');
+    if (this.firstMetadataValue('person.identifier.orcid')){
+      display_info = display_info + ' - ' + this.firstMetadataValue('person.identifier.orcid');
+    }
+    if (this.firstMetadataValue('dc.identifier.employeeid')){
+      display_info = display_info + '(' + this.firstMetadataValue('dc.identifier.employeeid') + ')';
+    }
+    return display_info;
+    // issue 348 and 248 end
   }
 }
