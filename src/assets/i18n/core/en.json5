@@ -162,6 +162,9 @@
   //Error Panel mandatory Fields
 
   "community.form.error.validation.required": "This field is required.",
+  "community.form.error.validation.singlevalue": "Only a single value may be entered for field.",
+  "community.form.error.validation.invalidbbox": "Could not parse the Bounding Box value successfully.",
+  "community.form.error.validation.invalidpolygon": "Could not parse the Polygon value successfully.",
   "community.form.error.validation.license.notgranted": "You must grant this license to complete your submission. If you are unable to grant this license at this time, you may save your work and return later or remove the submission.",
   "community.form.error.validation.filerequired": "The file upload is mandatory.",
   "communityList.expandAll": "Expand all",
@@ -579,6 +582,7 @@
   "fosrc.item.form.error.panel.dc.subject": "Subject: ",
   "fosrc.item.form.error.panel.upload": "Upload",
   "fosrc.item.form.error.panel.license": "License",
+  "fosrc.item.form.error.panel.geospatial.bbox": "Bounding Box: ",
 
   "full-item.details.title": "Full item details",
 
