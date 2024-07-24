@@ -94,11 +94,13 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
         this.showThumbnails = true;
       }
     } else {
-      // issue 349 start 
+      // issue 349, 360 start 
       if (this.firstMetadataValue('dspace.entity.type') == 'Publication') {
         this.showThumbnails = true;
+      } else {
+        this.emptyThumbnails = true;
       }
-      // issue 349 end 
+      // issue 349, 360 end 
     }
     // issue 247 end 
   }
