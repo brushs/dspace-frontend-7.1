@@ -7,6 +7,7 @@ import {
   FormArray
 } from '@angular/forms';
 
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-dynamic-filters',
   templateUrl: './dynamic-filters.component.html',
@@ -21,7 +22,7 @@ export class DynamicFiltersComponent {
   filteredData: any[] = [];
   output: any = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public translate: TranslateService) {
     this.form = this.fb.group({
       rows: this.fb.array([]),
     });
