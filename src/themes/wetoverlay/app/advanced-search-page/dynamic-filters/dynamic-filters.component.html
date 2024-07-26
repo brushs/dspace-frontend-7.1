@@ -72,6 +72,20 @@
   <!--
     <button id="debug" name="debug" type="button" class="btn btn-default" (click)="printFormValues()"><span class="fa fa-undo" aria-hidden="true"></span> Debug </button>
     -->
+
+  <!-- new div for Advanced Search Tutorial -->
+  <div class="mrgn-tp-md  float-right ml-3">
+    <a   *ngIf="translate.currentLang === 'en'"  href="https://geoscan.nrcan.gc.ca/download/EnglishAdvancedSearch/EnglishAdvancedSearch.html"
+          target="_blank" class="d-flex align-items-center">
+      <img alt="Basic Search Tutorial" class="img-responsive mr-1" src="assets/images/video.png">
+      {{"home.advancedsearchtutorial"| translate}}
+    </a>
+    <a   *ngIf="translate.currentLang === 'fr'"  href="https://geoscan.nrcan.gc.ca/download/EnglishAdvancedSearch/EnglishAdvancedSearch.html"
+          target="_blank" class="d-flex align-items-center">
+      <img alt="Basic Search Tutorial" class="img-responsive mr-1" src="assets/images/video.png">
+      {{"home.advancedsearchtutorial"| translate}}
+    </a>
+  </div>
   </div>
 </form>
 <!-- debug
