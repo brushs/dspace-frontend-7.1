@@ -2469,6 +2469,8 @@
   "home.rssfeed": "Flux RSS",
   //"home.basicsearchtutorial": "Basic Search Tutorial"
   "home.basicsearchtutorial": "Tutoriel de recherche de base",
+  //"home.advancedsearchtutorial": "Advanced Search Tutorial",
+  "home.advancedsearchtutorial": "Tutoriel de recherche de avancée",
   // "idle-modal.header": "Session will expire soon",
   "idle-modal.header": "La session expirera bientôt",
   // "idle-modal.info": "For security reasons, user sessions expire after {{timeToExpire}} minutes of inactivity. Your session will expire soon. Would you like to extend it or log out?",
