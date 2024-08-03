@@ -3999,6 +3999,9 @@
   "search.filters.filter.subjectEn.placeholder": "Search Subject",
   "search.filters.filter.sujet.head": "Sujet",
   "search.filters.filter.sujet.placeholder": "Recherche par sujet",
+  "search.filters.filter.authorfull.head": "Auteur",
+  "search.filters.filter.authorfull.label": "Recherche par nom de famille de l'auteur",
+  "search.filters.filter.authorfull.placeholder": "Recherche par nom de famille de l'auteur",
 
   // FORSC start changes
   //"search.filters.filter.author.collapse": "Collapse filter of Author",

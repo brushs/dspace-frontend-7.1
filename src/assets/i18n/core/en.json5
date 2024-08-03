@@ -2136,6 +2136,9 @@
   "search.filters.filter.subjectEn.placeholder": "Search Subject",
   "search.filters.filter.sujet.head": "Sujet",
   "search.filters.filter.sujet.placeholder": "Recherche par sujet",
+  "search.filters.filter.authorfull.head": "Author",
+  "search.filters.filter.authorfull.label": "Search author last name",
+  "search.filters.filter.authorfull.placeholder": "Search author last name",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",

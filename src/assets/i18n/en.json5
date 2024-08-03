@@ -1828,6 +1828,9 @@
   "search.filters.filter.birthDate.label": "Search birth date",
   "search.filters.filter.birthDate.placeholder": "Birth date",
   "search.filters.filter.collapse": "Collapse filter",
+  "search.filters.filter.authorfull.head": "Author",
+  "search.filters.filter.authorfull.label": "Search author name",
+  "search.filters.filter.authorfull.placeholder": "Author name",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",

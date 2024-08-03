@@ -3446,6 +3446,12 @@
   "search.filters.filter.birthDate.placeholder": "Date de naissance",
   // "search.filters.filter.collapse": "Collapse filter",
   "search.filters.filter.collapse": "Réduire le filtre",
+  // "search.filters.filter.authorfull.head": "Author",
+  "search.filters.filter.author.head": "Auteur",
+  // "search.filters.filter.authorfull.label": "Search author name",
+  "search.filters.filter.author.label": "Rechercher le nom de l’auteur",
+  // "search.filters.filter.authorfull.placeholder": "Author name",
+  "search.filters.filter.author.placeholder": "Nom de l’auteur",
 
   // FORSC start changes
   //"search.filters.filter.author.collapse": "Collapse filter of Author",
