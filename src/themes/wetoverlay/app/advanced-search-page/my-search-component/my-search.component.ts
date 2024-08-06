@@ -359,6 +359,7 @@ export class MySearchComponent implements OnInit {
 
       var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
       oldValue.geoQuery = this.currentGeoQuery;
+      oldValue.expand = true;
       this.searchConfigService.paginatedSearchOptions.next(oldValue);
       //extra flag for advanced search to expand some items
       this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term, 'spc.sf':'score','fq':this.currentGeoQuery, 'expand':true}, queryParamsHandling: 'merge'});

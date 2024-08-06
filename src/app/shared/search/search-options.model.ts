@@ -16,6 +16,7 @@ export class SearchOptions {
   filters?: SearchFilter[];
   fixedFilter?: string;
   geoQuery?: string;
+  expand?: boolean;
 
   constructor(
     options: {
@@ -66,6 +67,9 @@ export class SearchOptions {
     }
     if (isNotEmpty(this.geoQuery)) {
       args.push(`geoQuery=${encodeURIComponent(this.geoQuery)}`);
+    }
+    if (isNotEmpty(this.expand)) {
+      args.push(`expand=${encodeURIComponent(this.expand)}`);
     }
     if (isNotEmpty(args)) {
       url = new URLCombiner(url, `?${args.join('&')}`).toString();
