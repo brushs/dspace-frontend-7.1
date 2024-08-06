@@ -2139,6 +2139,7 @@
   "search.filters.filter.authorfull.head": "Author",
   "search.filters.filter.authorfull.label": "Search author last name",
   "search.filters.filter.authorfull.placeholder": "Search author last name",
+  "search.filters.applied.f.authorfull": "Author",
 
   // FOSRC start changes
   "search.filters.filter.author.collapse": "Collapse filter of Author",

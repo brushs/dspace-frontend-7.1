@@ -4002,6 +4002,7 @@
   "search.filters.filter.authorfull.head": "Auteur",
   "search.filters.filter.authorfull.label": "Recherche par nom de famille de l'auteur",
   "search.filters.filter.authorfull.placeholder": "Recherche par nom de famille de l'auteur",
+  "search.filters.applied.f.authorfull": "Auteur",
 
   // FORSC start changes
   //"search.filters.filter.author.collapse": "Collapse filter of Author",
