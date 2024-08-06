@@ -3,7 +3,7 @@
     <div class="d-flex flex-wrap mrgn-bttm-sm" [formGroupName]="i">
       <select id="filter-item-{{i+1}}" name="filter-item-{{i+1}}" class="form-control mrgn-rght-sm" attr.aria-label="{{'comcol.search.filter.aria.filter.item' | translate}}"  formControlName="filtertype" required>
         <option [attr.aria-disabled]="'true'" [disabled]="true" value="">{{'comcol.search.filter.item.select' | translate}}</option>
-        <option value="title">{{'comcol.search.filter.item.title' | translate}}</option>
+        <option value="alltitle">{{'comcol.search.filter.item.title' | translate}}</option>
         <option value="author">{{'comcol.search.filter.item.author' | translate}}</option>
         <option value="subject">{{'comcol.search.filter.item.subject' | translate}}</option>
         <option value="dateIssued">{{'comcol.search.filter.item.date.issued' | translate}}</option>
