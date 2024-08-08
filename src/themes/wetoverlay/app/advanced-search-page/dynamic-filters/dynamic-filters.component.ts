@@ -33,8 +33,8 @@ export class DynamicFiltersComponent {
 
   addRow() {
     const newRow = this.fb.group({
-      filtertype: ['title'],
-      relationalOperator: [''],
+      filtertype: ['alltitles'],
+      relationalOperator: ['contains'], // Set default value here
       filter: [''],
     });
     this.rows.push(newRow);
