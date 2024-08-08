@@ -70,34 +70,7 @@
       <div class="pb-3"><a href="{{doi}}">{{doi}}</a></div>
 
 
-      <ds-truncatable-part *ngIf="dso.allMetadata(['dc.publisher', 'dc.date.issued', 'publicationvolume.volumeNumber',
-        'dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0" [id]="dso.id" [minLines]="2">
-
-        <p [ngClass]="{'custom-clamp-2' : (isCollapsed$ | async)}">
-          <span>
-            <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') || dso.firstMetadataValue('dc.date.issued')">
-              <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && !dso.firstMetadataValue('dc.date.issued')">
-                (<span class="item-list-publisher" [innerHTML]=" (firstMetadataValue('dc.publisher') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
-              </ng-container>
-              <ng-container *ngIf="dso.firstMetadataValue('dc.publisher') && dso.firstMetadataValue('dc.date.issued')">
-                (<span class="item-list-publisher" [innerHTML]="firstMetadataValue('dc.publisher') + ', '"></span>
-                <span class="item-list-date" [innerHTML]="(firstMetadataValue('dc.date.issued') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
-              </ng-container>
-              <ng-container *ngIf="dso.firstMetadataValue('dc.date.issued') && !dso.firstMetadataValue('dc.publisher')">
-                (<span class="item-list-date" [innerHTML]="(firstMetadataValue('dc.date.issued') | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>)
-              </ng-container>
-            </ng-container>
-
-            <ng-container *ngIf="dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0">
-              <ng-container *ngFor="let author of allMetadataValues(['dc.contributor.author',
-                'dc.creator', 'dc.contributor.*']); let last=last;">
-                <span [innerHTML]="author"></span><ng-container *ngIf="!last">; </ng-container>
-              </ng-container>
-            </ng-container>
-          </span>
-        </p>
-
-      </ds-truncatable-part>
+      <!-- #371 original duplicated part removed  -->
 
       <ds-truncatable-part [id]="dso.id" [minLines]="3" *ngIf="dso.firstMetadataValue('dc.description.abstract') || dso.firstMetadataValue('dc.description')">
         <!-- <p *ngIf="dso.firstMetadataValue('dc.description.abstract') else nonAbstractDescription"><span  -->
