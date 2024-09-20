@@ -28,7 +28,7 @@ import { ThemedPageNotFoundComponent } from './pagenotfound/themed-pagenotfound.
 import { ThemedForbiddenComponent } from './forbidden/themed-forbidden.component';
 import { GroupAdministratorGuard } from './core/data/feature-authorization/feature-authorization-guard/group-administrator.guard';
 import { SearchTipsPageComponent } from '../themes/wetoverlay/app/search-tips-page/search-tips-page.component';
-import { GeoSearchPageComponent } from '../themes/wetoverlay/app/geo-search-page/geo-search-page.component';
+//import { GeoSearchPageComponent } from '../themes/wetoverlay/app/geo-search-page/geo-search-page.component';
 import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-search-page/advanced-search-page.component';
 
 @NgModule({
@@ -253,7 +253,7 @@ import { AdvancedSearchPageComponent } from '../themes/wetoverlay/app/advanced-s
               .then((m) => m.BitstreamPageModule),
             canActivate: [EndUserAgreementCurrentUserGuard]
           },
-          { path: 'geo-search', pathMatch: 'full', component: GeoSearchPageComponent },
+          //{ path: 'geo-search', pathMatch: 'full', component: GeoSearchPageComponent },
           { path: 'advanced-search', pathMatch: 'full', component: AdvancedSearchPageComponent
           }, 
           {
