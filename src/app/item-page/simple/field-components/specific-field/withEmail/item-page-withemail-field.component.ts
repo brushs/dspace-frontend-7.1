@@ -2,7 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 import { MetadataValue } from 'src/app/core/shared/metadata.models';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../../../../core/locale/locale.service';
 
 @Component({
   selector: 'ds-item-page-withemail-field',
