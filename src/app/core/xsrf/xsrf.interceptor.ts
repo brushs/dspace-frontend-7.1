@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -13,6 +13,10 @@ import { tap, catchError } from 'rxjs/operators';
 import { RESTURLCombiner } from '../url-combiner/rest-url-combiner';
 import { CookieService } from '../services/cookie.service';
 import { throwError } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { 
+    CustomNativeWindowService
+  } from '../../core/services/window.service';
 
 // Name of XSRF header we may send in requests to backend (this is a standard name defined by Angular)
 export const XSRF_REQUEST_HEADER = 'X-XSRF-TOKEN';
@@ -48,8 +52,12 @@ export const XSRF_COOKIE = 'XSRF-TOKEN';
  */
 @Injectable()
 export class XsrfInterceptor implements HttpInterceptor {
-
-    constructor(private tokenExtractor: HttpXsrfTokenExtractor, private cookieService: CookieService) {
+    private document;
+    constructor(
+        private tokenExtractor: HttpXsrfTokenExtractor, 
+        private cookieService: CookieService,
+        @Inject(DOCUMENT) private mydocument,
+        private customNativeWindowService: CustomNativeWindowService,) {
     }
 
     /**
@@ -59,7 +67,7 @@ export class XsrfInterceptor implements HttpInterceptor {
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         //FOSR adding the Access-Control-Allow-Origin to the header
-        req.headers.append('Access-Control-Allow-Origin', window.location.origin);
+        req.headers.append('Access-Control-Allow-Origin', this.customNativeWindowService.nativeDocument.location.host);
         // Ensure EVERY request from Angular includes "withCredentials: true".
         // This allows Angular to receive & send cookies via a CORS request (to
         // the backend). ONLY requests with credentials will:

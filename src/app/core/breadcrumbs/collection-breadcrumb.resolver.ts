@@ -5,6 +5,7 @@ import { Collection } from '../shared/collection.model';
 import { CollectionDataService } from '../data/collection-data.service';
 import { FollowLinkConfig } from '../../shared/utils/follow-link-config.model';
 import { COLLECTION_PAGE_LINKS_TO_FOLLOW } from '../../collection-page/collection-page.resolver';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * The class that resolves the BreadcrumbConfig object for a Collection
@@ -13,8 +14,8 @@ import { COLLECTION_PAGE_LINKS_TO_FOLLOW } from '../../collection-page/collectio
   providedIn: 'root'
 })
 export class CollectionBreadcrumbResolver extends DSOBreadcrumbResolver<Collection> {
-  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: CollectionDataService) {
-    super(breadcrumbService, dataService);
+  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: CollectionDataService, protected translate: TranslateService) {
+    super(breadcrumbService, dataService, translate);
   }
 
   /**

@@ -5,6 +5,7 @@ import { CommunityDataService } from '../data/community-data.service';
 import { Community } from '../shared/community.model';
 import { FollowLinkConfig } from '../../shared/utils/follow-link-config.model';
 import { COMMUNITY_PAGE_LINKS_TO_FOLLOW } from '../../community-page/community-page.resolver';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * The class that resolves the BreadcrumbConfig object for a Community
@@ -13,8 +14,8 @@ import { COMMUNITY_PAGE_LINKS_TO_FOLLOW } from '../../community-page/community-p
   providedIn: 'root'
 })
 export class CommunityBreadcrumbResolver extends DSOBreadcrumbResolver<Community> {
-  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: CommunityDataService) {
-    super(breadcrumbService, dataService);
+  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: CommunityDataService, protected translate: TranslateService) {
+    super(breadcrumbService, dataService, translate);
   }
 
   /**

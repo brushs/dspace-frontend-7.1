@@ -7,6 +7,10 @@ import { Renderer2, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { 
+  CustomNativeWindowService
+} from '../../../../app/core/services/window.service';
+import { RouteService } from '../../../../app/core/services/route.service';
 
 /**
  * Represents the header with the logo and simple navigation
@@ -17,20 +21,21 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   // templateUrl: '../../../../app/header/header.component.html',
 })
-export class HeaderComponent extends BaseComponent {
+export class HeaderComponent extends BaseComponent implements AfterViewInit {
   isXs$: Observable<boolean>;
   isSm$: Observable<boolean>;
-
   constructor(
     protected windowService: HostWindowService,
     menuService: MenuService,
     private _renderer2: Renderer2, 
     public translate: TranslateService,
     private zone: NgZone,
-    @Inject(DOCUMENT) private _document: any,
+    // @Inject(DOCUMENT) private _document: any,
     public router: Router,
+    protected customNativeWindowService: CustomNativeWindowService,
+    public routeService: RouteService
   ) {
-    super(menuService);
+    super(menuService, customNativeWindowService);
     this.isXs$ = this.windowService.isXs();
     this.isSm$ = this.windowService.isSm();
     // FOSRC code start
@@ -43,6 +48,11 @@ export class HeaderComponent extends BaseComponent {
   }
 
   ngAfterViewInit() {
+
+    // // FOSRC code start
+    // this.getPath();
+    // // FOSRC code end
+
     this.loadScripts().then(x => {
       let intId = setInterval(() => {
         let basicHTMLLink = document.querySelector('a.wb-sl[href="?wbdisable=true"]');
@@ -63,7 +73,7 @@ export class HeaderComponent extends BaseComponent {
         script.type="text/javascript";
         script.src=src;
         script.onload = () => { return resolve(); }
-        this._renderer2.appendChild(this._document.body, script)
+        this._renderer2.appendChild(this.customNativeWindowService.nativeDocument.body, script)
       })
     }
 
@@ -73,7 +83,7 @@ export class HeaderComponent extends BaseComponent {
 
   // FOSRC code start
   public getPath(): string {
-    this.locationPath = document.location.href;
+    this.locationPath = this.customNativeWindowService.nativeDocument.location.href;
     if(this.locationPath.indexOf("#") > 0) {
       return this.locationPath.substring(0, this.locationPath.indexOf("#"));
     }
@@ -106,6 +116,14 @@ export class HeaderComponent extends BaseComponent {
 
   scrollToSearchResults() {
     this.redirectToAnchor('#search-results');
+  }
+
+  scrollToBrowseBySearch() {
+    this.redirectToAnchor('#btngrp-browse');
+  }
+
+  scrollToBrowseBySearchResults() {
+    this.redirectToAnchor('#browse-by-search-results');
   }
 
   checkIfPathInUrlExists(path: string){

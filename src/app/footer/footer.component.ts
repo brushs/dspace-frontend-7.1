@@ -15,7 +15,9 @@ export class FooterComponent {
    */
   showTopFooter = false;
 
-  constructor(@Optional() private cookies: KlaroService) {
+  constructor(
+    // @Optional() private cookies: KlaroService
+    ) {
   }
 
   showCookieSettings() {
