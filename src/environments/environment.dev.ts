@@ -12,13 +12,22 @@ export const environment = {
 		"baseUrl": "http://localhost:4000/"
 	},
 	"rest": {
+		"ssl": true,
+		"host": "dspacebackendsteve.azurewebsites.net",
+		"port": null,
+		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
+		"nameSpace": "/server",
+    "baseUrl": "https://dspacebackendsteve.azurewebsites.net/server",
+	},
+	/*
+	"rest": {
 		"ssl": false,
 		"host": "localhost",
 		"port": 8080,
 		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
 		"nameSpace": "/server",
     "baseUrl": "http://localhost:8080/server",
-	},
+	}, */
 	"cache": {
 		"msToLive": {
 			"default": 900000
