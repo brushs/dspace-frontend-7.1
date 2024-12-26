@@ -27,7 +27,7 @@ import { PaginationComponentOptions } from '../../../../../app/shared/pagination
 import { AppInjector } from '../../../../../app/app.injector';
 import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.service';
 import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/search.utils';
-//import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
+import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 import { TranslateService } from '@ngx-translate/core';
 import { SearchFilter } from 'src/app/shared/search/search-filter.model';
@@ -117,7 +117,7 @@ export class MySearchComponent implements OnInit {
   context: Context;
 
   //gdata: any;
-  //@ViewChild(GeoSearchPageComponent) geoComponent: GeoSearchPageComponent;
+  @ViewChild(GeoSearchPageComponent) geoComponent: GeoSearchPageComponent;
 
   @ViewChild(DynamicFiltersComponent) dynamicFiltersComponent: DynamicFiltersComponent;
   /**
@@ -314,7 +314,6 @@ export class MySearchComponent implements OnInit {
   public getGeoData() {
     var geodata = '';
     var geoquery2 = '';
-    /*
     if (this.geoComponent != null && this.geoComponent.getGeoData() != null && this.geoComponent.getGeoData() != '') {
       geodata = this.geoComponent.getGeoData();
       var [lat1, lng1, lat2, lng2] = geodata.split(',');
@@ -323,7 +322,6 @@ export class MySearchComponent implements OnInit {
         geoquery2 = ''; // reset geoquery
       }
     }
-      */
     return geoquery2 ;
   }
 
