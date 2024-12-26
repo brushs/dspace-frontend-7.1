@@ -17,10 +17,10 @@ import { SearchConfigurationService } from '../../../../app/core/shared/search/s
 import { AdvancedSearchPageComponent } from './advanced-search-page.component';
 import { MyThemedSearchComponent } from './mythemed-search.component';
 import { MySearchComponent } from './my-search-component/my-search.component';
-import { GeoSearchPageComponent } from '../geo-search-page/geo-search-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DynamicFiltersComponent } from './dynamic-filters/dynamic-filters.component';
+import { GeoSearchPageComponent } from '../geo-search-page/geo-search-page.component';
 
 const components = [
   //SearchPageComponent,
