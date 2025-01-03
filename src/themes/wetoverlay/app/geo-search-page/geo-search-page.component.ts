@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, ChangeDetectorRef, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
 
-import 'leaflet-geosearch/dist/geosearch.css';
 
 
 //For geometry from data
