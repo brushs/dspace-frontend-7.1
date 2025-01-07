@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, Input, Output, ChangeDetectorRef, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
 
 
@@ -44,12 +45,12 @@ export class GeoSearchPageComponent implements OnInit {
 // https://stackoverflow.com/questions/78538054/angular-17-ssr-and-leaflet-ngx-leaflet-ngx-leaflet-draw
   constructor(
     private cdr: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private _platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { 
   }
 
   ngOnInit(): void {
-    if (this._platformId === 'browser') {
+    if (isPlatformBrowser(this.platformId)) {
         this.L = import('leaflet');
         this.loadLeaflet().then(leafletLib => {
           this.createMap(leafletLib);
