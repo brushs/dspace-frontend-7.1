@@ -81,7 +81,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     super.ngOnInit();
     // get random number either 0 or 1
     //translate this template code to component code: (['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)
-    this.descriptionText = this.translateMetadata(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'], this.dso)[0]?.value;
+    this.descriptionText = this.getDescriptionText();
     this.itemPageRoute = getItemPageRoute(this.dso);
     this.isCollapsed$ = this.isCollapsed();
     this.descriptionParagraphId = this.descriptionParagraphId + this.dso.id;
@@ -97,13 +97,13 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
         this.showThumbnails = true;
       }
     } else {
-      // issue 349, 360 start 
+      // issue 349, 360 start
       if (this.firstMetadataValue('dspace.entity.type') == 'Publication') {
         this.showThumbnails = true;
       } else {
         this.emptyThumbnails = true;
       }
-      // issue 349, 360 end 
+      // issue 349, 360 end
     }
     // issue 247 end
   }
@@ -228,6 +228,19 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     if(event.button === 0 || event.button === 1){
       localStorage.setItem("previousSearchPageUrlPath", this.router.url);
     }
+  }
+
+  getDescriptionText(): string {
+    // check if the description exists
+    if(this.firstMetadataValue('dc.description') != null && this.firstMetadataValue('dc.description') != "") {
+      return this.translateMetadata(['dc.description'], this.dso)[0]?.value;
+      //return this.firstMetadataValue('dc.description');
+    }
+    else if(this.firstMetadataValue('dc.description.abstract') != null && this.firstMetadataValue('dc.description.abstract') != "") {
+      return this.translateMetadata(['dc.description.abstract'], this.dso)[0]?.value;
+      //return this.firstMetadataValue('dc.description.abstract');
+    }
+    return ""
   }
 
 }
