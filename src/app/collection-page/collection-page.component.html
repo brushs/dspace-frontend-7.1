@@ -2,7 +2,7 @@
   <div class="row" *ngVar="(collectionRD$ | async) as collectionRD">
     <div *ngIf="collectionRD?.hasSucceeded" @fadeInOut class="col-md-12">
       <ng-container *ngIf="collectionRD?.payload as collection">
-        <ds-view-tracker [object]="collection"></ds-view-tracker>          
+        <ds-view-tracker [object]="collection"></ds-view-tracker>
 
         <!-- Collection Name -->
         <ds-comcol-page-header [name]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.title', 'dc.title.fosrctranslation'] | metaTranslate : collection)[0]?.language"><span *ngIf="searchSubmit">{{'comcol.search.title.search.results.for' | translate}}&nbsp;</span></ds-comcol-page-header>
@@ -16,7 +16,7 @@
         <ds-comcol-page-content *ngIf="!searchSubmit" [content]="(['dc.description', 'dc.description.fosrctranslation'] | metaTranslate : collection)[0]?.value" [lang]="(['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : collection)[0]?.language" [hasInnerHtml]="true">
         </ds-comcol-page-content>
 
-        <div class="pl-2">  
+        <div class="pl-2">
           <ds-dso-page-edit-button *ngIf="isCollectionAdmin$ | async"  [pageRoute]="collectionPageRoute$ | async" [dso]="collection" [tooltipMsg]="'collection.page.edit'"></ds-dso-page-edit-button>
         </div>
 
@@ -48,7 +48,7 @@
           [inPlaceSearch]="inPlaceSearch"
           (submitSearch)="onSeachSubmit($event)">
         </ds-comcol-search-filter>
-        
+
         <!-- Browse-By Links -->
         <ds-comcol-page-browse-by *ngIf="searchSubmit"
                 [id]="collection.id"
@@ -57,13 +57,22 @@
 
         <ng-container *ngVar="(itemRD$ | async) as itemRD">
           <div class="row">
+            <div class="col-md-12">
+              <div class="mrgn-tp-md pull-left">
+                <a href="advanced-search">
+                      {{ "home.button.advanced-search"| translate}}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div gcweb class="col-12 pull-left">
                 <!-- <ng-template *ngTemplateOutlet="searchForm"></ng-template> -->
                 <hr>
                 <h2>{{'collection.page.browse.recent.head' | translate}}</h2>
-      
+
                 <!-- <ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async"></ds-search-settings> -->
-      
+
                 <div ds-search-settings [searchOptions]="searchOptions$ | async" [sortOptions]="sortOptions$ | async" [useGcWeb]="true" [onComColPage]="true" class="row well well-small mrgn-lft-0 mrgn-rght-0"></div>
             </div>
             <div gcweb id="search-content" class="col-12">
@@ -85,5 +94,5 @@
     <ds-loading *ngIf="collectionRD?.isLoading"
         message="{{'loading.collection' | translate}}"></ds-loading>
   </div>
-  <ds-page-details></ds-page-details>  
+  <ds-page-details></ds-page-details>
 </div>
