@@ -59,7 +59,7 @@ export class XsrfInterceptor implements HttpInterceptor {
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         //FOSR adding the Access-Control-Allow-Origin to the header
-        req.headers.append('Access-Control-Allow-Origin', window.location.origin);
+        //req.headers.append('Access-Control-Allow-Origin', window.location.origin);
         // Ensure EVERY request from Angular includes "withCredentials: true".
         // This allows Angular to receive & send cookies via a CORS request (to
         // the backend). ONLY requests with credentials will:

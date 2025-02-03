@@ -151,7 +151,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     //}
     //angulartics2DSpace.startTracking();
     const trackingId = environment.production ? 'GTM-KG9WWH6' : 'GTM-MK9H4CK';
-    googleAnalyticsService.addTrackingIdToPageOstr(trackingId);
+    if (googleAnalyticsService != null) {
+      googleAnalyticsService.addTrackingIdToPageOstr(trackingId);
+    }
 
     metadata.listenForRouteChange();
     breadcrumbsService.listenForRouteChanges();
@@ -176,7 +178,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         take(1)
       ).subscribe(() => this.initializeKlaro());
     End of FOSRC changes */
-    const env: string = environment.production ? 'Production' : 'Development';
+    const env: string = 'Production';
+    //const env: string = environment.production ? 'Production' : 'Development';
     const color: string = environment.production ? 'red' : 'green';
     console.info(`Environment: %c${env}`, `color: ${color}; font-weight: bold;`);
     this.dispatchWindowSize(this._window.nativeWindow.innerWidth, this._window.nativeWindow.innerHeight);
@@ -215,7 +218,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         //if the event url does not contain a hash fragment
         if(!event.url.includes("#")){
-
+          /*
           //get the unordered list element containing the skip to links elements in
           // the DOM
           let skipToLinksListEl = (document.querySelector('#wb-tphp') as HTMLElement);
@@ -235,6 +238,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             //remove the tabindex attribute once the focus is set
             skipToLinksListEl.removeAttribute('tabindex');
           }
+            */
         }
 
         //if the URL has query parameters

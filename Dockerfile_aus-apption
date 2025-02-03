@@ -11,10 +11,11 @@ ADD . /app/
 RUN yarn install --network-timeout 300000
 # Set this to control the environmental config used
 #ENV NODE_ENV apption
-RUN yarn run set-env --apption
+RUN yarn run config:apption
 # Set again to control the type of build to be performed
-ENV NODE_ENV development
+# ENV NODE_ENV development
 RUN yarn run build:prod
+RUN yarn run postinstall
 
 # Use second image to serve output
 # Use official nginx image as the base image
@@ -25,11 +26,13 @@ WORKDIR /app
 
 # Copy the built files from the previous stage
 COPY --from=build_aus /app/dist /app/dist
+COPY --from=build_aus /app/node_modules /app/node_modules
 
 # Install only production dependencies
 COPY package*.json ./
 #RUN npm install --only=production
-RUN npm install
+#RUN npm install --only=production
+#RUN npm run postinstall
 
 # Expose the port the app runs on
 EXPOSE 4000
