@@ -30,7 +30,7 @@ stages:
         command: 'build'
         repository: $(imageRepository)
         containerRegistry: $(dockerRegistryServiceConnection)
-        Dockerfile: $(dockerfilePath)/Dockerfile_temp
+        Dockerfile: $(dockerfilePath)/$(dockerfileName)
         tags: $(tag)
 
     - task: Docker@2
