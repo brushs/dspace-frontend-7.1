@@ -9,7 +9,7 @@ export const environment = {
 			"windowMs": 60000,
 			"max": 500
 		},
-		"baseUrl": "http://dspaceangularsteve.azurewebsites.net/"
+		"baseUrl": "http://0.0.0.0:4000"
 	},
 	"rest": {
 		"ssl": true,
