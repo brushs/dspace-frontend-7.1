@@ -3,7 +3,7 @@ export const environment = {
 	"ui": {
 		"ssl": true,
 		"host": "dspaceangularsteve.azurewebsites.net",
-		"port": null,
+		"port": 4000,
 		"nameSpace": "/",
 		"rateLimiter": {
 			"windowMs": 60000,
