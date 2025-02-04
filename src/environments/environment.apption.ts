@@ -2,7 +2,7 @@ export const environment = {
 	"production": true,
 	"ui": {
 		"ssl": true,
-		"host": "dspaceangularsteve.azurewebsites.net",
+		"host": "0.0.0.0",
 		"port": 4000,
 		"nameSpace": "/",
 		"rateLimiter": {
