@@ -5,6 +5,7 @@ import { Item } from '../shared/item.model';
 import { DSOBreadcrumbResolver } from './dso-breadcrumb.resolver';
 import { FollowLinkConfig } from '../../shared/utils/follow-link-config.model';
 import { ITEM_PAGE_LINKS_TO_FOLLOW } from '../../item-page/item.resolver';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * The class that resolves the BreadcrumbConfig object for an Item
@@ -13,8 +14,8 @@ import { ITEM_PAGE_LINKS_TO_FOLLOW } from '../../item-page/item.resolver';
   providedIn: 'root'
 })
 export class ItemBreadcrumbResolver extends DSOBreadcrumbResolver<Item> {
-  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: ItemDataService) {
-    super(breadcrumbService, dataService);
+  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: ItemDataService, protected translate: TranslateService) {
+    super(breadcrumbService, dataService, translate);
   }
 
   /**

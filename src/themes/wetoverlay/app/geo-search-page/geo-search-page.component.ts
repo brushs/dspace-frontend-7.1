@@ -1,10 +1,5 @@
-import { Component, OnInit, Input, Output, ChangeDetectorRef, EventEmitter } from '@angular/core';
-
-import 'leaflet-geosearch/dist/geosearch.css';
-//declare const L: any; // --> Works
-import L from 'leaflet'
-//import * as L from 'leaflet';
-import 'leaflet-draw';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, Input, Output, ChangeDetectorRef, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
 
 
 
@@ -15,15 +10,6 @@ const myStyle = {
   opacity: 0.65,
 };
 
-const markerIcon = L.icon({
-  iconSize: [25, 41],
-  iconAnchor: [10, 41],
-  popupAnchor: [2, -40],
-  // specify the path here
-  iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
-});
-L.Marker.prototype.options.icon = markerIcon;
 
 @Component({
   selector: 'geo-search-page',
@@ -32,13 +18,14 @@ L.Marker.prototype.options.icon = markerIcon;
 })
 export class GeoSearchPageComponent implements OnInit {
 
+  L: any;
   name = 'Dspace';
   home  = 'Home';
   map: any;
   lat: number = 59; //45.4215;
   lon: number = -105; //-75.6972;
-  maker: L.Marker<any>;
-  dbmaker: L.Marker<any>[];
+  maker: any;
+  dbmaker: any[];
 
   markers: any[];
   drawnItems: any;
@@ -54,31 +41,61 @@ export class GeoSearchPageComponent implements OnInit {
   @Input() geodata: any;
   @Output() geoChangeEvent = new EventEmitter<string>();
 
-
-  constructor(private cdr: ChangeDetectorRef) { }
+// leaflet injection is done after the browser is initialized bsed on modified solution published by Fiehra
+// https://stackoverflow.com/questions/78538054/angular-17-ssr-and-leaflet-ngx-leaflet-ngx-leaflet-draw
+  constructor(
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { 
+  }
 
   ngOnInit(): void {
-    this.map = L.map('map').setView([this.lat, this.lon], 4);
+    if (isPlatformBrowser(this.platformId)) {
+        this.L = import('leaflet');
+        this.loadLeaflet().then(leafletLib => {
+          this.createMap(leafletLib);
+        })
+      }
+  }
+
+  private async loadLeaflet() {
+    this.L = await this.L;
+    await import('leaflet-draw');
+    return this.L;
+  }
+
+  private createMap(lib: any): void {
+    
+    const markerIcon = lib.icon({
+        iconSize: [25, 41],
+        iconAnchor: [10, 41],
+        popupAnchor: [2, -40],
+        // specify the path here
+        iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+    });
+    lib.Marker.prototype.options.icon = markerIcon;
+    this.map = lib.map('map').setView([this.lat, this.lon], 4);
     this.data = 'Please draw a rectangle, using solid square icon';
     const baselayers = {
-      openstreetmap: L.tileLayer(
+      openstreetmap: lib.tileLayer(
         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       ),
-      googleStreets: L.tileLayer(
+      googleStreets: lib.tileLayer(
         'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         {
           maxZoom: 20,
           subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
         }
       ),
-      googleHybrid: L.tileLayer(
+      googleHybrid: lib.tileLayer(
         'http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
         {
           maxZoom: 20,
           subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
         }
       ),
-      googleSat: L.tileLayer(
+      googleSat: lib.tileLayer(
         'http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
         {
           maxZoom: 20,
@@ -89,16 +106,16 @@ export class GeoSearchPageComponent implements OnInit {
 
     var overlays = {};
 
-    L.control.layers(baselayers, overlays).addTo(this.map);
+    lib.control.layers(baselayers, overlays).addTo(this.map);
 
     //baselayers['openstreetmap'].addTo(this.map);
     baselayers['googleStreets'].addTo(this.map);
 
-        this.drawnItems = new L.FeatureGroup();
+        this.drawnItems = new lib.FeatureGroup();
 
     this.map.addLayer(this.drawnItems);
 
-    var options = {
+    const options = {
       position: 'topright',
       draw: {
         circle: false,
@@ -116,11 +133,11 @@ export class GeoSearchPageComponent implements OnInit {
       },
     };
 
-    var drawControl = new L.Control.Draw(options);
+    const drawControl = new lib.Control.Draw(options);
     this.map.addControl(drawControl);
 
     var app = this;
-    this.map.on(L.Draw.Event.CREATED, function (e) {
+    this.map.on('draw:created', function (e) {
       var type = e.layerType,
         layer = e.layer;
 
@@ -149,6 +166,7 @@ export class GeoSearchPageComponent implements OnInit {
     setTimeout(
         function () { this.map.invalidateSize(); console.log("resize"); }.bind({ map: this.map }),
         200);
+
   }
 
   private updateData(value: any) {
@@ -176,5 +194,3 @@ export class GeoSearchPageComponent implements OnInit {
     return this.geodata;
   }
 }
-
-

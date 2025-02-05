@@ -16,7 +16,7 @@ import { hasValue } from '../../shared/empty.util';
 import { AuthService } from '../../core/auth/auth.service';
 import { Location } from '@angular/common';
 import { clone } from 'lodash';
-import { LocaleService } from 'src/app/core/locale/locale.service';
+import { LocaleService } from '../../core/locale/locale.service';
 
 
 /**
