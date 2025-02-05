@@ -14,7 +14,6 @@
     "pretest": "yarn run config:test",
     "pretest:watch": "yarn run config:test",
     "pretest:headless": "yarn run config:test",
-    "prebuild:prod": "yarn run config:prod",
     "pree2e": "yarn run config:prod",
     "pree2e:ci": "yarn run config:prod",
     "start": "yarn run start:prod",
