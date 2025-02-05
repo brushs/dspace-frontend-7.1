@@ -5,6 +5,7 @@ import { RestRequestMethod } from '../app/core/data/rest-request-method';
 
 export const environment: GlobalConfig = {
   production: true,
+  name: "common",
   // Angular Universal server settings.
   // NOTE: these must be "synced" with the 'dspace.ui.url' setting in your backend's local.cfg.
   ui: {

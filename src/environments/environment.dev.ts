@@ -1,23 +1,24 @@
 export const environment = {
 	"production": false,
+	"name": "dev",
 	"ui": {
 		"ssl": false,
-		"host": "localhost",
+		"host": "0.0.0.0",
 		"port": 4000,
 		"nameSpace": "/",
 		"rateLimiter": {
 			"windowMs": 60000,
 			"max": 500
 		},
-		"baseUrl": "http://localhost:4000/"
+		"baseUrl": "http://0.0.0.0:4000/"
 	},
 	"rest": {
 		"ssl": false,
-		"host": "localhost",
+		"host": "host.docker.internal",
 		"port": 8080,
 		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
 		"nameSpace": "/server",
-    "baseUrl": "http://localhost:8080/server",
+    "baseUrl": "http://host.docker.internal:8080/server",
 	},
 	"cache": {
 		"msToLive": {

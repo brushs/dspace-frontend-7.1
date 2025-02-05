@@ -32,4 +32,5 @@ export interface GlobalConfig extends Config {
   collection: CollectionPageConfig;
   themes: ThemeConfig[];
   mediaViewer: MediaViewerConfig;
+  name: string;
 }

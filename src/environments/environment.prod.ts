@@ -2,10 +2,11 @@ import { GlobalConfig } from '../config/global-config.interface';
 
 export const environment: Partial<GlobalConfig> = {
   production: true,
+  name: "apption",
   // Angular Universal server settings.
   // NOTE: these must be "synced" with the 'dspace.ui.url' setting in your backend's local.cfg.
   ui: {
-    ssl: true,
+    ssl: false,
     host: '0.0.0.0',
     port: 4000,
     // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript

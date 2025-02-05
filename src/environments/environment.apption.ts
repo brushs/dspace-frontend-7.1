@@ -1,7 +1,8 @@
 export const environment = {
 	"production": true,
+	"name": "apption",
 	"ui": {
-		"ssl": true,
+		"ssl": false,
 		"host": "0.0.0.0",
 		"port": 4000,
 		"nameSpace": "/",

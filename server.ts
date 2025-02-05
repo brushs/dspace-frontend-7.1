@@ -264,6 +264,8 @@ function run() {
  * When SSL is disabled
  * - Start an HTTP server on the configured port and host
  */
+console.warn('Enviroment: ' + environment.name);
+
 if (environment.ui.ssl) {
   let serviceKey;
   try {
