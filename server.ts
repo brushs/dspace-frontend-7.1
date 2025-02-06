@@ -85,6 +85,7 @@ export function app() {
    */
   if (environment.production) {
     enableProdMode();
+    console.warn('Production mode enabled');
     server.use(compression());
   }
 

@@ -18,4 +18,5 @@ RUN yarn run build:prod
 EXPOSE 4000
 
 # Start the Angular Universal server
-CMD NODE_ENV=production && yarn run serve:ssr
+#CMD NODE_ENV=production && yarn run serve:ssr
+CMD ["sh", "-c", "NODE_ENV=production node dist/server"]
