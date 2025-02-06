@@ -77,8 +77,6 @@ export function app() {
    */
   const server = express();
 
-  process.env.NODE_ENV = 'production';
-
   /*
    * If production mode is enabled in the environment file:
    * - Enable Angular's production mode
