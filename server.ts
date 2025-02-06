@@ -233,9 +233,11 @@ function cacheControl(req, res, next) {
  */
 function serverStarted() {
   const isProd = process.env.NODE_ENV === 'production';
+  
   console.warn('Trying to enable Production mode 2');
   enableProdMode();
   console.warn('Production mode enabled');
+
   console.log(`[${new Date().toTimeString()}] Listening ENV at ${process.env.NODE_ENV}`);
   if (isProd) {
     console.log('Running in Production Mode');
