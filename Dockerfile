@@ -1,7 +1,7 @@
 # This image will be published as dspace/dspace-angular
 # See https://github.com/DSpace/dspace-angular/tree/main/docker for usage details
 
-FROM node:14-alpine
+FROM node:14-bullseye
 
 WORKDIR /app
 ADD . /app/
@@ -14,9 +14,12 @@ RUN yarn run config:apption
 # Set again to control the type of build to be performed
 RUN yarn run build:prod
 
+ENV NODE_ENV=production
+
 # Expose
 EXPOSE 4000
 
 # Start the Angular Universal server
+CMD yarn run serve:ssr
 #CMD NODE_ENV=production && yarn run serve:ssr
-CMD ["sh", "-c", "export NODE_ENV=production && node dist/server"]
+#CMD ["sh", "-c", "export NODE_ENV=production && node dist/server"]
