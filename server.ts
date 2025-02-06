@@ -230,6 +230,12 @@ function cacheControl(req, res, next) {
  * Callback function for when the server has started
  */
 function serverStarted() {
+  const isProd = process.env.NODE_ENV === 'production';
+  if (isProd) {
+    console.log('Running in Production Mode');
+  } else {
+    console.log('Running in Development Mode');
+  }
   console.log(`[${new Date().toTimeString()}] Listening at ${environment.ui.baseUrl}`);
 }
 

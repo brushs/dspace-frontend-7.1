@@ -12,7 +12,7 @@ RUN yarn install --network-timeout 300000
 # Set this to control the environmental config used
 RUN yarn run config:apption
 # Set again to control the type of build to be performed
-# ENV NODE_ENV development
+ENV NODE_ENV production
 RUN yarn run build:prod
 
 # Install OpenSSH and set the password for root to "Docker!"
