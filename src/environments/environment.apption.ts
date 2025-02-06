@@ -2,14 +2,14 @@ export const environment = {
 	"production": true,
 	"ui": {
 		"ssl": false,
-		"host": "dspaceangularsteve.azurewebsites.net",
+		"host": "0.0.0.0",
 		"port": null,
 		"nameSpace": "/",
 		"rateLimiter": {
 			"windowMs": 60000,
 			"max": 500
 		},
-		"baseUrl": "http://dspaceangularsteve.azurewebsites.net/"
+		"baseUrl": "http://0.0.0.0/"
 	},
 	"rest": {
 		"ssl": true,
