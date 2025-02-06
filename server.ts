@@ -77,12 +77,14 @@ export function app() {
    */
   const server = express();
 
+  process.env.NODE_ENV = 'production';
 
   /*
    * If production mode is enabled in the environment file:
    * - Enable Angular's production mode
    * - Enable compression for response bodies. See [compression](https://github.com/expressjs/compression)
    */
+  console.warn('Enivronment from config is Prod:' + environment.production);
   if (environment.production) {
     console.warn('Trying to enable Production mode');
     enableProdMode();
