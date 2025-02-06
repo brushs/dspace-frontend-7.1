@@ -232,6 +232,7 @@ function cacheControl(req, res, next) {
  */
 function serverStarted() {
   const isProd = process.env.NODE_ENV === 'production';
+  console.log(`[${new Date().toTimeString()}] Listening ENV at ${process.env.NODE_ENV}`);
   if (isProd) {
     console.log('Running in Production Mode');
   } else {
