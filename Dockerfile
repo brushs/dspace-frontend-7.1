@@ -10,17 +10,31 @@ ADD . /app/
 # See, for example https://github.com/yarnpkg/yarn/issues/5540
 RUN yarn install --network-timeout 300000
 # Set this to control the environmental config used
-#ENV NODE_ENV apption
 RUN yarn run config:apption
 # Set again to control the type of build to be performed
 # ENV NODE_ENV development
 RUN yarn run build:prod
-#RUN yarn run postinstall
 
+# Install OpenSSH and set the password for root to "Docker!"
+ENV SSH_PASSWD "root:Docker!"
+RUN apt-get update \
+        && apt-get install -y --no-install-recommends dialog \
+        && apt-get update \
+  && apt-get install -y --no-install-recommends openssh-server \
+  && echo "$SSH_PASSWD" | chpasswd
 
-# Expose the port the app runs on
-EXPOSE 4000
+# Copy the sshd_config file to the /etc/ssh/ directory
+COPY sshd_config /etc/ssh/
+
+# Copy and configure the ssh_setup file
+RUN mkdir -p /tmp
+COPY ssh_setup.sh /tmp
+RUN sed -i 's/\r//g' /tmp/ssh_setup.sh
+RUN chmod +x /tmp/ssh_setup.sh \
+    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
+
+# Expose
+EXPOSE 4000 2222
 
 # Start the Angular Universal server
-CMD yarn run serve:ssr
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD /usr/sbin/sshd && yarn run serve:ssr
