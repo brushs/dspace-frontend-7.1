@@ -84,6 +84,7 @@ export function app() {
    * - Enable compression for response bodies. See [compression](https://github.com/expressjs/compression)
    */
   if (environment.production) {
+    console.warn('Trying to enable Production mode');
     enableProdMode();
     console.warn('Production mode enabled');
     server.use(compression());
@@ -232,6 +233,9 @@ function cacheControl(req, res, next) {
  */
 function serverStarted() {
   const isProd = process.env.NODE_ENV === 'production';
+  console.warn('Trying to enable Production mode 2');
+  enableProdMode();
+  console.warn('Production mode enabled');
   console.log(`[${new Date().toTimeString()}] Listening ENV at ${process.env.NODE_ENV}`);
   if (isProd) {
     console.log('Running in Production Mode');
