@@ -16,10 +16,28 @@ RUN yarn run build:prod
 
 ENV NODE_ENV=production
 
+# Install OpenSSH and set the password for root to "Docker!"
+ENV SSH_PASSWD "root:Docker!"
+RUN apt-get update \
+        && apt-get install -y --no-install-recommends dialog \
+        && apt-get update \
+  && apt-get install -y --no-install-recommends openssh-server \
+  && echo "$SSH_PASSWD" | chpasswd
+
+# Copy the sshd_config file to the /etc/ssh/ directory
+COPY sshd_config /etc/ssh/
+
+# Copy and configure the ssh_setup file
+RUN mkdir -p /tmp
+COPY ssh_setup.sh /tmp
+RUN sed -i 's/\r//g' /tmp/ssh_setup.sh
+RUN chmod +x /tmp/ssh_setup.sh \
+    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
+
 # Expose
-EXPOSE 4000
+EXPOSE 4000 2222
 
 # Start the Angular Universal server
-CMD yarn run serve:ssr
+#CMD yarn run serve:ssr
 #CMD NODE_ENV=production && yarn run serve:ssr
-#CMD ["sh", "-c", "export NODE_ENV=production && node dist/server"]
+CMD ["sh", "-c", "export NODE_ENV=production && node dist/server"]
