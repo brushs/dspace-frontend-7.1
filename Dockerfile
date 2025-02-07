@@ -14,7 +14,7 @@ RUN yarn run config:apption
 # Set again to control the type of build to be performed
 RUN yarn run build:prod
 
-ENV NODE_ENV=production
+#ENV NODE_ENV=production
 
 # Install OpenSSH and set the password for root to "Docker!"
 ENV SSH_PASSWD "root:Docker!"
@@ -43,6 +43,4 @@ EXPOSE 4000 2222
 
 # Start the Angular Universal server
 #CMD yarn run serve:ssr
-#CMD NODE_ENV=production && yarn run serve:ssr
-#CMD ["sh", "-c", "/usr/sbin/sshd && export NODE_ENV=production && node dist/server"]
 ENTRYPOINT ["/bin/sh", "-c", "/tmp/start.sh"]
