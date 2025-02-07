@@ -34,6 +34,7 @@ RUN sed -i 's/\r//g' /tmp/ssh_setup.sh
 RUN chmod +x /tmp/ssh_setup.sh \
     && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
 
+COPY start.sh .   
 RUN sed -i 's/\r//g' start.sh
 RUN chmod +x start.sh
 
