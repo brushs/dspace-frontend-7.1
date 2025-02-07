@@ -14,7 +14,7 @@ RUN yarn run config:apption
 # Set again to control the type of build to be performed
 RUN yarn run build:prod
 
-#ENV NODE_ENV=production
+ENV NODE_ENV=production
 
 # Install OpenSSH and set the password for root to "Docker!"
 ENV SSH_PASSWD "root:Docker!"
