@@ -4,6 +4,7 @@
 
 trigger:
 - ostr-sandbox
+- ssr-sandbox
 
 resources:
 - repo: self
