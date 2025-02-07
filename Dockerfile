@@ -40,4 +40,4 @@ EXPOSE 4000 2222
 # Start the Angular Universal server
 #CMD yarn run serve:ssr
 #CMD NODE_ENV=production && yarn run serve:ssr
-CMD ["sh", "-c", "export NODE_ENV=production && node dist/server"]
+CMD ["sh", "-c", "/usr/sbin/sshd && export NODE_ENV=production && node dist/server"]

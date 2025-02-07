@@ -82,13 +82,13 @@ export function app() {
    * - Enable Angular's production mode
    * - Enable compression for response bodies. See [compression](https://github.com/expressjs/compression)
    */
-  console.warn('Enivronment from config is Prod:' + environment.production);
-  if (environment.production) {
+  console.warn('Environment from config is Prod: ' + environment.production);
+  //if (environment.production) {
     console.warn('Trying to enable Production mode');
     enableProdMode();
     console.warn('Production mode enabled');
     server.use(compression());
-  }
+  //}
 
   /*
    * Enable request logging
@@ -233,7 +233,7 @@ function cacheControl(req, res, next) {
  */
 function serverStarted() {
   const isProd = process.env.NODE_ENV === 'production';
-  
+
   console.warn('Trying to enable Production mode 2');
   enableProdMode();
   console.warn('Production mode enabled');
