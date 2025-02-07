@@ -34,10 +34,14 @@ RUN sed -i 's/\r//g' /tmp/ssh_setup.sh
 RUN chmod +x /tmp/ssh_setup.sh \
     && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
 
+RUN sed -i 's/\r//g' start.sh
+RUN chmod +x start.sh
+
 # Expose
 EXPOSE 4000 2222
 
 # Start the Angular Universal server
 #CMD yarn run serve:ssr
 #CMD NODE_ENV=production && yarn run serve:ssr
-CMD ["sh", "-c", "/usr/sbin/sshd && export NODE_ENV=production && node dist/server"]
+#CMD ["sh", "-c", "/usr/sbin/sshd && export NODE_ENV=production && node dist/server"]
+ENTRYPOINT ["/bin/sh", "-c", "start.sh"]
