@@ -15,6 +15,7 @@ import { DSONameService } from '../../../../../../core/breadcrumbs/dso-name.serv
 import { TruncatableService } from '../../../../../truncatable/truncatable.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Console } from 'console';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -92,7 +93,13 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     // issue 247 start
     if (this.context) {
       if (this.constructor.name == "ItemSearchResultListElementComponent") {
-        this.emptyThumbnails = true;
+        // issue 370 start: advance search is also ItemSearchResultListElementComponent, but we have context = 'search'
+        if (this.context =='search') {
+          this.showThumbnails = true;
+        } else {
+          this.emptyThumbnails = true;
+        }
+        // issue 370 end
       } else {
         this.showThumbnails = true;
       }

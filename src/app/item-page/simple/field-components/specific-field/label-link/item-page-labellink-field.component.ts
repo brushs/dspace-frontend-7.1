@@ -40,6 +40,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
   }
 
   ngOnInit() {
+    var itemsAdded = 0;
     var retrievedMetadata: MetadataValue[];
     this.values = [];
     //get current language
@@ -55,7 +56,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
       return
     }
     retrievedMetadata.forEach((element, index) => {
-      if (index >= MAX_ITEMS) {
+      if (itemsAdded >= MAX_ITEMS) {
         return;
       }
       var value = element.value;
@@ -69,6 +70,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
       if (link) {
         //push the link and the label to the values array
         this.values.push([link[1], link[2]]);
+        itemsAdded++;
         if (this.conditional)
           // check if the value contains a special link "geoscan.nrcan.gc.ca" or  the text contains a
           // special text "Download - Télécharger" to hide the field
@@ -83,6 +85,7 @@ export class ItemPageLabelLinkComponent extends ItemPageFieldComponent {
       }
       else {
         this.values.push([value, value])
+        itemsAdded++;
       }
 
     });

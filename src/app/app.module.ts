@@ -33,7 +33,7 @@ import { NotificationsBoardComponent } from './shared/notifications/notification
 import { SharedModule } from './shared/shared.module';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { environment } from '../environments/environment';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { LocaleInterceptor } from './core/locale/locale.interceptor';
@@ -106,7 +106,7 @@ const PROVIDERS = [
   // Check the authentication token when the app initializes
   {
     provide: APP_INITIALIZER,
-    useFactory: (store: Store<AppState>,) => {
+    useFactory: (store: Store<AppState>) => {
       return () => store.dispatch(new CheckAuthenticationTokenAction());
     },
     deps: [ Store ],
@@ -185,7 +185,7 @@ const EXPORTS = [
 
 @NgModule({
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    //BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ...IMPORTS
   ],
   providers: [
