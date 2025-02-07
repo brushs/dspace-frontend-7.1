@@ -47,6 +47,7 @@ switch (environment) {
     environmentFilePath = '../src/environments/environment.test.ts';
     break;
   case '--sandbox':
+    production = true;
     console.log(`Building ${colors.blue.bold(`sandbox`)} environment`);
     environmentFilePath = '../src/environments/environment.sandbox.ts';
     fs.copyFile(devFilePath, newFilePath, (err) => {
@@ -71,6 +72,7 @@ switch (environment) {
     });
     break;
   case '--apption':
+    production = true;
     console.log(`Building ${colors.green.bold(`apption`)} environment`);
     environmentFilePath = '../src/environments/environment.apption.ts';
     fs.copyFile(devFilePath, newFilePath, (err) => {
