@@ -7,4 +7,4 @@ echo "Starting SSH daemon..."
 /usr/sbin/sshd
 
 echo "Starting Node.js server..."
-exec node dist/server
+exec node /app/dist/server

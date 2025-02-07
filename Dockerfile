@@ -34,9 +34,9 @@ RUN sed -i 's/\r//g' /tmp/ssh_setup.sh
 RUN chmod +x /tmp/ssh_setup.sh \
     && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
 
-COPY start.sh .   
-RUN sed -i 's/\r//g' start.sh
-RUN chmod +x start.sh
+COPY start.sh /tmp   
+RUN sed -i 's/\r//g' /tmp/start.sh
+RUN chmod +x /tmp/start.sh
 
 # Expose
 EXPOSE 4000 2222
@@ -45,4 +45,4 @@ EXPOSE 4000 2222
 #CMD yarn run serve:ssr
 #CMD NODE_ENV=production && yarn run serve:ssr
 #CMD ["sh", "-c", "/usr/sbin/sshd && export NODE_ENV=production && node dist/server"]
-ENTRYPOINT ["/bin/sh", "-c", "start.sh"]
+ENTRYPOINT ["/bin/sh", "-c", "/tmp/start.sh"]
