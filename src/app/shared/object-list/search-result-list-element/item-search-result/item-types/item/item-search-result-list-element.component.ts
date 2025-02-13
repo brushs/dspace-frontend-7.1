@@ -82,7 +82,9 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     super.ngOnInit();
     // get random number either 0 or 1
     //translate this template code to component code: (['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)
-    this.descriptionText = this.getDescriptionText(); this.itemPageRoute = getItemPageRoute(this.dso); this.isCollapsed$ = this.isCollapsed();
+    this.descriptionText = this.getDescriptionText();
+    this.itemPageRoute = getItemPageRoute(this.dso);
+    this.isCollapsed$ = this.isCollapsed();
     this.descriptionParagraphId = this.descriptionParagraphId + this.dso.id;
     this.descriptionSpanId = this.descriptionSpanId + this.dso.id;
     this.doi = this.dso.allMetadata('dc.identifier.doi')[0]?.value;
