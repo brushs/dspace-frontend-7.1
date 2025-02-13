@@ -82,9 +82,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     super.ngOnInit();
     // get random number either 0 or 1
     //translate this template code to component code: (['dc.description.abstract', 'dc.description.abstract-fosrctranslation'] | metaTranslate : dso)
-    this.descriptionText = this.getDescriptionText();
-    this.itemPageRoute = getItemPageRoute(this.dso);
-    this.isCollapsed$ = this.isCollapsed();
+    this.descriptionText = this.getDescriptionText(); this.itemPageRoute = getItemPageRoute(this.dso); this.isCollapsed$ = this.isCollapsed();
     this.descriptionParagraphId = this.descriptionParagraphId + this.dso.id;
     this.descriptionSpanId = this.descriptionSpanId + this.dso.id;
     this.doi = this.dso.allMetadata('dc.identifier.doi')[0]?.value;
@@ -102,6 +100,13 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
         // issue 370 end
       } else {
         this.showThumbnails = true;
+        //But fix for SSR: under SSR when search language in admin panel, the code goes this branch instead of line 98
+        //Deal with it by checking if 'language' is in itemPageRoute, if yes then duplicate the case in line 98 while keep the orignal logic
+        let itemPageRoute = this.itemPageRoute;
+        if (itemPageRoute.includes('language')) {
+          this.showThumbnails = false;
+          this.emptyThumbnails = true;
+        }
       }
     } else {
       // issue 349, 360 start
