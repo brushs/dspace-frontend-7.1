@@ -102,12 +102,16 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
         // issue 370 end
       } else {
         this.showThumbnails = true;
-        //But fix for SSR: under SSR when search language in admin panel, the code goes this branch instead of line 98
-        //Deal with it by checking if 'language' is in itemPageRoute, if yes then duplicate the case in line 98 while keep the orignal logic
+        //Bug fix for SSR: under SSR when search language in admin panel, the code goes this branch instead of line 100
+        //Deal with it by checking if 'language' is in itemPageRoute, if yes then duplicate the case in line 100 while keep the orignal logic
         let itemPageRoute = this.itemPageRoute;
-        if (itemPageRoute.includes('language')) {
-          this.showThumbnails = false;
-          this.emptyThumbnails = true;
+        let  fieldForCheck = ['language','publisher', 'serial', 'country','province','sponsor', 'division','corporateauthor'];
+        for (let i = 0; i < fieldForCheck.length; i++) {
+          if (itemPageRoute.includes(fieldForCheck[i])) {
+            this.showThumbnails = false;
+            this.emptyThumbnails = true;
+            break;
+          }
         }
       }
     } else {
