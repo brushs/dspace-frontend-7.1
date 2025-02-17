@@ -241,6 +241,7 @@ import { OSPRTruncatePipe } from './utils/ospr-truncate';
 import { PageDetailsComponent } from './page-details/page-details.component';
 import { ComcolSearchFilterComponent } from './comcol-search-filter/comcol-search-filter.component';
 import { HelperService } from './utils/helper.service';
+import { SearchSidebarComponentX } from '../../themes/wetoverlay/app/shared/search-sidebar/search-sidebar.component';
 
 /**
  * Declaration needed to make sure all decorator functions are called in time
@@ -387,6 +388,7 @@ const COMPONENTS = [
   BrowseByComponent,
   SearchResultsComponent,
   SearchSidebarComponent,
+  SearchSidebarComponentX,
   SearchSettingsComponent,
   CollectionSearchResultGridElementComponent,
   CommunitySearchResultGridElementComponent,
