@@ -526,8 +526,7 @@ export class AdminSidebarComponent extends MenuComponent implements OnInit {
           visible: authorized,
           model: {
             type: MenuItemType.LINK,
-            //text: 'menu.section.myspace',
-            text: 'myOSTR',
+            text: 'mydspace.breadcrumbs',
             link: '/myfosrc'
           } as LinkMenuItemModel,
           //icon: 'space-shuttle',
