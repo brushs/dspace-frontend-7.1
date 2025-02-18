@@ -519,6 +519,20 @@ export class AdminSidebarComponent extends MenuComponent implements OnInit {
           icon: 'user-check',
           index: 11
         },
+        /* myDSpace */
+        {
+          id: 'mydspace',
+          active: false,
+          visible: authorized,
+          model: {
+            type: MenuItemType.LINK,
+            text: 'mydspace.breadcrumbs',
+            link: '/myfosrc'
+          } as LinkMenuItemModel,
+          //icon: 'space-shuttle',
+          icon: 'rocket',
+          index: 12
+        },
       ];
 
       menuList.forEach((menuSection) => this.menuService.addSection(this.menuID, Object.assign(menuSection, {

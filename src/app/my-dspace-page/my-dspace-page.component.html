@@ -4,7 +4,7 @@
   <h1 id="wb-cont">{{'mydspace.title' | translate}}</h1>
   <!-- addition title into MyOSPR page using h1-->
   <div class="search-page row">
-      <ds-search-sidebar *ngIf="!(isXsOrSm$ | async)" class="col-3 sidebar-md-sticky"
+      <ds-search-sidebar-x *ngIf="!(isXsOrSm$ | async)" class="col-3 sidebar-md-sticky"
                          id="search-sidebar"
                          [configurationList]="(configurationList$ | async)"
                          [resultCount]="(resultsRD$ | async)?.payload.totalElements"
@@ -12,7 +12,8 @@
                          [searchOptions]="(searchOptions$ | async)"
                          [sortOptions]="(sortOptions$ | async)"
                          [refreshFilters]="refreshFilters.asObservable()"
-                         [inPlaceSearch]="inPlaceSearch"></ds-search-sidebar>
+                         [inPlaceSearch]="inPlaceSearch">
+      </ds-search-sidebar-x>
       <div class="col-12 col-md-9">
           <ds-search-form id="search-form"
                           [query]="(searchOptions$ | async)?.query"
