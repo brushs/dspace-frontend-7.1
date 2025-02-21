@@ -38,9 +38,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { UIServerConfig } from './src/config/ui-server-config.interface';
 import * as dotenv from 'dotenv';
 
-// Load environment variables from .env file
-dotenv.config();
-
 // Fix ReferenceError: KeyboardEvent is not defined
 global['KeyboardEvent'] = null;
 global['MouseEvent'] = null;
@@ -82,22 +79,36 @@ export function app() {
    */
   const server = express();
 
+  // Load environment variables from .env file
+  dotenv.config();
+
   /*
    * If production mode is enabled in the environment file:
    * - Enable Angular's production mode
    * - Enable compression for response bodies. See [compression](https://github.com/expressjs/compression)
    */
-  console.log('NODE_ENV:', process.env.NODE_ENV);
+  console.log('Config checks');
+
   console.log('Environment from config is Prod: ' + environment.production);
-  console.log(process.env);
-  console.log("Complete process.env:", JSON.stringify(process.env, null, 2));
+  console.log('Is NODE_ENV undefined?', process.env.NODE_ENV === undefined);
+  console.log('Is NODE_ENV null?', process.env.NODE_ENV === null);
+
   console.log("NODE_ENV directly:", process.env.NODE_ENV);
   console.log("NODE_ENV via Object.assign:", Object.assign({}, process.env).NODE_ENV);
   console.log("NODE_ENV as string:", String(process.env.NODE_ENV))
-  console.log('Is NODE_ENV undefined?', process.env.NODE_ENV === undefined);
-  console.log('Is NODE_ENV null?', process.env.NODE_ENV === null);
-  console.log('Keys in process.env:', Object.keys(process.env)); 
+
+  console.log('Config checks 2');
+  console.log(process.env);
+
+  console.log('Config checks 3');
+  console.log("Complete process.env:", JSON.stringify(process.env, null, 2));
+
+  console.log('Config checks 4');
+  console.log('Keys in process.env:', Object.keys(process.env));
+  
+  console.log('Config checks 5');
   console.log(Object.getOwnPropertyDescriptors(process.env));
+
   if (environment.production) {
     console.warn('Enabling Production mode');
     enableProdMode();
