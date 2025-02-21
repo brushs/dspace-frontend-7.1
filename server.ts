@@ -88,7 +88,11 @@ export function app() {
   console.log("Complete process.env:", JSON.stringify(process.env, null, 2));
   console.log("NODE_ENV directly:", process.env.NODE_ENV);
   console.log("NODE_ENV via Object.assign:", Object.assign({}, process.env).NODE_ENV);
-  console.log("NODE_ENV as string:", String(process.env.NODE_ENV)); 
+  console.log("NODE_ENV as string:", String(process.env.NODE_ENV))
+  console.log('Is NODE_ENV undefined?', process.env.NODE_ENV === undefined);
+  console.log('Is NODE_ENV null?', process.env.NODE_ENV === null);
+  console.log('Keys in process.env:', Object.keys(process.env)); 
+  console.log(Object.getOwnPropertyDescriptors(process.env));
   if (environment.production) {
     console.warn('Enabling Production mode');
     enableProdMode();
