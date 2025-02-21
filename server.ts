@@ -36,6 +36,11 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { hasValue, hasNoValue } from './src/app/shared/empty.util';
 import { APP_BASE_HREF } from '@angular/common';
 import { UIServerConfig } from './src/config/ui-server-config.interface';
+import * as dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
 // Fix ReferenceError: KeyboardEvent is not defined
 global['KeyboardEvent'] = null;
 global['MouseEvent'] = null;
