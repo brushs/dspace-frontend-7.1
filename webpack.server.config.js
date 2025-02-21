@@ -50,6 +50,12 @@ module.exports = {
       /(.+)?express(\\|\/)(.+)?/,
       path.join(__dirname, 'src'),
       {}
-    )
+    ),
+    new webpack.EnvironmentPlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+        AOT: true
+      }
+    })
   ]
 };

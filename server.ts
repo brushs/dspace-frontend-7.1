@@ -85,6 +85,10 @@ export function app() {
   console.log('NODE_ENV:', process.env.NODE_ENV);
   console.log('Environment from config is Prod: ' + environment.production);
   console.log(process.env);
+  console.log("Complete process.env:", JSON.stringify(process.env, null, 2));
+  console.log("NODE_ENV directly:", process.env.NODE_ENV);
+  console.log("NODE_ENV via Object.assign:", Object.assign({}, process.env).NODE_ENV);
+  console.log("NODE_ENV as string:", String(process.env.NODE_ENV)); 
   if (environment.production) {
     console.warn('Enabling Production mode');
     enableProdMode();
