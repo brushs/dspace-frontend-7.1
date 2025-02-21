@@ -8,4 +8,4 @@ echo "Starting SSH daemon..."
 
 echo "Starting Node.js server..."
 #exec node /app/dist/server
-exec pm2 start /app/dist/server -i max
+exec pm2-runtime /app/dist/server -i max --no-daemon
