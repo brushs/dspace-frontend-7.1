@@ -36,7 +36,6 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { hasValue, hasNoValue } from './src/app/shared/empty.util';
 import { APP_BASE_HREF } from '@angular/common';
 import { UIServerConfig } from './src/config/ui-server-config.interface';
-import * as dotenv from 'dotenv';
 import { isDevMode } from '@angular/core';
 
 // Fix ReferenceError: KeyboardEvent is not defined
@@ -76,20 +75,15 @@ try {
 export function app() {
 
   /*
-   * Create a new express application
-   */
+    * Create a new express application
+    */
   const server = express();
-
-  // Load environment variables from .env file
-  //dotenv.config();
 
   /*
    * If production mode is enabled in the environment file:
    * - Enable Angular's production mode
    * - Enable compression for response bodies. See [compression](https://github.com/expressjs/compression)
    */
-  console.log('Config checks');
-
   console.log('Environment from config is Prod: ' + environment.production);
   //console.log('Is NODE_ENV undefined?', process.env.NODE_ENV === undefined);
   //console.log('Is NODE_ENV null?', process.env.NODE_ENV === null);
@@ -111,7 +105,7 @@ export function app() {
   //console.log(Object.getOwnPropertyDescriptors(process.env));
 
   if (environment.production) {
-    console.log("Is Development Mode?", isDevMode());
+    //console.log("Is Development Mode?", isDevMode());
     console.warn('Enabling Production mode');
     enableProdMode();
     console.warn('Production mode enabled');
