@@ -37,6 +37,7 @@ import { hasValue, hasNoValue } from './src/app/shared/empty.util';
 import { APP_BASE_HREF } from '@angular/common';
 import { UIServerConfig } from './src/config/ui-server-config.interface';
 import * as dotenv from 'dotenv';
+import { isDevMode } from '@angular/core';
 
 // Fix ReferenceError: KeyboardEvent is not defined
 global['KeyboardEvent'] = null;
@@ -113,6 +114,7 @@ export function app() {
     console.warn('Enabling Production mode');
     enableProdMode();
     console.warn('Production mode enabled');
+    console.log("Is Development Mode?", isDevMode());
     server.use(compression());
   }
 
@@ -259,7 +261,7 @@ function cacheControl(req, res, next) {
  */
 function serverStarted() {
   const isProd = process.env.NODE_ENV === 'production';
-  if (isProd) {
+  if (!isDevMode()) {
     console.log('Running in Production Mode');
   } else {
     console.log('Running in Development Mode');
