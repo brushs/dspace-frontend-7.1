@@ -180,7 +180,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     End of FOSRC changes */
     const env: string = environment.production ? 'Production' : 'Development';
     const color: string = environment.production ? 'red' : 'green';
-    console.info(`Environment: %c${env}`, `color: ${color}; font-weight: bold;`);
+    //console.info(`Environment: %c${env}`, `color: ${color}; font-weight: bold;`);
     this.dispatchWindowSize(this._window.nativeWindow.innerWidth, this._window.nativeWindow.innerHeight);
   }
 
