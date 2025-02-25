@@ -1,7 +1,8 @@
 
 import {
   ChangeDetectorRef,
-  Component, OnDestroy
+  Component, OnDestroy, Inject,
+  PLATFORM_ID
 } from '@angular/core';
 import { listableObjectComponent } from '../../../../../object-collection/shared/listable-object/listable-object.decorator';
 import { ViewMode } from '../../../../../../core/shared/view-mode.model';
@@ -15,7 +16,11 @@ import { DSONameService } from '../../../../../../core/breadcrumbs/dso-name.serv
 import { TruncatableService } from '../../../../../truncatable/truncatable.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { 
+  CustomNativeWindowService
+} from '../../../../../../core/services/window.service';
 import { Console } from 'console';
+import { isPlatformBrowser } from '@angular/common';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -67,6 +72,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     private changeDetectorRef: ChangeDetectorRef,
     public translate: TranslateService,
     private router: Router,
+    private customNativeWindowService: CustomNativeWindowService,
+    @Inject(PLATFORM_ID) private platformId: any,
     ) {
     super(truncatableService, dsoNameService, localeService);
   }
@@ -127,50 +134,53 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   }
 
   configureObservers() {
-    // manual declaration of ResizeObserver to avoid error (once typescript is updated to at least 4.2, this can be removed )
-    // @ts-ignore
-    this.resizeObserver = new ResizeObserver(_ => {
-        if (this.isCollapsedBool){
-          this.shortenDescriptionText();
-        }
-    });
-    // original observer observes the entire document
-    // due to how the truncatable component works, the description text is not rendered even after ngOnAfterViewInit
-    // original observer will only observe the document until the description text is rendered
-    // then it will disconnect and the resize observer will take over
-    this.originalObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
+    if (isPlatformBrowser(this.platformId)) {
 
-          const element = document.getElementById(this.descriptionParagraphId);
-          if (element && !this.initialShorteningOccurred) {
-            this.initialShorteningOccurred = true;
+      // manual declaration of ResizeObserver to avoid error (once typescript is updated to at least 4.2, this can be removed )
+      // @ts-ignore
+      this.resizeObserver = new ResizeObserver(_ => {
+          if (this.isCollapsedBool){
             this.shortenDescriptionText();
-            // disconnect original observer
-            this.originalObserver.disconnect();
+          }
+      });
+      // original observer observes the entire document
+      // due to how the truncatable component works, the description text is not rendered even after ngOnAfterViewInit
+      // original observer will only observe the document until the description text is rendered
+      // then it will disconnect and the resize observer will take over
+      this.originalObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
 
-            this.resizeObserver.observe(element);
+            const element = document.getElementById(this.descriptionParagraphId);
+            if (element && !this.initialShorteningOccurred) {
+              this.initialShorteningOccurred = true;
+              this.shortenDescriptionText();
+              // disconnect original observer
+              this.originalObserver.disconnect();
+
+              this.resizeObserver.observe(element);
+            }
+          }
+        });
+
+      });
+
+      // Start observing the entire body or some specific element
+      this.originalObserver.observe(document.body, { childList: true, subtree: true });
+
+      this.isCollapsed().subscribe({
+        next: (collapsed: boolean) => {
+          this.isCollapsedBool = collapsed;
+          if (collapsed)
+          {
+            this.shortenDescriptionText();
+          }
+          else {
+            this.expandText();
           }
         }
       });
-
-    });
-
-    // Start observing the entire body or some specific element
-    this.originalObserver.observe(document.body, { childList: true, subtree: true });
-
-    this.isCollapsed().subscribe({
-      next: (collapsed: boolean) => {
-        this.isCollapsedBool = collapsed;
-        if (collapsed)
-        {
-          this.shortenDescriptionText();
-        }
-        else {
-          this.expandText();
-        }
-      }
-    });
+    }
   }
 
   translateMetadata(keys: string | string[], dso: any) {
@@ -244,7 +254,9 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
 
   storeSearchBreadCrumbUrlPath(event: MouseEvent){
     if(event.button === 0 || event.button === 1){
-      localStorage.setItem("previousSearchPageUrlPath", this.router.url);
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem("previousSearchPageUrlPath", this.router.url);
+      }
     }
   }
 
