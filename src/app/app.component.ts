@@ -261,7 +261,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         if(this.translate.currentLang !== this.localeService.getLanguageCodeFromCookie()){
           this.localeService.setCurrentLanguageCode(this.localeService.getLanguageCodeFromCookie());
-          this.localeService.refreshAfterChangeLanguage();
+          if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+              this.localeService.refreshAfterChangeLanguage();
+            });
+          }          
         }
       }
     });
