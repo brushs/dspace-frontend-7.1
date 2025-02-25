@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import {combineLatest, Observable, of as observableOf, ReplaySubject} from 'rxjs';
 import {Breadcrumb} from './breadcrumb/breadcrumb.model';
 import {BreadcrumbOptions} from './breadcrumb/breadcrumb-options.model';
 import {ActivatedRoute, NavigationEnd, provideRoutes, Router} from '@angular/router';
 import {filter, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {hasNoValue, hasValue, isUndefined} from '../shared/empty.util';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class BreadcrumbsService {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    @Inject(PLATFORM_ID) private platformId: any,
   ) {}
 
   /**
@@ -63,8 +65,15 @@ export class BreadcrumbsService {
 
         //if the "fromSearchPage" query parameter exists
         if(queryParameters["fromSearchPage"]){
+
+          let previousSearchPageUrlPath = "";
+
+          if (isPlatformBrowser(this.platformId)) {
+            previousSearchPageUrlPath = localStorage.getItem("previousSearchPageUrlPath");
+          }
+
           //add the search page breadcrumb second from the end
-          breadcrumbs.splice(-1, 0, new Breadcrumb('search.page.breadcrumbs', localStorage.getItem("previousSearchPageUrlPath")));
+          breadcrumbs.splice(-1, 0, new Breadcrumb('search.page.breadcrumbs', previousSearchPageUrlPath));
         }
         
         return breadcrumbs;

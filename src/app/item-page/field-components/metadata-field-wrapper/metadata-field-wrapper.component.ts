@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, NgZone, SimpleChanges, TemplateRef, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { 
+  NativeWindowRef,
+  NativeWindowService
+} from '../../../core/services/window.service';
 
 /**
  * This component renders any content inside this wrapper.
@@ -28,14 +33,18 @@ export class MetadataFieldWrapperComponent {
   noContent = false;
   observer;
 
-  constructor(private cdr: ChangeDetectorRef){}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: any,
+    @Inject(NativeWindowService) protected _window: NativeWindowRef,
+    ){}
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit() {
-    if(this.GcContentRef?.nativeElement) {
-        this.observer = new (window as any).ResizeObserver(() => {
+    if(this.GcContentRef?.nativeElement && isPlatformBrowser(this.platformId)) {
+        this.observer = new (this._window.nativeWindow as any).ResizeObserver(() => {
           this.checkForContent()
         })
       this.observer.observe(this.GcContentRef.nativeElement);

@@ -1,5 +1,21 @@
-import {  Component, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
+import { 
+  Component, 
+  ElementRef, 
+  Input, 
+  // TemplateRef,
+  ViewChild, 
+  PLATFORM_ID, 
+  Inject 
+} from '@angular/core';
 import { TruncatableService } from './truncatable.service';
+import { isPlatformBrowser } from '@angular/common';
+import { 
+  NativeWindowRef,
+  NativeWindowService
+} from '../../core/services/window.service';
+import { 
+  CustomNativeWindowService
+} from '../../core/services/window.service';
 
 @Component({
   selector: 'ds-truncatable',
@@ -40,12 +56,19 @@ export class TruncatableComponent {
 
   toggled = false;
 
+  //input to manually exclude show more button
+  @Input() omitExpandCollapseLink = false;
+
   @ViewChild('innerContent', {static: false}) content: ElementRef;
 
   truncatable = true;
 
-  public constructor(private service: TruncatableService) {
-  }
+  public constructor(
+    private service: TruncatableService,
+    @Inject(PLATFORM_ID) private platformId: any,
+    @Inject(NativeWindowService) protected _window: NativeWindowRef,
+    private customNativeWindowService: CustomNativeWindowService,
+  ) {}
 
   /**
    * Set the initial state
@@ -60,13 +83,20 @@ export class TruncatableComponent {
   }
 
   ngAfterViewInit() {
-    this.observer = new (window as any
-      ).ResizeObserver((a) => {
-      this.truncateElement();
-    });
-    if(this.content?.nativeElement) {
-      this.observer.observe(this.content.nativeElement)
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      this.observer = new (this._window.nativeWindow as any      
+        ).ResizeObserver((a) => {
+        this.truncateElement();
+      });
+      
+      if(this.content?.nativeElement) {
+        this.observer.observe(this.content.nativeElement)
+      }
+
     }
+
   }
 
   public async truncateElement() {
@@ -79,19 +109,13 @@ export class TruncatableComponent {
         let children = entry.querySelectorAll('div.content');
         let requiresTruncate = false;
         for(let entry of children) {
-
+          
           if (entry.children.length > 0) {
 
             // if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
             //   requiresTruncate = true;
             //   break;
             // }
-            if ((entry.children[entry.children.length - 1].firstElementChild === null)) {
-              if ((entry.children[entry.children.length - 1].offsetHeight) > entry.offsetHeight){
-                requiresTruncate = true;
-              }
-              break;
-            }
 
             if ((entry.children[entry.children.length - 1].firstElementChild.offsetHeight) > entry.offsetHeight) {
               requiresTruncate = true;
@@ -137,11 +161,23 @@ export class TruncatableComponent {
   public toggle() {
     this.toggled = true;
     this.service.toggle(this.id);
+    this.setFocus("description-span-" + this.id);
   }
 
   ngOnDestroy() {
     if(this.observer && this.content?.nativeElement) {
       this.observer.unobserve(this.content.nativeElement)
+    }
+  }
+
+  /**
+   * Method to set the focus to an element by its ID
+   * @param elementId The element ID value
+   */
+  setFocus(elementId) {
+    const el = this.customNativeWindowService.nativeDocument.getElementById(elementId);
+    if (el) {
+      el.focus();
     }
   }
 
