@@ -1,19 +1,19 @@
-import { 
-  Component, 
-  ElementRef, 
-  Input, 
+import {
+  Component,
+  ElementRef,
+  Input,
   // TemplateRef,
-  ViewChild, 
-  PLATFORM_ID, 
-  Inject 
+  ViewChild,
+  PLATFORM_ID,
+  Inject
 } from '@angular/core';
 import { TruncatableService } from './truncatable.service';
 import { isPlatformBrowser } from '@angular/common';
-import { 
+import {
   NativeWindowRef,
   NativeWindowService
 } from '../../core/services/window.service';
-import { 
+import {
   CustomNativeWindowService
 } from '../../core/services/window.service';
 
@@ -86,11 +86,11 @@ export class TruncatableComponent {
 
     if (isPlatformBrowser(this.platformId)) {
 
-      this.observer = new (this._window.nativeWindow as any      
+      this.observer = new (this._window.nativeWindow as any
         ).ResizeObserver((a) => {
         this.truncateElement();
       });
-      
+
       if(this.content?.nativeElement) {
         this.observer.observe(this.content.nativeElement)
       }
@@ -109,15 +109,20 @@ export class TruncatableComponent {
         let children = entry.querySelectorAll('div.content');
         let requiresTruncate = false;
         for(let entry of children) {
-          
+
           if (entry.children.length > 0) {
 
             // if ((entry.children[entry.children.length - 1].offsetHeight - 6) > entry.offsetHeight) {
             //   requiresTruncate = true;
             //   break;
             // }
-
-            if ((entry.children[entry.children.length - 1].firstElementChild.offsetHeight) > entry.offsetHeight) {
+            let entryFirstChild = entry.children[entry.children.length - 1];
+            if (entryFirstChild.firstElementChild == null) {
+              if (entryFirstChild.offsetHeight > entry.offsetHeight)
+                requiresTruncate = true;
+              break;
+            }
+            else if ((entryFirstChild.firstElementChild.offsetHeight) > entry.offsetHeight) {
               requiresTruncate = true;
               break;
             }
