@@ -23,9 +23,13 @@ import { followLink } from '../shared/utils/follow-link-config.model';
 import { Item } from '../core/shared/item.model';
 import { PaginationService } from '../core/pagination/pagination.service';
 import { PaginationComponentOptions } from '../shared/pagination/pagination-component-options.model';
-import { AppInjector } from '../app.injector';
+// import { AppInjector } from '../app.injector';
 import { DSONameService } from '../core/breadcrumbs/dso-name.service';
 import { stripOperatorFromFilterValue } from '../shared/search/search.utils';
+// import { 
+//   isPlatformBrowser
+// } from '@angular/common';
+
 @Component({
   selector: 'ds-search',
   styleUrls: ['../../themes/wetoverlay/styles/static-pages.scss', './search.component.scss', ],
@@ -53,7 +57,7 @@ export class SearchComponent implements OnInit {
    * The current available results per page options
    */
   paginationOptions$: Observable<PaginationComponentOptions>
-
+  
   /**
    * The current paginated search options
    */
@@ -120,18 +124,18 @@ export class SearchComponent implements OnInit {
   /* Start FOSRC Changes - 1619 */
   adminSearch: boolean;
   /* End of FOSRC Changes */
-
-  paginationService: PaginationService;
-  dsoNameService: DSONameService;
+  
+  // paginationService: PaginationService;
+  // dsoNameService: DSONameService;
   hasNoValue = hasNoValue;
   stripOperatorFromFilterValue = stripOperatorFromFilterValue
-
+  
   /**
    * Emits the currently active filters
    */
   appliedFilters: Observable<Params>;
   mainSearchValue :string;
-
+ 
   constructor(protected service: SearchService,
               protected sidebarService: SidebarService,
               protected windowService: HostWindowService,
@@ -139,6 +143,8 @@ export class SearchComponent implements OnInit {
               protected routeService: RouteService,
               protected router: Router,
               protected route: ActivatedRoute,
+              protected paginationService: PaginationService,
+              protected dsoNameService: DSONameService
               ) {
     this.isXsOrSm$ = this.windowService.isXsOrSm();
   }
@@ -167,6 +173,9 @@ export class SearchComponent implements OnInit {
         ).pipe(getFirstCompletedRemoteData())
       )
     ).subscribe((results) => {
+
+        const resultCount = results?.payload?.totalElements;
+        this.service.searchResultTotalCount = resultCount;
         this.resultsRD$.next(results);
       });
     this.scopeListRD$ = this.searchConfigService.getCurrentScope('').pipe(
@@ -181,8 +190,10 @@ export class SearchComponent implements OnInit {
     this.sortOptions$ = this.searchConfigService.getConfigurationSortOptionsObservable(searchConfig$);
     this.searchConfigService.initializeSortOptionsFromConfiguration(searchConfig$);
 
-    this.paginationService = AppInjector.get(PaginationService);
-    this.dsoNameService = AppInjector.get(DSONameService);
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.paginationService = AppInjector.get(PaginationService);
+    //   this.dsoNameService = AppInjector.get(DSONameService);
+    // }
 
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
 
@@ -248,11 +259,11 @@ export class SearchComponent implements OnInit {
    */
     surroundStringWithQuotes(input: string): string {
       let result = input;
-
+  
       if (isNotEmpty(result) && !(result.startsWith('\"') && result.endsWith('\"'))) {
         result = `"${result}"`;
       }
-
+  
       return result;
     }
 

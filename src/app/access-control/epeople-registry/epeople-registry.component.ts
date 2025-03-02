@@ -21,6 +21,7 @@ import { RequestService } from '../../core/data/request.service';
 import { PageInfo } from '../../core/shared/page-info.model';
 import { NoContent } from '../../core/shared/NoContent.model';
 import { PaginationService } from '../../core/pagination/pagination.service';
+import { CustomNativeWindowService } from '../../core/services/window.service';
 
 @Component({
   selector: 'ds-epeople-registry',
@@ -93,7 +94,9 @@ export class EPeopleRegistryComponent implements OnInit, OnDestroy {
               private router: Router,
               private modalService: NgbModal,
               private paginationService: PaginationService,
-              public requestService: RequestService) {
+              public requestService: RequestService,
+              private customNativeWindowService: CustomNativeWindowService
+              ) {
     this.currentSearchQuery = '';
     this.currentSearchScope = 'metadata';
     this.searchForm = this.formBuilder.group(({
@@ -273,12 +276,14 @@ export class EPeopleRegistryComponent implements OnInit, OnDestroy {
     //   }
     // })();
 
-    let skipToLinksListEl = (document.querySelector('#wb-tphp') as HTMLElement);
+    let skipToLinksListEl = (this.customNativeWindowService.nativeDocument.querySelector('#wb-tphp') as HTMLElement);
 
     if(skipToLinksListEl) {
       skipToLinksListEl.setAttribute('tabindex', '-1');
       skipToLinksListEl.focus();
-      skipToLinksListEl.scrollIntoView();
+      if(skipToLinksListEl.scrollIntoView){
+        skipToLinksListEl.scrollIntoView();
+      }
       skipToLinksListEl.removeAttribute('tabindex');
     }
 

@@ -114,15 +114,22 @@ export class PaginationService {
    * @param params - The page related params to update in the route
    * @param extraParams - Addition params unrelated to the pagination that need to be added to the route
    * @param retainScrollPosition - Scroll to the pagination component after updating the route instead of the top of the page
+   * @param fragment - Hash value to add to the url
    */
-  updateRoute(paginationId: string, params: {
-    page?: number
-    pageSize?: number
-    sortField?: string
-    sortDirection?: SortDirection
-  }, extraParams?, retainScrollPosition?: boolean) {
+  updateRoute(
+    paginationId: string, 
+    params: {
+      page?: number
+      pageSize?: number
+      sortField?: string
+      sortDirection?: SortDirection
+    }, 
+    extraParams?, 
+    retainScrollPosition?: boolean, 
+    fragment?: string
+  ) {
 
-    this.updateRouteWithUrl(paginationId, [], params, extraParams, retainScrollPosition);
+    this.updateRouteWithUrl(paginationId, [], params, extraParams, retainScrollPosition, fragment);
   }
 
   /**
@@ -132,13 +139,21 @@ export class PaginationService {
    * @param params - The page related params to update in the route
    * @param extraParams - Addition params unrelated to the pagination that need to be added to the route
    * @param retainScrollPosition - Scroll to the pagination component after updating the route instead of the top of the page
+   * @param fragment - Hash value to add to the url
    */
-  updateRouteWithUrl(paginationId: string, url: string[], params: {
-    page?: number
-    pageSize?: number
-    sortField?: string
-    sortDirection?: SortDirection
-  }, extraParams?, retainScrollPosition?: boolean) {
+  updateRouteWithUrl(
+    paginationId: string, 
+    url: string[], 
+    params: {
+      page?: number
+      pageSize?: number
+      sortField?: string
+      sortDirection?: SortDirection
+    }, 
+    extraParams?, 
+    retainScrollPosition?: boolean,
+    fragment?: string
+  ) {
     this.getCurrentRouting(paginationId).subscribe((currentFindListOptions) => {
       const currentParametersWithIdName = this.getParametersWithIdName(paginationId, currentFindListOptions);
       const parametersWithIdName = this.getParametersWithIdName(paginationId, params);
@@ -154,7 +169,8 @@ export class PaginationService {
         } else {
           this.router.navigate(url, {
             queryParams: queryParams,
-            queryParamsHandling: 'merge'
+            queryParamsHandling: 'merge',
+            fragment: fragment
           });
         }
         this.clearParams = {};

@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
@@ -58,6 +58,8 @@ export const LOGOUT_ROUTE = '/logout';
 export const REDIRECT_COOKIE = 'dsRedirectUrl';
 export const IMPERSONATING_COOKIE = 'dsImpersonatingEPerson';
 
+import { isPlatformBrowser } from '@angular/common';
+
 /**
  * The auth service.
  */
@@ -86,7 +88,8 @@ export class AuthService {
               protected store: Store<AppState>,
               protected hardRedirectService: HardRedirectService,
               private notificationService: NotificationsService,
-              private translateService: TranslateService
+              private translateService: TranslateService,
+              @Inject(PLATFORM_ID) private platformId: any,
   ) {
     this.store.pipe(
       select(isAuthenticated),
@@ -130,17 +133,7 @@ export class AuthService {
     options.headers = headers;
     options.withCredentials = true;
     return this.authRequestService.getRequest('status', options).pipe(
-      map((rd: RemoteData<AuthStatus>) => {
-        //console.log('**** checkAuthenticationCookie:', rd.payload);
-        // remove duplicated authMethods that the 'authMethodType' field is the same
-        const authMethods = rd.payload.authMethods.filter((authMethod, index, self) =>
-          index === self.findIndex((t) => (
-            t.authMethodType === authMethod.authMethodType
-          ))
-        );
-        rd.payload.authMethods = authMethods;
-        return Object.assign(new AuthStatus(), rd.payload);}
-        )
+      map((rd: RemoteData<AuthStatus>) => Object.assign(new AuthStatus(), rd.payload))
     );
   }
 
@@ -604,12 +597,22 @@ export class AuthService {
   }
 
   setUrlPathPriorToSignIn(newUrl){
-    localStorage.setItem("urlPathPriorToSignIn", newUrl);
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("urlPathPriorToSignIn", newUrl);
+    }
 
   }
 
   getUrlPathPriorToSignIn(){
-    return localStorage.getItem("urlPathPriorToSignIn") ? localStorage.getItem("urlPathPriorToSignIn") : "";
+
+    let urlPathPriorToSignIn = "";
+
+    if (isPlatformBrowser(this.platformId)) {
+      urlPathPriorToSignIn = localStorage.getItem("urlPathPriorToSignIn") ? localStorage.getItem("urlPathPriorToSignIn") : "";
+    }
+
+    return urlPathPriorToSignIn;
   }
 
 }

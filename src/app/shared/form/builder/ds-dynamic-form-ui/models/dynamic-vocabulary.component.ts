@@ -15,7 +15,7 @@ import { FormFieldMetadataValueObject } from '../../models/form-field-metadata-v
 import { VocabularyEntry } from '../../../../../core/submission/vocabularies/models/vocabulary-entry.model';
 import { DsDynamicInputModel } from './ds-dynamic-input.model';
 import { PageInfo } from '../../../../../core/shared/page-info.model';
-import { AppInjector } from '../../../../../app.injector';
+// import { AppInjector } from '../../../../../app.injector';
 import { TranslateService } from '@ngx-translate/core';
 
 /**
@@ -35,14 +35,20 @@ export abstract class DsDynamicVocabularyComponent extends DynamicFormControlCom
   @Output() abstract focus: EventEmitter<any> = new EventEmitter<any>();
 
   public abstract pageInfo: PageInfo;
-  private translationService; //FOSRC inject this into this file to translate keys
+  // private translationService; //FOSRC inject this into this file to translate keys
 
-  protected constructor(protected vocabularyService: VocabularyService,
-                        protected layoutService: DynamicFormLayoutService,
-                        protected validationService: DynamicFormValidationService
+  protected constructor(
+    protected vocabularyService: VocabularyService,
+    protected layoutService: DynamicFormLayoutService,
+    protected validationService: DynamicFormValidationService,
+    protected translationService: TranslateService
   ) {
     super(layoutService, validationService);
-    this.translationService = AppInjector.get(TranslateService);//FOSRC inject this into this file to translate keys
+
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.translationService = AppInjector.get(TranslateService);//FOSRC inject this into this file to translate keys
+    // }
+    
   }
 
   /**

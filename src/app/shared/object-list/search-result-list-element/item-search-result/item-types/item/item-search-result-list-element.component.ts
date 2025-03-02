@@ -151,7 +151,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
         mutations.forEach((mutation) => {
           if (mutation.type === 'childList') {
 
-            const element = document.getElementById(this.descriptionParagraphId);
+            const element = this.customNativeWindowService.nativeDocument.getElementById(this.descriptionParagraphId);
             if (element && !this.initialShorteningOccurred) {
               this.initialShorteningOccurred = true;
               this.shortenDescriptionText();
@@ -166,7 +166,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
       });
 
       // Start observing the entire body or some specific element
-      this.originalObserver.observe(document.body, { childList: true, subtree: true });
+      this.originalObserver.observe(this.customNativeWindowService.nativeDocument.body, { childList: true, subtree: true });
 
       this.isCollapsed().subscribe({
         next: (collapsed: boolean) => {
@@ -204,10 +204,13 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
 
   shortenDescriptionText(): void {
     // NRC Requirement. Do not want text to be truncated in the middle of a word or if there is a trailing comma
-    const textElement = document.getElementById(this.descriptionSpanId);
+    const textElement = this.customNativeWindowService.nativeDocument.getElementById(this.descriptionSpanId);
+
     //Called before textElement rendered?
-    if (!textElement || this.descriptionText == null)
+    if (!textElement || this.descriptionText == null) {
       return;
+    }
+      
     //TODO: update this to translated metadata
     let originalText = this.descriptionText;
     let words = originalText.split(' ');
@@ -247,7 +250,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   }
 
   expandText(): void {
-    const textElement = document.getElementById(this.descriptionSpanId);
+    const textElement = this.customNativeWindowService.nativeDocument.getElementById(this.descriptionSpanId);
     if (textElement && this.descriptionText != null)
       textElement.innerHTML = this.descriptionText;
   }

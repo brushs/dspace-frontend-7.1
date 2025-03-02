@@ -17,6 +17,10 @@ export interface  BrowseByTypeConfig extends Config {
   type: BrowseByType | string;
 
   /**
+   * If set, will only display if selected language matches
+   */
+  displayOnlyOnLang?: string;
+  /**
    * The metadata field to use for rendering starts-with options (only necessary when type is set to BrowseByType.Date)
    */
   metadataField?: string;

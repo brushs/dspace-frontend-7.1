@@ -204,7 +204,7 @@ export class LocaleService {
     this.routeService.getCurrentUrl().pipe(
       take(1), 
       tap(() => {
-        window.location.reload();
+        this._window.nativeWindow.location.reload();
       })
     ).subscribe((currentURL) => {
       // Hard redirect to the reload page with a unique number behind it

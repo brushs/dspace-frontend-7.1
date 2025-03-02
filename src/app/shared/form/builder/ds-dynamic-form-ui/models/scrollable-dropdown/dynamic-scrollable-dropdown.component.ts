@@ -18,6 +18,8 @@ import {
 } from '../../../../../../core/data/paginated-list.model';
 import { DsDynamicVocabularyComponent } from '../dynamic-vocabulary.component';
 import { FormFieldMetadataValueObject } from '../../../models/form-field-metadata-value.model';
+import { TranslateService } from '@ngx-translate/core';
+import { ItemDataService } from '../../../../../../core/data/item-data.service';
 
 /**
  * Component representing a dropdown input field
@@ -45,9 +47,12 @@ export class DsDynamicScrollableDropdownComponent extends DsDynamicVocabularyCom
   constructor(protected vocabularyService: VocabularyService,
               protected cdr: ChangeDetectorRef,
               protected layoutService: DynamicFormLayoutService,
-              protected validationService: DynamicFormValidationService
+              protected validationService: DynamicFormValidationService,
+              protected translationService: TranslateService,
+              private Item: ItemDataService
+          
   ) {
-    super(vocabularyService, layoutService, validationService);
+    super(vocabularyService, layoutService, validationService, translationService);
   }
 
   /**
@@ -141,6 +146,9 @@ export class DsDynamicScrollableDropdownComponent extends DsDynamicVocabularyCom
     this.dispatchUpdate(event);
     this.setCurrentIndex(event);
     this.setCurrentValue(event);
+    if(event.value){
+      this.Item.setPublicationLang(event.value);
+    }
   }
 
   /**

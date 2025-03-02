@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
@@ -40,25 +41,28 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
    * Label i18n key for the rendered metadata
    */
   @Input() label: string;
-  constructor(private localeService: LocaleService) {
+  constructor(private localeService: LocaleService, @Inject(PLATFORM_ID) private platformId: any,) {
     super();
   }
   ngOnInit() {
-    let currLang = this.localeService.getCurrentLanguageCode();
-    var fieldValues = this.item.allMetadata(this.field);
-    if (fieldValues && (fieldValues.length == 0)
-      || (fieldValues.length > 0 && fieldValues[0].value.startsWith("No abstract"))) {
-      this.isHidden = true;
+    if (isPlatformBrowser(this.platformId)) {
+      let currLang = this.localeService.getCurrentLanguageCode();
+      var fieldValues = this.item.allMetadata(this.field);
+      if (fieldValues && (fieldValues.length == 0)
+        || (fieldValues.length > 0 && fieldValues[0].value.startsWith("No abstract"))) {
+        this.isHidden = true;
+      }
+      this.value = fieldValues.filter((value) => value.language === currLang).toString();
+      if (this.value.length == 0) {
+        this.value = this.item.firstMetadataValue(this.field)
+      }
+      if (this.value ) {
+        const splitedValues = this.value.split('\n');
+        const joinedValues = splitedValues.join('<br><br>');
+        this.value = joinedValues;
+      }
+      this.idEx =  this.postfix + this.item.id;
     }
-    this.value = fieldValues.filter((value) => value.language === currLang).toString();
-    if (this.value.length == 0) {
-      this.value = this.item.firstMetadataValue(this.field)
-    }
-    if (this.value ) {
-      const splitedValues = this.value.split('\n');
-      const joinedValues = splitedValues.join('<br><br>');
-      this.value = joinedValues;
-    }
-    this.idEx =  this.postfix + this.item.id;
+    
   }
 }
