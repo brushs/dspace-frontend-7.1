@@ -45,24 +45,24 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
     super();
   }
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      let currLang = this.localeService.getCurrentLanguageCode();
-      var fieldValues = this.item.allMetadata(this.field);
-      if (fieldValues && (fieldValues.length == 0)
-        || (fieldValues.length > 0 && fieldValues[0].value.startsWith("No abstract"))) {
-        this.isHidden = true;
-      }
-      this.value = fieldValues.filter((value) => value.language === currLang).toString();
-      if (this.value.length == 0) {
-        this.value = this.item.firstMetadataValue(this.field)
-      }
-      if (this.value ) {
-        const splitedValues = this.value.split('\n');
-        const joinedValues = splitedValues.join('<br><br>');
-        this.value = joinedValues;
-      }
-      this.idEx =  this.postfix + this.item.id;
+    let currLang = this.localeService.getCurrentLanguageCode();
+    var fieldValues = this.item.allMetadata(this.field);
+    if (fieldValues && (fieldValues.length == 0)
+      || (fieldValues.length > 0 && fieldValues[0].value.startsWith("No abstract"))) {
+      this.isHidden = true;
     }
-    
+    if (fieldValues.length == 0) {
+      this.value = this.item.firstMetadataValue(this.field)
+    }
+    else {
+      let fieldValuesLang = fieldValues.filter((value) => value.language === currLang);
+      this.value = fieldValuesLang[0].value;
+    }
+    if (this.value ) {
+      const splitedValues = this.value.split('\n');
+      const joinedValues = splitedValues.join('<br><br>');
+      this.value = joinedValues;
+    }
+    this.idEx =  this.postfix + this.item.id;
   }
 }

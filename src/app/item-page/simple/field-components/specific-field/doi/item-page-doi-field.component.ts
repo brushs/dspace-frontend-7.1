@@ -30,6 +30,10 @@ export class ItemPageDoiFieldComponent extends ItemPageFieldComponent {
     fields: string[] = [
         'dc.identifier.doi'
     ];
+    /**
+     * doi the value to render directly
+     */
+    doi: string = '';
 
     isHidden = false;
 
@@ -39,10 +43,12 @@ export class ItemPageDoiFieldComponent extends ItemPageFieldComponent {
     label = 'DOI';
     //label = 'item.page.doi';
     ngOnInit() {
-      var doi = this.item.allMetadata(this.fields);
-      if (doi && doi.length == 0) {
-        this.isHidden = true;
-      }
+      var doiObj = this.item.allMetadata(this.fields);
+      if (doiObj)
+        if (doiObj.length == 0)
+          this.isHidden = true;
+        else
+          this.doi = doiObj[0].value;
 
     }
 }
