@@ -100,15 +100,12 @@ export class TruncatableComponent {
   }
 
   public async truncateElement() {
-
-    if (isPlatformBrowser(this.platformId)) {
-
-      if (this.useShowMore) {
-        if(this.toggled) {
-          this.toggled = true;
-          return;
-        }
-        const entry = this.content.nativeElement;
+    if (this.useShowMore) {
+      if(this.toggled) {
+        this.toggled = true;
+        return;
+      }
+      const entry = this.content.nativeElement;
         let children = entry.querySelectorAll('div.content');
         let requiresTruncate = false;
         for(let entry of children) {
@@ -130,10 +127,6 @@ export class TruncatableComponent {
               break;
             }
 
-            }
-
-            
-
           } else {
             if (entry.innerText.length > 0) {
               requiresTruncate = true;
@@ -146,7 +139,6 @@ export class TruncatableComponent {
         if(!this.truncatable) {
           this.service.expand(this.id);
         }
-      }
     }
   }
 
