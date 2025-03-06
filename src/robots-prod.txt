@@ -10,6 +10,7 @@ Sitemap: /sitemap_index.html
 User-agent: *
 # Disable access to Discovery search and filters; admin pages; processes; submission; workspace; workflow & profile page
 Disallow: /search
+Disallow: /advanced-search
 Disallow: /admin/*
 Disallow: /processes
 Disallow: /submit
