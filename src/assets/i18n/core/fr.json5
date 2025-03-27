@@ -2173,7 +2173,7 @@
   // "cookies.consent.update": "Changes have been made since your last visit. Please update your consent.",
   "cookies.consent.update": "Il y a eu des changements depuis votre dernière visite, veuillez mettre à jour votre consentement.",
   // "curation.form.handle.hint": "Tip: Enter [your-handle-prefix]/0 to run a task across entire site (not all tasks may support this capability).",
-  "curation.form.handle.hint": "Aide : Entrer [votre-préfixe-handle]/0 afin de lancer une tâche de conservation sur l'entièreté du site (ceci peut ne pas être supporté pour toutes les tâches)",
+  "curation.form.handle.hint": "Saisir la valeur de la poignée d'enregistrement (ex. 1845/123456) pour exécuter une tâche sur l'ensemble du site (toutes les tâches ne prennent pas nécessairement en charge cette capacité).",
   // "curation.form.handle.label": "Handle:",
   "curation.form.handle.label": "Mot-clé :",
   // "curation.form.submit": "Start",

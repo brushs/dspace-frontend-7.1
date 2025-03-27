@@ -1213,7 +1213,7 @@
   "cookies.consent.purpose.functional": "Functional",
   "cookies.consent.purpose.statistical": "Statistical",
   "cookies.consent.update": "Changes have been made since your last visit. Please update your consent.",
-  "curation.form.handle.hint": "Tip: Enter [your-handle-prefix]/0 to run a task across entire site (not all tasks may support this capability).",
+  "curation.form.handle.hint": "Enter record handle value (ex. 1845/123456) to run a task across entire site (not all tasks may support this capability).",
   "curation.form.handle.label": "Handle:",
   "curation.form.submit": "Start",
   "curation.form.submit.error.content": "An error occured during an attempt to start the curation task.",
