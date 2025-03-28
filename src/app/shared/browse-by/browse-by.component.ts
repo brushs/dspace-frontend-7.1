@@ -12,6 +12,9 @@ import { getStartsWithComponent, StartsWithType } from '../starts-with/starts-wi
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { HelperService } from '../utils/helper.service';
 import { LocaleService } from '../../core/locale/locale.service';
+import { 
+  CustomNativeWindowService
+} from '../../core/services/window.service';
 
 @Component({
   selector: 'ds-browse-by',
@@ -138,7 +141,8 @@ export class BrowseByComponent implements OnInit {
                      public locale: LocaleService,
                      private helperService: HelperService,
                      public route: ActivatedRoute,
-                     private zone: NgZone
+                     private zone: NgZone,
+                     private customNativeWindowService: CustomNativeWindowService,
   ) {
   }
 
@@ -164,7 +168,7 @@ export class BrowseByComponent implements OnInit {
       if(selector) {
         this.helperService.setFocusElement(null);
         let intervalID = setInterval( () => {
-            let el: HTMLElement = document.querySelector(selector);
+            let el: HTMLElement = this.customNativeWindowService.nativeDocument.querySelector(selector);
             if(el) {
               el.focus();
               clearInterval(intervalID)
@@ -224,13 +228,13 @@ export class BrowseByComponent implements OnInit {
    * @param {Event} event Change event containing the sort direction and sort field
    */
    reloadOrder(event: Event) {
-    this.helperService.setFocusElement('#'+document.activeElement.id)
+    // this.helperService.setFocusElement('#'+this.customNativeWindowService.nativeDocument.activeElement.id)
     const values = (event.target as HTMLInputElement).value.split(',');
     this.paginationService.updateRoute(this.paginationConfig.id, {
       sortField: values[0],
       sortDirection: values[1] as SortDirection,
       page: 1
-    });
+    }, {}, false, "searchResultPageDetails");
   }
 
   /**
@@ -238,8 +242,10 @@ export class BrowseByComponent implements OnInit {
    * @param {Event} event Change event containing the new page size value
    */
    reloadRPP(event: Event) {
-    this.helperService.setFocusElement('#'+document.activeElement.id)
+    // this.helperService.setFocusElement('#'+this.customNativeWindowService.nativeDocument.activeElement.id)
     const size = (event.target as HTMLInputElement).value;
-    this.paginationService.updateRoute(this.paginationConfig.id,{page: 1, pageSize: +size});
+    this.paginationService.updateRoute(this.paginationConfig.id,{page: 1, pageSize: +size}, {}, false, "searchResultPageDetails");
+    
   }
+
 }

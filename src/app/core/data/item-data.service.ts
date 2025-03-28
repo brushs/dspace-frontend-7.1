@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, find, map, switchMap, take } from 'rxjs/operators';
 import { hasValue, isNotEmpty, isNotEmptyOperator } from '../../shared/empty.util';
 import { NotificationsService } from '../../shared/notifications/notifications.service';
@@ -39,6 +39,9 @@ import { StatusCodeOnlyResponseParsingService } from './status-code-only-respons
 @dataService(ITEM)
 export class ItemDataService extends DataService<Item> {
   protected linkPath = 'items';
+
+  private selectedLanguageSubject = new BehaviorSubject<string>(null);
+  selectedLanguage$ = this.selectedLanguageSubject.asObservable();
 
   constructor(
     protected requestService: RequestService,
@@ -286,5 +289,9 @@ export class ItemDataService extends DataService<Item> {
     return this.halService.getEndpoint(this.linkPath).pipe(
       switchMap((url: string) => this.halService.getEndpoint('bitstreams', `${url}/${itemId}`))
     );
+  }
+ 
+  public setPublicationLang(language: string) {
+    this.selectedLanguageSubject.next(language);
   }
 }

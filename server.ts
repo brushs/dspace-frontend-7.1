@@ -36,6 +36,8 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { hasValue, hasNoValue } from './src/app/shared/empty.util';
 import { APP_BASE_HREF } from '@angular/common';
 import { UIServerConfig } from './src/config/ui-server-config.interface';
+import { isDevMode } from '@angular/core';
+
 // Fix ReferenceError: KeyboardEvent is not defined
 global['KeyboardEvent'] = null;
 global['MouseEvent'] = null;
@@ -73,18 +75,22 @@ try {
 export function app() {
 
   /*
-   * Create a new express application
-   */
+    * Create a new express application
+    */
   const server = express();
-
 
   /*
    * If production mode is enabled in the environment file:
    * - Enable Angular's production mode
    * - Enable compression for response bodies. See [compression](https://github.com/expressjs/compression)
    */
+  console.log('Environment from config is Prod: ' + environment.production);
+
   if (environment.production) {
+    //console.log("Is Development Mode?", isDevMode());
+    console.warn('Enabling Production mode');
     enableProdMode();
+    console.warn('Production mode enabled');
     server.use(compression());
   }
 
@@ -230,6 +236,12 @@ function cacheControl(req, res, next) {
  * Callback function for when the server has started
  */
 function serverStarted() {
+  //const isProd = process.env.NODE_ENV === 'production';
+  if (!isDevMode()) {
+    console.log('Running in Production Mode');
+  } else {
+    console.log('Running in Development Mode');
+  }
   console.log(`[${new Date().toTimeString()}] Listening at ${environment.ui.baseUrl}`);
 }
 

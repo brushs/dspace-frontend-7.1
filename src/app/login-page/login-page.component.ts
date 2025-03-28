@@ -15,7 +15,7 @@ import {
 import { hasValue, isNotEmpty } from '../shared/empty.util';
 import { AuthTokenInfo } from '../core/auth/models/auth-token-info.model';
 import { isAuthenticated } from '../core/auth/selectors';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 
 /**

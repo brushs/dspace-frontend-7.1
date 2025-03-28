@@ -4,6 +4,7 @@
 
 trigger:
 - ostr-prod
+- ssr-prod
 
 resources:
 - repo: self

@@ -19,6 +19,7 @@ import {
 } from '../../../../../../core/data/paginated-list.model';
 import { getFirstSucceededRemoteDataPayload } from '../../../../../../core/shared/operators';
 import { DsDynamicVocabularyComponent } from '../dynamic-vocabulary.component';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Component representing a lookup or lookup-name input field
@@ -49,9 +50,10 @@ export class DsDynamicLookupComponent extends DsDynamicVocabularyComponent imple
   constructor(protected vocabularyService: VocabularyService,
               private cdr: ChangeDetectorRef,
               protected layoutService: DynamicFormLayoutService,
-              protected validationService: DynamicFormValidationService
+              protected validationService: DynamicFormValidationService,
+              protected translationService: TranslateService
   ) {
-    super(vocabularyService, layoutService, validationService);
+    super(vocabularyService, layoutService, validationService, translationService);
   }
 
   /**

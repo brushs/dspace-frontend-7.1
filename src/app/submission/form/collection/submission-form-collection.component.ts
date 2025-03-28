@@ -7,7 +7,9 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  Renderer2,
+  Inject
 } from '@angular/core';
 
 import { BehaviorSubject, Observable, of as observableOf, Subscription } from 'rxjs';
@@ -29,6 +31,12 @@ import { CollectionDropdownComponent } from '../../../shared/collection-dropdown
 import { SectionsService } from '../../sections/sections.service';
 import { getFirstSucceededRemoteDataPayload } from '../../../core/shared/operators';
 import { SectionsType } from '../../sections/sections-type';
+
+import { DOCUMENT } from '@angular/common';
+
+import { 
+  CustomNativeWindowService
+} from '../../../core/services/window.service';
 
 /**
  * This component allows to show the current collection the submission belonging to and to change it.
@@ -120,7 +128,11 @@ export class SubmissionFormCollectionComponent implements OnChanges, OnInit {
               private operationsBuilder: JsonPatchOperationsBuilder,
               private operationsService: SubmissionJsonPatchOperationsService,
               private submissionService: SubmissionService,
-              private sectionsService: SectionsService) {
+              private sectionsService: SectionsService,
+              private renderer2: Renderer2,
+              // @Inject(DOCUMENT) private document: any,
+              private customNativeWindowService: CustomNativeWindowService,
+              ) {
   }
 
   /**
@@ -201,5 +213,22 @@ export class SubmissionFormCollectionComponent implements OnChanges, OnInit {
     if (!isOpen) {
       this.collectionDropdown.reset();
     }
+  }
+
+  setZIndexes(){
+    this.renderer2.setStyle(this.customNativeWindowService.nativeDocument.querySelector("div.submission-form-header"), "z-index", "2000");
+    this.renderer2.setStyle(this.customNativeWindowService.nativeDocument.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "0");
+    this.renderer2.setStyle(this.customNativeWindowService.nativeDocument.querySelector("#wb-info"), "z-index", "0");
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * Method to reset z-index values for several elements
+   */
+  resetZIndexes(){
+    this.renderer2.setStyle(this.customNativeWindowService.nativeDocument.querySelector("div.submission-form-header"), "z-index", "auto");
+    this.renderer2.setStyle(this.customNativeWindowService.nativeDocument.querySelector("ds-themed-header-navbar-wrapper"), "z-index", "10");
+    this.renderer2.setStyle(this.customNativeWindowService.nativeDocument.querySelector("#wb-info"), "z-index", "5");
+    this.cdr.detectChanges();
   }
 }

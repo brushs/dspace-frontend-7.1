@@ -9,7 +9,10 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChildren, 
+  AfterViewInit, 
+  QueryList
 } from '@angular/core';
 
 import { Observable, of as observableOf, Subscription } from 'rxjs';
@@ -22,6 +25,10 @@ import { hasValue } from '../empty.util';
 import { PageInfo } from '../../core/shared/page-info.model';
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { map } from 'rxjs/operators';
+import { 
+  CustomNativeWindowService
+} from '../../core/services/window.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**
  * The default pagination controls component.
@@ -34,7 +41,11 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.Emulated
 })
-export class PaginationComponent implements OnDestroy, OnInit {
+export class PaginationComponent implements OnDestroy, OnInit, AfterViewInit {
+
+  @ViewChildren("searchResultPageDetails") searchResultPageDetails: QueryList<ElementRef>;
+  @ViewChildren('pageLink', { read: ElementRef }) pageLinks: QueryList<ElementRef>;
+
   /**
    * Number of items in collection.
    */
@@ -211,6 +222,27 @@ export class PaginationComponent implements OnDestroy, OnInit {
       .forEach((sub) => sub.unsubscribe());
   }
 
+  ngAfterViewInit() {
+    this.setFocus();
+    this.searchResultPageDetails.changes.subscribe(() => {
+      this.setFocus();
+    });
+    setTimeout(() => {
+      this.updateHrefAttributes();
+    });
+  }
+
+  setFocus() {
+    setTimeout(() => {
+      if (
+        this.searchResultPageDetails.length > 0 
+        && this.customNativeWindowService.nativeWindow?.location?.hash === "#searchResultPageDetails"
+      ) {
+        this.searchResultPageDetails.first.nativeElement.focus();
+      }
+    }, 500);
+  }
+
   /**
    * Initializes all default variables
    */
@@ -251,7 +283,10 @@ export class PaginationComponent implements OnDestroy, OnInit {
    */
   constructor(private cdRef: ChangeDetectorRef,
               private paginationService: PaginationService,
-              public hostWindowService: HostWindowService) {
+              public hostWindowService: HostWindowService,
+              private customNativeWindowService: CustomNativeWindowService,
+              private router: Router, private route: ActivatedRoute
+              ) {
   }
 
   /**
@@ -313,6 +348,36 @@ export class PaginationComponent implements OnDestroy, OnInit {
     this.paginationService.updateRoute(this.id, params, {}, this.retainScrollPosition);
   }
 
+  updateHrefAttributes() {
+    this.pageLinks.forEach(pageLink => {
+      const pageNumber = pageLink.nativeElement.getAttribute('data-pageNumber');
+      if (pageNumber) {
+        // Finding the anchor element
+        const anchorElement = pageLink.nativeElement.closest('.page-link');
+        if (anchorElement) {
+          const url = this.updateRouteWithPageNumber(+pageNumber);
+          if (url) {
+            anchorElement.href = url;
+          }
+        }
+      }
+    });
+  }
+
+  updateRouteWithPageNumber(pageNumber: number): string {
+    const queryParams = { ...this.route.snapshot.queryParams };
+    let updatedUrl = '';
+    if ('spc.page' in queryParams) {
+      queryParams['spc.page'] = pageNumber;
+      updatedUrl = this.router.createUrlTree([], { queryParams }).toString();
+    }
+    else if ('bbm.page' in queryParams) {
+      queryParams['bbm.page'] = pageNumber;
+      updatedUrl = this.router.createUrlTree([], { queryParams }).toString();
+    }
+
+    return updatedUrl;
+  }
   /**
    * Method to get pagination details of the current viewed page.
    */
@@ -354,6 +419,7 @@ export class PaginationComponent implements OnDestroy, OnInit {
     }
   }
 
+ 
   /**
    * Property to check whether the current pagination object has multiple pages
    * @returns true if there are multiple pages, else returns false

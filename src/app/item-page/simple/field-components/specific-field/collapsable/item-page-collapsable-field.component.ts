@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Item } from '../../../../../core/shared/item.model';
 import { ItemPageFieldComponent } from '../item-page-field.component';
@@ -40,7 +41,7 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
    * Label i18n key for the rendered metadata
    */
   @Input() label: string;
-  constructor(private localeService: LocaleService) {
+  constructor(private localeService: LocaleService, @Inject(PLATFORM_ID) private platformId: any,) {
     super();
   }
   ngOnInit() {
@@ -50,9 +51,12 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
       || (fieldValues.length > 0 && fieldValues[0].value.startsWith("No abstract"))) {
       this.isHidden = true;
     }
-    this.value = fieldValues.filter((value) => value.language === currLang).toString();
-    if (this.value.length == 0) {
+    if (fieldValues.length == 0) {
       this.value = this.item.firstMetadataValue(this.field)
+    }
+    else {
+      let fieldValuesLang = fieldValues.filter((value) => value.language === currLang);
+      this.value = fieldValuesLang[0].value;
     }
     if (this.value ) {
       const splitedValues = this.value.split('\n');

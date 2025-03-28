@@ -153,7 +153,7 @@ export class WelcomePageComponent implements OnInit {
     this.renderer2.appendChild(this.document.head, noScript);
     this.renderer2.appendChild(noScript, link5);
 
-    console.log('All links loaded.');
+    //console.log('All links loaded.');
 
   }
 

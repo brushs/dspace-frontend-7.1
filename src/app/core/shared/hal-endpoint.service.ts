@@ -10,13 +10,17 @@ import { getFirstCompletedRemoteData } from './operators';
 import { RemoteDataBuildService } from '../cache/builders/remote-data-build.service';
 import { RemoteData } from '../data/remote-data';
 import { UnCacheableObject } from './uncacheable-object.model';
+import { 
+  CustomNativeWindowService
+} from '../../core/services/window.service';
 
 @Injectable()
 export class HALEndpointService {
 
   constructor(
     private requestService: RequestService,
-    private rdbService: RemoteDataBuildService
+    private rdbService: RemoteDataBuildService,
+    private customNativeWindowService: CustomNativeWindowService,
 ) {
   }
 
@@ -29,16 +33,29 @@ export class HALEndpointService {
   }
 
   private getEndpointMapAt(href): Observable<EndpointMap> {
+    var beforeUrl = href;
+    href = href.replace(":3500", "");
+    href = href.replace("https://127.0.0.1:4000/server/api", "http://127.0.0.1:8080/server/api");
+    href = href.replace("https://localhost:4000/server/api", "http://localhost:8080/server/api");
+    href = href.replace("https://0.0.0.0:4000/server/api", "http://0.0.0.0:8080/server/api");
+    href = href.replace("https://10.153.197.23:4000/server/api", "http://10.153.170.38:8080/server/api");
+    var afterUrl = href;
+    if(beforeUrl != afterUrl) {
+      console.log('before href: ', beforeUrl);
+      console.log('after href: ', afterUrl);
+    }
     const request = new EndpointMapRequest(this.requestService.generateRequestId(), href);
-
+    //console.log("request: ", request);
+    
     this.requestService.send(request, true);
-
     return this.rdbService.buildFromHref<UnCacheableObject>(href).pipe(
       getFirstCompletedRemoteData(),
-      map((response: RemoteData<UnCacheableObject>) => {
+      map((response: RemoteData<UnCacheableObject> | UnCacheableObject) => {
         if (hasValue(response.payload)) {
           return response.payload._links;
-        } else {
+        } else if(hasValue(response["_links"])){
+          return response["_links"];
+        }else {
           console.warn(`No _links section found at ${href}`);
           return undefined;
         }
@@ -59,7 +76,7 @@ export class HALEndpointService {
    */
   private getEndpointAt(href: string, ...halNames: string[]): Observable<string> {
     if (isEmpty(halNames)) {
-      throw new Error('cant\'t fetch the URL without the HAL link names');
+      console.error('Can not fetch the URL without the HAL link names');
     }
 
     const nextHref$ = this.getEndpointMapAt(href).pipe(
@@ -68,7 +85,7 @@ export class HALEndpointService {
         if (hasValue(endpointMap) && hasValue(endpointMap[nextName])) {
           return endpointMap[nextName].href;
         } else {
-          throw new Error(`${JSON.stringify(endpointMap)} doesn't contain the link ${nextName}`);
+          console.error(`${JSON.stringify(endpointMap)} does not contain the link ${nextName}`);
         }
       })
     ) as Observable<string>;

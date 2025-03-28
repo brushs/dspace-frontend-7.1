@@ -10,9 +10,7 @@ import { DSpaceObject } from '../shared/dspace-object.model';
 import { ChildHALResource } from '../shared/child-hal-resource.model';
 import { FollowLinkConfig } from '../../shared/utils/follow-link-config.model';
 import { hasValue } from '../../shared/empty.util';
-import { LocaleService } from '../locale/locale.service';
 import { TranslateService } from '@ngx-translate/core';
-import { AppInjector } from '../../app.injector';
 
 /**
  * The class that resolves the BreadcrumbConfig object for a DSpaceObject
@@ -21,9 +19,7 @@ import { AppInjector } from '../../app.injector';
   providedIn: 'root'
 })
 export abstract class DSOBreadcrumbResolver<T extends ChildHALResource & DSpaceObject> implements Resolve<BreadcrumbConfig<T>> {
-  private translate;
-  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: DataService<T>) {
-    this.translate = AppInjector.get(TranslateService);
+  constructor(protected breadcrumbService: DSOBreadcrumbsService, protected dataService: DataService<T>, protected translate: TranslateService ) {
   }
 
   /**

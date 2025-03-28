@@ -32,20 +32,26 @@ import { dateToString, isNgbDateStruct } from '../../date.util';
 import { DYNAMIC_FORM_CONTROL_TYPE_RELATION_GROUP } from './ds-dynamic-form-ui/ds-dynamic-form-constants';
 import { CONCAT_GROUP_SUFFIX, DynamicConcatModel } from './ds-dynamic-form-ui/models/ds-dynamic-concat.model';
 import { VIRTUAL_METADATA_PREFIX } from '../../../core/shared/metadata.models';
-import { AppInjector } from '../../../app.injector';
+// import { AppInjector } from '../../../app.injector';
 import { TranslateService } from '@ngx-translate/core';
 import { VocabularyEntry } from '../../../core/submission/vocabularies/models/vocabulary-entry.model';
 
 @Injectable()
 export class FormBuilderService extends DynamicFormService {
-  private translationService; //FOSRC inject this into this file to translate keys
+  // private translationService; //FOSRC inject this into this file to translate keys
   constructor(
     componentService: DynamicFormComponentService,
     validationService: DynamicFormValidationService,
-    protected rowParser: RowParser
+    protected rowParser: RowParser,
+    protected translationService: TranslateService
   ) {
+
     super(componentService, validationService);
-    this.translationService = AppInjector.get(TranslateService);//FOSRC inject this into this file to translate keys
+
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.translationService = AppInjector.get(TranslateService);//FOSRC inject this into this file to translate keys
+    // }
+    
   }
 
   findById(id: string, groupModel: DynamicFormControlModel[], arrayIndex = null): DynamicFormControlModel | null {

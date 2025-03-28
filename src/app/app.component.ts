@@ -40,6 +40,11 @@ import { DEFAULT_THEME_CONFIG } from './shared/theme-support/theme.effects';
 import { BreadcrumbsService } from './breadcrumbs/breadcrumbs.service';
 import { IdleModalComponent } from './shared/idle-modal/idle-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
+import {
+  CustomNativeWindowService
+} from './core/services/window.service';
 
 @Component({
   selector: 'ds-app',
@@ -100,10 +105,41 @@ export class AppComponent implements OnInit, AfterViewInit {
     private localeService: LocaleService,
     private breadcrumbsService: BreadcrumbsService,
     private modalService: NgbModal,
+    private http: HttpClient,
+    private location: Location,
     @Optional() private cookiesService: KlaroService,
     @Optional() private googleAnalyticsService: GoogleAnalyticsService,
+    private customNativeWindowService: CustomNativeWindowService,
   ) {
+    /*
+    let maintenanceUrl;
 
+    //the following condition applies when running ONLY the 
+    // frontend application on your local machine
+    if(!environment.isProdEnvironment && environment.rest.ssl){
+
+      maintenanceUrl = `https://${environment.rest.host}/server/api/config/properties/fosrc.isMaintenanceModeOn`;
+
+    //the following condition applies when running ONLY the 
+    // frontend application on a remote server
+    }else if (environment.isProdEnvironment && this.customNativeWindowService.nativeDocument) {
+
+      maintenanceUrl = `https://${this.customNativeWindowService.nativeDocument.location?.host}/server/api/config/properties/fosrc.isMaintenanceModeOn`;
+
+    //the following condition applies when running BOTH the 
+    // frontend application and backend API on your local machine
+    }else {
+
+      maintenanceUrl = `${environment.rest.baseUrl}/api/config/properties/fosrc.isMaintenanceModeOn`;
+
+    };
+
+    this.http.get<{values: Array<string>}>(maintenanceUrl).subscribe( ({values}) => {
+      if(values?.[0] === 'true') {
+        this.router.navigate(['/maintenance']);
+      }
+    })
+      */
     /* Use models object so all decorators are actually called */
     this.models = models;
 
@@ -135,6 +171,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     // set the current language code
     //this.localeService.setCurrentLanguageCode();
 
+    this.loadWelcome$.subscribe((shouldShowWelcome) => {
+
+      if(shouldShowWelcome){
+        //set the splash page title when the splash page appears
+        this.metadata.setSplashPageTitle('Federal Open Science Repository of Canada (FOSRC) / Le Dépôt fédéral de science ouverte du Canada (DFSOC)');
+      }
+      
+    });
+
     // set loadWelcome$ for template, and pass to root.component template to decide loading welcome page.
     let cookieLang = this.localeService.getLanguageCodeFromCookie();
     if (isEmpty(cookieLang)) {
@@ -144,15 +189,12 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.localeService.setCurrentLanguageCode();
     }
 
-
     // analytics
-    //if (hasValue(googleAnalyticsService)) {
-    //  googleAnalyticsService.addTrackingIdToPage();
-    //}
-    //angulartics2DSpace.startTracking();
     const trackingId = environment.production ? 'GTM-KG9WWH6' : 'GTM-MK9H4CK';
-    googleAnalyticsService.addTrackingIdToPageOstr(trackingId);
-
+    if (hasValue(googleAnalyticsService)) {
+      googleAnalyticsService.addTrackingIdToPageOstr(trackingId);
+    }
+    
     metadata.listenForRouteChange();
     breadcrumbsService.listenForRouteChanges();
 
@@ -164,11 +206,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.setLanguageFromQueryParam();
     this.isAuthBlocking$ = this.store.pipe(select(isAuthenticationBlocking)).pipe(
       distinctUntilChanged()
     );
 
-    /* Start FOSRC Changes - 1620
+    /* Start FOSRC Changes - 1620 
     // disable cookie consent klaro service
     this.isAuthBlocking$
       .pipe(
@@ -178,7 +221,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     End of FOSRC changes */
     const env: string = environment.production ? 'Production' : 'Development';
     const color: string = environment.production ? 'red' : 'green';
-    console.info(`Environment: %c${env}`, `color: ${color}; font-weight: bold;`);
+    //console.info(`Environment: %c${env}`, `color: ${color}; font-weight: bold;`);
     this.dispatchWindowSize(this._window.nativeWindow.innerWidth, this._window.nativeWindow.innerHeight);
   }
 
@@ -203,14 +246,12 @@ export class AppComponent implements OnInit, AfterViewInit {
       // More information on this bug-fix: https://blog.angular-university.io/angular-debugging/
       delay(0)
     ).subscribe((event) => {
-
-      if (event instanceof NavigationStart) {
+      if (event instanceof NavigationStart) {   
         this.isRouteLoading$.next(true);
       } else if (
         event instanceof NavigationEnd ||
         event instanceof NavigationCancel
       ) {
-
         this.isRouteLoading$.next(false);
 
         //if the event url does not contain a hash fragment
@@ -218,7 +259,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
           //get the unordered list element containing the skip to links elements in
           // the DOM
-          let skipToLinksListEl = (document.querySelector('#wb-tphp') as HTMLElement);
+          let skipToLinksListEl = (this.document.querySelector('#wb-tphp') as HTMLElement);
 
           //if the unordered list element exists
           if(skipToLinksListEl) {
@@ -230,7 +271,9 @@ export class AppComponent implements OnInit, AfterViewInit {
             skipToLinksListEl.focus();
 
             //scroll the element into view
-            skipToLinksListEl.scrollIntoView();
+            if(skipToLinksListEl.scrollIntoView){
+              skipToLinksListEl.scrollIntoView();
+            }
 
             //remove the tabindex attribute once the focus is set
             skipToLinksListEl.removeAttribute('tabindex');
@@ -239,17 +282,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         //if the URL has query parameters
         if(event.url.includes("?")){
-          let queryParams = this.parseQueryParametersFromUrl(event.url);
-
+          let queryParams = this.parseQueryParametersFromUrl(event.url) ;
           //if the 'useLang' query parameter exists
+          
           if(queryParams["useLang"]){
-            let queryParams = this.parseQueryParametersFromUrl(event.url);
-
+            let language = queryParams["useLang"];
+            // Allows duplicate keys. Required for search page where multiple facet values of the same key (authors, subjects) are possible
+            let searchParams = new URLSearchParams(event.url);
             //remove the 'useLang' query parameter
-            this.router.navigate([this.router.url.split("?")[0]], { queryParams: {...queryParams, useLang: null},
+            this.router.navigate([this.router.url.split("?")[0]], { queryParams: {...searchParams.values(), useLang: null },
             queryParamsHandling: 'merge' })
             .then(() => {
-              this.localeService.setCurrentLanguageCode(queryParams["useLang"]);
+              this.localeService.setCurrentLanguageCode(language);
               this.localeService.refreshAfterChangeLanguage();
             });
           };
@@ -351,6 +395,18 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
     return {};
+    
+  }
 
+  private setLanguageFromQueryParam(): void {
+    const url = this.location.path();
+    if (url.includes("?")) {
+      const queryParams = this.parseQueryParametersFromUrl(url);
+      if (queryParams["useLang"]) {
+        const language = queryParams["useLang"];
+        this.localeService.setCurrentLanguageCode(language);
+      }
+    }
   }
 }
+

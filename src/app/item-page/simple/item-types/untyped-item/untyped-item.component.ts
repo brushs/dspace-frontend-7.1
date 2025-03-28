@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { 
+  ChangeDetectionStrategy, 
+  ChangeDetectorRef, 
+  Component,
+} from '@angular/core';
 import { Item } from '../../../../core/shared/item.model';
 import { ItemComponent } from '../shared/item.component';
 import { ViewMode } from '../../../../core/shared/view-mode.model';
@@ -9,6 +13,9 @@ import { LocaleService } from '../../../../core/locale/locale.service';
 import { RouteService } from '../../../../core/services/route.service';
 import { Router } from '@angular/router';
 import { MetadataTranslatePipe } from '../../../../shared/utils/metadata-translate.pipe';
+import { 
+  CustomNativeWindowService
+} from '../../../../core/services/window.service';
 
 /**
  * Component that represents a publication Item page
@@ -41,7 +48,8 @@ export class UntypedItemComponent extends ItemComponent {
     protected dsoNameService: DSONameService, 
     protected localeService: LocaleService, 
     protected routeService: RouteService, 
-    protected router: Router 
+    protected router: Router,
+    private customNativeWindowService: CustomNativeWindowService,
   ) { 
     super(dsoNameService, localeService,routeService, router);
   }
@@ -128,7 +136,7 @@ export class UntypedItemComponent extends ItemComponent {
   }
 
   public hasBook(): boolean {
-    let languageFields: string[] = ['local.book.series', 'local.book.seriesnum', 'local.book.pagination', 'local.book.edition']
+    let languageFields: string[] = ['local.book.bookvolume','local.book.series', 'local.book.seriesnum', 'local.book.pagination', 'local.book.edition']
     return this.metadataHasOneOfTheseFields(languageFields);
   }
 
@@ -187,14 +195,14 @@ export class UntypedItemComponent extends ItemComponent {
 
   scrollToElement(event: Event, elementId: string): void {
     event.preventDefault(); // Prevent the default navigation
-    const element = document.getElementById(elementId);
+    const element = this.customNativeWindowService.nativeDocument.getElementById(elementId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
   getFullUrl(elementId: string): string {
-   return `${window.location.pathname}#${elementId}`;
+   return `${this.customNativeWindowService.nativeWindow.location?.pathname}#${elementId}`;
   }
   /* End of FOSRC Changes */
 

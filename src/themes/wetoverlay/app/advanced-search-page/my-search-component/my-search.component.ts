@@ -27,10 +27,10 @@ import { PaginationComponentOptions } from '../../../../../app/shared/pagination
 import { AppInjector } from '../../../../../app/app.injector';
 import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.service';
 import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/search.utils';
-import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 import { TranslateService } from '@ngx-translate/core';
 import { SearchFilter } from 'src/app/shared/search/search-filter.model';
+import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 
 @Component({
   selector: 'ds-search',

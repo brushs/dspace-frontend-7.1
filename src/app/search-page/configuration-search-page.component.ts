@@ -16,6 +16,8 @@ import { hasValue } from '../shared/empty.util';
 import { RouteService } from '../core/services/route.service';
 import { SearchService } from '../core/shared/search/search.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaginationService } from '../core/pagination/pagination.service';
+import { DSONameService } from '../core/breadcrumbs/dso-name.service';
 
 /**
  * This component renders a search page using a configuration as input.
@@ -54,8 +56,10 @@ export class ConfigurationSearchPageComponent extends SearchComponent implements
               protected routeService: RouteService,
               protected router: Router,
               protected route: ActivatedRoute,
+              protected paginationService: PaginationService,
+              protected dsoNameService: DSONameService
               ) {
-    super(service, sidebarService, windowService, searchConfigService, routeService, router, route);
+    super(service, sidebarService, windowService, searchConfigService, routeService, router, route, paginationService, dsoNameService);
   }
 
   /**

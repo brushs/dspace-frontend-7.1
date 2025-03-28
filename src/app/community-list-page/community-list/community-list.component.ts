@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { MetadataTranslatePipe } from '../../shared/utils/metadata-translate.pipe';
 import { DSONameService } from '../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../core/locale/locale.service';
+import { CustomNativeWindowService } from '../../core/services/window.service';
 
 /**
  * A tree-structured list of nodes representing the communities, their subCommunities and collections.
@@ -41,7 +42,8 @@ export class CommunityListComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private router: Router,
     private dsoNameService: DSONameService,
-    private localeService: LocaleService
+    private localeService: LocaleService,
+    private customNativeWindowService: CustomNativeWindowService
   ) {
     if (this.translate.currentLang === 'en' && this.router.url.includes('liste-des-communautes')) {
       this.router.navigate(['/community-list'])
@@ -102,7 +104,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
     this.dataSource.loadCommunities(this.paginationConfig, this.expandedNodes);
 
     // OSPR change start
-    setTimeout(() => {document.getElementById("parent-node-" + node.id).focus();}, 1000);
+    setTimeout(() => {this.customNativeWindowService.nativeDocument.getElementById("parent-node-" + node.id).focus();}, 1000);
     // OSPR change end
   }
 
@@ -157,7 +159,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const nodesOpen = this.dataSource.communityList$.getValue();
       nodesOpen.forEach((node) => {
-        const element = (document.getElementById(`detail-parent-node-${node.id}`)) as HTMLElement;
+        const element = (this.customNativeWindowService.nativeDocument.getElementById(`detail-parent-node-${node.id}`)) as HTMLElement;
         if (element) {
           element.removeAttribute('open');
         }

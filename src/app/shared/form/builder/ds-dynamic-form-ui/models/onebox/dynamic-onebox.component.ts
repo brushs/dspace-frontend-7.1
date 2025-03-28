@@ -32,6 +32,7 @@ import { DsDynamicVocabularyComponent } from '../dynamic-vocabulary.component';
 import { Vocabulary } from '../../../../../../core/submission/vocabularies/models/vocabulary.model';
 import { VocabularyTreeviewComponent } from '../../../../../vocabulary-treeview/vocabulary-treeview.component';
 import { VocabularyEntryDetail } from '../../../../../../core/submission/vocabularies/models/vocabulary-entry-detail.model';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Component representing a onebox input field.
@@ -70,9 +71,10 @@ export class DsDynamicOneboxComponent extends DsDynamicVocabularyComponent imple
               protected cdr: ChangeDetectorRef,
               protected layoutService: DynamicFormLayoutService,
               protected modalService: NgbModal,
-              protected validationService: DynamicFormValidationService
+              protected validationService: DynamicFormValidationService,
+              protected translationService: TranslateService
   ) {
-    super(vocabularyService, layoutService, validationService);
+    super(vocabularyService, layoutService, validationService, translationService);
   }
 
   /**

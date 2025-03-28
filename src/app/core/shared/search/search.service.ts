@@ -120,6 +120,9 @@ export class SearchService implements OnDestroy {
    */
   private searchDataService: DataServiceImpl;
 
+ // FORSC change
+  private _searchResultTotalCount: number;
+
   constructor(private router: Router,
               private routeService: RouteService,
               protected requestService: RequestService,
@@ -502,5 +505,14 @@ export class SearchService implements OnDestroy {
     if (this.sub !== undefined) {
       this.sub.unsubscribe();
     }
+  }
+
+  // FORSC changes to get total result count
+  get searchResultTotalCount(): number {
+    return this._searchResultTotalCount;
+  }
+
+  set searchResultTotalCount(count: number) {
+    this._searchResultTotalCount = count;
   }
 }

@@ -1,7 +1,8 @@
 
 import {
   ChangeDetectorRef,
-  Component, OnDestroy
+  Component, OnDestroy, Inject,
+  PLATFORM_ID
 } from '@angular/core';
 import { listableObjectComponent } from '../../../../../object-collection/shared/listable-object/listable-object.decorator';
 import { ViewMode } from '../../../../../../core/shared/view-mode.model';
@@ -15,7 +16,11 @@ import { DSONameService } from '../../../../../../core/breadcrumbs/dso-name.serv
 import { TruncatableService } from '../../../../../truncatable/truncatable.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { 
+  CustomNativeWindowService
+} from '../../../../../../core/services/window.service';
 import { Console } from 'console';
+import { isPlatformBrowser } from '@angular/common';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -67,6 +72,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     private changeDetectorRef: ChangeDetectorRef,
     public translate: TranslateService,
     private router: Router,
+    private customNativeWindowService: CustomNativeWindowService,
+    @Inject(PLATFORM_ID) private platformId: any,
     ) {
     super(truncatableService, dsoNameService, localeService);
   }
@@ -102,6 +109,17 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
         // issue 370 end
       } else {
         this.showThumbnails = true;
+        //Bug fix for SSR: under SSR when search language in admin panel, the code goes this branch instead of line 100
+        //Deal with it by checking if 'language' is in itemPageRoute, if yes then duplicate the case in line 100 while keep the orignal logic
+        let itemPageRoute = this.itemPageRoute;
+        let  fieldForCheck = ['language','publisher', 'serial', 'country','province','sponsor', 'division','corporateauthor'];
+        for (let i = 0; i < fieldForCheck.length; i++) {
+          if (itemPageRoute.includes(fieldForCheck[i])) {
+            this.showThumbnails = false;
+            this.emptyThumbnails = true;
+            break;
+          }
+        }
       }
     } else {
       // issue 349, 360 start
@@ -116,50 +134,53 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   }
 
   configureObservers() {
-    // manual declaration of ResizeObserver to avoid error (once typescript is updated to at least 4.2, this can be removed )
-    // @ts-ignore
-    this.resizeObserver = new ResizeObserver(_ => {
-        if (this.isCollapsedBool){
-          this.shortenDescriptionText();
-        }
-    });
-    // original observer observes the entire document
-    // due to how the truncatable component works, the description text is not rendered even after ngOnAfterViewInit
-    // original observer will only observe the document until the description text is rendered
-    // then it will disconnect and the resize observer will take over
-    this.originalObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
+    if (isPlatformBrowser(this.platformId)) {
 
-          const element = document.getElementById(this.descriptionParagraphId);
-          if (element && !this.initialShorteningOccurred) {
-            this.initialShorteningOccurred = true;
+      // manual declaration of ResizeObserver to avoid error (once typescript is updated to at least 4.2, this can be removed )
+      // @ts-ignore
+      this.resizeObserver = new ResizeObserver(_ => {
+          if (this.isCollapsedBool){
             this.shortenDescriptionText();
-            // disconnect original observer
-            this.originalObserver.disconnect();
+          }
+      });
+      // original observer observes the entire document
+      // due to how the truncatable component works, the description text is not rendered even after ngOnAfterViewInit
+      // original observer will only observe the document until the description text is rendered
+      // then it will disconnect and the resize observer will take over
+      this.originalObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
 
-            this.resizeObserver.observe(element);
+            const element = this.customNativeWindowService.nativeDocument.getElementById(this.descriptionParagraphId);
+            if (element && !this.initialShorteningOccurred) {
+              this.initialShorteningOccurred = true;
+              this.shortenDescriptionText();
+              // disconnect original observer
+              this.originalObserver.disconnect();
+
+              this.resizeObserver.observe(element);
+            }
+          }
+        });
+
+      });
+
+      // Start observing the entire body or some specific element
+      this.originalObserver.observe(this.customNativeWindowService.nativeDocument.body, { childList: true, subtree: true });
+
+      this.isCollapsed().subscribe({
+        next: (collapsed: boolean) => {
+          this.isCollapsedBool = collapsed;
+          if (collapsed)
+          {
+            this.shortenDescriptionText();
+          }
+          else {
+            this.expandText();
           }
         }
       });
-
-    });
-
-    // Start observing the entire body or some specific element
-    this.originalObserver.observe(document.body, { childList: true, subtree: true });
-
-    this.isCollapsed().subscribe({
-      next: (collapsed: boolean) => {
-        this.isCollapsedBool = collapsed;
-        if (collapsed)
-        {
-          this.shortenDescriptionText();
-        }
-        else {
-          this.expandText();
-        }
-      }
-    });
+    }
   }
 
   translateMetadata(keys: string | string[], dso: any) {
@@ -183,10 +204,13 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
 
   shortenDescriptionText(): void {
     // NRC Requirement. Do not want text to be truncated in the middle of a word or if there is a trailing comma
-    const textElement = document.getElementById(this.descriptionSpanId);
+    const textElement = this.customNativeWindowService.nativeDocument.getElementById(this.descriptionSpanId);
+
     //Called before textElement rendered?
-    if (!textElement || this.descriptionText == null)
+    if (!textElement || this.descriptionText == null) {
       return;
+    }
+      
     //TODO: update this to translated metadata
     let originalText = this.descriptionText;
     let words = originalText.split(' ');
@@ -226,14 +250,16 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   }
 
   expandText(): void {
-    const textElement = document.getElementById(this.descriptionSpanId);
+    const textElement = this.customNativeWindowService.nativeDocument.getElementById(this.descriptionSpanId);
     if (textElement && this.descriptionText != null)
       textElement.innerHTML = this.descriptionText;
   }
 
   storeSearchBreadCrumbUrlPath(event: MouseEvent){
     if(event.button === 0 || event.button === 1){
-      localStorage.setItem("previousSearchPageUrlPath", this.router.url);
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem("previousSearchPageUrlPath", this.router.url);
+      }
     }
   }
 

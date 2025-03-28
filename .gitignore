@@ -39,7 +39,6 @@ package-lock.json
 
 .java-version
 
-.env
 /nbproject/
 .vscode/launch.json
 .vscode/launch.json

@@ -18,7 +18,7 @@ export const environment = {
 		// NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
 		"nameSpace": "/server",
     "baseUrl": "http://localhost:8080/server",
-	},
+	}, 
 	"cache": {
 		"msToLive": {
 			"default": 900000

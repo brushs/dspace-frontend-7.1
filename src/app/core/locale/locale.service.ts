@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,7 +10,7 @@ import { combineLatest, Observable, of as observableOf } from 'rxjs';
 import { map, mergeMap, take, tap } from 'rxjs/operators';
 import { NativeWindowRef, NativeWindowService } from '../services/window.service';
 import { RouteService } from '../services/route.service';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 export const LANG_COOKIE = 'dsLanguage';
 
@@ -52,7 +52,8 @@ export class LocaleService {
     protected translate: TranslateService,
     protected authService: AuthService,
     protected routeService: RouteService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
   }
 
@@ -204,7 +205,9 @@ export class LocaleService {
     this.routeService.getCurrentUrl().pipe(
       take(1), 
       tap(() => {
-        window.location.reload();
+        if (isPlatformBrowser(this.platformId)) {
+          this._window.nativeWindow.location.reload();
+        }
       })
     ).subscribe((currentURL) => {
       // Hard redirect to the reload page with a unique number behind it
