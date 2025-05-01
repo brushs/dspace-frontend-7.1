@@ -20,7 +20,7 @@ export const environment: Partial<GlobalConfig> = {
   // NOTE: these must be "synced" with the 'dspace.server.url' setting in your backend's local.cfg.
   rest: {
     ssl: true,
-    host: 'ostr-nonprod-appservice-backend.azurewebsites.net',
+    host: 'ostr-backend-nonprod.azure.cloud.nrcan-rncan.gc.ca',
     port: null,
     // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
     nameSpace: '/server',
