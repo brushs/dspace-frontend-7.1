@@ -1,4 +1,4 @@
-# The build and deploy steps for the OIR Project
+# The build and deploy steps for the OSTR Project
 
 variables:
   # Container registry service connection established during pipeline creation
