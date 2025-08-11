@@ -1,10 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { ConfigurationDataService } from '../core/data/configuration-data.service';
 import { getFirstCompletedRemoteData } from '../core/shared/operators';
 import { isEmpty } from '../shared/empty.util';
-import { DOCUMENT } from '@angular/common';
-import { 
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import {
   CustomNativeWindowService
 } from '../core/services/window.service';
 
@@ -20,6 +20,7 @@ export class GoogleAnalyticsService {
     private configService: ConfigurationDataService,
     // @Inject(DOCUMENT) private document: any,
     private customNativeWindowService: CustomNativeWindowService,
+    @Inject(PLATFORM_ID) private platformId: any,
   ) { }
 
   /**
@@ -63,10 +64,10 @@ export class GoogleAnalyticsService {
                                 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
                                 ga('create', '${trackingId}', 'auto');`;
         this.customNativeWindowService.nativeDocument.body.appendChild(keyScript);
-  
+
         // start tracking
         this.angulartics.startTracking();
-      } 
+      }
     });
   }
 
@@ -86,11 +87,10 @@ export class GoogleAnalyticsService {
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','${trackingId}');
+      })(${isPlatformBrowser(this.platformId) ? 'window' : 'this'},document,'script','dataLayer','${trackingId}');
       <!-- End Google Tag Manager -->
-      `;
-
-      this.customNativeWindowService.nativeDocument.head.appendChild(keyScriptHead);
+    `;
+    this.customNativeWindowService.nativeDocument.head.appendChild(keyScriptHead);
 
     // add trackingId snippet to body
     const keyScript = this.customNativeWindowService.nativeDocument.createElement('noscript');
@@ -100,5 +100,10 @@ export class GoogleAnalyticsService {
       height="0" width="0" style="display:none;visibility:hidden"></iframe>
       <!-- End Google Tag Manager (noscript) --> `;
       this.customNativeWindowService.nativeDocument.body.appendChild(keyScript);
-}
+
+    // Start tracking only in browser environment
+    if (isPlatformBrowser(this.platformId)) {
+      this.angulartics.startTracking();
+    }
+  }
 }
