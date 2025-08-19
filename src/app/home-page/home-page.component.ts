@@ -43,7 +43,7 @@ export class HomePageComponent implements OnInit {
     let port = environment.production ? '' : environment.rest.port == null ? '':':' + environment.rest.port;
     let prefix = environment.rest.ssl ? 'https://' : 'http://';
     this.frenchName = {'GEOSCAN':'GEOSCAN', 'Canadian Forest Service':'Service canadien des forêts'};
-    this.rssFeed = `${prefix  + baseHost + port + '/server'}/opensearch/search?format=rss`;
+    this.rssFeed = `${prefix  + baseHost + port + '/server'}/opensearch/search?format=rss&rpp=50`;
 
    this.http.get(`${ prefix  + baseHost + port + '/server'}/api/core/collections?size=50`).subscribe( (x) => {
       if (x['_embedded']?.['collections']) {
