@@ -45,7 +45,7 @@
             </div>
             <!-- new div for Basic Search Tutorial -->
             <div class="mrgn-tp-md  float-right ml-3">
-              <a href="https://ostrassets.blob.core.windows.net/publicassets/English%20Basic%20Search_player.html"
+              <a href="https://ostrprodstorage01.blob.core.windows.net/publicassets/English%20Basic%20Search_player.html"
                     target="_blank" class="d-flex align-items-center">
                 <img alt="Basic Search Tutorial" class="img-responsive mr-1" src="assets/images/video.png">
                 {{"home.basicsearchtutorial"| translate}}
@@ -68,7 +68,7 @@
               <p class="text-justify">Browse to see the most recent items in the various collections.              </p>
               <!-- isuue 297 end -->
               <div *ngFor="let item of collections">
-                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service' || item.name === 'Multimedia'">
                 <a  [routerLink]="['/collections', item.id]" [queryParams]="{ scope: item.id}" >
                    {{ item.name }}
                 </a>
@@ -145,7 +145,7 @@
               </a>
             </div>
             <div class="mrgn-tp-md  float-right ml-3">
-              <a href="https://ostrassets.blob.core.windows.net/publicassets/FrenchBasicSearch_player.html"
+              <a href="https://ostrprodstorage01.blob.core.windows.net/publicassets/FrenchBasicSearch_player.html"
                     target="_blank" class="d-flex align-items-center">
                 <img alt="Basic Search Tutorial" class="img-responsive mr-1" src="assets/images/video.png">
                 {{"home.basicsearchtutorial"| translate}}
@@ -166,7 +166,7 @@
               <p class="text-justify">Parcourez les collections pour voir les publications les plus récentes.</p>
               <!-- isuue 297 end -->
               <div *ngFor="let item of collections">
-                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service'">
+                <ng-container *ngIf="item.name === 'GEOSCAN' || item.name === 'Canadian Forest Service' || item.name === 'Multimedia'">
                 <a  [routerLink]="['/collections', item.id]" [queryParams]="{scope: item.id}" >
                    {{ frenchName[item.name] }}
                 </a>
