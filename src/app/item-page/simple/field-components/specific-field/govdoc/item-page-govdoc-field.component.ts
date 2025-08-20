@@ -33,7 +33,7 @@ export class ItemPageGovdocFieldComponent extends ItemPageFieldComponent {
      * In this component, we want to display values for metadata 'dc.identifier.govdoc'
      */
     fields: string[] = [
-        'dc.identifier.govdoc'
+        'dc.identifier.catn'
     ];
 
     /**
