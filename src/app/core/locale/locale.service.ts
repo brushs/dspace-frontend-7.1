@@ -202,17 +202,22 @@ export class LocaleService {
    * Refresh route navigated
    */
   public refreshAfterChangeLanguage() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     this.routeService.getCurrentUrl().pipe(
       take(1), 
       tap(() => {
-        if (isPlatformBrowser(this.platformId)) {
-          this._window.nativeWindow.location.reload();
-        }
+        this._window.nativeWindow.location.reload();
       })
     ).subscribe((currentURL) => {
-      // Hard redirect to the reload page with a unique number behind it
-      // so that all state is definitely lost
-      this._window.nativeWindow.location.href = `/reload/${new Date().getTime()}?redirect=` + encodeURIComponent(currentURL);
+      const win = this._window?.nativeWindow as (Window | undefined);
+        if (win?.location) {
+          // Hard redirect to the reload page with a unique number behind it
+          // so that all state is definitely lost
+          this._window.nativeWindow.location.href = `/reload/${new Date().getTime()}?redirect=` + encodeURIComponent(currentURL);
+        }
     });
 
   }
