@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { filter, map, switchMap, take,tap } from 'rxjs/operators';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { hasValue, isNotEmpty } from '../empty.util';
 import { getRemoteDataPayload, redirectOn4xx } from '../../core/shared/operators';
@@ -13,6 +14,13 @@ import { HardRedirectService } from '../../core/services/hard-redirect.service';
 import { getForbiddenRoute } from '../../app-routing-paths';
 import { RemoteData } from '../../core/data/remote-data';
 import { Title } from '@angular/platform-browser';
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
+  }
+}
 
 @Component({
   selector: 'ds-bitstream-download-page',
@@ -34,7 +42,8 @@ export class BitstreamDownloadPageComponent implements OnInit {
     private auth: AuthService,
     private fileService: FileService,
     private hardRedirectService: HardRedirectService,
-    private titleService: Title
+    private titleService: Title,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
 
   }
@@ -76,9 +85,9 @@ export class BitstreamDownloadPageComponent implements OnInit {
       })
     ).subscribe(([isAuthorized, isLoggedIn, bitstream, fileLink]: [boolean, boolean, Bitstream, string]) => {
       if (isAuthorized && isLoggedIn && isNotEmpty(fileLink)) {
-        this.hardRedirectService.redirect(fileLink);
+        this.trackDownloadAndRedirect(bitstream, fileLink);
       } else if (isAuthorized && !isLoggedIn) {
-        this.hardRedirectService.redirect(bitstream._links.content.href);
+        this.trackDownloadAndRedirect(bitstream, bitstream._links.content.href);
       } else if (!isAuthorized && isLoggedIn) {
         this.router.navigateByUrl(getForbiddenRoute(), {skipLocationChange: true});
       } else if (!isAuthorized && !isLoggedIn) {
@@ -86,5 +95,54 @@ export class BitstreamDownloadPageComponent implements OnInit {
         this.router.navigateByUrl('login');
       }
     });
+  }
+
+  /**
+   * Track download event in GA4 and then redirect to file
+   * This ensures GA4 captures the download event even with SSR
+   */
+  private trackDownloadAndRedirect(bitstream: Bitstream, downloadUrl: string): void {
+    // Only run GA tracking in browser environment
+    if (!isPlatformBrowser(this.platformId)) {
+      this.hardRedirectService.redirect(downloadUrl);
+      return;
+    }
+
+    // Get current route path for virtual page view
+    const pagePath = this.router.url;
+    const pageLocation = `${location.origin}${pagePath}`;
+
+    // Function to perform the redirect
+    const navigate = () => {
+      this.hardRedirectService.redirect(downloadUrl);
+    };
+
+    // Check if gtag is available
+    if (typeof window !== 'undefined' && window.gtag) {
+      // 1) Send virtual page_view so the download URL shows in GA4 "Pages"
+      window.gtag('event', 'page_view', {
+        page_title: `Download: ${bitstream.name || 'Unknown File'}`,
+        page_path: pagePath,
+        page_location: pageLocation,
+      });
+
+      // 2) Send custom download event with bitstream metadata
+      window.gtag('event', 'bitstream_download', {
+        bitstream_uuid: bitstream.uuid,
+        file_name: bitstream.name,
+        file_size: bitstream.sizeBytes,
+        link_url: pageLocation,
+        // Use beacon transport to ensure event is sent before navigation
+        transport_type: 'beacon',
+        event_timeout: 1000,
+        event_callback: navigate,
+      });
+
+      // Fallback timeout in case event_callback doesn't fire
+      setTimeout(navigate, 1000);
+    } else {
+      // If gtag is not available, redirect immediately
+      navigate();
+    }
   }
 }
