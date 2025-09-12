@@ -107,12 +107,12 @@ export class GoogleAnalyticsService {
 
           if (linkElement.href.includes('/bitstreams/') && linkElement.href.includes('/download'))
           {
-            console.log('####Download link clicked: ' + target.href);
+            console.log('####Download link clicked: ' + linkElement.href);
             //var extension = target.href.split('.').pop().toLowerCase() || 'unknown';
             ${isPlatformBrowser(this.platformId) ? 'window.dataLayer' : 'dataLayer'}.push({
               'event': 'file_download',
-              'file_name': target.textContent.trim(),
-              'link_url': target.href,
+              'file_name': linkElement.textContent.trim(),
+              'link_url': linkElement.href,
               'file_extension': 'zip'
             });
           }
