@@ -117,15 +117,15 @@ export class GoogleAnalyticsService {
                 //'link_classes': linkElement.className,
                 //'link_text': linkElement.textContent.trim(),
                 //'link_id': linkElement.id
-                event: "gtm.linkClick",
-                eventTimeout: 2000,
-                gtm.element: {},
-                gtm.elementClasses: linkElement.className,
-                gtm.elementId: linkElement.id,
-                gtm.elementTarget: linkElement.target,
-                gtm.elementText: linkElement.textContent.trim(),
-                gtm.elementUrl: alter_ref,
-                gtm.willOpenInNewWindow: false
+                'event': "gtm.linkClick",
+                'eventTimeout': 2000,
+                'gtm.element': {},
+                'gtm.elementClasses': linkElement.className,
+                'gtm.elementId': linkElement.id,
+                'gtm.elementTarget': linkElement.target,
+                'gtm.elementText': linkElement.textContent.trim(),
+                'gtm.elementUrl': alter_ref,
+                'gtm.willOpenInNewWindow': false
               });
             }
           }
