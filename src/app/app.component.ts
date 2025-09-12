@@ -114,19 +114,19 @@ export class AppComponent implements OnInit, AfterViewInit {
     /*
     let maintenanceUrl;
 
-    //the following condition applies when running ONLY the 
+    //the following condition applies when running ONLY the
     // frontend application on your local machine
     if(!environment.isProdEnvironment && environment.rest.ssl){
 
       maintenanceUrl = `https://${environment.rest.host}/server/api/config/properties/fosrc.isMaintenanceModeOn`;
 
-    //the following condition applies when running ONLY the 
+    //the following condition applies when running ONLY the
     // frontend application on a remote server
     }else if (environment.isProdEnvironment && this.customNativeWindowService.nativeDocument) {
 
       maintenanceUrl = `https://${this.customNativeWindowService.nativeDocument.location?.host}/server/api/config/properties/fosrc.isMaintenanceModeOn`;
 
-    //the following condition applies when running BOTH the 
+    //the following condition applies when running BOTH the
     // frontend application and backend API on your local machine
     }else {
 
@@ -177,7 +177,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         //set the splash page title when the splash page appears
         this.metadata.setSplashPageTitle('Federal Open Science Repository of Canada (FOSRC) / Le Dépôt fédéral de science ouverte du Canada (DFSOC)');
       }
-      
+
     });
 
     // set loadWelcome$ for template, and pass to root.component template to decide loading welcome page.
@@ -190,11 +190,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     // analytics
-    const trackingId = environment.production ? 'GTM-KG9WWH6' : 'GTM-MK9H4CK';
+    //const trackingId = environment.production ? 'GTM-KG9WWH6' : 'GTM-MK9H4CK';
+    const trackingId = 	"GTM-KG9WWH6";
     if (hasValue(googleAnalyticsService)) {
       googleAnalyticsService.addTrackingIdToPageOstr(trackingId);
     }
-    
+
     metadata.listenForRouteChange();
     breadcrumbsService.listenForRouteChanges();
 
@@ -211,7 +212,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       distinctUntilChanged()
     );
 
-    /* Start FOSRC Changes - 1620 
+    /* Start FOSRC Changes - 1620
     // disable cookie consent klaro service
     this.isAuthBlocking$
       .pipe(
@@ -246,7 +247,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       // More information on this bug-fix: https://blog.angular-university.io/angular-debugging/
       delay(0)
     ).subscribe((event) => {
-      if (event instanceof NavigationStart) {   
+      if (event instanceof NavigationStart) {
         this.isRouteLoading$.next(true);
       } else if (
         event instanceof NavigationEnd ||
@@ -284,7 +285,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         if(event.url.includes("?")){
           let queryParams = this.parseQueryParametersFromUrl(event.url) ;
           //if the 'useLang' query parameter exists
-          
+
           if(queryParams["useLang"]){
             let language = queryParams["useLang"];
             // Allows duplicate keys. Required for search page where multiple facet values of the same key (authors, subjects) are possible
@@ -395,7 +396,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
     return {};
-    
+
   }
 
   private setLanguageFromQueryParam(): void {
