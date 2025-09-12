@@ -101,7 +101,12 @@ export class GoogleAnalyticsService {
         doc.addEventListener('click', function(e) {
           console.log('####Click detected on:', e.target);
           var target = e.target;
-          if (target.href && target.href.includes('/bitstreams/') && target.href.includes('/download')) {
+          var linkElement = e.target.closest('a');
+          if (linkElement && linkElement.href)
+            console.log('Found link:', linkElement.href);
+
+          if (linkElement.href.includes('/bitstreams/') && linkElement.href.includes('/download'))
+          {
             console.log('####Download link clicked: ' + target.href);
             //var extension = target.href.split('.').pop().toLowerCase() || 'unknown';
             ${isPlatformBrowser(this.platformId) ? 'window.dataLayer' : 'dataLayer'}.push({
