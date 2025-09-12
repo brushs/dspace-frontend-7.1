@@ -96,10 +96,13 @@ export class GoogleAnalyticsService {
     const downloadTrackingScript = this.customNativeWindowService.nativeDocument.createElement('script');
     downloadTrackingScript.innerHTML = `
       (function() {
+        console.log('####Function injecting listener executing');
         var doc = ${isPlatformBrowser(this.platformId) ? 'window.document' : 'document'};
         doc.addEventListener('click', function(e) {
+          console.log('####Click detected on:', e.target);
           var target = e.target;
           if (target.href && target.href.includes('/bitstreams/') && target.href.includes('/download')) {
+            console.log('####Download link clicked: ' + target.href);
             //var extension = target.href.split('.').pop().toLowerCase() || 'unknown';
             ${isPlatformBrowser(this.platformId) ? 'window.dataLayer' : 'dataLayer'}.push({
               'event': 'file_download',
@@ -109,6 +112,7 @@ export class GoogleAnalyticsService {
             });
           }
         });
+        console.log('####Event listener attached');
       })();
     `;
     this.customNativeWindowService.nativeDocument.head.appendChild(downloadTrackingScript);
