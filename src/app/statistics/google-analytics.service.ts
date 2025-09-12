@@ -92,6 +92,27 @@ export class GoogleAnalyticsService {
     `;
     this.customNativeWindowService.nativeDocument.head.appendChild(keyScriptHead);
 
+    // Add file download tracking script
+    const downloadTrackingScript = this.customNativeWindowService.nativeDocument.createElement('script');
+    downloadTrackingScript.innerHTML = `
+      (function() {
+        var doc = ${isPlatformBrowser(this.platformId) ? 'window.document' : 'document'};
+        doc.addEventListener('click', function(e) {
+          var target = e.target;
+          if (target.href && target.href.includes('/bitstreams/') && target.href.includes('/download')) {
+            //var extension = target.href.split('.').pop().toLowerCase() || 'unknown';
+            ${isPlatformBrowser(this.platformId) ? 'window.dataLayer' : 'dataLayer'}.push({
+              'event': 'file_download',
+              'file_name': target.textContent.trim(),
+              'link_url': target.href,
+              'file_extension': 'zip'
+            });
+          }
+        });
+      })();
+    `;
+    this.customNativeWindowService.nativeDocument.head.appendChild(downloadTrackingScript);
+
     // add trackingId snippet to body
     const keyScript = this.customNativeWindowService.nativeDocument.createElement('noscript');
     keyScript.innerHTML =   `
