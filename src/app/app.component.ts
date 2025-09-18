@@ -190,8 +190,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     // analytics
-    //const trackingId = environment.production ? 'GTM-KG9WWH6' : 'GTM-MK9H4CK';
-    const trackingId = 	"GTM-KG9WWH6";
+    const trackingId = environment.production ? 'GTM-KG9WWH6' : 'GTM-MK9H4CK';
     if (hasValue(googleAnalyticsService)) {
       googleAnalyticsService.addTrackingIdToPageOstr(trackingId);
     }
