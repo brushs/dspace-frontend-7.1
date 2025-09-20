@@ -96,14 +96,11 @@ export class GoogleAnalyticsService {
     const downloadTrackingScript = this.customNativeWindowService.nativeDocument.createElement('script');
     downloadTrackingScript.innerHTML = `
       (function() {
-        //console.log('####Function injecting listener executing');
         var doc = ${isPlatformBrowser(this.platformId) ? 'window.document' : 'document'};
         doc.addEventListener('click', function(e) {
-          //console.log('####Click detected on:', e.target);
           var target = e.target;
           var linkElement = e.target.closest('a');
           if (linkElement && linkElement.href) {
-            //console.log('Found link:', linkElement.href);
             if (linkElement.href.includes('/bitstreams/') && linkElement.href.includes('/download'))
             {
               var alter_ref = linkElement.href + '.zip';
@@ -120,9 +117,11 @@ export class GoogleAnalyticsService {
                 'gtm.element': {},
                 'gtm.elementClasses': linkElement.className,
                 'gtm.elementId': linkElement.id,
-                'gtm.elementTarget': linkElement.target,
+                //'gtm.elementTarget': linkElement.target,
+                'gtm.elementTarget': '',
                 'gtm.elementText': linkElement.textContent.trim(),
                 'gtm.elementUrl': alter_ref,
+                'gtm.triggers': '230338310_5,5,6',
                 'gtm.willOpenInNewWindow': false
               });
             }
