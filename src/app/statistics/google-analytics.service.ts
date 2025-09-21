@@ -105,13 +105,6 @@ export class GoogleAnalyticsService {
             {
               var alter_ref = linkElement.href + '.zip';
               ${isPlatformBrowser(this.platformId) ? 'window.dataLayer' : 'dataLayer'}.push({
-                //'event': 'file_download',
-                //'file_name': linkElement.textContent.trim(),
-                //'link_url': linkElement.href,
-                //'file_extension': 'zip',
-                //'link_classes': linkElement.className,
-                //'link_text': linkElement.textContent.trim(),
-                //'link_id': linkElement.id
                 'event': "gtm.linkClick",
                 'eventTimeout': 2000,
                 'gtm.element': {},
