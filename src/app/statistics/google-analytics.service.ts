@@ -96,33 +96,25 @@ export class GoogleAnalyticsService {
     const downloadTrackingScript = this.customNativeWindowService.nativeDocument.createElement('script');
     downloadTrackingScript.innerHTML = `
       (function() {
-        //console.log('####Function injecting listener executing');
         var doc = ${isPlatformBrowser(this.platformId) ? 'window.document' : 'document'};
         doc.addEventListener('click', function(e) {
-          //console.log('####Click detected on:', e.target);
           var target = e.target;
           var linkElement = e.target.closest('a');
           if (linkElement && linkElement.href) {
-            //console.log('Found link:', linkElement.href);
             if (linkElement.href.includes('/bitstreams/') && linkElement.href.includes('/download'))
             {
               var alter_ref = linkElement.href + '.zip';
               ${isPlatformBrowser(this.platformId) ? 'window.dataLayer' : 'dataLayer'}.push({
-                //'event': 'file_download',
-                //'file_name': linkElement.textContent.trim(),
-                //'link_url': linkElement.href,
-                //'file_extension': 'zip',
-                //'link_classes': linkElement.className,
-                //'link_text': linkElement.textContent.trim(),
-                //'link_id': linkElement.id
                 'event': "gtm.linkClick",
                 'eventTimeout': 2000,
                 'gtm.element': {},
                 'gtm.elementClasses': linkElement.className,
                 'gtm.elementId': linkElement.id,
-                'gtm.elementTarget': linkElement.target,
+                //'gtm.elementTarget': linkElement.target,
+                'gtm.elementTarget': '',
                 'gtm.elementText': linkElement.textContent.trim(),
                 'gtm.elementUrl': alter_ref,
+                'gtm.triggers': '230338310_5,5,6',
                 'gtm.willOpenInNewWindow': false
               });
             }
