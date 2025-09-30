@@ -21,6 +21,9 @@ import {
 } from '../../../../../../core/services/window.service';
 import { Console } from 'console';
 import { isPlatformBrowser } from '@angular/common';
+import { CollectionDataService } from '../../../../../../core/data/collection-data.service';
+import { Collection } from '../../../../../../core/shared/collection.model';
+import { getFirstSucceededRemoteDataPayload } from '../../../../../../core/shared/operators';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -75,6 +78,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     public translate: TranslateService,
     private router: Router,
     private customNativeWindowService: CustomNativeWindowService,
+    private collectionDataService: CollectionDataService,
     @Inject(PLATFORM_ID) private platformId: any,
     ) {
     super(truncatableService, dsoNameService, localeService);
@@ -98,7 +102,14 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.descriptionSpanId = this.descriptionSpanId + this.dso.id;
     this.doi = this.dso.allMetadata('dc.identifier.doi')[0]?.value;
     this.citation = this.dso.allMetadata('dc.identifier.citation')[0]?.value;
-    this.checkMultimediaCollection();
+
+    // Fetch the owning collection and check if it's a multimedia collection
+    this.collectionDataService.findOwningCollectionFor(this.dso).pipe(
+      getFirstSucceededRemoteDataPayload()
+    ).subscribe((collection: Collection) => {
+      this.checkMultimediaCollection(collection);
+    });
+
     this.configureObservers();
     // issue 247 start
     if (this.context) {
@@ -279,16 +290,17 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     return ""
   }
 //284394 for sandbox and prod, 272057 for local
-  checkMultimediaCollection(): void {
+  checkMultimediaCollection(collection?: Collection): void {
     // Check if this item belongs to the "Multimedia" collection
-    // This can be checked through collection metadata or collection name
-    const collectionName = this.firstMetadataValue('dc.relation.ispartof');
-    const collectionTitle = this.firstMetadataValue('dc.source');
-
-    if (collectionName?.toLowerCase().includes('multimedia') ||
-        collectionTitle?.toLowerCase().includes('multimedia')) {
-      this.isMultimediaCollection = true;
-      this.generateMultimediaCitation();
+    if (collection) {
+      // Use the actual collection object
+      const collectionName = collection.name;
+      if (collectionName?.toLowerCase().includes('multim')) { //catch both multimedia and multimédia
+        this.isMultimediaCollection = true;
+        this.generateMultimediaCitation();
+      }
+    } else {
+      console.warn('Owning collection not found for item:', this.dso.id);
     }
   }
 
