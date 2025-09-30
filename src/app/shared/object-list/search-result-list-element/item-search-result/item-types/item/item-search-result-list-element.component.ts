@@ -16,7 +16,7 @@ import { DSONameService } from '../../../../../../core/breadcrumbs/dso-name.serv
 import { TruncatableService } from '../../../../../truncatable/truncatable.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { 
+import {
   CustomNativeWindowService
 } from '../../../../../../core/services/window.service';
 import { Console } from 'console';
@@ -62,6 +62,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   // issue 247 end
   doi: string;
   citation: string;
+  isMultimediaCollection: boolean = false;
+  multimediaCitation: string = '';
 
   readonly MAX_NUMBER_OF_LINES: number = 3;
 
@@ -96,6 +98,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.descriptionSpanId = this.descriptionSpanId + this.dso.id;
     this.doi = this.dso.allMetadata('dc.identifier.doi')[0]?.value;
     this.citation = this.dso.allMetadata('dc.identifier.citation')[0]?.value;
+    this.checkMultimediaCollection();
     this.configureObservers();
     // issue 247 start
     if (this.context) {
@@ -210,7 +213,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     if (!textElement || this.descriptionText == null) {
       return;
     }
-      
+
     //TODO: update this to translated metadata
     let originalText = this.descriptionText;
     let words = originalText.split(' ');
@@ -274,6 +277,44 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
       //return this.firstMetadataValue('dc.description.abstract');
     }
     return ""
+  }
+//284394 for sandbox and prod, 272057 for local
+  checkMultimediaCollection(): void {
+    // Check if this item belongs to the "Multimedia" collection
+    // This can be checked through collection metadata or collection name
+    const collectionName = this.firstMetadataValue('dc.relation.ispartof');
+    const collectionTitle = this.firstMetadataValue('dc.source');
+
+    if (collectionName?.toLowerCase().includes('multimedia') ||
+        collectionTitle?.toLowerCase().includes('multimedia')) {
+      this.isMultimediaCollection = true;
+      this.generateMultimediaCitation();
+    }
+  }
+
+  generateMultimediaCitation(): void {
+    // Generate citation in format: Author, I. (Date). Photonumber.
+    const author = this.firstMetadataValue('dc.contributor.author');
+    const date = this.firstMetadataValue('dc.date.issued');
+    const photoNumber = this.firstMetadataValue('dc.identifier.photonumber');
+
+    let citation = '';
+
+    if (author) {
+      citation += author;
+    }
+
+    if (date) {
+      if (citation) citation += ' ';
+      citation += `(${date}).`;
+    }
+
+    if (photoNumber) {
+      if (citation) citation += ' ';
+      citation += photoNumber + '.';
+    }
+
+    this.multimediaCitation = citation;
   }
 
 }
