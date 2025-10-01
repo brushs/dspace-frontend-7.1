@@ -318,7 +318,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
 
     if (date) {
       if (citation) citation += ' ';
-      citation += `(${date}).`;
+      const year = date.substring(0, 4); // Extract only the year (YYYY) as requested
+      citation += `(${year}).`;
     }
 
     if (photoNumber) {
