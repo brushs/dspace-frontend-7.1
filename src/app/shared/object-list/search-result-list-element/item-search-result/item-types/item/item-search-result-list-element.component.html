@@ -68,6 +68,10 @@
       </p>
       <div class="pb-3"><span [innerHTML]="citation"></span></div>
       <div class="pb-3"><a href="{{doi}}">{{doi}}</a></div>
+      <!-- Multimedia collection citation -->
+      <div class="pb-3" *ngIf="isMultimediaCollection && multimediaCitation">
+        <span [innerHTML]="multimediaCitation"></span>
+      </div>
 
 
       <!-- #371 original duplicated part removed  -->
@@ -145,6 +149,11 @@
           <span *ngIf="linkType == linkTypes.None" class="item-list-title" [innerHTML]="(dsoTitle | OSPRTruncate : false : 'GC Core Thesaurus::' : 'VDP::') | translate "></span>
         <!-- </strong> -->
       </p>
+
+      <!-- Multimedia collection citation -->
+      <div class="pb-3" *ngIf="isMultimediaCollection && multimediaCitation">
+        <span [innerHTML]="multimediaCitation"></span>
+      </div>
 
       <ds-truncatable-part *ngIf="dso.allMetadata(['dc.publisher', 'dc.date.issued', 'publicationvolume.volumeNumber',
         'dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0" [id]="dso.id" [minLines]="2">

@@ -16,11 +16,14 @@ import { DSONameService } from '../../../../../../core/breadcrumbs/dso-name.serv
 import { TruncatableService } from '../../../../../truncatable/truncatable.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { 
+import {
   CustomNativeWindowService
 } from '../../../../../../core/services/window.service';
 import { Console } from 'console';
 import { isPlatformBrowser } from '@angular/common';
+import { CollectionDataService } from '../../../../../../core/data/collection-data.service';
+import { Collection } from '../../../../../../core/shared/collection.model';
+import { getFirstSucceededRemoteDataPayload } from '../../../../../../core/shared/operators';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -62,6 +65,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
   // issue 247 end
   doi: string;
   citation: string;
+  isMultimediaCollection: boolean = false;
+  multimediaCitation: string = '';
 
   readonly MAX_NUMBER_OF_LINES: number = 3;
 
@@ -73,6 +78,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     public translate: TranslateService,
     private router: Router,
     private customNativeWindowService: CustomNativeWindowService,
+    private collectionDataService: CollectionDataService,
     @Inject(PLATFORM_ID) private platformId: any,
     ) {
     super(truncatableService, dsoNameService, localeService);
@@ -96,6 +102,14 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.descriptionSpanId = this.descriptionSpanId + this.dso.id;
     this.doi = this.dso.allMetadata('dc.identifier.doi')[0]?.value;
     this.citation = this.dso.allMetadata('dc.identifier.citation')[0]?.value;
+
+    // Fetch the owning collection and check if it's a multimedia collection
+    this.collectionDataService.findOwningCollectionFor(this.dso).pipe(
+      getFirstSucceededRemoteDataPayload()
+    ).subscribe((collection: Collection) => {
+      this.checkMultimediaCollection(collection);
+    });
+
     this.configureObservers();
     // issue 247 start
     if (this.context) {
@@ -210,7 +224,7 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     if (!textElement || this.descriptionText == null) {
       return;
     }
-      
+
     //TODO: update this to translated metadata
     let originalText = this.descriptionText;
     let words = originalText.split(' ');
@@ -274,6 +288,46 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
       //return this.firstMetadataValue('dc.description.abstract');
     }
     return ""
+  }
+//284394 for sandbox and prod, 272057 for local
+  checkMultimediaCollection(collection?: Collection): void {
+    // Check if this item belongs to the "Multimedia" collection
+    if (collection) {
+      // Use the actual collection object
+      const collectionName = collection.name;
+      if (collectionName?.toLowerCase().includes('multim')) { //catch both multimedia and multimédia
+        this.isMultimediaCollection = true;
+        this.generateMultimediaCitation();
+      }
+    } else {
+      console.warn('Owning collection not found for item:', this.dso.id);
+    }
+  }
+
+  generateMultimediaCitation(): void {
+    // Generate citation in format: Author, I. (Date). Photonumber.
+    const author = this.firstMetadataValue('dc.contributor.author');
+    const date = this.firstMetadataValue('dc.date.issued');
+    const photoNumber = this.firstMetadataValue('dc.identifier.photonumber');
+
+    let citation = '';
+
+    if (author) {
+      citation += author;
+    }
+
+    if (date) {
+      if (citation) citation += ' ';
+      const year = date.substring(0, 4); // Extract only the year (YYYY) as requested
+      citation += `(${year}).`;
+    }
+
+    if (photoNumber) {
+      if (citation) citation += ' ';
+      citation += photoNumber + '.';
+    }
+
+    this.multimediaCitation = citation;
   }
 
 }
