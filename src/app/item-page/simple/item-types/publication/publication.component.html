@@ -135,6 +135,15 @@
       [label]="'item.page.publisher'">
     </ds-generic-item-page-field>
 
+    <!-- dc.identifier.photonumber-->
+    <ng-container *ngIf="isMultimediaCollection$ | async">
+      <ds-generic-item-page-field [item]="object"
+        [fields]="['dc.identifier.photonumber']"
+        [separator]="','"
+        [label]="'item.page.photonumber'">
+      </ds-generic-item-page-field>
+    </ng-container>
+
     <!-- Summary -->
     <ds-item-page-collapsable-field [item]="object"
      [label] ="'Plain Language Summary'"
