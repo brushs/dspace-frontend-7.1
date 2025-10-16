@@ -2970,6 +2970,8 @@
   "item.page.person.search.title": "articles de cet auteur",
   // "item.page.publisher": "Publisher",
   "item.page.publisher": "Éditeur",
+  // "item.page.photonumber": "Photo Number",
+  "item.page.photonumber": "Numéro de photo",
   // "item.page.related-items.view-less": "Hide last {{amount}}",
   "item.page.related-items.view-less": "Masquer les {{amount}} derniers résultats",
   // "item.page.related-items.view-more": "Show {{amount}} more",

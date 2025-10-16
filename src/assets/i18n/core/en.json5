@@ -1616,6 +1616,7 @@
   "item.page.link.simple": "Simple item page",
   "item.page.person.search.title": "Articles by this author",
   "item.page.publisher": "Publisher",
+  "item.page.photonumber": "Photo Number",
   "item.page.related-items.view-less": "Hide last {{amount}}",
   "item.page.related-items.view-more": "Show {{amount}} more",
   "item.page.relationships.isAuthorOfPublication": "Publications",
