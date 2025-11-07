@@ -6,6 +6,7 @@ import {
   FormGroup,
   FormArray
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 @Component({
@@ -22,7 +23,7 @@ export class DynamicFiltersComponent {
   filteredData: any[] = [];
   output: any = '';
 
-  constructor(private fb: FormBuilder, public translate: TranslateService) {
+  constructor(private fb: FormBuilder, public translate: TranslateService, private router: Router) {
     this.form = this.fb.group({
       rows: this.fb.array([]),
     });
@@ -81,6 +82,7 @@ export class DynamicFiltersComponent {
       this.rows.removeAt(i);
     }
     this.rows.controls[0].get('filter').setValue('');
+    this.router.navigate(['/advanced-search']);
   }
 
   printFormValues() {
