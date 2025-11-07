@@ -75,7 +75,7 @@ export class DynamicFiltersComponent {
     });
   }
 
-  resetFilters() {
+  resetQuery() {
     //this.form.reset();
     //this.filteredData = this.mockData;
     for (let i = this.rows.length - 1; i > 0; i--) {
