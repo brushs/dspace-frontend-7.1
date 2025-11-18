@@ -369,21 +369,17 @@ export class MySearchComponent implements OnInit {
         const optionsCopy: any = Object.create(Object.getPrototypeOf(oldValue));
         Object.assign(optionsCopy, oldValue);
 
-        // Create a pagination copy that preserves prototype but has writable own properties
         const paginationCopy: any = Object.create(Object.getPrototypeOf(oldValue.pagination || {}));
         Object.assign(paginationCopy, oldValue.pagination || {});
 
-        // Reset the page on the cloned pagination (now writable on the own property)
         paginationCopy.currentPage = 1; // reset to page 1
-
-        // Apply changes to the cloned options object
         optionsCopy.geoQuery = this.currentGeoQuery;
         optionsCopy.expand = true;
         optionsCopy.pagination = paginationCopy;
 
         this.searchConfigService.paginatedSearchOptions.next(optionsCopy as PaginatedSearchOptions);
 
-        // Also reset the pagination route param for this pagination instance so
+        // Reset the pagination route param for this pagination instance so
         // PaginationService.getCurrentPagination and the pagination component
         let pageParamObj = {} as any;
         const paginationId = optionsCopy?.pagination?.id || paginationCopy?.id;
