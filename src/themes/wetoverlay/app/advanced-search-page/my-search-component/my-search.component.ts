@@ -357,12 +357,42 @@ export class MySearchComponent implements OnInit {
       this.currentGeoQuery  = this.getGeoData();
       this.cdRef.detectChanges()
 
-      var oldValue = this.searchConfigService.paginatedSearchOptions.getValue();
-      oldValue.geoQuery = this.currentGeoQuery;
-      oldValue.expand = true;
-      this.searchConfigService.paginatedSearchOptions.next(oldValue);
-      //extra flag for advanced search to expand some items
-      this.router.navigate(['.'], { relativeTo: this.route, queryParams: {query: term, 'spc.sf':'score','fq':this.currentGeoQuery, 'expand':true}, queryParamsHandling: 'merge'});
+      // Get the current options object (guard if undefined)
+      const oldValue = this.searchConfigService.paginatedSearchOptions.getValue() as any;
+
+      if (!oldValue) {
+        // if nothing set yet, create a minimal options object
+        const newOptions: any = { geoQuery: this.currentGeoQuery, expand: true, pagination: { currentPage: 1 } };
+        this.searchConfigService.paginatedSearchOptions.next(newOptions as PaginatedSearchOptions);
+      } else {
+        // Preserve prototype
+        const optionsCopy: any = Object.create(Object.getPrototypeOf(oldValue));
+        Object.assign(optionsCopy, oldValue);
+
+        // Create a pagination copy that preserves prototype but has writable own properties
+        const paginationCopy: any = Object.create(Object.getPrototypeOf(oldValue.pagination || {}));
+        Object.assign(paginationCopy, oldValue.pagination || {});
+
+        // Reset the page on the cloned pagination (now writable on the own property)
+        paginationCopy.currentPage = 1; // reset to page 1
+
+        // Apply changes to the cloned options object
+        optionsCopy.geoQuery = this.currentGeoQuery;
+        optionsCopy.expand = true;
+        optionsCopy.pagination = paginationCopy;
+
+        this.searchConfigService.paginatedSearchOptions.next(optionsCopy as PaginatedSearchOptions);
+
+        // Also reset the pagination route param for this pagination instance so
+        // PaginationService.getCurrentPagination and the pagination component
+        let pageParamObj = {} as any;
+        const paginationId = optionsCopy?.pagination?.id || paginationCopy?.id;
+        if (paginationId) {
+          pageParamObj[`${paginationId}.page`] = 1;
+        }
+        //extra flag for advanced search to expand some items
+        this.router.navigate(['.'], { relativeTo: this.route, queryParams: Object.assign({ query: term, 'spc.sf': 'score', 'fq': this.currentGeoQuery, 'expand': true }, pageParamObj), queryParamsHandling: 'merge'});
+      }
     }
 
     toggleMapVisibility(): void {
