@@ -116,9 +116,12 @@ export class DynamicFiltersComponent {
     let filterArray: any = [];
     var filterInfo = '';
     for (const filter of filters) {
-      if (filter.filter === '') {
+      const rawFilter = (filter.filter || '');
+      const trimmedFilter = rawFilter.trim();
+      if (trimmedFilter === '') {
         continue;
       }
+      filter.filter = trimmedFilter;
       switch (filter.relationalOperator) {
         case 'contains':
         case 'equals':
