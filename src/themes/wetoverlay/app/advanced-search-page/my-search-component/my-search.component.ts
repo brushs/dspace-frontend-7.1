@@ -86,6 +86,7 @@ export class MySearchComponent implements OnInit {
    * Subscription to unsubscribe from
    */
   sub: Subscription;
+  labelsSub: Subscription;
 
   /**
    * True when the search component should show results on the current page
@@ -185,7 +186,7 @@ export class MySearchComponent implements OnInit {
     /* End of FOSRC Changes */
     this.doSearch();
     //this.getQueryParam();
-    observableCombineLatest(
+    this.labelsSub = observableCombineLatest(
      this.translateService.get('search.geospatial.showmap'),
      this.translateService.get('search.geospatial.hidemap')
     ).subscribe(([labelShow,labelHide]) => {
@@ -331,6 +332,9 @@ export class MySearchComponent implements OnInit {
   ngOnDestroy(): void {
     if (hasValue(this.sub)) {
       this.sub.unsubscribe();
+    }
+    if (hasValue(this.labelsSub)) {
+      this.labelsSub.unsubscribe();
     }
   }
 
