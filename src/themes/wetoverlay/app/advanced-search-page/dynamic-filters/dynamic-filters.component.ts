@@ -32,11 +32,11 @@ export class DynamicFiltersComponent {
   }
 
 
-  addRow() {
+  addRow(value?: { filtertype?: string; relationalOperator?: string; filter?: string }) {
     const newRow = this.fb.group({
-      filtertype: ['alltitles'],
-      relationalOperator: ['contains'], // Set default value here
-      filter: [''],
+      filtertype: [value?.filtertype ?? 'alltitles'],
+      relationalOperator: [value?.relationalOperator ?? 'contains'],
+      filter: [value?.filter ?? ''],
     });
     this.rows.push(newRow);
   }
@@ -50,6 +50,43 @@ export class DynamicFiltersComponent {
 
   get rows() {
     return this.form.get('rows') as FormArray;
+  }
+
+  serializeRows(): string {
+    const rows = this.rows.controls.map((row) => row.value);
+    const hasFilters = rows.some((row) => row.filter && row.filter.trim() !== '');
+    if (!hasFilters) {
+      return '';
+    }
+    return JSON.stringify(rows);
+  }
+
+  setRowsFromSerialized(serialized: string): boolean {
+    if (!serialized) {
+      return false;
+    }
+    let parsed: Array<{ filtertype?: string; relationalOperator?: string; filter?: string }>;
+    try {
+      parsed = JSON.parse(serialized);
+    } catch (error) {
+      return false;
+    }
+    if (!Array.isArray(parsed)) {
+      return false;
+    }
+    this.setRows(parsed);
+    return true;
+  }
+
+  private setRows(values: Array<{ filtertype?: string; relationalOperator?: string; filter?: string }>) {
+    while (this.rows.length > 0) {
+      this.rows.removeAt(0);
+    }
+    if (!values || values.length === 0) {
+      this.addRow();
+      return;
+    }
+    values.forEach((value) => this.addRow(value));
   }
 
 

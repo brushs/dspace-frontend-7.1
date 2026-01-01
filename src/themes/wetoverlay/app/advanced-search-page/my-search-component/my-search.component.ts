@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild,ChangeDetectorRef} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription,combineLatest as observableCombineLatest } from 'rxjs';
 import { map, startWith, switchMap, take } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model'          //../core/data/paginated-list.model';
@@ -49,7 +49,7 @@ import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.co
 /**
  * This component renders a sidebar, a search input bar and the search results.
  */
-export class MySearchComponent implements OnInit {
+export class MySearchComponent implements OnInit, AfterViewInit {
   /**
    * The current search results
    */
@@ -86,6 +86,7 @@ export class MySearchComponent implements OnInit {
    * Subscription to unsubscribe from
    */
   sub: Subscription;
+  queryParamSub: Subscription;
 
   /**
    * True when the search component should show results on the current page
@@ -149,6 +150,7 @@ export class MySearchComponent implements OnInit {
   isResultsVisible: boolean = false; // Initially hidden
   private labelShow: string;
   private labelHide: string;
+  private readonly advancedFiltersParam = 'af';
 
   @Input()
   currentGeoQuery: string;
@@ -193,6 +195,12 @@ export class MySearchComponent implements OnInit {
       this.labelHide = labelHide;
       this.showHideMapnLabel = labelShow;
     })
+  }
+
+  ngAfterViewInit(): void {
+    this.queryParamSub = this.route.queryParams.subscribe((params: Params) => {
+      this.restoreFromQueryParams(params);
+    });
   }
 
   private doSearch() {
@@ -245,6 +253,49 @@ export class MySearchComponent implements OnInit {
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
 
     //this.getQueryParam();
+  }
+
+  private restoreFromQueryParams(params: Params): void {
+    const filters = params[this.advancedFiltersParam];
+    const query = params['query'];
+    const geoQuery = params['fq'];
+    const expand = params['expand'];
+
+    if (hasValue(filters) && this.dynamicFiltersComponent) {
+      this.dynamicFiltersComponent.setRowsFromSerialized(filters);
+    }
+
+    if (hasValue(query)) {
+      this.mainSearchValue = query;
+    }
+
+    if (hasValue(geoQuery)) {
+      this.currentGeoQuery = geoQuery;
+    }
+
+    if (hasValue(query) || hasValue(filters) || hasValue(geoQuery)) {
+      this.isResultsVisible = true;
+    }
+
+    if (hasValue(geoQuery) || hasValue(expand)) {
+      this.updateSearchOptionsFromParams(geoQuery, expand);
+    }
+  }
+
+  private updateSearchOptionsFromParams(geoQuery: string, expand: string): void {
+    const currentValue = this.searchConfigService.paginatedSearchOptions?.getValue();
+    if (!currentValue) {
+      return;
+    }
+    const optionsCopy: any = Object.create(Object.getPrototypeOf(currentValue));
+    Object.assign(optionsCopy, currentValue);
+    if (hasValue(geoQuery)) {
+      optionsCopy.geoQuery = geoQuery;
+    }
+    if (hasValue(expand)) {
+      optionsCopy.expand = expand === 'true';
+    }
+    this.searchConfigService.paginatedSearchOptions.next(optionsCopy as PaginatedSearchOptions);
   }
 
   private getQueryParam() {
@@ -332,6 +383,9 @@ export class MySearchComponent implements OnInit {
     if (hasValue(this.sub)) {
       this.sub.unsubscribe();
     }
+    if (hasValue(this.queryParamSub)) {
+      this.queryParamSub.unsubscribe();
+    }
   }
 
 
@@ -387,7 +441,13 @@ export class MySearchComponent implements OnInit {
           pageParamObj[`${paginationId}.page`] = 1;
         }
         //extra flag for advanced search to expand some items
-        this.router.navigate(['.'], { relativeTo: this.route, queryParams: Object.assign({ query: term, 'spc.sf': 'score', 'fq': this.currentGeoQuery, 'expand': true }, pageParamObj), queryParamsHandling: 'merge'});
+        const advancedFilters = this.dynamicFiltersComponent.serializeRows();
+        const queryParams: Params = Object.assign(
+          { query: term, 'spc.sf': 'score', 'fq': this.currentGeoQuery, 'expand': true },
+          pageParamObj
+        );
+        queryParams[this.advancedFiltersParam] = hasValue(advancedFilters) ? advancedFilters : null;
+        this.router.navigate(['.'], { relativeTo: this.route, queryParams, queryParamsHandling: 'merge'});
       }
     }
 
