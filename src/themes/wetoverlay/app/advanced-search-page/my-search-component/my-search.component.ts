@@ -1,14 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild,ChangeDetectorRef} from '@angular/core';
-import { BehaviorSubject, Observable, Subscription,combineLatest as observableCombineLatest } from 'rxjs';
-import { map, startWith, switchMap, take } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription, combineLatest as observableCombineLatest } from 'rxjs';
+import { map, startWith, switchMap } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model'          //../core/data/paginated-list.model';
 import { RemoteData } from '../../../../../app/core/data/remote-data';
 import { DSpaceObject } from '../../../../../app/core/shared/dspace-object.model';
 import { pushInOut } from '../../../../../app/shared/animations/push';
 import { HostWindowService } from '../../../../../app/shared/host-window.service';
 import { SidebarService } from '../../../../../app/shared/sidebar/sidebar.service';
-import { hasNoValue, hasValue, isEmpty, isNotEmpty } from '../../../../../app/shared/empty.util';
+import { hasValue, isEmpty, isNotEmpty } from '../../../../../app/shared/empty.util';
 import { getFirstSucceededRemoteData } from '../../../../../app/core/shared/operators';
 import { RouteService } from '../../../../../app/core/services/route.service';
 import { SEARCH_CONFIG_SERVICE } from '../../../../../app/my-dspace-page/my-dspace-page.component';
@@ -19,17 +18,12 @@ import { SearchService } from '../../../../../app/core/shared/search/search.serv
 import { currentPath } from '../../../../../app/shared/utils/route.utils';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Context } from '../../../../../app/core/shared/context.model';
-import { SortDirection, SortOptions } from '../../../../../app/core/cache/models/sort-options.model';
+import { SortOptions } from '../../../../../app/core/cache/models/sort-options.model';
 import { followLink } from '../../../../../app/shared/utils/follow-link-config.model';
 import { Item } from '../../../../../app/core/shared/item.model';
-import { PaginationService } from '../../../../../app/core/pagination/pagination.service';
 import { PaginationComponentOptions } from '../../../../../app/shared/pagination/pagination-component-options.model';
-import { AppInjector } from '../../../../../app/app.injector';
-import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.service';
-import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/search.utils';
 import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 import { TranslateService } from '@ngx-translate/core';
-import { SearchFilter } from 'src/app/shared/search/search-filter.model';
 import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 
 @Component({
@@ -64,8 +58,6 @@ export class MySearchComponent implements OnInit {
    * The current paginated search options
    */
   searchOptions$: Observable<PaginatedSearchOptions>;
-
-  geoChange$:Observable<PaginatedSearchOptions>;
 
   /**
    * The current available sort options
@@ -134,15 +126,6 @@ export class MySearchComponent implements OnInit {
   adminSearch: boolean;
   /* End of FOSRC Changes */
 
-  paginationService: PaginationService;
-  dsoNameService: DSONameService;
-  hasNoValue = hasNoValue;
-  stripOperatorFromFilterValue = stripOperatorFromFilterValue
-
-  /**
-   * Emits the currently active filters
-   */
-  appliedFilters: Observable<Params>;
   mainSearchValue :string;
 
   isMapVisible: boolean = false; // Initially hidden
@@ -240,23 +223,21 @@ export class MySearchComponent implements OnInit {
     this.sortOptions$ = this.searchConfigService.getConfigurationSortOptionsObservable(searchConfig$);
     this.searchConfigService.initializeSortOptionsFromConfiguration(searchConfig$);
 
-    this.paginationService = AppInjector.get(PaginationService);
-    this.dsoNameService = AppInjector.get(DSONameService);
-
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
 
     //this.getQueryParam();
   }
 
-  private getQueryParam() {
-    this.routeService.getQueryParameterValue("query").subscribe(query => {
-      if (query === undefined || query === 'undefined')
-        query = null;
-      else
-        query = this.dynamicFiltersComponent.output;
-      this.mainSearchValue = query;
-    });
-  }
+  // for diagnostic purposes
+  //private getQueryParam() {
+  //  this.routeService.getQueryParameterValue("query").subscribe(query => {
+  //    if (query === undefined || query === 'undefined')
+  //      query = null;
+  //    else
+  //      query = this.dynamicFiltersComponent.output;
+  //    this.mainSearchValue = query;
+  //  });
+  //}
 
   // this.dsoOfficialTitle = this.dsoNameService.getOfficialName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
   // this.dsoTranslatedTitle = this.dsoNameService.getTranslatedName(this.dso, this.localeService.getCurrentLanguageCode() === 'fr' ? 'fr' : 'en'); //FOSRC added
