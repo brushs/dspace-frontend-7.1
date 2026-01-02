@@ -123,8 +123,7 @@ export class DynamicFiltersComponent {
           break;
         }
         default:
-          filterInfo = `*:*`;
-          break;
+          continue;
       }
       filterArray.push(filterInfo);
     }
