@@ -90,6 +90,10 @@ export class DynamicFiltersComponent {
     return filterInfo;
   }
 
+  private escapeSolrValue(value: string): string {
+    return value.replace(/[+\-!(){}[\]^"~*?:\\/]/g, '\\$&');
+  }
+
   private getQueryString() {
     const filters = this.rows.controls.map(row => row.value);
     let filterArray: any = [];
@@ -100,19 +104,20 @@ export class DynamicFiltersComponent {
       if (trimmedFilter === '') {
         continue;
       }
-      filter.filter = trimmedFilter;
       switch (filter.relationalOperator) {
         case 'contains':
         case 'equals': {
-          var filterText = filter.filter;
+          var filterText = trimmedFilter;
           filterText = filterText.replace(/"/g, '');
+          filterText = this.escapeSolrValue(filterText);
           filterInfo = this.transformEqualFilterInfo(filter.filtertype, filterText);
           break;
         }
         case 'notcontains':
         case 'notequals': {
-          var filterText = filter.filter;
+          var filterText = trimmedFilter;
           filterText = filterText.replace(/"/g, '');
+          filterText = this.escapeSolrValue(filterText);
           const inner = this.transformEqualFilterInfo(filter.filtertype, filterText);
           filterInfo = `-(${inner})`;
           break;
