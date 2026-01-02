@@ -103,15 +103,20 @@ export class DynamicFiltersComponent {
       filter.filter = trimmedFilter;
       switch (filter.relationalOperator) {
         case 'contains':
-        case 'equals':
+        case 'equals': {
           var filterText = filter.filter;
           filterText = filterText.replace(/"/g, '');
-          filterInfo = this.transformEqualFilterInfo(filter.filtertype,filterText);
+          filterInfo = this.transformEqualFilterInfo(filter.filtertype, filterText);
           break;
+        }
         case 'notcontains':
-        case 'notequals':
-          filterInfo = `-${filter.filtertype}:"${filter.filter}"`;
+        case 'notequals': {
+          var filterText = filter.filter;
+          filterText = filterText.replace(/"/g, '');
+          const inner = this.transformEqualFilterInfo(filter.filtertype, filterText);
+          filterInfo = `-(${inner})`;
           break;
+        }
         default:
           filterInfo = `*:*`;
           break;
