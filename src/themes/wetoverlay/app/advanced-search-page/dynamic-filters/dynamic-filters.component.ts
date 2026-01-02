@@ -58,7 +58,10 @@ export class DynamicFiltersComponent {
       this.rows.removeAt(i);
     }
     this.rows.controls[0].get('filter').setValue('');
-    this.router.navigate(['/advanced-search']);
+    this.router.navigate(['/advanced-search'], {
+      queryParams: { af: null, query: null, fq: null, expand: null },
+      queryParamsHandling: 'merge',
+    });
   }
 
   printFormValues() {
