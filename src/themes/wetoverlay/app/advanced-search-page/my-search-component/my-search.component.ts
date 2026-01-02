@@ -263,10 +263,12 @@ export class MySearchComponent implements OnInit, AfterViewInit {
 
     if (hasValue(filters) && this.dynamicFiltersComponent) {
       this.dynamicFiltersComponent.setRowsFromSerialized(filters);
+      this.dynamicFiltersComponent.getQuery();
     }
 
     if (hasValue(query)) {
       this.mainSearchValue = query;
+      this.updateSearchQuery(query);
     }
 
     if (hasValue(geoQuery)) {
@@ -275,11 +277,22 @@ export class MySearchComponent implements OnInit, AfterViewInit {
 
     if (hasValue(query) || hasValue(filters) || hasValue(geoQuery)) {
       this.isResultsVisible = true;
+      this.cdRef.markForCheck();
     }
 
     if (hasValue(geoQuery) || hasValue(expand)) {
       this.updateSearchOptionsFromParams(geoQuery, expand);
     }
+  }
+
+  private updateSearchQuery(query: string): void {
+    const currentValue = this.searchConfigService.paginatedSearchOptions?.getValue();
+    if (!currentValue) {
+      return;
+    }
+    const optionsCopy: any = Object.create(Object.getPrototypeOf(currentValue));
+    Object.assign(optionsCopy, currentValue, { query });
+    this.searchConfigService.paginatedSearchOptions.next(optionsCopy as PaginatedSearchOptions);
   }
 
   private updateSearchOptionsFromParams(geoQuery: string, expand: string): void {
