@@ -19,8 +19,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DynamicFiltersComponent {
   form: FormGroup;
-  mockData: any[] = [];
-  filteredData: any[] = [];
   output: any = '';
 
   constructor(private fb: FormBuilder, public translate: TranslateService, private router: Router) {
@@ -52,28 +50,6 @@ export class DynamicFiltersComponent {
     return this.form.get('rows') as FormArray;
   }
 
-
-  filterData(filters: any[]): any[] {
-    const operatorMappings: any = {
-      contains: (value:string, filter:string) => value.includes(filter),
-      equals: (value:string, filter:string) => value === filter,
-      notcontains: (value:string, filter:string) => !value.includes(filter),
-      notequals: (value:string, filter:string) => value !== filter,
-    };
-
-    return this.mockData.filter(item => {
-      return filters.every(filter => {
-        const operatorFunction = operatorMappings[filter.relationalOperator];
-        if (!operatorFunction) {
-          return true;
-        }
-
-        const value = item[filter.filtertype];
-        const result = operatorFunction(value, filter.filter);
-        return result;
-      });
-    });
-  }
 
   resetQuery() {
     //this.form.reset();
@@ -139,7 +115,6 @@ export class DynamicFiltersComponent {
       }
       filterArray.push(filterInfo);
     }
-    this.filteredData = this.filterData(filters);
     let filterAll = filterArray.join(' AND ');
     this.output = filterAll;
     return filterAll;
