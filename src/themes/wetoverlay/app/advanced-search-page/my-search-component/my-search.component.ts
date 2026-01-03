@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription, combineLatest as observableCombineLatest } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model'          //../core/data/paginated-list.model';
@@ -181,7 +181,7 @@ export class MySearchComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.queryParamSub = this.route.queryParams.subscribe((params: Params) => {
+    this.labelsSub = this.route.queryParams.subscribe((params: Params) => {
       this.restoreFromQueryParams(params);
     });
   }
