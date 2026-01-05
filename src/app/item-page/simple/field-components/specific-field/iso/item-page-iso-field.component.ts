@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Item } from '../../../../../core/shared/item.model';
 import { Metadata } from '../../../../../core/shared/metadata.utils';
+import { MetadataValue } from '../../../../../core/shared/metadata.models';
 import { ItemPageFieldComponent } from '../item-page-field.component';
 
 @Component({
@@ -42,33 +43,44 @@ export class ItemPageIsoFieldComponent extends ItemPageFieldComponent {
     label = 'item.page.iso';
 
     public getLanguageValue(): Metadata {
-        let languageFields: string[] = ['dc.language.iso', 'dc.language', 'local.language', 'local.language.other', 'local.language.en', 'local.language.fr', 'local.language.fr-en']
+        const languageFields: string[] = [
+            'dc.language.iso',
+            'dc.language',
+            'local.language',
+            'local.language.other',
+            'local.language.en',
+            'local.language.fr',
+            'local.language.fr-en'
+        ];
 
-        let returnValue = null;
+        let returnValue: MetadataValue = null;
 
-        for(var languageField of languageFields) {
+        for (const languageField of languageFields) {
             returnValue = this.item.firstMetadata(languageField);
-          if ("enfrEnglishFrenchotherfr-en".includes(returnValue)) {
+            if ("enfrEnglishFrenchotherfr-en".includes(returnValue?.value)) {
                 break;
             }
-        };
-        if(returnValue) {
-            if(returnValue.value) {
-                switch (returnValue.value) {
-                    case 'English': returnValue.value = 'en'
-                    case 'French': returnValue.value = 'fr'
-                }
-            }
-            else {
-                returnValue.value = 'none';
-            }
         }
-        // if the authority is null or undefined, set the value to null
-        if (returnValue) {
-            if (returnValue.authority === null || returnValue.authority === undefined) {
-              returnValue= null;
-            }
+
+        if (!returnValue || returnValue.authority === null || returnValue.authority === undefined) {
+            return null;
         }
-        return returnValue;
+
+        const rawValue = returnValue.value;
+        let mappedValue = rawValue;
+        if (rawValue) {
+            switch (rawValue) {
+                case 'English':
+                    mappedValue = 'en';
+                    break;
+                case 'French':
+                    mappedValue = 'fr';
+                    break;
+            }
+        } else {
+            mappedValue = 'none';
+        }
+
+        return Object.assign(new MetadataValue(), returnValue, { value: mappedValue });
     }
 }
