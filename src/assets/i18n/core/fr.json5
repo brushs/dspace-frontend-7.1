@@ -3352,6 +3352,8 @@
   "menu.section.unpin": "Décrocher le menu latéral",
   // "menu.section.workflow": "Administer workflow",
   "menu.section.workflow": "Workflow Administrateur",
+  // "menu.section.requst": "Request",
+  "menu.section.request": "Request(Fr)",
   // "mydspace.breadcrumbs": "MyFOSRC",
   "mydspace.breadcrumbs": "MonOSTR",
   // "mydspace.description": "description",

@@ -519,6 +519,19 @@ export class AdminSidebarComponent extends MenuComponent implements OnInit {
           icon: 'user-check',
           index: 11
         },
+        /* Request */
+        {
+          id: 'request',
+          active: false,
+          visible: authorized,
+          model: {
+            type: MenuItemType.LINK,
+            text: 'menu.section.request',
+            link: '/admin/request'
+          } as LinkMenuItemModel,
+          icon: 'user-check',
+          index: 11
+        },
         /* myDSpace */
         {
           id: 'mydspace',
