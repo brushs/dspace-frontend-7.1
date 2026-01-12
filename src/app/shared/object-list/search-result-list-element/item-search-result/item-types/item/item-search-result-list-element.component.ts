@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
 import {
   CustomNativeWindowService
 } from '../../../../../../core/services/window.service';
-import { Console } from 'console';
 import { isPlatformBrowser } from '@angular/common';
 import { CollectionDataService } from '../../../../../../core/data/collection-data.service';
 import { Collection } from '../../../../../../core/shared/collection.model';

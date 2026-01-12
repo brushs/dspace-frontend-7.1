@@ -19,8 +19,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DynamicFiltersComponent {
   form: FormGroup;
-  mockData: any[] = [];
-  filteredData: any[] = [];
   output: any = '';
 
   constructor(private fb: FormBuilder, public translate: TranslateService, private router: Router) {
@@ -32,11 +30,11 @@ export class DynamicFiltersComponent {
   }
 
 
-  addRow() {
+  addRow(value?: { filtertype?: string; relationalOperator?: string; filter?: string }) {
     const newRow = this.fb.group({
-      filtertype: ['alltitles'],
-      relationalOperator: ['contains'], // Set default value here
-      filter: [''],
+      filtertype: [value?.filtertype ?? 'alltitles'],
+      relationalOperator: [value?.relationalOperator ?? 'contains'],
+      filter: [value?.filter ?? ''],
     });
     this.rows.push(newRow);
   }
@@ -52,28 +50,43 @@ export class DynamicFiltersComponent {
     return this.form.get('rows') as FormArray;
   }
 
-
-  filterData(filters: any[]): any[] {
-    const operatorMappings: any = {
-      contains: (value:string, filter:string) => value.includes(filter),
-      equals: (value:string, filter:string) => value === filter,
-      notcontains: (value:string, filter:string) => !value.includes(filter),
-      notequals: (value:string, filter:string) => value !== filter,
-    };
-
-    return this.mockData.filter(item => {
-      return filters.every(filter => {
-        const operatorFunction = operatorMappings[filter.relationalOperator];
-        if (!operatorFunction) {
-          return true;
-        }
-
-        const value = item[filter.filtertype];
-        const result = operatorFunction(value, filter.filter);
-        return result;
-      });
-    });
+  serializeRows(): string {
+    const rows = this.rows.controls.map((row) => row.value);
+    const hasFilters = rows.some((row) => row.filter && row.filter.trim() !== '');
+    if (!hasFilters) {
+      return '';
+    }
+    return JSON.stringify(rows);
   }
+
+  setRowsFromSerialized(serialized: string): boolean {
+    if (!serialized) {
+      return false;
+    }
+    let parsed: Array<{ filtertype?: string; relationalOperator?: string; filter?: string }>;
+    try {
+      parsed = JSON.parse(serialized);
+    } catch (error) {
+      return false;
+    }
+    if (!Array.isArray(parsed)) {
+      return false;
+    }
+    this.setRows(parsed);
+    return true;
+  }
+
+  private setRows(values: Array<{ filtertype?: string; relationalOperator?: string; filter?: string }>) {
+    while (this.rows.length > 0) {
+      this.rows.removeAt(0);
+    }
+    if (!values || values.length === 0) {
+      this.addRow();
+      return;
+    }
+    values.forEach((value) => this.addRow(value));
+  }
+
 
   resetQuery() {
     //this.form.reset();
@@ -82,7 +95,10 @@ export class DynamicFiltersComponent {
       this.rows.removeAt(i);
     }
     this.rows.controls[0].get('filter').setValue('');
-    this.router.navigate(['/advanced-search']);
+    this.router.navigate(['/advanced-search'], {
+      queryParams: { af: null, query: null, fq: null, expand: null },
+      queryParamsHandling: 'merge',
+    });
   }
 
   printFormValues() {
@@ -111,32 +127,43 @@ export class DynamicFiltersComponent {
     return filterInfo;
   }
 
+  private escapeSolrValue(value: string): string {
+    return value.replace(/[+\-!(){}[\]^"~*?:\\/]/g, '\\$&');
+  }
+
   private getQueryString() {
     const filters = this.rows.controls.map(row => row.value);
     let filterArray: any = [];
     var filterInfo = '';
     for (const filter of filters) {
-      if (filter.filter === '') {
+      const rawFilter = (filter.filter || '');
+      const trimmedFilter = rawFilter.trim();
+      if (trimmedFilter === '') {
         continue;
       }
       switch (filter.relationalOperator) {
         case 'contains':
-        case 'equals':
-          var filterText = filter.filter;
+        case 'equals': {
+          var filterText = trimmedFilter;
           filterText = filterText.replace(/"/g, '');
-          filterInfo = this.transformEqualFilterInfo(filter.filtertype,filterText);
+          filterText = this.escapeSolrValue(filterText);
+          filterInfo = this.transformEqualFilterInfo(filter.filtertype, filterText);
           break;
+        }
         case 'notcontains':
-        case 'notequals':
-          filterInfo = `-${filter.filtertype}:"${filter.filter}"`;
+        case 'notequals': {
+          var filterText = trimmedFilter;
+          filterText = filterText.replace(/"/g, '');
+          filterText = this.escapeSolrValue(filterText);
+          const inner = this.transformEqualFilterInfo(filter.filtertype, filterText);
+          filterInfo = `-(${inner})`;
           break;
+        }
         default:
-          filterInfo = `*:*`;
-          break;
+          continue;
       }
       filterArray.push(filterInfo);
     }
-    this.filteredData = this.filterData(filters);
     let filterAll = filterArray.join(' AND ');
     this.output = filterAll;
     return filterAll;

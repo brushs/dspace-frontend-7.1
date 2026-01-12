@@ -75,7 +75,10 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            }
           },
           "configurations": {
             "production": {
