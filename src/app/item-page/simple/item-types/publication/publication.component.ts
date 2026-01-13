@@ -23,6 +23,7 @@ import { Router } from '@angular/router';
 })
 export class PublicationComponent extends ItemComponent implements OnInit {
   displayLarge = false;
+  uniLanguage = false;
   isMultimediaCollection$: Observable<boolean>;
 
   constructor(
@@ -37,6 +38,8 @@ export class PublicationComponent extends ItemComponent implements OnInit {
 
   ngOnInit(): void {
     super.ngOnInit();
+    const flag = (this.object?.firstMetadataValue('nrcan.unilingual') || '').toLowerCase();
+    this.uniLanguage = flag === 'true' || flag === 'yes' || flag === 'y'
 
     // Check if the item belongs to the "Multimedia" collection
     this.isMultimediaCollection$ = this.collectionDataService.findOwningCollectionFor(this.object).pipe(
