@@ -55,6 +55,8 @@ import { ResultsBackButtonModule } from '../shared/results-back-button/results-b
 import { ItemPageLangDependentComponent } from './simple/field-components/specific-field/lang-dependent/item-page-lang-dependent-field.component';
 import { ItemPageWithEmailComponent} from './simple/field-components/specific-field/withEmail/item-page-withemail-field.component';
 import { ItemPageLabelLinkComponent } from './simple/field-components/specific-field/label-link/item-page-labellink-field.component';
+import { RequestPublicationModalComponent } from './simple/item-types/publication/request-publication-modal/request-publication-modal.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 const ENTRY_COMPONENTS = [
   // put only entry components that use custom decorator
@@ -108,7 +110,8 @@ const DECLARATIONS = [
   ItemPageExternalUrlieldComponent,
   ItemPageLangDependentComponent,
   ItemPageWithEmailComponent,
-  ItemPageLabelLinkComponent
+  ItemPageLabelLinkComponent,
+  RequestPublicationModalComponent
 ];
 
 @NgModule({
@@ -122,6 +125,7 @@ const DECLARATIONS = [
     ResearchEntitiesModule.withEntryComponents(),
     //NgxGalleryModule,
     ResultsBackButtonModule,
+    TranslateModule,
   ],
   declarations: [
     ...DECLARATIONS
