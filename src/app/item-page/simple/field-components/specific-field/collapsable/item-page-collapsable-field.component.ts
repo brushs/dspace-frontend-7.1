@@ -56,6 +56,9 @@ export class ItemPageCollapsableFieldComponent extends ItemPageFieldComponent {
     }
     else {
       let fieldValuesLang = fieldValues.filter((value) => value.language === currLang);
+      if (fieldValuesLang.length == 0) {
+        fieldValuesLang = fieldValues.filter((value) => value.language === null || value.language === undefined);
+      }
       this.value = fieldValuesLang[0].value;
     }
     if (this.value ) {
