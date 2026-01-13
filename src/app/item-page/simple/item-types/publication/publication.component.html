@@ -33,8 +33,15 @@
     <!-- </ng-container> -->
     <!-- conitinoal hide file download -->
     <ng-container *ngIf="!displayLarge && !uniLanguage">
-    <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+      <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
     </ng-container>
+    <!-- show button to files page for unilingual pubs -->
+    <ng-container *ngIf="uniLanguage">
+      <button type="button" class="btn btn-link p-0" (click)="openRequestPublication()">
+        {{ 'item.page.request' | translate }}
+      </button>
+    </ng-container>
+
     <!-- for mailto -->
     <ds-item-page-withemail-field [item]="object"
       [field]="'nrcan.pricedpublication'"

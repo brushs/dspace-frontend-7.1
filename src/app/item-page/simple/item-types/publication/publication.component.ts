@@ -9,6 +9,8 @@ import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../../../core/locale/locale.service';
 import { RouteService } from '../../../../core/services/route.service';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RequestPublicationModalComponent } from './request-publication-modal/request-publication-modal.component';
 
 /**
  * Component that represents a publication Item page
@@ -31,7 +33,8 @@ export class PublicationComponent extends ItemComponent implements OnInit {
     protected localeService: LocaleService,
     protected routeService: RouteService,
     protected router: Router,
-    protected collectionDataService: CollectionDataService
+    protected collectionDataService: CollectionDataService,
+    private modalService: NgbModal
   ) {
     super(dsoNameService, localeService, routeService, router);
   }
@@ -59,5 +62,11 @@ export class PublicationComponent extends ItemComponent implements OnInit {
     // also means show the large file download link
     this.displayLarge = shouldHide;
     //console.log('shouldHide:', shouldHide);
+  }
+
+  openRequestPublication(): void {
+    const modalRef = this.modalService.open(RequestPublicationModalComponent, { centered: true });
+    modalRef.componentInstance.itemUuid = this.object?.uuid;
+    modalRef.componentInstance.itemTitle = this.object?.firstMetadataValue('dc.title');
   }
 }
