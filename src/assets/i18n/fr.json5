@@ -2467,6 +2467,8 @@
   "item.page.relationships.isOrgUnitOfProject": "Projets de recherche",
   // "item.page.return": "Back",
   "item.page.return": "Retour",
+  // "item.page.request": "Request publication",
+  "item.page.request": "Request publication",
   // "item.page.subject": "Keywords",
   "item.page.subject": "Mots-clés",
   // "item.page.titleprefix": "Title: ",

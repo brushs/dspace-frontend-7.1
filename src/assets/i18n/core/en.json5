@@ -25,6 +25,7 @@
   "browseby.title.head": "Browsing {{name}} by title",
   // Policies page labels
   "policies-and-standards.breadcrumbs": "OSTR policies and standards",
+  "item.page.request": "Request Publication",
 
   //Simple item page translations ticket 1587
   "item.page.download.files.link": "Download files",
