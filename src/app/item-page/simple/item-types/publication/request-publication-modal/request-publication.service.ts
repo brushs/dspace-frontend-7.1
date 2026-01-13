@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 export interface RequestPublicationPayload {
   itemUuid: string;
   email: string;
+  language: string;
 }
 
 @Injectable({
@@ -14,6 +15,6 @@ export class RequestPublicationService {
   constructor(private http: HttpClient) {}
 
   requestPublication(payload: RequestPublicationPayload): Observable<void> {
-    return this.http.post<void>('/api/request-publication', payload);
+    return this.http.post<void>('/api/request/publicationrequests', payload);
   }
 }

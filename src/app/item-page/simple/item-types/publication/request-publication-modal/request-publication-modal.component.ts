@@ -17,7 +17,8 @@ export class RequestPublicationModalComponent {
   submitSuccess = false;
 
   form = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]]
+    email: ['', [Validators.required, Validators.email]],
+    language: ['en', [Validators.required]]
   });
 
   constructor(
@@ -37,7 +38,8 @@ export class RequestPublicationModalComponent {
 
     this.requestPublicationService.requestPublication({
       itemUuid: this.itemUuid,
-      email: this.form.value.email
+      email: this.form.value.email,
+      language: this.form.value.language
     }).subscribe({
       next: () => {
         this.submitSuccess = true;
