@@ -1,14 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild,ChangeDetectorRef} from '@angular/core';
-import { BehaviorSubject, Observable, Subscription,combineLatest as observableCombineLatest } from 'rxjs';
-import { map, startWith, switchMap, take } from 'rxjs/operators';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription, combineLatest as observableCombineLatest } from 'rxjs';
+import { map, startWith, switchMap } from 'rxjs/operators';
 import { PaginatedList } from '../../../../../app/core/data/paginated-list.model'          //../core/data/paginated-list.model';
 import { RemoteData } from '../../../../../app/core/data/remote-data';
 import { DSpaceObject } from '../../../../../app/core/shared/dspace-object.model';
 import { pushInOut } from '../../../../../app/shared/animations/push';
 import { HostWindowService } from '../../../../../app/shared/host-window.service';
 import { SidebarService } from '../../../../../app/shared/sidebar/sidebar.service';
-import { hasNoValue, hasValue, isEmpty, isNotEmpty } from '../../../../../app/shared/empty.util';
+import { hasValue, isEmpty, isNotEmpty } from '../../../../../app/shared/empty.util';
 import { getFirstSucceededRemoteData } from '../../../../../app/core/shared/operators';
 import { RouteService } from '../../../../../app/core/services/route.service';
 import { SEARCH_CONFIG_SERVICE } from '../../../../../app/my-dspace-page/my-dspace-page.component';
@@ -19,17 +18,12 @@ import { SearchService } from '../../../../../app/core/shared/search/search.serv
 import { currentPath } from '../../../../../app/shared/utils/route.utils';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Context } from '../../../../../app/core/shared/context.model';
-import { SortDirection, SortOptions } from '../../../../../app/core/cache/models/sort-options.model';
+import { SortOptions } from '../../../../../app/core/cache/models/sort-options.model';
 import { followLink } from '../../../../../app/shared/utils/follow-link-config.model';
 import { Item } from '../../../../../app/core/shared/item.model';
-import { PaginationService } from '../../../../../app/core/pagination/pagination.service';
 import { PaginationComponentOptions } from '../../../../../app/shared/pagination/pagination-component-options.model';
-import { AppInjector } from '../../../../../app/app.injector';
-import { DSONameService } from '../../../../../app/core/breadcrumbs/dso-name.service';
-import { stripOperatorFromFilterValue } from '../../../../../app/shared/search/search.utils';
 import { DynamicFiltersComponent } from '../dynamic-filters/dynamic-filters.component';
 import { TranslateService } from '@ngx-translate/core';
-import { SearchFilter } from 'src/app/shared/search/search-filter.model';
 import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.component';
 
 @Component({
@@ -49,7 +43,7 @@ import { GeoSearchPageComponent } from '../../geo-search-page/geo-search-page.co
 /**
  * This component renders a sidebar, a search input bar and the search results.
  */
-export class MySearchComponent implements OnInit {
+export class MySearchComponent implements OnInit, AfterViewInit {
   /**
    * The current search results
    */
@@ -64,8 +58,6 @@ export class MySearchComponent implements OnInit {
    * The current paginated search options
    */
   searchOptions$: Observable<PaginatedSearchOptions>;
-
-  geoChange$:Observable<PaginatedSearchOptions>;
 
   /**
    * The current available sort options
@@ -86,6 +78,7 @@ export class MySearchComponent implements OnInit {
    * Subscription to unsubscribe from
    */
   sub: Subscription;
+  labelsSub: Subscription;
 
   /**
    * True when the search component should show results on the current page
@@ -133,15 +126,6 @@ export class MySearchComponent implements OnInit {
   adminSearch: boolean;
   /* End of FOSRC Changes */
 
-  paginationService: PaginationService;
-  dsoNameService: DSONameService;
-  hasNoValue = hasNoValue;
-  stripOperatorFromFilterValue = stripOperatorFromFilterValue
-
-  /**
-   * Emits the currently active filters
-   */
-  appliedFilters: Observable<Params>;
   mainSearchValue :string;
 
   isMapVisible: boolean = false; // Initially hidden
@@ -149,6 +133,7 @@ export class MySearchComponent implements OnInit {
   isResultsVisible: boolean = false; // Initially hidden
   private labelShow: string;
   private labelHide: string;
+  private readonly advancedFiltersParam = 'af';
 
   @Input()
   currentGeoQuery: string;
@@ -185,7 +170,7 @@ export class MySearchComponent implements OnInit {
     /* End of FOSRC Changes */
     this.doSearch();
     //this.getQueryParam();
-    observableCombineLatest(
+    this.labelsSub = observableCombineLatest(
      this.translateService.get('search.geospatial.showmap'),
      this.translateService.get('search.geospatial.hidemap')
     ).subscribe(([labelShow,labelHide]) => {
@@ -193,6 +178,12 @@ export class MySearchComponent implements OnInit {
       this.labelHide = labelHide;
       this.showHideMapnLabel = labelShow;
     })
+  }
+
+  ngAfterViewInit(): void {
+    this.labelsSub = this.route.queryParams.subscribe((params: Params) => {
+      this.restoreFromQueryParams(params);
+    });
   }
 
   private doSearch() {
@@ -239,12 +230,65 @@ export class MySearchComponent implements OnInit {
     this.sortOptions$ = this.searchConfigService.getConfigurationSortOptionsObservable(searchConfig$);
     this.searchConfigService.initializeSortOptionsFromConfiguration(searchConfig$);
 
-    this.paginationService = AppInjector.get(PaginationService);
-    this.dsoNameService = AppInjector.get(DSONameService);
-
     this.paginationOptions$ = this.searchConfigService.paginatedSearchOptions.pipe(map((options: PaginatedSearchOptions) => options.pagination));
 
     //this.getQueryParam();
+  }
+
+  private restoreFromQueryParams(params: Params): void {
+    const filters = params[this.advancedFiltersParam];
+    const query = params['query'];
+    const geoQuery = params['fq'];
+    const expand = params['expand'];
+
+    if (hasValue(filters) && this.dynamicFiltersComponent) {
+      this.dynamicFiltersComponent.setRowsFromSerialized(filters);
+      this.dynamicFiltersComponent.getQuery();
+    }
+
+    if (hasValue(query)) {
+      this.mainSearchValue = query;
+      this.updateSearchQuery(query);
+    }
+
+    if (hasValue(geoQuery)) {
+      this.currentGeoQuery = geoQuery;
+    }
+
+    if (hasValue(query) || hasValue(filters) || hasValue(geoQuery)) {
+      this.isResultsVisible = true;
+      this.cdRef.markForCheck();
+    }
+
+    if (hasValue(geoQuery) || hasValue(expand)) {
+      this.updateSearchOptionsFromParams(geoQuery, expand);
+    }
+  }
+
+  private updateSearchQuery(query: string): void {
+    const currentValue = this.searchConfigService.paginatedSearchOptions?.getValue();
+    if (!currentValue) {
+      return;
+    }
+    const optionsCopy: any = Object.create(Object.getPrototypeOf(currentValue));
+    Object.assign(optionsCopy, currentValue, { query });
+    this.searchConfigService.paginatedSearchOptions.next(optionsCopy as PaginatedSearchOptions);
+  }
+
+  private updateSearchOptionsFromParams(geoQuery: string, expand: string): void {
+    const currentValue = this.searchConfigService.paginatedSearchOptions?.getValue();
+    if (!currentValue) {
+      return;
+    }
+    const optionsCopy: any = Object.create(Object.getPrototypeOf(currentValue));
+    Object.assign(optionsCopy, currentValue);
+    if (hasValue(geoQuery)) {
+      optionsCopy.geoQuery = geoQuery;
+    }
+    if (hasValue(expand)) {
+      optionsCopy.expand = expand === 'true';
+    }
+    this.searchConfigService.paginatedSearchOptions.next(optionsCopy as PaginatedSearchOptions);
   }
 
   private getQueryParam() {
@@ -332,6 +376,9 @@ export class MySearchComponent implements OnInit {
     if (hasValue(this.sub)) {
       this.sub.unsubscribe();
     }
+    if (hasValue(this.labelsSub)) {
+      this.labelsSub.unsubscribe();
+    }
   }
 
 
@@ -387,7 +434,13 @@ export class MySearchComponent implements OnInit {
           pageParamObj[`${paginationId}.page`] = 1;
         }
         //extra flag for advanced search to expand some items
-        this.router.navigate(['.'], { relativeTo: this.route, queryParams: Object.assign({ query: term, 'spc.sf': 'score', 'fq': this.currentGeoQuery, 'expand': true }, pageParamObj), queryParamsHandling: 'merge'});
+        const advancedFilters = this.dynamicFiltersComponent.serializeRows();
+        const queryParams: Params = Object.assign(
+          { query: term, 'spc.sf': 'score', 'fq': this.currentGeoQuery, 'expand': true },
+          pageParamObj
+        );
+        queryParams[this.advancedFiltersParam] = hasValue(advancedFilters) ? advancedFilters : null;
+        this.router.navigate(['.'], { relativeTo: this.route, queryParams, queryParamsHandling: 'merge'});
       }
     }
 

@@ -1,6 +1,6 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import JSON5 from 'json5';
+import * as JSON5 from 'json5';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
