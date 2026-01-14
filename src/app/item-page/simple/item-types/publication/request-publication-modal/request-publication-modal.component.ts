@@ -37,8 +37,8 @@ export class RequestPublicationModalComponent {
     this.submitError = false;
 
     this.requestPublicationService.requestPublication({
-      itemUuid: this.itemUuid,
-      email: this.form.value.email,
+      publicationGUID: this.itemUuid,
+      userEmailAddress: this.form.value.email,
       language: this.form.value.language
     }).subscribe({
       next: () => {
