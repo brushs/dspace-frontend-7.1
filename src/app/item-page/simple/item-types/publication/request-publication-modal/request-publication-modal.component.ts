@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RequestPublicationService } from './request-publication.service';
+import { LocaleService } from '../../../../../core/locale/locale.service';
 
 @Component({
   selector: 'ds-request-publication-modal',
   templateUrl: './request-publication-modal.component.html',
   styleUrls: ['./request-publication-modal.component.scss']
 })
-export class RequestPublicationModalComponent {
+export class RequestPublicationModalComponent implements OnInit {
   @Input() itemUuid: string;
   @Input() itemTitle: string;
 
@@ -18,14 +19,21 @@ export class RequestPublicationModalComponent {
 
   form = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    language: ['en', [Validators.required]]
+    language: ['', [Validators.required]]
   });
 
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private requestPublicationService: RequestPublicationService
+    private requestPublicationService: RequestPublicationService,
+    private localeService: LocaleService
   ) {}
+
+  ngOnInit(): void {
+    this.form.patchValue({
+      language: this.localeService.getCurrentLanguageCode()
+    });
+  }
 
   submit(): void {
     if (this.form.invalid || !this.itemUuid || this.submitting) {
