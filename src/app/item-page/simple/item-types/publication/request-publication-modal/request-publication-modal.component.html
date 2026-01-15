@@ -32,12 +32,14 @@
     </div>
     <div class="modal-footer">
       <button *ngIf="submitSuccess" type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">
-        Close
+        {{ 'request-publication.close' | translate }}
       </button>
       <ng-container *ngIf="!submitSuccess">
-        <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">
+          {{ 'request-publication.cancel' | translate }}
+        </button>
         <button type="submit" class="btn btn-primary" [disabled]="submitting">
-          {{ submitting ? 'Submitting...' : 'Submit' }}
+          {{ submitting ? ('request-publication.submitting' | translate) : ('request-publication.submit' | translate) }}
         </button>
       </ng-container>
     </div>

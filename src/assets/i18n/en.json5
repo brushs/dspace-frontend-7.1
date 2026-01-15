@@ -1324,6 +1324,10 @@
   "item.page.relationships.isOrgUnitOfProject": "Research projects",
   "item.page.return": "Back",
   "item.page.request": "Request publication",
+  "request-publication.cancel": "Cancel",
+  "request-publication.close": "Close",
+  "request-publication.submit": "Submit",
+  "request-publication.submitting": "Submitting...",
 
   //Simple item page translations ticket 1587
   "item.page.keywords" : "Keywords",

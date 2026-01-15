@@ -26,6 +26,10 @@
   // Policies page labels
   "policies-and-standards.breadcrumbs": "OSTR policies and standards",
   "item.page.request": "Request Publication",
+  "request-publication.cancel": "Cancel",
+  "request-publication.close": "Close",
+  "request-publication.submit": "Submit",
+  "request-publication.submitting": "Submitting...",
 
   //Simple item page translations ticket 1587
   "item.page.download.files.link": "Download files",

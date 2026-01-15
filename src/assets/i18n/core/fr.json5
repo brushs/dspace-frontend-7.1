@@ -50,6 +50,10 @@
   "policies-and-standards.breadcrumbs": "Politiques et normes du DFSOC",
   //"item.page.request": "Request Publication"
   "item.page.request": "Request Publication(Fr)",
+  "request-publication.cancel": "Annuler",
+  "request-publication.close": "Fermer",
+  "request-publication.submit": "Soumettre",
+  "request-publication.submitting": "Submitting...(Fr)",
 
   //Simple item page translations ticket 1587
   "item.page.download.files.link": "Télécharger les documents",
