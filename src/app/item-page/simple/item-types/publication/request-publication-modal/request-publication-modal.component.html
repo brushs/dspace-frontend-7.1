@@ -31,10 +31,15 @@
       Request failed. Please try again.
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Cancel</button>
-      <button type="submit" class="btn btn-primary" [disabled]="submitting">
-        {{ submitting ? 'Submitting...' : 'Submit' }}
+      <button *ngIf="submitSuccess" type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">
+        Close
       </button>
+      <ng-container *ngIf="!submitSuccess">
+        <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="submitting">
+          {{ submitting ? 'Submitting...' : 'Submit' }}
+        </button>
+      </ng-container>
     </div>
   </form>
 </div>
