@@ -37,9 +37,10 @@
     </ng-container>
     <!-- show button to files page for unilingual pubs -->
     <ng-container *ngIf="uniLanguage">
-      <button type="button" class="btn btn-link p-0" (click)="openRequestPublication()">
+      <a class="dont-break-out" href="#" role="button"
+        (click)="openRequestPublication(); $event.preventDefault()">
         {{ 'item.page.request' | translate }}
-      </button>
+      </a>
     </ng-container>
 
     <!-- for mailto -->
