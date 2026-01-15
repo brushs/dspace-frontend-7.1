@@ -9,6 +9,8 @@ import { AdminWorkflowModuleModule } from './admin-workflow-page/admin-workflow.
 import { AdminSearchModule } from './admin-search-page/admin-search.module';
 import { AdminSidebarSectionComponent } from './admin-sidebar/admin-sidebar-section/admin-sidebar-section.component';
 import { ExpandableAdminSidebarSectionComponent } from './admin-sidebar/expandable-admin-sidebar-section/expandable-admin-sidebar-section.component';
+import { AdminRequestPublicationPageComponent } from './admin-request-publication-page/admin-request-publication-page.component';
+import { AdminRequestTranslationPageComponent } from './admin-request-translation-page/admin-request-translation-page.component';
 
 const ENTRY_COMPONENTS = [
   // put only entry components that use custom decorator
@@ -28,7 +30,9 @@ const ENTRY_COMPONENTS = [
   ],
   declarations: [
     AdminCurationTasksComponent,
-    MetadataImportPageComponent
+    MetadataImportPageComponent,
+    AdminRequestPublicationPageComponent,
+    AdminRequestTranslationPageComponent
   ]
 })
 export class AdminModule {

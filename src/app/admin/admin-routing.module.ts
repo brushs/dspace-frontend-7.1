@@ -7,6 +7,8 @@ import { AdminWorkflowPageComponent } from './admin-workflow-page/admin-workflow
 import { I18nBreadcrumbsService } from '../core/breadcrumbs/i18n-breadcrumbs.service';
 import { AdminCurationTasksComponent } from './admin-curation-tasks/admin-curation-tasks.component';
 import { REGISTRIES_MODULE_PATH } from './admin-routing-paths';
+import { AdminRequestPublicationPageComponent } from './admin-request-publication-page/admin-request-publication-page.component';
+import { AdminRequestTranslationPageComponent } from './admin-request-translation-page/admin-request-translation-page.component';
 
 @NgModule({
   imports: [
@@ -39,6 +41,18 @@ import { REGISTRIES_MODULE_PATH } from './admin-routing-paths';
         resolve: { breadcrumb: I18nBreadcrumbResolver },
         component: MetadataImportPageComponent,
         data: { title: 'admin.metadata-import.title', breadcrumbKey: 'admin.metadata-import' }
+      },
+      {
+        path: 'request/publication',
+        resolve: { breadcrumb: I18nBreadcrumbResolver },
+        component: AdminRequestPublicationPageComponent,
+        data: { title: 'admin.request.publication.title', breadcrumbKey: 'admin.request.publication' }
+      },
+      {
+        path: 'request/translation',
+        resolve: { breadcrumb: I18nBreadcrumbResolver },
+        component: AdminRequestTranslationPageComponent,
+        data: { title: 'admin.request.translation.title', breadcrumbKey: 'admin.request.translation' }
       },
     ])
   ],
