@@ -1816,6 +1816,8 @@
   "menu.section.unpin": "Unpin sidebar",
   "menu.section.workflow": "Administer workflow",
   "menu.section.request": "Request",
+  "menu.section.request_publication": "Publication Request",
+  "menu.section.request_translation": "Translation Request",
   "mydspace.breadcrumbs": "MyOSTR",
   "mydspace.description": "description",
   "mydspace.general.text-here": "Here",

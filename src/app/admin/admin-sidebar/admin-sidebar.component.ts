@@ -525,12 +525,33 @@ export class AdminSidebarComponent extends MenuComponent implements OnInit {
           active: false,
           visible: authorized,
           model: {
-            type: MenuItemType.LINK,
-            text: 'menu.section.request',
-            link: '/admin/request'
-          } as LinkMenuItemModel,
-          icon: 'user-check',
+            type: MenuItemType.TEXT,
+            text: 'menu.section.request'
+          } as TextMenuItemModel,
+          icon: 'paper-plane',
           index: 11
+        },
+        {
+          id: 'request_publication',
+          parentID: 'request',
+          active: false,
+          visible: authorized,
+          model: {
+            type: MenuItemType.LINK,
+            text: 'menu.section.request_publication',
+            link: '/admin/request/publication'
+          } as LinkMenuItemModel,
+        },
+        {
+          id: 'request_translation',
+          parentID: 'request',
+          active: false,
+          visible: authorized,
+          model: {
+            type: MenuItemType.LINK,
+            text: 'menu.section.request_translation',
+            link: '/admin/request/translation'
+          } as LinkMenuItemModel,
         },
         /* myDSpace */
         {

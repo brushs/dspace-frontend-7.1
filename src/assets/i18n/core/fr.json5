@@ -3360,6 +3360,8 @@
   "menu.section.workflow": "Workflow Administrateur",
   // "menu.section.requst": "Request",
   "menu.section.request": "Request(Fr)",
+  "menu.section.request_publication": "Demande de publication",
+  "menu.section.request_translation": "Demande de traduction",
   // "mydspace.breadcrumbs": "MyFOSRC",
   "mydspace.breadcrumbs": "MonOSTR",
   // "mydspace.description": "description",
