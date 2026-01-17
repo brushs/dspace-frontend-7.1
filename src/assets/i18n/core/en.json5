@@ -810,6 +810,7 @@
   "admin.request.publication.title": "Publication requests",
   "admin.request.publication.placeholder": "This is a placeholder page for publication requests.",
   "admin.request.publication.table.id": "ID",
+  "admin.request.publication.table.title": "Title",
   "admin.request.publication.table.publication-guid": "Publication GUID",
   "admin.request.publication.table.email": "Email",
   "admin.request.publication.table.language": "Language",

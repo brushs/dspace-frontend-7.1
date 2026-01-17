@@ -936,6 +936,7 @@
   "admin.request.publication.title": "Demandes de publication",
   "admin.request.publication.placeholder": "Cette page est reservee aux demandes de publication.",
   "admin.request.publication.table.id": "ID",
+  "admin.request.publication.table.title": "Titre",
   "admin.request.publication.table.publication-guid": "GUID de publication",
   "admin.request.publication.table.email": "Courriel",
   "admin.request.publication.table.language": "Langue",
