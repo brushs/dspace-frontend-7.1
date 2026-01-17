@@ -20,7 +20,7 @@
             <thead>
               <tr>
                 <th scope="col">{{ labelPrefix + 'table.id' | translate }}</th>
-                <th scope="col">{{ labelPrefix + 'table.publication-guid' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.title' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.email' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.language' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.status' | translate }}</th>
@@ -29,7 +29,7 @@
             <tbody>
               <tr *ngFor="let request of (requests$ | async)">
                 <td>{{ request.id }}</td>
-                <td>{{ request.publicationGUID }}</td>
+                <td>{{ getTitle(request) }}</td>
                 <td>{{ request.userEmailAddress }}</td>
                 <td>{{ request.language }}</td>
                 <td>{{ request.status || ('admin.request.publication.status.pending' | translate) }}</td>

@@ -7,6 +7,8 @@ import { PageInfo } from '../../core/shared/page-info.model';
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { NotificationsService } from '../../shared/notifications/notifications.service';
 import { RESTURLCombiner } from '../../core/url-combiner/rest-url-combiner';
+import { LocaleService } from '../../core/locale/locale.service';
+import { hasValue, isEmpty } from '../../shared/empty.util';
 
 @Component({
   selector: 'ds-admin-request-publication-page',
@@ -31,7 +33,8 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
   constructor(
     private restService: DspaceRestService,
     private paginationService: PaginationService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private localeService: LocaleService
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +82,19 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
       map((response) => response.payload as PublicationRequestsResponse)
     );
   }
+
+  getTitle(request: PublicationRequest): string {
+    const currentLang = this.localeService.getCurrentLanguageCode();
+    const primary = currentLang === 'fr' ? request.titleFr : request.titleEn;
+    const fallback = currentLang === 'fr' ? request.titleEn : request.titleFr;
+    if (hasValue(primary) && !isEmpty(primary)) {
+      return primary;
+    }
+    if (hasValue(fallback) && !isEmpty(fallback)) {
+      return fallback;
+    }
+    return '';
+  }
 }
 
 interface PublicationRequestsResponse {
@@ -100,4 +116,6 @@ interface PublicationRequest {
   language: string;
   status: string | null;
   type: string;
+  titleEn?: string | null;
+  titleFr?: string | null;
 }
