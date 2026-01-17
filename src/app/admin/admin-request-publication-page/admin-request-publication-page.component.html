@@ -1,4 +1,4 @@
-<div class="container">
+<div customFosrc class="container">
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-between border-bottom mb-3">
@@ -9,8 +9,8 @@
       <form [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)" class="d-flex justify-content-between">
         <div>
           <select name="scope" id="scope" formControlName="scope" class="form-control" aria-label="Search scope">
-            <option value="title">{{ labelPrefix + 'search.scope.title' | translate }}</option>
-            <option value="email">{{ labelPrefix + 'search.scope.email' | translate }}</option>
+            <option value="title">{{ labelPrefix + 'table.title' | translate }}</option>
+            <option value="email">{{ labelPrefix + 'table.email' | translate }}</option>
           </select>
         </div>
         <div class="flex-grow-1 mr-3 ml-3">
