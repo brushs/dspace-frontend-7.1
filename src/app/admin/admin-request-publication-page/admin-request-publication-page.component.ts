@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { DspaceRestService } from '../../core/dspace-rest/dspace-rest.service';
@@ -30,14 +31,23 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
+  searchForm;
+  currentSearchQuery = '';
+  currentSearchScope = 'title';
+
   constructor(
     private restService: DspaceRestService,
     private paginationService: PaginationService,
     private notificationsService: NotificationsService,
-    private localeService: LocaleService
+    private localeService: LocaleService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.searchForm = this.formBuilder.group(({
+      scope: 'title',
+      query: '',
+    }));
     this.subscriptions.push(
       this.paginationService.getCurrentPagination(this.config.id, this.config).pipe(
         tap(() => this.loading$.next(true)),
@@ -94,6 +104,18 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
       return fallback;
     }
     return '';
+  }
+
+  search(data: { scope: string; query: string }) {
+    this.currentSearchScope = data?.scope || this.currentSearchScope;
+    this.currentSearchQuery = data?.query || '';
+  }
+
+  clearFormAndResetResult() {
+    if (this.searchForm) {
+      this.searchForm.patchValue({ query: '' });
+    }
+    this.currentSearchQuery = '';
   }
 }
 

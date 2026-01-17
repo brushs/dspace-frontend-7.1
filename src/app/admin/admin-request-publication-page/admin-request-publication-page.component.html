@@ -5,6 +5,32 @@
         <h1 id="header" class="pb-2">{{ labelPrefix + 'head' | translate }}</h1>
       </div>
 
+      <h2 id="search" class="border-bottom pb-2">{{ labelPrefix + 'search.head' | translate }}</h2>
+      <form [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)" class="d-flex justify-content-between">
+        <div>
+          <select name="scope" id="scope" formControlName="scope" class="form-control" aria-label="Search scope">
+            <option value="title">{{ labelPrefix + 'search.scope.title' | translate }}</option>
+            <option value="email">{{ labelPrefix + 'search.scope.email' | translate }}</option>
+          </select>
+        </div>
+        <div class="flex-grow-1 mr-3 ml-3">
+          <div class="form-group input-group">
+            <input type="text" name="query" id="query" formControlName="query"
+                   class="form-control"
+                   [placeholder]="(labelPrefix + 'search.placeholder' | translate)">
+            <span class="input-group-append">
+              <button type="submit" class="search-button btn btn-primary">
+                <span aria-hidden="true" class="fas fa-search"></span> {{ labelPrefix + 'search.button' | translate }}
+              </button>
+            </span>
+          </div>
+        </div>
+        <div>
+          <button type="button" (click)="clearFormAndResetResult()"
+                  class="search-button btn btn-secondary">{{ labelPrefix + 'button.see-all' | translate }}</button>
+        </div>
+      </form>
+
       <ds-loading *ngIf="loading$ | async"></ds-loading>
 
       <ds-pagination
