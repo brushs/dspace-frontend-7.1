@@ -1,4 +1,48 @@
-<div class="container mt-3">
-  <h1>{{ 'admin.request.publication.title' | translate }}</h1>
-  <p>{{ 'admin.request.publication.placeholder' | translate }}</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between border-bottom mb-3">
+        <h1 id="header" class="pb-2">{{ labelPrefix + 'head' | translate }}</h1>
+      </div>
+
+      <ds-loading *ngIf="loading$ | async"></ds-loading>
+
+      <ds-pagination
+        *ngIf="(pageInfoState$ | async)?.totalElements > 0 && !(loading$ | async)"
+        [paginationOptions]="config"
+        [pageInfoState]="pageInfoState$"
+        [collectionSize]="(pageInfoState$ | async)?.totalElements"
+        [hideGear]="true"
+        [hidePagerWhenSinglePage]="true">
+
+        <div class="table-responsive">
+          <table id="publicationrequests" class="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">{{ labelPrefix + 'table.id' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.publication-guid' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.email' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.language' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.status' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let request of (requests$ | async)">
+                <td>{{ request.id }}</td>
+                <td>{{ request.publicationGUID }}</td>
+                <td>{{ request.userEmailAddress }}</td>
+                <td>{{ request.language }}</td>
+                <td>{{ request.status || ('admin.request.publication.status.pending' | translate) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ds-pagination>
+
+      <div *ngIf="(pageInfoState$ | async)?.totalElements == 0 && !(loading$ | async)"
+           class="alert alert-info w-100 mb-2" role="alert">
+        {{ labelPrefix + 'no-items' | translate }}
+      </div>
+    </div>
+  </div>
 </div>
