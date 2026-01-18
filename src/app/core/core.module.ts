@@ -164,6 +164,7 @@ import { Root } from './data/root.model';
 import { SearchConfig } from './shared/search/search-filters/search-config.model';
 import { SequenceService } from './shared/sequence.service';
 import { MetadataVocabulary } from './submission/vocabularies/models/metadata-vocabulary.model';
+import { PublicationRequest } from './request/models/publication-request.model';
 
 /**
  * When not in production, endpoint responses can be mocked for testing purposes
@@ -344,6 +345,7 @@ export const models =
     ShortLivedToken,
     Registration,
     UsageReport,
+    PublicationRequest,
     Root,
     SearchConfig
   ];
