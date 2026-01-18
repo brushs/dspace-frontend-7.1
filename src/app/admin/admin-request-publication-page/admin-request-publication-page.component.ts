@@ -1,15 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { DspaceRestService } from '../../core/dspace-rest/dspace-rest.service';
+import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { PaginationComponentOptions } from '../../shared/pagination/pagination-component-options.model';
 import { PageInfo } from '../../core/shared/page-info.model';
 import { PaginationService } from '../../core/pagination/pagination.service';
 import { NotificationsService } from '../../shared/notifications/notifications.service';
-import { RESTURLCombiner } from '../../core/url-combiner/rest-url-combiner';
 import { LocaleService } from '../../core/locale/locale.service';
 import { hasValue, isEmpty } from '../../shared/empty.util';
+import { FindListOptions } from '../../core/data/request.models';
+import {
+  PublicationRequestDataService,
+} from '../../core/request/publication-request-data.service';
+import { PublicationRequest } from '../../core/request/models/publication-request.model';
+import { RemoteData } from '../../core/data/remote-data';
+import { PaginatedList } from '../../core/data/paginated-list.model';
 
 @Component({
   selector: 'ds-admin-request-publication-page',
@@ -25,7 +30,7 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
 
   config: PaginationComponentOptions = Object.assign(new PaginationComponentOptions(), {
     id: 'prp',
-    pageSize: 20,
+    pageSize: 5,
     currentPage: 1
   });
 
@@ -34,13 +39,14 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
   searchForm;
   currentSearchQuery = '';
   currentSearchScope = 'title';
+  searchParams$ = new BehaviorSubject<{ scope: string; query: string }>({ scope: 'title', query: '' });
 
   constructor(
-    private restService: DspaceRestService,
     private paginationService: PaginationService,
     private notificationsService: NotificationsService,
     private localeService: LocaleService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private publicationRequestDataService: PublicationRequestDataService
   ) {}
 
   ngOnInit(): void {
@@ -49,29 +55,30 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
       query: '',
     }));
     this.subscriptions.push(
-      this.paginationService.getCurrentPagination(this.config.id, this.config).pipe(
-        tap(() => this.loading$.next(true)),
-        switchMap((pagination) => this.loadRequests(pagination)),
-      ).subscribe({
-        next: (response) => {
-          const requests = response._embedded?.publicationrequests ?? [];
-          const page = response.page ?? { size: 0, totalElements: 0, totalPages: 0, number: 0 };
-          this.requests$.next(requests);
-          this.pageInfoState$.next(new PageInfo({
-            elementsPerPage: page.size,
-            totalElements: page.totalElements,
-            totalPages: page.totalPages,
-            currentPage: page.number
-          }));
+      combineLatest([
+        this.paginationService.getCurrentPagination(this.config.id, this.config),
+        this.searchParams$
+      ]).pipe(
+        switchMap(([pagination, search]) => this.loadRequests(pagination, search)),
+      ).subscribe((response: RemoteData<PaginatedList<PublicationRequest>>) => {
+        if (response?.isLoading) {
+          this.loading$.next(true);
+          return;
+        }
+        if (response?.hasSucceeded) {
+          const payload = response.payload;
+          this.requests$.next(payload?.page ?? []);
+          this.pageInfoState$.next(payload?.pageInfo ?? new PageInfo());
           this.loading$.next(false);
-        },
-        error: (error) => {
+          return;
+        }
+        if (response?.hasFailed) {
           this.requests$.next([]);
           this.pageInfoState$.next(new PageInfo());
           this.loading$.next(false);
           this.notificationsService.error(
             this.labelPrefix + 'notification.error',
-            error?.message || error?.statusText || 'Request failed'
+            response?.errorMessage || 'Request failed'
           );
         }
       })
@@ -83,14 +90,14 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
     this.paginationService.clearPagination(this.config.id);
   }
 
-  private loadRequests(pagination: PaginationComponentOptions) {
-    const page = Math.max(0, pagination.currentPage - 1);
-    const size = pagination.pageSize;
-    const baseUrl = new RESTURLCombiner('request', 'publicationrequests').toString();
-    const url = `${baseUrl}?page=${page}&size=${size}`;
-    return this.restService.get(url).pipe(
-      map((response) => response.payload as PublicationRequestsResponse)
-    );
+  private loadRequests(
+    pagination: PaginationComponentOptions,
+    search: { scope: string; query: string }
+  ) {
+    const options = new FindListOptions();
+    options.currentPage = pagination.currentPage;
+    options.elementsPerPage = pagination.pageSize;
+    return this.publicationRequestDataService.searchByScope(search.scope, search.query, options);
   }
 
   getTitle(request: PublicationRequest): string {
@@ -109,6 +116,11 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
   search(data: { scope: string; query: string }) {
     this.currentSearchScope = data?.scope || this.currentSearchScope;
     this.currentSearchQuery = data?.query || '';
+    this.paginationService.resetPage(this.config.id);
+    this.searchParams$.next({
+      scope: this.currentSearchScope,
+      query: this.currentSearchQuery
+    });
   }
 
   clearFormAndResetResult() {
@@ -116,28 +128,10 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
       this.searchForm.patchValue({ query: '' });
     }
     this.currentSearchQuery = '';
+    this.paginationService.resetPage(this.config.id);
+    this.searchParams$.next({
+      scope: this.currentSearchScope,
+      query: this.currentSearchQuery
+    });
   }
-}
-
-interface PublicationRequestsResponse {
-  _embedded?: {
-    publicationrequests?: PublicationRequest[];
-  };
-  page?: {
-    size: number;
-    totalElements: number;
-    totalPages: number;
-    number: number;
-  };
-}
-
-interface PublicationRequest {
-  id: number;
-  publicationGUID: string;
-  userEmailAddress: string;
-  language: string;
-  status: string | null;
-  type: string;
-  titleEn?: string | null;
-  titleFr?: string | null;
 }
