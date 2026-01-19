@@ -50,6 +50,7 @@
                 <th scope="col">{{ labelPrefix + 'table.email' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.language' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.status' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.actions' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -59,6 +60,13 @@
                 <td>{{ request.userEmailAddress }}</td>
                 <td>{{ request.language }}</td>
                 <td>{{ request.status || ('admin.request.publication.status.pending' | translate) }}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-danger btn-sm" [disabled]="true"
+                          title="{{ labelPrefix + 'actions.delete' | translate }}">
+                    <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
+                    <span class="wb-inv">{{  'admin.search.item.delete' | translate }}</span>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
