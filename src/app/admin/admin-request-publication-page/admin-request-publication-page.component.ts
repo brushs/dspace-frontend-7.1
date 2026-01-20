@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 import { PaginationComponentOptions } from '../../shared/pagination/pagination-component-options.model';
 import { PageInfo } from '../../core/shared/page-info.model';
 import { PaginationService } from '../../core/pagination/pagination.service';
@@ -15,6 +15,11 @@ import {
 import { PublicationRequest } from '../../core/request/models/publication-request.model';
 import { RemoteData } from '../../core/data/remote-data';
 import { PaginatedList } from '../../core/data/paginated-list.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from '../../shared/confirmation-modal/confirmation-modal.component';
+import { RequestService } from '../../core/data/request.service';
+import { getFirstCompletedRemoteData } from '../../core/shared/operators';
+import { NoContent } from '../../core/shared/NoContent.model';
 
 @Component({
   selector: 'ds-admin-request-publication-page',
@@ -46,7 +51,9 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private localeService: LocaleService,
     private formBuilder: FormBuilder,
-    private publicationRequestDataService: PublicationRequestDataService
+    private publicationRequestDataService: PublicationRequestDataService,
+    private modalService: NgbModal,
+    private requestService: RequestService
   ) {}
 
   ngOnInit(): void {
@@ -132,6 +139,41 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
     this.searchParams$.next({
       scope: this.currentSearchScope,
       query: this.currentSearchQuery
+    });
+  }
+
+  deleteRequest(request: PublicationRequest) {
+    const modalRef = this.modalService.open(ConfirmationModalComponent);
+    modalRef.componentInstance.headerLabel = 'confirmation-modal.delete-publication-request.header';
+    modalRef.componentInstance.infoLabel = 'confirmation-modal.delete-publication-request.info';
+    modalRef.componentInstance.cancelLabel = 'item.edit.delete.cancel';
+    modalRef.componentInstance.confirmLabel = 'item.edit.delete.confirm';
+    modalRef.componentInstance.brandColor = 'danger';
+    modalRef.componentInstance.confirmIcon = 'fas fa-trash';
+    modalRef.componentInstance.response.pipe(take(1)).subscribe((confirm: boolean) => {
+      if (confirm) {
+        this.publicationRequestDataService.deletePublicationRequest(request)
+          .pipe(getFirstCompletedRemoteData())
+          .subscribe((response: RemoteData<NoContent>) => {
+            if (response.hasSucceeded) {
+              this.notificationsService.success(this.labelPrefix + 'notification.deleted.success');
+              this.resetList();
+            } else {
+              this.notificationsService.error(this.labelPrefix + 'notification.deleted.error');
+            }
+          });
+      }
+    });
+  }
+
+  private resetList() {
+    this.publicationRequestDataService.getBrowseEndpoint().pipe(take(1)).subscribe((href: string) => {
+      this.requestService.setStaleByHrefSubstring(href).pipe(take(1)).subscribe(() => {
+        this.searchParams$.next({
+          scope: this.currentSearchScope,
+          query: this.currentSearchQuery
+        });
+      });
     });
   }
 }

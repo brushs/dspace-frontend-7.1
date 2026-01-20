@@ -61,7 +61,8 @@
                 <td>{{ request.language }}</td>
                 <td>{{ request.status || ('admin.request.publication.status.pending' | translate) }}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-danger btn-sm" [disabled]="true"
+                  <button type="button" class="btn btn-outline-danger btn-sm"
+                          (click)="deleteRequest(request)"
                           title="{{ labelPrefix + 'actions.delete' | translate }}">
                     <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
                     <span class="wb-inv">{{  'admin.search.item.delete' | translate }}</span>
