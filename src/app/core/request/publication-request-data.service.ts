@@ -11,6 +11,7 @@ import { FindListOptions } from '../data/request.models';
 import { RequestService } from '../data/request.service';
 import { RemoteData } from '../data/remote-data';
 import { PaginatedList } from '../data/paginated-list.model';
+import { NoContent } from '../shared/NoContent.model';
 import { CoreState } from '../core.reducers';
 import { HALEndpointService } from '../shared/hal-endpoint.service';
 import { DefaultChangeAnalyzer } from '../data/default-change-analyzer.service';
@@ -101,5 +102,9 @@ export class PublicationRequestDataService extends DataService<PublicationReques
       findListOptions.searchParams = searchParams;
     }
     return this.searchBy(searchMethod, findListOptions, useCachedVersionIfAvailable);
+  }
+
+  public deletePublicationRequest(request: PublicationRequest): Observable<RemoteData<NoContent>> {
+    return this.delete(String(request.id));
   }
 }
