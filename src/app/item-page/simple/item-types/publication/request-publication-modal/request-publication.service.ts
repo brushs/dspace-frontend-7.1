@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { RESTURLCombiner } from '../../../../../core/url-combiner/rest-url-combiner';
 
 export interface RequestPublicationPayload {
-  publicationGUID: string;
+  publicationUUID: string;
   userEmailAddress: string;
   language: string;
 }

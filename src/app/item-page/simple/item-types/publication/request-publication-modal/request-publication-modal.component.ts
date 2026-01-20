@@ -45,7 +45,7 @@ export class RequestPublicationModalComponent implements OnInit {
     this.submitError = false;
 
     this.requestPublicationService.requestPublication({
-      publicationGUID: this.itemUuid,
+      publicationUUID: this.itemUuid,
       userEmailAddress: this.form.value.email,
       language: this.form.value.language
     }).subscribe({
