@@ -27,7 +27,8 @@ import { NoContent } from '../../core/shared/NoContent.model';
   styleUrls: ['./admin-request-publication-page.component.scss']
 })
 export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
-  labelPrefix = 'admin.request.publication.';
+  labelPrefix = 'admin.request.';
+  labelPrefixSpecific = 'admin.request.publication.';
 
   requests$ = new BehaviorSubject<PublicationRequest[]>([]);
   pageInfoState$ = new BehaviorSubject<PageInfo>(new PageInfo());
@@ -84,7 +85,7 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
           this.pageInfoState$.next(new PageInfo());
           this.loading$.next(false);
           this.notificationsService.error(
-            this.labelPrefix + 'notification.error',
+            this.labelPrefixSpecific + 'notification.error',
             response?.errorMessage || 'Request failed'
           );
         }
@@ -156,10 +157,10 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
           .pipe(getFirstCompletedRemoteData())
           .subscribe((response: RemoteData<NoContent>) => {
             if (response.hasSucceeded) {
-              this.notificationsService.success(this.labelPrefix + 'notification.deleted.success');
+              this.notificationsService.success(this.labelPrefixSpecific + 'notification.deleted.success');
               this.resetList();
             } else {
-              this.notificationsService.error(this.labelPrefix + 'notification.deleted.error');
+              this.notificationsService.error(this.labelPrefixSpecific + 'notification.deleted.error');
             }
           });
       }

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-between border-bottom mb-3">
-        <h1 id="header" class="pb-2">{{ labelPrefix + 'head' | translate }}</h1>
+        <h1 id="header" class="pb-2">{{ labelPrefixSpecific + 'head' | translate }}</h1>
       </div>
 
       <h2 id="search" class="border-bottom pb-2">{{ labelPrefix + 'search.head' | translate }}</h2>
@@ -10,14 +10,14 @@
         <div>
           <select name="scope" id="scope" formControlName="scope" class="form-control" aria-label="Search scope">
             <option value="title">{{ labelPrefix + 'table.title' | translate }}</option>
-            <option value="email">{{ labelPrefix + 'table.email' | translate }}</option>
+            <option value="email">{{ labelPrefixSpecific + 'table.email' | translate }}</option>
           </select>
         </div>
         <div class="flex-grow-1 mr-3 ml-3">
           <div class="form-group input-group">
             <input type="text" name="query" id="query" formControlName="query"
                    class="form-control"
-                   [placeholder]="(labelPrefix + 'search.placeholder' | translate)">
+                   [placeholder]="(labelPrefixSpecific + 'search.placeholder' | translate)">
             <span class="input-group-append">
               <button type="submit" class="search-button btn btn-primary">
                 <span aria-hidden="true" class="fas fa-search"></span> {{ labelPrefix + 'search.button' | translate }}
@@ -47,7 +47,7 @@
               <tr>
                 <th scope="col">{{ labelPrefix + 'table.id' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.title' | translate }}</th>
-                <th scope="col">{{ labelPrefix + 'table.email' | translate }}</th>
+                <th scope="col">{{ labelPrefixSpecific + 'table.email' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.language' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.status' | translate }}</th>
                 <th scope="col">{{ labelPrefix + 'table.actions' | translate }}</th>
@@ -59,11 +59,11 @@
                 <td>{{ getTitle(request) }}</td>
                 <td>{{ request.userEmailAddress }}</td>
                 <td>{{ request.language }}</td>
-                <td>{{ request.status || ('admin.request.publication.status.pending' | translate) }}</td>
+                <td>{{ request.status || (labelPrefixSpecific + 'status.pending' | translate) }}</td>
                 <td>
                   <button type="button" class="btn btn-outline-danger btn-sm"
                           (click)="deleteRequest(request)"
-                          title="{{ labelPrefix + 'actions.delete' | translate }}">
+                          title="{{ labelPrefixSpecific + 'actions.delete' | translate }}">
                     <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
                     <span class="wb-inv">{{  'admin.search.item.delete' | translate }}</span>
                   </button>
@@ -76,7 +76,7 @@
 
       <div *ngIf="(pageInfoState$ | async)?.totalElements == 0 && !(loading$ | async)"
            class="alert alert-info w-100 mb-2" role="alert">
-        {{ labelPrefix + 'no-items' | translate }}
+        {{ labelPrefixSpecific + 'no-items' | translate }}
       </div>
     </div>
   </div>
