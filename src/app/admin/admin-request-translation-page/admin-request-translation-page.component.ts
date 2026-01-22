@@ -26,6 +26,7 @@ import { NoContent } from '../../core/shared/NoContent.model';
 })
 export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
   labelPrefix = 'admin.request.translation.';
+  labelPrefixSpecific = 'admin.request.translation.';
 
   requests$ = new BehaviorSubject<TranslationRequest[]>([]);
   pageInfoState$ = new BehaviorSubject<PageInfo>(new PageInfo());
