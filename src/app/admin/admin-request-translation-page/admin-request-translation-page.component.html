@@ -66,7 +66,12 @@
                 <td>{{ request.notes || '-' }}</td>
                 <td>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-outline-primary btn-sm"
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                            title="{{ labelPrefixSpecific + 'actions.view' | translate }}">
+                      <span aria-hidden="true" class="fa fa-eye fa-fw"></span>
+                      <span class="wb-inv">{{ labelPrefixSpecific + 'actions.view' | translate }}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
                             title="{{ labelPrefixSpecific + 'actions.add-notes' | translate }}">
                       <span aria-hidden="true" class="fas fa-sticky-note fa-fw"></span>
                       <span class="wb-inv">{{ labelPrefixSpecific + 'actions.add-notes' | translate }}</span>
