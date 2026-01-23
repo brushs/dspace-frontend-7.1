@@ -63,6 +63,8 @@ export class TranslationRequestDataService extends DataService<TranslationReques
         return this.getTranslationRequestsByTitle(trimmedQuery, options, useCachedVersionIfAvailable);
       case 'status':
         return this.getTranslationRequestsByStatus(trimmedQuery, options, useCachedVersionIfAvailable);
+      case 'publicationUUID':
+        return this.getTranslationRequestsByPublicationUUID(trimmedQuery, options, useCachedVersionIfAvailable);
       case 'language':
       default:
         return this.getTranslationRequestsByLanguage(trimmedQuery, options, useCachedVersionIfAvailable);
@@ -95,6 +97,14 @@ export class TranslationRequestDataService extends DataService<TranslationReques
     useCachedVersionIfAvailable = true
   ): Observable<RemoteData<PaginatedList<TranslationRequest>>> {
     return this.getTranslationRequestsBy('byStatus', 'status', query, options, useCachedVersionIfAvailable);
+  }
+
+  private getTranslationRequestsByPublicationUUID(
+    query: string,
+    options: FindListOptions = {},
+    useCachedVersionIfAvailable = true
+  ): Observable<RemoteData<PaginatedList<TranslationRequest>>> {
+    return this.getTranslationRequestsBy('byPublicationUuid', 'uuid', query, options, useCachedVersionIfAvailable);
   }
 
   private getTranslationRequestsBy(
