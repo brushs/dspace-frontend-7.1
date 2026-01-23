@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
@@ -27,6 +27,7 @@ import { NoContent } from '../../core/shared/NoContent.model';
 export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
   labelPrefix = 'admin.request.translation.';
   labelPrefixSpecific = 'admin.request.translation.';
+  selectedRequest: TranslationRequest | null = null;
 
   requests$ = new BehaviorSubject<TranslationRequest[]>([]);
   pageInfoState$ = new BehaviorSubject<PageInfo>(new PageInfo());
@@ -173,6 +174,11 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
           });
       }
     });
+  }
+
+  openViewModal(request: TranslationRequest, content: TemplateRef<unknown>) {
+    this.selectedRequest = request;
+    this.modalService.open(content, { size: 'lg' });
   }
 
   private resetList() {
