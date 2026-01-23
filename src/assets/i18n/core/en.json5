@@ -848,6 +848,7 @@
   "admin.request.translation.search.scope.title": "Title",
   "admin.request.translation.search.scope.language": "Language",
   "admin.request.translation.search.scope.status": "Status",
+  "admin.request.translation.search.scope.publicationUUID": "Publication UUID",
   "admin.request.translation.search.placeholder": "Search by title, language, or status",
   "admin.request.translation.search.button": "Search",
   "admin.request.translation.button.see-all": "Browse all",
