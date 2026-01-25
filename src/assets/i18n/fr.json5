@@ -975,7 +975,7 @@
   "admin.request.translation.search.scope.language": "Langue",
   "admin.request.translation.search.scope.status": "Statut",
   "admin.request.translation.search.scope.publicationUUID": "UUID de publication",
-  "admin.request.translation.search.placeholder": "Rechercher par titre, langue ou statut",
+  "admin.request.translation.search.placeholder": "Rechercher par titre, UUID de publication ou statut",
   "admin.request.translation.search.button": "Rechercher",
   "admin.request.translation.button.see-all": "Voir tout",
   "admin.request.translation.table.id": "ID",
