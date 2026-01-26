@@ -61,12 +61,24 @@
                 <td>{{ request.language }}</td>
                 <td>{{ request.status || (labelPrefixSpecific + 'status.pending' | translate) }}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-danger btn-sm"
-                          (click)="deleteRequest(request)"
-                          title="{{ labelPrefixSpecific + 'actions.delete' | translate }}">
-                    <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
-                    <span class="wb-inv">{{  'admin.search.item.delete' | translate }}</span>
-                  </button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                            title="{{ 'admin.request.actions.view' | translate }}">
+                      <span aria-hidden="true" class="fa fa-eye fa-fw"></span>
+                      <span class="wb-inv">{{ 'admin.request.actions.view' | translate }}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                            title="{{ 'admin.request.actions.change-status' | translate }}">
+                      <span aria-hidden="true" class="fas fa-exchange-alt fa-fw"></span>
+                      <span class="wb-inv">{{ 'admin.request.actions.change-status' | translate }}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"
+                            (click)="deleteRequest(request)"
+                            title="{{ labelPrefixSpecific + 'actions.delete' | translate }}">
+                      <span aria-hidden="true" class="fas fa-trash-alt fa-fw"></span>
+                      <span class="wb-inv">{{  'admin.search.item.delete' | translate }}</span>
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
