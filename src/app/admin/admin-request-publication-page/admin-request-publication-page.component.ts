@@ -30,6 +30,16 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
   labelPrefix = 'admin.request.';
   labelPrefixSpecific = 'admin.request.publication.';
   selectedRequest: PublicationRequest | null = null;
+  statusRequest: PublicationRequest | null = null;
+  statusSubmitting = false;
+  statusOptions: Array<{ value: string; label: string }> = [
+    { value: 'Pending Translation', label: 'Pending Translation' },
+    { value: 'Translation In Progress', label: 'Translation In Progress' },
+    { value: 'Pending Notification', label: 'Pending Notification' },
+    { value: 'Completed', label: 'Completed' },
+    { value: 'Cancelled', label: 'Cancelled' },
+    { value: 'On Hold', label: 'On Hold' }
+  ];
 
   requests$ = new BehaviorSubject<PublicationRequest[]>([]);
   pageInfoState$ = new BehaviorSubject<PageInfo>(new PageInfo());
@@ -44,6 +54,7 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   searchForm;
+  statusForm;
   currentSearchQuery = '';
   currentSearchScope = 'title';
   searchParams$ = new BehaviorSubject<{ scope: string; query: string }>({ scope: 'title', query: '' });
@@ -63,6 +74,9 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
       scope: 'title',
       query: '',
     }));
+    this.statusForm = this.formBuilder.group({
+      status: ''
+    });
     this.subscriptions.push(
       combineLatest([
         this.paginationService.getCurrentPagination(this.config.id, this.config),
@@ -173,11 +187,44 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { size: 'lg' });
   }
 
-  changeStatus(request: PublicationRequest) {
-    this.notificationsService.info(
-      this.labelPrefixSpecific + 'notification.change-status.placeholder',
-      `Change status not implemented yet for request ${request?.id ?? ''}`
-    );
+  openChangeStatusModal(request: PublicationRequest, content: TemplateRef<unknown>) {
+    this.statusRequest = request;
+    if (this.statusForm) {
+      this.statusForm.patchValue({ status: this.getStatusValue(request?.status) || '' });
+    }
+    this.modalService.open(content, { size: 'md' });
+  }
+
+  updateStatus(modal: { close: (reason?: string) => void }) {
+    if (!this.statusRequest || !this.statusForm?.value?.status) {
+      return;
+    }
+    this.statusSubmitting = true;
+    const status = this.statusForm.value.status;
+    this.publicationRequestDataService.updateStatus(this.statusRequest.id, status)
+      .pipe(getFirstCompletedRemoteData())
+      .subscribe((response: RemoteData<NoContent>) => {
+        this.statusSubmitting = false;
+        if (response.hasSucceeded) {
+          this.notificationsService.success(this.labelPrefixSpecific + 'notification.status.updated');
+          modal.close('updated');
+          this.resetList();
+        } else {
+          this.notificationsService.error(this.labelPrefixSpecific + 'notification.status.error');
+        }
+      });
+  }
+
+  private getStatusValue(status: string | null | undefined): string | null {
+    if (!status) {
+      return null;
+    }
+    const byValue = this.statusOptions.find((option) => option.value === status);
+    if (byValue) {
+      return byValue.value;
+    }
+    const byLabel = this.statusOptions.find((option) => option.label === status);
+    return byLabel?.value || null;
   }
 
   private resetList() {

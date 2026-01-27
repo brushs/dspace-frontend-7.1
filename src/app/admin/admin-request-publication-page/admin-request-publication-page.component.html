@@ -70,7 +70,7 @@
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
                             title="{{ 'admin.request.actions.change-status' | translate }}"
-                            (click)="changeStatus(request)">
+                            (click)="openChangeStatusModal(request, changeStatusModal)">
                       <span aria-hidden="true" class="fas fa-exchange-alt fa-fw"></span>
                       <span class="wb-inv">{{ 'admin.request.actions.change-status' | translate }}</span>
                     </button>
@@ -140,6 +140,36 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close('close')">
       {{ labelPrefixSpecific + 'view.close' | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #changeStatusModal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title">{{ labelPrefixSpecific + 'status.change.title' | translate }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="statusForm">
+      <div class="form-group">
+        <label for="statusSelect">{{ labelPrefix + 'table.status' | translate }}</label>
+        <select id="statusSelect" class="form-control" formControlName="status">
+          <option value="" disabled>{{ 'submission.sections.ccLicense.option.select' | translate }}</option>
+          <option *ngFor="let status of statusOptions" [value]="status.value">{{ status.label }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">
+      {{ 'form.cancel' | translate }}
+    </button>
+    <button type="button" class="btn btn-primary"
+            [disabled]="statusSubmitting || !statusForm?.value?.status"
+            (click)="updateStatus(modal)">
+      {{ labelPrefixSpecific + 'status.update' | translate }}
     </button>
   </div>
 </ng-template>
