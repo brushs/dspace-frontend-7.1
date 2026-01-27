@@ -63,12 +63,14 @@
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                            title="{{ 'admin.request.actions.view' | translate }}">
+                            title="{{ 'admin.request.actions.view' | translate }}"
+                            (click)="openViewModal(request, viewModal)">
                       <span aria-hidden="true" class="fa fa-eye fa-fw"></span>
                       <span class="wb-inv">{{ 'admin.request.actions.view' | translate }}</span>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                            title="{{ 'admin.request.actions.change-status' | translate }}">
+                            title="{{ 'admin.request.actions.change-status' | translate }}"
+                            (click)="changeStatus(request)">
                       <span aria-hidden="true" class="fas fa-exchange-alt fa-fw"></span>
                       <span class="wb-inv">{{ 'admin.request.actions.change-status' | translate }}</span>
                     </button>
@@ -93,3 +95,51 @@
     </div>
   </div>
 </div>
+
+<ng-template #viewModal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title">{{ labelPrefixSpecific + 'view.title' | translate }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" *ngIf="selectedRequest">
+    <table class="table table-sm table-bordered mb-0">
+      <tbody>
+        <tr>
+          <th scope="row">{{ labelPrefix + 'table.id' | translate }}</th>
+          <td>{{ selectedRequest.id }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.publication-uuid' | translate }}</th>
+          <td>{{ selectedRequest.publicationUUID || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'table.email' | translate }}</th>
+          <td>{{ selectedRequest.userEmailAddress || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefix + 'table.language' | translate }}</th>
+          <td>{{ selectedRequest.language || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefix + 'table.status' | translate }}</th>
+          <td>{{ selectedRequest.status || (labelPrefixSpecific + 'status.pending' | translate) }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.title-en' | translate }}</th>
+          <td>{{ selectedRequest.titleEn || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.title-fr' | translate }}</th>
+          <td>{{ selectedRequest.titleFr || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('close')">
+      {{ labelPrefixSpecific + 'view.close' | translate }}
+    </button>
+  </div>
+</ng-template>

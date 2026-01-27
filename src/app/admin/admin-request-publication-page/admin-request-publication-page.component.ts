@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subscription } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
@@ -29,6 +29,7 @@ import { NoContent } from '../../core/shared/NoContent.model';
 export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
   labelPrefix = 'admin.request.';
   labelPrefixSpecific = 'admin.request.publication.';
+  selectedRequest: PublicationRequest | null = null;
 
   requests$ = new BehaviorSubject<PublicationRequest[]>([]);
   pageInfoState$ = new BehaviorSubject<PageInfo>(new PageInfo());
@@ -165,6 +166,18 @@ export class AdminRequestPublicationPageComponent implements OnInit, OnDestroy {
           });
       }
     });
+  }
+
+  openViewModal(request: PublicationRequest, content: TemplateRef<unknown>) {
+    this.selectedRequest = request;
+    this.modalService.open(content, { size: 'lg' });
+  }
+
+  changeStatus(request: PublicationRequest) {
+    this.notificationsService.info(
+      this.labelPrefixSpecific + 'notification.change-status.placeholder',
+      `Change status not implemented yet for request ${request?.id ?? ''}`
+    );
   }
 
   private resetList() {
