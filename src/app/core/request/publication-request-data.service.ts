@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of as observableOf } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { dataService } from '../cache/builders/build-decorators';
 import { RemoteDataBuildService } from '../cache/builders/remote-data-build.service';
 import { RequestParam } from '../cache/models/request-param.model';
@@ -19,6 +20,7 @@ import { NotificationsService } from '../../shared/notifications/notifications.s
 import { PublicationRequest } from './models/publication-request.model';
 import { PUBLICATION_REQUEST } from './models/publication-request.resource-type';
 import { RESTURLCombiner } from '../url-combiner/rest-url-combiner';
+import { PatchRequest } from '../data/request.models';
 
 @Injectable({
   providedIn: 'root'
@@ -106,5 +108,19 @@ export class PublicationRequestDataService extends DataService<PublicationReques
 
   public deletePublicationRequest(request: PublicationRequest): Observable<RemoteData<NoContent>> {
     return this.delete(String(request.id));
+  }
+
+  public updateStatus(requestId: number, status: string): Observable<RemoteData<NoContent>> {
+    const requestUuid = this.requestService.generateRequestId();
+    this.getEndpoint().pipe(
+      take(1),
+      map((endpoint: string) => this.getIDHref(endpoint, String(requestId)))
+    ).subscribe((href: string) => {
+      const patch = [{ op: 'replace', path: '/status', value: status }];
+      const request = new PatchRequest(requestUuid, href, patch);
+      this.requestService.send(request);
+    });
+
+    return this.rdbService.buildFromRequestUUID(requestUuid);
   }
 }
