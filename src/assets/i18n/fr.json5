@@ -954,7 +954,7 @@
   "admin.request.publication.table.language": "Langue",
   "admin.request.publication.table.status": "Statut",
     "admin.request.publication.table.actions": "Actions",
-    "admin.request.publication.status.pending": "En attente",
+    "admin.request.publication.status.pending": "En attente",`r`n  "admin.request.publication.status.update": "Mettre a jour",
     "admin.request.publication.actions.delete": "Supprimer",
     "admin.request.actions.view": "Voir",
     "admin.request.actions.change-status": "Modifier le statut",
@@ -4561,3 +4561,4 @@
 	"province.listelement.badge": "Province",
 	"sponsor.listelement.badge": "Commanditaire"
 }
+
