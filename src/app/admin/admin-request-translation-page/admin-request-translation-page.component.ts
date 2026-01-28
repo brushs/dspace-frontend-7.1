@@ -28,6 +28,15 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
   labelPrefix = 'admin.request.translation.';
   labelPrefixSpecific = 'admin.request.translation.';
   selectedRequest: TranslationRequest | null = null;
+  statusRequest: TranslationRequest | null = null;
+  statusSubmitting = false;
+  statusOptions: Array<{ value: string; label: string }> = [
+    { value: 'New', label: 'New' },
+    { value: 'Translation In Progress', label: 'Translation In Progress' },
+    { value: 'Completed', label: 'Completed' },
+    { value: 'Cancelled', label: 'Cancelled' },
+    { value: 'On Hold', label: 'On Hold' }
+  ];
   notesRequest: TranslationRequest | null = null;
   notesSubmitting = false;
 
@@ -45,6 +54,7 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
 
   searchForm;
   notesForm;
+  statusForm;
   currentSearchQuery = '';
   currentSearchScope = 'title';
   searchParams$ = new BehaviorSubject<{ scope: string; query: string }>({ scope: 'title', query: '' });
@@ -66,6 +76,9 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
     }));
     this.notesForm = this.formBuilder.group({
       notes: ''
+    });
+    this.statusForm = this.formBuilder.group({
+      status: ''
     });
     this.subscriptions.push(
       combineLatest([
@@ -187,12 +200,40 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { size: 'lg' });
   }
 
+  openChangeStatusModal(request: TranslationRequest, content: TemplateRef<unknown>) {
+    this.statusRequest = request;
+    if (this.statusForm) {
+      this.statusForm.patchValue({ status: this.getStatusValue(request?.status) || '' });
+    }
+    this.modalService.open(content, { size: 'md' });
+  }
+
   openAddNotesModal(request: TranslationRequest, content: TemplateRef<unknown>) {
     this.notesRequest = request;
     if (this.notesForm) {
       this.notesForm.patchValue({ notes: request?.notes || '' });
     }
     this.modalService.open(content, { size: 'md' });
+  }
+
+  updateStatus(modal: { close: (reason?: string) => void }) {
+    if (!this.statusRequest || !this.statusForm?.value?.status) {
+      return;
+    }
+    this.statusSubmitting = true;
+    const status = this.statusForm.value.status;
+    this.translationRequestDataService.updateStatus(this.statusRequest.id, status)
+      .pipe(getFirstCompletedRemoteData())
+      .subscribe((response: RemoteData<NoContent>) => {
+        this.statusSubmitting = false;
+        if (response.hasSucceeded) {
+          this.notificationsService.success(this.labelPrefixSpecific + 'notification.status.updated');
+          modal.close('updated');
+          this.resetList();
+        } else {
+          this.notificationsService.error(this.labelPrefixSpecific + 'notification.status.error');
+        }
+      });
   }
 
   updateNotes(modal: { close: (reason?: string) => void }) {
@@ -213,6 +254,19 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
           this.notificationsService.error(this.labelPrefixSpecific + 'notification.notes.error');
         }
       });
+  }
+
+  private getStatusValue(status: number | string | null | undefined): string | null {
+    if (status == null || status === '') {
+      return null;
+    }
+    const value = String(status);
+    const byValue = this.statusOptions.find((option) => option.value === value);
+    if (byValue) {
+      return byValue.value;
+    }
+    const byLabel = this.statusOptions.find((option) => option.label === value);
+    return byLabel?.value ?? null;
   }
 
   private resetList() {
