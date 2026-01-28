@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of as observableOf } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { dataService } from '../cache/builders/build-decorators';
 import { RemoteDataBuildService } from '../cache/builders/remote-data-build.service';
 import { RequestParam } from '../cache/models/request-param.model';
 import { ObjectCacheService } from '../cache/object-cache.service';
 import { DataService } from '../data/data.service';
-import { FindListOptions } from '../data/request.models';
+import { FindListOptions, PatchRequest } from '../data/request.models';
 import { RequestService } from '../data/request.service';
 import { RemoteData } from '../data/remote-data';
 import { PaginatedList } from '../data/paginated-list.model';
@@ -73,6 +74,20 @@ export class TranslationRequestDataService extends DataService<TranslationReques
 
   public deleteTranslationRequest(request: TranslationRequest): Observable<RemoteData<NoContent>> {
     return this.delete(String(request.id));
+  }
+
+  public updateNotes(requestId: number, notes: string): Observable<RemoteData<NoContent>> {
+    const requestUuid = this.requestService.generateRequestId();
+    this.getEndpoint().pipe(
+      take(1),
+      map((endpoint: string) => this.getIDHref(endpoint, String(requestId)))
+    ).subscribe((href: string) => {
+      const patch = [{ op: 'replace', path: '/notes', value: notes }];
+      const request = new PatchRequest(requestUuid, href, patch);
+      this.requestService.send(request);
+    });
+
+    return this.rdbService.buildFromRequestUUID(requestUuid);
   }
 
   private getTranslationRequestsByTitle(
