@@ -73,7 +73,8 @@
                       <span class="wb-inv">{{ 'admin.request.actions.view' | translate }}</span>
                     </button>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                            title="{{ labelPrefixSpecific + 'actions.add-notes' | translate }}">
+                            title="{{ labelPrefixSpecific + 'actions.add-notes' | translate }}"
+                            (click)="openAddNotesModal(request, addNotesModal)">
                       <span aria-hidden="true" class="fas fa-sticky-note fa-fw"></span>
                       <span class="wb-inv">{{ labelPrefixSpecific + 'actions.add-notes' | translate }}</span>
                     </button>
@@ -158,6 +159,33 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close('close')">
       {{ labelPrefixSpecific + 'view.close' | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #addNotesModal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title">{{ labelPrefixSpecific + 'notes.add.title' | translate }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="notesForm">
+      <div class="form-group">
+        <label for="notesInput">{{ labelPrefixSpecific + 'notes.label' | translate }}</label>
+        <textarea id="notesInput" class="form-control" rows="4" formControlName="notes"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">
+      {{ 'form.cancel' | translate }}
+    </button>
+    <button type="button" class="btn btn-primary"
+            [disabled]="notesSubmitting"
+            (click)="updateNotes(modal)">
+      {{ labelPrefixSpecific + 'notes.update' | translate }}
     </button>
   </div>
 </ng-template>

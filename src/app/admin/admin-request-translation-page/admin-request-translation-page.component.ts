@@ -28,6 +28,8 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
   labelPrefix = 'admin.request.translation.';
   labelPrefixSpecific = 'admin.request.translation.';
   selectedRequest: TranslationRequest | null = null;
+  notesRequest: TranslationRequest | null = null;
+  notesSubmitting = false;
 
   requests$ = new BehaviorSubject<TranslationRequest[]>([]);
   pageInfoState$ = new BehaviorSubject<PageInfo>(new PageInfo());
@@ -42,6 +44,7 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   searchForm;
+  notesForm;
   currentSearchQuery = '';
   currentSearchScope = 'title';
   searchParams$ = new BehaviorSubject<{ scope: string; query: string }>({ scope: 'title', query: '' });
@@ -61,6 +64,9 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
       scope: 'title',
       query: '',
     }));
+    this.notesForm = this.formBuilder.group({
+      notes: ''
+    });
     this.subscriptions.push(
       combineLatest([
         this.paginationService.getCurrentPagination(this.config.id, this.config),
@@ -179,6 +185,34 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
   openViewModal(request: TranslationRequest, content: TemplateRef<unknown>) {
     this.selectedRequest = request;
     this.modalService.open(content, { size: 'lg' });
+  }
+
+  openAddNotesModal(request: TranslationRequest, content: TemplateRef<unknown>) {
+    this.notesRequest = request;
+    if (this.notesForm) {
+      this.notesForm.patchValue({ notes: request?.notes || '' });
+    }
+    this.modalService.open(content, { size: 'md' });
+  }
+
+  updateNotes(modal: { close: (reason?: string) => void }) {
+    if (!this.notesRequest) {
+      return;
+    }
+    this.notesSubmitting = true;
+    const notes = this.notesForm?.value?.notes ?? '';
+    this.translationRequestDataService.updateNotes(this.notesRequest.id, notes)
+      .pipe(getFirstCompletedRemoteData())
+      .subscribe((response: RemoteData<NoContent>) => {
+        this.notesSubmitting = false;
+        if (response.hasSucceeded) {
+          this.notificationsService.success(this.labelPrefixSpecific + 'notification.notes.updated');
+          modal.close('updated');
+          this.resetList();
+        } else {
+          this.notificationsService.error(this.labelPrefixSpecific + 'notification.notes.error');
+        }
+      });
   }
 
   private resetList() {
