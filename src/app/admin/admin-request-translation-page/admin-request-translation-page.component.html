@@ -193,7 +193,7 @@
 
 <ng-template #changeStatusModal let-modal>
   <div class="modal-header">
-    <h2 class="modal-title">{{ labelPrefixSpecific + 'status.change.title' | translate }}</h2>
+    <h2 class="modal-title">{{ 'admin.request.publication.status.change.title' | translate }}</h2>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -216,7 +216,7 @@
     <button type="button" class="btn btn-primary"
             [disabled]="statusSubmitting || !statusForm?.value?.status"
             (click)="updateStatus(modal)">
-      {{ labelPrefixSpecific + 'status.update' | translate }}
+      {{ 'admin.request.publication.status.update' | translate }}
     </button>
   </div>
 </ng-template>

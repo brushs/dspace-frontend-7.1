@@ -227,11 +227,11 @@ export class AdminRequestTranslationPageComponent implements OnInit, OnDestroy {
       .subscribe((response: RemoteData<NoContent>) => {
         this.statusSubmitting = false;
         if (response.hasSucceeded) {
-          this.notificationsService.success(this.labelPrefixSpecific + 'notification.status.updated');
+          this.notificationsService.success('admin.request.publication.notification.status.updated');
           modal.close('updated');
           this.resetList();
         } else {
-          this.notificationsService.error(this.labelPrefixSpecific + 'notification.status.error');
+          this.notificationsService.error('admin.request.publication.notification.status.error');
         }
       });
   }
