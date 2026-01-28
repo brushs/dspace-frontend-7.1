@@ -76,6 +76,20 @@ export class TranslationRequestDataService extends DataService<TranslationReques
     return this.delete(String(request.id));
   }
 
+  public updateStatus(requestId: number, status: string): Observable<RemoteData<NoContent>> {
+    const requestUuid = this.requestService.generateRequestId();
+    this.getEndpoint().pipe(
+      take(1),
+      map((endpoint: string) => this.getIDHref(endpoint, String(requestId)))
+    ).subscribe((href: string) => {
+      const patch = [{ op: 'replace', path: '/status', value: status }];
+      const request = new PatchRequest(requestUuid, href, patch);
+      this.requestService.send(request);
+    });
+
+    return this.rdbService.buildFromRequestUUID(requestUuid);
+  }
+
   public updateNotes(requestId: number, notes: string): Observable<RemoteData<NoContent>> {
     const requestUuid = this.requestService.generateRequestId();
     this.getEndpoint().pipe(
