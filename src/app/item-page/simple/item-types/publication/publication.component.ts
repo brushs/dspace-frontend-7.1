@@ -68,5 +68,10 @@ export class PublicationComponent extends ItemComponent implements OnInit {
     const modalRef = this.modalService.open(RequestPublicationModalComponent, { centered: true });
     modalRef.componentInstance.itemUuid = this.object?.uuid;
     modalRef.componentInstance.itemTitle = this.object?.firstMetadataValue('dc.title');
+    modalRef.componentInstance.publicationLanguage = this.getPublicationLanguage();
+  }
+
+  private getPublicationLanguage(): string {
+    return (this.object?.firstMetadataValue('dc.language') || '').trim();
   }
 }
