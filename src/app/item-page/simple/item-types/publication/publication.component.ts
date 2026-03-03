@@ -3,14 +3,17 @@ import { ItemComponent } from '../shared/item.component';
 import { ViewMode } from '../../../../core/shared/view-mode.model';
 import { listableObjectComponent } from '../../../../shared/object-collection/shared/listable-object/listable-object.decorator';
 import { CollectionDataService } from '../../../../core/data/collection-data.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of as observableOf } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { DSONameService } from '../../../../core/breadcrumbs/dso-name.service';
 import { LocaleService } from '../../../../core/locale/locale.service';
 import { RouteService } from '../../../../core/services/route.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RequestPublicationModalComponent } from './request-publication-modal/request-publication-modal.component';
+import { AuthService } from '../../../../core/auth/auth.service';
+import { AuthorizationDataService } from '../../../../core/data/feature-authorization/authorization-data.service';
+import { FeatureID } from '../../../../core/data/feature-authorization/feature-id';
 
 /**
  * Component that represents a publication Item page
@@ -26,6 +29,7 @@ import { RequestPublicationModalComponent } from './request-publication-modal/re
 export class PublicationComponent extends ItemComponent implements OnInit {
   displayLarge = false;
   uniLanguage = false;
+  isAdmin$: Observable<boolean> = observableOf(false);
   isMultimediaCollection$: Observable<boolean>;
 
   constructor(
@@ -34,15 +38,23 @@ export class PublicationComponent extends ItemComponent implements OnInit {
     protected routeService: RouteService,
     protected router: Router,
     protected collectionDataService: CollectionDataService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private authService: AuthService,
+    private authorizationService: AuthorizationDataService,
   ) {
     super(dsoNameService, localeService, routeService, router);
   }
 
   ngOnInit(): void {
     super.ngOnInit();
+    this.isAdmin$ = this.authService.isAuthenticated().pipe(
+      switchMap((isAuthenticated: boolean) => isAuthenticated
+        ? this.authorizationService.isAuthorized(FeatureID.AdministratorOf)
+        : observableOf(false))
+    );
+
     const flag = (this.object?.firstMetadataValue('nrcan.unilingual') || '').toLowerCase();
-    this.uniLanguage = flag === 'true' || flag === 'yes' || flag === 'y'
+    this.uniLanguage = flag === 'true' || flag === 'yes' || flag === 'y';
 
     // Check if the item belongs to the "Multimedia" collection
     this.isMultimediaCollection$ = this.collectionDataService.findOwningCollectionFor(this.object).pipe(
@@ -50,7 +62,7 @@ export class PublicationComponent extends ItemComponent implements OnInit {
         if (collectionRD?.hasSucceeded && collectionRD.payload) {
           var collectionName = collectionRD.payload.name;
           console.log('Collection Name:', collectionName);
-          return collectionName?.toLowerCase().includes('multim')
+          return collectionName?.toLowerCase().includes('multim');
         }
         return false;
       })
@@ -68,5 +80,10 @@ export class PublicationComponent extends ItemComponent implements OnInit {
     const modalRef = this.modalService.open(RequestPublicationModalComponent, { centered: true });
     modalRef.componentInstance.itemUuid = this.object?.uuid;
     modalRef.componentInstance.itemTitle = this.object?.firstMetadataValue('dc.title');
+    modalRef.componentInstance.publicationLanguage = this.getPublicationLanguage();
+  }
+
+  private getPublicationLanguage(): string {
+    return (this.object?.firstMetadataValue('dc.language') || '').trim();
   }
 }

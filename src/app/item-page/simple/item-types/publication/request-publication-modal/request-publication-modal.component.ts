@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RequestPublicationService } from './request-publication.service';
-import { LocaleService } from '../../../../../core/locale/locale.service';
 
 @Component({
   selector: 'ds-request-publication-modal',
@@ -12,6 +11,7 @@ import { LocaleService } from '../../../../../core/locale/locale.service';
 export class RequestPublicationModalComponent implements OnInit {
   @Input() itemUuid: string;
   @Input() itemTitle: string;
+  @Input() publicationLanguage: string;
 
   submitting = false;
   submitError = false;
@@ -25,13 +25,17 @@ export class RequestPublicationModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private requestPublicationService: RequestPublicationService,
-    private localeService: LocaleService
+    private requestPublicationService: RequestPublicationService
   ) {}
 
   ngOnInit(): void {
+    var language = '';
+    if (this.publicationLanguage == "English")
+      language = 'en';
+    else if (this.publicationLanguage == "French")
+      language = 'fr'; 
     this.form.patchValue({
-      language: this.localeService.getCurrentLanguageCode()
+      language: language
     });
   }
 
