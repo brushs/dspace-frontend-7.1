@@ -7,10 +7,8 @@
                 <h1 id="wb-cont">{{'item.edit.head' | translate}}</h1>
                 <button class="btn btn-primary" 
                         (click)="cloneItem()" 
-                        [disabled]="isCloning"
                         [attr.aria-label]="'item.edit.clone.button' | translate">
-                    <span *ngIf="!isCloning" class="fas fa-clone mr-1" aria-hidden="true"></span>
-                    <span *ngIf="isCloning" class="fas fa-spinner fa-spin mr-1" aria-hidden="true"></span>
+                    <span class="fas fa-clone mr-1" aria-hidden="true"></span>
                     {{'item.edit.clone.button' | translate}}
                 </button>
             </div>

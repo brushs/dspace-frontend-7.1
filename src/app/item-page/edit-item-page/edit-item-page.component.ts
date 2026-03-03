@@ -43,11 +43,6 @@ export class EditItemPageComponent implements OnInit {
    */
   pages: { page: string, enabled: Observable<boolean> }[];
 
-  /**
-   * Flag to track if cloning is in progress
-   */
-  isCloning = false;
-
   constructor(
     private route: ActivatedRoute, 
     private router: Router, 
@@ -98,8 +93,6 @@ export class EditItemPageComponent implements OnInit {
    * Clone the current item
    */
   cloneItem() {
-    this.isCloning = true;
-    
     this.itemRD$.pipe(
       take(1),
       switchMap((itemRD: RemoteData<Item>) => {
@@ -109,8 +102,6 @@ export class EditItemPageComponent implements OnInit {
         );
       })
     ).subscribe((clonedItemRD: RemoteData<Item>) => {
-      this.isCloning = false;
-      
       if (clonedItemRD.hasSucceeded) {
         const clonedItem = clonedItemRD.payload;
         this.notificationsService.success(
@@ -126,7 +117,6 @@ export class EditItemPageComponent implements OnInit {
         );
       }
     }, (error) => {
-      this.isCloning = false;
       this.notificationsService.error(
         this.translateService.instant('item.edit.clone.error.title'),
         this.translateService.instant('item.edit.clone.error.content')
