@@ -1530,7 +1530,7 @@
   "item.edit.head": "Edit item",
   "item.edit.clone.button": "Clone",
   "item.edit.clone.success.title": "Item cloned successfully",
-  "item.edit.clone.success.content": "The item has been cloned successfully. You are now viewing the cloned item.",
+  "item.edit.clone.success.content": "A Process to clone the item has been created successfully. View progress and retrive the new handle on the Processes page.",
   "item.edit.clone.error.title": "Clone failed",
   "item.edit.clone.error.content": "An error occurred while cloning the item. Please try again.",
   "item.edit.item-mapper.buttons.add": "Map item to selected collections",
