@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'item.page.request' | translate }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="request-item-title">Title</label>
+    <input id="request-item-title" class="form-control" [value]="itemTitle" readonly>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <input id="requester-language" type="hidden" formControlName="language">
+      <label for="requester-email">Email</label>
+      <input id="requester-email" class="form-control" formControlName="email" type="email">
+      <div class="invalid-feedback d-block" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        Enter a valid email address.
+      </div>
+    </div>
+    <div class="alert alert-success" *ngIf="submitSuccess">
+      Request submitted.
+    </div>
+    <div class="alert alert-danger" *ngIf="submitError">
+      Request failed. Please try again.
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="submitSuccess" type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">
+        {{ 'request-publication.close' | translate }}
+      </button>
+      <ng-container *ngIf="!submitSuccess">
+        <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">
+          {{ 'request-publication.cancel' | translate }}
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="submitting">
+          {{ submitting ? ('request-publication.submitting' | translate) : ('request-publication.submit' | translate) }}
+        </button>
+      </ng-container>
+    </div>
+  </form>
+</div>

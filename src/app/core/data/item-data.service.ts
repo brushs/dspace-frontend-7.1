@@ -290,6 +290,31 @@ export class ItemDataService extends DataService<Item> {
       switchMap((url: string) => this.halService.getEndpoint('bitstreams', `${url}/${itemId}`))
     );
   }
+
+  /**
+   * Clone an item
+   * @param itemId The ID of the item to clone
+   */
+  public cloneItem(itemId: string): Observable<RemoteData<Item>> {
+    const requestId = this.requestService.generateRequestId();
+    const href$ = this.halService.getEndpoint(this.linkPath).pipe(
+      map((href) => `${href}/${itemId}/clone`)
+    );
+
+    href$.pipe(
+      find((href: string) => hasValue(href)),
+      map((href: string) => {
+        const options: HttpOptions = Object.create({});
+        let headers = new HttpHeaders();
+        headers = headers.append('Content-Type', 'application/json');
+        options.headers = headers;
+        const request = new PostRequest(requestId, href, null, options);
+        this.requestService.send(request);
+      })
+    ).subscribe();
+
+    return this.rdbService.buildFromRequestUUID(requestId);
+  }
  
   public setPublicationLang(language: string) {
     this.selectedLanguageSubject.next(language);

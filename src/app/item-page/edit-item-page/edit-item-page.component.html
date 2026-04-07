@@ -3,7 +3,15 @@
         <div class="col-12">
             <!-- OSPR Changes- modifying h2 to h1-->
             <!-- Removed bottom border on h1-->
-            <h1 id="wb-cont">{{'item.edit.head' | translate}}</h1>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 id="wb-cont">{{'item.edit.head' | translate}}</h1>
+                <button class="btn btn-primary" 
+                        (click)="cloneItem()" 
+                        [attr.aria-label]="'item.edit.clone.button' | translate">
+                    <span class="fas fa-clone mr-1" aria-hidden="true"></span>
+                    {{'item.edit.clone.button' | translate}}
+                </button>
+            </div>
             <!-- modified h2 to h1-->
             <div class="pt-2">
                 <ul class="nav nav-tabs justify-content-start">

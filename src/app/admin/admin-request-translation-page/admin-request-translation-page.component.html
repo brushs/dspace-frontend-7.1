@@ -1,0 +1,222 @@
+<div customFosrc class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between border-bottom mb-3">
+        <h1 id="header" class="pb-2">{{ labelPrefixSpecific + 'head' | translate }}</h1>
+      </div>
+
+      <h2 id="search" class="border-bottom pb-2">{{ labelPrefix + 'search.head' | translate }}</h2>
+      <form [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)" class="d-flex justify-content-between">
+        <div>
+          <select name="scope" id="scope" formControlName="scope" class="form-control" aria-label="Search scope">
+            <option value="title">{{ labelPrefix + 'search.scope.title' | translate }}</option>
+            <!-- <option value="language">{{ labelPrefix + 'search.scope.language' | translate }}</option> -->
+            <option value="status">{{ labelPrefix + 'search.scope.status' | translate }}</option>
+            <option value="publicationUUID">{{ labelPrefix + 'search.scope.publicationUUID' | translate }}</option>
+          </select>
+        </div>
+        <div class="flex-grow-1 mr-3 ml-3">
+          <div class="form-group input-group">
+            <input type="text" name="query" id="query" formControlName="query"
+                   class="form-control"
+                   [placeholder]="(labelPrefixSpecific + 'search.placeholder' | translate)">
+            <span class="input-group-append">
+              <button type="submit" class="search-button btn btn-primary">
+                <span aria-hidden="true" class="fas fa-search"></span> {{ labelPrefix + 'search.button' | translate }}
+              </button>
+            </span>
+          </div>
+        </div>
+        <div>
+          <button type="button" (click)="clearFormAndResetResult()"
+                  class="search-button btn btn-secondary">{{ labelPrefix + 'button.see-all' | translate }}</button>
+        </div>
+      </form>
+
+      <ds-loading *ngIf="loading$ | async"></ds-loading>
+
+      <ds-pagination
+        *ngIf="(pageInfoState$ | async)?.totalElements > 0 && !(loading$ | async)"
+        [paginationOptions]="config"
+        [pageInfoState]="pageInfoState$"
+        [collectionSize]="(pageInfoState$ | async)?.totalElements"
+        [hideGear]="true"
+        [hidePagerWhenSinglePage]="true">
+
+        <div class="table-responsive">
+          <table id="translationrequests" class="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">{{ labelPrefix + 'table.id' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.title' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.language' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.status' | translate }}</th>
+                <th scope="col" class="created-date-col">{{ labelPrefix + 'table.created-date' | translate }}</th>
+                <th scope="col">{{ labelPrefixSpecific + 'table.notes' | translate }}</th>
+                <th scope="col">{{ labelPrefix + 'table.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let request of (requests$ | async)">
+                <td>{{ request.id }}</td>
+                <td>{{ getTitle(request) }}</td>
+                <td>{{ getLanguageLabel(request.language) }}</td>
+                <td>{{ request.status || (labelPrefixSpecific + 'status.pending' | translate) }}</td>
+                <td class="created-date-col">{{ request.createdDate ? (request.createdDate | date:'yyyy-MM-dd  HH:mm:ss') : '-' }}</td>
+                <td>{{ request.notes || '-' }}</td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                            title="{{ 'admin.request.actions.view' | translate }}"
+                            (click)="openViewModal(request, viewModal)">
+                      <span aria-hidden="true" class="fa fa-eye fa-fw"></span>
+                      <span class="wb-inv">{{ 'admin.request.actions.view' | translate }}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                            title="{{ labelPrefixSpecific + 'actions.add-notes' | translate }}"
+                            (click)="openAddNotesModal(request, addNotesModal)">
+                      <span aria-hidden="true" class="fas fa-sticky-note fa-fw"></span>
+                      <span class="wb-inv">{{ labelPrefixSpecific + 'actions.add-notes' | translate }}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                            title="{{ 'admin.request.actions.change-status' | translate }}"
+                            (click)="openChangeStatusModal(request, changeStatusModal)">
+                      <span aria-hidden="true" class="fas fa-exchange-alt fa-fw"></span>
+                      <span class="wb-inv">{{ 'admin.request.actions.change-status' | translate }}</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ds-pagination>
+
+      <div *ngIf="(pageInfoState$ | async)?.totalElements == 0 && !(loading$ | async)"
+           class="alert alert-info w-100 mb-2" role="alert">
+        {{ labelPrefixSpecific + 'no-items' | translate }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #viewModal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title">{{ labelPrefixSpecific + 'view.title' | translate }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" *ngIf="selectedRequest">
+    <table class="table table-sm table-bordered mb-0">
+      <tbody>
+        <tr>
+          <th scope="row">{{ labelPrefix + 'table.id' | translate }}</th>
+          <td>{{ selectedRequest.id }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.publication-uuid' | translate }}</th>
+          <td>{{ selectedRequest.publicationUUID || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.bitstream-uuid' | translate }}</th>
+          <td>{{ selectedRequest.bitstreamUUID || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefix + 'table.language' | translate }}</th>
+          <td>{{ getLanguageLabel(selectedRequest.language) }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefix + 'table.status' | translate }}</th>
+          <td>{{ selectedRequest.status || (labelPrefixSpecific + 'status.pending' | translate) }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefix + 'table.created-date' | translate }}</th>
+          <td>{{ selectedRequest.createdDate ? (selectedRequest.createdDate | date:'yyyy-MM-dd  HH:mm:ss') : '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.closed-date' | translate }}</th>
+          <td>{{ selectedRequest.closedDate ? (selectedRequest.closedDate | date:'yyyy-MM-dd  HH:mm:ss') : '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.title-en' | translate }}</th>
+          <td>{{ selectedRequest.titleEn || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.title-fr' | translate }}</th>
+          <td>{{ selectedRequest.titleFr || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'field.bitstream-name' | translate }}</th>
+          <td>{{ selectedRequest.bitstreamName || '-' }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ labelPrefixSpecific + 'table.notes' | translate }}</th>
+          <td>{{ selectedRequest.notes || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('close')">
+      {{ labelPrefixSpecific + 'view.close' | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #addNotesModal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title">{{ labelPrefixSpecific + 'notes.add.title' | translate }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="notesForm">
+      <div class="form-group">
+        <label for="notesInput">{{ labelPrefixSpecific + 'notes.label' | translate }}</label>
+        <textarea id="notesInput" class="form-control" rows="4" formControlName="notes"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">
+      {{ 'form.cancel' | translate }}
+    </button>
+    <button type="button" class="btn btn-primary"
+            [disabled]="notesSubmitting"
+            (click)="updateNotes(modal)">
+      {{ labelPrefixSpecific + 'notes.update' | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #changeStatusModal let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title">{{ 'admin.request.publication.status.change.title' | translate }}</h2>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="statusForm">
+      <div class="form-group">
+        <label for="statusSelect">{{ labelPrefix + 'table.status' | translate }}</label>
+        <select id="statusSelect" class="form-control" formControlName="status">
+          <option value="" disabled>{{ 'submission.sections.ccLicense.option.select' | translate }}</option>
+          <option *ngFor="let status of statusOptions" [value]="status.value">{{ status.label }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">
+      {{ 'form.cancel' | translate }}
+    </button>
+    <button type="button" class="btn btn-primary"
+            [disabled]="statusSubmitting || !statusForm?.value?.status"
+            (click)="updateStatus(modal)">
+      {{ 'admin.request.publication.status.update' | translate }}
+    </button>
+  </div>
+</ng-template>
