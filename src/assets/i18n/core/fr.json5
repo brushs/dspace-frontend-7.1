@@ -2718,7 +2718,7 @@
   // "item.edit.clone.success.title": "Item cloned successfully",
   "item.edit.clone.success.title": "Élément cloné avec succès",
   // "item.edit.clone.success.content": "The item has been cloned successfully. You are now viewing the cloned item.",
-  "item.edit.clone.success.content": "L'élément a été cloné avec succès. Vous visualisez actuellement l'élément cloné.",
+  "item.edit.clone.success.content": "Un processus de clonage de l'élément a été créé avec succès. Consultez la progression et récupérez le nouveau descripteur sur la page Processus.",
   // "item.edit.clone.error.title": "Clone failed",
   "item.edit.clone.error.title": "Le clonage a échoué",
   // "item.edit.clone.error.content": "An error occurred while cloning the item. Please try again.",

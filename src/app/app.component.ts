@@ -175,7 +175,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       if(shouldShowWelcome){
         //set the splash page title when the splash page appears
-        this.metadata.setSplashPageTitle('Federal Open Science Repository of Canada (FOSRC) / Le Dépôt fédéral de science ouverte du Canada (DFSOC)');
+        this.metadata.setSplashPageTitle('NRCAN Open Science and Technology Repository (OSTR) / Dépôt ouvert des sciences et technologie (DOST) de RNCan');
       }
 
     });
